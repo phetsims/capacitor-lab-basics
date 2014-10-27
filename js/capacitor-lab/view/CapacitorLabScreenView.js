@@ -11,6 +11,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  var BatteryNode = require( 'CAPACITOR_LAB/capacitor-lab/view/BatteryNode' );
 
   /**
    * @param {CapacitorLabModel} capacitorLabModel
@@ -29,6 +30,12 @@ define( function( require ) {
       bottom: this.layoutBounds.maxY - 10
     } );
     this.addChild( resetAllButton );
+    
+    var batteryNode = new BatteryNode( capacitorLabModel, {
+      x: -this.layoutBounds.maxX / 2,
+      y: -this.layoutBounds.maxY / 4
+    } );
+    this.addChild( batteryNode );
   }
 
   return inherit( ScreenView, CapacitorLabScreenView, {

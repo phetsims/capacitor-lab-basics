@@ -17,7 +17,9 @@ define( function( require ) {
    */
   function CapacitorLabModel() {
 
-    PropertySet.call( this, {} );
+    PropertySet.call( this, {
+      voltage: 0
+      } );
   }
 
   return inherit( PropertySet, CapacitorLabModel, {
