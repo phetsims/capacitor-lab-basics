@@ -18,7 +18,26 @@ define( function( require ) {
   function CapacitorLabModel() {
 
     PropertySet.call( this, {
-      voltage: 0
+      // voltage on the battery
+      voltage: 0,
+      // charges on plates visible?
+      plateChargeVisible: true,
+      // electric field lines visible?
+      eFieldVisible: false,
+      // capacitance meter visible?
+      capacitanceMeter: false,
+      // plate charge meter visible?
+      plateChargeMeter: false,
+      // stored energy meter visible?
+      energyMeter: false,
+      // voltmeter visible?
+      voltMeter: false,
+      // electric field meter visible?
+      eFieldMeter: false,
+      // battery connected?
+      batteryConnected: true,
+      // amount of charge on the upper plate
+      upperPlateCharge: 0
       } );
   }
 

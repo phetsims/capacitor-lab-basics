@@ -28,7 +28,7 @@ define( function( require ) {
     Screen.call( this, capacitorLabSimString, icon,
       function() { return new CapacitorLabModel(); },
       function( model ) { return new CapacitorLabScreenView( model ); },
-      { backgroundColor: 'white' }
+      { backgroundColor: '#9ddcf8' }
     );
   }
 
