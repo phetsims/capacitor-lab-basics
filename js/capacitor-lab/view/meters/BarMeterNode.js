@@ -35,12 +35,12 @@ define( function( require ) {
     this.addChild( meter );
     
     var color = 'green';
-    /*if (meterProperty == plateChargeMeterProperty) {
+    if (meterProperty == model.plateChargeMeterProperty) {
       color = 'red';
     }
-    else if (meterProperty == energyMeterProperty) {
+    else if (meterProperty == model.energyMeterProperty) {
       color = 'yellow';
-    }*/
+    }
     var measure = new Rectangle( 1, height - 1, width - 2, -height * valueProperty.value/maxValue, 0, 0, {
       fill: color
     } );
@@ -64,21 +64,40 @@ define( function( require ) {
     var topNumber = new HTMLText("10<sup>-13</sup>", {right: meter.left - tickLength - 2, top: meter.top - 5, font: new PhetFont(10)});
     this.addChild( topNumber );
     
+    var thisNode = this;
     // Add a drag handler
-    /*var meterOffset = {};
     this.addInputListener( new SimpleDragHandler( {
       // Allow moving a finger (touch) across a node to pick it up.
       allowTouchSnag: true,
       
+      start: function( event ) {
+        // Move up the scene graph until the parent screen is found.
+        var testNode = thisNode;
+        while ( testNode !== null ) {
+          if ( testNode instanceof ScreenView ) {
+            parentScreen = testNode;
+            break;
+          }
+          testNode = testNode.parents[0]; // Move up the scene graph by one level
+        }
+        // Create a new node and add it to the model.
+        thisNode.modelElement = thisNode.addElementToModel( eventToModelPosition( event.pointer.point ) );
+      },
+      
       //Translate on drag events
       drag: function( event ) {
-        var point = self.globalToParentPoint( event.pointer.point );
-        var desiredPosition = point.copy().subtract( metertOffset );
-        model.moveMeterToPosition( desiredPosition );
+        if ( thisNode.modelElement !== null ) {
+          // Move the node.
+          thisNode.modelElement.position = eventToModelPosition( event.pointer.point );
+        }
+      },
+      end: function( event ) {
+        // The user has released the node.
+        thisNode.modelElement.release();
+        thisNode.modelElement = null;
+        parentScreen = null;
       }
-    }));*/
-    
-    var thisNode = this;
+    }));
     meterProperty.link( function () {
       if (meterProperty.value) {
         thisNode.visible = true;
