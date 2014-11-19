@@ -37,7 +37,9 @@ define( function( require ) {
       // battery connected?
       batteryConnected: true,
       // amount of charge on the upper plate
-      upperPlateCharge: 0
+      upperPlateCharge: 0,
+      // capacitance of the plates
+      capacitance: 5
       } );
   }
 

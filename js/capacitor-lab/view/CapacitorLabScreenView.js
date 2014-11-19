@@ -52,7 +52,12 @@ define( function( require ) {
     var labelOptionFont = {font: new PhetFont( 12 )};
     var titleFont = new PhetFont( 14 );
     
-    var barmeter = new BarMeterNode(10, "<b>Capacitance</b>", ".89x10<sup>-13</sup> F", {x: 400, y : 30});
+    var barmeter = new BarMeterNode(capacitorLabModel,
+                                    10,
+                                    "<b>Capacitance</b>", ".89x10<sup>-13</sup> F",
+                                    capacitorLabModel.capacitanceMeterProperty,
+                                    capacitorLabModel.capacitanceProperty,
+                                    {x: 400, y : 30});
     this.addChild(barmeter);
 
     // Create and add the Reset All Button in the bottom right, which resets the model
