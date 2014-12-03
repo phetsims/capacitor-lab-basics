@@ -15,7 +15,7 @@ define( function( require ) {
   function PlateChargeSlider(model, options) {
     Node.call( this, options);
     
-    var slider = new HSlider(model.upperPlateChargeProperty, {min: -100, max: 100}, {
+    var slider = new HSlider(model.upperPlateChargeProperty, {min: -.53E-11, max: .53E-11}, {
       scale: 1.5,
       x: 0,
       y: 0,
@@ -46,6 +46,7 @@ define( function( require ) {
     
     var thisNode = this;
     model.batteryConnectedProperty.link( function () {
+      model.updateCapacitanceAndCharge();
       if (model.batteryConnectedProperty.value) {
         thisNode.visible = false;
       }

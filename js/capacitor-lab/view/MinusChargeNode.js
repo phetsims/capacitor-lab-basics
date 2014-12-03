@@ -10,33 +10,27 @@ define( function( require ) {
   
   //Scale up before rasterization so it won't be too pixellated/fuzzy
   var scale = 2;
-  var plusChargeNode = new Node( {
+  var minusChargeNode = new Node( {
     children: [
     new Rectangle( 0, 0, 11, 2, {
-      fill: 'red',
-      centerX: 0,
-      centerY: 0
-    } ),
-    
-    new Rectangle( 0, 0, 2, 11, {
-      fill: 'red',
+      fill: 'blue',
       centerX: 0,
       centerY: 0
     } )
     ], scale: scale} );
   
     var node = new Node();
-    plusChargeNode.toImage( function( im ) {
+    minusChargeNode.toImage( function( im ) {
       //Scale back down so the image will be the desired size
       node.children = [new Image( im, {scale: 1.0 / scale} )];
     } );
     
-    function PlusChargeNode( location ) {
+    function MinusChargeNode( location ) {
       // super constructor
       // Use svg for the shape and text
       Node.call( this, {pickable: false} );
       this.translate( location.x, location.y);
       this.addChild( node );
     }
-    return inherit( Node, PlusChargeNode );
+    return inherit( Node, MinusChargeNode );
 } );

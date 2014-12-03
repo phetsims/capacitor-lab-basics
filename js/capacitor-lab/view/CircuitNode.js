@@ -30,14 +30,16 @@ define( function( require ) {
     this.addChild( batteryNode );
     
     // Add the capacitor plates
-    var capacitor = new CapacitorNode( capacitorLabModel, {x: 240, y: 250, scale: .8} );
+    var capacitor = new CapacitorNode( capacitorLabModel, {x: 255, y: 250, scale: .8} );
     this.addChild( capacitor );
     
     // Add the wire connecting the plates to the battery
     var wireNode = new WireNode(capacitorLabModel, {x: 8, y: 122});
     this.addChild( wireNode );
+    console.log(wireNode.bounds);
     
-    var plateChargeSlider = new PlateChargeSlider(capacitorLabModel, {x: 350, y: 10});
+    // Add the slider that controls plate charge when the battery is disconnected
+    var plateChargeSlider = new PlateChargeSlider(capacitorLabModel, {x: 320, y: -15});
     this.addChild( plateChargeSlider );
   }
 

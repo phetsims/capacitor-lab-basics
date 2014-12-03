@@ -25,7 +25,7 @@ require.config(
       string: '../../chipper/requirejs-plugins/string',
 
       // common directories, uppercase names to identify them in require imports
-        AXON: '../../axon/js',
+      AXON: '../../axon/js',
       BRAND: '../../brand/js',
       DOT: '../../dot/js',
       JOIST: '../../joist/js',

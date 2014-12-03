@@ -51,14 +51,6 @@ define( function( require ) {
     
     var labelOptionFont = {font: new PhetFont( 12 )};
     var titleFont = new PhetFont( 14 );
-    
-    var barmeter = new BarMeterNode(capacitorLabModel,
-                                    10,
-                                    "<b>Capacitance</b>", ".89x10<sup>-13</sup> F",
-                                    capacitorLabModel.capacitanceMeterProperty,
-                                    capacitorLabModel.capacitanceProperty,
-                                    {x: 400, y : 30});
-    this.addChild(barmeter);
 
     // Create and add the Reset All Button in the bottom right, which resets the model
     var resetAllButton = new ResetAllButton( {
@@ -86,12 +78,34 @@ define( function( require ) {
       content: batteryToggleNode,
       baseColor: "white",
       x: 0,
-      y: circuitNode.top + 80,
+      y: circuitNode.top + 95,
       listener: function () {
         capacitorLabModel.batteryConnectedProperty.value = !capacitorLabModel.batteryConnectedProperty.value;
         }
       });
     this.addChild(connectBatteryButton);
+    
+    // add the capacitance meter
+    var capacitanceMeter = new BarMeterNode(capacitorLabModel,
+                                    "<b>Capacitance</b>", ".89x10<sup>-13</sup> F",
+                                    capacitorLabModel.capacitanceMeterProperty,
+                                    capacitorLabModel.capacitanceProperty,
+                                    {x: 300, y : 30});
+    this.addChild(capacitanceMeter);
+    // add the plate charge meter
+    var plateChargeMeter = new BarMeterNode(capacitorLabModel,
+                                    "<b>Plate Charge (top)</b>", ".46x10<sup>-13</sup> C",
+                                    capacitorLabModel.plateChargeMeterProperty,
+                                    capacitorLabModel.upperPlateChargeProperty,
+                                    {x: 400, y : 30});
+    this.addChild(plateChargeMeter);
+    // add the energy meter
+    var energyMeter = new BarMeterNode(capacitorLabModel,
+                                    "<b>Stored Energy</b>", ".12x10<sup>-13</sup> J",
+                                    capacitorLabModel.energyMeterProperty,
+                                    capacitorLabModel.energyProperty,
+                                    {x: 500, y : 30});
+    this.addChild(energyMeter);
     
     // Add the control panel that will allow users to control the visibility
     // of the plate charges and electric field lines

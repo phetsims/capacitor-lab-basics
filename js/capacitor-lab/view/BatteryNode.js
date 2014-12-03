@@ -39,6 +39,7 @@ define( function( require ) {
       if (model.voltageProperty.value >= 0) {
         thisNode.setImage(batteryUpImage);
       }
+      model.updateCapacitanceAndCharge();
     });
   }
   

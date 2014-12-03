@@ -20,6 +20,8 @@ define( function( require ) {
     var bottomPlateOffset = -7;
     var wireWidth = 8;
     var separation = 208;
+    var plateSeparationScale = 10;
+    var plateSeparation = model.plateSeparationProperty.value * plateSeparationScale;
     
     var topWire = makeTopShape();
     this.addChild( topWire );
@@ -48,6 +50,21 @@ define( function( require ) {
       else {
         thisNode.visible = true;
       }
+    });
+    
+    model.plateSeparationProperty.link( function () {
+      //var diff = separation - plateSeparation;
+      //plateSeparation = model.plateSeparationProperty.value * plateSeparationScale;
+      var diff = (model.plateSeparationProperty.value * plateSeparationScale - plateSeparation)*.8;
+      //console.log(diff);
+      topPlateOffset = 20 - diff;
+      bottomPlateOffset = -7 - diff;
+      thisNode.removeChild(topWire);
+      topWire = makeTopShape();
+      thisNode.addChild( topWire );
+      thisNode.removeChild(bottomWire);
+      bottomWire = makeBottomShape();
+      thisNode.addChild( bottomWire );
     });
     
     function makeTopShape() {
