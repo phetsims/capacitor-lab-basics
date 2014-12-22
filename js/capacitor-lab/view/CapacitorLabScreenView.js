@@ -36,7 +36,7 @@ define( function( require ) {
   function CapacitorLabScreenView( capacitorLabModel ) {
 
     ScreenView.call( this, { layoutBounds: new Bounds2( 0, 0, 768, 504 ) } );
-    
+
     // Strings
     var connectBatteryString = "Connect Battery";
     var disconnectBatteryString = "Disconnect Battery";
