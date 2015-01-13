@@ -10,6 +10,7 @@ define( function( require ) {
   
   //Scale up before rasterization so it won't be too pixellated/fuzzy
   var scale = 2;
+  // node containing a red plus image
   var plusChargeNode = new Node( {
     children: [
     new Rectangle( 0, 0, 11, 2, {

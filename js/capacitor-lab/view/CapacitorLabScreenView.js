@@ -9,9 +9,9 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var BatteryNode = require( 'CAPACITOR_LAB/capacitor-lab/view/BatteryNode' );
-  var CapacitorNode = require( 'CAPACITOR_LAB/capacitor-lab/view/CapacitorNode' );
+  var BarMeterNode = require( 'CAPACITOR_LAB/capacitor-lab/view/meters/BarMeterNode' );
   var CircuitNode = require( 'CAPACITOR_LAB/capacitor-lab/view/CircuitNode' );
+  var EFieldMeterNode = require( 'CAPACITOR_LAB/capacitor-lab/view/meters/EFieldMeterNode' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var HStrut = require( 'SUN/HStrut' );
   var Panel = require( 'SUN/Panel' );
@@ -23,10 +23,8 @@ define( function( require ) {
   var ToggleNode = require( 'SUN/ToggleNode' );
   var VBox = require( 'SCENERY/nodes/VBox' );
   var VerticalCheckBoxGroup = require( 'SUN/VerticalCheckBoxGroup' );
+  var VoltmeterNode = require( 'CAPACITOR_LAB/capacitor-lab/view/meters/VoltmeterNode' );
   var VStrut = require( 'SUN/VStrut' );
-  var WireNode = require( 'CAPACITOR_LAB/capacitor-lab/view/WireNode' );
-  
-  var BarMeterNode = require( 'CAPACITOR_LAB/capacitor-lab/view/meters/BarMeterNode' );
 
   /**
    * @param {CapacitorLabModel} capacitorLabModel
@@ -34,20 +32,26 @@ define( function( require ) {
    */
   function CapacitorLabScreenView( capacitorLabModel ) {
 
+    //ScreenView.call( this, {renderer: 'svg'} );
     ScreenView.call( this );
     
     // Strings
-    var connectBatteryString = "Connect Battery";
-    var disconnectBatteryString = "Disconnect Battery";
-    var viewTitleString = "View";
-    var plateChargeString = "Plate Charges";
-    var eFieldLinesString = "Electric Field Lines";
-    var metersTitleString = "Meters";
-    var capMeterString = "Capacitance";
-    var chargeMeterString = "Plate Charge";
-    var eMeterString = "Stored Energy";
-    var voltMeterString = "Voltmeter";
-    var eFieldMeterString = "Electric Field Detector";
+    var connectBatteryString = require( 'string!CAPACITOR_LAB/connectBattery' );
+    var disconnectBatteryString = require( 'string!CAPACITOR_LAB/disconnectBattery' );
+    // checkbox panel strings
+    var viewTitleString = require( 'string!CAPACITOR_LAB/view' );
+    var plateChargeString = require( 'string!CAPACITOR_LAB/plateCharges' );
+    var eFieldLinesString = require( 'string!CAPACITOR_LAB/eFieldLines' );
+    var metersTitleString = require( 'string!CAPACITOR_LAB/meters' );
+    var capMeterString = require( 'string!CAPACITOR_LAB/capacitance' );
+    var chargeMeterString = require( 'string!CAPACITOR_LAB/plateCharge' );
+    var eMeterString = require( 'string!CAPACITOR_LAB/storedEnergy' );
+    var voltMeterString = require( 'string!CAPACITOR_LAB/voltmeter' );
+    var eFieldMeterString = require( 'string!CAPACITOR_LAB/eFieldDetector' );
+    // meter title strings
+    var capMeterTitle = require( 'string!CAPACITOR_LAB/capMeterTitle' );
+    var chargeMeterTitle = require( 'string!CAPACITOR_LAB/chargeMeterTitle' );
+    var energyMeterTitle = require( 'string!CAPACITOR_LAB/energyMeterTitle' );
     
     var labelOptionFont = {font: new PhetFont( 12 )};
     var titleFont = new PhetFont( 14 );
@@ -83,29 +87,47 @@ define( function( require ) {
         capacitorLabModel.batteryConnectedProperty.value = !capacitorLabModel.batteryConnectedProperty.value;
         }
       });
-    this.addChild(connectBatteryButton);
+    this.addChild( connectBatteryButton );
     
     // add the capacitance meter
     var capacitanceMeter = new BarMeterNode(capacitorLabModel,
-                                    "<b>Capacitance</b>", ".89x10<sup>-13</sup> F",
+                                    capMeterTitle,
                                     capacitorLabModel.capacitanceMeterProperty,
                                     capacitorLabModel.capacitanceProperty,
-                                    {x: 300, y : 30});
-    this.addChild(capacitanceMeter);
+                                    capacitorLabModel.capacitanceMeterPositionProperty,
+                                    {x: 300, y: 30});
+    this.addChild( capacitanceMeter );
+    
     // add the plate charge meter
     var plateChargeMeter = new BarMeterNode(capacitorLabModel,
-                                    "<b>Plate Charge (top)</b>", ".46x10<sup>-13</sup> C",
+                                    chargeMeterTitle,
                                     capacitorLabModel.plateChargeMeterProperty,
                                     capacitorLabModel.upperPlateChargeProperty,
-                                    {x: 400, y : 30});
-    this.addChild(plateChargeMeter);
+                                    capacitorLabModel.plateChargeMeterPositionProperty,
+                                    {x: 400, y: 30});
+    this.addChild( plateChargeMeter );
+    
     // add the energy meter
     var energyMeter = new BarMeterNode(capacitorLabModel,
-                                    "<b>Stored Energy</b>", ".12x10<sup>-13</sup> J",
+                                    energyMeterTitle,
                                     capacitorLabModel.energyMeterProperty,
                                     capacitorLabModel.energyProperty,
-                                    {x: 500, y : 30});
-    this.addChild(energyMeter);
+                                    capacitorLabModel.energyMeterPositionProperty,
+                                    {x: 500, y: 30});
+    this.addChild( energyMeter );
+    
+    // add the voltmeter
+    var voltMeter = new VoltmeterNode(capacitorLabModel,
+                                      circuitNode.wireNode,
+                                      circuitNode.capacitor,
+                                      {x: 450, y: 250});
+    this.addChild( voltMeter );
+    
+    // add the electric field meter
+    var eFieldMeter = new EFieldMeterNode(capacitorLabModel,
+                                          circuitNode.capacitor,
+                                          {x: 450, y: 350});
+    this.addChild( eFieldMeter );
     
     // Add the control panel that will allow users to control the visibility
     // of the plate charges and electric field lines

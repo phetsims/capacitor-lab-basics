@@ -6,20 +6,25 @@ define( function( require ) {
   // modules
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var HSlider = require( 'SUN/HSlider' );
-  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var Line = require( 'SCENERY/nodes/Line' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
+  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
 
-  // @param maxValue (double): the maximum value of the property being studied
-  // @param title (string): the title that goes under the meter
-  // @param units (string): the subtitle that describes the units of the property
-  // @param meterProperty: the type of meter being shown
-  // @param valueProperty: the property that the meter measures
-  function BarMeterNode(model, title, value, meterProperty, valueProperty, options) {
+  /**
+   * Constructor for the bar meters that measure capacitance, plate charge, and energy
+   * @param title (string): the title that goes under the meter
+   * @param meterProperty: the type of meter being shown
+   * @param valueProperty: the property that the meter measures
+   * @param meterPositionProperty: the property that describes the position of the meter
+   **/
+  function BarMeterNode(model, title, meterProperty, valueProperty, meterPositionProperty, options) {
+    options = _.extend({cursor: 'pointer'}, options);
     Node.call( this, options);
     
     var height = 120;
@@ -29,8 +34,9 @@ define( function( require ) {
     var lineOptions = {stroke: '#000000'};
     var tickLength = 5;
     var maxValue = 1E-13;
-    var exp = "10<sup>"+Math.log10(maxValue)+"</sup>";
+    var exp = "10<sup>-13";
     
+    // Body of the meter
     var meter = new Rectangle( 0, 0, width, height, 0, 0, {
       stroke: 'black',
       fill: '#ffffff'
@@ -52,27 +58,33 @@ define( function( require ) {
       units = ' J';
       color = 'yellow';
     }
+    
+    // Filled rectangle to represent the value of the property being measured
     var measure = new Rectangle( 1, height - 1, width - 2, -height * valueProperty.value/maxValue, 0, 0, {
       fill: color
     } );
     this.addChild( measure );
     
+    // Small tick marks along the side of the meter
     var yLoc = 0;
     for (var i = 0; i <= tickNumber; i++) {
       yLoc = i*tickSpacing + meter.top;
       this.addChild( new Line(meter.left, yLoc, meter.left - tickLength, yLoc, lineOptions));
     }
     
-    var titleText = new HTMLText(title, {centerX: meter.centerX, y: meter.bottom + 15, font: new PhetFont(10)});
+    // Meter title
+    var titleText = new Text(title, {centerX: meter.centerX, y: meter.bottom + 15, font: new PhetFont(10)});
     this.addChild( titleText );
-    
-    var subtitleText = new HTMLText(value, {centerX: meter.centerX, y: titleText.bottom + 15, font: new PhetFont(10)});
+    // Value of property being measured
+    var subtitleText = new ScientificNotationNode(valueProperty, {centerX: meter.centerX, y: titleText.bottom + 15, font: new PhetFont(10)});
     this.addChild( subtitleText );
     
-    var bottomNumber = new HTMLText("0", {right: meter.left - tickLength - 2, bottom: meter.bottom + 5, font: new PhetFont(10)});
+    // Lower bound of values being measured by the meter
+    var bottomNumber = new Text("0", {right: meter.left - tickLength - 2, bottom: meter.bottom + 5, font: new PhetFont(10)});
     this.addChild( bottomNumber );
     
-    var topNumber = new HTMLText(exp, {right: meter.left - tickLength - 2, top: meter.top - 5, font: new PhetFont(10)});
+    // Upper bound on values measured by meter
+    var topNumber = new SubSupText(exp, {right: meter.left - tickLength - 2, top: meter.top - 5, font: new PhetFont(10)});
     this.addChild( topNumber );
     
     // arrow for when the value is greater than the scale
@@ -90,6 +102,38 @@ define( function( require ) {
     } );
     this.addChild( arrow );
     
+    // Button to decrease the upper bound
+    var zoomInButton = new ZoomButton({
+      top: topNumber.bottom + 10,
+      right: topNumber.right - 5,
+      scale: .4,
+      baseColor: 'white',
+      enabled: false,
+      listener: function () {
+        maxValue = maxValue / 10;
+        exp = "10<sup>"+Math.log10(maxValue);
+        topNumber.text = exp;
+        updateMeter();
+      },
+      });
+    this.addChild(zoomInButton);
+    // Button to increase the upper bound
+    var zoomOutButton = new ZoomButton({
+      top: zoomInButton.bottom + 7,
+      right: zoomInButton.right,
+      scale: .4,
+      in: false,
+      baseColor: 'white',
+      enabled: false,
+      listener: function () {
+        maxValue = maxValue * 10;
+        exp = "10<sup>"+Math.log10(maxValue);
+        topNumber.text = exp;
+        updateMeter();
+      },
+      });
+    this.addChild(zoomOutButton);
+    
     var thisNode = this;
 
     // drag handler
@@ -105,23 +149,26 @@ define( function( require ) {
       drag: function( event ) {
         var point = thisNode.globalToParentPoint( event.pointer.point );
         var desiredPosition = point.copy().subtract( meterOffset );
-        //alert(thisNode.y);
-        model.moveMeterToPosition( desiredPosition, thisNode );
+        model.moveMeterToPosition( desiredPosition, meterPositionProperty );
       }
     } );
     this.addInputListener( meterDragHandler );
 
     meterProperty.link( function () {
-      if (meterProperty.value) {
-        thisNode.visible = true;
-      }
-      else {
-        thisNode.visible = false;
-      }
+      thisNode.visible = meterProperty.value;
     });
     
     valueProperty.link( function () {
-      thisNode.removeChild( measure );
+      updateMeter();
+    });
+    
+    meterPositionProperty.link( function () {
+      thisNode.centerX = meterPositionProperty.value.x;
+      thisNode.centerY = meterPositionProperty.value.y;
+    });
+    
+    // Updates the display when the property being measured changes
+    function updateMeter() {
       if (valueProperty == model.upperPlateChargeProperty && model.upperPlateChargeProperty.value > 0 ) {
         color = 'red';
       }
@@ -133,20 +180,23 @@ define( function( require ) {
         arrow.visible = true;
         arrow.fill = color;
         rectHeight = -height+1;
+        zoomOutButton.enabled = true;
       }
       else {
         arrow.visible = false;
+        zoomOutButton.enabled = false;
       }
-      measure = new Rectangle( 1, height - 1, width - 2, rectHeight, 0, 0, {
-        fill: color
-      } );
-      thisNode.addChild( measure );
+      if ((Math.abs(valueProperty.value) < maxValue / 10) && (Math.abs(valueProperty.value) != 0)) {
+        zoomInButton.enabled = true;
+      }
+      else {
+        zoomInButton.enabled = false;
+      }
+      measure.setRect(1, height - 1, width - 2, rectHeight, 0, 0);
+      measure.fill = color;
       
-      // update the string at the bottom of the meter
-      exp = "10<sup>"+Math.log10(maxValue)+"</sup>";
-      var val = (Math.abs(valueProperty.value) / maxValue).toFixed(2);
-      subtitleText.text = val + "x" + exp + units;
-    });
+      subtitleText.centerX = meter.centerX;
+    }
   }
   
   return inherit( Node, BarMeterNode);

@@ -10,6 +10,7 @@ define( function( require ) {
   
   //Scale up before rasterization so it won't be too pixellated/fuzzy
   var scale = 2;
+  // blue minus sign node
   var minusChargeNode = new Node( {
     children: [
     new Rectangle( 0, 0, 11, 2, {

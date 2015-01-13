@@ -10,7 +10,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
-  var Bounds2 = require( 'DOT/Bounds2' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   /**
    * Main constructor for CapacitorLabModel, which contains all of the model logic for the entire sim screen.
@@ -19,40 +19,62 @@ define( function( require ) {
   function CapacitorLabModel() {
 
     PropertySet.call( this, {
-      // voltage on the battery
+      /* Measurable quantities */
+      // voltage of the battery (V)
       voltage: 0,
-      // charges on plates visible?
-      plateChargeVisible: true,
-      // electric field lines visible?
-      eFieldVisible: false,
-      // capacitance meter visible?
-      capacitanceMeter: false,
-      // capacitance meter position
-      capacitanceMeterPosition: new Bounds2( 0, 0 ),
-      // plate charge meter visible?
-      plateChargeMeter: false,
-      // plateCharge meter position
-      plateChargeMeterPosition: new Bounds2( 0, 0 ),
-      // stored energy meter visible?
-      energyMeter: false,
-      // energy meter position
-      energyMeterPosition: new Bounds2( 500, 30 ),
-      // voltmeter visible?
-      voltMeter: false,
-      // electric field meter visible?
-      eFieldMeter: false,
-      // battery connected?
-      batteryConnected: true,
-      // amount of charge on the upper plate
-      upperPlateCharge: 0.13E-12,
-      // capacitance of the plates
+      // amount of charge on the upper plate (C)
+      upperPlateCharge: 0,
+      // capacitance of the plates (F)
       capacitance: .89E-13,
-      // stored energy in the capacitor
+      // stored energy in the capacitor (J)
       energy: 0,
+      // electric field
+      eField: 0,
       // area of the capacitor plates (mm^2)
       capacitorPlateArea: 100,
       // distance between the capacitor plates (mm)
       plateSeparation: 10,
+      
+      /* Meter visibility */
+      // capacitance meter visible?
+      capacitanceMeter: false,
+      // plate charge meter visible?
+      plateChargeMeter: false,
+      // stored energy meter visible?
+      energyMeter: false,
+      // voltmeter visible?
+      voltMeter: false,
+      // electric field meter visible?
+      eFieldMeter: false,
+      
+      /* Meter and probe positions */
+      // capacitance meter position
+      capacitanceMeterPosition: new Vector2( 300, 100 ),
+      // plate charge meter position
+      plateChargeMeterPosition: new Vector2( 400, 100 ),
+      // energy meter position
+      energyMeterPosition: new Vector2( 500, 100 ),
+      // voltmeter position
+      voltMeterPosition: new Vector2( 50, 50 ),
+      // electric field meter position
+      eFieldMeterPosition: new Vector2( 0, 50 ),
+      
+      // position of the red probe
+      redProbePosition: new Vector2( -340, 100 ),
+      // position of the black probe
+      blackProbePosition: new Vector2( -300, 100 ),
+      // position of the electric field probe
+      eFieldProbePosition: new Vector2( -248, 10 ),
+      
+      /* Other */
+      // charges on plates visible?
+      plateChargeVisible: true,
+      // electric field lines visible?
+      eFieldVisible: false,
+      // battery connected?
+      batteryConnected: true,
+      // show the value of the electric field on the meter?
+      eFieldValueVisible: true,
       } );
   }
 
@@ -63,17 +85,35 @@ define( function( require ) {
       // Handle model animation here.
     },
     
-    moveMeterToPosition: function( position, node ) {
-      node.centerX = position.x;
-      node.centerY = position.y;
+    // Move the bar meters, the body of the voltmeter, and the body of the electric field meter
+    moveMeterToPosition: function( position, positionProperty ) {
+      positionProperty.value = position;
     },
     
+    // Move the red and black voltage probes
+    moveProbeToPosition: function( position, node, isRedProbe ) {
+      if (isRedProbe) {
+        this.redProbePositionProperty.value = position;
+      }
+      else {
+        this.blackProbePositionProperty.value = position;
+      }
+    },
+    
+    // Move the grey electric field probe
+    moveEFieldProbeToPosition: function ( position ) {
+      this.eFieldProbePositionProperty.value = position;
+    },
+    
+    // Whenever the voltage, plate area, or plate separation change, this is called
+    // Updates the capacitance, charge, energy, and electric field properties
     updateCapacitanceAndCharge: function() {
       this.capacitanceProperty.value = 8.854E-12 * this.capacitorPlateAreaProperty.value * 1E-6 / (this.plateSeparationProperty.value * 1E-3);
       if (this.batteryConnectedProperty.value) {
         this.upperPlateChargeProperty.value = this.voltageProperty.value * this.capacitanceProperty.value;
       }
       this.energyProperty.value = Math.pow(this.upperPlateChargeProperty.value, 2) / this.capacitanceProperty.value / 2;
+      this.eFieldProperty.value = this.upperPlateChargeProperty.value / (8.854E-12 * this.capacitorPlateAreaProperty.value * 1E-6)
     }
   } );
 } );

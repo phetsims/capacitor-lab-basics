@@ -16,31 +16,31 @@ define( function( require ) {
   var PlateChargeSlider = require( 'CAPACITOR_LAB/capacitor-lab/view/PlateChargeSlider' );
 
   /**
-   * @constructor
+   * Constructor for the circuit
+   * Contains the battery, the capacitor, the wires, and the slider to control plate charge
    */
   function CircuitNode( capacitorLabModel, options ) {
 
     Node.call( this, options );
     
     // Add the battery
-    var batteryNode = new BatteryNode( capacitorLabModel, {
+    this.batteryNode = new BatteryNode( capacitorLabModel, {
       x: -384,
       y: -84,
     } );
-    this.addChild( batteryNode );
+    this.addChild( this.batteryNode );
     
     // Add the capacitor plates
-    var capacitor = new CapacitorNode( capacitorLabModel, {x: 255, y: 250, scale: .8} );
-    this.addChild( capacitor );
+    this.capacitor = new CapacitorNode( capacitorLabModel, {x: 255, y: 250, scale: .8} );
+    this.addChild( this.capacitor );
     
     // Add the wire connecting the plates to the battery
-    var wireNode = new WireNode(capacitorLabModel, {x: 8, y: 122});
-    this.addChild( wireNode );
-    console.log(wireNode.bounds);
+    this.wireNode = new WireNode(capacitorLabModel, this.capacitor.topPlate, this.capacitor.bottomPlate, {x: 8, y: 122});
+    this.addChild( this.wireNode );
     
     // Add the slider that controls plate charge when the battery is disconnected
-    var plateChargeSlider = new PlateChargeSlider(capacitorLabModel, {x: 320, y: -15});
-    this.addChild( plateChargeSlider );
+    this.plateChargeSlider = new PlateChargeSlider(capacitorLabModel, {x: 320, y: -15});
+    this.addChild( this.plateChargeSlider );
   }
 
   return inherit( Node, CircuitNode);

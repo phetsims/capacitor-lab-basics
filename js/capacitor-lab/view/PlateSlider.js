@@ -12,7 +12,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var LinearFunction = require( 'DOT/LinearFunction' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var Path = require( 'SCENERY/nodes/Path' );
   var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
@@ -20,6 +19,9 @@ define( function( require ) {
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
 
   /**
+   * Constructor for the sliders used to change plate size and separation
+   * Based on the Slider class
+   * Not enough of the Slider class is public, however, to make it inherit from Slider
    * @param {Property.<number>} valueProperty
    * @param { {min:number, max:number} } range
    * @param {Object} [options]

@@ -12,8 +12,17 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
+  /**
+   * Constructor for the slider that controls the charge on the capacitor when the battery is disconnected
+   **/
   function PlateChargeSlider(model, options) {
     Node.call( this, options);
+    
+    // strings
+    var lotsPlusString = require( 'string!CAPACITOR_LAB/lots.plus' );
+    var lotsMinusString = require( 'string!CAPACITOR_LAB/lots.minus' );
+    var noneString = require( 'string!CAPACITOR_LAB/none' );
+    var plateChargeString = require( 'string!CAPACITOR_LAB/plateCharge.top' );
     
     var slider = new HSlider(model.upperPlateChargeProperty, {min: -.53E-11, max: .53E-11}, {
       scale: 1.5,
@@ -24,13 +33,14 @@ define( function( require ) {
       majorTickLength: 12
     });
     var labelOptions = {rotation: Math.PI / 2, scale: .9};
-    var topLabel = new HTMLText("Lots (+)", labelOptions);
-    var midLabel = new HTMLText("None", labelOptions);
-    var bottomLabel = new HTMLText("Lots (-)", labelOptions);
+    var topLabel = new HTMLText(lotsPlusString, labelOptions);
+    var midLabel = new HTMLText(noneString, labelOptions);
+    var bottomLabel = new HTMLText(lotsMinusString, labelOptions);
     slider.addMajorTick(100, topLabel);
     slider.addMajorTick(0, midLabel);
     slider.addMajorTick(-100, bottomLabel);
     
+    // container for the slider
     var rectangle = new Rectangle( 0, 0, slider.width + 20, slider.height + 20, 0, 0, {
       stroke: 'black',
       fill: '#ffffff',
@@ -41,7 +51,11 @@ define( function( require ) {
     
     this.addChild(slider);
     
-    var title = new HTMLText("<b>Plate Charge (top)</b>", {centerX: slider.centerX, y: slider.bottom + 35, font: new PhetFont(15)});
+    var title = new HTMLText("<b>" + plateChargeString + "</b>", {
+      centerX: slider.centerX,
+      y: slider.bottom + 35,
+      font: new PhetFont(15)
+    });
     this.addChild( title );
     
     var thisNode = this;
@@ -54,6 +68,10 @@ define( function( require ) {
         thisNode.visible = true;
       }
     });
+    
+    model.upperPlateChargeProperty.link( function () {
+      model.updateCapacitanceAndCharge();
+    })
   }
   
   return inherit( Node, PlateChargeSlider);
