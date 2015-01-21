@@ -41,6 +41,12 @@ define( function( require ) {
     // dark grey rectangle for meter body
     var backgroundNode = new Rectangle( 0, 0, 150, 160, 5, 5, {fill: "#434343"} );
     
+    var arrowScale = 1;
+    // height of the arrow at the maxEField
+    var maxArrowHeight = 55;
+    // maximum electric field with the battery connected and the plates at the initial setting
+    var maxEField = 150;
+    
     // image of meter probe
     var probeNode = new EFieldProbeNode( model, {
       scale: .65,
@@ -78,6 +84,8 @@ define( function( require ) {
                                          0,
                                          0,
                                          {fill: 'white'} );
+    var meterClipArea = meterDisplayNode.createRectangleShape();
+    meterDisplayNode.setClipArea( meterClipArea );
     backgroundNode.addChild( meterDisplayNode );
     
     // vector arrow to represent the magnitude of the field
@@ -127,7 +135,8 @@ define( function( require ) {
       baseColor: 'white',
       enabled: false,
       listener: function () {
-        console.log("zoom in");
+        arrowScale = maxEField / Math.abs(model.eFieldProperty.value);
+        updateArrow();
       },
       });
     zoomInButton.enabled = false;
@@ -140,7 +149,9 @@ define( function( require ) {
       baseColor: 'white',
       enabled: false,
       listener: function () {
-        console.log("zoom out " + zoomOutButton.enabled);
+        arrowScale = arrowScale * maxArrowHeight / arrow.height;
+        console.log(arrowScale);
+        updateArrow();
       },
       });
     zoomOutButton.enabled = false;
@@ -231,6 +242,56 @@ define( function( require ) {
       return wireShape;
     }
     
+    // Redraws the arrow when the electric field changes or the zoom buttons are clicked
+    function updateArrow() {
+      var height = maxArrowHeight * model.eFieldProperty.value / maxEField * arrowScale;
+      if (Math.abs(height) < maxArrowHeight / 3) {
+        arrow.options =  {
+          headHeight: 13 * arrowScale * Math.abs(model.eFieldProperty.value) / (maxEField / 3),
+          tailWidth: 7 * arrowScale * Math.abs(model.eFieldProperty.value) / (maxEField / 3),
+          headWidth: 15 * arrowScale * Math.abs(model.eFieldProperty.value) / (maxEField / 3),
+        };
+        zoomInButton.enabled = true && height;
+      }
+      else if (Math.abs(height) < 2 * maxArrowHeight / 3) {
+        zoomInButton.enabled = true;
+      }
+      else {
+        arrow.options =  {
+          headHeight: 13,
+          tailWidth: 7,
+          headWidth: 15,
+        };
+        zoomInButton.enabled = false;
+        if (Math.abs(height) > maxArrowHeight * 17 / 15) {
+          zoomOutButton.enabled = true;
+        }
+        else {
+          zoomOutButton.enabled = false;
+        }
+      }
+      arrow.setTailAndTip( meterDisplayNode.centerX, meterDisplayNode.centerY, meterDisplayNode.centerX, meterDisplayNode.centerY + height );
+      arrow.centerY = meterDisplayNode.centerY;
+      if ( model.eFieldValueVisibleProperty.value ) {
+        if ( model.eFieldProperty.value < 0 ) {
+          plateTextNode.top = arrow.bottom + 3;
+          eFieldTextNode.top = plateTextNode.bottom + 3;
+        }
+        else {
+          eFieldTextNode.bottom = arrow.top - 3;
+          plateTextNode.bottom = eFieldTextNode.top - 3;
+        }
+      }
+      else {
+        if ( model.eFieldProperty.value < 0 ) {
+          plateTextNode.top = arrow.bottom + 3;
+        }
+        else {
+          plateTextNode.bottom = arrow.top - 3;
+        }
+      }
+    }
+    
     // Updates the value being displayed when the electric field changes
     // Also updates when the probe is moved into or out of the area inside the capacitor
     function updateDisplay() {
@@ -255,34 +316,7 @@ define( function( require ) {
       eFieldTextNode.centerX = meterDisplayNode.centerX;
       
       // update arrow
-      var height = 55 * model.eFieldProperty.value / 150;
-      if (Math.abs(model.eFieldProperty.value) < 50) {
-        arrow.options =  {
-          headHeight: 13 * Math.abs(model.eFieldProperty.value) / 50,
-          tailWidth: 7 * Math.abs(model.eFieldProperty.value) / 50,
-          headWidth: 15 * Math.abs(model.eFieldProperty.value) / 50,
-        };
-      }
-      arrow.setTailAndTip( meterDisplayNode.centerX, meterDisplayNode.centerY, meterDisplayNode.centerX, meterDisplayNode.centerY + height );
-      arrow.centerY = meterDisplayNode.centerY;
-      if ( model.eFieldValueVisibleProperty.value ) {
-        if ( model.eFieldProperty.value < 0 ) {
-          plateTextNode.top = arrow.bottom + 3;
-          eFieldTextNode.top = plateTextNode.bottom + 3;
-        }
-        else {
-          eFieldTextNode.bottom = arrow.top - 3;
-          plateTextNode.bottom = eFieldTextNode.top - 3;
-        }
-      }
-      else {
-        if ( model.eFieldProperty.value < 0 ) {
-          plateTextNode.top = arrow.bottom + 3;
-        }
-        else {
-          plateTextNode.bottom = arrow.top - 3;
-        }
-      }
+      updateArrow();
     }
 
   }
