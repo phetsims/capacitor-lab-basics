@@ -1,0 +1,59 @@
+{
+  "chipper": {
+    "sha": "8394db6f1ab16257bce293a031c113521673d8f8",
+    "branch": "master"
+  },
+  "sherpa": {
+    "sha": "2838342b451d0ee829ccc6991f3145c5b61ba42d",
+    "branch": "master"
+  },
+  "sun": {
+    "sha": "08ea7b53ec2b49dc729b1c8d8b9adc4a8be89983",
+    "branch": "master"
+  },
+  "scenery-phet": {
+    "sha": "bc7b9c0985aa7569d9f031eb84caea16451da2d3",
+    "branch": "master"
+  },
+  "scenery": {
+    "sha": "299adede03127509faa66a5cd9ce005e3c93df0f",
+    "branch": "master"
+  },
+  "phetcommon": {
+    "sha": "3d7aefbaa4ce41de519d1358ea757964822c84b5",
+    "branch": "master"
+  },
+  "phet-core": {
+    "sha": "7d8ed534e6ce7e148d834710f42f77ac5e92f0b6",
+    "branch": "master"
+  },
+  "kite": {
+    "sha": "f5eec48d577f9bcc885d3f72f76ed08703d3e21e",
+    "branch": "master"
+  },
+  "joist": {
+    "sha": "dad8bf3a9412c770418e7b40bd5f1d20f2106287",
+    "branch": "master"
+  },
+  "dot": {
+    "sha": "ea256f020097d9a706f7207c1315722fa7aa74db",
+    "branch": "master"
+  },
+  "brand": {
+    "sha": "c7a2cb73871b7f9cbec2b8ea9ee766070a51d466",
+    "branch": "master"
+  },
+  "axon": {
+    "sha": "a8762ae83f10e169ff615ffbd2ab906a3a11f1da",
+    "branch": "master"
+  },
+  "assert": {
+    "sha": "386e00157abe609741d3095120e0e425d10e7b51",
+    "branch": "master"
+  },
+  "capacitor-lab": {
+    "sha": "1bcaecff5c663e1b44a9cc5ed439b31954c44485",
+    "branch": "master"
+  },
+  "comment": "# capacitor-lab 1.0.0-dev.1 Wed Feb 04 2015 13:50:39 GMT-0700 (MST)"
+}
