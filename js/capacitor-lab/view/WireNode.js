@@ -45,7 +45,7 @@ define( function( require ) {
     
     // lower wire
     var bottomWireShape = makeBottomShape();
-    this.bottomWire = new Path( bottomWireShape, {x: 0, y: separation, stroke: 'black', fill: '#aaaaaa'});
+    this.bottomWire = new Path( bottomWireShape, {stroke: 'black', fill: '#aaaaaa'});
     this.addChild( this.bottomWire );
 
     model.voltageProperty.link( function () {
@@ -108,15 +108,16 @@ define( function( require ) {
     // create the shape for the lower wire
     function makeBottomShape() {
       var bottomWireShape = new Shape().
-        verticalLineTo( yLength ).
+        moveTo( 0, separation ).
+        verticalLineTo( yLength + separation ).
         horizontalLineTo( xLength ).
-        verticalLineTo( -bottomPlateOffset ).
+        verticalLineTo( -bottomPlateOffset + separation ).
         horizontalLineTo( xLength - wireWidth ).
-        verticalLineTo( yLength - wireWidth ).
+        verticalLineTo( yLength - wireWidth + separation).
         horizontalLineTo( wireWidth ).
-        verticalLineTo( 0 ).
+        verticalLineTo( separation ).
         horizontalLineTo( 0 ).
-        verticalLineTo( yLength );
+        verticalLineTo( yLength + separation );
       return bottomWireShape;
     }
   }

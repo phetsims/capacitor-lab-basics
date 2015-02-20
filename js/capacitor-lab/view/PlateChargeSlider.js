@@ -24,7 +24,7 @@ define( function( require ) {
     var noneString = require( 'string!CAPACITOR_LAB/none' );
     var plateChargeString = require( 'string!CAPACITOR_LAB/plateCharge.top' );
     
-    var slider = new HSlider(model.upperPlateChargeProperty, {min: -.53E-11, max: .53E-11}, {
+    var slider = new HSlider(model.upperPlateChargeProperty, {min: -.53E-12, max: .53E-12}, {
       scale: 1.5,
       x: 0,
       y: 0,

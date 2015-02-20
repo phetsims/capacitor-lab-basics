@@ -10,6 +10,7 @@ define( function( require ) {
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Input = require( 'SCENERY/input/Input' );
   var LinearFunction = require( 'DOT/LinearFunction' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Property = require( 'AXON/Property' );
@@ -71,6 +72,7 @@ define( function( require ) {
       fill: 'rgb(0,200,0)',
       stroke: 'black',
       lineWidth: 2,
+      focusable: true,
     } );
     thumb.centerY = thisSlider.track.centerY;
     thisSlider.addChild( thumb );
@@ -85,7 +87,30 @@ define( function( require ) {
       over: function( event ) { if ( options.enabledProperty.get() ) { thumb.fill = options.thumbFillHighlighted; } },
       up: function( event ) { if ( options.enabledProperty.get() ) { thumb.fill = options.thumbFillEnabled; } }
     } ) );
-
+    
+    thumb.addInputListener( {
+      keydown: function( event, trail ) {
+        var keyCode = event.domEvent.keyCode;
+        var step = (range.max - range.min) / 10;
+        if ( keyCode === Input.KEY_UP_ARROW || keyCode === Input.KEY_RIGHT_ARROW ) {
+          if ( valueProperty.get() < range.max - step ) {
+            valueProperty.set( valueProperty.get() + step );
+          }
+          else {
+            valueProperty.set( range.max );
+          }
+        }
+        else if ( keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW ) {
+          if ( valueProperty.get() > range.min + step ) {
+            valueProperty.set( valueProperty.get() - step );
+          }
+          else {
+            valueProperty.set( range.min );
+          }
+        }
+      }
+    } );
+    
     // update value when thumb is dragged
     var thumbHandler = new SimpleDragHandler( {
       clickXOffset: 0, // x-offset between initial click and thumb's origin

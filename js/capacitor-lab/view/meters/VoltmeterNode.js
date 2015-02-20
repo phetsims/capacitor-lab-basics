@@ -9,6 +9,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Shape = require( 'KITE/Shape' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -21,7 +22,7 @@ define( function( require ) {
    * @param wire: the node containing the top and bottom wires in the circuit
    * @param capacitor: the node containing the capacitor representation
    **/
-  function VoltmeterNode(model, wire, capacitor, options) {
+  function VoltmeterNode(model, circuit, options) {
     options = _.extend({cursor: 'pointer'}, options);
     Node.call( this, options);
     
@@ -30,6 +31,8 @@ define( function( require ) {
     // 1 if the probes are on the correct sides of the battery
     // -1 if the meter would display the negative of the battery voltage
     var voltageMultiplier = 1;
+    var wire = circuit.wireNode;
+    var capacitor = circuit.capacitor;
     
     // strings
     var voltString = require( 'string!CAPACITOR_LAB/volt' );
@@ -38,14 +41,15 @@ define( function( require ) {
     var voltageString = unknownVoltString;
     
     // images
-    var redProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_red_large.png' );
-    var blackProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_black_large.png' );
     var voltmeterBackgroundImage = require( 'image!CAPACITOR_LAB/voltmeter.png' );
     
     // body of the voltmeter
-    var backgroundNode = new Image( voltmeterBackgroundImage, {scale: .7} );
+    var bodyImage = new Image( voltmeterBackgroundImage, {scale: .7} );
+    var bodyNode = new Rectangle( bodyImage.x, bodyImage.y, bodyImage.width, bodyImage.height, 0, 0);
+    bodyNode.addChild( bodyImage );
+    
     // red probe
-    var redProbeNode = new VoltmeterProbeNode( model, redProbeImage, true, {
+    var redProbeNode = new VoltmeterProbeNode( model, true, {
       scale: .15,
       x: -300,
       y: 30,
@@ -59,7 +63,7 @@ define( function( require ) {
         pickable: false
       });
     // black probe
-    var blackProbeNode = new VoltmeterProbeNode( model, blackProbeImage, false, {
+    var blackProbeNode = new VoltmeterProbeNode( model, false, {
       scale: .15,
       x: -250,
       y: 40,
@@ -73,7 +77,7 @@ define( function( require ) {
         pickable: false
       });
     
-    this.addChild( backgroundNode );
+    this.addChild( bodyNode );
     this.addChild( redProbeNode );
     this.addChild( redWire );
     this.addChild( blackProbeNode );
@@ -82,10 +86,10 @@ define( function( require ) {
     // Displays the value of the voltage when the probes are on the wires
     // Displays "? V" else
     var voltageTextNode = new Text( voltageString, {
-      top: backgroundNode.top + 25,
-      right: backgroundNode.right + 10,
+      top: bodyImage.top + 15,
+      right: bodyImage.right - 10,
       font: new PhetFont(14)});
-    backgroundNode.addChild( voltageTextNode );
+    bodyNode.addChild( voltageTextNode );
     
     var thisNode = this;
 
@@ -95,17 +99,17 @@ define( function( require ) {
       //When dragging across it in a mobile device, pick it up
       allowTouchSnag: true,
       start: function( event ) {
-        meterOffset.x = backgroundNode.globalToParentPoint( event.pointer.point ).x - backgroundNode.centerX;
-        meterOffset.y = backgroundNode.globalToParentPoint( event.pointer.point ).y - backgroundNode.centerY;
+        meterOffset.x = bodyNode.globalToParentPoint( event.pointer.point ).x - bodyNode.centerX;
+        meterOffset.y = bodyNode.globalToParentPoint( event.pointer.point ).y - bodyNode.centerY;
       },
       //Translate on drag events
       drag: function( event ) {
-        var point = backgroundNode.globalToParentPoint( event.pointer.point );
+        var point = bodyNode.globalToParentPoint( event.pointer.point );
         var desiredPosition = point.copy().subtract( meterOffset );
         model.moveMeterToPosition( desiredPosition, model.voltMeterPositionProperty );
       }
     } );
-    backgroundNode.addInputListener( meterDragHandler );
+    bodyNode.addInputListener( meterDragHandler );
     
     model.voltageProperty.link( function () {
       updateVoltageString();
@@ -128,8 +132,8 @@ define( function( require ) {
     });
     
     model.voltMeterPositionProperty.link( function () {
-      backgroundNode.centerX = model.voltMeterPositionProperty.value.x;
-      backgroundNode.centerY = model.voltMeterPositionProperty.value.y;
+      bodyNode.centerX = model.voltMeterPositionProperty.value.x;
+      bodyNode.centerY = model.voltMeterPositionProperty.value.y;
       redWire.shape = updateWire( redProbeNode );
       blackWire.shape = updateWire( blackProbeNode );
     });
@@ -143,16 +147,16 @@ define( function( require ) {
       var color = "red";
       // connection points
       var probeConnectionPoint = new Vector2( probeNode.left + 15, probeNode.bottom - 15 );
-      var meterConnectionPoint = new Vector2( backgroundNode.centerX - 10, backgroundNode.bottom );
+      var meterConnectionPoint = new Vector2( bodyNode.centerX - 10, bodyNode.bottom );
       if (probeNode == blackProbeNode) {
         probeConnectionPoint = new Vector2( probeNode.left + 8, probeNode.bottom - 5 );
-        meterConnectionPoint = new Vector2( backgroundNode.centerX + 10, backgroundNode.bottom );
+        meterConnectionPoint = new Vector2( bodyNode.centerX + 10, bodyNode.bottom );
         color = "black";
       }
       
       // control points
       // The y coordinate of the body's control point varies with the x distance between the body and probe.
-      var c1Offset = new Vector2( 0, Util.linear( 0, 800, 0, 200, backgroundNode.centerX - probeNode.left ) ); // x distance -> y coordinate
+      var c1Offset = new Vector2( 0, Util.linear( 0, 800, 0, 200, bodyNode.centerX - probeNode.left ) ); // x distance -> y coordinate
       var c2Offset = new Vector2( 50, 150 );
       var c1 = new Vector2( meterConnectionPoint.x + c1Offset.x, meterConnectionPoint.y + c1Offset.y );
       var c2 = new Vector2( probeConnectionPoint.x + c2Offset.x, probeConnectionPoint.y + c2Offset.y );
@@ -165,45 +169,37 @@ define( function( require ) {
     
     // Updates the voltage display when the voltage changes or the probes move into position
     function updateVoltageString() {
-      // translate probe tip locations into local coordinate system of wires
-      var redProbeTip1 = new Vector2( redProbeNode.right / .7 + 614, redProbeNode.top / .7 + 43 );
-      var blackProbeTip1 = new Vector2( blackProbeNode.right / .7 + 625, blackProbeNode.top / .7 - 176 );
-      var redProbeTip2 = new Vector2( redProbeNode.right / .7 + 614, redProbeNode.top / .7 - 163 );
-      var blackProbeTip2 = new Vector2( blackProbeNode.right / .7 + 625, blackProbeNode.top / .7 + 30 );
-      
-      // translate probe tip locations into local coordinate system of capacitor plates
-      var redProbeTip3 = new Vector2( redProbeNode.right / .56 + 453.5, redProbeNode.top / .56 - 103 );
-      var blackProbeTip3 = new Vector2( blackProbeNode.right / .56 + 469.5, blackProbeNode.top / .56 - 119.5 );
-      var redProbeTip4 = new Vector2( redProbeNode.right / .56 + 453.5, redProbeNode.top / .56 - 103 );
-      var blackProbeTip4 = new Vector2( blackProbeNode.right / .56 + 469.5, blackProbeNode.top / .56 - 119.5 );
-      
-      // recreate shapes wherein the probe tip can be and still display a voltage value
       var topPlate = capacitor.topPlate;
       var bottomPlate = capacitor.bottomPlate;
-      var left = topPlate.left;
-      var topPlateShape = new Shape().moveTo( left, topPlate.bottom ).
-        verticalLineTo( topPlate.bottom - topPlate.plateDepth ).
-        lineTo( left + topPlate.plateShift, topPlate.top ).
-        horizontalLineTo( topPlate.right ).
-        verticalLineTo( topPlate.top + topPlate.plateDepth ).
-        lineTo( left + topPlate.plateWidth, topPlate.bottom ).
-        horizontalLineTo( left );
-      var bottomPlateShape = new Shape().moveTo( left, bottomPlate.bottom ).
-        verticalLineTo( bottomPlate.bottom - bottomPlate.plateDepth ).
-        lineTo( left + bottomPlate.plateShift, bottomPlate.top ).
-        horizontalLineTo( bottomPlate.right ).
-        verticalLineTo( bottomPlate.top + bottomPlate.plateDepth ).
-        lineTo( left + bottomPlate.plateWidth, bottomPlate.bottom ).
-        horizontalLineTo( left );
+      var topPlateShape = topPlate.topPlate.shape
+      var bottomPlateShape = bottomPlate.topPlate.shape
+      
+      // translate red probe tip locations into local coordinate system of wires
+      var redParentPoint = thisNode.localToParentPoint(new Vector2(redProbeNode.right-16, redProbeNode.top+16));
+      var redCircuitPoint = circuit.parentToLocalPoint(redParentPoint);
+      var redWirePoint = wire.parentToLocalPoint(redCircuitPoint);
+      // translate red probe tip locations into local coordinate system of capacitor plates
+      var redCapPoint = capacitor.parentToLocalPoint(redCircuitPoint);
+      var redTopPlatePoint = topPlate.parentToLocalPoint(redCapPoint);
+      var redBottomPlatePoint = bottomPlate.parentToLocalPoint(redCapPoint);
+      
+      // translate black probe tip locations into local coordinate system of wires
+      var blackParentPoint = thisNode.localToParentPoint(new Vector2(blackProbeNode.right-7, blackProbeNode.top+7));
+      var blackCircuitPoint = circuit.parentToLocalPoint(blackParentPoint);
+      var blackWirePoint = wire.parentToLocalPoint(blackCircuitPoint);
+      // translate red probe tip locations into local coordinate system of capacitor plates
+      var blackCapPoint = capacitor.parentToLocalPoint(blackCircuitPoint);
+      var blackTopPlatePoint = topPlate.parentToLocalPoint(blackCapPoint);
+      var blackBottomPlatePoint = bottomPlate.parentToLocalPoint(blackCapPoint);
       
       // if the red probe is on top and the black probe is on bottom
-      if ((wire.topWire.shape.containsPoint(redProbeTip1) || topPlateShape.containsPoint(redProbeTip3))
-          && (wire.bottomWire.shape.containsPoint(blackProbeTip1) || bottomPlateShape.containsPoint(blackProbeTip3))) {
+      if ((wire.topWire.shape.containsPoint(redWirePoint) || topPlateShape.containsPoint(redTopPlatePoint))
+          && (wire.bottomWire.shape.containsPoint(blackWirePoint) || bottomPlateShape.containsPoint(blackBottomPlatePoint))) {
         voltageString = model.voltageProperty.value.toFixed(2) + voltString;
       }
       // if the probes are reversed
-      else if ((wire.topWire.shape.containsPoint(blackProbeTip2) || topPlateShape.containsPoint(blackProbeTip4))
-               && (wire.bottomWire.shape.containsPoint(redProbeTip2) || bottomPlateShape.containsPoint(redProbeTip4))) {
+      else if ((wire.topWire.shape.containsPoint(blackWirePoint) || topPlateShape.containsPoint(blackTopPlatePoint))
+               && (wire.bottomWire.shape.containsPoint(redWirePoint) || bottomPlateShape.containsPoint(redBottomPlatePoint))) {
         voltageString = (model.voltageProperty.value * -1).toFixed(2) + voltString;
       }
       // if one or both probes are not on a wire or capacitor plate
@@ -211,7 +207,7 @@ define( function( require ) {
         voltageString = unknownVoltString;
       }
       voltageTextNode.text = voltageString;
-      voltageTextNode.right = backgroundNode.right - 10;
+      voltageTextNode.right = bodyImage.right - 10;
     }
 
   }

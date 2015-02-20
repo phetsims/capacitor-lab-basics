@@ -14,8 +14,9 @@ define( function( require ) {
 
   /**
    * Constructor for a capacitor plate
+   * @param charge: determines if the plate is the bottom or top plate
    **/
-  function PlateNode(model, options) {
+  function PlateNode(model, charge, options) {
     Node.call( this, options );
     // apparent "height" on the screen of the plate
     this.plateHeight = -60;
@@ -39,6 +40,7 @@ define( function( require ) {
     this.maxCharge = 0.53E-11;
     
     this.model = model;
+    this.charge = charge;
     var thisNode = this;
     
     // The front of the capacitor plate
@@ -122,7 +124,7 @@ define( function( require ) {
     },
     
     // Constructs the grid of charges on the surface of the plate
-    makeChargeGrid: function( charge ) {
+    makeChargeGrid: function() {
       var numCharges = this.getNumberOfCharges();
       var columns = this.getGridSize(numCharges)[0];
       var rows = this.getGridSize(numCharges)[1];
@@ -135,7 +137,10 @@ define( function( require ) {
         for (var j = 0; j < rows; j++) {
           y = -((j + .5)*rowSpacing);
           x = (i + .25)*colSpacing - this.plateShift / -this.plateHeight * y;
-          if (charge > 0) {
+          if (this.charge > 0 && this.model.upperPlateChargeProperty.value > 0) {
+            this.topPlate.addChild(new PlusChargeNode({x: x, y: y-5}));
+          }
+          else if (this.charge < 0 && this.model.upperPlateChargeProperty.value < 0) {
             this.topPlate.addChild(new PlusChargeNode({x: x, y: y-5}));
           }
           else {

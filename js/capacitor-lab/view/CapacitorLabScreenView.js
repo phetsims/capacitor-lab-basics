@@ -68,7 +68,7 @@ define( function( require ) {
     
     // Add the circuit
     var circuitNode = new CircuitNode( capacitorLabModel, {
-      x: 0,
+      x: 35,
       y: 150,
       scale: .7}
     );
@@ -81,7 +81,7 @@ define( function( require ) {
     var connectBatteryButton = new RectangularPushButton({
       content: batteryToggleNode,
       baseColor: "white",
-      x: 0,
+      x: 35,
       y: circuitNode.top + 95,
       listener: function () {
         capacitorLabModel.batteryConnectedProperty.value = !capacitorLabModel.batteryConnectedProperty.value;
@@ -95,7 +95,7 @@ define( function( require ) {
                                     capacitorLabModel.capacitanceMeterProperty,
                                     capacitorLabModel.capacitanceProperty,
                                     capacitorLabModel.capacitanceMeterPositionProperty,
-                                    {x: 300, y: 30});
+                                    {x: 335, y: 30});
     this.addChild( capacitanceMeter );
     
     // add the plate charge meter
@@ -104,7 +104,7 @@ define( function( require ) {
                                     capacitorLabModel.plateChargeMeterProperty,
                                     capacitorLabModel.upperPlateChargeProperty,
                                     capacitorLabModel.plateChargeMeterPositionProperty,
-                                    {x: 400, y: 30});
+                                    {x: 435, y: 30});
     this.addChild( plateChargeMeter );
     
     // add the energy meter
@@ -113,14 +113,14 @@ define( function( require ) {
                                     capacitorLabModel.energyMeterProperty,
                                     capacitorLabModel.energyProperty,
                                     capacitorLabModel.energyMeterPositionProperty,
-                                    {x: 500, y: 30});
+                                    {x: 535, y: 30});
     this.addChild( energyMeter );
     
     // add the voltmeter
-    var voltMeter = new VoltmeterNode(capacitorLabModel,
-                                      circuitNode.wireNode,
-                                      circuitNode.capacitor,
-                                      {x: 450, y: 250});
+    var voltMeter = new VoltmeterNode(capacitorLabModel, circuitNode,
+                                      //circuitNode.wireNode,
+                                      //circuitNode.capacitor,
+                                      {x: 500, y: 250});
     this.addChild( voltMeter );
     
     // add the electric field meter

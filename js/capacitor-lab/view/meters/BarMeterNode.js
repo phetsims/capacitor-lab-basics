@@ -60,10 +60,10 @@ define( function( require ) {
     }
     
     // Filled rectangle to represent the value of the property being measured
-    var measure = new Rectangle( 1, height - 1, width - 2, -height * valueProperty.value/maxValue, 0, 0, {
+    var measure = new Rectangle( 0, height, width, -height * valueProperty.value/maxValue, 0, 0, {
       fill: color
     } );
-    this.addChild( measure );
+    meter.addChild( measure );
     
     // Small tick marks along the side of the meter
     var yLoc = 0;
@@ -179,7 +179,7 @@ define( function( require ) {
       if (Math.abs(valueProperty.value) >= maxValue) {
         arrow.visible = true;
         arrow.fill = color;
-        rectHeight = -height+1;
+        rectHeight = -height;
         zoomOutButton.enabled = true;
       }
       else {
@@ -192,7 +192,7 @@ define( function( require ) {
       else {
         zoomInButton.enabled = false;
       }
-      measure.setRect(1, height - 1, width - 2, rectHeight, 0, 0);
+      measure.setRect(0, height + rectHeight, width, -rectHeight, 0, 0);
       measure.fill = color;
       
       subtitleText.centerX = meter.centerX;

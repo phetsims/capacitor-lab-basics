@@ -6,11 +6,13 @@ define( function( require ) {
   // modules
   var Dimension2 = require( 'DOT/Dimension2' );
   var EFieldNode = require( 'CAPACITOR_LAB/capacitor-lab/view/EFieldNode' );
-  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
+  var Text = require( 'SCENERY/nodes/Text' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var PlateNode = require( 'CAPACITOR_LAB/capacitor-lab/view/PlateNode' );
   var PlateSlider = require( 'CAPACITOR_LAB/capacitor-lab/view/PlateSlider' );
+  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
 
   /**
    * Constructor for the capacitor
@@ -31,11 +33,11 @@ define( function( require ) {
     var plateSize = model.capacitorPlateAreaProperty.value * plateSizeScale;
     
     // Top plate of capacitor
-    this.topPlate = new PlateNode(model, {x: 0, y: -plateSeparation});
-    this.topPlate.makeChargeGrid(1);
+    this.topPlate = new PlateNode(model, 1, {x: 0, y: -plateSeparation});
+    this.topPlate.makeChargeGrid();
     // Bottom plate of capacitor
-    this.bottomPlate = new PlateNode(model, {x: 0, y: plateSeparation});
-    this.bottomPlate.makeChargeGrid(-1);
+    this.bottomPlate = new PlateNode(model, -1, {x: 0, y: plateSeparation});
+    this.bottomPlate.makeChargeGrid();
     // Electric field between capacitors
     this.eField = new EFieldNode(model, 2 * plateSeparation - this.topPlate.plateDepth, plateSeparationScale, this.topPlate, {
       x: this.topPlate.plateWidth / 2 + this.topPlate.plateShift / 2,
@@ -52,17 +54,20 @@ define( function( require ) {
     });
     this.addChild(distanceSlider);
     
+    var font = new PhetFont(19);
+    
     // Describes the distance between the plates as text
     var separation = 10.0 + mmString;
-    var separationText = new HTMLText("<b>" + separationString +"</b>", {
+    var separationText = new Text(separationString, {
       top: distanceSlider.top,
       right: distanceSlider.left - 15,
-      scale: 1.8
+      font: font,
+      fontWeight: "bold"
     });
-    var separationValue = new HTMLText(separation, {
+    var separationValue = new Text(separation, {
       top: separationText.bottom + 5,
       left: separationText.left,
-      scale: 1.8
+      font: font,
     });
     this.addChild(separationText);
     this.addChild(separationValue);
@@ -79,13 +84,18 @@ define( function( require ) {
     this.addChild(sizeSlider);
     
     // Describes the area of the plates as text
-    var areaString = "100.0" + mmString + "<sup>2<\sup>";
-    var areaText = new HTMLText("<b>" + plateAreaString + "</b>", {
+    var areaString = "100.0" + mmString + "<sup>2";
+    var areaText = new Text(plateAreaString, {
       top: this.topPlate.bottom - 60,
       right: this.topPlate.left - 15,
-      scale: 1.8
+      font: font,
+      fontWeight: "bold"
     });
-    var areaValue = new HTMLText(areaString, {top: areaText.bottom, left: areaText.left, scale: 1.8});
+    var areaValue = new SubSupText(areaString, {
+      top: areaText.bottom,
+      left: areaText.left,
+      font: font,
+    });
     this.addChild(areaText);
     this.addChild(areaValue);
     
@@ -114,7 +124,7 @@ define( function( require ) {
       var xShift = -(thisNode.topPlate.plateWidth - thisNode.topPlate.minPlateWidth)/2 - (thisNode.topPlate.plateShift - thisNode.topPlate.minPlateShift)/2;
       var yShift = -(thisNode.topPlate.plateHeight - thisNode.topPlate.minPlateHeight)/2;
       
-      areaString = model.capacitorPlateAreaProperty.value.toFixed(1) + mmString + "<sup>2</sup>";
+      areaString = model.capacitorPlateAreaProperty.value.toFixed(1) + mmString + "<sup>2";
       areaValue.text = areaString;
       areaText.top = thisNode.topPlate.bottom - 60;
       areaText.right = thisNode.topPlate.left - 15;
@@ -130,14 +140,8 @@ define( function( require ) {
     });
     
     model.upperPlateChargeProperty.link( function () {
-      if (model.upperPlateChargeProperty.value > 0) {
-        thisNode.topPlate.makeChargeGrid(1);
-        thisNode.bottomPlate.makeChargeGrid(-1);
-      }
-      else {
-        thisNode.topPlate.makeChargeGrid(-1);
-        thisNode.bottomPlate.makeChargeGrid(1);
-      }
+      thisNode.topPlate.makeChargeGrid();
+      thisNode.bottomPlate.makeChargeGrid();
     });
   }
   

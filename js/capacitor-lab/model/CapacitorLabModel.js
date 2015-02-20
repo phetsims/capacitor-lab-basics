@@ -49,22 +49,22 @@ define( function( require ) {
       
       /* Meter and probe positions */
       // capacitance meter position
-      capacitanceMeterPosition: new Vector2( 300, 100 ),
+      capacitanceMeterPosition: new Vector2( 335, 100 ),
       // plate charge meter position
-      plateChargeMeterPosition: new Vector2( 400, 100 ),
+      plateChargeMeterPosition: new Vector2( 435, 100 ),
       // energy meter position
-      energyMeterPosition: new Vector2( 500, 100 ),
+      energyMeterPosition: new Vector2( 535, 100 ),
       // voltmeter position
-      voltMeterPosition: new Vector2( 50, 50 ),
+      voltMeterPosition: new Vector2( 100, 100 ),
       // electric field meter position
       eFieldMeterPosition: new Vector2( 0, 50 ),
       
       // position of the red probe
-      redProbePosition: new Vector2( -340, 100 ),
+      redProbePosition: new Vector2( -355, 100 ),
       // position of the black probe
-      blackProbePosition: new Vector2( -300, 100 ),
+      blackProbePosition: new Vector2( -315, 100 ),
       // position of the electric field probe
-      eFieldProbePosition: new Vector2( -248, 10 ),
+      eFieldProbePosition: new Vector2( -213, 10 ),
       
       /* Other */
       // charges on plates visible?
@@ -91,7 +91,7 @@ define( function( require ) {
     },
     
     // Move the red and black voltage probes
-    moveProbeToPosition: function( position, node, isRedProbe ) {
+    moveProbeToPosition: function( position, isRedProbe ) {
       if (isRedProbe) {
         this.redProbePositionProperty.value = position;
       }
