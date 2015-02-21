@@ -63,7 +63,7 @@ define( function( require ) {
         arrow.setTailAndTip( x, y + arrowLength, x, y + arrowLength / 2 );
       }
       else {
-        rect.setRect( x, y + arrowLength, 2, -arrowLength / 2 - 10, 0, 0 );
+        rect.setRect( x, y + arrowLength / 2 - 10, 2, arrowLength / 2 + 10, 0, 0 );
         arrow.setTailAndTip( x, y, x, y + arrowLength / 2 );
       }
     });
@@ -142,14 +142,21 @@ define( function( require ) {
     
     model.eFieldVisibleProperty.link( function () {
       thisNode.visible = model.eFieldVisibleProperty.value;
+      if (thisNode.visible) {
+        updateGrid();
+      }
     });
     
     model.capacitorPlateAreaProperty.link( function () {
-      updateGrid();
+      if (thisNode.visible) {
+        updateGrid();
+      }
     });
     
     model.eFieldProperty.link( function() {
-      updateGrid();
+      if (thisNode.visible) {
+        updateGrid();
+      }
     });
     
   }

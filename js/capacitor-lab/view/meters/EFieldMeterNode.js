@@ -92,7 +92,7 @@ define( function( require ) {
     var arrow = new ArrowNode( meterDisplayNode.centerX, meterDisplayNode.centerY, meterDisplayNode.centerX, meterDisplayNode.centerY, {
       fill: '#acacac',
       tailWidth: 0,
-      headWidth: 0,
+      headWidth: 0.01,
       headHeight: 0,
       centerX: meterDisplayNode.centerX,
     });
@@ -207,6 +207,10 @@ define( function( require ) {
           plateTextNode.top = arrow.bottom + 3;
           eFieldTextNode.top = plateTextNode.bottom + 3;
         }
+        else if ( model.eFieldProperty.value == 0 ) {
+          eFieldTextNode.bottom = meterDisplayNode.centerY - 3;
+          plateTextNode.bottom = eFieldTextNode.top - 3;
+        }
         else {
           eFieldTextNode.bottom = arrow.top - 3;
           plateTextNode.bottom = eFieldTextNode.top - 3;
@@ -215,6 +219,9 @@ define( function( require ) {
       else {
         if ( model.eFieldProperty.value < 0 ) {
           plateTextNode.top = arrow.bottom + 3;
+        }
+        else if ( model.eFieldProperty.value == 0 ) {
+          plateTextNode.bottom = meterDisplayNode.centerY - 3;
         }
         else {
           plateTextNode.bottom = arrow.top - 3;
@@ -249,9 +256,9 @@ define( function( require ) {
         arrow.options =  {
           headHeight: 13 * arrowScale * Math.abs(eFieldMeasured) / (maxEField / 3),
           tailWidth: 7 * arrowScale * Math.abs(eFieldMeasured) / (maxEField / 3),
-          headWidth: 15 * arrowScale * Math.abs(eFieldMeasured) / (maxEField / 3),
+          headWidth: 15 * arrowScale * Math.abs(eFieldMeasured) / (maxEField / 3) + 0.01,
         };
-        zoomInButton.enabled = true && height;
+        zoomInButton.enabled = (height != 0);
       }
       else {
         arrow.options =  {

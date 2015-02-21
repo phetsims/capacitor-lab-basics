@@ -61,12 +61,7 @@ define( function( require ) {
     var thisNode = this;
     model.batteryConnectedProperty.link( function () {
       model.updateCapacitanceAndCharge();
-      if (model.batteryConnectedProperty.value) {
-        thisNode.visible = false;
-      }
-      else {
-        thisNode.visible = true;
-      }
+      thisNode.visible = !model.batteryConnectedProperty.value;
     });
     
     model.upperPlateChargeProperty.link( function () {

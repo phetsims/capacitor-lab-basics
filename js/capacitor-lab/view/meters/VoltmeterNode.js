@@ -23,7 +23,7 @@ define( function( require ) {
    * @param capacitor: the node containing the capacitor representation
    **/
   function VoltmeterNode(model, circuit, options) {
-    options = _.extend({cursor: 'pointer'}, options);
+    options = _.extend({cursor: 'pointer', focusable: true}, options);
     Node.call( this, options);
     
     // true if both probes are on opposing wires
