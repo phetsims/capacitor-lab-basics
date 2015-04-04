@@ -23,11 +23,13 @@ define( function( require ) {
     Image.call( this, probeImage, options );
     
     var thisNode = this;
-    var locations = [new Vector2(-213, 10),
-                     new Vector2(-154, -40),
-                     new Vector2(-264, 60),
-                     new Vector2(-325, 10)];
-    var loc = 0;
+    var focusGone = true;
+    
+    this.locations = [new Vector2( -213, 10 ),
+                     new Vector2( -270, -20 ),
+                     new Vector2( -190, 60 ),
+                     new Vector2( -325, 10 )];
+    this.loc = 0;
     
     // drag handler
     var probeOffset = {};
@@ -51,18 +53,31 @@ define( function( require ) {
       keydown: function( event, trail ) {
         var keyCode = event.domEvent.keyCode;
         if ( keyCode === Input.KEY_RIGHT_ARROW ) {
-          loc = (loc + 1) % locations.length;
+          thisNode.loc = (thisNode.loc + 1) % thisNode.locations.length;
         }
         else if ( keyCode === Input.KEY_LEFT_ARROW ) {
-          loc = (loc - 1) % locations.length;
-          if (loc < 0) {
-            loc = locations.length - 1;
+          thisNode.loc = (thisNode.loc - 1) % thisNode.locations.length;
+          if (thisNode.loc < 0) {
+            thisNode.loc = thisNode.locations.length - 1;
           }
         }
-        model.moveEFieldProbeToPosition( locations[loc] );
+        model.moveEFieldProbeToPosition( thisNode.locations[ thisNode.loc ] );
+        thisNode.getParent().moveToGhost( thisNode, thisNode.loc );
+      }
+    } );
+    Input.focusedTrailProperty.link( function() {
+      if (Input.focusedTrailProperty.value !== null) {
+        if (thisNode === Input.focusedTrailProperty.value.lastNode()) {
+          thisNode.getParent().toggleGhosts( );
+          focusGone = false;
+        }
+        else if (!focusGone) {
+          thisNode.getParent().toggleGhosts( );
+          focusGone = true;
+        }
       }
     } );
   }
   
-  return inherit( Image, EFieldProbeNode);
+  return inherit( Image, EFieldProbeNode );
 } );

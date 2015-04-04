@@ -4,11 +4,9 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
-  var CheckBox = require( 'SUN/CheckBox' );
   var EFieldProbeNode = require( 'CAPACITOR_LAB/capacitor-lab/view/meters/EFieldProbeNode' );
+  var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var HTMLText = require( 'SCENERY/nodes/HTMLText' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -18,15 +16,13 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
-  var ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
   
   // strings
-  var meterTitleString = require( 'string!CAPACITOR_LAB/eField' );
   var zeroFieldString = require( 'string!CAPACITOR_LAB/voltsPerMeter.0' );
-  var plateString = require( 'string!CAPACITOR_LAB/plate' );
   var voltsPerMeterString = require( 'string!CAPACITOR_LAB/voltsPerMeter' );
-  var zoomString = require( 'string!CAPACITOR_LAB/zoom' );
-  var showValueString = require( 'string!CAPACITOR_LAB/showVals' );
+  
+  // images
+  var probeCutoutImage = require( 'image!CAPACITOR_LAB/probe_3D_field_cutout.png' );
 
   /**
    * Constructor for the electric field meter
@@ -38,15 +34,10 @@ define( function( require ) {
     Node.call( this, options);
     
     var eFieldString = zeroFieldString;
+    var probeScale = 0.65;
     
     // dark grey rectangle for meter body
-    var bodyNode = new Rectangle( 0, 0, 150, 160, 5, 5, {fill: "#434343"} );
-    
-    var arrowScale = 1;
-    // height of the arrow at the maxEField
-    var maxArrowHeight = 55;
-    // maximum electric field with the battery connected and the plates at the initial setting
-    var maxEField = 150;
+    var bodyNode = new Rectangle( 0, 0, 80, 160, 5, 5, {fill: "#434343"} );
     
     // Redraws the wire when either the probe or the meter body move
     function updateWire() {
@@ -67,67 +58,12 @@ define( function( require ) {
       return wireShape;
     }
     
-    // Redraws the arrow when the electric field changes or the zoom buttons are clicked
-    function updateArrow( eFieldMeasured ) {
-      var height = maxArrowHeight * eFieldMeasured / maxEField * arrowScale;
-      var absEField = Math.abs( eFieldMeasured );
-      var absHeight = Math.abs( height );
-      if ( absHeight < maxArrowHeight / 3 ) {
-        arrow.options =  {
-          headHeight: 13 * arrowScale * absEField / (maxEField / 3),
-          tailWidth: 7 * arrowScale * absEField / (maxEField / 3),
-          headWidth: 15 * arrowScale * absEField / (maxEField / 3) + 0.01,
-        };
-        zoomInButton.enabled = (height !== 0);
-      }
-      else {
-        arrow.options =  {
-          headHeight: 13,
-          tailWidth: 7,
-          headWidth: 15,
-        };
-        zoomInButton.enabled = (absHeight < 2 * maxArrowHeight / 3);
-        zoomOutButton.enabled = (absHeight > maxArrowHeight * 17 / 15);
-      }
-      arrow.setTailAndTip( meterDisplayNode.centerX,
-                          meterDisplayNode.centerY,
-                          meterDisplayNode.centerX,
-                          meterDisplayNode.centerY + height );
-      arrow.centerY = meterDisplayNode.centerY;
-      
-      if ( model.eFieldValueVisibleProperty.value ) {
-        if ( eFieldMeasured < 0 ) {
-          plateTextNode.top = arrow.bottom + 3;
-          eFieldTextNode.top = plateTextNode.bottom + 3;
-        }
-        else if ( eFieldMeasured === 0 ) {
-          eFieldTextNode.bottom = meterDisplayNode.centerY - 3;
-          plateTextNode.bottom = eFieldTextNode.top - 3;
-        }
-        else {
-          eFieldTextNode.bottom = arrow.top - 3;
-          plateTextNode.bottom = eFieldTextNode.top - 3;
-        }
-      }
-      else {
-        if ( eFieldMeasured < 0 ) {
-          plateTextNode.top = arrow.bottom + 3;
-        }
-        else if ( eFieldMeasured === 0 ) {
-          plateTextNode.bottom = meterDisplayNode.centerY - 3;
-        }
-        else {
-          plateTextNode.bottom = arrow.top - 3;
-        }
-      }
-    }
-    
     // Updates the value being displayed when the electric field changes
     // Also updates when the probe is moved into or out of the area inside the capacitor
     function updateDisplay() {
       // update string to display correct electric field value
       // translate probe tip into coordinates of capacitor
-      var parentPoint = thisNode.localToParentPoint( new Vector2( probeNode.right-15, probeNode.top+16 ) );
+      var parentPoint = thisNode.localToParentPoint( new Vector2( probeNode.right - 15, probeNode.top + 16 ) );
       var circuitPoint = capacitor.getParent().parentToLocalPoint( parentPoint );
       var capPoint = capacitor.parentToLocalPoint( circuitPoint );
       
@@ -140,12 +76,10 @@ define( function( require ) {
         horizontalLineTo( leftBound ).
         verticalLineTo( capacitor.topPlate.bottom );
       if ( insideShape.containsPoint( capPoint ) ) {
-        eFieldString = (Math.abs(model.eFieldProperty.value)).toFixed(0) + voltsPerMeterString;
-        updateArrow( model.eFieldProperty.value );
+        eFieldString = ( Math.abs( model.eFieldProperty.value ) ).toFixed(0) + voltsPerMeterString;
       }
       else {
         eFieldString = zeroFieldString;
-        updateArrow( 0 );
       }
       eFieldTextNode.text = eFieldString;
       eFieldTextNode.centerX = meterDisplayNode.centerX;
@@ -153,7 +87,7 @@ define( function( require ) {
     
     // image of meter probe
     var probeNode = new EFieldProbeNode( model, {
-      scale: 0.65,
+      scale: probeScale,
       x: -300,
       y: -130,
       rotation: Math.PI/4});
@@ -167,104 +101,40 @@ define( function( require ) {
       pickable: false
     } );
     
+    // Ghost images of probes, to be displayed when the probe is in focus
+    this.ghostNode = new Node( {visible: false} );
+    for (var i = 0; i < probeNode.locations.length; i++) {
+      this.ghostNode.addChild( new Image( probeCutoutImage, {
+        scale: probeScale,
+        centerX: probeNode.locations[i].x,
+        centerY: probeNode.locations[i].y,
+        rotation: Math.PI / 4
+      } ) );
+    }
+    this.ghostNode.children[ 0 ].visible = false;
+    this.addChild( this.ghostNode );
+    
     this.addChild( bodyNode );
     this.addChild( probeNode );
     this.addChild( wire );
     
-    // title of meter
-    var titleNode = new HTMLText( meterTitleString, {
-      top: bodyNode.top + 5,
-      centerX: bodyNode.centerX,
-      font: new PhetFont(12),
-      fill: 'white',
-    } );
-    bodyNode.addChild( titleNode );
-    
     // white box on the side of the meter
-    var meterDisplayNode = new Rectangle( bodyNode.centerX + 20,
-                                         titleNode.bottom + 5,
-                                         bodyNode.width / 2 - 25,
-                                         bodyNode.height - titleNode.height - 20,
+    var meterDisplayNode = new Rectangle( bodyNode.left + 5,
+                                         bodyNode.top + 5,
+                                         bodyNode.width -10,
+                                         25,
                                          0,
                                          0,
                                          {fill: 'white'} );
-    var meterClipArea = meterDisplayNode.createRectangleShape();
-    meterDisplayNode.setClipArea( meterClipArea );
     bodyNode.addChild( meterDisplayNode );
-    
-    // vector arrow to represent the magnitude of the field
-    var arrow = new ArrowNode( meterDisplayNode.centerX, meterDisplayNode.centerY, meterDisplayNode.centerX, meterDisplayNode.centerY, {
-      fill: '#acacac',
-      tailWidth: 0,
-      headWidth: 0.01,
-      headHeight: 0,
-      centerX: meterDisplayNode.centerX,
-    } );
-    meterDisplayNode.addChild( arrow );
     
     // displays the value of the electric field at the location of the probe
     var eFieldTextNode = new Text( eFieldString, {
-      bottom: meterDisplayNode.centerY - 3,
+      top: meterDisplayNode.top + 5,
       centerX: meterDisplayNode.centerX,
-      font: new PhetFont(11)
+      font: new PhetFont( 12 )
     } );
     meterDisplayNode.addChild( eFieldTextNode );
-    
-    // text node that says "Plate", at the top of the arrow
-    var plateTextNode = new Text( plateString, {
-      bottom: eFieldTextNode.top - 3,
-      centerX: meterDisplayNode.centerX,
-      font: new PhetFont(11)
-    } );
-    meterDisplayNode.addChild( plateTextNode );
-    
-    // check box to control whether the value of the electric field is displayed
-    var showValueText = new HTMLText( showValueString, {
-      font: new PhetFont(10),
-      fill: 'white'
-    } );
-    var showValueCheckBox = new CheckBox( showValueText, model.eFieldValueVisibleProperty, {
-      bottom: bodyNode.bottom - 15,
-      left: bodyNode.left + 5,
-      boxWidth: 14
-    } );
-    bodyNode.addChild( showValueCheckBox );
-      
-    // buttons to zoom in and out
-    var zoomText = new HTMLText( zoomString, {
-      font: new PhetFont(12),
-      fill: 'white',
-      left: bodyNode.left + 5,
-      top: bodyNode.top + 80
-    } );
-    bodyNode.addChild( zoomText );
-    var zoomInButton = new ZoomButton({
-      bottom: zoomText.bottom,
-      left: zoomText.right + 5,
-      scale: 0.4,
-      baseColor: 'white',
-      enabled: false,
-      listener: function () {
-        arrowScale = maxEField / Math.abs(model.eFieldProperty.value);
-        updateArrow();
-      },
-    } );
-    zoomInButton.enabled = false;
-    bodyNode.addChild( zoomInButton );
-    var zoomOutButton = new ZoomButton({
-      top: zoomInButton.bottom + 7,
-      right: zoomInButton.right,
-      scale: 0.4,
-      in: false,
-      baseColor: 'white',
-      enabled: false,
-      listener: function () {
-        arrowScale = arrowScale * maxArrowHeight / arrow.height;
-        updateArrow();
-      },
-    } );
-    zoomOutButton.enabled = false;
-    bodyNode.addChild( zoomOutButton );
     
     var thisNode = this;
 
@@ -308,36 +178,18 @@ define( function( require ) {
     model.eFieldMeterProperty.link( function () {
       thisNode.visible = model.eFieldMeterProperty.value;
     });
-    
-    model.eFieldValueVisibleProperty.link( function () {
-      eFieldTextNode.visible = model.eFieldValueVisibleProperty.value;
-      if ( model.eFieldValueVisibleProperty.value ) {
-        if ( model.eFieldProperty.value < 0 ) {
-          plateTextNode.top = arrow.bottom + 3;
-          eFieldTextNode.top = plateTextNode.bottom + 3;
-        }
-        else if ( model.eFieldProperty.value === 0 ) {
-          eFieldTextNode.bottom = meterDisplayNode.centerY - 3;
-          plateTextNode.bottom = eFieldTextNode.top - 3;
-        }
-        else {
-          eFieldTextNode.bottom = arrow.top - 3;
-          plateTextNode.bottom = eFieldTextNode.top - 3;
-        }
-      }
-      else {
-        if ( model.eFieldProperty.value < 0 ) {
-          plateTextNode.top = arrow.bottom + 3;
-        }
-        else if ( model.eFieldProperty.value === 0 ) {
-          plateTextNode.bottom = meterDisplayNode.centerY - 3;
-        }
-        else {
-          plateTextNode.bottom = arrow.top - 3;
-        }
-      }
-    });
   }
   
-  return inherit( Node, EFieldMeterNode);
+  return inherit( Node, EFieldMeterNode, {
+    toggleGhosts: function( ) {
+      this.ghostNode.visible = !this.ghostNode.visible;
+    },
+    
+    moveToGhost: function( probeNode, loc ) {
+      for ( var i = 0; i < probeNode.locations.length; i++ ) {
+        this.ghostNode.children[ i ].visible = true;
+      }
+      this.ghostNode.children[ loc ].visible = false;
+    }
+  } );
 } );

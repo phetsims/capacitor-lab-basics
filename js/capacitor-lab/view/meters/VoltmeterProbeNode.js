@@ -69,7 +69,7 @@ define( function( require ) {
         if ( keyCode === Input.KEY_RIGHT_ARROW ) {
           thisNode.loc = (thisNode.loc + 1) % thisNode.locations.length;
           model.moveProbeToPosition( thisNode.locations[thisNode.loc], isRedProbe );
-          //thisNode.getParent().moveToGhost( isRedProbe, thisNode.loc );
+          thisNode.getParent().moveToGhost( thisNode, isRedProbe, thisNode.loc );
         }
         else if ( keyCode === Input.KEY_LEFT_ARROW ) {
           thisNode.loc = (thisNode.loc - 1) % thisNode.locations.length;
@@ -77,7 +77,7 @@ define( function( require ) {
             thisNode.loc = thisNode.locations.length - 1;
           }
           model.moveProbeToPosition( thisNode.locations[thisNode.loc], isRedProbe );
-          //thisNode.getParent().moveToGhost( isRedProbe, thisNode.loc );
+          thisNode.getParent().moveToGhost( thisNode, isRedProbe, thisNode.loc );
         }
       }
     } );
@@ -92,7 +92,7 @@ define( function( require ) {
           focusGone = true;
         }
       }
-    });
+    } );
   }
   
   return inherit( Image, VoltmeterProbeNode);

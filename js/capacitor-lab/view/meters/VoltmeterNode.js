@@ -25,7 +25,7 @@ define( function( require ) {
   // images
   var voltmeterBackgroundImage = require( 'image!CAPACITOR_LAB/voltmeter.png' );
   var redProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_red_large_cutout.png' );
-  var blackProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_red_large_cutout.png' );
+  var blackProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_black_large_cutout.png' );
   
   /**
    * Constructor for the voltmeter
@@ -40,6 +40,7 @@ define( function( require ) {
     var capacitor = circuit.capacitor;
     
     var voltageString = unknownVoltString;
+    var probeScale = 0.15;
     
     // body of the voltmeter
     var bodyImage = new Image( voltmeterBackgroundImage, {scale: 0.7} );
@@ -118,7 +119,7 @@ define( function( require ) {
     
     // red probe
     var redProbeNode = new VoltmeterProbeNode( model, true, {
-      scale: 0.15,
+      scale: probeScale,
       x: -300,
       y: 30,
       rotation: Math.PI/4
@@ -133,7 +134,7 @@ define( function( require ) {
     } );
     // black probe
     var blackProbeNode = new VoltmeterProbeNode( model, false, {
-      scale: 0.15,
+      scale: probeScale,
       x: -250,
       y: 40,
       rotation: Math.PI/4
@@ -147,22 +148,24 @@ define( function( require ) {
         pickable: false
     } );
     // Ghost images of probes, to be displayed when the probe is in focus
-    this.redGhostNode = new Node({visible: false});
-    this.blackGhostNode = new Node({visible: false});
+    this.redGhostNode = new Node( {visible: false} );
+    this.blackGhostNode = new Node( {visible: false} );
     for (var i = 0; i < redProbeNode.locations.length; i++) {
       this.redGhostNode.addChild( new Image( redProbeImage, {
-        scale: 0.15,
+        scale: probeScale,
         centerX: redProbeNode.locations[i].x,
         centerY: redProbeNode.locations[i].y,
         rotation: Math.PI/4
       } ) );
       this.blackGhostNode.addChild( new Image( blackProbeImage, {
-        scale: 0.15,
+        scale: probeScale,
         centerX: blackProbeNode.locations[i].x,
         centerY: blackProbeNode.locations[i].y,
         rotation: Math.PI/4
       } ) );
     }
+    this.redGhostNode.children[ 0 ].visible = false;
+    this.blackGhostNode.children[ 0 ].visible = false;
     
     this.addChild( this.redGhostNode );
     this.addChild( this.blackGhostNode );
@@ -244,20 +247,20 @@ define( function( require ) {
       }
     },
     
-    /*moveToGhost: function( redGhosts, loc ) {
-      console.log(loc);
+    moveToGhost: function( probeNode, redGhosts, loc ) {
+      var i;
       if ( redGhosts ) {
-        for ( var i = 0; i < redProbeNode.locations.length; i++ ) {
-          this.redGhostNode.children[loc].visible = true;
+        for ( i = 0; i < probeNode.locations.length; i++ ) {
+          this.redGhostNode.children[ i ].visible = true;
         }
-        this.redGhostNode.children[loc].visible = false;
+        this.redGhostNode.children[ loc ].visible = false;
       }
       else {
-        for ( var i = 0; i < blackProbeNode.locations.length; i++ ) {
-          this.blackGhostNode.children[loc].visible = true;
+        for ( i = 0; i < probeNode.locations.length; i++ ) {
+          this.blackGhostNode.children[ i ].visible = true;
         }
-        this.blackGhostNode.children[loc].visible = false;
+        this.blackGhostNode.children[ loc ].visible = false;
       }
-    }*/
+    }
   });
 } );
