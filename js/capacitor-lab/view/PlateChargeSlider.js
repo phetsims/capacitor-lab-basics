@@ -24,7 +24,7 @@ define( function( require ) {
     var noneString = require( 'string!CAPACITOR_LAB/none' );
     var plateChargeString = require( 'string!CAPACITOR_LAB/plateCharge.top' );
     
-    var slider = new HSlider(model.upperPlateChargeProperty, {min: -.53E-12, max: .53E-12}, {
+    var slider = new HSlider(model.upperPlateChargeProperty, {min: -0.53E-12, max: 0.53E-12}, {
       scale: 1.5,
       x: 0,
       y: 0,
@@ -32,7 +32,7 @@ define( function( require ) {
       rotation: Math.PI / -2,
       majorTickLength: 12
     });
-    var labelOptions = {rotation: Math.PI / 2, scale: .9};
+    var labelOptions = {rotation: Math.PI / 2, scale: 0.9};
     var topLabel = new HTMLText(lotsPlusString, labelOptions);
     var midLabel = new HTMLText(noneString, labelOptions);
     var bottomLabel = new HTMLText(lotsMinusString, labelOptions);
@@ -66,7 +66,7 @@ define( function( require ) {
     
     model.upperPlateChargeProperty.link( function () {
       model.updateCapacitanceAndCharge();
-    })
+    });
   }
   
   return inherit( Node, PlateChargeSlider);

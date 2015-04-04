@@ -17,7 +17,6 @@ define( function( require ) {
    * @constructor
    */
   function CapacitorLabModel() {
-
     PropertySet.call( this, {
       /* Measurable quantities */
       // voltage of the battery (V)
@@ -25,7 +24,7 @@ define( function( require ) {
       // amount of charge on the upper plate (C)
       upperPlateCharge: 0,
       // capacitance of the plates (F)
-      capacitance: .89E-13,
+      capacitance: 0.89E-13,
       // stored energy in the capacitor (J)
       energy: 0,
       // electric field
@@ -113,7 +112,7 @@ define( function( require ) {
         this.upperPlateChargeProperty.value = this.voltageProperty.value * this.capacitanceProperty.value;
       }
       this.energyProperty.value = Math.pow(this.upperPlateChargeProperty.value, 2) / this.capacitanceProperty.value / 2;
-      this.eFieldProperty.value = this.upperPlateChargeProperty.value / (8.854E-12 * this.capacitorPlateAreaProperty.value * 1E-6)
+      this.eFieldProperty.value = this.upperPlateChargeProperty.value / (8.854E-12 * this.capacitorPlateAreaProperty.value * 1E-6);
     }
   } );
 } );

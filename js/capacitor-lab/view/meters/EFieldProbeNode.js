@@ -7,7 +7,6 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Input = require( 'SCENERY/input/Input' );
-  var Node = require( 'SCENERY/nodes/Node' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Vector2 = require( 'DOT/Vector2' );
 

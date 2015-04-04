@@ -7,7 +7,6 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Input = require( 'SCENERY/input/Input' );
-  var Node = require( 'SCENERY/nodes/Node' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Vector2 = require( 'DOT/Vector2' );
 
@@ -28,20 +27,21 @@ define( function( require ) {
     Image.call( this, image, options );
     
     var thisNode = this;
+    var focusGone = true;
     
-    var locations = [new Vector2(-355, 100),
-                     new Vector2(-385, -47),
-                     new Vector2(-280, 45),
-                     new Vector2(-280, 155),
-                     new Vector2(-385, 246)];
+    this.locations = [new Vector2(-355, 100),
+                      new Vector2(-385, -47),
+                      new Vector2(-280, 45),
+                      new Vector2(-280, 155),
+                      new Vector2(-385, 246)];
     if (!isRedProbe) {
-      locations = [new Vector2(-315, 100),
-                   new Vector2(-345, -47),
-                   new Vector2(-240, 45),
-                   new Vector2(-240, 155),
-                   new Vector2(-345, 246)];
+      this.locations = [new Vector2(-315, 100),
+                        new Vector2(-345, -47),
+                        new Vector2(-240, 45),
+                        new Vector2(-240, 155),
+                        new Vector2(-345, 246)];
     }
-    var loc = 0;
+    this.loc = 0;
     
     // drag handler
     var probeOffset = {};
@@ -65,17 +65,32 @@ define( function( require ) {
       keydown: function( event, trail ) {
         var keyCode = event.domEvent.keyCode;
         if ( keyCode === Input.KEY_RIGHT_ARROW ) {
-          loc = (loc + 1) % locations.length;
+          thisNode.loc = (thisNode.loc + 1) % thisNode.locations.length;
+          model.moveProbeToPosition( thisNode.locations[thisNode.loc], isRedProbe );
+          //thisNode.getParent().moveToGhost( isRedProbe, thisNode.loc );
         }
         else if ( keyCode === Input.KEY_LEFT_ARROW ) {
-          loc = (loc - 1) % locations.length;
-          if (loc < 0) {
-            loc = locations.length - 1;
+          thisNode.loc = (thisNode.loc - 1) % thisNode.locations.length;
+          if (thisNode.loc < 0) {
+            thisNode.loc = thisNode.locations.length - 1;
           }
+          model.moveProbeToPosition( thisNode.locations[thisNode.loc], isRedProbe );
+          //thisNode.getParent().moveToGhost( isRedProbe, thisNode.loc );
         }
-        model.moveProbeToPosition( locations[loc], isRedProbe );
       }
     } );
+    Input.focusedTrailProperty.link( function() {
+      if (Input.focusedTrailProperty.value !== null) {
+        if (thisNode === Input.focusedTrailProperty.value.lastNode()) {
+          thisNode.getParent().toggleGhosts( isRedProbe );
+          focusGone = false;
+        }
+        else if (!focusGone) {
+          thisNode.getParent().toggleGhosts( isRedProbe );
+          focusGone = true;
+        }
+      }
+    });
   }
   
   return inherit( Image, VoltmeterProbeNode);

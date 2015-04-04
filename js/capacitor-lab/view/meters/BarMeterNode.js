@@ -45,7 +45,7 @@ define( function( require ) {
     
     var color = 'green';
     var units = ' F';
-    if (meterProperty == model.plateChargeMeterProperty) {
+    if (meterProperty === model.plateChargeMeterProperty) {
       units = ' C';
       if (model.upperPlateChargeProperty.value > 0) {
         color = 'red';
@@ -54,7 +54,7 @@ define( function( require ) {
         color = 'blue';
       }
     }
-    else if (meterProperty == model.energyMeterProperty) {
+    else if (meterProperty === model.energyMeterProperty) {
       units = ' J';
       color = 'yellow';
     }
@@ -106,7 +106,7 @@ define( function( require ) {
     var zoomInButton = new ZoomButton({
       top: topNumber.bottom + 10,
       right: topNumber.right - 5,
-      scale: .4,
+      scale: 0.4,
       baseColor: 'white',
       enabled: false,
       listener: function () {
@@ -121,7 +121,7 @@ define( function( require ) {
     var zoomOutButton = new ZoomButton({
       top: zoomInButton.bottom + 7,
       right: zoomInButton.right,
-      scale: .4,
+      scale: 0.4,
       in: false,
       baseColor: 'white',
       enabled: false,
@@ -169,10 +169,10 @@ define( function( require ) {
     
     // Updates the display when the property being measured changes
     function updateMeter() {
-      if (valueProperty == model.upperPlateChargeProperty && model.upperPlateChargeProperty.value > 0 ) {
+      if (valueProperty === model.upperPlateChargeProperty && model.upperPlateChargeProperty.value > 0 ) {
         color = 'red';
       }
-      else if (valueProperty == model.upperPlateChargeProperty && model.upperPlateChargeProperty.value < 0 ) {
+      else if (valueProperty === model.upperPlateChargeProperty && model.upperPlateChargeProperty.value < 0 ) {
         color = 'blue';
       }
       var rectHeight = -height * Math.abs(valueProperty.value)/maxValue;
@@ -186,7 +186,7 @@ define( function( require ) {
         arrow.visible = false;
         zoomOutButton.enabled = false;
       }
-      if ((Math.abs(valueProperty.value) < maxValue / 10) && (Math.abs(valueProperty.value) != 0)) {
+      if ((Math.abs(valueProperty.value) < maxValue / 10) && (Math.abs(valueProperty.value) !== 0)) {
         zoomInButton.enabled = true;
       }
       else {

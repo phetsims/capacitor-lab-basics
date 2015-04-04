@@ -70,7 +70,7 @@ define( function( require ) {
     var circuitNode = new CircuitNode( capacitorLabModel, {
       x: 35,
       y: 150,
-      scale: .7}
+      scale: 0.7}
     );
     this.addChild( circuitNode );
     

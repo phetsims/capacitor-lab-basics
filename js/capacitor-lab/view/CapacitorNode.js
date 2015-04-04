@@ -28,9 +28,6 @@ define( function( require ) {
     // Translates the property value for plate separation into a pixel value
     var plateSeparationScale = 10;
     var plateSeparation = model.plateSeparationProperty.value * plateSeparationScale;
-    // Translates the property value for plate area into a pixel value
-    var plateSizeScale = 1/100;
-    var plateSize = model.capacitorPlateAreaProperty.value * plateSizeScale;
     
     // Top plate of capacitor
     this.topPlate = new PlateNode(model, 1, {x: 0, y: -plateSeparation});
@@ -50,7 +47,7 @@ define( function( require ) {
     var distanceSlider = new PlateSlider(model.plateSeparationProperty, {min: 5.0, max: 10.0}, {
       x: 50,
       y: -150,
-      rotation: Math.PI / -2,
+      rotation: -Math.PI / 2,
     });
     this.addChild(distanceSlider);
     
@@ -103,7 +100,7 @@ define( function( require ) {
     model.plateSeparationProperty.link( function () {
       plateSeparation = model.plateSeparationProperty.value * plateSeparationScale;
       
-      thisNode.topPlate.y = -plateSeparation - (thisNode.topPlate.plateHeight - thisNode.topPlate.minPlateHeight)/2;;
+      thisNode.topPlate.y = -plateSeparation - (thisNode.topPlate.plateHeight - thisNode.topPlate.minPlateHeight)/2;
       thisNode.bottomPlate.y = plateSeparation - (thisNode.bottomPlate.plateHeight - thisNode.bottomPlate.minPlateHeight)/2;
       thisNode.eField.y = -plateSeparation + thisNode.topPlate.plateDepth + thisNode.topPlate.plateHeight / 2;
       
@@ -137,6 +134,11 @@ define( function( require ) {
       thisNode.bottomPlate.y = plateSeparation + yShift;
       
       model.updateCapacitanceAndCharge();
+      
+      if (!model.batteryConnectedProperty.value) {
+        thisNode.topPlate.makeChargeGrid();
+        thisNode.bottomPlate.makeChargeGrid();
+      }
     });
     
     model.upperPlateChargeProperty.link( function () {

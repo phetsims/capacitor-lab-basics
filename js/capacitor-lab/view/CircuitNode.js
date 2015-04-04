@@ -31,7 +31,7 @@ define( function( require ) {
     this.addChild( this.batteryNode );
     
     // Add the capacitor plates
-    this.capacitor = new CapacitorNode( capacitorLabModel, {x: 255, y: 250, scale: .8} );
+    this.capacitor = new CapacitorNode( capacitorLabModel, {x: 255, y: 250, scale: 0.8} );
     this.addChild( this.capacitor );
     
     // Add the wire connecting the plates to the battery

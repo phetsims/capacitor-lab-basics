@@ -43,20 +43,6 @@ define( function( require ) {
     this.charge = charge;
     var thisNode = this;
     
-    // The front of the capacitor plate
-    this.frontRectangle = new Rectangle( 0, 0, this.plateWidth, this.plateDepth, 0, 0, {stroke: 'black', fill: '#aaaaaa'} );
-    this.addChild( this.frontRectangle );
-    
-    // The top of the capacitor plate
-    var topPlateShape = makeTopPlate();
-    this.topPlate = new Path( topPlateShape, {stroke: 'black', fill: 'white'});
-    this.addChild( this.topPlate );
-    
-    // The side of the capacitor plate
-    var sidePlateShape = makeSidePlate();
-    this.sidePlate = new Path( sidePlateShape, {stroke: 'black', fill: 'gray'});
-    this.addChild( this.sidePlate );
-    
     // create the shape for the top plate
     function makeTopPlate() {
       var shape = new Shape().
@@ -79,6 +65,20 @@ define( function( require ) {
       return shape;
     }
     
+    // The front of the capacitor plate
+    this.frontRectangle = new Rectangle( 0, 0, this.plateWidth, this.plateDepth, 0, 0, {stroke: 'black', fill: '#aaaaaa'} );
+    this.addChild( this.frontRectangle );
+    
+    // The top of the capacitor plate
+    var topPlateShape = makeTopPlate();
+    this.topPlate = new Path( topPlateShape, {stroke: 'black', fill: 'white'});
+    this.addChild( this.topPlate );
+    
+    // The side of the capacitor plate
+    var sidePlateShape = makeSidePlate();
+    this.sidePlate = new Path( sidePlateShape, {stroke: 'black', fill: 'gray'});
+    this.addChild( this.sidePlate );
+    
     model.plateChargeVisibleProperty.link( function () {
       if (model.plateChargeVisibleProperty.value) {
         for (var i = 0; i < thisNode.topPlate.children.length; i++) {
@@ -86,8 +86,8 @@ define( function( require ) {
         }
       }
       else {
-        for (var i = 0; i < thisNode.topPlate.children.length; i++) {
-          thisNode.topPlate.children[i].visible = false;
+        for (var j = 0; j < thisNode.topPlate.children.length; j++) {
+          thisNode.topPlate.children[j].visible = false;
         }
       }
     });
@@ -135,8 +135,8 @@ define( function( require ) {
       this.topPlate.removeAllChildren();
       for (var i = 0; i < columns; i++) {
         for (var j = 0; j < rows; j++) {
-          y = -((j + .5)*rowSpacing);
-          x = (i + .25)*colSpacing - this.plateShift / -this.plateHeight * y;
+          y = -((j +0.5)*rowSpacing);
+          x = (i + 0.25)*colSpacing - this.plateShift / -this.plateHeight * y;
           if (this.charge > 0 && this.model.upperPlateChargeProperty.value > 0) {
             this.topPlate.addChild(new PlusChargeNode({x: x, y: y-5}));
           }

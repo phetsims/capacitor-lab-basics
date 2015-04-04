@@ -5,7 +5,6 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
   var Image = require( 'SCENERY/nodes/Image' );
   var HSlider = require( 'SUN/HSlider' );
   var HTMLText = require( 'SCENERY/nodes/HTMLText' );

@@ -38,7 +38,7 @@ define( function( require ) {
       fill: 'black',
       centerX: x,
     });
-    if (model.eFieldProperty.value > 0) {
+    if (model.eFieldProperty.value < 0) {
       rect = new Rectangle( x, y, 2, arrowLength / 2 + 10, 0, 0, {
         fill: 'black',
         centerX: x,
@@ -58,7 +58,7 @@ define( function( require ) {
     
     model.plateSeparationProperty.link( function () {
       arrowLength = 2 * model.plateSeparationProperty.value * plateSeparationScale - plateDepth;
-      if (model.eFieldProperty.value > 0) {
+      if (model.eFieldProperty.value < 0) {
         rect.setRect( x, y, 2, arrowLength / 2 + 10, 0, 0 );
         arrow.setTailAndTip( x, y + arrowLength, x, y + arrowLength / 2 );
       }
@@ -89,9 +89,6 @@ define( function( require ) {
     // Maximum electric field (V/m)
     var maxEField = 6000;
     
-    drawVectorAtPoint( 0, 0 );
-    var rect = new Rectangle( 0, 0, 10, 10, 0, 0, {x: 0, y: 0, fill: 'black'});
-    this.addChild(rect);
     // draws a vector arrow from the point (x, y) to the point (x, y+arrowLength) 
     function drawVectorAtPoint( x, y ) {
       thisNode.addChild( new EFieldLineNode( model, arrowLength, plateSeparationScale, plate.plateDepth, x, y ));
@@ -106,7 +103,7 @@ define( function( require ) {
     }
     
     function getLineSpacing() {
-      if ( Math.abs(model.eFieldProperty.value) == 0 ) {
+      if ( Math.abs(model.eFieldProperty.value) === 0 ) {
         return 0;
       }
       else {
@@ -121,7 +118,6 @@ define( function( require ) {
       if ( lineSpacing > 0 ) {
         var plateWidth = plate.plateWidth;
         var plateDepth = plateWidth;
-        var theta 
         var x = lineSpacing / 2;
         while (x <= plateWidth / 2) {
           var y = lineSpacing / 2;

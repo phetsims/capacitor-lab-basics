@@ -92,7 +92,8 @@ define( function( require ) {
       keydown: function( event, trail ) {
         var keyCode = event.domEvent.keyCode;
         var step = (range.max - range.min) / 10;
-        if ( keyCode === Input.KEY_UP_ARROW || keyCode === Input.KEY_RIGHT_ARROW ) {
+        if ( ((keyCode === Input.KEY_UP_ARROW || keyCode === Input.KEY_RIGHT_ARROW) && thisSlider.rotation <= 0) ||
+            ((keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW) && thisSlider.rotation > 0)) {
           if ( valueProperty.get() < range.max - step ) {
             valueProperty.set( valueProperty.get() + step );
           }
@@ -100,7 +101,8 @@ define( function( require ) {
             valueProperty.set( range.max );
           }
         }
-        else if ( keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW ) {
+        else if ( ((keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW) && thisSlider.rotation <= 0) ||
+                 ((keyCode === Input.KEY_UP_ARROW || keyCode === Input.KEY_RIGHT_ARROW) && thisSlider.rotation > 0)) {
           if ( valueProperty.get() > range.min + step ) {
             valueProperty.set( valueProperty.get() - step );
           }
@@ -141,7 +143,6 @@ define( function( require ) {
       thumb.cursor = enabled ? 'pointer' : 'default';
       if ( !enabled ) {
         if ( thumbHandler.dragging ) { thumbHandler.endDrag(); }
-        if ( trackHandler.dragging ) { trackHandler.endDrag(); }
       }
     } );
 

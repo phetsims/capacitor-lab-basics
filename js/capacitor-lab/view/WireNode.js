@@ -35,59 +35,10 @@ define( function( require ) {
     var plateSeparationScale = 10;
     // plate separation in pixels
     var plateSeparation = model.plateSeparationProperty.value * plateSeparationScale;
+    // scale of wire node in circuit
+    var scale = 0.8;
     
     var thisNode = this;
-    
-    // upper wire
-    var topWireShape = makeTopShape();
-    this.topWire = new Path( topWireShape, {stroke: 'black', fill: '#aaaaaa'} );
-    this.addChild( this.topWire );
-    
-    // lower wire
-    var bottomWireShape = makeBottomShape();
-    this.bottomWire = new Path( bottomWireShape, {stroke: 'black', fill: '#aaaaaa'});
-    this.addChild( this.bottomWire );
-
-    model.voltageProperty.link( function () {
-      if (model.voltageProperty.value < 0) {
-        batteryOffset = 8;
-      }
-      else if (model.voltageProperty.value >= 0) {
-        batteryOffset = 0;
-      }
-      thisNode.topWire.shape = makeTopShape();
-    });
-    
-    model.batteryConnectedProperty.link( function () {
-      if (!model.batteryConnectedProperty.value) {
-        thisNode.visible = false;
-      }
-      else {
-        thisNode.visible = true;
-      }
-    });
-    
-    model.plateSeparationProperty.link( function () {
-      // change in wire length caused by plates moving up and down
-      var diff = (model.plateSeparationProperty.value * plateSeparationScale - plateSeparation)*.8;
-      // change in bottom wire length caused by plates expanding
-      var shift = 30 * (Math.sqrt(model.capacitorPlateAreaProperty.value / 100) - 1)*.8;
-      
-      topPlateOffset = 20 - diff;
-      bottomPlateOffset = -7 - diff - shift;
-      thisNode.topWire.shape = makeTopShape();
-      thisNode.bottomWire.shape = makeBottomShape();
-    });
-    
-    model.capacitorPlateAreaProperty.link( function () {
-      // change in wire length caused by plates moving up and down
-      var shift = 30 * (Math.sqrt(model.capacitorPlateAreaProperty.value / 100) - 1)*.8;
-      // change in bottom wire length caused by plates expanding
-      var diff = (model.plateSeparationProperty.value * plateSeparationScale - plateSeparation)*.8;
-      
-      bottomPlateOffset = -7 - diff - shift;
-      thisNode.bottomWire.shape = makeBottomShape();
-    });
     
     // create the shape for the upper wire
     function makeTopShape() {
@@ -120,6 +71,57 @@ define( function( require ) {
         verticalLineTo( yLength + separation );
       return bottomWireShape;
     }
+    
+    // upper wire
+    var topWireShape = makeTopShape();
+    this.topWire = new Path( topWireShape, {stroke: 'black', fill: '#aaaaaa'} );
+    this.addChild( this.topWire );
+    
+    // lower wire
+    var bottomWireShape = makeBottomShape();
+    this.bottomWire = new Path( bottomWireShape, {stroke: 'black', fill: '#aaaaaa'});
+    this.addChild( this.bottomWire );
+
+    model.voltageProperty.link( function () {
+      if (model.voltageProperty.value < 0) {
+        batteryOffset = 8;
+      }
+      else if (model.voltageProperty.value >= 0) {
+        batteryOffset = 0;
+      }
+      thisNode.topWire.shape = makeTopShape();
+    });
+    
+    model.batteryConnectedProperty.link( function () {
+      if (!model.batteryConnectedProperty.value) {
+        thisNode.visible = false;
+      }
+      else {
+        thisNode.visible = true;
+      }
+    });
+    
+    model.plateSeparationProperty.link( function () {
+      // change in wire length caused by plates moving up and down
+      var diff = (model.plateSeparationProperty.value * plateSeparationScale - plateSeparation)*scale;
+      // change in bottom wire length caused by plates expanding
+      var shift = 30 * (Math.sqrt(model.capacitorPlateAreaProperty.value / 100) - 1)*scale;
+      
+      topPlateOffset = 20 - diff;
+      bottomPlateOffset = -7 - diff - shift;
+      thisNode.topWire.shape = makeTopShape();
+      thisNode.bottomWire.shape = makeBottomShape();
+    });
+    
+    model.capacitorPlateAreaProperty.link( function () {
+      // change in wire length caused by plates moving up and down
+      var shift = 30 * (Math.sqrt(model.capacitorPlateAreaProperty.value / 100) - 1)*scale;
+      // change in bottom wire length caused by plates expanding
+      var diff = (model.plateSeparationProperty.value * plateSeparationScale - plateSeparation)*scale;
+      
+      bottomPlateOffset = -7 - diff - shift;
+      thisNode.bottomWire.shape = makeBottomShape();
+    });
   }
   
   return inherit( Node, WireNode );

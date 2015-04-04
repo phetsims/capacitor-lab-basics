@@ -47,9 +47,109 @@ define( function( require ) {
     // maximum electric field with the battery connected and the plates at the initial setting
     var maxEField = 150;
     
+    // Redraws the wire when either the probe or the meter body move
+    function updateWire() {
+      // connection points
+      var probeConnectionPoint = new Vector2( probeNode.left + 8, probeNode.bottom - 6 );
+      var meterConnectionPoint = new Vector2( bodyNode.left, bodyNode.centerY );
+
+      // control points
+      // The y coordinate of the body's control point varies with the x distance between the body and probe.
+      var c1Offset = new Vector2( 0, 5 );
+      var c2Offset = new Vector2( 0, Util.linear( 0, 800, 0, 200, bodyNode.centerX - probeNode.left ) ); // x distance -> y coordinate
+      var c1 = new Vector2( probeConnectionPoint.x + c2Offset.x, probeConnectionPoint.y + c2Offset.y );
+      var c2 = new Vector2( meterConnectionPoint.x + c1Offset.x, meterConnectionPoint.y + c1Offset.y );
+      
+      var wireShape = new Shape()
+        .moveTo( probeConnectionPoint.x, probeConnectionPoint.y )
+        .cubicCurveTo( c1.x, c1.y, c2.x, c2.y, meterConnectionPoint.x, meterConnectionPoint.y );
+      return wireShape;
+    }
+    
+    // Redraws the arrow when the electric field changes or the zoom buttons are clicked
+    function updateArrow( eFieldMeasured ) {
+      var height = maxArrowHeight * eFieldMeasured / maxEField * arrowScale;
+      if (Math.abs(height) < maxArrowHeight / 3) {
+        arrow.options =  {
+          headHeight: 13 * arrowScale * Math.abs(eFieldMeasured) / (maxEField / 3),
+          tailWidth: 7 * arrowScale * Math.abs(eFieldMeasured) / (maxEField / 3),
+          headWidth: 15 * arrowScale * Math.abs(eFieldMeasured) / (maxEField / 3) + 0.01,
+        };
+        zoomInButton.enabled = (height !== 0);
+      }
+      else {
+        arrow.options =  {
+          headHeight: 13,
+          tailWidth: 7,
+          headWidth: 15,
+        };
+        zoomInButton.enabled = (Math.abs(height) < 2 * maxArrowHeight / 3);
+        zoomOutButton.enabled = (Math.abs(height) > maxArrowHeight * 17 / 15);
+      }
+      arrow.setTailAndTip( meterDisplayNode.centerX,
+                          meterDisplayNode.centerY,
+                          meterDisplayNode.centerX,
+                          meterDisplayNode.centerY + height );
+      arrow.centerY = meterDisplayNode.centerY;
+      if ( model.eFieldValueVisibleProperty.value ) {
+        if ( eFieldMeasured < 0 ) {
+          plateTextNode.top = arrow.bottom + 3;
+          eFieldTextNode.top = plateTextNode.bottom + 3;
+        }
+        else if ( eFieldMeasured === 0 ) {
+          eFieldTextNode.bottom = meterDisplayNode.centerY - 3;
+          plateTextNode.bottom = eFieldTextNode.top - 3;
+        }
+        else {
+          eFieldTextNode.bottom = arrow.top - 3;
+          plateTextNode.bottom = eFieldTextNode.top - 3;
+        }
+      }
+      else {
+        if ( eFieldMeasured < 0 ) {
+          plateTextNode.top = arrow.bottom + 3;
+        }
+        else if ( eFieldMeasured === 0 ) {
+          plateTextNode.bottom = meterDisplayNode.centerY - 3;
+        }
+        else {
+          plateTextNode.bottom = arrow.top - 3;
+        }
+      }
+    }
+    
+    // Updates the value being displayed when the electric field changes
+    // Also updates when the probe is moved into or out of the area inside the capacitor
+    function updateDisplay() {
+      // update string to display correct electric field value
+      // translate probe tip into coordinates of capacitor
+      var parentPoint = thisNode.localToParentPoint(new Vector2(probeNode.right-15, probeNode.top+16));
+      var circuitPoint = capacitor.getParent().parentToLocalPoint(parentPoint);
+      var capPoint = capacitor.parentToLocalPoint(circuitPoint);
+      
+      var leftBound = capacitor.topPlate.left;
+      var insideShape = new Shape().moveTo( leftBound, capacitor.topPlate.bottom ).
+        horizontalLineTo( leftBound + capacitor.topPlate.plateWidth ).
+        lineTo( capacitor.topPlate.right, capacitor.topPlate.top + capacitor.topPlate.plateDepth ).
+        verticalLineTo( capacitor.bottomPlate.top ).
+        lineTo( leftBound + capacitor.topPlate.plateWidth, capacitor.bottomPlate.bottom - capacitor.bottomPlate.plateDepth ).
+        horizontalLineTo( leftBound ).
+        verticalLineTo( capacitor.topPlate.bottom );
+      if ( insideShape.containsPoint(capPoint) ) {
+        eFieldString = (Math.abs(model.eFieldProperty.value)).toFixed(0) + voltsPerMeterString;
+        updateArrow( model.eFieldProperty.value );
+      }
+      else {
+        eFieldString = zeroFieldString;
+        updateArrow( 0 );
+      }
+      eFieldTextNode.text = eFieldString;
+      eFieldTextNode.centerX = meterDisplayNode.centerX;
+    }
+    
     // image of meter probe
     var probeNode = new EFieldProbeNode( model, {
-      scale: .65,
+      scale: 0.65,
       x: -300,
       y: -130,
       rotation: Math.PI/4});
@@ -131,7 +231,7 @@ define( function( require ) {
     var zoomInButton = new ZoomButton({
       bottom: zoomText.bottom,
       left: zoomText.right + 5,
-      scale: .4,
+      scale: 0.4,
       baseColor: 'white',
       enabled: false,
       listener: function () {
@@ -144,13 +244,12 @@ define( function( require ) {
     var zoomOutButton = new ZoomButton({
       top: zoomInButton.bottom + 7,
       right: zoomInButton.right,
-      scale: .4,
+      scale: 0.4,
       in: false,
       baseColor: 'white',
       enabled: false,
       listener: function () {
         arrowScale = arrowScale * maxArrowHeight / arrow.height;
-        console.log(arrowScale);
         updateArrow();
       },
       });
@@ -207,7 +306,7 @@ define( function( require ) {
           plateTextNode.top = arrow.bottom + 3;
           eFieldTextNode.top = plateTextNode.bottom + 3;
         }
-        else if ( model.eFieldProperty.value == 0 ) {
+        else if ( model.eFieldProperty.value === 0 ) {
           eFieldTextNode.bottom = meterDisplayNode.centerY - 3;
           plateTextNode.bottom = eFieldTextNode.top - 3;
         }
@@ -220,7 +319,7 @@ define( function( require ) {
         if ( model.eFieldProperty.value < 0 ) {
           plateTextNode.top = arrow.bottom + 3;
         }
-        else if ( model.eFieldProperty.value == 0 ) {
+        else if ( model.eFieldProperty.value === 0 ) {
           plateTextNode.bottom = meterDisplayNode.centerY - 3;
         }
         else {
@@ -229,106 +328,6 @@ define( function( require ) {
       }
       
     });
-    
-    // Redraws the wire when either the probe or the meter body move
-    function updateWire() {
-      // connection points
-      var probeConnectionPoint = new Vector2( probeNode.left + 8, probeNode.bottom - 6 );
-      var meterConnectionPoint = new Vector2( bodyNode.left, bodyNode.centerY );
-
-      // control points
-      // The y coordinate of the body's control point varies with the x distance between the body and probe.
-      var c1Offset = new Vector2( 0, 5 );
-      var c2Offset = new Vector2( 0, Util.linear( 0, 800, 0, 200, bodyNode.centerX - probeNode.left ) ); // x distance -> y coordinate
-      var c1 = new Vector2( probeConnectionPoint.x + c2Offset.x, probeConnectionPoint.y + c2Offset.y );
-      var c2 = new Vector2( meterConnectionPoint.x + c1Offset.x, meterConnectionPoint.y + c1Offset.y );
-      
-      var wireShape = new Shape()
-        .moveTo( probeConnectionPoint.x, probeConnectionPoint.y )
-        .cubicCurveTo( c1.x, c1.y, c2.x, c2.y, meterConnectionPoint.x, meterConnectionPoint.y );
-      return wireShape;
-    }
-    
-    // Redraws the arrow when the electric field changes or the zoom buttons are clicked
-    function updateArrow( eFieldMeasured ) {
-      var height = maxArrowHeight * eFieldMeasured / maxEField * arrowScale;
-      if (Math.abs(height) < maxArrowHeight / 3) {
-        arrow.options =  {
-          headHeight: 13 * arrowScale * Math.abs(eFieldMeasured) / (maxEField / 3),
-          tailWidth: 7 * arrowScale * Math.abs(eFieldMeasured) / (maxEField / 3),
-          headWidth: 15 * arrowScale * Math.abs(eFieldMeasured) / (maxEField / 3) + 0.01,
-        };
-        zoomInButton.enabled = (height != 0);
-      }
-      else {
-        arrow.options =  {
-          headHeight: 13,
-          tailWidth: 7,
-          headWidth: 15,
-        };
-        zoomInButton.enabled = (Math.abs(height) < 2 * maxArrowHeight / 3);
-        zoomOutButton.enabled = (Math.abs(height) > maxArrowHeight * 17 / 15);
-      }
-      arrow.setTailAndTip( meterDisplayNode.centerX,
-                          meterDisplayNode.centerY,
-                          meterDisplayNode.centerX,
-                          meterDisplayNode.centerY + height );
-      arrow.centerY = meterDisplayNode.centerY;
-      if ( model.eFieldValueVisibleProperty.value ) {
-        if ( eFieldMeasured < 0 ) {
-          plateTextNode.top = arrow.bottom + 3;
-          eFieldTextNode.top = plateTextNode.bottom + 3;
-        }
-        else if ( eFieldMeasured == 0 ) {
-          eFieldTextNode.bottom = meterDisplayNode.centerY - 3;
-          plateTextNode.bottom = eFieldTextNode.top - 3;
-        }
-        else {
-          eFieldTextNode.bottom = arrow.top - 3;
-          plateTextNode.bottom = eFieldTextNode.top - 3;
-        }
-      }
-      else {
-        if ( eFieldMeasured < 0 ) {
-          plateTextNode.top = arrow.bottom + 3;
-        }
-        else if ( eFieldMeasured == 0 ) {
-          plateTextNode.bottom = meterDisplayNode.centerY - 3;
-        }
-        else {
-          plateTextNode.bottom = arrow.top - 3;
-        }
-      }
-    }
-    
-    // Updates the value being displayed when the electric field changes
-    // Also updates when the probe is moved into or out of the area inside the capacitor
-    function updateDisplay() {
-      // update string to display correct electric field value
-      // translate probe tip into coordinates of capacitor
-      var parentPoint = thisNode.localToParentPoint(new Vector2(probeNode.right-15, probeNode.top+16));
-      var circuitPoint = capacitor.getParent().parentToLocalPoint(parentPoint);
-      var capPoint = capacitor.parentToLocalPoint(circuitPoint);
-      
-      var leftBound = capacitor.topPlate.left;
-      var insideShape = new Shape().moveTo( leftBound, capacitor.topPlate.bottom ).
-        horizontalLineTo( leftBound + capacitor.topPlate.plateWidth ).
-        lineTo( capacitor.topPlate.right, capacitor.topPlate.top + capacitor.topPlate.plateDepth ).
-        verticalLineTo( capacitor.bottomPlate.top ).
-        lineTo( leftBound + capacitor.topPlate.plateWidth, capacitor.bottomPlate.bottom - capacitor.bottomPlate.plateDepth ).
-        horizontalLineTo( leftBound ).
-        verticalLineTo( capacitor.topPlate.bottom );
-      if ( insideShape.containsPoint(capPoint) ) {
-        eFieldString = (Math.abs(model.eFieldProperty.value)).toFixed(0) + voltsPerMeterString;
-        updateArrow( model.eFieldProperty.value );
-      }
-      else {
-        eFieldString = zeroFieldString;
-        updateArrow( 0 );
-      }
-      eFieldTextNode.text = eFieldString;
-      eFieldTextNode.centerX = meterDisplayNode.centerX;
-    }
   }
   
   return inherit( Node, EFieldMeterNode);
