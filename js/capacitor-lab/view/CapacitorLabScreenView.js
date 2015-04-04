@@ -1,4 +1,4 @@
-//  Copyright 2002-2014, University of Colorado Boulder
+//  Copyright 2002-2015, University of Colorado Boulder
 
 /**
  *
@@ -26,6 +26,24 @@ define( function( require ) {
   var VerticalCheckBoxGroup = require( 'SUN/VerticalCheckBoxGroup' );
   var VoltmeterNode = require( 'CAPACITOR_LAB/capacitor-lab/view/meters/VoltmeterNode' );
   var VStrut = require( 'SUN/VStrut' );
+  
+  // Strings
+  var connectBatteryString = require( 'string!CAPACITOR_LAB/connectBattery' );
+  var disconnectBatteryString = require( 'string!CAPACITOR_LAB/disconnectBattery' );
+  // checkbox panel strings
+  var viewTitleString = require( 'string!CAPACITOR_LAB/view' );
+  var plateChargeString = require( 'string!CAPACITOR_LAB/plateCharges' );
+  var eFieldLinesString = require( 'string!CAPACITOR_LAB/eFieldLines' );
+  var metersTitleString = require( 'string!CAPACITOR_LAB/meters' );
+  var capMeterString = require( 'string!CAPACITOR_LAB/capacitance' );
+  var chargeMeterString = require( 'string!CAPACITOR_LAB/plateCharge' );
+  var eMeterString = require( 'string!CAPACITOR_LAB/storedEnergy' );
+  var voltMeterString = require( 'string!CAPACITOR_LAB/voltmeter' );
+  var eFieldMeterString = require( 'string!CAPACITOR_LAB/eFieldDetector' );
+  // meter title strings
+  var capMeterTitle = require( 'string!CAPACITOR_LAB/capMeterTitle' );
+  var chargeMeterTitle = require( 'string!CAPACITOR_LAB/chargeMeterTitle' );
+  var energyMeterTitle = require( 'string!CAPACITOR_LAB/energyMeterTitle' );
 
   /**
    * @param {CapacitorLabModel} capacitorLabModel
@@ -34,24 +52,6 @@ define( function( require ) {
   function CapacitorLabScreenView( capacitorLabModel ) {
     
     ScreenView.call( this, { layoutBounds: new Bounds2( 0, 0, 768, 504 ) } );
-    
-    // Strings
-    var connectBatteryString = require( 'string!CAPACITOR_LAB/connectBattery' );
-    var disconnectBatteryString = require( 'string!CAPACITOR_LAB/disconnectBattery' );
-    // checkbox panel strings
-    var viewTitleString = require( 'string!CAPACITOR_LAB/view' );
-    var plateChargeString = require( 'string!CAPACITOR_LAB/plateCharges' );
-    var eFieldLinesString = require( 'string!CAPACITOR_LAB/eFieldLines' );
-    var metersTitleString = require( 'string!CAPACITOR_LAB/meters' );
-    var capMeterString = require( 'string!CAPACITOR_LAB/capacitance' );
-    var chargeMeterString = require( 'string!CAPACITOR_LAB/plateCharge' );
-    var eMeterString = require( 'string!CAPACITOR_LAB/storedEnergy' );
-    var voltMeterString = require( 'string!CAPACITOR_LAB/voltmeter' );
-    var eFieldMeterString = require( 'string!CAPACITOR_LAB/eFieldDetector' );
-    // meter title strings
-    var capMeterTitle = require( 'string!CAPACITOR_LAB/capMeterTitle' );
-    var chargeMeterTitle = require( 'string!CAPACITOR_LAB/chargeMeterTitle' );
-    var energyMeterTitle = require( 'string!CAPACITOR_LAB/energyMeterTitle' );
     
     var labelOptionFont = {font: new PhetFont( 12 )};
     var titleFont = new PhetFont( 14 );

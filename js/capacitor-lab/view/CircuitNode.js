@@ -1,4 +1,4 @@
-//  Copyright 2002-2014, University of Colorado Boulder
+//  Copyright 2002-2015, University of Colorado Boulder
 
 /**
  *
@@ -18,6 +18,7 @@ define( function( require ) {
   /**
    * Constructor for the circuit
    * Contains the battery, the capacitor, the wires, and the slider to control plate charge
+   * @param {CapacitorLabModel} capacitorLabModel
    */
   function CircuitNode( capacitorLabModel, options ) {
 
@@ -31,17 +32,27 @@ define( function( require ) {
     this.addChild( this.batteryNode );
     
     // Add the capacitor plates
-    this.capacitor = new CapacitorNode( capacitorLabModel, {x: 255, y: 250, scale: 0.8} );
+    this.capacitor = new CapacitorNode( capacitorLabModel, {
+      x: 255,
+      y: 250,
+      scale: 0.8
+    } );
     this.addChild( this.capacitor );
     
     // Add the wire connecting the plates to the battery
-    this.wireNode = new WireNode(capacitorLabModel, this.capacitor.topPlate, this.capacitor.bottomPlate, {x: 8, y: 122});
+    this.wireNode = new WireNode(capacitorLabModel, this.capacitor.topPlate, this.capacitor.bottomPlate, {
+      x: 8,
+      y: 122
+    } );
     this.addChild( this.wireNode );
     
     // Add the slider that controls plate charge when the battery is disconnected
-    this.plateChargeSlider = new PlateChargeSlider(capacitorLabModel, {x: 320, y: -15});
+    this.plateChargeSlider = new PlateChargeSlider(capacitorLabModel, {
+      x: 320,
+      y: -15
+    } );
     this.addChild( this.plateChargeSlider );
   }
 
-  return inherit( Node, CircuitNode);
+  return inherit( Node, CircuitNode );
 } );

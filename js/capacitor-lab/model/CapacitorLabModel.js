@@ -1,4 +1,4 @@
-//  Copyright 2002-2014, University of Colorado Boulder
+//  Copyright 2002-2015, University of Colorado Boulder
 
 /**
  *
@@ -12,6 +12,8 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
   var Vector2 = require( 'DOT/Vector2' );
 
+  // constants
+  var EPSILON = 8.854E-12;
   /**
    * Main constructor for CapacitorLabModel, which contains all of the model logic for the entire sim screen.
    * @constructor
@@ -107,12 +109,12 @@ define( function( require ) {
     // Whenever the voltage, plate area, or plate separation change, this is called
     // Updates the capacitance, charge, energy, and electric field properties
     updateCapacitanceAndCharge: function() {
-      this.capacitanceProperty.value = 8.854E-12 * this.capacitorPlateAreaProperty.value * 1E-6 / (this.plateSeparationProperty.value * 1E-3);
+      this.capacitanceProperty.value = EPSILON * this.capacitorPlateAreaProperty.value * 1E-6 / (this.plateSeparationProperty.value * 1E-3);
       if (this.batteryConnectedProperty.value) {
         this.upperPlateChargeProperty.value = this.voltageProperty.value * this.capacitanceProperty.value;
       }
       this.energyProperty.value = Math.pow(this.upperPlateChargeProperty.value, 2) / this.capacitanceProperty.value / 2;
-      this.eFieldProperty.value = this.upperPlateChargeProperty.value / (8.854E-12 * this.capacitorPlateAreaProperty.value * 1E-6);
+      this.eFieldProperty.value = this.upperPlateChargeProperty.value / (EPSILON * this.capacitorPlateAreaProperty.value * 1E-6);
     }
   } );
 } );

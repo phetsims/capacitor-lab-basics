@@ -1,4 +1,4 @@
-//  Copyright 2002-2014, University of Colorado Boulder
+//  Copyright 2002-2015, University of Colorado Boulder
 
 define( function( require ) {
   'use strict';
@@ -18,10 +18,19 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var VoltmeterProbeNode = require( 'CAPACITOR_LAB/capacitor-lab/view/meters/VoltmeterProbeNode' );
 
+  // strings
+  var voltString = require( 'string!CAPACITOR_LAB/volt' );
+  var unknownVoltString = require( 'string!CAPACITOR_LAB/volt.unknown' );
+  
+  // images
+  var voltmeterBackgroundImage = require( 'image!CAPACITOR_LAB/voltmeter.png' );
+  var redProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_red_large_cutout.png' );
+  var blackProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_red_large_cutout.png' );
+  
   /**
    * Constructor for the voltmeter
-   * @param wire: the node containing the top and bottom wires in the circuit
-   * @param capacitor: the node containing the capacitor representation
+   * @param {CapacitorLabModel} model
+   * @param {CircuitNode} circuit
    **/
   function VoltmeterNode(model, circuit, options) {
     options = _.extend({cursor: 'pointer'}, options);
@@ -30,21 +39,13 @@ define( function( require ) {
     var wire = circuit.wireNode;
     var capacitor = circuit.capacitor;
     
-    // strings
-    var voltString = require( 'string!CAPACITOR_LAB/volt' );
-    var unknownVoltString = require( 'string!CAPACITOR_LAB/volt.unknown' );
-    
     var voltageString = unknownVoltString;
-    
-    // images
-    var voltmeterBackgroundImage = require( 'image!CAPACITOR_LAB/voltmeter.png' );
-    var redProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_red_large_cutout.png' );
-    var blackProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_red_large_cutout.png' );
     
     // body of the voltmeter
     var bodyImage = new Image( voltmeterBackgroundImage, {scale: 0.7} );
     var bodyNode = new Rectangle( bodyImage.x, bodyImage.y, bodyImage.width, bodyImage.height, 0, 0, {
-      focusable: true});
+      focusable: true
+    } );
     bodyNode.addChild( bodyImage );
     
     // Redraws the wires when either probe moves or the meter body moves
@@ -80,22 +81,22 @@ define( function( require ) {
       var bottomPlateShape = bottomPlate.topPlate.shape;
       
       // translate red probe tip locations into local coordinate system of wires
-      var redParentPoint = thisNode.localToParentPoint(new Vector2(redProbeNode.right-16, redProbeNode.top+16));
-      var redCircuitPoint = circuit.parentToLocalPoint(redParentPoint);
-      var redWirePoint = wire.parentToLocalPoint(redCircuitPoint);
+      var redParentPoint = thisNode.localToParentPoint( new Vector2( redProbeNode.right-16, redProbeNode.top+16 ) );
+      var redCircuitPoint = circuit.parentToLocalPoint( redParentPoint );
+      var redWirePoint = wire.parentToLocalPoint( redCircuitPoint );
       // translate red probe tip locations into local coordinate system of capacitor plates
-      var redCapPoint = capacitor.parentToLocalPoint(redCircuitPoint);
-      var redTopPlatePoint = topPlate.parentToLocalPoint(redCapPoint);
-      var redBottomPlatePoint = bottomPlate.parentToLocalPoint(redCapPoint);
+      var redCapPoint = capacitor.parentToLocalPoint( redCircuitPoint );
+      var redTopPlatePoint = topPlate.parentToLocalPoint( redCapPoint );
+      var redBottomPlatePoint = bottomPlate.parentToLocalPoint( redCapPoint );
       
       // translate black probe tip locations into local coordinate system of wires
-      var blackParentPoint = thisNode.localToParentPoint(new Vector2(blackProbeNode.right-7, blackProbeNode.top+7));
-      var blackCircuitPoint = circuit.parentToLocalPoint(blackParentPoint);
-      var blackWirePoint = wire.parentToLocalPoint(blackCircuitPoint);
+      var blackParentPoint = thisNode.localToParentPoint( new Vector2( blackProbeNode.right-7, blackProbeNode.top+7 ) );
+      var blackCircuitPoint = circuit.parentToLocalPoint( blackParentPoint );
+      var blackWirePoint = wire.parentToLocalPoint( blackCircuitPoint );
       // translate red probe tip locations into local coordinate system of capacitor plates
-      var blackCapPoint = capacitor.parentToLocalPoint(blackCircuitPoint);
-      var blackTopPlatePoint = topPlate.parentToLocalPoint(blackCapPoint);
-      var blackBottomPlatePoint = bottomPlate.parentToLocalPoint(blackCapPoint);
+      var blackCapPoint = capacitor.parentToLocalPoint( blackCircuitPoint );
+      var blackTopPlatePoint = topPlate.parentToLocalPoint( blackCapPoint );
+      var blackBottomPlatePoint = bottomPlate.parentToLocalPoint( blackCapPoint );
       
       // if the red probe is on top and the black probe is on bottom
       if ((wire.topWire.shape.containsPoint(redWirePoint) || topPlateShape.containsPoint(redTopPlatePoint)) &&
@@ -120,7 +121,8 @@ define( function( require ) {
       scale: 0.15,
       x: -300,
       y: 30,
-      rotation: Math.PI/4});
+      rotation: Math.PI/4
+    } );
     // wire connecting red probe to voltmeter body
     var redWire = new Path( updateWire( redProbeNode ), {
         stroke: "red",
@@ -128,13 +130,14 @@ define( function( require ) {
         lineCap: 'square',
         lineJoin: 'round',
         pickable: false
-      });
+    } );
     // black probe
     var blackProbeNode = new VoltmeterProbeNode( model, false, {
       scale: 0.15,
       x: -250,
       y: 40,
-      rotation: Math.PI/4});
+      rotation: Math.PI/4
+    } );
     // wire connecting black probe to voltmeter body
     var blackWire = new Path( updateWire( blackProbeNode ), {
         stroke: "black",
@@ -142,7 +145,7 @@ define( function( require ) {
         lineCap: 'square',
         lineJoin: 'round',
         pickable: false
-      });
+    } );
     // Ghost images of probes, to be displayed when the probe is in focus
     this.redGhostNode = new Node({visible: false});
     this.blackGhostNode = new Node({visible: false});
@@ -151,12 +154,14 @@ define( function( require ) {
         scale: 0.15,
         centerX: redProbeNode.locations[i].x,
         centerY: redProbeNode.locations[i].y,
-        rotation: Math.PI/4}));
+        rotation: Math.PI/4
+      } ) );
       this.blackGhostNode.addChild( new Image( blackProbeImage, {
         scale: 0.15,
         centerX: blackProbeNode.locations[i].x,
         centerY: blackProbeNode.locations[i].y,
-        rotation: Math.PI/4}));
+        rotation: Math.PI/4
+      } ) );
     }
     
     this.addChild( this.redGhostNode );
@@ -173,7 +178,8 @@ define( function( require ) {
     var voltageTextNode = new Text( voltageString, {
       top: bodyImage.top + 15,
       right: bodyImage.right - 10,
-      font: new PhetFont(14)});
+      font: new PhetFont( 14 )
+    } );
     bodyNode.addChild( voltageTextNode );
     
     var thisNode = this;

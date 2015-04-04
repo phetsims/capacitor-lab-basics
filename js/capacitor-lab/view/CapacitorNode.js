@@ -1,4 +1,4 @@
-//  Copyright 2002-2014, University of Colorado Boulder
+//  Copyright 2002-2015, University of Colorado Boulder
 
 define( function( require ) {
   'use strict';
@@ -13,32 +13,40 @@ define( function( require ) {
   var PlateNode = require( 'CAPACITOR_LAB/capacitor-lab/view/PlateNode' );
   var PlateSlider = require( 'CAPACITOR_LAB/capacitor-lab/view/PlateSlider' );
   var SubSupText = require( 'SCENERY_PHET/SubSupText' );
-
+  
+  // strings
+  var mmString = require( 'string!CAPACITOR_LAB/mm' );
+  var separationString = require( 'string!CAPACITOR_LAB/separation' );
+  var plateAreaString = require( 'string!CAPACITOR_LAB/plateArea' );
+  
   /**
    * Constructor for the capacitor
+   * @param {CapacitorLabModel} model
    **/
   function CapacitorNode(model, options) {
     Node.call( this, options );
-    
-    // strings
-    var mmString = require( 'string!CAPACITOR_LAB/mm' );
-    var separationString = require( 'string!CAPACITOR_LAB/separation' );
-    var plateAreaString = require( 'string!CAPACITOR_LAB/plateArea' );
     
     // Translates the property value for plate separation into a pixel value
     var plateSeparationScale = 10;
     var plateSeparation = model.plateSeparationProperty.value * plateSeparationScale;
     
     // Top plate of capacitor
-    this.topPlate = new PlateNode(model, 1, {x: 0, y: -plateSeparation});
+    this.topPlate = new PlateNode(model, 1, {
+      x: 0,
+      y: -plateSeparation
+    } );
     this.topPlate.makeChargeGrid();
     // Bottom plate of capacitor
-    this.bottomPlate = new PlateNode(model, -1, {x: 0, y: plateSeparation});
+    this.bottomPlate = new PlateNode(model, -1, {
+      x: 0,
+      y: plateSeparation
+    } );
     this.bottomPlate.makeChargeGrid();
     // Electric field between capacitors
-    this.eField = new EFieldNode(model, 2 * plateSeparation - this.topPlate.plateDepth, plateSeparationScale, this.topPlate, {
+    this.eField = new EFieldNode( model, 2 * plateSeparation - this.topPlate.plateDepth, plateSeparationScale, this.topPlate, {
       x: this.topPlate.plateWidth / 2 + this.topPlate.plateShift / 2,
-      y: -plateSeparation + this.topPlate.plateDepth + this.topPlate.plateHeight / 2});
+      y: -plateSeparation + this.topPlate.plateDepth + this.topPlate.plateHeight / 2
+    } );
     this.addChild( this.bottomPlate );
     this.addChild( this.eField );
     this.addChild( this.topPlate );
@@ -48,10 +56,10 @@ define( function( require ) {
       x: 50,
       y: -150,
       rotation: -Math.PI / 2,
-    });
-    this.addChild(distanceSlider);
+    } );
+    this.addChild( distanceSlider );
     
-    var font = new PhetFont(19);
+    var font = new PhetFont( 19 );
     
     // Describes the distance between the plates as text
     var separation = 10.0 + mmString;
@@ -60,25 +68,26 @@ define( function( require ) {
       right: distanceSlider.left - 15,
       font: font,
       fontWeight: "bold"
-    });
+    } );
     var separationValue = new Text(separation, {
       top: separationText.bottom + 5,
       left: separationText.left,
       font: font,
-    });
-    this.addChild(separationText);
-    this.addChild(separationValue);
+    } );
+    this.addChild( separationText );
+    this.addChild( separationValue );
     
     // Controls the area of the plates
     var xOffset = -45;
     var yOffset = -75;
+    var atan = Math.atan( ( this.topPlate.minPlateShift + this.topPlate.minPlateWidth ) / this.topPlate.minPlateHeight );
     var sizeSlider = new PlateSlider(model.capacitorPlateAreaProperty, {min: 100.0, max: 400.0}, {
       x: xOffset,
       y: yOffset,
       trackSize: new Dimension2( 124, 5 ),
-      rotation: (Math.PI/2 - Math.atan((this.topPlate.minPlateShift + this.topPlate.minPlateWidth)/this.topPlate.minPlateHeight))
-    });
-    this.addChild(sizeSlider);
+      rotation: Math.PI/2 -  atan
+    } );
+    this.addChild( sizeSlider );
     
     // Describes the area of the plates as text
     var areaString = "100.0" + mmString + "<sup>2";
@@ -87,14 +96,14 @@ define( function( require ) {
       right: this.topPlate.left - 15,
       font: font,
       fontWeight: "bold"
-    });
+    } );
     var areaValue = new SubSupText(areaString, {
       top: areaText.bottom,
       left: areaText.left,
       font: font,
-    });
-    this.addChild(areaText);
-    this.addChild(areaValue);
+    } );
+    this.addChild( areaText );
+    this.addChild( areaValue );
     
     var thisNode = this;
     model.plateSeparationProperty.link( function () {
@@ -147,5 +156,5 @@ define( function( require ) {
     });
   }
   
-  return inherit( Node, CapacitorNode);
+  return inherit( Node, CapacitorNode );
 } );

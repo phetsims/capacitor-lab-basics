@@ -1,4 +1,4 @@
-//  Copyright 2002-2014, University of Colorado Boulder
+//  Copyright 2002-2015, University of Colorado Boulder
 
 define( function( require ) {
   'use strict';
@@ -9,15 +9,17 @@ define( function( require ) {
   var Input = require( 'SCENERY/input/Input' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Vector2 = require( 'DOT/Vector2' );
+  
+  // images
+  var probeImage = require( 'image!CAPACITOR_LAB/probe_3D_field.png' );
 
   /**
    * Constructor to contain the image of the electric field probe and its drag handler
-   **/
+   * @param {CapacitorLabModel} model
+   */
   function EFieldProbeNode(model, options) {
     options = _.extend({cursor: 'pointer', focusable: true}, options);
     
-    // images
-    var probeImage = require( 'image!CAPACITOR_LAB/probe_3D_field.png' );
     Image.call( this, probeImage, options );
     
     var thisNode = this;

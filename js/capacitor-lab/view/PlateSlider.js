@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2015, University of Colorado Boulder
 
 /**
  * Arrow slider
@@ -22,10 +22,8 @@ define( function( require ) {
   /**
    * Constructor for the sliders used to change plate size and separation
    * Based on the Slider class
-   * Not enough of the Slider class is public, however, to make it inherit from Slider
-   * @param {Property.<number>} valueProperty
+   * @param {Property} valueProperty
    * @param { {min:number, max:number} } range
-   * @param {Object} [options]
    * @constructor
    */
   function PlateSlider( valueProperty, range, options ) {

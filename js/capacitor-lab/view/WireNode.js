@@ -1,4 +1,4 @@
-//  Copyright 2002-2014, University of Colorado Boulder
+//  Copyright 2002-2015, University of Colorado Boulder
 
 define( function( require ) {
   'use strict';
@@ -11,10 +11,11 @@ define( function( require ) {
 
   /**
    * Constructor for the node containing the wires of the circuit
-   * @param topPlate: the top plate of the capacitor, of the PlateNode class
-   * @param bottomPlate: the bottom plate of the capacitor, of the PlateNode class
+   * @param {CapacitorLabModel} model
+   * @param {PlateNode} topPlate
+   * @param {PlateNode} bottomPlate
    **/
-  function WireNode(model, topPlate, bottomPlate, options) {
+  function WireNode( model, topPlate, bottomPlate, options ) {
     Node.call( this, options );
     
     // horizontal length of wires
@@ -72,14 +73,15 @@ define( function( require ) {
       return bottomWireShape;
     }
     
+    var wireOptions = {stroke: 'black', fill: '#aaaaaa'};
     // upper wire
     var topWireShape = makeTopShape();
-    this.topWire = new Path( topWireShape, {stroke: 'black', fill: '#aaaaaa'} );
+    this.topWire = new Path( topWireShape, wireOptions );
     this.addChild( this.topWire );
     
     // lower wire
     var bottomWireShape = makeBottomShape();
-    this.bottomWire = new Path( bottomWireShape, {stroke: 'black', fill: '#aaaaaa'});
+    this.bottomWire = new Path( bottomWireShape, wireOptions );
     this.addChild( this.bottomWire );
 
     model.voltageProperty.link( function () {
@@ -90,7 +92,7 @@ define( function( require ) {
         batteryOffset = 0;
       }
       thisNode.topWire.shape = makeTopShape();
-    });
+    } );
     
     model.batteryConnectedProperty.link( function () {
       if (!model.batteryConnectedProperty.value) {
@@ -99,7 +101,7 @@ define( function( require ) {
       else {
         thisNode.visible = true;
       }
-    });
+    } );
     
     model.plateSeparationProperty.link( function () {
       // change in wire length caused by plates moving up and down
@@ -111,7 +113,7 @@ define( function( require ) {
       bottomPlateOffset = -7 - diff - shift;
       thisNode.topWire.shape = makeTopShape();
       thisNode.bottomWire.shape = makeBottomShape();
-    });
+    } );
     
     model.capacitorPlateAreaProperty.link( function () {
       // change in wire length caused by plates moving up and down
@@ -121,7 +123,7 @@ define( function( require ) {
       
       bottomPlateOffset = -7 - diff - shift;
       thisNode.bottomWire.shape = makeBottomShape();
-    });
+    } );
   }
   
   return inherit( Node, WireNode );

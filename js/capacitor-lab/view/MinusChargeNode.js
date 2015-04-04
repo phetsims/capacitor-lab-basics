@@ -1,4 +1,5 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2015, University of Colorado Boulder
+
 define( function( require ) {
   'use strict';
 
@@ -30,7 +31,7 @@ define( function( require ) {
       // super constructor
       // Use svg for the shape and text
       Node.call( this, {pickable: false} );
-      this.translate( location.x, location.y);
+      this.translate( location.x, location.y );
       this.addChild( node );
     }
     return inherit( Node, MinusChargeNode );

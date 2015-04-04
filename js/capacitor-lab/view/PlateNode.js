@@ -1,4 +1,4 @@
-//  Copyright 2002-2014, University of Colorado Boulder
+//  Copyright 2002-2015, University of Colorado Boulder
 
 define( function( require ) {
   'use strict';
@@ -14,9 +14,10 @@ define( function( require ) {
 
   /**
    * Constructor for a capacitor plate
-   * @param charge: determines if the plate is the bottom or top plate
+   * @param {CapacitorLabModel} model
+   * @param {number} charge: determines if the plate is the bottom or top plate
    **/
-  function PlateNode(model, charge, options) {
+  function PlateNode( model, charge, options ) {
     Node.call( this, options );
     // apparent "height" on the screen of the plate
     this.plateHeight = -60;
@@ -46,37 +47,46 @@ define( function( require ) {
     // create the shape for the top plate
     function makeTopPlate() {
       var shape = new Shape().
-        lineTo(thisNode.plateShift, thisNode.plateHeight).
-        lineTo(thisNode.plateWidth + thisNode.plateShift, thisNode.plateHeight).
-        lineTo(thisNode.plateWidth, 0).
-        lineTo(0,0).
-        lineTo(thisNode.plateShift, thisNode.plateHeight);
+        lineTo( thisNode.plateShift, thisNode.plateHeight ).
+        lineTo( thisNode.plateWidth + thisNode.plateShift, thisNode.plateHeight ).
+        lineTo( thisNode.plateWidth, 0 ).
+        lineTo( 0, 0 ).
+        lineTo( thisNode.plateShift, thisNode.plateHeight );
       return shape;
     }
     
     // create the shape for the side plate
     function makeSidePlate() {
       var shape = new Shape().
-        moveTo(thisNode.plateWidth,0).
-        lineTo(thisNode.plateWidth + thisNode.plateShift, thisNode.plateHeight).
-        lineTo(thisNode.plateWidth + thisNode.plateShift, thisNode.plateHeight + thisNode.plateDepth).
-        lineTo(thisNode.plateWidth, thisNode.plateDepth).
-        lineTo(thisNode.plateWidth, 0);
+        moveTo( thisNode.plateWidth, 0 ).
+        lineTo( thisNode.plateWidth + thisNode.plateShift, thisNode.plateHeight ).
+        lineTo( thisNode.plateWidth + thisNode.plateShift, thisNode.plateHeight + thisNode.plateDepth ).
+        lineTo( thisNode.plateWidth, thisNode.plateDepth ).
+        lineTo( thisNode.plateWidth, 0 );
       return shape;
     }
     
     // The front of the capacitor plate
-    this.frontRectangle = new Rectangle( 0, 0, this.plateWidth, this.plateDepth, 0, 0, {stroke: 'black', fill: '#aaaaaa'} );
+    this.frontRectangle = new Rectangle( 0, 0, this.plateWidth, this.plateDepth, 0, 0, {
+      stroke: 'black',
+      fill: '#aaaaaa'
+    } );
     this.addChild( this.frontRectangle );
     
     // The top of the capacitor plate
     var topPlateShape = makeTopPlate();
-    this.topPlate = new Path( topPlateShape, {stroke: 'black', fill: 'white'});
+    this.topPlate = new Path( topPlateShape, {
+      stroke: 'black',
+      fill: 'white'
+    } );
     this.addChild( this.topPlate );
     
     // The side of the capacitor plate
     var sidePlateShape = makeSidePlate();
-    this.sidePlate = new Path( sidePlateShape, {stroke: 'black', fill: 'gray'});
+    this.sidePlate = new Path( sidePlateShape, {
+      stroke: 'black',
+      fill: 'gray'
+    } );
     this.addChild( this.sidePlate );
     
     model.plateChargeVisibleProperty.link( function () {
@@ -100,7 +110,7 @@ define( function( require ) {
       thisNode.frontRectangle.setRect( 0, 0, thisNode.plateWidth, thisNode.plateDepth, 0, 0 );
       thisNode.topPlate.shape = makeTopPlate();
       thisNode.sidePlate.shape = makeSidePlate();
-    });
+    } );
   }
   
   return inherit( Node, PlateNode, {
@@ -138,13 +148,13 @@ define( function( require ) {
           y = -((j +0.5)*rowSpacing);
           x = (i + 0.25)*colSpacing - this.plateShift / -this.plateHeight * y;
           if (this.charge > 0 && this.model.upperPlateChargeProperty.value > 0) {
-            this.topPlate.addChild(new PlusChargeNode({x: x, y: y-5}));
+            this.topPlate.addChild( new PlusChargeNode( {x: x, y: y-5} ) );
           }
           else if (this.charge < 0 && this.model.upperPlateChargeProperty.value < 0) {
-            this.topPlate.addChild(new PlusChargeNode({x: x, y: y-5}));
+            this.topPlate.addChild( new PlusChargeNode( {x: x, y: y-5} ) );
           }
           else {
-            this.topPlate.addChild(new MinusChargeNode({x: x, y: y}));
+            this.topPlate.addChild( new MinusChargeNode( {x: x, y: y} ) );
           }
         }
       }

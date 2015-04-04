@@ -1,4 +1,4 @@
-//  Copyright 2002-2014, University of Colorado Boulder
+//  Copyright 2002-2015, University of Colorado Boulder
 
 define( function( require ) {
   'use strict';
@@ -10,16 +10,18 @@ define( function( require ) {
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Vector2 = require( 'DOT/Vector2' );
 
+  // images
+  var redProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_red_large.png' );
+  var blackProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_black_large.png' );
+  
   /**
    * Constructor to hold the image of either the red probe or the black probe for the voltmeter
-   * @param isRedProbe: boolean to check if the probe is red or black
+   * @param {CapacitorLabModel} model
+   * @param {boolean} isRedProbe: checks if the probe is red or black
    **/
   function VoltmeterProbeNode(model, isRedProbe, options) {
     options = _.extend({cursor: 'pointer', focusable:true}, options);
     
-    // images
-    var redProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_red_large.png' );
-    var blackProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_black_large.png' );
     var image = redProbeImage;
     if (!isRedProbe) {
       image = blackProbeImage;

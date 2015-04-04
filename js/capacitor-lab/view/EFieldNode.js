@@ -1,4 +1,4 @@
-// Copyright 2002-2013, University of Colorado Boulder
+// Copyright 2002-2015, University of Colorado Boulder
 
 define( function( require ) {
   'use strict';
@@ -9,14 +9,23 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   
+  // constants
+  // Minimum number of electric field lines
+  var MIN_LINES = 4;
+  // Maximum number of electric field lines
+  var MAX_LINES = 900;
+  // Maximum electric field (V/m)
+  var MAX_E_FIELD = 6000;
+  
   /**
    * Constructor for an electric field line, starting at (x, y)
    * Draws a line with an arrow in the middle; direction of arrow depends on the electric field
-   * @param arrowLength: the distance between capacitor plates
-   * @param plateSeparationScale: the scale to convert the plate separation property value to pixels
-   * @param plateDepth: the thickness of the front of the capacitor plate
-   * @x: the x-value where the field line starts
-   * @y: the y-value where the field line starts
+   * @param {CapacitorLabModel} model
+   * @param {number} arrowLength: the distance between capacitor plates
+   * @param {number} plateSeparationScale: the scale to convert the plate separation property value to pixels
+   * @param {number} plateDepth: the thickness of the front of the capacitor plate
+   * @param {number} x: the x-value where the field line starts
+   * @param {number} y: the y-value where the field line starts
    **/
   function EFieldLineNode( model, arrowLength, plateSeparationScale, plateDepth, x, y ) {
     Node.call( this );
@@ -29,7 +38,7 @@ define( function( require ) {
       centerX: x,
       stroke: 'black',
       lineWidth: 1
-    });
+    } );
     // black arrow, forms the other half and shows the direction of the electric field
     var arrow = new ArrowNode( x, y, x, y + arrowLength / 2, {
       tailWidth: 2,
@@ -37,21 +46,21 @@ define( function( require ) {
       headHeight: 16,
       fill: 'black',
       centerX: x,
-    });
+    } );
     if (model.eFieldProperty.value < 0) {
       rect = new Rectangle( x, y, 2, arrowLength / 2 + 10, 0, 0, {
         fill: 'black',
         centerX: x,
         stroke: 'black',
         lineWidth: 1
-      });
+      } );
       arrow = new ArrowNode( x, y + arrowLength, x, y + arrowLength / 2, {
         tailWidth: 2,
         headWidth: 14,
         headHeight: 16,
         fill: 'black',
         centerX: x,
-      });
+      } );
     }
     thisNode.addChild( rect );
     thisNode.addChild( arrow );
@@ -66,28 +75,22 @@ define( function( require ) {
         rect.setRect( x, y + arrowLength / 2 - 10, 2, arrowLength / 2 + 10, 0, 0 );
         arrow.setTailAndTip( x, y, x, y + arrowLength / 2 );
       }
-    });
+    } );
   }
   
   inherit( Node, EFieldLineNode );
 
   /**
    * Constructor for the electric field, a collection of electric field lines
-   * @param arrowLength: the distance between capacitor plates
-   * @param plateSeparationScale: the scale to convert the plate separation property value to pixels
-   * @param plate: a capacitor plate of the PlateNode class
+   * @param {CapacitorLabModel} model
+   * @param {number} arrowLength: the distance between capacitor plates
+   * @param {number} plateSeparationScale: the scale to convert the plate separation property value to pixels
+   * @param {PlateNode} plate: a capacitor plate of the PlateNode class
    **/
   function EFieldNode( model, arrowLength, plateSeparationScale, plate, options ) {
     Node.call( this, options );
     
     var thisNode = this;
-    
-    // Minimum number of electric field lines
-    var minLines = 4;
-    // Maximum number of electric field lines
-    var maxLines = 900;
-    // Maximum electric field (V/m)
-    var maxEField = 6000;
     
     // draws a vector arrow from the point (x, y) to the point (x, y+arrowLength) 
     function drawVectorAtPoint( x, y ) {
@@ -95,9 +98,9 @@ define( function( require ) {
     }
     
     function getNumberOfLines() {
-      var numLines = Math.round( maxLines * Math.abs(model.eFieldProperty.value) / maxEField );
-      if ( Math.abs(model.eFieldProperty.value) > 0 && numLines < minLines ) {
-        numLines = minLines;
+      var numLines = Math.round( MAX_LINES * Math.abs(model.eFieldProperty.value) / MAX_E_FIELD );
+      if ( Math.abs(model.eFieldProperty.value) > 0 && numLines < MIN_LINES ) {
+        numLines = MIN_LINES;
       }
       return numLines;
     }
@@ -141,21 +144,20 @@ define( function( require ) {
       if (thisNode.visible) {
         updateGrid();
       }
-    });
+    } );
     
     model.capacitorPlateAreaProperty.link( function () {
       if (thisNode.visible) {
         updateGrid();
       }
-    });
+    } );
     
     model.eFieldProperty.link( function() {
       if (thisNode.visible) {
         updateGrid();
       }
-    });
-    
+    } );
   }
 
-  return inherit( Node, EFieldNode);
+  return inherit( Node, EFieldNode );
 } );
