@@ -1,0 +1,92 @@
+{
+  "capacitance": {
+    "value": "Capacitance"
+  },
+  "capMeterTitle": {
+    "value": "Capacitance (F)"
+  },
+  "capacitor-lab.name": {
+    "value": "Capacitor Lab"
+  },
+  "chargeMeterTitle": {
+    "value": "Top Plate Charge (C)"
+  },
+  "connectBattery": {
+    "value": "Connect Battery"
+  },
+  "disconnectBattery": {
+    "value": "Disconnect Battery"
+  },
+  "eField": {
+    "value": "Electric Field"
+  },
+  "eFieldDetector": {
+    "value": "Electric Field Detector"
+  },
+  "eFieldLines": {
+    "value": "Electric Field Lines"
+  },
+  "energyMeterTitle": {
+    "value": "Stored Energy (J)"
+  },
+  "lots.plus": {
+    "value": "Lots (+)"
+  },
+  "lots.minus": {
+    "value": "Lots (-)"
+  },
+  "meters": {
+    "value": "Meters"
+  },
+  "mm": {
+    "value": " mm"
+  },
+  "none": {
+    "value": "None"
+  },
+  "plate": {
+    "value": "Plate"
+  },
+  "plateArea": {
+    "value": "Plate Area"
+  },
+  "plateCharge": {
+    "value": "Plate Charge"
+  },
+  "plateCharge.top": {
+    "value": "Plate Charge (top)"
+  },
+  "plateCharges": {
+    "value": "Plate Charges"
+  },
+  "separation": {
+    "value": "Separation"
+  },
+  "showVals": {
+    "value": "Show Values"
+  },
+  "storedEnergy": {
+    "value": "Stored Energy"
+  },
+  "view": {
+    "value": "View"
+  },
+  "volt": {
+    "value": " V"
+  },
+  "volt.unknown": {
+    "value": "? V"
+  },
+  "voltmeter": {
+    "value": "Voltmeter"
+  },
+  "voltsPerMeter": {
+    "value": " V/m"
+  },
+  "voltsPerMeter.0": {
+    "value": "0 V/m"
+  },
+  "zoom": {
+    "value": "Zoom:"
+  }
+}
