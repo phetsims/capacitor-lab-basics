@@ -25,6 +25,7 @@ define( function( require ) {
  var Voltmeter = require( 'CAPACITOR_LAB/common/model/meter/Voltmeter' );
  var Capacitor = require( 'CAPACITOR_LAB/common/model/Capacitor' );
  var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
+ var CapacitorLabModel = require( 'CAPACITOR_LAB/common/model/CapacitorLabModel' );
 
  // constants
  // Circuit
@@ -74,6 +75,7 @@ define( function( require ) {
   */
  function CapacitorLabIntroModel( worldBounds, modelViewTransform, dielectricOffset, dielectricMaterials ) {
 
+  CapacitorLabModel.call( this );
   // configuration info for the circuit
   var circuitConfig = new CircuitConfig( {
    modelViewTransform: modelViewTransform,
@@ -105,7 +107,7 @@ define( function( require ) {
 
  }
 
- return inherit( Object, CapacitorLabIntroModel, {
+ return inherit( CapacitorLabModel, CapacitorLabIntroModel, {
 
   /**
    * Reset function for this model.

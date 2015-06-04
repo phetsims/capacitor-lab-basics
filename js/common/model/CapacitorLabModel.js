@@ -1,7 +1,7 @@
 // Copyright 2002-2015, University of Colorado Boulder
 
 /**
- * Model for CapacitorLab.  As of 5/28/15, CapacitorLab includes a simplified version of the Introduction screen of the
+ * Base Model for CapacitorLab.  As of 5/28/15, CapacitorLab includes a simplified version of the Introduction screen of the
  * original Java sim with a few added features.  Specifically, the port of Capacitor Lab will not include Dielectrics
  * and it is likely to include a light bulb. This is to be determined soon (5/28/15).
  *
