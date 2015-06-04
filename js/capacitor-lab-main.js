@@ -9,7 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var CapacitorLabScreen = require( 'CAPACITOR_LAB/capacitor-lab/CapacitorLabScreen' );
+  var CapacitorLabScreen = require( 'CAPACITOR_LAB/intro/CapacitorLabIntroScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
 

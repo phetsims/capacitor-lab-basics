@@ -3,13 +3,14 @@
 /**
  *
  * @author Emily Randall
+ * @author Jesse Greenberg
  */
 define( function( require ) {
   'use strict';
 
   // modules
-  var CapacitorLabModel = require( 'CAPACITOR_LAB/capacitor-lab/model/CapacitorLabModel' );
-  var CapacitorLabScreenView = require( 'CAPACITOR_LAB/capacitor-lab/view/CapacitorLabScreenView' );
+  var CapacitorLabIntroModel = require( 'CAPACITOR_LAB/intro/model/CapacitorLabIntroModel' );
+  var CapacitorLabScreenView = require( 'CAPACITOR_LAB/intro/view/CapacitorLabIntroScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
 
@@ -21,12 +22,11 @@ define( function( require ) {
    */
   function CapacitorLabScreen() {
 
-    //If this is a single-screen sim, then no icon is necessary.
-    //If there are multiple screens, then the icon must be provided here.
+    // If there are multiple screens, then the icon must be provided here.
     var icon = null;
 
     Screen.call( this, capacitorLabSimString, icon,
-      function() { return new CapacitorLabModel(); },
+      function() { return new CapacitorLabIntroModel(); },
       function( model ) { return new CapacitorLabScreenView( model ); },
       { backgroundColor: '#9ddcf8' }
     );
