@@ -1,0 +1,215 @@
+// Copyright 2002-2015, University of Colorado Boulder
+
+/**
+ * Base model for all circuits.
+ *
+ * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Jesse Greenberg
+ */
+define( function( require ) {
+  'use strict';
+
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var PropertySet = require( 'AXON/PropertySet' );
+  var Battery = require( 'CAPACITOR_LAB/common/model/Battery' );
+  var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
+
+  /**
+   * Constructor
+   *
+   * @param {CircuitConfig} config circuit configuration values
+   * @param {number} numberOfCapacitors number of capacitors in the circuit
+   * @param {function} createCapacitors   function for creating capacitors
+   * @param {function} createWires function for creating wires
+   */
+  function AbstractCircuit( config, numberOfCapacitors, createCapacitors, createWires ) {
+
+    PropertySet.call( this, {
+      currentAmplitude: 0
+    } );
+
+    this.previousTotalCharge = -1; // no value, @private
+
+    // create circuit components
+    this.battery = new Battery( config.batteryLocation, CLConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform );
+    this.capacitors = createCapacitors( config, numberOfCapacitors );
+    this.wires = createWires( config, this.battery, this.capacitors );
+
+    // Make sure all is well with circuit components.  Circuit must include at least one capacitor and two wires.
+    assert && assert( this.capacitors.length >= 1 );
+    assert && assert( this.wires.length >= 2 );
+    assert( this.wires.length >= 2 );
+
+    // TODO: Link it all up.
+    // update current amplitude on each clock tick
+    //clockListener = new ClockAdapter() {
+    //  public void simulationTimeChanged( ClockEvent clockEvent ) {
+    //    updateCurrentAmplitude();
+    //  }
+    //};
+    //clock.addClockListener( clockListener );
+
+    // observe capacitors
+    //CapacitorChangeListener capacitorChangeListener = new CapacitorChangeListener() {
+    //  public void capacitorChanged() {
+    //    updatePlateVoltages();
+    //    fireCircuitChanged();
+    //  }
+    //};
+    //for ( Capacitor capacitor : capacitors ) {
+    //  capacitor.addCapacitorChangeListener( capacitorChangeListener );
+    //}
+
+    /*
+     * When the battery voltage changes, update the plate voltages.
+     * Do NOT automatically do this when adding the observer because
+     * updatePlateVoltages is implemented by the subclass, and all
+     * necessary fields in the subclass may not be initialized.
+     */
+    //battery.addVoltageObserver( new SimpleObserver() {
+    //  public void update() {
+    //    updatePlateVoltages();
+    //  }
+    //}, false /* notifyOnAdd */ );
+
+  }
+
+  return inherit( PropertySet, AbstractCircuit, {
+
+    reset: function() {
+      this.battery.reset();
+      this.capacitors.forEach( function( capacitor ) {
+        capacitor.reset();
+      } );
+    },
+
+    /**
+     * Default implementation has a connected battery.
+     * In the "single capacitor" circuit, we'll override this and add a setter, so that the battery can be dynamically
+     * connected and disconnected in the "Dielectric" module.
+     */
+    isBatteryConnected: function() {
+      return true;
+    },
+
+    /**
+     * Gets the wire connected to the battery's top terminal.
+     *
+     * @return {Wire}
+     */
+    getTopWire: function() {
+      return this.wires.get( 0 );
+    },
+
+    /**
+     * Gets the wire connected to the battery's bottom terminal.
+     *
+     * @return {Wire}
+     */
+    getBottomWire: function() {
+      return this.wires[ this.wires.length - 1 ];
+    },
+
+    /**
+     * Get the total capacitance with Q_total = V_total * C_total
+     *
+     * @return {number}
+     */
+    getTotalCharge: function() {
+      return this.getTotalVoltage() * this.getTotalCapacitance();
+    },
+
+    // Since the default is a connected battery, the total voltage is the battery voltage.
+    getTotalVoltage: function() {
+      return this.battery.voltage;
+    },
+
+    /**
+     * Gets the voltage between 2 Shapes. The shapes are in world coordinates. Returns Double.NaN if the 2 Shapes are
+     * not both connected to the circuit
+     *
+     * @param {Shape} positiveShape
+     * @param {Shape} negativeShape
+     * return {number}
+     */
+    getVoltageBetween: function( positiveShape, negativeShape ) {
+      return this.getVoltageAt( positiveShape ) - this.getVoltageAt( negativeShape );
+    },
+
+    /**
+     * Gets the voltage at a shape, with respect to ground. Returns NaN if the Shape is not connected to the circuit.
+     *
+     * @return {number}
+     */
+    getVoltageAt: function( shape ) {
+      console.log( 'getVoltageAT() should be implemented in descendant classes of AbstractCircuit' );
+    },
+
+    /**
+     * Gets the energy stored in the circuit. (design doc symbol: U)
+     *
+     * @return {number}
+     */
+    getStoredEnergy: function() {
+      var C_total = this.getTotalCapacitance(); // F
+      var V_total = this.getTotalVoltage(); // V
+      return 0.5 * C_total * V_total * V_total; // Joules (J)
+    },
+
+    /**
+     * Gets the effective E-field at a specified location. Inside the plates, this is E_effective. Outside the plates,
+     * it is zero.
+     *
+     * @param {Vector3} location
+     * @return {number} eField
+     */
+    getEffectiveEFieldAt: function( location ) {
+      var eField = 0;
+      this.capacitors.forEach( function( capacitor ) {
+        if ( capacitor.isBetweenPlates( location ) ) {
+          eField = capacitor.getEffectiveEField();
+          //return; //break
+        }
+      } );
+      return eField;
+    },
+
+    /**
+     * Field due to the plate, at a specific location. Between the plates, the field is either E_plate_dielectric or
+     * E_plate_air, depending on whether the probe intersects the dielectric.  Outside the plates, the field is zero.
+     *
+     * Note that as of 5/29/2015 without Dielectrics, the only possible value is E_plate_air.
+     *
+     * @param {Vector3} location
+     * @return {number} eField
+     */
+    getPlatesDielectricEFieldAt: function( location ) {
+      var eField = 0;
+      this.capacitors.forEach( function( capacitor ) {
+        if ( capacitor.isInsideAirBetweenPlates( location ) ) {
+          eField = capacitor.getPlatesAirEField();
+          // return; //break
+        }
+      } );
+      return eField;
+    },
+
+    /**
+     * Update the Current amplitude. Current amplitude is proportional to dQ/dt, the change in charge (Q_total) over
+     * time.
+     * @param {number} dt
+     */
+    updateCurrentAmplitude: function( dt ) {
+      var Q = this.getTotalCharge();
+      if ( this.previousTotalCharge !== -1 ) {
+        var dQ = Q - this.previousTotalCharge;
+        //var dt = clock.getSimulationTimeChange();
+        var amplitude = dQ / dt;
+        this.currentAmplitude = amplitude;
+      }
+      this.previousTotalCharge = Q;
+    }
+
+  } );
+} );
