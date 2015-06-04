@@ -112,7 +112,6 @@ define( function( require ) {
 
     //----------------------------------------------------------------------------
     // View-to-model transforms
-    // TODO: I believe that returns should be Vector3 here now?
     //----------------------------------------------------------------------------
 
     /**
