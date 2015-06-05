@@ -26,8 +26,8 @@ define( function( require ) {
   //var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   //var RectangularPushButton = require( 'SUN/buttons/RectangularPushButton' );
   //var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  //var ScreenView = require( 'JOIST/ScreenView' );
-  var CapacitorLabScreenView = require( 'CAPACITOR_LAB/common/view/CapacitorLabScreenView' );
+  var ScreenView = require( 'JOIST/ScreenView' );
+  //var CapacitorLabScreenView = require( 'CAPACITOR_LAB/common/view/CapacitorLabScreenView' );
   //var Text = require( 'SCENERY/nodes/Text' );
   //var ToggleNode = require( 'SUN/ToggleNode' );
   //var VBox = require( 'SCENERY/nodes/VBox' );
@@ -59,7 +59,7 @@ define( function( require ) {
    */
   function CapacitorLabIntroScreenView( capacitorLabModel ) {
 
-    CapacitorLabScreenView.call( this );
+    ScreenView.call( this );
 
     //var labelOptionFont = {font: new PhetFont( 12 )};
     //var titleFont = new PhetFont( 14 );
@@ -188,7 +188,7 @@ define( function( require ) {
     //this.addChild( meterVisibilityControlPanel );
   }
 
-  return inherit( CapacitorLabScreenView, CapacitorLabIntroScreenView, {
+  return inherit( ScreenView, CapacitorLabIntroScreenView, {
 
     // Called by the animation loop. Optional, so if your view has no animation, you can omit this.
     step: function( dt ) {
