@@ -15,7 +15,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var CLConstants = require( 'CAPACITOR_LAB/common/common/CLConstants' );
+  var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
 
   // constants
   var AIR_COLOR = 'rgba( 255, 0, 0, 1 )';  // This should never be seen so pick something obviously wrong.

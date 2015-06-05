@@ -11,6 +11,7 @@ define( function( require ) {
   // modules
   var CapacitorLabIntroModel = require( 'CAPACITOR_LAB/intro/model/CapacitorLabIntroModel' );
   var CapacitorLabScreenView = require( 'CAPACITOR_LAB/intro/view/CapacitorLabIntroScreenView' );
+  var CLModelViewTransform3D = require( 'CAPACITOR_LAB/common/model/CLModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
 
@@ -26,10 +27,11 @@ define( function( require ) {
     var icon = null;
 
     Screen.call( this, capacitorLabSimString, icon,
-      function() { return new CapacitorLabIntroModel(); },
+      function() { return new CapacitorLabIntroModel( new CLModelViewTransform3D() ); },
       function( model ) { return new CapacitorLabScreenView( model ); },
       { backgroundColor: '#9ddcf8' }
     );
+
   }
 
   return inherit( Screen, CapacitorLabScreen );

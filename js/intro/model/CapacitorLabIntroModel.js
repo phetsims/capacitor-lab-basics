@@ -18,14 +18,16 @@ define( function( require ) {
  var inherit = require( 'PHET_CORE/inherit' );
  var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
  var Vector3 = require( 'DOT/Vector3' );
+ var Bounds2 = require( 'DOT/Bounds2' );
  var CircuitConfig = require( 'CAPACITOR_LAB/common/model/CircuitConfig' );
  var SingleCircuit = require( 'CAPACITOR_LAB/common/model/circuit/SingleCircuit' );
  var BarMeter = require( 'CAPACITOR_LAB/common/model/meter/BarMeter' );
  var EFieldDetector = require( 'CAPACITOR_LAB/common/model/meter/EFieldDetector' );
  var Voltmeter = require( 'CAPACITOR_LAB/common/model/meter/Voltmeter' );
  var Capacitor = require( 'CAPACITOR_LAB/common/model/Capacitor' );
- var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
+ var CLModelViewTransform3D = require( 'CAPACITOR_LAB/common/model/CLModelViewTransform3D' );
  var CapacitorLabModel = require( 'CAPACITOR_LAB/common/model/CapacitorLabModel' );
+ var DielectricMaterial = require( 'CAPACITOR_LAB/common/model/DielectricMaterial' );
 
  // constants
  // Circuit
@@ -68,12 +70,9 @@ define( function( require ) {
  /**
   * Constructor for the Dielectric Model.
   *
-  * @param {Bounds2} worldBounds
-  * @param {ModelViewTransform2} modelViewTransform
-  * @param {Vector3} dielectricOffset
-  * @param {array.<DielectricMaterial>} dielectricMaterials
+  * @param {CLModelViewTransform3D} modelViewTransform
   */
- function CapacitorLabIntroModel( worldBounds, modelViewTransform, dielectricOffset, dielectricMaterials ) {
+ function CapacitorLabIntroModel( modelViewTransform ) {
 
   CapacitorLabModel.call( this );
   // configuration info for the circuit
@@ -88,14 +87,14 @@ define( function( require ) {
    wireThickness: WIRE_THICKNESS
   } );
 
-  this.dielectricMaterials = dielectricMaterials;
+  this.dielectricMaterial = DielectricMaterial.Air();
 
   this.circuit = new SingleCircuit( circuitConfig, BATTERY_CONNECTED );
-  this.worldBounds = worldBounds;
+  this.worldBounds = new Bounds2( 0, 0, 25, 25 ); // TODO: REMOVE THIS IMMEDIATELY AFTER TESTING.
 
-  this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, worldBounds, CAPACITANCE_METER_LOCATION, CAPACITANCE_METER_VISIBLE );
-  this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, worldBounds, PLATE_CHARGE_METER_LOCATION, PLATE_CHARGE_METER_VISIBLE );
-  this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, worldBounds, STORED_ENERGY_METER_LOCATION, STORED_ENERGY_METER_VISIBLE );
+  this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, CAPACITANCE_METER_VISIBLE );
+  this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.worldBounds, PLATE_CHARGE_METER_LOCATION, PLATE_CHARGE_METER_VISIBLE );
+  this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.worldBounds, STORED_ENERGY_METER_LOCATION, STORED_ENERGY_METER_VISIBLE );
 
   this.eFieldDetector = new EFieldDetector( this.circuit, this.worldBounds, modelViewTransform, EFIELD_DETECTOR_BODY_LOCATION, EFIELD_DETECTOR_PROBE_LOCATION,
     EFIELD_DETECTOR_VISIBLE, EFIELD_PLATE_VECTOR_VISIBLE, EFIELD_DIELECTRIC_VECTOR_VISIBLE,
@@ -139,8 +138,7 @@ define( function( require ) {
 
   // Gets a capacitor with maximum charge.
   getCapacitorWithMaxCharge: function() {
-   var mvt = ModelViewTransform2.createIdentity();
-   //var mvt = new CLModelViewTransform3D();
+   var mvt = new CLModelViewTransform3D();
    var capacitor = new Capacitor( new Vector3( 0, 0, 0 ),
      CLConstants.PLATE_WIDTH_RANGE.maxX,
      CLConstants.PLATE_SEPARATION_RANGE.minX,
