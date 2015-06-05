@@ -23,22 +23,27 @@ define( function( require ) {
   var Transform3 = require( 'DOT/Transform3' );
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
+  var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
 
   /**
    * Constructor for the CLModelViewTransform.
    *
-   * @param {number} scale scale for mapping from model to view (x and y scale are identical)
-   * @param {number} pitch rotation about the horizontal (x) axis, sign determined using the right-hand rule (radians)
-   * @param {number} yaw rotation about the vertical (y) axis, sign determined using the right-hand rule (radians)
+   * @param {Object} [options]
    * @constructor
    */
-  function CLModelViewTransform3D( scale, pitch, yaw ) {
+  function CLModelViewTransform3D( options ) {
 
-    this.modelToViewTransform2D = new Transform3( new Matrix3.scaling( scale, scale ) ); // @private
-    this.viewToModelTransform2D = new Transform3( new Matrix3.scaling( 1 / scale, 1 / scale ) ); //@private
+    options = _.extend( {
+      scale: CLConstants.MVT_SCALE, // scale for mapping from model to view (x and y scale are identical)
+      pitch: CLConstants.MVT_PITCH, // rotation about the horizontal (x) axis, sign determined using the right-hand rule (radians)
+      yaw: CLConstants.MVT_YAW // rotation about the vertical (y) axis, sign determined using the right-hand rule (radians)
+    }, options );
 
-    this.pitch = pitch;
-    this.yaw = yaw;
+    this.modelToViewTransform2D = new Transform3( new Matrix3.scaling( options.scale, options.scale ) ); // @private
+    this.viewToModelTransform2D = new Transform3( new Matrix3.scaling( 1 / options.scale, 1 / options.scale ) ); //@private
+
+    this.pitch = options.pitch;
+    this.yaw = options.yaw;
 
   }
 
