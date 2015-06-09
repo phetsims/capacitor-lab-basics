@@ -30,8 +30,9 @@ define( function( require ) {
     this.thickness = thickness;
     this.shapeCreator = new WireShapeCreator( this, modelViewTransform );
 
+    //this.shape = this.shapeCreator.createWireShape();
     PropertySet.call( this, {
-      //shape: 5 // Temp to get through constructors.
+      //shape: this.shapeCreator.createWireShape()
     } );
 
     this.segments.forEach( function( segment ) {
@@ -53,8 +54,8 @@ define( function( require ) {
     /**
      * Function that creates the shape of this wire directly.
      */
-    createShape: function() {
-      this.shapeCreator.createWireShape();
+    createShapes: function() {
+      return this.shapeCreator.createWireShapes();
     },
 
     /**

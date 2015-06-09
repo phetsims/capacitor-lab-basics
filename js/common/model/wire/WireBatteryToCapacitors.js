@@ -41,14 +41,13 @@ define( function( require ) {
    * @param {string} connectionPoint
    * @param {ModelViewTransform2} modelViewTransform
    * @param {number} thickness
-   * @param {number} wireExtent
+   * @param {number} wireExtent how far the wire extends beyond the capacitor, in meters
    * @param {Battery} battery
    * @param {array.<Capacitor>} capacitors
    * @constructor
    */
   function WireBatteryToCapacitors( connectionPoint, modelViewTransform, thickness, wireExtent, battery, capacitors ) {
-
-    Wire.call( this, modelViewTransform, thickness, [] /*So segments can be added via addSegment() */ );
+    Wire.call( this, modelViewTransform, thickness, [] /* segments added via addSegment() */ );
 
     // y coordinate of the horizontal wire
     var horizontalY = this.getHorizontalY( connectionPoint, capacitors, wireExtent );
@@ -56,10 +55,11 @@ define( function( require ) {
     // horizontal segment connecting battery (B) to the rightmost capacitor (Cn)
     var rightmostCapacitor = capacitors[ capacitors.length - 1 ];
     var leftCorner = new Vector2( battery.location.x, horizontalY );
-    var rightCorner = new Vector2( rightmostCapacitor.location.x, leftCorner.y );
+    var rightCorner = new Vector2( rightmostCapacitor.location.x, horizontalY );
     var t = this.getCornerOffset(); // for proper connection at corners with wire stroke end style
+
     this.segments.push( this.getBatteryWireSegment( connectionPoint, battery, this.getEndOffset(), leftCorner ) );
-    this.segments.push( new WireSegment( leftCorner.x - t, leftCorner.y + t, rightCorner.x + t, rightCorner.y + t ) );
+    this.segments.push( new WireSegment( new Vector2( leftCorner.x - t, leftCorner.y + t ), new Vector2( rightCorner.x + t, rightCorner.y + t ) ) );
     this.segments.push( this.getCapacitorWireSegment( connectionPoint, rightmostCapacitor, rightCorner ) );
 
     // add vertical segments for all capacitors (C1...Cn-1) in between the battery (B) and rightmost capacitor (Cn)
@@ -206,7 +206,7 @@ define( function( require ) {
     },
 
     WireBatteryToCapacitorsTop: function( modelViewTransform, thickness, wireExtent, battery, capacitors ) {
-      return new WireBatteryToCapacitors(  ConnectionPoint.TOP, modelViewTransform, thickness, wireExtent, battery, capacitors );
+      return new WireBatteryToCapacitors( ConnectionPoint.TOP, modelViewTransform, thickness, wireExtent, battery, capacitors );
     }
 
   } );

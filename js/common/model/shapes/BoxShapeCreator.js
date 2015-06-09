@@ -29,9 +29,9 @@ define( function( require ) {
     /**
      * Top faces is a parallelogram.
      *
-     * p0 -------------- p1
-     * /                /
-     * /                /
+     *    p0 -------------- p1
+     *   /                /
+     *  /                /
      * p3 --------------p2
      *
      * @param {number} x
@@ -44,13 +44,22 @@ define( function( require ) {
      */
     createTopFace: function( x, y, z, width, height, depth ) {
       // points
-      var p0 = this.modelViewTransform.modelToViewPosition( x - ( width / 2 ), y, z + ( depth / 2 ) );
-      var p1 = this.modelViewTransform.modelToViewPosition( x + ( width / 2 ), y, z + ( depth / 2 ) );
-      var p2 = this.modelViewTransform.modelToViewPosition( x + ( width / 2 ), y, z - ( depth / 2 ) );
-      var p3 = this.modelViewTransform.modelToViewPosition( x - ( width / 2 ), y, z - ( depth / 2 ) );
+      var p0 = this.modelViewTransform.modelToViewXYZ( x - ( width / 2 ), y, z + ( depth / 2 ) );
+      var p1 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z + ( depth / 2 ) );
+      var p2 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z - ( depth / 2 ) );
+      var p3 = this.modelViewTransform.modelToViewXYZ( x - ( width / 2 ), y, z - ( depth / 2 ) );
 
       // shape
       return this.createFace( p0, p1, p2, p3 );
+    },
+
+    /**
+     * Create the top face of the Box with a Bounds3 object.
+     *
+     * @param {Bounds3} size
+     */
+    createTopFaceBounds3: function( size ) {
+      return this.createTopFace( size.minX, size.minY, size.minZ, size.width, size.height, size.depth );
     },
 
     /**
@@ -70,13 +79,21 @@ define( function( require ) {
      */
     createFrontFace: function( x, y, z, width, height, depth ) {
       // points
-      var p0 = this.modelViewTransform.modelToViewPosition( x - ( width / 2 ), y, z - ( depth / 2 ) );
-      var p1 = this.modelViewTransform.modelToViewPosition( x + ( width / 2 ), y, z - ( depth / 2 ) );
-      var p2 = this.modelViewTransform.modelToViewPosition( x + ( width / 2 ), y + height, z - ( depth / 2 ) );
-      var p3 = this.modelViewTransform.modelToViewPosition( x - ( width / 2 ), y + height, z - ( depth / 2 ) );
+      var p0 = this.modelViewTransform.modelToViewXYZ( x - ( width / 2 ), y, z - ( depth / 2 ) );
+      var p1 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z - ( depth / 2 ) );
+      var p2 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y + height, z - ( depth / 2 ) );
+      var p3 = this.modelViewTransform.modelToViewXYZ( x - ( width / 2 ), y + height, z - ( depth / 2 ) );
       // shape
       return this.createFace( p0, p1, p2, p3 );
+    },
 
+    /**
+     * Create the front face of the box with a Bounds3 object.
+     *
+     * @param {Bounds3} size
+     */
+    createFrontFaceBounds3: function( size ) {
+      return this.createFrontFace( size.minX, size.minY, size.minZ, size.width, size.height, size.depth );
     },
 
     /**
@@ -102,12 +119,21 @@ define( function( require ) {
      */
     createRightSideFace: function( x, y, z, width, height, depth ) {
       // points
-      var p0 = this.modelViewTransform.modelToViewPosition( x + ( width / 2 ), y, z - ( depth / 2 ) );
-      var p1 = this.modelViewTransform.modelToViewPosition( x + ( width / 2 ), y, z + ( depth / 2 ) );
-      var p2 = this.modelViewTransform.modelToViewPosition( x + ( width / 2 ), y + height, z + ( depth / 2 ) );
-      var p3 = this.modelViewTransform.modelToViewPosition( x + ( width / 2 ), y + height, z - ( depth / 2 ) );
+      var p0 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z - ( depth / 2 ) );
+      var p1 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z + ( depth / 2 ) );
+      var p2 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y + height, z + ( depth / 2 ) );
+      var p3 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y + height, z - ( depth / 2 ) );
       // path
       return this.createFace( p0, p1, p2, p3 );
+    },
+
+    /**
+     * Create the right face of the box with a Bounds3 object.
+     *
+     * @param {Bounds3} size
+     */
+    createRightSideFaceBounds3: function( size ) {
+      return this.createRightSideFace( size.minX, size.minY, size.minZ, size.width, size.height, size.depth );
     },
 
     /**

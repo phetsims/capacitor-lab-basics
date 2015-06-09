@@ -49,7 +49,7 @@ define( function( require ) {
    *
    * @param {Vector3} location
    * @param {number} voltage
-   * @param {ModelViewTransform2} modelViewTransform - TODO: capacitor lab has its own mvt class.  See if we need to port this.
+   * @param {CLModelViewTransform3D} modelViewTransform
    * @constructor
    */
   function Battery( location, voltage, modelViewTransform ) {

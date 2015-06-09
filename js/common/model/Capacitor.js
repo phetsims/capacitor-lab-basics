@@ -41,14 +41,14 @@ define( function( require ) {
 
     // immutable variables.
     this.modelViewTransform = modelViewTransform;
-    this.shapeCreator = new CapacitorShapeCreator( this, modelViewTransform ); // TODO
+    this.shapeCreator = new CapacitorShapeCreator( this, modelViewTransform );
     this.location = location;
 
     PropertySet.call( this, {
-      plateSize: new Bounds3( 0, 0, 0, plateWidth, CLConstants.PLATE_HEIGHT, plateWidth  ), // Square plates.  TODO: Should we be using/port Dimension3?
+      plateSize: new Bounds3( 0, 0, 0, plateWidth, CLConstants.PLATE_HEIGHT, plateWidth ), // Square plates.
       plateSeparation: plateSeparation,
       platesVoltage: 0, // zero until it's connected into a circuit
-      dielectricOffset: 0
+      dielectricOffset: 0.01 // in meters, default is totally outside of capacitor plates.
     } );
 
     // TODO: Include listeners.

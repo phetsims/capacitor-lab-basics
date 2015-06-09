@@ -64,11 +64,12 @@ define( function( require ) {
   return inherit( AbstractCircuit, ParallelCircuit, {
 
     /**
-     * Update the plate voltages.
+     * Update the plate voltages.  This must be called at the end of the constructor.  See documentation in
+     * AbstractCircuit.
      */
     updatePlateVoltages: function() {
       this.capacitors.forEach( function( capacitor ) {
-        capacitor.platesVoltage = this.getTotalVoltage();
+        capacitor.platesVoltage = this.getTotalVoltage(); // voltage across all capacitors is the same
       } );
     },
 

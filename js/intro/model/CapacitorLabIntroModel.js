@@ -75,6 +75,9 @@ define( function( require ) {
  function CapacitorLabIntroModel( modelViewTransform ) {
 
   CapacitorLabModel.call( this );
+
+  this.modelViewTransform = modelViewTransform;
+
   // configuration info for the circuit
   var circuitConfig = new CircuitConfig( {
    modelViewTransform: modelViewTransform,
@@ -138,11 +141,11 @@ define( function( require ) {
 
   // Gets a capacitor with maximum charge.
   getCapacitorWithMaxCharge: function() {
-   var mvt = new CLModelViewTransform3D();
+   var modelViewTransform = new CLModelViewTransform3D();
    var capacitor = new Capacitor( new Vector3( 0, 0, 0 ),
-     CLConstants.PLATE_WIDTH_RANGE.maxX,
-     CLConstants.PLATE_SEPARATION_RANGE.minX,
-     mvt );
+     CLConstants.PLATE_WIDTH_RANGE.max,
+     CLConstants.PLATE_SEPARATION_RANGE.min,
+     modelViewTransform );
    capacitor.platesVoltage = CLConstants.BATTERY_VOLTAGE_RANGE.max;
    return capacitor;
   },

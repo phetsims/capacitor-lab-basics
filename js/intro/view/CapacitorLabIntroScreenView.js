@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2002-2015, University of Colorado Boulder5
 
 /**
  * ScreenView for Capacitor Lab Basics.
@@ -14,6 +14,8 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
+  var CircuitNode = require( 'CAPACITOR_LAB/intro/view/CircuitNode' );
+  var Bounds2 = require( 'DOT/Bounds2' );
 
   // Strings
   //var connectBatteryString = require( 'string!CAPACITOR_LAB/connectBattery' );
@@ -34,13 +36,35 @@ define( function( require ) {
   //var energyMeterTitle = require( 'string!CAPACITOR_LAB/energyMeterTitle' );
 
   /**
-   * @param {CapacitorLabModel} capacitorLabModel
+   * @param {CapacitorLabIntroModel} model
    * @constructor
    */
-  function CapacitorLabIntroScreenView( capacitorLabModel ) {
+  function CapacitorLabIntroScreenView( model ) {
 
-    ScreenView.call( this );
+    ScreenView.call( this, { layoutBounds: new Bounds2( 0, 0, 1024, 864 ) } );
 
+    this.modelViewTransform = model.modelViewTransform;
+
+    this.model = model;
+
+    // Maximums, for calibrating various view representations.
+    var maxPlateCharge = model.getMaxPlateCharge();
+    //var maxExcessDielectricPlateCharge = model.getMaxExcessDielectricPlateCharge();
+    var maxEffectiveEField = model.getMaxEffectiveEField();
+    //var eFieldReferenceMagnitude = model.getEFieldReferenceMagnitude();
+
+    // circuit
+    var circuitNode = new CircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisible,
+      model.eFieldVisible, maxPlateCharge, maxEffectiveEField );
+
+    // rendering order
+    this.addChild( circuitNode );
+    //addChild( capacitanceMeterNode );
+    //addChild( plateChargeMeterNode );
+    //addChild( storedEnergyMeterNode );
+    //addChild( eFieldDetectorNode );
+    //addChild( voltmeterNode );
+    //addChild( shapesDebugParentNode );
   }
 
   return inherit( ScreenView, CapacitorLabIntroScreenView, {

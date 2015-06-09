@@ -66,12 +66,12 @@ define( function( require ) {
    * @param {Vector2} endPoint
    */
   function CapacitorTopWireSegment( capacitor, endPoint ) {
-    CapacitorWireSegment.call( capacitor, capacitor.getTopPlateCenter(), endPoint );
+    CapacitorWireSegment.call( this, capacitor, capacitor.getTopPlateCenter().toVector2(), endPoint );
   }
 
   inherit( CapacitorWireSegment, CapacitorTopWireSegment, {
     update: function() {
-      this.startPoint = this.capacitor.getTopPlateCenter();
+      this.startPoint = this.capacitor.getTopPlateCenter().toVector2();
     }
   } );
 
@@ -83,12 +83,12 @@ define( function( require ) {
    * @param {Vector2} endPoint
    */
   function CapacitorBottomWireSegment( capacitor, endPoint ) {
-    CapacitorWireSegment.call( this, capacitor, capacitor.getBottomPlateCenter(), endPoint );
+    CapacitorWireSegment.call( this, capacitor, capacitor.getBottomPlateCenter().toVector2(), endPoint );
   }
 
   inherit( CapacitorWireSegment, CapacitorBottomWireSegment, {
     update: function() {
-      this.startPoint = this.capacitor.getBottomPlateCenter();
+      this.startPoint = this.capacitor.getBottomPlateCenter().toVector2();
     }
   } );
 
@@ -97,7 +97,7 @@ define( function( require ) {
    * capacitor. Adjusts the start and end points when the plate separations change.
    */
   function CapacitorToCapacitorWireSegment( topCapacitor, bottomCapacitor ) {
-    WireSegment.call( this, topCapacitor.getBottomPlateCenter, bottomCapacitor.getTopPlateCenter() );
+    WireSegment.call( this, topCapacitor.getBottomPlateCenter().toVector2(), bottomCapacitor.getTopPlateCenter().toVector2() );
 
     this.topCapacitor = topCapacitor;
     this.bottomCapacitor = bottomCapacitor;
@@ -114,14 +114,14 @@ define( function( require ) {
     },
 
     update: function() {
-      this.startPoint = this.topCapacitor.getBottomPlateCenter();
-      this.endPoint = this.bottomCapacitor.getTopPlateCenter();
+      this.startPoint = this.topCapacitor.getBottomPlateCenter().toVector2();
+      this.endPoint = this.bottomCapacitor.getTopPlateCenter().toVector2();
     }
 
   } );
 
   /**
-   *  Constructor for a BatteryWireSegment.  This includes any wire segment that is connected to a battery.
+   *  Constructor for a BatteryWireSegment.  This incluWs any wire segment that is connected to a battery.
    *
    *  @param {Battery} battery
    *  @param {number} startYOffset
@@ -150,7 +150,7 @@ define( function( require ) {
    * @param {Vector2} endPoint
    */
   function BatteryTopWireSegment( battery, startYOffset, endPoint ) {
-    BatteryWireSegment.call( this, battery, startYOffset, new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), endPoint ) );
+    BatteryWireSegment.call( this, battery, startYOffset, new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ), endPoint );
   }
 
   inherit( BatteryWireSegment, BatteryTopWireSegment, {
@@ -169,7 +169,7 @@ define( function( require ) {
    * @param {Vector2} endPoint
    */
   function BatteryBottomWireSegment( battery, startYOffset, endPoint ) {
-    BatteryWireSegment.call( battery, startYOffset, new Vector2( battery.x, battery.y + battery.getBottomTerminalYOffset() ), endPoint );
+    BatteryWireSegment.call( this, battery, startYOffset, new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() ), endPoint );
   }
 
   inherit( BatteryWireSegment, BatteryBottomWireSegment, {

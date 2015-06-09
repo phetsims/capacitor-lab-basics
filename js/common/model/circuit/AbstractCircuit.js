@@ -25,6 +25,7 @@ define( function( require ) {
    */
   function AbstractCircuit( config, numberOfCapacitors, createCapacitors, createWires ) {
 
+    var thisCircuit = this; // extend scope for nested callbacks.
     PropertySet.call( this, {
       currentAmplitude: 0
     } );
@@ -67,6 +68,9 @@ define( function( require ) {
      * updatePlateVoltages is implemented by the subclass, and all
      * necessary fields in the subclass may not be initialized.
      */
+    this.battery.voltageProperty.link( function() {
+      thisCircuit.updatePlateVoltages();
+    } );
     //battery.addVoltageObserver( new SimpleObserver() {
     //  public void update() {
     //    updatePlateVoltages();
@@ -76,6 +80,14 @@ define( function( require ) {
   }
 
   return inherit( PropertySet, AbstractCircuit, {
+
+    /**
+     * Updates the plate voltages.
+     * Subclasses must call this at the end of their constructor, see note in constructor.
+     */
+    updatePlateVoltages: function() {
+      console.log( 'updatePlateVoltages should be implemented in descendant classes.' );
+    },
 
     reset: function() {
       this.battery.reset();
@@ -99,7 +111,7 @@ define( function( require ) {
      * @return {Wire}
      */
     getTopWire: function() {
-      return this.wires.get( 0 );
+      return this.wires[ 0 ];
     },
 
     /**
