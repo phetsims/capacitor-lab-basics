@@ -1,14 +1,14 @@
 {
-  "name": "capacitor-lab",
+  "name": "capacitor-lab-basics",
   "version": "1.0.0-dev.2",
   "license": "GPLv3",
-  "simTitleStringKey": "CAPACITOR_LAB/capacitor-lab.name",
+  "simTitleStringKey": "CAPACITOR_LAB_BASICS/capacitor-lab-basics.name",
   "phetLibs": [
-    "capacitor-lab"
+    "capacitor-lab-basics"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/phetsims/capacitor-lab.git"
+    "url": "https://github.com/phetsims/capacitor-lab-basics.git"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

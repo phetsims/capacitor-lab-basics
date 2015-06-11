@@ -12,7 +12,7 @@ define( function( require ) {
   // modules
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PlateNode = require( 'CAPACITOR_LAB/common/view/PlateNode' );
+  var PlateNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateNode' );
 
   /**
    * Constructor for a CapacitorNode.

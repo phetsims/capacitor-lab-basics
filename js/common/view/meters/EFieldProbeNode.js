@@ -11,7 +11,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   
   // images
-  var probeImage = require( 'image!CAPACITOR_LAB/probe_3D_field.png' );
+  var probeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_field.png' );
 
   /**
    * Constructor to contain the image of the electric field probe and its drag handler

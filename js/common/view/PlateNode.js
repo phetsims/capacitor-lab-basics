@@ -13,9 +13,9 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Color = require( 'SCENERY/util/Color' );
-  var BoxNode = require( 'CAPACITOR_LAB/common/view/BoxNode' );
-  var PlateChargeNode = require( 'CAPACITOR_LAB/common/view/PlateChargeNode' );
-  var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
+  var BoxNode = require( 'CAPACITOR_LAB_BASICS/common/view/BoxNode' );
+  var PlateChargeNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateChargeNode' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
 
   // constants
   // capacitor plates

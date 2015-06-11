@@ -5,8 +5,8 @@
   "capMeterTitle": {
     "value": "Capacitance (F)"
   },
-  "capacitor-lab.name": {
-    "value": "Capacitor Lab"
+  "capacitor-lab-basics.name": {
+    "value": "Capacitor Lab: Basics"
   },
   "chargeMeterTitle": {
     "value": "Top Plate Charge (C)"

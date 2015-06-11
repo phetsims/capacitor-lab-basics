@@ -14,8 +14,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var BatteryShapeCreator = require( 'CAPACITOR_LAB/common/model/shapes/BatteryShapeCreator' );
-  var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
+  var BatteryShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BatteryShapeCreator' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
 
   // constants
   // size of the associated image file, determined by visual inspection

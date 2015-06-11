@@ -14,7 +14,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
-  var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
 
   /**
    * Constructor for the CapacitorLabModel.

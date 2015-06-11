@@ -26,8 +26,8 @@ define( function( require ) {
   // modules
   var Vector2 = require( 'DOT/Vector2' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Wire = require( 'CAPACITOR_LAB/common/model/wire/Wire' );
-  var WireSegment = require( 'CAPACITOR_LAB/common/model/wire/WireSegment' );
+  var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
+  var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   // constants
   var ConnectionPoint = {

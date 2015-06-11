@@ -1,11 +1,7 @@
 // Copyright 2002-2015, University of Colorado Boulder
 
 /**
- * The "Intro" model for Capacitor Lab.
- *
- * This model is identical to the "Dielectric" model of the sim.  If the entire Capacitor Lab is ported at a later
- * date, this file should be renamed to CapacitorLabDielectricModel, moved to /dielectric/model and
- * CapacitorLabIntroScreen should call CapacitorLabDielectricModel.
+ * The "Basics" model for Capacitor Lab.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
@@ -16,18 +12,18 @@ define( function( require ) {
 
  // modules
  var inherit = require( 'PHET_CORE/inherit' );
- var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
+ var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
  var Vector3 = require( 'DOT/Vector3' );
  var Bounds2 = require( 'DOT/Bounds2' );
- var CircuitConfig = require( 'CAPACITOR_LAB/common/model/CircuitConfig' );
- var SingleCircuit = require( 'CAPACITOR_LAB/common/model/circuit/SingleCircuit' );
- var BarMeter = require( 'CAPACITOR_LAB/common/model/meter/BarMeter' );
- var EFieldDetector = require( 'CAPACITOR_LAB/common/model/meter/EFieldDetector' );
- var Voltmeter = require( 'CAPACITOR_LAB/common/model/meter/Voltmeter' );
- var Capacitor = require( 'CAPACITOR_LAB/common/model/Capacitor' );
- var CLModelViewTransform3D = require( 'CAPACITOR_LAB/common/model/CLModelViewTransform3D' );
- var CapacitorLabModel = require( 'CAPACITOR_LAB/common/model/CapacitorLabModel' );
- var DielectricMaterial = require( 'CAPACITOR_LAB/common/model/DielectricMaterial' );
+ var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
+ var SingleCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/SingleCircuit' );
+ var BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
+ var EFieldDetector = require( 'CAPACITOR_LAB_BASICS/common/model/meter/EFieldDetector' );
+ var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
+ var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
+ var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
+ var CapacitorLabModel = require( 'CAPACITOR_LAB_BASICS/common/model/CapacitorLabModel' );
+ var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
 
  // constants
  // Circuit
@@ -72,7 +68,7 @@ define( function( require ) {
   *
   * @param {CLModelViewTransform3D} modelViewTransform
   */
- function CapacitorLabIntroModel( modelViewTransform ) {
+ function CapacitorLabBasicsModel( modelViewTransform ) {
 
   CapacitorLabModel.call( this );
 
@@ -109,7 +105,7 @@ define( function( require ) {
 
  }
 
- return inherit( CapacitorLabModel, CapacitorLabIntroModel, {
+ return inherit( CapacitorLabModel, CapacitorLabBasicsModel, {
 
   /**
    * Reset function for this model.

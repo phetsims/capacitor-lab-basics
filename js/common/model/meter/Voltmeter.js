@@ -13,7 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var VoltmeterShapeCreator = require( 'CAPACITOR_LAB/common/model/shapes/VoltmeterShapeCreator' );
+  var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files

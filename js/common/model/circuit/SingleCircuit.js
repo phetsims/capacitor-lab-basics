@@ -29,7 +29,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var ParallelCircuit = require( 'CAPACITOR_LAB/common/model/circuit/ParallelCircuit' );
+  var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
 
   /**
    * Constructor for the Single Capacitor Circuit.

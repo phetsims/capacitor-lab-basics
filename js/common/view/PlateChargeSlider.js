@@ -13,10 +13,10 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   
   // strings
-  var lotsPlusString = require( 'string!CAPACITOR_LAB/lots.plus' );
-  var lotsMinusString = require( 'string!CAPACITOR_LAB/lots.minus' );
-  var noneString = require( 'string!CAPACITOR_LAB/none' );
-  var plateChargeString = require( 'string!CAPACITOR_LAB/plateCharge.top' );
+  var lotsPlusString = require( 'string!CAPACITOR_LAB_BASICS/lots.plus' );
+  var lotsMinusString = require( 'string!CAPACITOR_LAB_BASICS/lots.minus' );
+  var noneString = require( 'string!CAPACITOR_LAB_BASICS/none' );
+  var plateChargeString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge.top' );
   
   // constants
   var MIN_CHARGE = -0.53E-12;

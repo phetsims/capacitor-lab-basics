@@ -9,11 +9,11 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var BatteryNode = require( 'CAPACITOR_LAB/capacitor-lab/view/BatteryNode' );
-  var CapacitorNode = require( 'CAPACITOR_LAB/capacitor-lab/view/CapacitorNode' );
+  var BatteryNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab/view/BatteryNode' );
+  var CapacitorNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab/view/CapacitorNode' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var WireNode = require( 'CAPACITOR_LAB/capacitor-lab/view/WireNode' );
-  var PlateChargeSlider = require( 'CAPACITOR_LAB/capacitor-lab/view/PlateChargeSlider' );
+  var WireNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab/view/WireNode' );
+  var PlateChargeSlider = require( 'CAPACITOR_LAB_BASICS/capacitor-lab/view/PlateChargeSlider' );
 
   /**
    * Constructor for the circuit

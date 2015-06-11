@@ -13,7 +13,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var BoxShapeCreator = require( 'CAPACITOR_LAB/common/model/shapes/BoxShapeCreator' );
+  var BoxShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BoxShapeCreator' );
   var Rectangle = require( 'DOT/Rectangle' );
 
   /**

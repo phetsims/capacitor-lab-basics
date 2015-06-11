@@ -14,7 +14,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
-  var CircuitNode = require( 'CAPACITOR_LAB/intro/view/CircuitNode' );
+  var CircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/CircuitNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
 
   // Strings
@@ -36,10 +36,10 @@ define( function( require ) {
   //var energyMeterTitle = require( 'string!CAPACITOR_LAB/energyMeterTitle' );
 
   /**
-   * @param {CapacitorLabIntroModel} model
+   * @param {CapacitorLabBasicsModel} model
    * @constructor
    */
-  function CapacitorLabIntroScreenView( model ) {
+  function CapacitorLabBasicsScreenView( model ) {
 
     ScreenView.call( this, { layoutBounds: new Bounds2( 0, 0, 1024, 864 ) } );
 
@@ -67,7 +67,7 @@ define( function( require ) {
     //addChild( shapesDebugParentNode );
   }
 
-  return inherit( ScreenView, CapacitorLabIntroScreenView, {
+  return inherit( ScreenView, CapacitorLabBasicsScreenView, {
 
     // Called by the animation loop. Optional, so if your view has no animation, you can omit this.
     step: function( dt ) {

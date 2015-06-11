@@ -23,7 +23,7 @@ define( function( require ) {
   var Transform3 = require( 'DOT/Transform3' );
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
-  var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
 
   /**
    * Constructor for the CLModelViewTransform.

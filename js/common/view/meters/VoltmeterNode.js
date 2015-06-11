@@ -16,16 +16,16 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
-  var VoltmeterProbeNode = require( 'CAPACITOR_LAB/capacitor-lab/view/meters/VoltmeterProbeNode' );
+  var VoltmeterProbeNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab/view/meters/VoltmeterProbeNode' );
 
   // strings
-  var voltString = require( 'string!CAPACITOR_LAB/volt' );
-  var unknownVoltString = require( 'string!CAPACITOR_LAB/volt.unknown' );
+  var voltString = require( 'string!CAPACITOR_LAB_BASICS/volt' );
+  var unknownVoltString = require( 'string!CAPACITOR_LAB_BASICS/volt.unknown' );
   
   // images
-  var voltmeterBackgroundImage = require( 'image!CAPACITOR_LAB/voltmeter.png' );
-  var redProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_red_large_cutout.png' );
-  var blackProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_black_large_cutout.png' );
+  var voltmeterBackgroundImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter.png' );
+  var redProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_red_large_cutout.png' );
+  var blackProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_black_large_cutout.png' );
   
   /**
    * Constructor for the voltmeter

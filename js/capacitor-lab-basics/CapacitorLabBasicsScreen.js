@@ -9,14 +9,14 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var CapacitorLabIntroModel = require( 'CAPACITOR_LAB/intro/model/CapacitorLabIntroModel' );
-  var CapacitorLabScreenView = require( 'CAPACITOR_LAB/intro/view/CapacitorLabIntroScreenView' );
-  var CLModelViewTransform3D = require( 'CAPACITOR_LAB/common/model/CLModelViewTransform3D' );
+  var CapacitorLabBasicsModel = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/model/CapacitorLabBasicsModel' );
+  var CapacitorLabScreenView = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/CapacitorLabBasicsScreenView' );
+  var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
 
   // strings
-  var capacitorLabSimString = require( 'string!CAPACITOR_LAB/capacitor-lab.name' );
+  var capacitorLabSimString = require( 'string!CAPACITOR_LAB_BASICS/capacitor-lab-basics.name' );
 
   /**
    * @constructor
@@ -27,7 +27,7 @@ define( function( require ) {
     var icon = null;
 
     Screen.call( this, capacitorLabSimString, icon,
-      function() { return new CapacitorLabIntroModel( new CLModelViewTransform3D() ); },
+      function() { return new CapacitorLabBasicsModel( new CLModelViewTransform3D() ); },
       function( model ) { return new CapacitorLabScreenView( model ); },
       { backgroundColor: '#9ddcf8' }
     );

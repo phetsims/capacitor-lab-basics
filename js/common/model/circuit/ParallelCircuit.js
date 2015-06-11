@@ -19,9 +19,9 @@ define( function( require ) {
   // modules
   var Vector3 = require( 'DOT/Vector3' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var AbstractCircuit = require( 'CAPACITOR_LAB/common/model/circuit/AbstractCircuit' );
-  var Capacitor = require( 'CAPACITOR_LAB/common/model/Capacitor' );
-  var WireBatteryToCapacitors = require( 'CAPACITOR_LAB/common/model/wire/WireBatteryToCapacitors' );
+  var AbstractCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/AbstractCircuit' );
+  var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
+  var WireBatteryToCapacitors = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireBatteryToCapacitors' );
 
   // Function for creating capacitors.
   function createCapacitors( config, numberOfCapacitors ) {

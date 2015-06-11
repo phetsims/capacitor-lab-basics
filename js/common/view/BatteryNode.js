@@ -15,7 +15,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Image = require( 'SCENERY/nodes/Image' );
   var HSlider = require( 'SUN/HSlider' );
-  var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -30,16 +30,16 @@ define( function( require ) {
   var TICK_LABEL_SPACING = 5;
 
   // images
-  var batteryUpImage = require( 'image!CAPACITOR_LAB/battery_3D_up.png' );
-  var batteryDownImage = require( 'image!CAPACITOR_LAB/battery_3D_down.png' );
-  var sliderKnobImage = require( 'image!CAPACITOR_LAB/sliderKnob.png' );
-  var sliderKnobHighlightImage = require( 'image!CAPACITOR_LAB/sliderKnobHighlight.png' );
+  var batteryUpImage = require( 'image!CAPACITOR_LAB_BASICS/battery_3D_up.png' );
+  var batteryDownImage = require( 'image!CAPACITOR_LAB_BASICS/battery_3D_down.png' );
+  var sliderKnobImage = require( 'image!CAPACITOR_LAB_BASICS/sliderKnob.png' );
+  var sliderKnobHighlightImage = require( 'image!CAPACITOR_LAB_BASICS/sliderKnobHighlight.png' );
 
   // strings
   //var maxTickLabelString = require( 'string!MOLECULES_AND_LIGHT/SpectrumWindow.title' );
   //var frequencyArrowLabelString = require( 'string!MOLECULES_AND_LIGHT/SpectrumWindow.frequencyArrowLabel' );
-  var pattern_0value1units = require( 'string!CAPACITOR_LAB/pattern.0value.1units' );
-  var unitsVoltsString = require( 'string!CAPACITOR_LAB/volt' );
+  var pattern_0value1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
+  var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/volt' );
 
   /**
    * ThumbNode for the BatteryNode slider.

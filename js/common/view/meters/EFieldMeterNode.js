@@ -4,7 +4,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var EFieldProbeNode = require( 'CAPACITOR_LAB/capacitor-lab/view/meters/EFieldProbeNode' );
+  var EFieldProbeNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab/view/meters/EFieldProbeNode' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -18,11 +18,11 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   
   // strings
-  var zeroFieldString = require( 'string!CAPACITOR_LAB/voltsPerMeter.0' );
-  var voltsPerMeterString = require( 'string!CAPACITOR_LAB/voltsPerMeter' );
+  var zeroFieldString = require( 'string!CAPACITOR_LAB_BASICS/voltsPerMeter.0' );
+  var voltsPerMeterString = require( 'string!CAPACITOR_LAB_BASICS/voltsPerMeter' );
   
   // images
-  var probeCutoutImage = require( 'image!CAPACITOR_LAB/probe_3D_field_cutout.png' );
+  var probeCutoutImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_field_cutout.png' );
 
   /**
    * Constructor for the electric field meter

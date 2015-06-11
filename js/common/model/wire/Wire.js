@@ -16,7 +16,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
-  var WireShapeCreator = require( 'CAPACITOR_LAB/common/model/shapes/WireShapeCreator' );
+  var WireShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/WireShapeCreator' );
 
   /**
    * Constructor for a Wire.

@@ -15,7 +15,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
-  var BoxShapeCreator = require( 'CAPACITOR_LAB/common/model/shapes/BoxShapeCreator' );
+  var BoxShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BoxShapeCreator' );
 
   // constants
   var LINE_WIDTH = 1;

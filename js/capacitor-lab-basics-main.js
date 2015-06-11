@@ -9,12 +9,12 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var CapacitorLabScreen = require( 'CAPACITOR_LAB/intro/CapacitorLabIntroScreen' );
+  var CapacitorLabScreen = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/CapacitorLabBasicsScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
 
   // strings
-  var simTitle = require( 'string!CAPACITOR_LAB/capacitor-lab.name' );
+  var simTitle = require( 'string!CAPACITOR_LAB_BASICS/capacitor-lab-basics.name' );
 
   var simOptions = {
     credits: {

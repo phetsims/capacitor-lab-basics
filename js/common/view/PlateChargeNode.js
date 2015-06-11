@@ -17,8 +17,8 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
-  var IGridSizeStrategy = require( 'CAPACITOR_LAB/common/view/IGridSizeStrategy' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var IGridSizeStrategy = require( 'CAPACITOR_LAB_BASICS/common/view/IGridSizeStrategy' );
   var PlusNode = require( 'SCENERY_PHET/PlusNode' );
   var MinusNode = require( 'SCENERY_PHET/PlusNode' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );

@@ -25,8 +25,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Vector3 = require( 'DOT/Vector3' );
-  var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
-  var CapacitorShapeCreator = require( 'CAPACITOR_LAB/common/model/shapes/CapacitorShapeCreator' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CapacitorShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/CapacitorShapeCreator' );
   var Bounds3 = require( 'DOT/Bounds3' );
 
   /**

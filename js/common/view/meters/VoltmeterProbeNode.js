@@ -11,8 +11,8 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   // images
-  var redProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_red_large.png' );
-  var blackProbeImage = require( 'image!CAPACITOR_LAB/probe_3D_black_large.png' );
+  var redProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_red_large.png' );
+  var blackProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_black_large.png' );
   
   /**
    * Constructor to hold the image of either the red probe or the black probe for the voltmeter

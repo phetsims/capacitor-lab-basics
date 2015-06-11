@@ -12,11 +12,11 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var BatteryNode = require( 'CAPACITOR_LAB/common/view/BatteryNode' );
-  var CapacitorNode = require( 'CAPACITOR_LAB/common/view/CapacitorNode' );
-  var WireNode = require( 'CAPACITOR_LAB/common/view/WireNode' );
+  var BatteryNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryNode' );
+  var CapacitorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CapacitorNode' );
+  var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var CLConstants = require( 'CAPACITOR_LAB/common/CLConstants' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Vector2 = require( 'DOT/Vector2' );
 
   /**
