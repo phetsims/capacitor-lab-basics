@@ -105,6 +105,22 @@ define( function( require ) {
     },
 
     /**
+     * Sets the plate width.
+     * (design doc symbol: L)
+     *
+     * Only the plate width settable. Plates are square, the plate depth is identical to the width. And the height
+     * (thickness) is constant.
+     *
+     * @param {number} plateWidth meters
+     */
+    setPlateWidth: function( plateWidth ) {
+      if ( plateWidth <= 0 ) {
+        console.error( "plateWidth must be > 0: " + plateWidth );
+      }
+      this.plateSize = new Bounds3( 0, 0, 0, plateWidth, this.plateSize.height, plateWidth );
+    },
+
+    /**
      * Convenience method for determining the outside center of the top plate.  This is a wire attachment point.
      *
      * @return {Vector3}

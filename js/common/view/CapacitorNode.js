@@ -56,7 +56,6 @@ define( function( require ) {
      * Update the geometry of the capacitor plates.
      */
     updateGeometry: function() {
-
       // geometry
       this.topPlateNode.setBoxSize( this.capacitor.plateSize );
       this.bottomPlateNode.setBoxSize( this.capacitor.plateSize );
@@ -66,8 +65,10 @@ define( function( require ) {
       var y = -( this.capacitor.plateSeparation / 2 ) - this.capacitor.plateSize.height;
       var z = 0;
       this.topPlateNode.center = this.modelViewTransform.modelToViewDeltaXYZ( x, y, z );
+
       //y = -this.capacitor.getDielectricSize().getHeight() / 2;
       //dielectricNode.setOffset( mvt.modelToViewDelta( x, y, z ) );
+
       y = this.capacitor.plateSeparation / 2;
       this.bottomPlateNode.center = this.modelViewTransform.modelToViewDeltaXYZ( x, y, z );
 

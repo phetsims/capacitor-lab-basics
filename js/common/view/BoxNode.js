@@ -100,9 +100,9 @@ define( function( require ) {
     },
 
     updateShapes: function() {
-      this.topNode.shape = this.shapeCreator.createTopFace( this.size );
-      this.frontNode.shape = this.shapeCreator.createFrontFace( this.size );
-      this.rightSideNode.shape = this.shapeCreator.createRightSideFace( this.size );
+      this.topNode.shape = this.shapeCreator.createTopFaceBounds3( this.size );
+      this.frontNode.shape = this.shapeCreator.createFrontFaceBounds3( this.size );
+      this.rightSideNode.shape = this.shapeCreator.createRightSideFaceBounds3( this.size );
     },
 
     /**

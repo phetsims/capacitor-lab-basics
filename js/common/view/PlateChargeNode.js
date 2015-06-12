@@ -249,7 +249,8 @@ define( function( require ) {
      * @returns {number}
      */
     getContactWidth: function() {
-      return Math.min( this.capacitor.dielectricOffset, this.capacitor.plateSize.width );
+      return this.capacitor.plateSize.width;
+      //return Math.min( this.capacitor.dielectricOffset, this.capacitor.plateSize.width );
     }
   } );
 

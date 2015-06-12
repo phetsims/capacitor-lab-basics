@@ -38,7 +38,7 @@
   "meters": {
     "value": "Meters"
   },
-  "mm": {
+  "units.millimeters": {
     "value": " mm"
   },
   "none": {
@@ -71,7 +71,7 @@
   "view": {
     "value": "View"
   },
-  "volt": {
+  "units.volts": {
     "value": " V"
   },
   "volt.unknown": {
@@ -80,10 +80,10 @@
   "voltmeter": {
     "value": "Voltmeter"
   },
-  "voltsPerMeter": {
+  "units.voltsPerMeter": {
     "value": " V/m"
   },
-  "voltsPerMeter.0": {
+  "units.voltsPerMeter.0": {
     "value": "0 V/m"
   },
   "zoom": {

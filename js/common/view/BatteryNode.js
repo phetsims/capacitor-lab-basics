@@ -36,10 +36,8 @@ define( function( require ) {
   var sliderKnobHighlightImage = require( 'image!CAPACITOR_LAB_BASICS/sliderKnobHighlight.png' );
 
   // strings
-  //var maxTickLabelString = require( 'string!MOLECULES_AND_LIGHT/SpectrumWindow.title' );
-  //var frequencyArrowLabelString = require( 'string!MOLECULES_AND_LIGHT/SpectrumWindow.frequencyArrowLabel' );
   var pattern_0value1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
-  var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/volt' );
+  var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
 
   /**
    * ThumbNode for the BatteryNode slider.

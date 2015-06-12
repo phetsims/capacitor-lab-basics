@@ -18,6 +18,8 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Vector2 = require( 'DOT/Vector2' );
+  var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
+  var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
 
   /**
    * Constructor for a CircuitNode.
@@ -45,6 +47,11 @@ define( function( require ) {
     var topWireNode = new WireNode( circuit.getTopWire() );
     var bottomWireNode = new WireNode( circuit.getBottomWire() );
 
+    // drag handles
+    var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE );
+    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE );
+
+
     // rendering order
     this.addChild( bottomWireNode );
     this.addChild( batteryNode );
@@ -55,8 +62,8 @@ define( function( require ) {
     //if ( dielectricVisible ) {
     //  addChild( dielectricOffsetDragHandleNode );
     //}
-    //addChild( plateSeparationDragHandleNode );
-    //addChild( plateAreaDragHandleNode );
+    this.addChild( plateSeparationDragHandleNode );
+    this.addChild( plateAreaDragHandleNode );
     //addChild( batteryConnectionButtonNode );
     //addChild( plateChargeControlNode );
 
