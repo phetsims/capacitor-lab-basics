@@ -20,6 +20,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
+  var BatteryConnectionButtonNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/control/BatteryConnectionButtonNode' );
 
   /**
    * Constructor for a CircuitNode.
@@ -36,6 +37,9 @@ define( function( require ) {
                         maxEffectiveEField ) {
 
     Node.call( this ); // supertype constructor
+
+    var thisNode = this;
+
     this.circuit = circuit;
 
     // circuit components
@@ -44,19 +48,22 @@ define( function( require ) {
     var capacitorNode = new CapacitorNode( circuit.capacitor, modelViewTransform, plateChargeVisibleProperty,
       eFieldVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
-    var topWireNode = new WireNode( circuit.getTopWire() );
-    var bottomWireNode = new WireNode( circuit.getBottomWire() );
+    this.topWireNode = new WireNode( circuit.getTopWire() ); // @private
+    this.bottomWireNode = new WireNode( circuit.getBottomWire() ); // @private
 
     // drag handles
     var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE );
     var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE );
 
+    // controls
+    var batteryConnectionButtonNode = new BatteryConnectionButtonNode( circuit );
+    //plateChargeControlNode = new PlateChargeControlNode( circuit, new DoubleRange( -maxPlateCharge, maxPlateCharge ) );
 
     // rendering order
-    this.addChild( bottomWireNode );
+    this.addChild( this.bottomWireNode );
     this.addChild( batteryNode );
     this.addChild( capacitorNode );
-    this.addChild( topWireNode );
+    this.addChild( this.topWireNode );
     //addChild( topCurrentIndicatorNode );
     //addChild( bottomCurrentIndicatorNode );
     //if ( dielectricVisible ) {
@@ -64,7 +71,7 @@ define( function( require ) {
     //}
     this.addChild( plateSeparationDragHandleNode );
     this.addChild( plateAreaDragHandleNode );
-    //addChild( batteryConnectionButtonNode );
+    this.addChild( batteryConnectionButtonNode );
     //addChild( plateChargeControlNode );
 
     // layout
@@ -76,11 +83,44 @@ define( function( require ) {
 
     // wires shapes are in model coordinate frame, so the nodes live at (0,0)
     // the following does nothing but it explicitly defines the layout.
-    topWireNode.translation = new Vector2( 0, 0 );
-    bottomWireNode.translation = new Vector2( 0, 0 );
+    this.topWireNode.translation = new Vector2( 0, 0 );
+    this.bottomWireNode.translation = new Vector2( 0, 0 );
+
+    // Connect/Disconnect Battery button
+    var x = batteryNode.bounds.minX;
+    // TODO: The following is a placeholder until the current indicators are ported.
+    var y = this.topWireNode.bounds.minY - batteryConnectionButtonNode.bounds.minY - batteryConnectionButtonNode.bounds.height - 10;
+    //var y = topCurrentIndicatorNode.getFullBoundsReference().getMinY() - batteryConnectionButtonNode.getFullBoundsReference().getHeight() - 10;
+    batteryConnectionButtonNode.translation = new Vector2( x, y );
+
+    // observers
+    circuit.batteryConnectedProperty.link( function( batteryConnected ) {
+      thisNode.updateBatteryConnectivity();
+    } );
+
+
+    //circuit.addCircuitChangeListener( new CircuitChangeListener() {
+    //  public void circuitChanged() {
+    //    updateBatteryConnectivity();
+    //  }
+    //} );
 
   }
 
-  return inherit( Node, CircuitNode );
+  return inherit( Node, CircuitNode, {
+
+    // Updates the circuit components and controls to match the state of the battery connection.
+    updateBatteryConnectivity: function() {
+      var isConnected = this.circuit.batteryConnected;
+
+      // visible when battery is connected
+      this.topWireNode.visible = isConnected;
+      this.bottomWireNode.visible = isConnected;
+      //this.topCurrentIndicatorNode.setVisible( isConnected );
+      //this.bottomCurrentIndicatorNode.setVisible( isConnected );
+      // plate charge control
+      //this.plateChargeControlNode.setVisible( !circuit.isBatteryConnected() );
+  }
+  } );
 
 } );
