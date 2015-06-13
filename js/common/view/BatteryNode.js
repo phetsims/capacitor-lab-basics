@@ -24,6 +24,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var Vector2 = require( 'DOT/Vector2' );
+
   // constants
   var LABEL_FONT = new PhetFont( 12 );
   var TICK_LENGTH = 16;

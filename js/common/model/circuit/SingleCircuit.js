@@ -44,7 +44,7 @@ define( function( require ) {
 
     this.capacitor = this.capacitors[ 0 ];
     this.addProperty( 'batteryConnected', batteryConnected );
-    this.disconnectedPlateCharge = this.getTotalCharge();
+    this.addProperty( 'disconnectedPlateCharge', this.getTotalCharge() );
 
     // TODO!
     //batteryConnectedProperty.addObserver( new SimpleObserver() {

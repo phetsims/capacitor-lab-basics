@@ -18,9 +18,12 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Vector2 = require( 'DOT/Vector2' );
+  var Vector3 = require( 'DOT/Vector3' );
   var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
   var BatteryConnectionButtonNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/control/BatteryConnectionButtonNode' );
+  var PlateChargeControlNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/control/PlateChargeControlNode' );
+  var Range = require( 'DOT/Range' );
 
   /**
    * Constructor for a CircuitNode.
@@ -57,7 +60,7 @@ define( function( require ) {
 
     // controls
     var batteryConnectionButtonNode = new BatteryConnectionButtonNode( circuit );
-    //plateChargeControlNode = new PlateChargeControlNode( circuit, new DoubleRange( -maxPlateCharge, maxPlateCharge ) );
+    this.plateChargeControlNode = new PlateChargeControlNode( circuit, new Range( -maxPlateCharge, maxPlateCharge ) );
 
     // rendering order
     this.addChild( this.bottomWireNode );
@@ -72,7 +75,7 @@ define( function( require ) {
     this.addChild( plateSeparationDragHandleNode );
     this.addChild( plateAreaDragHandleNode );
     this.addChild( batteryConnectionButtonNode );
-    //addChild( plateChargeControlNode );
+    this.addChild( this.plateChargeControlNode );
 
     // layout
     // battery
@@ -93,6 +96,9 @@ define( function( require ) {
     //var y = topCurrentIndicatorNode.getFullBoundsReference().getMinY() - batteryConnectionButtonNode.getFullBoundsReference().getHeight() - 10;
     batteryConnectionButtonNode.translation = new Vector2( x, y );
 
+    // Plate Charge control
+    this.plateChargeControlNode.translation = ( modelViewTransform.modelToViewPosition( new Vector3( circuit.capacitor.location.x - 0.004, 0.001, 0 ) ) );
+
     // observers
     circuit.batteryConnectedProperty.link( function( batteryConnected ) {
       thisNode.updateBatteryConnectivity();
@@ -111,16 +117,20 @@ define( function( require ) {
 
     // Updates the circuit components and controls to match the state of the battery connection.
     updateBatteryConnectivity: function() {
+
       var isConnected = this.circuit.batteryConnected;
 
       // visible when battery is connected
       this.topWireNode.visible = isConnected;
       this.bottomWireNode.visible = isConnected;
+
       //this.topCurrentIndicatorNode.setVisible( isConnected );
       //this.bottomCurrentIndicatorNode.setVisible( isConnected );
+
       // plate charge control
-      //this.plateChargeControlNode.setVisible( !circuit.isBatteryConnected() );
-  }
+      this.plateChargeControlNode.visible = !isConnected;
+
+    }
   } );
 
 } );
