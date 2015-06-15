@@ -14,42 +14,66 @@ define( function( require ) {
   var RectangularPushButton = require( 'SUN/buttons/RectangularPushButton' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var Node = require( 'SCENERY/nodes/Node' );
 
   // strings
   var connectBatteryString = require( 'string!CAPACITOR_LAB_BASICS/connectBattery' );
   var disconnectBatteryString = require( 'string!CAPACITOR_LAB_BASICS/disconnectBattery' );
 
   /**
+   * Constructor for the BatteryConnectionButtonNode.
    *
    * @param { SingleCircuit } circuit
    * @constructor
    */
   function BatteryConnectionButtonNode( circuit ) {
 
-    var buttonContent = new Text( this.getText( circuit.batteryConnected ), { font: new PhetFont( 20 ) } );
-    var thisButton = this;
+    Node.call( this );
 
-    RectangularPushButton.call( this, {
+    var connectButtonContent = new Text( connectBatteryString, { font: new PhetFont( 20 ) } );
+    var disconnectButtonContent = new Text( disconnectBatteryString, { font: new PhetFont( 20 ) } );
+
+    // create the button that connects the battery to the circuit and toggles visibility of disconnect button.
+    var connectBatteryButton = new RectangularPushButton( {
       baseColor: 'white',
-      content: buttonContent,
+      content: connectButtonContent,
       listener: function() {
-        circuit.setBatteryConnected( !circuit.batteryConnected ); // toggle battery connectivity when pressed
-        buttonContent.setText( thisButton.getText( circuit.batteryConnected ) );
+        circuit.setBatteryConnected( true ); // connect the battery to the circuit.
       }
     } );
+
+    // create the button that disconects that battery from the circuit and toggles visibility of the connect button.
+    var disconnectBatteryButton = new RectangularPushButton( {
+      baseColor: 'white',
+      content: disconnectButtonContent,
+      listener: function() {
+        circuit.setBatteryConnected( false );
+      }
+    } );
+
+    // toggle which button is visible.
+    circuit.batteryConnectedProperty.link( function( batteryConnected ) {
+      connectBatteryButton.visible = !batteryConnected;
+      disconnectBatteryButton.visible = batteryConnected;
+    } );
+
+    this.addChild( connectBatteryButton );
+    this.addChild( disconnectBatteryButton );
+
   }
 
-  return inherit( RectangularPushButton, BatteryConnectionButtonNode, {
+  return inherit( Node, BatteryConnectionButtonNode, {
 
     /**
      * Get the appropriate text label for the button given the current circuit state.
      *
+     * // TODO: Not in use at the moment.  If we consolidate to one button later, we could use this helper function.
+     *
      * @param {boolean} isBatteryConnected
      * @returns {string}
      */
-    getText: function( isBatteryConnected ) {
-      return isBatteryConnected ? disconnectBatteryString : connectBatteryString;
-    }
-
+    //getText: function( isBatteryConnected ) {
+    //  return isBatteryConnected ? disconnectBatteryString : connectBatteryString;
+    //}
   } );
 } );
