@@ -104,7 +104,6 @@ define( function( require ) {
       thisNode.updateBatteryConnectivity();
     } );
 
-
     //circuit.addCircuitChangeListener( new CircuitChangeListener() {
     //  public void circuitChanged() {
     //    updateBatteryConnectivity();

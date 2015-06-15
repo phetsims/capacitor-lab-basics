@@ -41,19 +41,23 @@ define( function( require ) {
   function SingleCircuit( config, batteryConnected ) {
 
     ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */ );
+    var thisCircuit = this;
 
     this.capacitor = this.capacitors[ 0 ];
     this.addProperty( 'batteryConnected', batteryConnected );
     this.addProperty( 'disconnectedPlateCharge', this.getTotalCharge() );
 
-    // TODO!
-    //batteryConnectedProperty.addObserver( new SimpleObserver() {
-    //  public void update() {
-    //    updatePlateVoltages();
-    //    fireCircuitChanged();
-    //  }
-    //}, false /* notifyOnAdd */ );
-    //
+    // Set the plate voltages only when the battery is disconnected.
+    this.disconnectedPlateChargeProperty.link( function() {
+      thisCircuit.setDisconnectedPlateVoltage();
+    } );
+
+    // Make sure that the charges are correct when the battery is reconnected to the circuit.
+    this.batteryConnectedProperty.link( function() {
+      thisCircuit.updatePlateVoltages();
+    } );
+
+    // TODO: Not sure this needs to be called at end of constructor.
     //updatePlateVoltages(); // Must call this at end of constructor!
 
   }
@@ -88,6 +92,8 @@ define( function( require ) {
     /**
      * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
      * calls this method from its constructor. Remember to call this method at the end of this class' constructor.
+     *
+     * TODO: Edit the documentation here, call at end of constructor is probably unnecessary.
      */
     updatePlateVoltages: function() {
       if ( this.batteryConnectedProperty !== undefined ) {
@@ -148,8 +154,18 @@ define( function( require ) {
         this.disconnectedPlateCharge = disconnectedPlateCharge;
         if ( !this.batteryConnected ) {
           this.updatePlateVoltages();
-          //fireCircuitChanged(); TODO
+          //this.trigger( 'circuitChanged' );
+          //this.fireCircuitChanged(); TODO
         }
+      }
+    },
+
+    /**
+     * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
+     */
+    setDisconnectedPlateVoltage: function() {
+      if ( !this.batteryConnected ) {
+        this.updatePlateVoltages();
       }
     },
 

@@ -33,7 +33,7 @@ define( function( require ) {
       baseColor: 'white',
       content: buttonContent,
       listener: function() {
-        circuit.batteryConnected = !circuit.batteryConnected; // toggle battery connectivity when pressed
+        circuit.setBatteryConnected( !circuit.batteryConnected ); // toggle battery connectivity when pressed
         buttonContent.setText( thisButton.getText( circuit.batteryConnected ) );
       }
     } );
