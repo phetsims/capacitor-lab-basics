@@ -1,163 +1,202 @@
 // Copyright 2002-2015, University of Colorado Boulder
 
+/**
+ * Visual representation of the effective E-field (E_effective) between the capacitor plates.
+ *
+ * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Emily Randal
+ * @author Jesse Greenberg
+ */
 define( function( require ) {
   'use strict';
 
-  // modules
-  var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
+  //modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Shape = require( 'KITE/shape' );
+  var Dimension2 = require( 'DOT/Dimension2' );
+
   // constants
-  // Minimum number of electric field lines
-  var MIN_LINES = 4;
-  // Maximum number of electric field lines
-  var MAX_LINES = 900;
-  // Maximum electric field (V/m)
-  var MAX_E_FIELD = 6000;
-  
+  var ARROW_SIZE = new Dimension2( 10, 15 );
+  var LINE_WIDTH = 2;
+  var ARROW_COLOR = 'black';
+
+
   /**
-   * Constructor for an electric field line, starting at (x, y)
-   * Draws a line with an arrow in the middle; direction of arrow depends on the electric field
-   * @param {CapacitorLabModel} model
-   * @param {number} arrowLength: the distance between capacitor plates
-   * @param {number} plateSeparationScale: the scale to convert the plate separation property value to pixels
-   * @param {number} plateDepth: the thickness of the front of the capacitor plate
-   * @param {number} x: the x-value where the field line starts
-   * @param {number} y: the y-value where the field line starts
-   **/
-  function EFieldLineNode( model, arrowLength, plateSeparationScale, plateDepth, x, y ) {
+   * Constructor for the EFieldLineNode.
+   *
+   * @param {number} length length of the line in view coordinates
+   * @param {string} direction
+   * @constructor
+   */
+  function EFieldLineNode( length, direction ) {
+
+    // TODO: Extend Path.
     Node.call( this );
-    
-    var thisNode = this;
-    
-    // black rectangle, forms half of the arrow
-    var rect = new Rectangle( x, y + arrowLength, 2, -arrowLength / 2 - 10, 0, 0, {
-      fill: 'black',
-      centerX: x,
-      stroke: 'black',
-      lineWidth: 1
+
+    // line, origin at center
+    var lineNode = new Path( new Shape.lineSegment( 0, -length / 2, 0, length / 2 ), {
+      stroke: ARROW_COLOR,
+      lineWidth: LINE_WIDTH
     } );
-    // black arrow, forms the other half and shows the direction of the electric field
-    var arrow = new ArrowNode( x, y, x, y + arrowLength / 2, {
-      tailWidth: 2,
-      headWidth: 14,
-      headHeight: 16,
-      fill: 'black',
-      centerX: x,
+    this.addChild( lineNode );
+
+    // arrow, shape points "up", origin at center
+    var w = ARROW_SIZE.width;
+    var h = ARROW_SIZE.height;
+    var arrowShape = new Shape()
+      .moveTo( 0, -h / 2 ) // tip
+      .lineTo( w / 2, h / 2 ) // clockwise
+      .lineTo( -w / 2, h / 2 );
+    //path.closePath();
+
+    var arrowNode = new Path( arrowShape, {
+      fill: ARROW_COLOR
     } );
-    if (model.eFieldProperty.value < 0) {
-      rect = new Rectangle( x, y, 2, arrowLength / 2 + 10, 0, 0, {
-        fill: 'black',
-        centerX: x,
-        stroke: 'black',
-        lineWidth: 1
-      } );
-      arrow = new ArrowNode( x, y + arrowLength, x, y + arrowLength / 2, {
-        tailWidth: 2,
-        headWidth: 14,
-        headHeight: 16,
-        fill: 'black',
-        centerX: x,
-      } );
+    this.addChild( arrowNode );
+    if ( direction === CLConstants.DIRECTION.DOWN ) {
+      arrowNode.rotation = Math.PI;
     }
-    thisNode.addChild( rect );
-    thisNode.addChild( arrow );
-    
-    model.plateSeparationProperty.link( function () {
-      arrowLength = 2 * model.plateSeparationProperty.value * plateSeparationScale - plateDepth;
-      if (model.eFieldProperty.value < 0) {
-        rect.setRect( x, y, 2, arrowLength / 2 + 10, 0, 0 );
-        arrow.setTailAndTip( x, y + arrowLength, x, y + arrowLength / 2 );
-      }
-      else {
-        rect.setRect( x, y + arrowLength / 2 - 10, 2, arrowLength / 2 + 10, 0, 0 );
-        arrow.setTailAndTip( x, y, x, y + arrowLength / 2 );
-      }
-    } );
+
+    // no additional layout needed, handled above by geometry specification
+
   }
-  
+
   inherit( Node, EFieldLineNode );
 
   /**
-   * Constructor for the electric field, a collection of electric field lines
-   * @param {CapacitorLabModel} model
-   * @param {number} arrowLength: the distance between capacitor plates
-   * @param {number} plateSeparationScale: the scale to convert the plate separation property value to pixels
-   * @param {PlateNode} plate: a capacitor plate of the PlateNode class
-   **/
-  function EFieldNode( model, arrowLength, plateSeparationScale, plate, options ) {
-    Node.call( this, options );
-    
+   * Constructor for the EFieldNode.
+   *
+   * @param {Capacitor} capacitor
+   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {number} maxEffectiveEField
+   * @constructor
+   */
+  function EFieldNode( capacitor, modelViewTransform, maxEffectiveEField ) {
+
+    Node.call( this );
     var thisNode = this;
-    
-    // draws a vector arrow from the point (x, y) to the point (x, y+arrowLength) 
-    function drawVectorAtPoint( x, y ) {
-      thisNode.addChild( new EFieldLineNode( model, arrowLength, plateSeparationScale, plate.plateDepth, x, y ));
-    }
-    
-    function getNumberOfLines() {
-      var numLines = Math.round( MAX_LINES * Math.abs(model.eFieldProperty.value) / MAX_E_FIELD );
-      if ( Math.abs(model.eFieldProperty.value) > 0 && numLines < MIN_LINES ) {
-        numLines = MIN_LINES;
+
+    this.capacitor = capacitor;
+    this.modelViewTransform = modelViewTransform;
+    this.maxEffectiveEField = maxEffectiveEField;
+
+    this.parentNode = new Node();
+    this.addChild( this.parentNode );
+
+    capacitor.multilink( [ 'platesVoltage', 'plateSeparation', 'plateSize' ], function() {
+      if ( thisNode.visible ) {
+        thisNode.update();
       }
-      return numLines;
-    }
-    
-    function getLineSpacing() {
-      if ( Math.abs(model.eFieldProperty.value) === 0 ) {
-        return 0;
+    } );
+    // TODO
+    //capacitor.addCapacitorChangeListener( new CapacitorChangeListener() {
+    //  public void capacitorChanged() {
+    //    if ( isVisible() ) {
+    //      update();
+    //    }
+    //  }
+    //} );
+
+    //this.update();
+
+  }
+
+  return inherit( Node, EFieldNode, {
+
+    /**
+     * Update the node when it becomes visible.  Overrides setVisible in Node.
+     */
+    setVisible: function( visible ) {
+      if ( visible !== this.isVisible() ) {
+        Node.prototype.setVisible.call( this, visible );
+        if ( visible ) {
+          this.update();
+        }
       }
-      else {
-        var numLines = getNumberOfLines();
-        return plate.minPlateWidth / Math.sqrt(numLines);
-      }
-    }
-    
-    function updateGrid() {
-      thisNode.removeAllChildren();
-      var lineSpacing = getLineSpacing();
+    },
+
+    update: function() {
+
+      // clear existing field lines
+      this.parentNode.removeAllChildren();
+
+      // compute density (spacing) of field lines
+      var effectiveEField = this.capacitor.getEffectiveEField();
+      var lineSpacing = this.getLineSpacing( effectiveEField );
+
       if ( lineSpacing > 0 ) {
-        var plateWidth = plate.plateWidth;
+
+        // relevant model values
+        var plateWidth = this.capacitor.plateSize.width;
         var plateDepth = plateWidth;
+        var plateSeparation = this.capacitor.plateSeparation;
+
+        /*
+         * Create field lines, working from the center outwards so that
+         * lines appear/disappear at edges of plate as E_effective changes.
+         */
+        var length = this.modelViewTransform.modelToViewDeltaXYZ( 0, plateSeparation, 0 ).y;
+        var direction = ( effectiveEField >= 0 ) ? CLConstants.DIRECTION.DOWN : CLConstants.DIRECTION.UP;
         var x = lineSpacing / 2;
-        while (x <= plateWidth / 2) {
-          var y = lineSpacing / 2;
-          while (y <= plateDepth / 2) {
-            var b = Math.abs( plate.plateHeight * y / plateDepth );
-            var a = Math.abs( b * plate.plateShift / plate.plateHeight ) ;
-            
-            drawVectorAtPoint( x - a, b );
-            drawVectorAtPoint( -x - a, b );
-            drawVectorAtPoint( x + a, -b );
-            drawVectorAtPoint( -x + a, -b );
-            y += lineSpacing;
+        while ( x <= plateWidth / 2 ) {
+          var z = lineSpacing / 2;
+          while ( z <= plateDepth / 2 ) {
+
+            // add 4 lines, one for each quadrant
+            var lineNode0 = new EFieldLineNode( length, direction );
+            var lineNode1 = new EFieldLineNode( length, direction );
+            var lineNode2 = new EFieldLineNode( length, direction );
+            var lineNode3 = new EFieldLineNode( length, direction );
+            this.parentNode.addChild( lineNode0 );
+            this.parentNode.addChild( lineNode1 );
+            this.parentNode.addChild( lineNode2 );
+            this.parentNode.addChild( lineNode3 );
+
+            // position the lines
+            var y = 0;
+            lineNode0.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
+            lineNode1.translation = this.modelViewTransform.modelToViewXYZ( -x, y, z );
+            lineNode2.translation = this.modelViewTransform.modelToViewXYZ( x, y, -z );
+            lineNode3.translation = this.modelViewTransform.modelToViewXYZ( -x, y, -z );
+
+            z += lineSpacing;
           }
           x += lineSpacing;
         }
       }
-    }
-    
-    model.eFieldVisibleProperty.link( function () {
-      thisNode.visible = model.eFieldVisibleProperty.value;
-      if (thisNode.visible) {
-        updateGrid();
-      }
-    } );
-    
-    model.capacitorPlateAreaProperty.link( function () {
-      if (thisNode.visible) {
-        updateGrid();
-      }
-    } );
-    
-    model.eFieldProperty.link( function() {
-      if (thisNode.visible) {
-        updateGrid();
-      }
-    } );
-  }
+    },
 
-  return inherit( Node, EFieldNode );
+    /**
+     * Gets the spacing of E-field lines. Higher E-field results in higher density, therefore lower spacing. Density is
+     * computed for the minimum plate size.
+     *
+     * @param {number} effectiveEField
+     * @return {number} spacing, in model coordinates
+     */
+    getLineSpacing: function( effectiveEField ) {
+      if ( effectiveEField === 0 ) {
+        return 0;
+      }
+      else {
+        var numberOfLines = this.getNumberOfLines( effectiveEField );
+        return CLConstants.PLATE_WIDTH_RANGE.min / Math.sqrt( numberOfLines ); // assumes a square plate!;
+      }
+    },
+
+    /**
+     * Computes number of lines to put on the smallest plate, linearly proportional to plate charge.
+     */
+    getNumberOfLines: function( effectiveEField ) {
+      var absEField = Math.abs( effectiveEField );
+      var numberOfLines = Math.floor( CLConstants.NUMBER_OF_EFIELD_LINES.max * absEField / this.maxEffectiveEField );
+      if ( absEField > 0 && numberOfLines < CLConstants.NUMBER_OF_EFIELD_LINES.min ) {
+        numberOfLines = CLConstants.NUMBER_OF_EFIELD_LINES.min;
+      }
+      return numberOfLines;
+    }
+
+  } );
 } );

@@ -13,6 +13,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PlateNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateNode' );
+  var EFieldNode = require( 'CAPACITOR_LAB_BASICS/common/view/EFieldNode' );
 
   /**
    * Constructor for a CapacitorNode.
@@ -36,11 +37,11 @@ define( function( require ) {
     // child nodes
     this.topPlateNode = PlateNode.TopPlateNode( capacitor, modelViewTransform, maxPlateCharge );
     this.bottomPlateNode = PlateNode.BottomPlateNode( capacitor, modelViewTransform, maxPlateCharge );
-    //var eFieldNode = new EFieldNode( capacitor, modelViewTransform, maxEffectiveEField );
+    var eFieldNode = new EFieldNode( capacitor, modelViewTransform, maxEffectiveEField );
 
     // rendering order
     this.addChild( this.bottomPlateNode );
-    //this.addChild( eFieldNode );
+    this.addChild( eFieldNode );
     this.addChild( this.topPlateNode );
 
     // observers.

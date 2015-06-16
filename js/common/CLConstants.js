@@ -98,6 +98,10 @@ define( function( require ) {
     // E-field
     NUMBER_OF_EFIELD_LINES: new Range( 4, 900 ), // number of lines on smallest plate
     EFIELD_VISIBLE: false,
+    DIRECTION: {
+      UP: 'UP',
+      DOWN: 'DOWN'
+    },
 
     // capacitance control
     CAPACITANCE_CONTROL_EXPONENT: -13
