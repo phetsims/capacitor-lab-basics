@@ -72,12 +72,31 @@ define( function( require ) {
     this.parentNode = new Node(); // @private parent node for charges
     this.addChild( this.parentNode );
 
+    // construct and store all charge nodes up front so that they do not need to be constructed in real time.
+    /* TODO - this is just a start - come back to clean this up and get working later.
+    this.positiveChargeNodes = [];
+    this.negativeChargeNodes = [];
+    for( var i = 0; i < CLConstants.NUMBER_OF_PLATE_CHARGES.max; i++ ) {
+      var newPositiveCharge = new PositiveChargeNode();
+      var newNegativeCharge = new NegativeChargeNode();
+
+      newPositiveCharge.opacity = 0;
+      newNegativeCharge.opacity = 0;
+
+      this.parentNode.addChild( newPositiveCharge );
+      this.parentNode.addChild( newNegativeCharge );
+
+      this.positiveChargeNodes.push( newPositiveCharge );
+      this.negativeChargeNodes.push( newNegativeCharge );
+      */
+
+    //}
+
     capacitor.multilink( ['plateSize', 'plateSeparation', 'platesVoltage' ], function() {
       if( thisNode.isVisible() ) {
         thisNode.update();
       }
     } );
-
   }
 
   inherit( Node, PlateChargeNode, {
@@ -131,7 +150,12 @@ define( function( require ) {
       var plateCharge = this.getPlateCharge();
       var numberOfCharges = this.getNumberOfCharges( plateCharge, this.maxPlateCharge );
 
-      // remove existing charges
+      //console.log( numberOfCharges );
+
+      // remove existing charges by setting opacity to zero
+      //this.parentNode.children.forEach( function( child ) {
+      //  child.opacity = 0;
+      //} );
       this.parentNode.removeAllChildren();
 
       // compute grid dimensions
@@ -155,12 +179,29 @@ define( function( require ) {
         var xOffset = dx / 2;
         var zOffset = dz / 2;
 
+        //var positiveChargeNumber = 0;
+        //var negativeChargeNumber = 0;
+
         // populate the grid
         for ( var row = 0; row < rows; row++ ) {
           for ( var column = 0; column < columns; column++ ) {
+
             // add a charge
+            //var chargeNode;
+            //if( this.isPositivelyCharged() ) {
+            //  chargeNode = this.positiveChargeNodes[ positiveChargeNumber ];
+            //  positiveChargeNumber++;
+            //}
+            //else {
+            //  chargeNode = this.negativeChargeNodes[ negativeChargeNumber ];
+            //  negativeChargeNumber++;
+            //}
+
             var chargeNode = this.isPositivelyCharged() ? new PositiveChargeNode() : new NegativeChargeNode();
+
             //chargeNode.opacity = 1 - this.transparency; // TODO: test this.
+            //chargeNode.opacity = 0.99; // Make desired chargeNode visible.
+
             this.parentNode.addChild( chargeNode );
 
             // position the charge in cell in the grid
@@ -190,8 +231,6 @@ define( function( require ) {
      * @return {number} numberOfCharges
      */
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
-      //console.log( 'plate charge: ' + plateCharge );
-      //console.log( 'max plate charge:' + maxPlateCharge );
       var absCharge = Math.abs( plateCharge );
       // TODO: numberOfCharges was typed to int.  It might need to be rounded or floored for this calculation.
       // RESULT - Indeed, this should be floored.  Test to make sure this is correct.
@@ -232,7 +271,6 @@ define( function( require ) {
 
     // Gets the portion of the plate charge due to air.
     getPlateCharge: function() {
-      //console.log( this.capacitor.getAirPlateCharge() );
       return this.capacitor.getAirPlateCharge();
     },
 
