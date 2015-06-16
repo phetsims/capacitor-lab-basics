@@ -87,7 +87,22 @@ define( function( require ) {
      * @return {number} area in meters^2
      */
     getAirContactArea: function() {
-      return this.getPlateArea();
+      return this.getPlateArea() - this.getDielectricContactArea();
+    },
+
+    /**
+     * Gets the area of the contact between one of the plates and the dielectric material.
+     * (design doc symbol: A_dielectric)
+     *
+     * @return {number} area, in meters^2
+     */
+    getDielectricContactArea: function() {
+      var absoluteOffset = Math.abs( this.dielectricOffset );
+      var area = ( this.plateSize.width - absoluteOffset ) * this.plateSize.depth; // front * side
+      if ( area < 0 ) {
+        area = 0;
+      }
+      return area;
     },
 
     /**
