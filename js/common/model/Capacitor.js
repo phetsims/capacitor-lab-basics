@@ -48,7 +48,7 @@ define( function( require ) {
       plateSize: new Bounds3( 0, 0, 0, plateWidth, CLConstants.PLATE_HEIGHT, plateWidth ), // Square plates.
       plateSeparation: plateSeparation,
       platesVoltage: 0, // zero until it's connected into a circuit
-      dielectricOffset: 0.01 // in meters, default is totally outside of capacitor plates.
+      dielectricOffset: 0.02 // in meters, default is totally outside of capacitor plates.
     } );
 
     // TODO: Include listeners.

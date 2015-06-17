@@ -1,221 +1,632 @@
 // Copyright 2002-2015, University of Colorado Boulder
 
+/**
+ * Abstract base class for all bar meters.  Factory functions allow for creating all specific meter subclasses. Origin
+ * is at the upper-left corner of the "track" that the bar moves in.
+ *
+ * TODO: This file is very large.  It may be good to refactor some of the convenience classes here into separate files.
+ *
+ * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Jesse Greenberg
+ */
 define( function( require ) {
   'use strict';
 
   // modules
-  var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Line = require( 'SCENERY/nodes/Line' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var Property = require( 'AXON/Property' );
+  var Dimension2 = require( 'DOT/Dimension2' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
-  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
+  var Vector2 = require( 'DOT/Vector2' );
+  var Path = require( 'SCENERY/nodes/Path' );
+  var Shape = require( 'KITE/Shape' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
+  var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
   var ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
+  var Image = require( 'SCENERY/nodes/Image' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
+
+  // constants
+  // track
+  var TRACK_SIZE = new Dimension2( 50, 200 );
+  var TRACK_FILL_COLOR = 'white';
+  var TRACK_STROKE_COLOR = 'black';
+  var TRACK_LINE_WIDTH = 1;
+
+  // bar
+  var BAR_STROKE_COLOR = TRACK_STROKE_COLOR;
+  var BAR_LINE_WIDTH = TRACK_LINE_WIDTH;
+
+  // ticks
+  var NUMBER_OF_TICKS = 10;
+  var MAJOR_TICK_MARK_LENGTH = 5;
+  var MINOR_TICK_MARK_LENGTH = 5;
+  var TICK_MARK_COLOR = TRACK_STROKE_COLOR;
+  var TICK_MARK_LINE_WIDTH = TRACK_LINE_WIDTH;
+  var MINOR_TICKS_OUTSIDE = true; // true=ticks outside bar, false=ticks inside bar
+
+  // range labels
+  var RANGE_LABEL_FONT = new PhetFont( 14 );
+  //var RANGE_LABEL_COLOR = 'black';
+
+  // title
+  var TITLE_FONT = new PhetFont( { weight: 'bold', size: 16 } );
+  //var TITLE_COLOR = 'black';
+
+  // value display
+  var VALUE_FONT = new PhetFont( 16 );
+  var VALUE_COLOR = 'black';
+
+  // overload indicator
+  var OVERLOAD_INDICATOR_WIDTH = 0.75 * TRACK_SIZE.width;
+  var OVERLOAD_INDICATOR_HEIGHT = 15;
+
+  // images
+  var closeButtonImage = require( 'image!CAPACITOR_LAB_BASICS/closeButton.png' );
+
+  // strings
+  var unitsFaradsString = require( 'string!CAPACITOR_LAB_BASICS/units.farads' );
+  //var faradsString = require( 'string!CAPACITOR_LAB_BASICS/farads' );
+  var unitsCoulombsString = require( 'string!CAPACITOR_LAB_BASICS/units.coulombs' );
+  //var coulombsString = require( 'string!CAPACITOR_LAB_BASICS/coulombs' );
+  var unitsJoulesString = require( 'string!CAPACITOR_LAB_BASICS/units.joules' );
+  //var joulesString = require( 'string!CAPACITOR_LAB_BASICS/joules' );
 
   /**
-   * Constructor for the bar meters that measure capacitance, plate charge, and energy
-   * @param {CapacitorLabModel} model
-   * @param {string} title: the title that goes under the meter
-   * @param {Property} meterProperty: the type of meter being shown
-   * @param {Property} valueProperty: the property that the meter measures
-   * @param {Property} meterPositionProperty: the property that describes the position of the meter
-   **/
-  function BarMeterNode(model, title, meterProperty, valueProperty, meterPositionProperty, options) {
-    options = _.extend({cursor: 'pointer'}, options);
-    Node.call( this, options);
-    
-    var height = 120;
-    var width = 30;
-    var tickNumber = 10;
-    var tickSpacing = height / tickNumber;
-    var lineOptions = {stroke: '#000000'};
-    var tickLength = 5;
-    var maxValue = 1E-13;
-    var exp = "10<sup>-13";
-    var numberFont = new PhetFont( 10 );
-    
-    // Body of the meter
-    var meter = new Rectangle( 0, 0, width, height, 0, 0, {
-      stroke: 'black',
-      fill: '#ffffff'
+   * Constructor for the TrackNode, the track that the bar moves in.  Origin is at upper-left corner.
+   */
+  function TrackNode() {
+    Rectangle.call( this, 0, 0, TRACK_SIZE.width, TRACK_SIZE.height, {
+      fill: TRACK_FILL_COLOR,
+      stroke: TRACK_STROKE_COLOR,
+      lineWidth: TRACK_LINE_WIDTH
     } );
-    this.addChild( meter );
-    
-    var color = 'green';
-    var units = ' F';
-    if (meterProperty === model.plateChargeMeterProperty) {
-      units = ' C';
-      if (model.upperPlateChargeProperty.value > 0) {
-        color = 'red';
+  }
+
+  inherit( Rectangle, TrackNode );
+
+  /**
+   * Constructor for a BarNode. The bar which indicates the magnitude of the value being read by the meter. Origin is
+   * at upper left of track.
+   *
+   * @param {string} barColor
+   * @param {number} maxValue
+   * @param {number} value
+   * @constructor
+   */
+  function BarNode( barColor, maxValue, value ) {
+
+    this.value = value;
+    this.maxValue = maxValue;
+
+    Rectangle.call( this, 0, 0, TRACK_SIZE.width, TRACK_SIZE.height, {
+      fill: barColor,
+      stroke: BAR_STROKE_COLOR,
+      lineWidth: BAR_LINE_WIDTH
+    } );
+
+    this.update();
+
+  }
+
+  inherit( Rectangle, BarNode, {
+
+    setValue: function( value ) {
+      if ( value !== this.value ) {
+        this.value = value;
+        this.update();
       }
-      else {
-        color = 'blue';
+    },
+
+    setMaxValue: function( maxValue ) {
+      if ( maxValue !== this.maxValue ) {
+        this.maxValue = maxValue;
+        this.update();
       }
+    },
+
+    update: function() {
+      var percent = Math.min( 1, Math.abs( this.value ) / this.maxValue );
+      var y = ( 1 - percent ) * TRACK_SIZE.height;
+      var height = TRACK_SIZE.height - y;
+      this.setRect( 0, y, TRACK_SIZE.width, height );
     }
-    else if (meterProperty === model.energyMeterProperty) {
-      units = ' J';
-      color = 'yellow';
+
+  } );
+
+  /**
+   * Horizontal tick mark line, with no label.
+   * Origin is at the left end of the line.
+   *
+   * @param {number} tickMarkLength
+   * @constructor
+   */
+  function TickMarkNode( tickMarkLength ) {
+    Path.call( this, Shape.lineSegment( 0, 0, tickMarkLength, 0 ), {
+      stroke: TICK_MARK_COLOR,
+      lineWidth: TICK_MARK_LINE_WIDTH
+    } );
+  }
+
+  inherit( Path, TickMarkNode );
+
+  /**
+   * Constructor for the label used to indicate the range. Origin is at upper-left corner of bounding box.
+   *
+   * @param {string} label
+   */
+  function RangeLabelNode( label ) {
+
+    SubSupText.call( this, label, { font: RANGE_LABEL_FONT } );
+
+  }
+
+  inherit( SubSupText, RangeLabelNode );
+
+  function PowerOfTenRangeLabelNode( exponent ) {
+    RangeLabelNode.call( this, '10<sup>' + exponent + '</sup>' );
+  }
+
+  inherit( RangeLabelNode, PowerOfTenRangeLabelNode, {
+    setExponent: function( exponent ) {
+      this.setText( '10<sup>' + exponent + '</sup>' );
     }
-    
-    // Filled rectangle to represent the value of the property being measured
-    var measure = new Rectangle( 0, height, width, -height * valueProperty.value / maxValue, 0, 0, {
-      fill: color
+  } );
+
+  /**
+   * Title used to indicate the purpose of this meter. Origin is at upper-left corner of bounding box.
+   *
+   * @param {string} label
+   * @constructor
+   */
+  function TitleNode( label ) {
+    Text.call( this, label, {
+      font: TITLE_FONT
     } );
-    meter.addChild( measure );
-    
-    // Small tick marks along the side of the meter
-    var yLoc = 0;
-    for ( var i = 0; i <= tickNumber; i++ ) {
-      yLoc = i*tickSpacing + meter.top;
-      this.addChild( new Line( meter.left, yLoc, meter.left - tickLength, yLoc, lineOptions ));
+  }
+
+  inherit( Text, TitleNode );
+
+  /**
+   * Constructor for the OverloadIndicatorNode. Overload indicator, visible when the value is greater than what the bar
+   * is capable of displaying.  The indicator is an arrow that points upward.
+   *
+   * @param {string} fillColor
+   * @param {number} maxValue
+   * @param {number} value
+   * @constructor
+   */
+  function OverloadIndicatorNode( fillColor, maxValue, value ) {
+
+    this.value = value;
+    this.maxValue = maxValue;
+
+    var tailLocation = new Vector2( 0, OVERLOAD_INDICATOR_HEIGHT );
+    var tipLocation = new Vector2( 0, 0 );
+    var headHeight = 0.6 * OVERLOAD_INDICATOR_HEIGHT;
+    var headWidth = OVERLOAD_INDICATOR_WIDTH;
+    var tailWidth = headWidth / 2;
+
+    ArrowNode.call( this, tailLocation.x, tailLocation.y, tipLocation.x, tipLocation.y, {
+      headHeight: headHeight,
+      headWidth: headWidth,
+      tailWidth: tailWidth,
+      fill: fillColor
+    } );
+
+    this.update();
+
+  }
+
+  inherit( ArrowNode, OverloadIndicatorNode, {
+
+    setValue: function( value ) {
+      if ( value !== this.value ) {
+        this.value = value;
+        this.update();
+      }
+    },
+
+    setMaxValue: function( maxValue ) {
+      if ( maxValue !== this.maxValue ) {
+        this.maxValue = maxValue;
+        this.update();
+      }
+    },
+
+    setArrowFillColor: function( color ) {
+      this.fill = color;
+    },
+
+    update: function() {
+      this.visible = this.value > this.maxValue;
     }
-    
-    // Meter title
-    var titleText = new Text(title, {
-      centerX: meter.centerX,
-      y: meter.bottom + 15,
-      font: numberFont
+  } );
+
+  /**
+   * Constructor for a TimesTenValueNode.  This is a number in scientific notation with with units.
+   *
+   * @param {Property.<number>} valueProperty
+   * @param {number} exponent
+   * @param {string} units
+   * @constructor
+   */
+  function TimesTenValueNode( valueProperty, exponent, units ) {
+
+    //this.unitText = new Text( units, { font: VALUE_FONT } );
+
+    ScientificNotationNode.call( this, valueProperty, {
+      font: VALUE_FONT,
+      fill: VALUE_COLOR,
+      mantissaDecimalPlaces: 2,
+      exponent: exponent
     } );
-    this.addChild( titleText );
-    // Value of property being measured
-    var subtitleText = new ScientificNotationNode( valueProperty, {
-      centerX: meter.centerX,
-      y: titleText.bottom + 15,
-      font: numberFont
-    } );
-    this.addChild( subtitleText );
-    
-    // Lower bound of values being measured by the meter
-    var bottomNumber = new Text( "0", {
-      right: meter.left - tickLength - 2,
-      bottom: meter.bottom + 5,
-      font: numberFont
-    } );
-    this.addChild( bottomNumber );
-    
-    // Upper bound on values measured by meter
-    var topNumber = new SubSupText( exp, {
-      right: meter.left - tickLength - 2,
-      top: meter.top - 5,
-      font: numberFont
-    } );
-    this.addChild( topNumber );
-    
-    // arrow for when the value is greater than the scale
-    var arrow = new ArrowNode( 0, 0, 0, -13, {
-      doubleHead: false,
-      tailWidth: 10,
-      headWidth: 20,
-      headHeight: 8,
-      fill: color,
-      stroke: 'black',
-      lineWidth: 1,
-      centerX: meter.centerX,
-      bottom: meter.top - 2,
-      visible: false,
-    } );
-    this.addChild( arrow );
-    
-    // Button to decrease the upper bound
-    var zoomInButton = new ZoomButton({
-      top: topNumber.bottom + 10,
-      right: topNumber.right - 5,
-      scale: 0.4,
-      baseColor: 'white',
-      enabled: false,
-      listener: function () {
-        maxValue = maxValue / 10;
-        exp = "10<sup>"+Math.log10(maxValue);
-        topNumber.text = exp;
-        updateMeter();
-      },
-      });
-    this.addChild(zoomInButton);
-    // Button to increase the upper bound
-    var zoomOutButton = new ZoomButton({
-      top: zoomInButton.bottom + 7,
-      right: zoomInButton.right,
-      scale: 0.4,
-      in: false,
-      baseColor: 'white',
-      enabled: false,
-      listener: function () {
-        maxValue = maxValue * 10;
-        exp = "10<sup>"+Math.log10(maxValue);
-        topNumber.text = exp;
-        updateMeter();
-      },
-      });
-    this.addChild(zoomOutButton);
-    
+
+    //this.valueProperty.link( function() {
+    //  thisNode.unitText.left = thisNode.unitText.parents[0].right + 2;
+    //} );
+
+    // layout
+    //this.addChild( this.unitText );
+
+  }
+
+  inherit( ScientificNotationNode, TimesTenValueNode );
+
+  /**
+   * Constructor.
+   *
+   * @param {BarMeter} meter
+   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {string} barColor
+   * @param {string} title
+   * @param {string} valueMantissaPattern
+   * @param {number} exponent
+   * @param {string} units
+   * @constructor
+   */
+  function BarMeterNode( meter, modelViewTransform, barColor, title, valueMantissaPattern, exponent, units ) {
+
+    Node.call( this );
     var thisNode = this;
 
-    // drag handler
-    var meterOffset = {};
-    var meterDragHandler = new SimpleDragHandler( {
-      //When dragging across it in a mobile device, pick it up
-      allowTouchSnag: true,
-      start: function( event ) {
-        meterOffset.x = thisNode.globalToParentPoint( event.pointer.point ).x - thisNode.centerX;
-        meterOffset.y = thisNode.globalToParentPoint( event.pointer.point ).y - thisNode.centerY;
-      },
-      //Translate on drag events
-      drag: function( event ) {
-        var point = thisNode.globalToParentPoint( event.pointer.point );
-        var desiredPosition = point.copy().subtract( meterOffset );
-        model.moveMeterToPosition( desiredPosition, meterPositionProperty );
-      }
-    } );
-    this.addInputListener( meterDragHandler );
+    this.value = meter.value;
+    this.exponentProperty = new Property( exponent );
+    this.hasBeenVisibleProperty = new Property( false );
 
-    meterProperty.link( function () {
-      thisNode.visible = meterProperty.value;
-    });
-    
-    valueProperty.link( function () {
-      updateMeter();
-    });
-    
-    meterPositionProperty.link( function () {
-      thisNode.centerX = meterPositionProperty.value.x;
-      thisNode.centerY = meterPositionProperty.value.y;
-    });
-    
-    // Updates the display when the property being measured changes
-    function updateMeter() {
-      if (valueProperty === model.upperPlateChargeProperty && model.upperPlateChargeProperty.value > 0 ) {
-        color = 'red';
-      }
-      else if (valueProperty === model.upperPlateChargeProperty && model.upperPlateChargeProperty.value < 0 ) {
-        color = 'blue';
-      }
-      var rectHeight = -height * Math.abs(valueProperty.value)/maxValue;
-      if (Math.abs(valueProperty.value) >= maxValue) {
-        arrow.visible = true;
-        arrow.fill = color;
-        rectHeight = -height;
-        zoomOutButton.enabled = true;
-      }
-      else {
-        arrow.visible = false;
-        zoomOutButton.enabled = false;
-      }
-      if ((Math.abs( valueProperty.value ) < maxValue / 10) && (Math.abs( valueProperty.value ) !== 0)) {
-        zoomInButton.enabled = true;
-      }
-      else {
-        zoomInButton.enabled = false;
-      }
-      measure.setRect(0, height + rectHeight, width, -rectHeight, 0, 0);
-      measure.fill = color;
-      
-      subtitleText.centerX = meter.centerX;
+    // track
+    this.trackNode = new TrackNode();
+    this.addChild( this.trackNode );
+
+    // bar
+    var maxValue = Math.pow( 10, exponent );
+    this.barNode = new BarNode( barColor, maxValue, this.value );
+    this.addChild( this.barNode );
+
+    // minor ticks
+    var deltaY = TRACK_SIZE.height / NUMBER_OF_TICKS;
+    for ( var i = 0; i < NUMBER_OF_TICKS; i++ ) {
+      var tickMarkNode = new TickMarkNode( MINOR_TICK_MARK_LENGTH );
+      this.addChild( tickMarkNode );
+      var xOffset = MINOR_TICKS_OUTSIDE ? -MINOR_TICK_MARK_LENGTH : 0;
+      tickMarkNode.translation = new Vector2( xOffset, ( i + 1 ) * deltaY );
     }
+
+    // majors ticks, for min and max
+    this.maxTickMarkNode = new TickMarkNode( MAJOR_TICK_MARK_LENGTH ); // @private
+    this.addChild( this.maxTickMarkNode );
+    this.minTickMarkNode = new TickMarkNode( MAJOR_TICK_MARK_LENGTH ); // @private
+    this.addChild( this.minTickMarkNode );
+
+    // min range label
+    this.minLabelNode = new RangeLabelNode( "0" );
+    this.addChild( this.minLabelNode );
+
+    // max range label
+    this.maxLabelNode = new PowerOfTenRangeLabelNode( exponent );
+    this.addChild( this.maxLabelNode );
+
+    // title
+    this.titleNode = new TitleNode( title );
+    this.addChild( this.titleNode );
+
+    // overload indicator
+    this.overloadIndicatorNode = new OverloadIndicatorNode( barColor, maxValue, this.value );
+    this.addChild( this.overloadIndicatorNode );
+
+    // value
+    this.valueNode = new TimesTenValueNode( meter.valueProperty, this.exponentProperty.value, units );
+    this.addChild( this.valueNode );
+
+    // close button
+    this.closeButton = new Image( closeButtonImage );
+    this.addChild( this.closeButton );
+
+    // zoom buttons // TODO: Add listener functions
+    this.zoomInButtonNode = new ZoomButton( {
+      radius: 5
+    } );
+    this.addChild( this.zoomInButtonNode );
+
+    this.zoomOutButtonNode = new ZoomButton( {
+      in: false,
+      radius: 5
+    } );
+    this.addChild( this.zoomOutButtonNode );
+    //this.updateZoomButtons();
+
+    // interactivity
+    this.closeButton.addInputListener( new ButtonListener( {
+      down: function( event ) {
+        meter.visible = false;
+      }
+    } ) );
+
+    // TODO
+    //ActionListener zoomListener = new ActionListener() {
+    //  public void actionPerformed( ActionEvent event ) {
+    //    updateExponent();
+    //  }
+    //};
+    //zoomInButtonNode.addActionListener( zoomListener );
+    //zoomOutButtonNode.addActionListener( zoomListener );
+    //addInputEventListener( new CursorHandler() );
+    //addInputEventListener( new WorldLocationDragHandler( meter.locationProperty, this, mvt ) );
+
+    // observers
+    // value
+    meter.valueProperty.link( function( value ) {
+      thisNode.setValue( value );
+    } );
+
+    // location
+    // TODO: Linking now, but meters are not to be dragable at this time.  Note that if decide to unlink, set initial position elsewhere.
+    meter.locationProperty.link( function( location ) {
+      thisNode.translation = modelViewTransform.modelToViewPosition( location );
+    } );
+    //meter.locationProperty.addObserver( new SimpleObserver() {
+    //  public void update() {
+    //    setOffset( mvt.modelToView( meter.locationProperty.get() ) );
+    //  }
+    //} );
+
+    // visibility
+    //meter.visibleProperty.link( function( visible ) {
+    //  thisNode.setVisible( visible );
+    //} );
+
+    // exponent
+    this.exponentProperty.link( function() {
+      thisNode.handleExponentChanged();
+    } );
   }
-  
-  return inherit( Node, BarMeterNode);
+
+  inherit( Node, BarMeterNode, {
+
+    /**
+     * When the meter first becomes visible, autoscale.
+     *
+     * @param {boolean} visible
+     */
+    setVisible: function( visible ) {
+      if ( visible !== this.visible ) {
+        this.visible = visible;
+        if ( visible && !this.hasBeenVisibleProperty.value ) {
+          this.hasBeenVisibleProperty.set( true );
+          this.updateExponent();
+        }
+      }
+    },
+
+    /**
+     * Sets the value displayed by the meter.
+     * Updates the bar and the value below the meter.
+     *
+     * @param {number} value
+     */
+    setValue: function( value ) {
+      if ( value < 0 ) {
+        console.error( "value must be >= 0 : " + value );
+      }
+      if ( value !== this.value ) {
+
+        this.value = value;
+
+        // update components
+        this.barNode.setValue( value );
+        this.overloadIndicatorNode.setValue( value );
+        this.valueNode.update( value );
+
+        this.updateLayout();
+        this.updateZoomButtons();
+      }
+    },
+
+    /**
+     * Update the layout of the BarMeterNode.  All offsets for individual node placement determined empirically.
+     */
+    updateLayout: function() {
+
+      var x = 0;
+      var y = 0;
+      this.trackNode.translation = new Vector2( x, y );
+
+      // bar inside track
+      this.barNode.translation = this.trackNode.translation;
+
+      // max tick mark at top of track
+      x = -this.maxTickMarkNode.bounds.width;
+      y = this.trackNode.translation.y;
+      this.maxTickMarkNode.translation = new Vector2( x, y );
+
+      // min tick mark at bottom of track
+      x = -this.minTickMarkNode.bounds.width;
+      y = this.trackNode.bounds.maxY;
+      this.minTickMarkNode.translation = new Vector2( x, y );
+
+      // max label centered on max tick
+      x = this.maxTickMarkNode.bounds.minX - this.maxLabelNode.bounds.width - 2;
+      y = this.maxTickMarkNode.bounds.centerY - ( this.maxLabelNode.bounds.height / 2 );
+      this.maxLabelNode.translation = new Vector2( x, y );
+
+      // min label centered on min tick
+      x = this.minTickMarkNode.bounds.minX - this.minLabelNode.bounds.width - 2;
+      y = this.minTickMarkNode.bounds.centerY - ( this.minLabelNode.bounds.height / 2 );
+      this.minLabelNode.translation = new Vector2( x, y );
+
+      // overload indicator centered above track
+      x = this.trackNode.bounds.centerX;
+      y = this.trackNode.bounds.minY - this.overloadIndicatorNode.bounds.height - 1;
+      this.overloadIndicatorNode.translation = new Vector2( x, y );
+
+      // title centered below track
+      x = this.trackNode.bounds.centerX - ( this.titleNode.bounds.width / 2 );
+      y = this.minLabelNode.bounds.maxY + 25;
+      this.titleNode.translation = new Vector2( x, y );
+
+      // value centered below title
+      x = this.titleNode.bounds.centerX - ( this.valueNode.bounds.width / 2 );
+      y = this.titleNode.bounds.maxY + 25;
+      this.valueNode.translation = new Vector2( x, y );
+
+      // close button at upper right of track
+      x = this.trackNode.bounds.maxX + 2;
+      y = this.trackNode.bounds.minY;
+      this.closeButton.translation = new Vector2( x, y );
+
+      // zoom-in button below max label
+      x = this.maxLabelNode.bounds.maxX - this.zoomInButtonNode.bounds.width;
+      y = this.maxLabelNode.bounds.maxY + 5;
+      this.zoomInButtonNode.translation = new Vector2( x, y );
+
+      // zoom-out button below zoom-in button
+      x = this.zoomInButtonNode.translation.x;
+      y = this.zoomInButtonNode.bounds.maxY + 1;
+      this.zoomOutButtonNode.translation = new Vector2( x, y );
+    },
+
+    /**
+     * At most one of the zoom buttons is enabled.
+     * If the bar is empty, neither button is enabled.
+     * If the bar is less than 10% full, the zoom in button is enabled.
+     * If the bar is overflowing, the zoom out button is enabled.
+     */
+    updateZoomButtons: function() {
+      var value = this.value;
+      var mantissa = value / Math.pow( 10, this.exponentProperty.value );
+      var plusEnabled = ( value !== 0 ) && ( mantissa < 0.1 );
+      var minusEnabled = ( value !== 0 ) && ( mantissa > 1 );
+      this.zoomInButtonNode.enabled = plusEnabled;
+      this.zoomOutButtonNode.enabled = minusEnabled;
+    },
+
+    /**
+     * Sets the exponent to a value that makes the mantissa >= 0.1.
+     */
+    updateExponent: function() {
+      if ( this.value !== 0 ) {
+        var exponent = 0;
+        while ( ( this.value / Math.pow( 10, exponent ) ) < 0.1 ) {
+          exponent--;
+        }
+        this.exponentProperty.set( exponent );
+      }
+    },
+
+    // Sets the exponent used for the value and max label.
+    handleExponentChanged: function() {
+
+      var exponent = this.exponentProperty.value;
+
+      // update components
+      var maxValue = Math.pow( 10, exponent );
+      this.barNode.setMaxValue( maxValue );
+      this.overloadIndicatorNode.setMaxValue( maxValue );
+      this.maxLabelNode.update( exponent );
+      this.valueNode.exponent = exponent; // TODO: This doesn't do anything.  Exponent cannot be changed easily with ScientificNotationNode.
+      this.valueNode.update( this.value );
+      //this.valueNode.update( exponent );
+
+      this.updateLayout();
+      this.updateZoomButtons();
+
+    },
+
+    /**
+     * Sets the color used to fill the bar.
+     *
+     * @param color
+     */
+    setBarColor: function( color ) {
+      this.barNode.fill = color;
+      this.overloadIndicatorNode.setArrowFillColor( color );
+    }
+  }, {
+
+    /**
+     * Factory constructor for a CapacitanceMeterNode.
+     *
+     * @param {CapacitanceMeter} meter
+     * @param {CLModelViewTransform3D} modelViewTransform
+     * @param {string} label
+     * @constructor
+     */
+    CapacitanceMeterNode: function( meter, modelViewTransform, label ) {
+      return new BarMeterNode( meter, modelViewTransform, CLConstants.CAPACITANCE_COLOR, label, "0.00", CLConstants.CAPACITANCE_METER_VALUE_EXPONENT, unitsFaradsString );
+    },
+
+    /**
+     * Factory constructor for a CapacitanceMeterNode.
+     *
+     * @param {PlateChargeMeter} meter
+     * @param {CLModelViewTransform3D} modelViewTransform
+     * @param {string} label
+     * @constructor
+     */
+    PlateChargeMeterNode: function( meter, modelViewTransform, label ) {
+      return new PlateChargeMeterNode( meter, modelViewTransform, label );
+    },
+
+    /**
+     * Factory constructor for a StoredEnergyMeterNode.
+     * @param {StoredEnergyMeter} meter
+     * @param {CLModelViewTransform3D} modelViewTransform
+     * @param {string} label
+     * @constructor
+     */
+    StoredEnergyMeterNode: function( meter, modelViewTransform, label ) {
+      return new BarMeterNode( meter, modelViewTransform, CLConstants.STORED_ENERGY_COLOR, label, "0.00", CLConstants.STORED_ENERGY_METER_VALUE_EXPONENT, unitsJoulesString );
+    }
+
+  } );
+
+  /**
+   * Constructor for the PlateChargeMeterNode.  This needs its own subclass because this node requires a unique
+   * setValue function.
+   *
+   * @param {PlateChargeMeter} meter
+   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {string} label
+   * @constructor
+   */
+  function PlateChargeMeterNode( meter, modelViewTransform, label ) {
+    BarMeterNode.call( this, meter, modelViewTransform, CLConstants.POSITIVE_CHARGE_COLOR, label, "0.00", CLConstants.PLATE_CHARGE_METER_VALUE_EXPONENT, unitsCoulombsString );
+  }
+
+  inherit( BarMeterNode, PlateChargeMeterNode, {
+
+    // This meter displays absolute value, and changes color to indicate positive or negative charge.
+    setValue: function( value ) {
+      BarMeterNode.prototype.setValue.call( this, Math.abs( value ) );
+      this.setBarColor( ( value >= 0 ) ? CLConstants.POSITIVE_CHARGE_COLOR : CLConstants.NEGATIVE_CHARGE_COLOR );
+    }
+  } );
+
+  return BarMeterNode;
+
 } );

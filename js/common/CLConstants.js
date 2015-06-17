@@ -10,6 +10,7 @@ define( function( require ) {
   // modules
   var Range = require( 'DOT/Range' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
 
   // constants
   var PLATE_WIDTH_RANGE = new Range( 0.01, 0.02, 0.01 ); // meters
@@ -104,7 +105,14 @@ define( function( require ) {
     },
 
     // capacitance control
-    CAPACITANCE_CONTROL_EXPONENT: -13
+    CAPACITANCE_CONTROL_EXPONENT: -13,
+
+    // colors used throughout the sim, each representing a physical quantity
+    CAPACITANCE_COLOR: 'green',
+    E_FIELD_COLOR: 'black',
+    STORED_ENERGY_COLOR: 'yellow',
+    POSITIVE_CHARGE_COLOR: PhetColorScheme.RED_COLORBLIND,
+    NEGATIVE_CHARGE_COLOR: 'blue'
 
   };
 } );

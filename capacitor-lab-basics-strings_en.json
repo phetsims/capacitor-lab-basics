@@ -71,6 +71,24 @@
   "view": {
     "value": "View"
   },
+  "units.farads": {
+    "value": "F"
+  },
+  "units.coulombs": {
+    "value": "C"
+  },
+  "coulombs": {
+    "value": "Coulombs"
+  },
+  "farads": {
+    "value": "Farads"
+  },
+  "joules": {
+    "value": "Joules"
+  },
+  "units.joules": {
+    "value": "J"
+  },
   "units.volts": {
     "value": " V"
   },

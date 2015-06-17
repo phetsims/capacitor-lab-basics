@@ -31,9 +31,14 @@ define( function( require ) {
       value: valueFunction( circuit )
     } );
 
+    var thisMeter = this;
+
     this.circuit = circuit;
     this.valueFunction = valueFunction;
 
+    circuit.capacitor.multilink( ['plateSize', 'plateSeparation', 'platesVoltage' ], function() {
+      thisMeter.updateValue();
+    } );
     // change the value when the circuit changes TODO
     //circuitChangeListener = new CircuitChangeListener() {
     //  public void circuitChanged() {
@@ -85,7 +90,7 @@ define( function( require ) {
     },
 
     updateValue: function() {
-      this.valueProperty = this.valueFunction( this.circuit );
+      this.value = this.valueFunction( this.circuit );
     }
 
   }, {

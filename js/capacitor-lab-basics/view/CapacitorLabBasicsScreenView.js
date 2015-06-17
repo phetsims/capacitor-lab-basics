@@ -16,8 +16,12 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var CircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/CircuitNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
+  var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
 
   // Strings
+  var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
+  var plateChargeTopString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge.top' );
+  var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
   //var connectBatteryString = require( 'string!CAPACITOR_LAB/connectBattery' );
   //var disconnectBatteryString = require( 'string!CAPACITOR_LAB/disconnectBattery' );
   // checkbox panel strings
@@ -25,7 +29,6 @@ define( function( require ) {
   //var plateChargeString = require( 'string!CAPACITOR_LAB/plateCharges' );
   //var eFieldLinesString = require( 'string!CAPACITOR_LAB/eFieldLines' );
   //var metersTitleString = require( 'string!CAPACITOR_LAB/meters' );
-  //var capMeterString = require( 'string!CAPACITOR_LAB/capacitance' );
   //var chargeMeterString = require( 'string!CAPACITOR_LAB/plateCharge' );
   //var eMeterString = require( 'string!CAPACITOR_LAB/storedEnergy' );
   //var voltMeterString = require( 'string!CAPACITOR_LAB/voltmeter' );
@@ -57,11 +60,18 @@ define( function( require ) {
     var circuitNode = new CircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisible,
       model.eFieldVisible, maxPlateCharge, maxEffectiveEField );
 
+    // meters
+    var capacitanceMeterNode = new BarMeterNode.CapacitanceMeterNode( model.capacitanceMeter, this.modelViewTransform, capacitanceString );
+    var plateChargeMeterNode = new BarMeterNode.PlateChargeMeterNode( model.plateChargeMeter, this.modelViewTransform, plateChargeTopString );
+    var storedEnergyMeterNode = new BarMeterNode.StoredEnergyMeterNode( model.storedEnergyMeter, this.modelViewTransform, storedEnergyString );
+    //VoltmeterNode voltmeterNode = new VoltmeterNode( model.voltmeter, mvt );
+    //EFieldDetectorNode eFieldDetectorNode = new EFieldDetectorNode( model.eFieldDetector, mvt, eFieldReferenceMagnitude, globalProperties.dev, eFieldDetectorSimplified );
+
     // rendering order
     this.addChild( circuitNode );
-    //addChild( capacitanceMeterNode );
-    //addChild( plateChargeMeterNode );
-    //addChild( storedEnergyMeterNode );
+    this.addChild( capacitanceMeterNode );
+    this.addChild( plateChargeMeterNode );
+    this.addChild( storedEnergyMeterNode );
     //addChild( eFieldDetectorNode );
     //addChild( voltmeterNode );
     //addChild( shapesDebugParentNode );
