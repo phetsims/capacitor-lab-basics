@@ -18,6 +18,9 @@ define( function( require ) {
   var Bounds2 = require( 'DOT/Bounds2' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
   var CapacitorLabBasicsVisibilityControlPanel = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/control/CapacitorLabBasicsVisibilityControlPanel' );
+  var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  var PlayPauseButton = require( 'SCENERY_PHET/buttons/PlayPauseButton' );
+  var StepButton = require( 'SCENERY_PHET/buttons/StepButton' );
 
   // Strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
@@ -74,6 +77,35 @@ define( function( require ) {
     var capacitorLabBasicsVisibilityControlPanel = new CapacitorLabBasicsVisibilityControlPanel( model, minWidth );
     capacitorLabBasicsVisibilityControlPanel.translation = this.layoutBounds.rightCenter.minusXY( capacitorLabBasicsVisibilityControlPanel.width + 10, 0 );
 
+    // play/pause button
+    this.playPauseButton = new PlayPauseButton( model.playingProperty,
+      {
+        bottom:  this.layoutBounds.bottom - 20,
+        centerX: this.layoutBounds.centerX - 25,
+        radius: 25
+      } );
+
+    // step button
+    this.stepButton = new StepButton(
+      function() {
+        model.manualStep();
+      },
+      model.playingProperty,
+      {
+        centerY: this.playPauseButton.centerY,
+        centerX: this.layoutBounds.centerX + 25,
+        radius: 19
+      }
+    );
+
+    // reset buton
+    this.resetAllButton = new ResetAllButton( {
+      listener: function() { model.reset(); },
+      bottom: this.layoutBounds.bottom - 20,
+      right:  this.layoutBounds.right - 30,
+      radius: 25
+    } );
+
     // rendering order
     this.addChild( circuitNode );
     this.addChild( capacitanceMeterNode );
@@ -83,6 +115,9 @@ define( function( require ) {
     //addChild( voltmeterNode );
     //addChild( shapesDebugParentNode );
     this.addChild( capacitorLabBasicsVisibilityControlPanel );
+    this.addChild( this.playPauseButton );
+    this.addChild( this.stepButton );
+    this.addChild( this.resetAllButton );
   }
 
   return inherit( ScreenView, CapacitorLabBasicsScreenView );

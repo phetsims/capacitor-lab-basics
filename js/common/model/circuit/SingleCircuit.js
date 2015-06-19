@@ -66,7 +66,7 @@ define( function( require ) {
 
     reset: function() {
       //super.reset()
-      ParallelCircuit.prototype.reset.call(); // TODO: Make sure this is correct and goes all the way to AbstractCircuit.
+      ParallelCircuit.prototype.reset.call( this ); // TODO: Make sure this is correct and goes all the way to AbstractCircuit.
       this.batteryConnectedProperty.reset();
     },
 

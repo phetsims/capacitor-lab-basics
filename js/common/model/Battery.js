@@ -73,13 +73,6 @@ define( function( require ) {
   return inherit( PropertySet, Battery, {
 
     /**
-     * Reset function for this model element.
-     */
-    reset: function() {
-      this.voltageProperty.reset();
-    },
-
-    /**
      * Convenience function to get the polarity from the object literal based on the voltage.
      *
      * @param {number} voltage

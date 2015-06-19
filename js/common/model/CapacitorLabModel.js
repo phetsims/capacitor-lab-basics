@@ -31,10 +31,31 @@ define( function( require ) {
       storedEnergyMeterVisible: false,
       voltmeterVisible: false,
       eFieldDetectorVisible: false,
-      valuesVisible: true
+      valuesVisible: true,
+      playing: true // is the sim running or paused?
     } );
 
   }
 
-  return inherit( PropertySet, CapacitorLabModel );
+  return inherit( PropertySet, CapacitorLabModel, {
+
+    /**
+     * Step function for this sim.
+     *
+     * @param {number} dt
+     */
+    step: function( dt ) {
+      if ( this.playing ) {
+        // TODO
+      }
+    },
+
+    /**
+     * Manually step one frame, assuming 60fps.
+     */
+    manualStep: function() {
+      // TODO
+    }
+
+  } );
 } );
