@@ -17,6 +17,7 @@ define( function( require ) {
   var CircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/CircuitNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
+  var CapacitorLabBasicsVisibilityControlPanel = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/control/CapacitorLabBasicsVisibilityControlPanel' );
 
   // Strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
@@ -57,8 +58,8 @@ define( function( require ) {
     //var eFieldReferenceMagnitude = model.getEFieldReferenceMagnitude();
 
     // circuit
-    var circuitNode = new CircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisible,
-      model.eFieldVisible, maxPlateCharge, maxEffectiveEField );
+    var circuitNode = new CircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisibleProperty,
+      model.eFieldVisibleProperty, model.valuesVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
     // meters
     var capacitanceMeterNode = new BarMeterNode.CapacitanceMeterNode( model.capacitanceMeter, this.modelViewTransform, capacitanceString );
@@ -66,6 +67,12 @@ define( function( require ) {
     var storedEnergyMeterNode = new BarMeterNode.StoredEnergyMeterNode( model.storedEnergyMeter, this.modelViewTransform, storedEnergyString );
     //VoltmeterNode voltmeterNode = new VoltmeterNode( model.voltmeter, mvt );
     //EFieldDetectorNode eFieldDetectorNode = new EFieldDetectorNode( model.eFieldDetector, mvt, eFieldReferenceMagnitude, globalProperties.dev, eFieldDetectorSimplified );
+
+    // control
+    // TODO: Temporary minimum width calculation for the contorl panels.
+    var minWidth = storedEnergyMeterNode.right - plateChargeMeterNode.left;
+    var capacitorLabBasicsVisibilityControlPanel = new CapacitorLabBasicsVisibilityControlPanel( model, minWidth );
+    capacitorLabBasicsVisibilityControlPanel.translation = this.layoutBounds.rightCenter.minusXY( capacitorLabBasicsVisibilityControlPanel.width + 10, 0 );
 
     // rendering order
     this.addChild( circuitNode );
@@ -75,6 +82,7 @@ define( function( require ) {
     //addChild( eFieldDetectorNode );
     //addChild( voltmeterNode );
     //addChild( shapesDebugParentNode );
+    this.addChild( capacitorLabBasicsVisibilityControlPanel );
   }
 
   return inherit( ScreenView, CapacitorLabBasicsScreenView );

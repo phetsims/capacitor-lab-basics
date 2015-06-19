@@ -29,8 +29,11 @@ define( function( require ) {
     Node.call( this );
     var thisNode = this;
     this.wire = wire;
-
     var wireShapes = wire.createShapes(); // TODO: Static for now, will need to be dynamic to support wire shape changes.
+    //var wireBounds = wire.shapeCreator.createWireShape( WIRE_LINE_WIDTH / 15000 );
+    //wireBounds.forEach( function( bounds ) {
+    //  thisNode.addChild( new Rectangle( bounds, {fill: 'rgba( 1, 0, 0, 0.75 )' } ) );
+    //} );
 
     wireShapes.forEach( function( shape ) {
       thisNode.addChild( new Path( shape, { lineWidth: WIRE_LINE_WIDTH, fill: WIRE_FILL, stroke: WIRE_STROKE } ) );

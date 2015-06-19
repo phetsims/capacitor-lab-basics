@@ -36,7 +36,16 @@ define( function( require ) {
   var LINE_START_LOCATION = new Vector2( 0, 0 );
   var LINE_END_LOCATION = new Vector2( 0, LINE_LENGTH );
 
-  function PlateAreaDragHandleNode( capacitor, modelViewTransform, valueRange ) {
+  /**
+   * Constructor.
+   *
+   * @param {Capacitor} capacitor
+   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {Range} valueRange
+   * @param {Property.<boolean>} valuesVisibleProperty
+   * @constructor
+   */
+  function PlateAreaDragHandleNode( capacitor, modelViewTransform, valueRange, valuesVisibleProperty ) {
 
     Node.call( this );
     var thisNode = this;
@@ -54,7 +63,7 @@ define( function( require ) {
     // value
     var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
     // TODO: Is this the best way to handle superscripts?
-    this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, unitsMillimetersString + '<sup>' + 2 + '</sup>' );
+    this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, unitsMillimetersString + '<sup>' + 2 + '</sup>', valuesVisibleProperty );
 
     // rendering order
     this.addChild( lineNode );

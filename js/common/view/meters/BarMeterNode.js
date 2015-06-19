@@ -26,10 +26,7 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var ScientificNotationNode = require( 'SCENERY_PHET/ScientificNotationNode' );
-  var ZoomButton = require( 'SCENERY_PHET/buttons/ZoomButton' );
-  var Image = require( 'SCENERY/nodes/Image' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
-  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
 
   // constants
   // track
@@ -65,9 +62,6 @@ define( function( require ) {
   // overload indicator
   var OVERLOAD_INDICATOR_WIDTH = 0.75 * TRACK_SIZE.width;
   var OVERLOAD_INDICATOR_HEIGHT = 15;
-
-  // images
-  var closeButtonImage = require( 'image!CAPACITOR_LAB_BASICS/closeButton.png' );
 
   // strings
   var unitsFaradsString = require( 'string!CAPACITOR_LAB_BASICS/units.farads' );
@@ -297,7 +291,6 @@ define( function( require ) {
 
     this.value = meter.value;
     this.exponentProperty = new Property( exponent );
-    this.hasBeenVisibleProperty = new Property( false );
 
     // track
     this.trackNode = new TrackNode();
@@ -343,41 +336,6 @@ define( function( require ) {
     this.valueNode = new TimesTenValueNode( meter.valueProperty, this.exponentProperty.value, units );
     this.addChild( this.valueNode );
 
-    // close button
-    this.closeButton = new Image( closeButtonImage );
-    this.addChild( this.closeButton );
-
-    // zoom buttons // TODO: Add listener functions
-    this.zoomInButtonNode = new ZoomButton( {
-      radius: 5
-    } );
-    this.addChild( this.zoomInButtonNode );
-
-    this.zoomOutButtonNode = new ZoomButton( {
-      in: false,
-      radius: 5
-    } );
-    this.addChild( this.zoomOutButtonNode );
-    //this.updateZoomButtons();
-
-    // interactivity
-    this.closeButton.addInputListener( new ButtonListener( {
-      down: function( event ) {
-        meter.visible = false;
-      }
-    } ) );
-
-    // TODO
-    //ActionListener zoomListener = new ActionListener() {
-    //  public void actionPerformed( ActionEvent event ) {
-    //    updateExponent();
-    //  }
-    //};
-    //zoomInButtonNode.addActionListener( zoomListener );
-    //zoomOutButtonNode.addActionListener( zoomListener );
-    //addInputEventListener( new CursorHandler() );
-    //addInputEventListener( new WorldLocationDragHandler( meter.locationProperty, this, mvt ) );
-
     // observers
     // value
     meter.valueProperty.link( function( value ) {
@@ -396,9 +354,13 @@ define( function( require ) {
     //} );
 
     // visibility
-    //meter.visibleProperty.link( function( visible ) {
-    //  thisNode.setVisible( visible );
-    //} );
+    meter.visibleProperty.link( function( visible ) {
+      thisNode.visible = visible;
+    } );
+
+    meter.valueVisibleProperty.link( function( visible ) {
+      thisNode.valueNode.visible = visible;
+    } );
 
     // exponent
     this.exponentProperty.link( function() {
@@ -407,21 +369,6 @@ define( function( require ) {
   }
 
   inherit( Node, BarMeterNode, {
-
-    /**
-     * When the meter first becomes visible, autoscale.
-     *
-     * @param {boolean} visible
-     */
-    setVisible: function( visible ) {
-      if ( visible !== this.visible ) {
-        this.visible = visible;
-        if ( visible && !this.hasBeenVisibleProperty.value ) {
-          this.hasBeenVisibleProperty.set( true );
-          this.updateExponent();
-        }
-      }
-    },
 
     /**
      * Sets the value displayed by the meter.
@@ -443,7 +390,6 @@ define( function( require ) {
         this.valueNode.update( value );
 
         this.updateLayout();
-        this.updateZoomButtons();
       }
     },
 
@@ -494,20 +440,6 @@ define( function( require ) {
       y = this.titleNode.bounds.maxY + 25;
       this.valueNode.translation = new Vector2( x, y );
 
-      // close button at upper right of track
-      x = this.trackNode.bounds.maxX + 2;
-      y = this.trackNode.bounds.minY;
-      this.closeButton.translation = new Vector2( x, y );
-
-      // zoom-in button below max label
-      x = this.maxLabelNode.bounds.maxX - this.zoomInButtonNode.bounds.width;
-      y = this.maxLabelNode.bounds.maxY + 5;
-      this.zoomInButtonNode.translation = new Vector2( x, y );
-
-      // zoom-out button below zoom-in button
-      x = this.zoomInButtonNode.translation.x;
-      y = this.zoomInButtonNode.bounds.maxY + 1;
-      this.zoomOutButtonNode.translation = new Vector2( x, y );
     },
 
     /**
@@ -553,7 +485,6 @@ define( function( require ) {
       //this.valueNode.update( exponent );
 
       this.updateLayout();
-      this.updateZoomButtons();
 
     },
 

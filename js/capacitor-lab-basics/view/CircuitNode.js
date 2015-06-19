@@ -32,11 +32,12 @@ define( function( require ) {
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
+   * @param {Property.<boolean>} valuesVisibleProperty
    * @param {number} maxPlateCharge
    * @param {number} maxEffectiveEField
    * @constructor
    */
-  function CircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, maxPlateCharge,
+  function CircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, valuesVisibleProperty, maxPlateCharge,
                         maxEffectiveEField ) {
 
     Node.call( this ); // supertype constructor
@@ -55,8 +56,8 @@ define( function( require ) {
     this.bottomWireNode = new WireNode( circuit.getBottomWire() ); // @private
 
     // drag handles
-    var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE );
-    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE );
+    var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE, valuesVisibleProperty );
+    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE, valuesVisibleProperty  );
 
     // controls
     var batteryConnectionButtonNode = new BatteryConnectionButtonNode( circuit );

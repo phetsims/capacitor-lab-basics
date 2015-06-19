@@ -11,6 +11,9 @@
   "chargeMeterTitle": {
     "value": "Top Plate Charge (C)"
   },
+  "topPlateCharge": {
+    "value": "Top Plate Charge"
+  },
   "connectBattery": {
     "value": "Connect Battery"
   },
@@ -65,8 +68,14 @@
   "showVals": {
     "value": "Show Values"
   },
+  "values": {
+    "value": "Values"
+  },
   "storedEnergy": {
     "value": "Stored Energy"
+  },
+  "graphs": {
+    "value": "Graphs"
   },
   "view": {
     "value": "View"

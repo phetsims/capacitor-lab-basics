@@ -33,12 +33,13 @@ define( function( require ) {
    * @param {string} label
    * @param {number} value
    * @param {string} units
-   * @param {string} format
+   * @param {Property.<boolean>} valueVisibleProperty
    * @constructor
    */
-  function DragHandleValueNode( label, value, units ) {
+  function DragHandleValueNode( label, value, units, valueVisibleProperty ) {
 
     Node.call( this );
+    var thisNode = this;
 
     this.units = units;
 
@@ -53,6 +54,11 @@ define( function( require ) {
     this.valueNode.translation = new Vector2( 0, labelNode.bottom + 10 );
 
     this.setValue( value );
+
+    // listen for visibility updates from the model.
+    valueVisibleProperty.link( function( visible ) {
+      thisNode.valueNode.visible = visible;
+    } );
 
   }
 

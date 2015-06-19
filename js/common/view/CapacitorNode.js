@@ -13,7 +13,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PlateNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateNode' );
-  //var EFieldNode = require( 'CAPACITOR_LAB_BASICS/common/view/EFieldNode' );
+  var EFieldNode = require( 'CAPACITOR_LAB_BASICS/common/view/EFieldNode' );
 
   /**
    * Constructor for a CapacitorNode.
@@ -37,17 +37,25 @@ define( function( require ) {
     // child nodes
     this.topPlateNode = PlateNode.TopPlateNode( capacitor, modelViewTransform, maxPlateCharge );
     this.bottomPlateNode = PlateNode.BottomPlateNode( capacitor, modelViewTransform, maxPlateCharge );
-    // Performance is too poor. Commenting out for now.
-    //var eFieldNode = new EFieldNode( capacitor, modelViewTransform, maxEffectiveEField );
+    var eFieldNode = new EFieldNode( capacitor, modelViewTransform, maxEffectiveEField );
 
     // rendering order
     this.addChild( this.bottomPlateNode );
-    //this.addChild( eFieldNode ); // Performance is too poor, commenting out for now.
+    this.addChild( eFieldNode ); // Performance is too poor, commenting out for now.
     this.addChild( this.topPlateNode );
 
-    // observers.
+    // observers
     capacitor.multilink( ['plateSize', 'plateSeparation' ], function() {
       thisNode.updateGeometry();
+    } );
+
+    plateChargeVisibleProperty.link( function( visible ) {
+      thisNode.topPlateNode.setChargeVisible( visible );
+      thisNode.bottomPlateNode.setChargeVisible( visible );
+    } );
+
+    eFieldVisibleProperty.link( function( visible ) {
+      eFieldNode.setVisible( visible );
     } );
 
   }

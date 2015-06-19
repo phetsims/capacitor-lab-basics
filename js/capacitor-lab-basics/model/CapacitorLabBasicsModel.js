@@ -37,15 +37,12 @@ define( function( require ) {
 
   // Capacitance meter
   var CAPACITANCE_METER_LOCATION = new Vector3( 0.038, 0.0017, 0 );
-  var CAPACITANCE_METER_VISIBLE = false;
 
   // Plate Charge meter
   var PLATE_CHARGE_METER_LOCATION = new Vector3( 0.049, 0.0017, 0 );
-  var PLATE_CHARGE_METER_VISIBLE = false;
 
   // Stored Energy meter
   var STORED_ENERGY_METER_LOCATION = new Vector3( 0.06, 0.0017, 0 );
-  var STORED_ENERGY_METER_VISIBLE = false;
 
   // E-Field Detector
   var EFIELD_DETECTOR_BODY_LOCATION = new Vector3( 0.043, 0.041, 0 );
@@ -90,9 +87,9 @@ define( function( require ) {
     this.circuit = new SingleCircuit( circuitConfig, BATTERY_CONNECTED );
     this.worldBounds = CLConstants.CANVAS_RENDERING_SIZE.toBounds();
 
-    this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, CAPACITANCE_METER_VISIBLE );
-    this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.worldBounds, PLATE_CHARGE_METER_LOCATION, PLATE_CHARGE_METER_VISIBLE );
-    this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.worldBounds, STORED_ENERGY_METER_LOCATION, STORED_ENERGY_METER_VISIBLE );
+    this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, this.capacitanceMeterVisibleProperty, this.valuesVisibleProperty );
+    this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.worldBounds, PLATE_CHARGE_METER_LOCATION, this.plateChargeMeterVisibleProperty, this.valuesVisibleProperty );
+    this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.worldBounds, STORED_ENERGY_METER_LOCATION, this.storedEnergyMeterVisibleProperty, this.valuesVisibleProperty );
 
     this.eFieldDetector = new EFieldDetector( this.circuit, this.worldBounds, modelViewTransform, EFIELD_DETECTOR_BODY_LOCATION, EFIELD_DETECTOR_PROBE_LOCATION,
       EFIELD_DETECTOR_VISIBLE, EFIELD_PLATE_VECTOR_VISIBLE, EFIELD_DIELECTRIC_VECTOR_VISIBLE,

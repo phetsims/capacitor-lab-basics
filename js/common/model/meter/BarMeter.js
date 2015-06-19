@@ -19,18 +19,21 @@ define( function( require ) {
    * @param {AbstractCircuit} circuit
    * @param {Bounds2} worldBounds
    * @param {Vector3} location
-   * @param {boolean} visible
+   * @param {Property.<boolean>} visibleProperty - model property that determines if the entire meter is visible.
+   * @param {Property.<boolean>} valueVisibleProperty - model property that determines if the values are visible
    * @param {Function} valueFunction
    * @constructor
    */
-  function BarMeter( circuit, worldBounds, location, visible, valueFunction ) {
+  function BarMeter( circuit, worldBounds, location, visibleProperty, valueVisibleProperty, valueFunction ) {
 
     PropertySet.call( this, {
       location: location,
-      visible: visible,
       value: valueFunction( circuit )
     } );
-
+    // TODO: added outside of PropertySet because the property is held first in the model. Look into a nicer way of doing this.
+    // Best option is probably to take the properties out of CapacitorLabModel and just keep it here.
+    this.visibleProperty = visibleProperty;
+    this.valueVisibleProperty = valueVisibleProperty;
     var thisMeter = this;
 
     this.circuit = circuit;
@@ -48,35 +51,35 @@ define( function( require ) {
     //circuit.addCircuitChangeListener( circuitChangeListener );
   }
 
-    // Convenience class for capacitance meter
-  function CapacitanceMeter( circuit, worldBounds, location, visible ) {
-    BarMeter.call( this, circuit, worldBounds, location, visible,
-      function() {
-        return circuit.getTotalCapacitance();
-      } );
-  }
-
-  inherit( BarMeter, CapacitanceMeter );
-
-  // Convenience class for plate charge meter
-  function PlateChargeMeter( circuit, worldBounds, location, visible ) {
-    BarMeter.call( this, circuit, worldBounds, location, visible,
-      function() {
-        return circuit.getTotalCharge();
-      } );
-  }
-
-  inherit( BarMeter, PlateChargeMeter );
-
-  // Convenience class for stored energy meter
-  function StoredEnergyMeter( circuit, worldBounds, location, visible ) {
-    BarMeter.call( this, circuit, worldBounds, location, visible,
-      function() {
-        return circuit.getStoredEnergy();
-      } );
-  }
-
-  inherit( BarMeter, StoredEnergyMeter );
+  //  // Convenience class for capacitance meter
+  //function CapacitanceMeter( circuit, worldBounds, location, visibleProperty ) {
+  //  BarMeter.call( this, circuit, worldBounds, location, visibleProperty,
+  //    function() {
+  //      return circuit.getTotalCapacitance();
+  //    } );
+  //}
+  //
+  //inherit( BarMeter, CapacitanceMeter );
+  //
+  //// Convenience class for plate charge meter
+  //function PlateChargeMeter( circuit, worldBounds, location, visibleProperty ) {
+  //  BarMeter.call( this, circuit, worldBounds, location, visibleProperty,
+  //    function() {
+  //      return circuit.getTotalCharge();
+  //    } );
+  //}
+  //
+  //inherit( BarMeter, PlateChargeMeter );
+  //
+  //// Convenience class for stored energy meter
+  //function StoredEnergyMeter( circuit, worldBounds, location, visibleProperty ) {
+  //  BarMeter.call( this, circuit, worldBounds, location, visibleProperty,
+  //    function() {
+  //      return circuit.getStoredEnergy();
+  //    } );
+  //}
+  //
+  //inherit( BarMeter, StoredEnergyMeter );
 
   return inherit( PropertySet, BarMeter, {
 
@@ -98,22 +101,22 @@ define( function( require ) {
     /**
      * Factory functions for public access to specific constructors.
      */
-    CapacitanceMeter: function( circuit, worldBounds, location, visible ) {
-      return new BarMeter( circuit, worldBounds, location, visible,
+    CapacitanceMeter: function( circuit, worldBounds, location, visibleProperty, valueVisibleProperty ) {
+      return new BarMeter( circuit, worldBounds, location, visibleProperty, valueVisibleProperty,
         function() {
           return circuit.getTotalCapacitance();
         } );
     },
 
-    PlateChargeMeter: function( circuit, worldBounds, location, visible ) {
-      return new BarMeter( circuit, worldBounds, location, visible,
+    PlateChargeMeter: function( circuit, worldBounds, location, visibleProperty, valueVisibleProperty ) {
+      return new BarMeter( circuit, worldBounds, location, visibleProperty, valueVisibleProperty,
         function() {
           return circuit.getTotalCharge();
         } );
     },
 
-    StoredEnergyMeter: function( circuit, worldBounds, location, visible ) {
-      return new BarMeter( circuit, worldBounds, location, visible,
+    StoredEnergyMeter: function( circuit, worldBounds, location, visibleProperty,valueVisibleProperty ) {
+      return new BarMeter( circuit, worldBounds, location, visibleProperty, valueVisibleProperty,
         function() {
           return circuit.getStoredEnergy();
         } );

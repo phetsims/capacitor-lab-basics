@@ -41,9 +41,10 @@ define( function( require ) {
    * @param {Capacitor} capacitor
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {Range} valueRange
+   * @param {Property.<boolean>} valuesVisibleProperty
    * @constructor
    */
-  function PlateSeparationDragHandleNode( capacitor, modelViewTransform, valueRange ) {
+  function PlateSeparationDragHandleNode( capacitor, modelViewTransform, valueRange, valuesVisibleProperty ) {
 
     Node.call( this, PlateSeparationDragHandleNode );
     var thisNode = this;
@@ -60,7 +61,7 @@ define( function( require ) {
 
     // value
     var millimeters = UnitsUtils.metersToMillimeters( capacitor.plateSeparation );
-    this.valueNode = new DragHandleValueNode( separationString, millimeters, unitsMillimetersString );
+    this.valueNode = new DragHandleValueNode( separationString, millimeters, unitsMillimetersString, valuesVisibleProperty );
 
     // rendering order
     this.addChild( lineNode );
@@ -87,6 +88,7 @@ define( function( require ) {
     capacitor.plateSizeProperty.link( function() {
       thisNode.updateOffset();
     } );
+
   }
 
   return inherit( Node, PlateSeparationDragHandleNode, {

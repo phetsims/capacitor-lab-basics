@@ -116,7 +116,7 @@ define( function( require ) {
         return ParallelCircuit.prototype.getTotalVoltage.call( this );
       }
       else {
-        return this.capacitor.getPlatesVoltage();
+        return this.capacitor.platesVoltage;
       }
     },
 
