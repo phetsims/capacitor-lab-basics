@@ -42,44 +42,7 @@ define( function( require ) {
     circuit.capacitor.multilink( ['plateSize', 'plateSeparation', 'platesVoltage' ], function() {
       thisMeter.updateValue();
     } );
-    // change the value when the circuit changes TODO
-    //circuitChangeListener = new CircuitChangeListener() {
-    //  public void circuitChanged() {
-    //    updateValue();
-    //  }
-    //};
-    //circuit.addCircuitChangeListener( circuitChangeListener );
   }
-
-  //  // Convenience class for capacitance meter
-  //function CapacitanceMeter( circuit, worldBounds, location, visibleProperty ) {
-  //  BarMeter.call( this, circuit, worldBounds, location, visibleProperty,
-  //    function() {
-  //      return circuit.getTotalCapacitance();
-  //    } );
-  //}
-  //
-  //inherit( BarMeter, CapacitanceMeter );
-  //
-  //// Convenience class for plate charge meter
-  //function PlateChargeMeter( circuit, worldBounds, location, visibleProperty ) {
-  //  BarMeter.call( this, circuit, worldBounds, location, visibleProperty,
-  //    function() {
-  //      return circuit.getTotalCharge();
-  //    } );
-  //}
-  //
-  //inherit( BarMeter, PlateChargeMeter );
-  //
-  //// Convenience class for stored energy meter
-  //function StoredEnergyMeter( circuit, worldBounds, location, visibleProperty ) {
-  //  BarMeter.call( this, circuit, worldBounds, location, visibleProperty,
-  //    function() {
-  //      return circuit.getStoredEnergy();
-  //    } );
-  //}
-  //
-  //inherit( BarMeter, StoredEnergyMeter );
 
   return inherit( PropertySet, BarMeter, {
 
