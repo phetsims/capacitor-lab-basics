@@ -75,9 +75,6 @@ define( function( require ) {
     this.addChild( this.topWireNode );
     this.addChild( this.topCurrentIndicatorNode );
     this.addChild( this.bottomCurrentIndicatorNode );
-    //if ( dielectricVisible ) {
-    //  addChild( dielectricOffsetDragHandleNode );
-    //}
     this.addChild( plateSeparationDragHandleNode );
     this.addChild( plateAreaDragHandleNode );
     this.addChild( batteryConnectionButtonNode );

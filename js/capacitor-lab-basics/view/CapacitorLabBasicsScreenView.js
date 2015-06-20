@@ -72,10 +72,10 @@ define( function( require ) {
     //EFieldDetectorNode eFieldDetectorNode = new EFieldDetectorNode( model.eFieldDetector, mvt, eFieldReferenceMagnitude, globalProperties.dev, eFieldDetectorSimplified );
 
     // control
-    // TODO: Temporary minimum width calculation for the contorl panels.
+    // TODO: Temporary minimum width and placement calculations for the control panels.
     var minWidth = storedEnergyMeterNode.right - plateChargeMeterNode.left;
     var capacitorLabBasicsControlPanel = new CapacitorLabBasicsControlPanel( model, minWidth );
-    capacitorLabBasicsControlPanel.translation = this.layoutBounds.rightCenter.minusXY( capacitorLabBasicsControlPanel.width + 10, 0 );
+    capacitorLabBasicsControlPanel.translation = this.layoutBounds.rightCenter.minusXY( capacitorLabBasicsControlPanel.width + 10, 50 );
 
     // play/pause button
     this.playPauseButton = new PlayPauseButton( model.playingProperty,
