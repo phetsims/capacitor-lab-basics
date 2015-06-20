@@ -107,7 +107,7 @@ define( function( require ) {
       items.push( {
         content: new Text( asset.string, { font: CHECK_BOX_FONT } ),
         property: asset.property
-      } )
+      } );
     } );
     return items;
   }
