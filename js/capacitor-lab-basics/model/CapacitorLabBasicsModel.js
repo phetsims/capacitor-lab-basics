@@ -26,7 +26,7 @@ define( function( require ) {
 
   // constants
   // Circuit
-  var BATTERY_LOCATION = new Vector3( 0.005, 0.034, 0 ); // meters
+  var BATTERY_LOCATION = new Vector3( 0.010, 0.034, 0 ); // meters
   var BATTERY_CONNECTED = true;
   var CAPACITOR_X_SPACING = 0.025; // meters
   var CAPACITOR_Y_SPACING = 0; // meters
