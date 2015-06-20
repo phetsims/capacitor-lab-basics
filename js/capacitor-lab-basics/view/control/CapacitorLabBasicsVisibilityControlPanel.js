@@ -42,35 +42,38 @@ define( function( require ) {
    */
   function CapacitorLabBasicsVisibilityControlPanel( model, minWidth ) {
 
-    var viewCheckBoxItems = [
+    var viewAssets = [
       {
-        content: new Text( plateChargesString, { font: CHECK_BOX_FONT } ),
+        string: plateChargesString,
         property: model.plateChargesVisibleProperty
       },
       {
-        content: new Text( eFieldLinesString, { font: CHECK_BOX_FONT } ),
+        string: eFieldLinesString,
         property: model.eFieldVisibleProperty
       },
       {
-        content: new Text( valuesString, { font: CHECK_BOX_FONT } ),
+        string: valuesString,
         property: model.valuesVisibleProperty
       }
     ];
 
-    var graphsCheckBoxItems = [
+    var graphAssets = [
       {
-        content: new Text( capacitanceString, { font: CHECK_BOX_FONT } ),
+        string: capacitanceString,
         property: model.capacitanceMeterVisibleProperty
       },
       {
-        content: new Text( topPlateChargeString, { font: CHECK_BOX_FONT } ),
+        string: topPlateChargeString,
         property: model.plateChargeMeterVisibleProperty
       },
       {
-        content: new Text( storedEnergyString, { font: CHECK_BOX_FONT } ),
+        string: storedEnergyString,
         property: model.storedEnergyMeterVisibleProperty
       }
     ];
+
+    var viewCheckBoxItems = createCheckBoxItems( viewAssets );
+    var graphsCheckBoxItems = createCheckBoxItems( graphAssets );
 
     var viewVerticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems );
     var graphsVerticalCheckBoxGroup = new VerticalCheckBoxGroup( graphsCheckBoxItems );
@@ -92,6 +95,24 @@ define( function( require ) {
   }
 
   // convenience functions for constructing panels and layout boxes
+  /**
+   * Organize strings and properties into objects for each check box group.
+   *
+   * @param assets
+   * @returns {Array}
+   */
+  function createCheckBoxItems( assets ) {
+    var items = [];
+    assets.forEach( function( asset ) {
+      items.push( {
+        content: new Text( asset.string, { font: CHECK_BOX_FONT } ),
+        property: asset.property
+      } )
+    } );
+    return items;
+  }
+
+
   /**
    * Create an outlining control panel for a layout box with a minimum width.
    *
