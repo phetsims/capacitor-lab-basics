@@ -17,7 +17,7 @@ define( function( require ) {
   var CircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/CircuitNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
-  var CapacitorLabBasicsVisibilityControlPanel = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/control/CapacitorLabBasicsVisibilityControlPanel' );
+  var CapacitorLabBasicsControlPanel = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/control/CapacitorLabBasicsControlPanel' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var PlayPauseButton = require( 'SCENERY_PHET/buttons/PlayPauseButton' );
   var StepButton = require( 'SCENERY_PHET/buttons/StepButton' );
@@ -74,8 +74,8 @@ define( function( require ) {
     // control
     // TODO: Temporary minimum width calculation for the contorl panels.
     var minWidth = storedEnergyMeterNode.right - plateChargeMeterNode.left;
-    var capacitorLabBasicsVisibilityControlPanel = new CapacitorLabBasicsVisibilityControlPanel( model, minWidth );
-    capacitorLabBasicsVisibilityControlPanel.translation = this.layoutBounds.rightCenter.minusXY( capacitorLabBasicsVisibilityControlPanel.width + 10, 0 );
+    var capacitorLabBasicsControlPanel = new CapacitorLabBasicsControlPanel( model, minWidth );
+    capacitorLabBasicsControlPanel.translation = this.layoutBounds.rightCenter.minusXY( capacitorLabBasicsControlPanel.width + 10, 0 );
 
     // play/pause button
     this.playPauseButton = new PlayPauseButton( model.playingProperty,
@@ -114,7 +114,7 @@ define( function( require ) {
     //addChild( eFieldDetectorNode );
     //addChild( voltmeterNode );
     //addChild( shapesDebugParentNode );
-    this.addChild( capacitorLabBasicsVisibilityControlPanel );
+    this.addChild( capacitorLabBasicsControlPanel );
     this.addChild( this.playPauseButton );
     this.addChild( this.stepButton );
     this.addChild( this.resetAllButton );

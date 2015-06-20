@@ -40,7 +40,7 @@ define( function( require ) {
    * @param {number} minWidth - minimum width of the panels, calculated by layout in the screen view.
    * @constructor
    */
-  function CapacitorLabBasicsVisibilityControlPanel( model, minWidth ) {
+  function CapacitorLabBasicsControlPanel( model, minWidth ) {
 
     var viewAssets = [
       {
@@ -146,6 +146,6 @@ define( function( require ) {
     } );
   }
 
-  return inherit( LayoutBox, CapacitorLabBasicsVisibilityControlPanel );
+  return inherit( LayoutBox, CapacitorLabBasicsControlPanel );
 
 } );
