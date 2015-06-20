@@ -84,6 +84,8 @@ define( function( require ) {
     this.addChild( this.plateChargeControlNode );
 
     // layout
+    var x = 0;
+    var y = 0;
     // battery
     batteryNode.center = modelViewTransform.modelToViewPosition( circuit.battery.location );
 
@@ -108,9 +110,9 @@ define( function( require ) {
     this.bottomWireNode.translation = new Vector2( 0, 0 );
 
     // Connect/Disconnect Battery button
-    var x = batteryNode.bounds.minX;
+    x = batteryNode.bounds.minX;
     // TODO: The following is a placeholder until the current indicators are ported.
-    var y = this.topWireNode.bounds.minY - batteryConnectionButtonNode.bounds.minY - batteryConnectionButtonNode.bounds.height - 10;
+    y = this.topWireNode.bounds.minY - batteryConnectionButtonNode.bounds.minY - batteryConnectionButtonNode.bounds.height - 10;
     //var y = topCurrentIndicatorNode.getFullBoundsReference().getMinY() - batteryConnectionButtonNode.getFullBoundsReference().getHeight() - 10;
     batteryConnectionButtonNode.translation = new Vector2( x, y );
 

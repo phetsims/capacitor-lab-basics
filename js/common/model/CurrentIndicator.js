@@ -68,5 +68,5 @@ define( function( require ) {
         this.rotation = ( current > 0 ) ? this.positiveOrientation : this.positiveOrientation + Math.PI;
       }
     }
-  } )
+  } );
 } );
