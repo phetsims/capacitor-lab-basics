@@ -15,6 +15,7 @@ define( function( require ) {
   var BatteryNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryNode' );
   var CapacitorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CapacitorNode' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
+  var CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
   var Node = require( 'SCENERY/nodes/Node' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -59,6 +60,10 @@ define( function( require ) {
     var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE, valuesVisibleProperty );
     var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE, valuesVisibleProperty  );
 
+    // current indicators
+    this.topCurrentIndicatorNode = new CurrentIndicatorNode( circuit.topCurrentIndicator );
+    this.bottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.bottomCurrentIndicator );
+
     // controls
     var batteryConnectionButtonNode = new BatteryConnectionButtonNode( circuit );
     this.plateChargeControlNode = new PlateChargeControlNode( circuit, new Range( -maxPlateCharge, maxPlateCharge ) );
@@ -68,8 +73,8 @@ define( function( require ) {
     this.addChild( batteryNode );
     this.addChild( capacitorNode );
     this.addChild( this.topWireNode );
-    //addChild( topCurrentIndicatorNode );
-    //addChild( bottomCurrentIndicatorNode );
+    this.addChild( this.topCurrentIndicatorNode );
+    this.addChild( this.bottomCurrentIndicatorNode );
     //if ( dielectricVisible ) {
     //  addChild( dielectricOffsetDragHandleNode );
     //}
@@ -85,8 +90,20 @@ define( function( require ) {
     // capacitor
     capacitorNode.center = modelViewTransform.modelToViewPosition( circuit.capacitor.location );
 
-    // wires shapes are in model coordinate frame, so the nodes live at (0,0)
-    // the following does nothing but it explicitly defines the layout.
+    // top current indicator
+    var topWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getTopWire().thickness, 0, 0 ).x;
+    x = this.topWireNode.bounds.centerX;
+    y = this.topWireNode.bounds.minY + ( topWireThickness / 2 );
+    this.topCurrentIndicatorNode.translate( x, y );
+
+    // bottom current indicator
+    var bottomWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getBottomWire.thickness, 0, 0 ).x;
+    x = this.bottomWireNode.bounds.getCenterX();
+    y = this.bottomWireNode.bounds.getMaxY() - ( bottomWireThickness / 2 );
+    this.bottomCurrentIndicatorNode.translate( x, y );
+
+    // wires shapes are in model coordinate frame, so the nodes live at (0,0) the following does nothing but it
+    // explicitly defines the layout.
     this.topWireNode.translation = new Vector2( 0, 0 );
     this.bottomWireNode.translation = new Vector2( 0, 0 );
 
@@ -105,12 +122,6 @@ define( function( require ) {
       thisNode.updateBatteryConnectivity();
     } );
 
-    //circuit.addCircuitChangeListener( new CircuitChangeListener() {
-    //  public void circuitChanged() {
-    //    updateBatteryConnectivity();
-    //  }
-    //} );
-
   }
 
   return inherit( Node, CircuitNode, {
@@ -124,8 +135,8 @@ define( function( require ) {
       this.topWireNode.visible = isConnected;
       this.bottomWireNode.visible = isConnected;
 
-      //this.topCurrentIndicatorNode.setVisible( isConnected );
-      //this.bottomCurrentIndicatorNode.setVisible( isConnected );
+      this.topCurrentIndicatorNode.setVisible( isConnected );
+      this.bottomCurrentIndicatorNode.setVisible( isConnected );
 
       // plate charge control
       this.plateChargeControlNode.visible = !isConnected;

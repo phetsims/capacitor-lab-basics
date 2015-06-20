@@ -116,6 +116,15 @@ define( function( require ) {
     },
 
     /**
+     * Step function for the CapacitorLabBasicsModel.
+     *
+     * @param {number} dt
+     */
+    step: function( dt ) {
+      this.circuit.step( dt );
+    },
+
+    /**
      * Gets the maximum charge on the top plate (Q_total).
      * We compute this with the battery connected because this is used to determine the range of the Plate Charge
      * slider.

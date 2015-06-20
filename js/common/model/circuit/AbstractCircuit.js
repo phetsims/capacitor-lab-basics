@@ -13,6 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Battery = require( 'CAPACITOR_LAB_BASICS/common/model/Battery' );
+  var CurrentIndicator = require( 'CAPACITOR_LAB_BASICS/common/model/CurrentIndicator' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
 
   /**
@@ -32,10 +33,14 @@ define( function( require ) {
 
     this.previousTotalCharge = -1; // no value, @private
 
-    // create circuit components
+    // create basic circuit components
     this.battery = new Battery( config.batteryLocation, CLConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform );
     this.capacitors = createCapacitors( config, numberOfCapacitors );
     this.wires = createWires( config, this.battery, this.capacitors );
+
+    // create the current indicators
+    this.topCurrentIndicator = new CurrentIndicator( this, 0 /* initial rotation*/ );
+    this.bottomCurrentIndicator = new CurrentIndicator( this, Math.PI /* initial rotation*/ );
 
     // Make sure all is well with circuit components.  Circuit must include at least one capacitor and two wires.
     assert && assert( this.capacitors.length >= 1 );
@@ -43,13 +48,6 @@ define( function( require ) {
     assert( this.wires.length >= 2 );
 
     // TODO: Link it all up.
-    // update current amplitude on each clock tick
-    //clockListener = new ClockAdapter() {
-    //  public void simulationTimeChanged( ClockEvent clockEvent ) {
-    //    updateCurrentAmplitude();
-    //  }
-    //};
-    //clock.addClockListener( clockListener );
 
     // observe capacitors
     //CapacitorChangeListener capacitorChangeListener = new CapacitorChangeListener() {
@@ -94,6 +92,12 @@ define( function( require ) {
       this.capacitors.forEach( function( capacitor ) {
         capacitor.reset();
       } );
+    },
+
+    step: function( dt ) {
+      this.updateCurrentAmplitude( dt );
+      this.topCurrentIndicator.step( dt );
+      this.bottomCurrentIndicator.step( dt );
     },
 
     /**
@@ -210,6 +214,7 @@ define( function( require ) {
     /**
      * Update the Current amplitude. Current amplitude is proportional to dQ/dt, the change in charge (Q_total) over
      * time.
+     *
      * @param {number} dt
      */
     updateCurrentAmplitude: function( dt ) {
