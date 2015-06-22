@@ -23,11 +23,11 @@ define( function( require ) {
   var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
   var CapacitorLabModel = require( 'CAPACITOR_LAB_BASICS/common/model/CapacitorLabModel' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
   // constants
   // Circuit
-  var BATTERY_LOCATION = new Vector3( 0.010, 0.034, 0 ); // meters
-  var BATTERY_CONNECTED = true;
+  var BATTERY_LOCATION = new Vector3( 0.010, 0.030, 0 ); // meters
   var CAPACITOR_X_SPACING = 0.025; // meters
   var CAPACITOR_Y_SPACING = 0; // meters
   var PLATE_WIDTH = CLConstants.PLATE_WIDTH_RANGE.defaultValue;
@@ -84,7 +84,7 @@ define( function( require ) {
 
     this.dielectricMaterial = DielectricMaterial.Air();
 
-    this.circuit = new SingleCircuit( circuitConfig, BATTERY_CONNECTED );
+    this.circuit = new SingleCircuit( circuitConfig, CircuitConnectionEnum.BATTERY_CONNECTED );
     this.worldBounds = CLConstants.CANVAS_RENDERING_SIZE.toBounds();
 
     this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, this.capacitanceMeterVisibleProperty, this.valuesVisibleProperty );
@@ -169,7 +169,7 @@ define( function( require ) {
         wireExtent: WIRE_EXTENT
       } );
 
-      var circuit = new SingleCircuit( circuitConfig, false /* batteryConnected */ );
+      var circuit = new SingleCircuit( circuitConfig, CircuitConnectionEnum.BATTERY_CONNECTED );
       circuit.setDisconnectedPlateCharge( this.getMaxPlateCharge() );
       return circuit.capacitor.getEffectiveEField();
     },
