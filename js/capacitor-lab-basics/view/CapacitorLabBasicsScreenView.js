@@ -18,6 +18,7 @@ define( function( require ) {
   var Bounds2 = require( 'DOT/Bounds2' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
   var CapacitorLabBasicsControlPanel = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/control/CapacitorLabBasicsControlPanel' );
+  var CircuitControlPanel = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/control/CircuitControlPanel' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var PlayPauseButton = require( 'SCENERY_PHET/buttons/PlayPauseButton' );
   var StepButton = require( 'SCENERY_PHET/buttons/StepButton' );
@@ -72,10 +73,13 @@ define( function( require ) {
     //EFieldDetectorNode eFieldDetectorNode = new EFieldDetectorNode( model.eFieldDetector, mvt, eFieldReferenceMagnitude, globalProperties.dev, eFieldDetectorSimplified );
 
     // control
-    // TODO: Temporary minimum width and placement calculations for the control panels.
+    // TODO: Layout calculations are messy, come back soon to clean up.
     var minWidth = storedEnergyMeterNode.right - plateChargeMeterNode.left;
     var capacitorLabBasicsControlPanel = new CapacitorLabBasicsControlPanel( model, minWidth );
     capacitorLabBasicsControlPanel.translation = this.layoutBounds.rightCenter.minusXY( capacitorLabBasicsControlPanel.width + 10, 50 );
+
+    var circuitControlPanel = new CircuitControlPanel( model.circuit );
+    circuitControlPanel.translation = this.layoutBounds.leftBottom.minusXY( -10, circuitControlPanel.height + 5 );
 
     // play/pause button
     this.playPauseButton = new PlayPauseButton( model.playingProperty,
@@ -115,6 +119,7 @@ define( function( require ) {
     //addChild( voltmeterNode );
     //addChild( shapesDebugParentNode );
     this.addChild( capacitorLabBasicsControlPanel );
+    this.addChild( circuitControlPanel );
     this.addChild( this.playPauseButton );
     this.addChild( this.stepButton );
     this.addChild( this.resetAllButton );

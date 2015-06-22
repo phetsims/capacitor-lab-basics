@@ -11,6 +11,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   
   // strings
   var lotsPlusString = require( 'string!CAPACITOR_LAB_BASICS/lots.plus' );
@@ -68,9 +69,12 @@ define( function( require ) {
     this.addChild( title );
     
     var thisNode = this;
-    model.batteryConnectedProperty.link( function () {
+    model.circuitConnectionProperty.link( function ( circuitConnection ) {
+      // The plate charge slider should be visible when the circuit is open.
+      var isVisible = ( circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT );
+
       model.updateCapacitanceAndCharge();
-      thisNode.visible = !model.batteryConnectedProperty.value;
+      thisNode.visible = isVisible;
     } );
     
     model.upperPlateChargeProperty.link( function () {

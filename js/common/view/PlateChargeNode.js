@@ -74,26 +74,26 @@ define( function( require ) {
 
     // construct and store all charge nodes up front so that they do not need to be constructed in real time.
     /* TODO - this is just a start - come back to clean this up and get working later.
-    this.positiveChargeNodes = [];
-    this.negativeChargeNodes = [];
-    for( var i = 0; i < CLConstants.NUMBER_OF_PLATE_CHARGES.max; i++ ) {
-      var newPositiveCharge = new PositiveChargeNode();
-      var newNegativeCharge = new NegativeChargeNode();
+     this.positiveChargeNodes = [];
+     this.negativeChargeNodes = [];
+     for( var i = 0; i < CLConstants.NUMBER_OF_PLATE_CHARGES.max; i++ ) {
+     var newPositiveCharge = new PositiveChargeNode();
+     var newNegativeCharge = new NegativeChargeNode();
 
-      newPositiveCharge.opacity = 0;
-      newNegativeCharge.opacity = 0;
+     newPositiveCharge.opacity = 0;
+     newNegativeCharge.opacity = 0;
 
-      this.parentNode.addChild( newPositiveCharge );
-      this.parentNode.addChild( newNegativeCharge );
+     this.parentNode.addChild( newPositiveCharge );
+     this.parentNode.addChild( newNegativeCharge );
 
-      this.positiveChargeNodes.push( newPositiveCharge );
-      this.negativeChargeNodes.push( newNegativeCharge );
-      */
+     this.positiveChargeNodes.push( newPositiveCharge );
+     this.negativeChargeNodes.push( newNegativeCharge );
+     */
 
     //}
 
-    capacitor.multilink( ['plateSize', 'plateSeparation', 'platesVoltage' ], function() {
-      if( thisNode.isVisible() ) {
+    capacitor.multilink( [ 'plateSize', 'plateSeparation', 'platesVoltage' ], function() {
+      if ( thisNode.isVisible() ) {
         thisNode.update();
       }
     } );
@@ -134,11 +134,9 @@ define( function( require ) {
      * @param {boolean} visible
      */
     setVisible: function( visible ) {
-      if ( visible !== this.isVisible() ) {
-        this.visible = visible;
-        if ( visible ) {
-          this.update();
-        }
+      Node.prototype.setVisible.call( this, visible );
+      if ( visible ) {
+        this.update();
       }
     },
 
@@ -146,7 +144,6 @@ define( function( require ) {
      * Updates the view to match the model.  Charges are arranged in a grid.
      */
     update: function() {
-
       var plateCharge = this.getPlateCharge();
       var numberOfCharges = this.getNumberOfCharges( plateCharge, this.maxPlateCharge );
 
