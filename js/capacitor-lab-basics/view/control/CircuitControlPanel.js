@@ -2,7 +2,7 @@
 
 /**
  * Circuit control panel for Capacitor Lab: Basics.  Controls how the circuit is connected to the battery and the
- * lightbulb.
+ * lightBulb.
  *
  * @author Jesse Greenberg
  */
