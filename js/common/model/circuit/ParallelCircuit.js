@@ -24,7 +24,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var AbstractCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/AbstractCircuit' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
-  var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
+  var LightBulbModel = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulbModel' );
   var WireBatteryToCircuitComponents = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireBatteryToCircuitComponents' );
 
   // Function for creating all circuit components. Assumes that the desired order is capcaitors and then lightbulbs.
@@ -48,7 +48,7 @@ define( function( require ) {
     // create the lightBulbs.
     for ( i = 0; i < numberOfLightBulbs; i++ ) {
       location = new Vector3( x, y, z );
-      var lightBulb = new LightBulb( location );
+      var lightBulb = new LightBulbModel( location );
       circuitComponents.push( lightBulb );
       x += config.capacitorXSpacing;
     }
