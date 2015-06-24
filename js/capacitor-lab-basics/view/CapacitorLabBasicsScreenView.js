@@ -74,7 +74,7 @@ define( function( require ) {
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
-    var minWidth = storedEnergyMeterNode.right - plateChargeMeterNode.left;
+    var minWidth = storedEnergyMeterNode.right - plateChargeMeterNode.left * 2;
     var capacitorLabBasicsControlPanel = new CapacitorLabBasicsControlPanel( model, minWidth );
     capacitorLabBasicsControlPanel.translation = this.layoutBounds.rightCenter.minusXY( capacitorLabBasicsControlPanel.width + 10, 50 );
 
