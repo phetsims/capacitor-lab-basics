@@ -25,6 +25,7 @@ define( function( require ) {
   var PlateChargeControlNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/control/PlateChargeControlNode' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var Range = require( 'DOT/Range' );
+  var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
 
   /**
    * Constructor for a CircuitNode.
@@ -56,6 +57,8 @@ define( function( require ) {
     this.topWireNode = new WireNode( circuit.getTopWire() ); // @private
     this.bottomWireNode = new WireNode( circuit.getBottomWire() ); // @private
 
+    var lightBulbNode = new BulbNode( circuit.currentAmplitudeProperty, circuit.lightBulb, modelViewTransform );
+
     // drag handles
     var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE, valuesVisibleProperty );
     var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE, valuesVisibleProperty  );
@@ -71,6 +74,7 @@ define( function( require ) {
     this.addChild( this.bottomWireNode );
     this.addChild( batteryNode );
     this.addChild( capacitorNode );
+    this.addChild( lightBulbNode );
     this.addChild( this.topWireNode );
     this.addChild( this.topCurrentIndicatorNode );
     this.addChild( this.bottomCurrentIndicatorNode );
@@ -81,11 +85,15 @@ define( function( require ) {
     // layout
     var x = 0;
     var y = 0;
+
     // battery
     batteryNode.center = modelViewTransform.modelToViewPosition( circuit.battery.location );
 
     // capacitor
     capacitorNode.center = modelViewTransform.modelToViewPosition( circuit.capacitor.location );
+
+    // LightBulb
+    lightBulbNode.center = modelViewTransform.modelToViewPosition( circuit.lightBulb.location );
 
     // top current indicator
     var topWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getTopWire().thickness, 0, 0 ).x;
