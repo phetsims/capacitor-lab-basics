@@ -27,7 +27,7 @@ define( function( require ) {
     assert && assert( thickness > 0 );
 
     this.segments = segments;
-    this.thickness = thickness;
+    //this.thickness = thickness;
     this.shapeCreator = new WireShapeCreator( this, modelViewTransform );
 
     //this.shape = this.shapeCreator.createWireShape();

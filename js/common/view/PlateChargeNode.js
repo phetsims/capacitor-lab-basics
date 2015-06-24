@@ -229,10 +229,7 @@ define( function( require ) {
      */
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
       var absCharge = Math.abs( plateCharge );
-      // TODO: numberOfCharges was typed to int.  It might need to be rounded or floored for this calculation.
-      // RESULT - Indeed, this should be floored.  Test to make sure this is correct.
-      var numberOfCharges = CLConstants.NUMBER_OF_PLATE_CHARGES.max * absCharge / maxPlateCharge;
-      //var numberOfCharges = Math.floor( CLConstants.NUMBER_OF_PLATE_CHARGES.max * absCharge / maxPlateCharge );
+      var numberOfCharges = Math.floor( CLConstants.NUMBER_OF_PLATE_CHARGES.max * absCharge / maxPlateCharge );
       if ( absCharge > 0 && numberOfCharges < CLConstants.NUMBER_OF_PLATE_CHARGES.min ) {
         numberOfCharges = CLConstants.NUMBER_OF_PLATE_CHARGES.min;
       }
