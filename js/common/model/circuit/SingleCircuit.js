@@ -36,16 +36,16 @@ define( function( require ) {
    * Constructor for the Single Capacitor Circuit.
    *
    * @param {CircuitConfig} config
-   * @param {string} circuitConnection
    * @constructor
    */
-  function SingleCircuit( config, circuitConnection ) {
+  function SingleCircuit( config ) {
 
-    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */ );
+    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 1 /* numberOfLightBulbs */ );
     var thisCircuit = this;
 
     this.capacitor = this.capacitors[ 0 ];
-    this.addProperty( 'circuitConnection', circuitConnection );
+    this.lightBulb = this.lightBulbs[ 0 ];
+
     this.addProperty( 'disconnectedPlateCharge', this.getTotalCharge() );
 
     // Set the plate voltages only when the connected circuit item changes.

@@ -1,13 +1,16 @@
 // Copyright 2002-2015, University of Colorado Boulder
 
 /**
- * Model of a circuit with a battery (B) and N capacitors (C1...Cn) in parallel.
+ * Model of a circuit with a battery (B) and N circuitComponents (Z1...Zn) in parallel.  Switches exist between
+ * circuit connections so that elements can be added or removed from the circuit as desired.
  *
- * |-----|------|------|
- * |     |      |      |
- * B     C1     C2    C3
- * |     |      |      |
- * |-----|------|------|
+ *  |--`--|--`---|--`---|
+ *  |     |      |      |
+ *  |     |      |      |
+ *  B     Z1     Z2    Z3
+ *  |     |      |      |
+ *  |     |      |      |
+ *  |--`--|--`---|--`---|
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
@@ -21,30 +24,43 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var AbstractCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/AbstractCircuit' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
-  var WireBatteryToCapacitors = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireBatteryToCapacitors' );
+  var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
+  var WireBatteryToCircuitComponents = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireBatteryToCircuitComponents' );
 
-  // Function for creating capacitors.
-  function createCapacitors( config, numberOfCapacitors ) {
+  // Function for creating all circuit components. Assumes that the desired order is capcaitors and then lightbulbs.
+  function createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs ) {
 
     var x = config.batteryLocation.x + config.capacitorXSpacing;
     var y = config.batteryLocation.y;
     var z = config.batteryLocation.z;
 
-    var capacitors = [];
+    var circuitComponents = [];
+
+    var location;
+    // create the capacitors.
     for ( var i = 0; i < numberOfCapacitors; i++ ) {
-      var location = new Vector3( x, y, z );
+      location = new Vector3( x, y, z );
       var capacitor = new Capacitor( location, config.plateWidth, config.plateSeparation, config.modelViewTransform );
-      capacitors.push( capacitor );
+      circuitComponents.push( capacitor );
       x += config.capacitorXSpacing;
     }
-    return capacitors;
+
+    // create the lightBulbs.
+    for ( i = 0; i < numberOfLightBulbs; i++ ) {
+      location = new Vector3( x, y, z );
+      var lightBulb = new LightBulb( location );
+      circuitComponents.push( lightBulb );
+      x += config.capacitorXSpacing;
+    }
+
+    return circuitComponents;
   }
 
   // Function for creating wires.
-  function createWires( config, battery, capacitors ) {
+  function createWires( config, battery, circuitComponents, circuitConnectionProperty ) {
     var wires = [];
-    wires.push( WireBatteryToCapacitors.WireBatteryToCapacitorsTop( config.modelViewTransform, config.wireThickness, config.wireExtent, battery, capacitors ) );
-    wires.push( WireBatteryToCapacitors.WireBatteryToCapacitorsBottom( config.modelViewTransform, config.wireThickness, config.wireExtent, battery, capacitors ) );
+    wires.push( WireBatteryToCircuitComponents.WireBatteryToCircuitComponentsTop( config.modelViewTransform, config.wireThickness, config.wireExtent, config.capacitorXSpacing, battery, circuitComponents, circuitConnectionProperty ) );
+    wires.push( WireBatteryToCircuitComponents.WireBatteryToCircuitComponentsBottom( config.modelViewTransform, config.wireThickness, config.wireExtent, config.capacitorXSpacing, battery, circuitComponents, circuitConnectionProperty ) );
     return wires;
   }
 
@@ -53,12 +69,12 @@ define( function( require ) {
    *
    * @param {CircuitConfig} config
    * @param {number} numberOfCapacitors
+   * @param {number} numberOfLightBulbs
    */
-  function ParallelCircuit( config, numberOfCapacitors ) {
+  function ParallelCircuit( config, numberOfCapacitors, numberOfLightBulbs ) {
 
-    AbstractCircuit.call( this, config, numberOfCapacitors, createCapacitors, createWires );
+    AbstractCircuit.call( this, config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires );
 
-    this.updatePlateVoltages();
   }
 
   return inherit( AbstractCircuit, ParallelCircuit, {
@@ -66,6 +82,8 @@ define( function( require ) {
     /**
      * Update the plate voltages.  This must be called at the end of the constructor.  See documentation in
      * AbstractCircuit.
+     *
+     * TODO: Not so sure about this anymore.
      */
     updatePlateVoltages: function() {
       this.capacitors.forEach( function( capacitor ) {
@@ -149,7 +167,7 @@ define( function( require ) {
     intersectsSomeBottomPlate: function( shape ) {
       var intersects = false;
       this.capacitors.forEach( function( capacitor ) {
-        if( capacitor.intersectsBottomPlate( shape ) ) {
+        if ( capacitor.intersectsBottomPlate( shape ) ) {
           intersects = true;
           //return; //break
         }
