@@ -27,6 +27,7 @@ define( function( require ) {
   var RadialGradient = require( 'SCENERY/util/RadialGradient' );
   var Shape = require( 'KITE/Shape' );
   var Vector2 = require( 'DOT/Vector2' );
+  var LinearFunction = require( 'DOT/LinearFunction' );
 
   // images
   var bulbBaseImage = require( 'image!CAPACITOR_LAB_BASICS/light-bulb-base.png' );
@@ -130,21 +131,25 @@ define( function( require ) {
   /**
    * Constructor for a BulbNode.
    *
-   * TODO: UPDATE MODEL PROPERTY FOR THIS NODE.
-   *
-   * @param needleAngleProperty - value of voltage meter.
+   * @param currentAmplitudeProperty - current amplitude through the circuit, determines brightness
    * @param {Object} [options]
    * @constructor
    */
-  function BulbNode( needleAngleProperty, options ) {
+  function BulbNode( currentAmplitudeProperty, options ) {
+
     Node.call( this );
     var thisNode = this;
 
     this.bulb = createBulb( options );
+    this.addChild( this.bulb );
+
+    // TODO: Still testing this mapping funciton.  Not spending a lot of time on it because we do not have input from
+    // TODO: the design team about what this behavior should be like.
+    var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 50, true );
 
     // Update the halo as the needle angle changes.
-    needleAngleProperty.link( function( angle ) {
-      var targetScaleFactor = 20 * Math.abs( angle ); //from flash simulation, in angle = 1, we would have 200x200 halo (max circle diameter - 10px, so 200/10 = 20)
+    currentAmplitudeProperty.link( function( current ) {
+      var targetScaleFactor = bulbBrightnessMap( Math.abs( current ) );
       if ( targetScaleFactor < 0.1 ) {
         thisNode.bulb.haloNode.visible = false;
       }
