@@ -27,17 +27,23 @@ define( function( require ) {
   function WireNode( wire ) {
 
     Node.call( this );
-    var thisNode = this;
     this.wire = wire;
-    var wireShapes = wire.createShapes(); // TODO: Static for now, will need to be dynamic to support wire shape changes.
+    //var wireShapes = wire.createShapes(); // TODO: Static for now, will need to be dynamic to support wire shape changes.
     //var wireBounds = wire.shapeCreator.createWireShape( WIRE_LINE_WIDTH / 15000 );
     //wireBounds.forEach( function( bounds ) {
     //  thisNode.addChild( new Rectangle( bounds, {fill: 'rgba( 1, 0, 0, 0.75 )' } ) );
     //} );
 
-    wireShapes.forEach( function( shape ) {
-      thisNode.addChild( new Path( shape, { lineWidth: WIRE_LINE_WIDTH, fill: WIRE_FILL, stroke: WIRE_STROKE } ) );
-    } );
+    var wireNode = new Path( wire.shapeCreator.createWireShape(), {
+        lineWidth: WIRE_LINE_WIDTH,
+        stroke: WIRE_STROKE,
+        fill: WIRE_FILL
+      } );
+    //this.addChild( new Rectangle( wireNode.computeShapeBounds(), { fill: 'rgba( 1, 0, 0, 0.5)'}  ) );
+    this.addChild( wireNode );
+    //wireShapes.forEach( function( shape ) {
+    //  thisNode.addChild( new Path( shape, { lineWidth: WIRE_LINE_WIDTH, fill: WIRE_FILL, stroke: WIRE_STROKE } ) );
+    //} );
 
     // TODO
     //wire.addShapeObserver( new SimpleObserver() {

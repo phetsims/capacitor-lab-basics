@@ -53,6 +53,15 @@ define( function( require ) {
       return lineShapes;
     },
 
+    createWireShape: function() {
+      var wireShape = new Shape();
+      this.wire.segments.forEach( function( segment ) {
+        wireShape.moveToPoint( segment.startPoint );
+        wireShape.lineToPoint( segment.endPoint );
+      } );
+      return this.modelViewTransform.modelToViewShape( wireShape );
+    },
+
     /**
      * Create the shape for one wire segment.
      *
