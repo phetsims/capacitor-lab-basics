@@ -140,17 +140,16 @@ define( function( require ) {
      *
      * @return {Vector3}
      */
-    getTopPlateCenter: function() {
+    getTopConnectionPoint: function() {
       return new Vector3( this.location.x, this.location.y - ( this.plateSeparation / 2 ) - this.plateSize.height, this.location.z );
     },
 
     /**
      * Convenience method for determining the outside center of the bottom plate.  This is a wire attachment point.
      *
-     * TODO: This will need to be fixed for 2D work.
      * @return {Vector3}
      */
-    getBottomPlateCenter: function() {
+    getBottomConnectionPoint: function() {
       return new Vector3( this.location.x, this.location.y + ( this.plateSeparation / 2 ) + this.plateSize.height, this.location.z );
     },
 
