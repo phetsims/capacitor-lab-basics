@@ -33,89 +33,89 @@ define( function( require ) {
     // Factory methods to publicly construct various segments.
     BatteryTopWireSegment: function( battery, startYOffset, endPoint ) { return new BatteryTopWireSegment( battery, startYOffset, endPoint ); },
     BatteryBottomWireSegment: function( battery, startYOffset, endPoint ) { return new BatteryBottomWireSegment( battery, startYOffset, endPoint ); },
-    CapacitorTopWireSegment: function( capacitor, endPoint ) { return new CapacitorTopWireSegment( capacitor, endPoint ); },
-    CapacitorBottomWireSegment: function( capacitor, endPoint ) { return new CapacitorBottomWireSegment( capacitor, endPoint ); }
+    ComponentTopWireSegment: function( component, endPoint ) { return new ComponentTopWireSegment( component, endPoint ); },
+    ComponentBottomWireSegment: function( component, endPoint ) { return new ComponentBottomWireSegment( component, endPoint ); }
 
   } );
 
   /**
-   * Constructor for a CapacitorWireSegment.  This is any wire segment that is connected to one capacitor.
+   * Constructor for a ComponentWireSegment.  This is any wire segment that is connected to one component.
    *
-   * @param {Capacitor} capacitor
+   * @param {Capacitor || LightBulb} component
    * @param {Vector2} startPoint
    * @param {Vector2} endPoint
    */
-  function CapacitorWireSegment( capacitor, startPoint, endPoint ) {
+  function ComponentWireSegment( component, startPoint, endPoint ) {
     WireSegment.call( this, startPoint, endPoint );
-    this.capacitor = capacitor;
-    //capacitor.addPlateSeparationObserver(); TODO
+    this.component = component;
+    //component.addPlateSeparationObserver(); TODO
   }
 
-  inherit( WireSegment, CapacitorWireSegment, {
+  inherit( WireSegment, ComponentWireSegment, {
     cleanUp: function() {
-      //capacitor.removePlateSeparationObserver(); TODO
+      //component.removePlateSeparationObserver(); TODO
     }
   } );
 
 
   /**
-   * Constructor for CapacitorTopWireSegment.  This is a wire segment whose start point is connected to the top plate
-   * of a capacitor.  Adjusts the start point when the plate separation changes.
+   * Constructor for ComponentTopWireSegment.  This is a wire segment whose start point is connected to the top plate
+   * of a component.  Adjusts the start point when the plate separation changes.
    *
-   * @param {Capacitor} capacitor
+   * @param {Capacitor || LightBulb} component
    * @param {Vector2} endPoint
    */
-  function CapacitorTopWireSegment( capacitor, endPoint ) {
-    CapacitorWireSegment.call( this, capacitor, capacitor.getTopPlateCenter().toVector2(), endPoint );
+  function ComponentTopWireSegment( component, endPoint ) {
+    ComponentWireSegment.call( this, component, component.getTopConnectionPoint(), endPoint );
   }
 
-  inherit( CapacitorWireSegment, CapacitorTopWireSegment, {
+  inherit( ComponentWireSegment, ComponentTopWireSegment, {
     update: function() {
-      this.startPoint = this.capacitor.getTopPlateCenter().toVector2();
+      this.startPoint = this.component.getTopPlateCenter().toVector2();
     }
   } );
 
   /**
-   * Constructor for CapacitorBottomWireSegment.  Wire segment whose start point is connected to the bottom plate of a
-   * capacitor.  Adjusts the start point when the plate separation changes.
+   * Constructor for ComponentBottomWireSegment.  Wire segment whose start point is connected to the bottom plate of a
+   * component.  Adjusts the start point when the plate separation changes.
    *
-   * @param {Capacitor} capacitor
+   * @param {Capacitor || LightBulb} component
    * @param {Vector2} endPoint
    */
-  function CapacitorBottomWireSegment( capacitor, endPoint ) {
-    CapacitorWireSegment.call( this, capacitor, capacitor.getBottomPlateCenter().toVector2(), endPoint );
+  function ComponentBottomWireSegment( component, endPoint ) {
+    ComponentWireSegment.call( this, component, component.getBottomConnectionPoint().toVector2(), endPoint );
   }
 
-  inherit( CapacitorWireSegment, CapacitorBottomWireSegment, {
+  inherit( ComponentWireSegment, ComponentBottomWireSegment, {
     update: function() {
-      this.startPoint = this.capacitor.getBottomPlateCenter().toVector2();
+      this.startPoint = this.component.getBottomConnectionPoint();
     }
   } );
 
   /**
-   * Constructor for a wire segment that connects the bottom plate of one capacitor to the top plate of another
-   * capacitor. Adjusts the start and end points when the plate separations change.
+   * Constructor for a wire segment that connects the bottom plate of one component to the top plate of another
+   * component. Adjusts the start and end points when the plate separations change.
    */
-  function CapacitorToCapacitorWireSegment( topCapacitor, bottomCapacitor ) {
-    WireSegment.call( this, topCapacitor.getBottomPlateCenter().toVector2(), bottomCapacitor.getTopPlateCenter().toVector2() );
+  function ComponentToComponentWireSegment( topComponent, bottomComponent ) {
+    WireSegment.call( this, topComponent.getBottomConnectionPoint().toVector2(), bottomComponent.getTopConnectionPoint().toVector2() );
 
-    this.topCapacitor = topCapacitor;
-    this.bottomCapacitor = bottomCapacitor;
+    this.topComponent = topComponent;
+    this.bottomComponent = bottomComponent;
 
     //topCapacitor.addPlateSeparationObserver( this ); TODO
     //bottomCapacitor.addPlateSeparationObserver( this ); TODO
 
   }
 
-  inherit( WireSegment, CapacitorToCapacitorWireSegment, {
+  inherit( WireSegment, ComponentToComponentWireSegment, {
     cleanUp: function() {
       //topCapacitor.removePlateSeparationObserver( this );
       //bottomCapacitor.removePlateSeparationObserver( this );
     },
 
     update: function() {
-      this.startPoint = this.topCapacitor.getBottomPlateCenter().toVector2();
-      this.endPoint = this.bottomCapacitor.getTopPlateCenter().toVector2();
+      this.startPoint = this.topComponent.getBottomConnectionPoint().toVector2();
+      this.endPoint = this.bottomComponent.getTopConnectionPoint().toVector2();
     }
 
   } );
