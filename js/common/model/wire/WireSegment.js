@@ -39,7 +39,7 @@ define( function( require ) {
     BatteryBottomWireSegment: function( battery, startYOffset, endPoint ) { return new BatteryBottomWireSegment( battery, startYOffset, endPoint ); },
     ComponentTopWireSegment: function( component, endPoint ) { return new ComponentTopWireSegment( component, endPoint ); },
     ComponentBottomWireSegment: function( component, endPoint ) { return new ComponentBottomWireSegment( component, endPoint ); },
-    SwitchSegment: function( startPoint, endPoint, switchLength, circuitConnection ) { return new SwitchSegment( startPoint, endPoint, switchLength, circuitConnection ) }
+    SwitchSegment: function( startPoint, endPoint, switchLength, circuitConnection ) { return new SwitchSegment( startPoint, endPoint, switchLength, circuitConnection ); }
 
   } );
 

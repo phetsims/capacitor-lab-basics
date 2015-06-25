@@ -63,7 +63,7 @@ define( function( require ) {
       thisCircuit.wires.forEach( function( wire ) {
         wire.segments.forEach( function( segment ) {
           segment.update( circuitConnection );
-        } )
+        } );
       } );
     } );
 

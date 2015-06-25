@@ -49,7 +49,7 @@ define( function( require ) {
     this.segments.forEach( function( segment ) {
       segment.multilink( [ 'startPoint', 'endPoint' ], function() {
         thisWire.shape = thisWire.shapeCreator.createWireShape();
-      } )
+      } );
     } );
   }
 
