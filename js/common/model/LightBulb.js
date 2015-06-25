@@ -20,7 +20,7 @@ define( function( require ) {
    * @param {Vector3} location
    * @constructor
    */
-  function LightBulbModel( location ) {
+  function LightBulb( location ) {
 
     // immutable variables.
     this.location = location;
@@ -29,7 +29,7 @@ define( function( require ) {
       /* Populate with required properties */
     } );
   }
-  return inherit( PropertySet, LightBulbModel, {
+  return inherit( PropertySet, LightBulb, {
 
     /**
      *
