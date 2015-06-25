@@ -115,7 +115,8 @@ define( function( require ) {
     this.bottomWireNode.translation = new Vector2( 0, 0 );
 
     // Plate Charge control
-    this.plateChargeControlNode.translation = ( modelViewTransform.modelToViewPosition( new Vector3( circuit.capacitor.location.x - 0.030, 0.001, 0 ) ) );
+    this.plateChargeControlNode.center = batteryNode.center;
+    //this.plateChargeControlNode.translation = ( modelViewTransform.modelToViewPosition( new Vector3( circuit.capacitor.location.x - 0.030, 0.001, 0 ) ) );
 
     // observers
     circuit.circuitConnectionProperty.link( function( circuitConnection ) {
