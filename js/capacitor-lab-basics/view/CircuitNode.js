@@ -82,7 +82,7 @@ define( function( require ) {
     this.addChild( plateAreaDragHandleNode );
     this.addChild( this.plateChargeControlNode );
 
-    // layout
+    // layout TODO: Much of the layout will need to be fixed or tidied.  Many design decisions to be made.
     var x = 0;
     var y = 0;
 
@@ -97,13 +97,15 @@ define( function( require ) {
 
     // top current indicator
     var topWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getTopWire().thickness, 0, 0 ).x;
-    x = this.topWireNode.bounds.centerX;
-    y = this.topWireNode.bounds.minY + ( topWireThickness / 2 );
+    x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
+    //x = this.topWireNode.bounds.centerX;
+    y = this.topWireNode.bounds.minY + ( topWireThickness / 2 ) + 70; // TODO clean up after discussion of feature.
     this.topCurrentIndicatorNode.translate( x, y );
 
     // bottom current indicator
     var bottomWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getBottomWire.thickness, 0, 0 ).x;
-    x = this.bottomWireNode.bounds.getCenterX();
+    x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
+    //x = this.bottomWireNode.bounds.getCenterX();
     y = this.bottomWireNode.bounds.getMaxY() - ( bottomWireThickness / 2 );
     this.bottomCurrentIndicatorNode.translate( x, y );
 
