@@ -2,9 +2,7 @@
 
 /**
  * Circuit connection types for Capacitor Lab. Circuit connection names correspond to what element is connected to the
- * circuitThe photon target names correspond to molecules which the photons are
- * being fired at.
- *
+ * the capacitor.  'OPEN_CIRCUIT' means that the capacitor is disconnected from all circuit components.
  * @author Jesse Greenberg
  */
 define( function( require ) {
@@ -12,7 +10,7 @@ define( function( require ) {
 
   var CircuitConnectionEnum = {
     BATTERY_CONNECTED: 'BATTERY_CONNECTED',
-    LIGHTBULB_CONNECTED: 'LIGHTBULB_CONNECTED',
+    LIGHT_BULB_CONNECTED: 'LIGHT_BULB_CONNECTED',
     OPEN_CIRCUIT: 'OPEN_CIRCUIT'
   };
 

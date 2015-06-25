@@ -29,7 +29,7 @@ define( function( require ) {
         value: CircuitConnectionEnum.BATTERY_CONNECTED,
         node: new Image( batteryImage, { scale: 0.75, rotation: -Math.PI / 2 } )
       }, {
-        value: CircuitConnectionEnum.LIGHTBULB_CONNECTED,
+        value: CircuitConnectionEnum.LIGHT_BULB_CONNECTED,
         node: BulbNode.createBulb( { scale: 0.75, rotation: Math.PI / 2 } )
       }, {
         value: CircuitConnectionEnum.OPEN_CIRCUIT,
