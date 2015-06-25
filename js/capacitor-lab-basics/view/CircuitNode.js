@@ -130,17 +130,18 @@ define( function( require ) {
     updateConnectivity: function( circuitConnection ) {
 
       // As long as the circuit is not open, the circuit is considered connected.
-      var isConnected = ( circuitConnection !== CircuitConnectionEnum.OPEN_CIRCUIT );
+      var isBatteryConnected = ( circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED );
+      var isCapacitorConnected = ( circuitConnection !== CircuitConnectionEnum.OPEN_CIRCUIT );
 
       // visible when battery is connected
-      this.topWireNode.visible = isConnected;
-      this.bottomWireNode.visible = isConnected;
+      //this.topWireNode.visible = isConnected;
+      //this.bottomWireNode.visible = isConnected;
 
-      this.topCurrentIndicatorNode.setVisible( isConnected );
-      this.bottomCurrentIndicatorNode.setVisible( isConnected );
+      this.topCurrentIndicatorNode.setVisible( isBatteryConnected );
+      this.bottomCurrentIndicatorNode.setVisible( isBatteryConnected );
 
       // plate charge control
-      this.plateChargeControlNode.visible = !isConnected;
+      this.plateChargeControlNode.visible = !isCapacitorConnected;
 
     }
   } );
