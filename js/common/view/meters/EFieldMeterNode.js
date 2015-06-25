@@ -16,11 +16,11 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
-  
+
   // strings
   var zeroFieldString = require( 'string!CAPACITOR_LAB_BASICS/voltsPerMeter.0' );
   var voltsPerMeterString = require( 'string!CAPACITOR_LAB_BASICS/voltsPerMeter' );
-  
+
   // images
   var probeCutoutImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_field_cutout.png' );
 
@@ -32,13 +32,13 @@ define( function( require ) {
   function EFieldMeterNode(model, capacitor, options) {
     options = _.extend({cursor: 'pointer'}, options);
     Node.call( this, options);
-    
+
     var eFieldString = zeroFieldString;
     var probeScale = 0.65;
-    
+
     // dark grey rectangle for meter body
     var bodyNode = new Rectangle( 0, 0, 80, 160, 5, 5, {fill: "#434343"} );
-    
+
     // Redraws the wire when either the probe or the meter body move
     function updateWire() {
       // connection points
@@ -51,13 +51,13 @@ define( function( require ) {
       var c2Offset = new Vector2( 0, Util.linear( 0, 800, 0, 200, bodyNode.centerX - probeNode.left ) ); // x distance -> y coordinate
       var c1 = new Vector2( probeConnectionPoint.x + c2Offset.x, probeConnectionPoint.y + c2Offset.y );
       var c2 = new Vector2( meterConnectionPoint.x + c1Offset.x, meterConnectionPoint.y + c1Offset.y );
-      
+
       var wireShape = new Shape()
         .moveTo( probeConnectionPoint.x, probeConnectionPoint.y )
         .cubicCurveTo( c1.x, c1.y, c2.x, c2.y, meterConnectionPoint.x, meterConnectionPoint.y );
       return wireShape;
     }
-    
+
     // Updates the value being displayed when the electric field changes
     // Also updates when the probe is moved into or out of the area inside the capacitor
     function updateDisplay() {
@@ -66,7 +66,7 @@ define( function( require ) {
       var parentPoint = thisNode.localToParentPoint( new Vector2( probeNode.right - 15, probeNode.top + 16 ) );
       var circuitPoint = capacitor.getParent().parentToLocalPoint( parentPoint );
       var capPoint = capacitor.parentToLocalPoint( circuitPoint );
-      
+
       var leftBound = capacitor.topPlate.left;
       var insideShape = new Shape().moveTo( leftBound, capacitor.topPlate.bottom ).
         horizontalLineTo( leftBound + capacitor.topPlate.plateWidth ).
@@ -76,7 +76,7 @@ define( function( require ) {
         horizontalLineTo( leftBound ).
         verticalLineTo( capacitor.topPlate.bottom );
       if ( insideShape.containsPoint( capPoint ) ) {
-        eFieldString = ( Math.abs( model.eFieldProperty.value ) ).toFixed(0) + voltsPerMeterString;
+        eFieldString = ( Util.htoFixed( model.eFieldProperty.value, 0 ) )+ voltsPerMeterString;
       }
       else {
         eFieldString = zeroFieldString;
@@ -84,14 +84,14 @@ define( function( require ) {
       eFieldTextNode.text = eFieldString;
       eFieldTextNode.centerX = meterDisplayNode.centerX;
     }
-    
+
     // image of meter probe
     var probeNode = new EFieldProbeNode( model, {
       scale: probeScale,
       x: -300,
       y: -130,
       rotation: Math.PI/4});
-    
+
     // wire connecting probe to meter
     var wire = new Path( updateWire(), {
       stroke: "#8d8d8d",
@@ -100,7 +100,7 @@ define( function( require ) {
       lineJoin: 'round',
       pickable: false
     } );
-    
+
     // Ghost images of probes, to be displayed when the probe is in focus
     this.ghostNode = new Node( {visible: false} );
     for (var i = 0; i < probeNode.locations.length; i++) {
@@ -113,11 +113,11 @@ define( function( require ) {
     }
     this.ghostNode.children[ 0 ].visible = false;
     this.addChild( this.ghostNode );
-    
+
     this.addChild( bodyNode );
     this.addChild( probeNode );
     this.addChild( wire );
-    
+
     // white box on the side of the meter
     var meterDisplayNode = new Rectangle( bodyNode.left + 5,
                                          bodyNode.top + 5,
@@ -127,7 +127,7 @@ define( function( require ) {
                                          0,
                                          {fill: 'white'} );
     bodyNode.addChild( meterDisplayNode );
-    
+
     // displays the value of the electric field at the location of the probe
     var eFieldTextNode = new Text( eFieldString, {
       top: meterDisplayNode.top + 5,
@@ -135,7 +135,7 @@ define( function( require ) {
       font: new PhetFont( 12 )
     } );
     meterDisplayNode.addChild( eFieldTextNode );
-    
+
     var thisNode = this;
 
     // drag handler for body of meter
@@ -155,36 +155,36 @@ define( function( require ) {
       }
     } );
     bodyNode.addInputListener( meterDragHandler );
-    
+
     model.eFieldProperty.link( function () {
       updateDisplay();
     });
-    
+
     model.eFieldProbePositionProperty.link( function () {
       probeNode.centerX = model.eFieldProbePositionProperty.value.x;
       probeNode.centerY = model.eFieldProbePositionProperty.value.y;
       wire.shape = updateWire();
-      
+
       updateDisplay();
     });
-    
+
     model.eFieldMeterPositionProperty.link( function () {
       bodyNode.centerX = model.eFieldMeterPositionProperty.value.x;
       bodyNode.centerY = model.eFieldMeterPositionProperty.value.y;
-      
+
       wire.shape = updateWire();
     });
-    
+
     model.eFieldMeterProperty.link( function () {
       thisNode.visible = model.eFieldMeterProperty.value;
     });
   }
-  
+
   return inherit( Node, EFieldMeterNode, {
     toggleGhosts: function( ) {
       this.ghostNode.visible = !this.ghostNode.visible;
     },
-    
+
     moveToGhost: function( probeNode, loc ) {
       for ( var i = 0; i < probeNode.locations.length; i++ ) {
         this.ghostNode.children[ i ].visible = true;
