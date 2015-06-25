@@ -107,7 +107,7 @@ define( function( require ) {
       // if the probes are reversed
       else if ((wire.topWire.shape.containsPoint(blackWirePoint) || topPlateShape.containsPoint(blackTopPlatePoint)) &&
                (wire.bottomWire.shape.containsPoint(redWirePoint) || bottomPlateShape.containsPoint(redBottomPlatePoint))) {
-        voltageString = ( Util.toFixed( model.voltageProperty.value * -1, 2 ) + voltString;
+        voltageString = ( Util.toFixed( model.voltageProperty.value * -1, 2 ) + voltString );
       }
       // if one or both probes are not on a wire or capacitor plate
       else {
