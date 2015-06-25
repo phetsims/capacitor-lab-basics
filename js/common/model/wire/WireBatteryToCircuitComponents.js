@@ -33,7 +33,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
-  var WireSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSwitch' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  //var WireSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSwitch' );
 
   // constants
   var ConnectionPoint = {
@@ -54,38 +55,74 @@ define( function( require ) {
    * @constructor
    */
   function WireBatteryToCircuitComponents( connectionPoint, modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents, circuitConnectionProperty ) {
-    Wire.call( this, modelViewTransform, thickness, [] /* segments added via addSegment() */ );
+
+    var segments = [];
 
     // y coordinate of the horizontal wire
     var horizontalY = this.getHorizontalY( connectionPoint, circuitComponents, wireExtent );
     var leftCorner = new Vector2( battery.location.x, horizontalY );
 
+    // x offset for horizontal wire segments to compensate for the switch
+    var xOffset = componentSpacing / 3;
+
     // add the battery segment
-    this.segments.push( this.getBatteryWireSegment( connectionPoint, battery, this.getEndOffset(), leftCorner ) );
+    // TODO: 0 should be getEndOffset
+    segments.push( this.getBatteryWireSegment( connectionPoint, battery, 0, leftCorner ) );
 
     // add the battery switch
-    var batterySwitch = new WireSwitch( modelViewTransform, thickness, leftCorner, componentSpacing );
-    this.segments = this.segments.concat( batterySwitch.segments ); // add switch segments to this wire segment.
+    segments.push( WireSegment.SwitchSegment(
+      leftCorner.plusXY( 2 * xOffset, 0 ),
+      leftCorner.plusXY( xOffset, 0 ),
+      xOffset,
+      CircuitConnectionEnum.BATTERY_CONNECTED ) );
 
-    // add vertical segments and switches for all circuit components (Z1...Zn)
+    // add vertical and horizontal segments for all circuit components (Z1...Zn)
     var startPoint;
     var component;
     for ( var i = 0; i < circuitComponents.length; i++ ) {
       // vertical segments
       component = circuitComponents[ i ];
       startPoint = new Vector2( component.location.x, horizontalY );
-      this.segments.push( this.getComponentWireSegment( connectionPoint, component, startPoint ) );
+      segments.push( this.getComponentWireSegment( connectionPoint, component, startPoint ) );
+
+      // horizontal segments
+      segments.push( new WireSegment( startPoint.minusXY( 3 * xOffset, 0 ), startPoint.minusXY( 2 * xOffset, 0 ) ) );
+      segments.push( new WireSegment( startPoint.minusXY( xOffset, 0 ), startPoint ) );
+
+      // switches
+      //this.segments.push( WireSegment.SwitchSegment( startPoint.minusXY( 2 * xOffset, 0 ), startPoint ) );
+
     }
 
-    // add connecting switches for remaining components
+    // add the switches for the light bulbs.  At this time, all light bulbs have to be connected at once.
     for ( i = 0; i < circuitComponents.length - 1; i++ ) {
       component = circuitComponents[ i ];
       startPoint = new Vector2( component.location.x, horizontalY );
 
-      var componentSwitch = new WireSwitch( modelViewTransform, thickness, startPoint, componentSpacing );
-      this.segments = this.segments.concat( componentSwitch.segments );
+      segments.push( WireSegment.SwitchSegment(
+        startPoint.plusXY( 2 * xOffset, 0 ),
+        startPoint.plusXY( xOffset, 0 ),
+        xOffset,
+        CircuitConnectionEnum.LIGHT_BULB_CONNECTED
+      ) );
     }
+
+    Wire.call( this, modelViewTransform, thickness, segments, circuitConnectionProperty );
+
+    // add connecting horizontal segments and switches for all inner components (Z1...Zn-1)
+    //for ( i = 0; i < circuitComponents.length - 1; i++ ) {
+    //  component = circuitComponents[ i ];
+    //  startPoint = new Vector2( component.location.x, horizontalY );
+
+    // horizontal segments
+    //this.segments.push( new WireSegment( startPoint.minusXY( 3 * xOffset, 0 ), startPoint.minusXY( 2 * xOffset, 0 ) ) );
+    //this.segments.push( new WireSegment( startPoint.minusXY( xOffset, 0 ), startPoint ) );
+
+    //var componentSwitch = new WireSwitch( modelViewTransform, thickness, startPoint, componentSpacing );
+    //this.segments = this.segments.concat( componentSwitch.segments );
   }
+
+  //}
 
   return inherit( Wire, WireBatteryToCircuitComponents, {
     /**
@@ -152,12 +189,12 @@ define( function( require ) {
     /**
      * Factory functions for public access to specific constructors.
      */
-    WireBatteryToCircuitComponentsBottom: function( modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents ) {
-      return new WireBatteryToCircuitComponents( ConnectionPoint.BOTTOM, modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents );
+    WireBatteryToCircuitComponentsBottom: function( modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents, circuitConnectionProperty ) {
+      return new WireBatteryToCircuitComponents( ConnectionPoint.BOTTOM, modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents, circuitConnectionProperty );
     },
 
-    WireBatteryToCircuitComponentsTop: function( modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents ) {
-      return new WireBatteryToCircuitComponents( ConnectionPoint.TOP, modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents );
+    WireBatteryToCircuitComponentsTop: function( modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents, circuitConnectionProperty ) {
+      return new WireBatteryToCircuitComponents( ConnectionPoint.TOP, modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents, circuitConnectionProperty );
     }
 
   } );

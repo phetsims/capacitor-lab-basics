@@ -27,6 +27,10 @@ define( function( require ) {
   inherit( PropertySet, WireSegment, {
     cleanUp: function() {
       console.log( 'cleanUp must be implemented in subclasses.' );
+    },
+
+    update: function() {
+      console.log( ' this segment does not have an update function.' );
     }
   }, {
 
@@ -34,7 +38,8 @@ define( function( require ) {
     BatteryTopWireSegment: function( battery, startYOffset, endPoint ) { return new BatteryTopWireSegment( battery, startYOffset, endPoint ); },
     BatteryBottomWireSegment: function( battery, startYOffset, endPoint ) { return new BatteryBottomWireSegment( battery, startYOffset, endPoint ); },
     ComponentTopWireSegment: function( component, endPoint ) { return new ComponentTopWireSegment( component, endPoint ); },
-    ComponentBottomWireSegment: function( component, endPoint ) { return new ComponentBottomWireSegment( component, endPoint ); }
+    ComponentBottomWireSegment: function( component, endPoint ) { return new ComponentBottomWireSegment( component, endPoint ); },
+    SwitchSegment: function( startPoint, endPoint, switchLength, circuitConnection ) { return new SwitchSegment( startPoint, endPoint, switchLength, circuitConnection ) }
 
   } );
 
@@ -71,7 +76,7 @@ define( function( require ) {
 
   inherit( ComponentWireSegment, ComponentTopWireSegment, {
     update: function() {
-      this.startPoint = this.component.getTopPlateCenter().toVector2();
+      this.startPoint = this.component.getTopConnectionPoint().toVector2();
     }
   } );
 
@@ -88,7 +93,7 @@ define( function( require ) {
 
   inherit( ComponentWireSegment, ComponentBottomWireSegment, {
     update: function() {
-      this.startPoint = this.component.getBottomConnectionPoint();
+      this.startPoint = this.component.getBottomConnectionPoint().toVector2();
     }
   } );
 
@@ -141,7 +146,7 @@ define( function( require ) {
     }
   } );
 
- /**
+  /**
    * Constructor for a BatteryTopWireSegment.  This is a wire segment whose start point is connected to the top terminal
    * of a battery.  Adjusts the start point when the battery's polarity changes.
    *
@@ -156,7 +161,7 @@ define( function( require ) {
   inherit( BatteryWireSegment, BatteryTopWireSegment, {
     update: function() {
       var battery = this.battery;
-      this.startPoint = new Vector2( battery.location.x, battery.location.y + battery.location.y + battery.location.getTopTerminalYOffset() - this.startYOffset );
+      this.startPoint = new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() - this.startYOffset );
     }
   } );
 
@@ -176,6 +181,32 @@ define( function( require ) {
     update: function() {
       var battery = this.battery;
       this.startPoint = new Vector2( this.battery.location.x, this.battery.location.y + battery.getBottomTerminalYOffset() + this.startYOffset );
+    }
+  } );
+
+  function SwitchSegment( startPoint, closedEndPoint, switchLength, circuitConnection ) {
+    this.circuitConnection = circuitConnection;
+    this.closedEndPoint = closedEndPoint;
+    this.startPoint = startPoint;
+    this.switchLength = switchLength;
+
+    WireSegment.call( this, startPoint, closedEndPoint );
+  }
+
+  inherit( WireSegment, SwitchSegment, {
+
+    update: function( circuitConnection ) {
+
+      if ( circuitConnection !== this.circuitConnection ) {
+        var xOffset = Math.cos( Math.PI / 4 ) * ( this.switchLength );
+        var yOffset = Math.sin( Math.PI / 4 ) * ( this.switchLength );
+        this.endPoint = this.startPoint.minusXY( xOffset, yOffset );
+      }
+      else {
+        // switch should be closed
+        this.endPoint = this.closedEndPoint;
+      }
+
     }
   } );
 

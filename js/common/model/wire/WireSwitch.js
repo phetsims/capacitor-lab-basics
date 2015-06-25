@@ -28,9 +28,11 @@ define( function( require ) {
   /**
    * Constructor for a Wire.
    */
-  function WireSwitch( modelViewTransform, thickness, startPoint, componentSpacing ) {
+  function WireSwitch( modelViewTransform, thickness, startPoint, componentSpacing, connectionType ) {
 
     var segments = [];
+    this.connectiontype = connectionType;
+    this.componentSpacing = componentSpacing;
 
     // create the left and right horizontal segments of the switch.
     segments.push( new WireSegment( startPoint, startPoint.plusXY( componentSpacing / 3, 0 ) ) );
@@ -39,11 +41,19 @@ define( function( require ) {
     // create the 'switch', starting point is the left edge of the segment
     var xOffset = Math.cos( Math.PI / 4 ) * ( componentSpacing / 3 );
     var yOffset = Math.sin( Math.PI / 4 ) * ( componentSpacing / 3 );
-    segments.push( new WireSegment( startPoint.plusXY( ( componentSpacing * 2 / 3 ) - xOffset, -yOffset ), startPoint.plusXY( componentSpacing * 2 / 3, 0 ) ) );
+    this.switchSegment = new WireSegment( startPoint.plusXY( ( componentSpacing * 2 / 3 ) - xOffset, -yOffset ), startPoint.plusXY( componentSpacing * 2 / 3, 0 ) );
+    segments.push( this.switchSegment );
 
     Wire.call( this, modelViewTransform, thickness, segments );
 
   }
 
-  return inherit( Wire, WireSwitch );
+  return inherit( Wire, WireSwitch, {
+
+    update: function( circuitConnection ) {
+
+
+
+    }
+  } );
 } );

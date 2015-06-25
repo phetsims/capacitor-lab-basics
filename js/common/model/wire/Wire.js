@@ -27,16 +27,29 @@ define( function( require ) {
     assert && assert( thickness > 0 );
 
     this.segments = segments;
-    //this.thickness = thickness;
+    this.thickness = thickness;
     this.shapeCreator = new WireShapeCreator( this, modelViewTransform );
+    var shape = this.shapeCreator.createWireShape();
 
-    //this.shape = this.shapeCreator.createWireShape();
     PropertySet.call( this, {
-      //shape: this.shapeCreator.createWireShape()
+      shape: shape
     } );
+    var thisWire = this;
 
+    //this.circuitConnectionProperty.link( function( circuitConnection ) {
+    //  console.log( 'circuit connection property changed, updating all wire segments ' );
+    //  thisCircuit.wires.forEach( function( wire ) {
+    //    wire.segments.forEach( function( segment ) {
+    //      segment.update( circuitConnection );
+    //    } )
+    //  } );
+    //} );
+
+    // Whenever a segment changes, update the shape.
     this.segments.forEach( function( segment ) {
-      // Some kind of linking function that adjusts the shape of each wiire.
+      segment.multilink( [ 'startPoint', 'endPoint' ], function() {
+        thisWire.shape = thisWire.shapeCreator.createWireShape();
+      } )
     } );
   }
 

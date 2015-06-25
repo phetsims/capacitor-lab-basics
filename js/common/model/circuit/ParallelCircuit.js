@@ -59,8 +59,22 @@ define( function( require ) {
   // Function for creating wires.
   function createWires( config, battery, circuitComponents, circuitConnectionProperty ) {
     var wires = [];
-    wires.push( WireBatteryToCircuitComponents.WireBatteryToCircuitComponentsTop( config.modelViewTransform, config.wireThickness, config.wireExtent, config.capacitorXSpacing, battery, circuitComponents, circuitConnectionProperty ) );
-    wires.push( WireBatteryToCircuitComponents.WireBatteryToCircuitComponentsBottom( config.modelViewTransform, config.wireThickness, config.wireExtent, config.capacitorXSpacing, battery, circuitComponents, circuitConnectionProperty ) );
+    wires.push( WireBatteryToCircuitComponents.WireBatteryToCircuitComponentsTop(
+      config.modelViewTransform,
+      config.wireThickness,
+      config.wireExtent,
+      config.capacitorXSpacing,
+      battery,
+      circuitComponents,
+      circuitConnectionProperty ) );
+    wires.push( WireBatteryToCircuitComponents.WireBatteryToCircuitComponentsBottom(
+      config.modelViewTransform,
+      config.wireThickness,
+      config.wireExtent,
+      config.capacitorXSpacing,
+      battery,
+      circuitComponents,
+      circuitConnectionProperty ) );
     return wires;
   }
 

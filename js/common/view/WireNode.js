@@ -46,6 +46,9 @@ define( function( require ) {
     //} );
 
     // TODO
+    wire.shapeProperty.link( function( shape ) {
+      wireNode.setShape( shape );
+    } );
     //wire.addShapeObserver( new SimpleObserver() {
     //  public void update() {
     //    pathNode.setPathTo( wire.getShape() );
