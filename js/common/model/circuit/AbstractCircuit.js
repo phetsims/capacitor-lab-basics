@@ -59,7 +59,6 @@ define( function( require ) {
 
     // TODO: Link it all up.
     this.circuitConnectionProperty.link( function( circuitConnection ) {
-      console.log( 'circuit connection property changed, updating all wire segments ' );
       thisCircuit.wires.forEach( function( wire ) {
         wire.segments.forEach( function( segment ) {
           segment.update( circuitConnection );
