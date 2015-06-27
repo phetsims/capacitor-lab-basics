@@ -87,7 +87,7 @@ define( function( require ) {
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
         var V = this.battery.voltage;
-        if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        if ( this.circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
           V = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance(); // V = Q/C
         }
         this.capacitor.platesVoltage = V;

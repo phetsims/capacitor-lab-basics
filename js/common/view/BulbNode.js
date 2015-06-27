@@ -28,6 +28,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var Vector2 = require( 'DOT/Vector2' );
   var LinearFunction = require( 'DOT/LinearFunction' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
   // images
   var bulbBaseImage = require( 'image!CAPACITOR_LAB_BASICS/light-bulb-base.png' );
@@ -131,10 +132,11 @@ define( function( require ) {
    * Constructor for a BulbNode.
    *
    * @param currentAmplitudeProperty - current amplitude through the circuit, determines brightness
+   * @param {Property.<string>} circuitConnectionProperty
    * @param {Object} [options]
    * @constructor
    */
-  function BulbNode( currentAmplitudeProperty, options ) {
+  function BulbNode( currentAmplitudeProperty, circuitConnectionProperty, options ) {
 
     Node.call( this );
     var thisNode = this;
@@ -148,14 +150,16 @@ define( function( require ) {
 
     // Update the halo as the needle angle changes.
     currentAmplitudeProperty.link( function( current ) {
-      var targetScaleFactor = bulbBrightnessMap( Math.abs( current ) );
-      if ( targetScaleFactor < 0.1 ) {
-        thisNode.bulb.haloNode.visible = false;
-      }
-      else {
-        thisNode.bulb.haloNode.visible = true;
-        var scale = targetScaleFactor / thisNode.bulb.haloNode.transform.matrix.scaleVector.x;
-        thisNode.bulb.haloNode.scale( scale );
+      if ( circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        var targetScaleFactor = bulbBrightnessMap( Math.abs( current ) );
+        if ( targetScaleFactor < 0.1 ) {
+          thisNode.bulb.haloNode.visible = false;
+        }
+        else {
+          thisNode.bulb.haloNode.visible = true;
+          var scale = targetScaleFactor / thisNode.bulb.haloNode.transform.matrix.scaleVector.x;
+          thisNode.bulb.haloNode.scale( scale );
+        }
       }
     } );
   }

@@ -78,10 +78,9 @@ define( function( require ) {
       //}
 
       /*
-       * When the battery voltage changes, update the plate voltages.
-       * Do NOT automatically do this when adding the observer because
-       * updatePlateVoltages is implemented by the subclass, and all
-       * necessary fields in the subclass may not be initialized.
+       * When the battery voltage changes, update the plate voltages. Do NOT automatically do this when adding the
+       * observer because updatePlateVoltages is implemented by the subclass, and all necessary fields in the subclass
+       * may not be initialized.
        */
       this.battery.voltageProperty.lazyLink( function() {
         thisCircuit.updatePlateVoltages();
