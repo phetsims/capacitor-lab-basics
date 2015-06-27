@@ -16,7 +16,7 @@ define( function( require ) {
 
   // constants
   var MAX_OPACITY = 0.75; // range is 0-1
-  var FADEOUT_DURATION = 1000; // ms
+  var FADEOUT_DURATION = 600; // ms
   var FADEOUT_STEP_RATE = 20; // ms
 
   /**
