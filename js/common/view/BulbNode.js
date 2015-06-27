@@ -123,7 +123,7 @@ define( function( require ) {
     bulbBase.left = 0;
     bulbNode.haloNode.center = filament.center;
 
-    bulbNode.centerX = bulbNode.centerX + BULB_X_DISPLACEMENT;
+    bulbNode.rotate( Math.PI );
 
     return bulbNode;
   }

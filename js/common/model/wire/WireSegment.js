@@ -39,6 +39,12 @@ define( function( require ) {
     BatteryBottomWireSegment: function( battery, startYOffset, endPoint ) { return new BatteryBottomWireSegment( battery, startYOffset, endPoint ); },
     ComponentTopWireSegment: function( component, endPoint ) { return new ComponentTopWireSegment( component, endPoint ); },
     ComponentBottomWireSegment: function( component, endPoint ) { return new ComponentBottomWireSegment( component, endPoint ); },
+    VerticalTopWireSegment: function( battery, startPoint ) {
+      return new WireSegment( startPoint, new Vector2( startPoint.x, battery.location.y + battery.getTopTerminalYOffset() ) );
+    },
+    VerticalBottomWireSegment: function( battery, startPoint ) {
+      return new WireSegment( startPoint, new Vector2( startPoint.x, battery.location.y + battery.getBottomTerminalYOffset() ) );
+    },
     SwitchSegment: function( startPoint, endPoint, switchLength, circuitConnection ) { return new SwitchSegment( startPoint, endPoint, switchLength, circuitConnection ); }
 
   } );
@@ -70,13 +76,13 @@ define( function( require ) {
    * @param {Capacitor || LightBulb} component
    * @param {Vector2} endPoint
    */
-  function ComponentTopWireSegment( component, endPoint ) {
-    ComponentWireSegment.call( this, component, component.getTopConnectionPoint(), endPoint );
+  function ComponentTopWireSegment( component, startPoint ) {
+    ComponentWireSegment.call( this, component, startPoint, component.getTopConnectionPoint().toVector2() );
   }
 
   inherit( ComponentWireSegment, ComponentTopWireSegment, {
     update: function() {
-      this.startPoint = this.component.getTopConnectionPoint().toVector2();
+      this.endPoint = this.component.getTopConnectionPoint().toVector2();
     }
   } );
 
@@ -87,13 +93,13 @@ define( function( require ) {
    * @param {Capacitor || LightBulb} component
    * @param {Vector2} endPoint
    */
-  function ComponentBottomWireSegment( component, endPoint ) {
-    ComponentWireSegment.call( this, component, component.getBottomConnectionPoint().toVector2(), endPoint );
+  function ComponentBottomWireSegment( component, startPoint ) {
+    ComponentWireSegment.call( this, component, startPoint, component.getBottomConnectionPoint().toVector2());
   }
 
   inherit( ComponentWireSegment, ComponentBottomWireSegment, {
     update: function() {
-      this.startPoint = this.component.getBottomConnectionPoint().toVector2();
+      this.endPoint = this.component.getBottomConnectionPoint().toVector2();
     }
   } );
 

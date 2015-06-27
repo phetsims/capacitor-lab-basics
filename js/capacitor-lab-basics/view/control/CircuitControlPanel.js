@@ -23,14 +23,14 @@ define( function( require ) {
 
   function CircuitControlPanel( circuitModel ) {
 
-
+    var contentOptions = { scale: 0.75, rotation: -Math.PI / 2 };
     var connectionButtonGroupComponents = [
       {
         value: CircuitConnectionEnum.BATTERY_CONNECTED,
-        node: new Image( batteryImage, { scale: 0.75, rotation: -Math.PI / 2 } )
+        node: new Image( batteryImage, contentOptions )
       }, {
         value: CircuitConnectionEnum.LIGHT_BULB_CONNECTED,
-        node: BulbNode.createBulb( { scale: 0.75, rotation: Math.PI / 2 } )
+        node: BulbNode.createBulb( contentOptions )
       }, {
         value: CircuitConnectionEnum.OPEN_CIRCUIT,
         node: new Text( "Open Circuit", { font: new PhetFont( 15 ), rotation: Math.PI / 4 } ) // TODO: PLACEHOLDER FOR OPEN CIRCUIT ICON.

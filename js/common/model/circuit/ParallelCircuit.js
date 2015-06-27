@@ -37,7 +37,7 @@ define( function( require ) {
     var circuitComponents = [];
 
     var location;
-    // create the capacitors.
+    // create the capacitors
     for ( var i = 0; i < numberOfCapacitors; i++ ) {
       location = new Vector3( x, y, z );
       var capacitor = new Capacitor( location, config.plateWidth, config.plateSeparation, config.modelViewTransform );
@@ -45,9 +45,10 @@ define( function( require ) {
       x += config.capacitorXSpacing;
     }
 
-    // create the lightBulbs.
+    // create the light bulbs
     for ( i = 0; i < numberOfLightBulbs; i++ ) {
-      location = new Vector3( x, y, z );
+      //var xOffset = 5 *LightBulb.BULB_BASE_SIZE.width;
+      location = new Vector3( x , y, z );
       var lightBulb = new LightBulb( location );
       circuitComponents.push( lightBulb );
       x += config.capacitorXSpacing;

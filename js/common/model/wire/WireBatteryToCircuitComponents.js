@@ -80,18 +80,21 @@ define( function( require ) {
     var startPoint;
     var component;
     for ( var i = 0; i < circuitComponents.length; i++ ) {
-      // vertical segments
+
       component = circuitComponents[ i ];
       startPoint = new Vector2( component.location.x, horizontalY );
-      segments.push( this.getComponentWireSegment( connectionPoint, component, startPoint ) );
 
       // horizontal segments
       segments.push( new WireSegment( startPoint.minusXY( 3 * xOffset, 0 ), startPoint.minusXY( 2 * xOffset, 0 ) ) );
       segments.push( new WireSegment( startPoint.minusXY( xOffset, 0 ), startPoint ) );
 
-      // switches
-      //this.segments.push( WireSegment.SwitchSegment( startPoint.minusXY( 2 * xOffset, 0 ), startPoint ) );
+      // vertical segments, from horizontal segment to vertical component of battery connection point.
+      var verticalSegment = this.getVerticalWireSegment( connectionPoint, battery, startPoint );
+      segments.push( verticalSegment );
+      //segments.push( this.getComponentWireSegment( connectionPoint, component, startPoint ) );
 
+      // segments that connect the component to the circuit
+      segments.push( this.getComponentWireSegment( connectionPoint, component, verticalSegment.endPoint ) );
     }
 
     // add the switches for the light bulbs.  At this time, all light bulbs have to be connected at once.
@@ -109,20 +112,8 @@ define( function( require ) {
 
     Wire.call( this, modelViewTransform, thickness, segments, circuitConnectionProperty );
 
-    // add connecting horizontal segments and switches for all inner components (Z1...Zn-1)
-    //for ( i = 0; i < circuitComponents.length - 1; i++ ) {
-    //  component = circuitComponents[ i ];
-    //  startPoint = new Vector2( component.location.x, horizontalY );
-
-    // horizontal segments
-    //this.segments.push( new WireSegment( startPoint.minusXY( 3 * xOffset, 0 ), startPoint.minusXY( 2 * xOffset, 0 ) ) );
-    //this.segments.push( new WireSegment( startPoint.minusXY( xOffset, 0 ), startPoint ) );
-
-    //var componentSwitch = new WireSwitch( modelViewTransform, thickness, startPoint, componentSpacing );
-    //this.segments = this.segments.concat( componentSwitch.segments );
   }
 
-  //}
 
   return inherit( Wire, WireBatteryToCircuitComponents, {
     /**
@@ -168,6 +159,23 @@ define( function( require ) {
     },
 
     /**
+     * Return a vertical wire segment from the battery connection point to the horizontal wires in the parallel circuit.
+     *
+     * @param {string} connectionPoint The connection type for the component, one of TOP or BOTTOM
+     * @param {Battery} battery
+     * @param {Vector2} startPoint
+     */
+    getVerticalWireSegment: function( connectionPoint, battery, startPoint ) {
+      if ( connectionPoint === ConnectionPoint.TOP ) {
+        return WireSegment.VerticalTopWireSegment( battery, startPoint )
+      }
+      else if( connectionPoint === ConnectionPoint.BOTTOM ) {
+        return WireSegment.VerticalBottomWireSegment( battery, startPoint );
+      }
+      else( assert && assert( 'Connection point must be one of "TOP" or "BOTTOM" ') );
+    },
+
+    /**
      * Gets a wire segment that attaches to the specified circuit component.
      *
      * @param connectionPoint
@@ -175,12 +183,12 @@ define( function( require ) {
      * @param endPoint
      * @returns {WireSegment}
      */
-    getComponentWireSegment: function( connectionPoint, component, endPoint ) {
+    getComponentWireSegment: function( connectionPoint, component, startPoint ) {
       if ( connectionPoint === ConnectionPoint.TOP ) {
-        return WireSegment.ComponentTopWireSegment( component, endPoint );
+        return WireSegment.ComponentTopWireSegment( component, startPoint );
       }
       else {
-        return WireSegment.ComponentBottomWireSegment( component, endPoint );
+        return WireSegment.ComponentBottomWireSegment( component, startPoint );
       }
     }
 

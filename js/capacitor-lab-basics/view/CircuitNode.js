@@ -26,6 +26,7 @@ define( function( require ) {
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var Range = require( 'DOT/Range' );
   var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
+  var Circle = require( 'SCENERY/nodes/Circle' );
 
   /**
    * Constructor for a CircuitNode.
@@ -71,10 +72,10 @@ define( function( require ) {
     this.plateChargeControlNode = new PlateChargeControlNode( circuit, new Range( -maxPlateCharge, maxPlateCharge ) );
 
     // rendering order
+    this.addChild( lightBulbNode );
     this.addChild( this.bottomWireNode );
     this.addChild( batteryNode );
     this.addChild( capacitorNode );
-    this.addChild( lightBulbNode );
     this.addChild( this.topWireNode );
     this.addChild( this.topCurrentIndicatorNode );
     this.addChild( this.bottomCurrentIndicatorNode );
@@ -92,8 +93,8 @@ define( function( require ) {
     // capacitor
     capacitorNode.center = modelViewTransform.modelToViewPosition( circuit.capacitor.location );
 
-    // LightBulb
-    lightBulbNode.center = modelViewTransform.modelToViewPosition( circuit.lightBulb.location );
+    // LightBulb - translate so that center is the center of the base.
+    lightBulbNode.center = modelViewTransform.modelToViewPosition( circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
 
     // top current indicator
     var topWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getTopWire().thickness, 0, 0 ).x;
