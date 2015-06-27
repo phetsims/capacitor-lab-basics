@@ -23,6 +23,7 @@ define( function( require ) {
   var MinusNode = require( 'SCENERY_PHET/PlusNode' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var Color = require( 'SCENERY/util/Color' );
+  var Util = require( 'DOT/Util' );
 
   // constants
   var DEBUG_OUTPUT_ENABLED = false; // developer tool for debugging
@@ -229,7 +230,7 @@ define( function( require ) {
      */
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
       var absCharge = Math.abs( plateCharge );
-      var numberOfCharges = Math.floor( CLConstants.NUMBER_OF_PLATE_CHARGES.max * absCharge / maxPlateCharge );
+      var numberOfCharges = Util.toFixedNumber( CLConstants.NUMBER_OF_PLATE_CHARGES.max * ( absCharge / maxPlateCharge ), 0 );
       if ( absCharge > 0 && numberOfCharges < CLConstants.NUMBER_OF_PLATE_CHARGES.min ) {
         numberOfCharges = CLConstants.NUMBER_OF_PLATE_CHARGES.min;
       }
