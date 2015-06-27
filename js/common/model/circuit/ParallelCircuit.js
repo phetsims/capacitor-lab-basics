@@ -40,7 +40,14 @@ define( function( require ) {
     // create the capacitors
     for ( var i = 0; i < numberOfCapacitors; i++ ) {
       location = new Vector3( x, y, z );
-      var capacitor = new Capacitor( location, config.plateWidth, config.plateSeparation, config.modelViewTransform );
+      var capacitor = new Capacitor(
+        location, config.plateWidth,
+        config.plateSeparation,
+        config.dielectricMaterial,
+        config.dielectricOffset,
+        config.modelViewTransform
+      );
+
       circuitComponents.push( capacitor );
       x += config.capacitorXSpacing;
     }

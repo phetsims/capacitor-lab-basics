@@ -34,10 +34,12 @@ define( function( require ) {
    * @param {Vector3} location
    * @param {number} plateWidth
    * @param {number} plateSeparation
-   * @param {ModelViewTransform2} modelViewTransform
+   * @param {DielectricMaterial} dielectricMaterial
+   * @param {number} dielectricOffset
+   * @param {CLModelViewTransform3D} modelViewTransform
    * @constructor
    */
-  function Capacitor( location, plateWidth, plateSeparation, modelViewTransform ) {
+  function Capacitor( location, plateWidth, plateSeparation, dielectricMaterial, dielectricOffset, modelViewTransform ) {
 
     // immutable variables.
     this.modelViewTransform = modelViewTransform;
@@ -48,7 +50,8 @@ define( function( require ) {
       plateSize: new Bounds3( 0, 0, 0, plateWidth, CLConstants.PLATE_HEIGHT, plateWidth ), // Square plates.
       plateSeparation: plateSeparation,
       platesVoltage: 0, // zero until it's connected into a circuit
-      dielectricOffset: 0.02 // in meters, default is totally outside of capacitor plates.
+      dielectricMaterial: dielectricMaterial,
+      dielectricOffset: dielectricOffset // in meters, default is totally outside of capacitor plates.
     } );
 
     // TODO: Include listeners.
@@ -189,6 +192,16 @@ define( function( require ) {
     },
 
     /**
+     * Gets the capacitance due to the part of the capacitor that is contacting the dielectric.
+     * (design doc symbol: C_dielectric)
+     *
+     * @return {number} capacitance, in Farads
+     */
+    getDielectricCapacitance: function() {
+      return this.getCapacitance( this.dielectricMaterial.dielectricConstant, this.getDielectricContactArea(), this.plateSeparation );
+    },
+
+    /**
      * Does a Shape intersect the top plate shape?
      *
      * @param {Shape} shape
@@ -243,13 +256,23 @@ define( function( require ) {
     },
 
     /**
+     * Gets the charge for the portion of the top plate contacting the dielectric.
+     * (design doc symbol: Q_dielectric)
+     *
+     * @return {number} charge, in Coulombs
+     */
+    getDielectricPlateCharge: function() {
+      return this.getDielectricCapacitance() * this.platesVoltage;
+    },
+
+    /**
      * Gets the total charge on the top plate. Note that without dielectrics this is equal to getAirPlateCharge().
      * (design doc symbol: Q_total)
      *
      * @return {number} charge, in Coulombs
      */
     getTotalPlateCharge: function() {
-      return this.getAirPlateCharge();
+      return this.getAirPlateCharge() + this.getDielectricPlateCharge();
     },
 
     /**
@@ -259,7 +282,7 @@ define( function( require ) {
      * @returns {number}
      */
     getTotalCapacitance: function() {
-      return this.getAirCapacitance();
+      return this.getAirCapacitance() + this.getDielectricCapacitance();
     },
 
     /**

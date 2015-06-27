@@ -4,8 +4,8 @@
  * Base class and subclasses for dielectric materials. All subclasses for "real" materials are immutable.
  * The subclass for a "custom" material has a mutable dielectric constant.
  *
- * NOTE: Air is the only dielectric material needed for now.  Custom Dielectrics will not be ported at this time.
- * (5/31/15)
+ * NOTE: Air is the only dielectric material needed for now. Dielectrics not being ported at this time.
+ * However, a basic custom dielectric is used to calculate the maximum number of charges possible on a capacitor.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
@@ -18,7 +18,7 @@ define( function( require ) {
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
 
   // constants
-  var AIR_COLOR = 'rgba( 255, 0, 0, 1 )';  // This should never be seen so pick something obviously wrong.
+
 
   function DielectricMaterial( name, dielectricConstant, color ) {
 
@@ -30,7 +30,8 @@ define( function( require ) {
 
   return inherit( Object, DielectricMaterial, {}, {
 
-    Air: function() { return new DielectricMaterial( 'air', CLConstants.EPSILON_AIR, AIR_COLOR ); }
+    Air: function() { return new DielectricMaterial( 'air', CLConstants.EPSILON_AIR, CLConstants.AIR_COLOR ); },
+    CustomDielectricMaterial: function( dielectricConstant ) { return new DielectricMaterial( 'Custom', dielectricConstant, CLConstants.CUSTOM_DIELECTRIC_COLOR ); }
 
   } );
 } );

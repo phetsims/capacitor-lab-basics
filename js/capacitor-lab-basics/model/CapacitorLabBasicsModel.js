@@ -145,6 +145,8 @@ define( function( require ) {
       var capacitor = new Capacitor( new Vector3( 0, 0, 0 ),
         CLConstants.PLATE_WIDTH_RANGE.max,
         CLConstants.PLATE_SEPARATION_RANGE.min,
+        DielectricMaterial.CustomDielectricMaterial( CLConstants.DIELECTRIC_CONSTANT_RANGE.max ),
+        CLConstants.DIELECTRIC_OFFSET_RANGE.min,
         modelViewTransform );
       capacitor.platesVoltage = CLConstants.BATTERY_VOLTAGE_RANGE.max;
       return capacitor;

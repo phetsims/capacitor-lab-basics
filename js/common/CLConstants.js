@@ -112,7 +112,9 @@ define( function( require ) {
     E_FIELD_COLOR: 'black',
     STORED_ENERGY_COLOR: 'yellow',
     POSITIVE_CHARGE_COLOR: PhetColorScheme.RED_COLORBLIND,
-    NEGATIVE_CHARGE_COLOR: 'blue'
+    NEGATIVE_CHARGE_COLOR: 'blue',
+    CUSTOM_DIELECTRIC_COLOR: 'rgb( 255, 255, 125 )', // pale yellow
+    AIR_COLOR: 'rgba( 255, 0, 0, 1 )' // This should never be seen so pick something obviously wrong.
 
   };
 } );

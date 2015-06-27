@@ -12,20 +12,23 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   var Vector3 = require( 'DOT/Vector3' );
+  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
 
   // constructor
   function CircuitConfig( options ) {
 
     options = _.extend( {
       // TODO: Populate defaults with intro screen values.
-    modelViewTransform: ModelViewTransform2.createIdentity(),
-    batteryLocation: new Vector3( 0, 0, 0),
-    capacitorXSpacing: 0,
-    capacitorYSpacing: 0,
-    plateWidth: 0,
-    plateSeparation: 0,
-    wireExtent: 0,
-    wireThickness: 1
+      modelViewTransform: ModelViewTransform2.createIdentity(),
+      batteryLocation: new Vector3( 0, 0, 0 ),
+      capacitorXSpacing: 0,
+      capacitorYSpacing: 0,
+      plateWidth: 0,
+      plateSeparation: 0,
+      dielectricMaterial: DielectricMaterial.Air(),
+      dielectricOffset: 0.02, // meters
+      wireExtent: 0,
+      wireThickness: 1
     }, options );
 
     this.modelViewTransform = options.modelViewTransform;
@@ -36,6 +39,8 @@ define( function( require ) {
     this.plateSeparation = options.plateSeparation;
     this.wireThickness = options.wireThickness;
     this.wireExtent = options.wireExtent;
+    this.dielectricMaterial = options.dielectricMaterial;
+    this.dielectricOffset = options.dielectricOffset;
 
   }
 
