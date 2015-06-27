@@ -167,12 +167,14 @@ define( function( require ) {
      */
     getVerticalWireSegment: function( connectionPoint, battery, startPoint ) {
       if ( connectionPoint === ConnectionPoint.TOP ) {
-        return WireSegment.VerticalTopWireSegment( battery, startPoint )
+        return WireSegment.VerticalTopWireSegment( battery, startPoint );
       }
       else if( connectionPoint === ConnectionPoint.BOTTOM ) {
         return WireSegment.VerticalBottomWireSegment( battery, startPoint );
       }
-      else( assert && assert( 'Connection point must be one of "TOP" or "BOTTOM" ') );
+      else{
+        assert && assert( 'Connection point must be one of "TOP" or "BOTTOM" ');
+      }
     },
 
     /**

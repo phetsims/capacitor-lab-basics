@@ -38,7 +38,6 @@ define( function( require ) {
   var BULB_BASE_WIDTH = 36;
   var NUM_FILAMENT_ZIG_ZAGS = 8;
   var FILAMENT_ZIG_ZAG_SPAN = 8;
-  var BULB_X_DISPLACEMENT = -45; // Bulb dx relative to center position
 
   function createBulb( options ) {
 

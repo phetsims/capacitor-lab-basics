@@ -13,7 +13,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Vector3 = require( 'DOT/Vector3' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Dimension2 = require( 'DOT/Dimension2' );
 
   // constants

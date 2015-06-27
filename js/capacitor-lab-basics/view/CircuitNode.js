@@ -26,7 +26,6 @@ define( function( require ) {
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var Range = require( 'DOT/Range' );
   var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
-  var Circle = require( 'SCENERY/nodes/Circle' );
 
   /**
    * Constructor for a CircuitNode.
