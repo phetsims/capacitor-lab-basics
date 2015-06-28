@@ -46,6 +46,16 @@ define( function( require ) {
 
     getBottomConnectionPoint: function() {
       return new Vector3( this.location.x - BULB_BASE_SIZE.width, this.location.y, this.location.z );
+    },
+
+    /**
+     * Calculate the current flowing through this lightbulb using Ohm's Law, V = I R
+     *
+     * @param {number} voltage voltage accrose the resistor
+     * @return {number}
+     */
+    getCurrent: function( voltage ) {
+      return voltage / this.resistance;
     }
   }, {
 

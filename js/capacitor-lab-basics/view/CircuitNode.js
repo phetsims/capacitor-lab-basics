@@ -57,7 +57,7 @@ define( function( require ) {
     this.topWireNode = new WireNode( circuit.getTopWire() ); // @private
     this.bottomWireNode = new WireNode( circuit.getBottomWire() ); // @private
 
-    var lightBulbNode = new BulbNode( circuit.currentAmplitudeProperty, circuit.circuitConnectionProperty, modelViewTransform );
+    var lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.platesVoltageProperty, circuit.circuitConnectionProperty, modelViewTransform );
 
     // drag handles
     var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE, valuesVisibleProperty );

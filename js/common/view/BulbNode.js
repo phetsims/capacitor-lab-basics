@@ -6,11 +6,9 @@
  * TODO: DRAWING CODE IS TAKEN DIRECTLY FROM FARADAY'S LAW.
  * TODO: THIS CODE IS TEMPORARY.  WE NEED TO MAKE DESIGN DECISIONS ABOUT WHAT THE DESIRED BULB SHAPE AND BEHAVIOR IS ( AND WHY ).
  *
- * TODO: THIS CODE WILL BE REMOVED AND APPROPRIATE CHANGES WILL BE MADE TO LightBulbNode of scenery-phet IN THE NEAR FUTURE.
+ * TODO: THIS CODE WILL BE REMOVED AND APPROPRIATE CHANGES WILL BE MADE TO LightBulbNode of scenery-phet IF NECESSARY IN THE NEAR FUTURE.
  *
- * TODO: NOT PULLING FROM FARADAY'S LAW AT THE TIME BEING BECAUSE I NEED THE FACTORY FUNCTIONS TO DRAW A BULB
- * TODO: WITHOUT LINKING TO MODEL PROPERTIES.
- *
+ * TODO: NOT PULLING FROM FARADAY'S LAW AT THE TIME BEING BECAUSE MANY CHANGES ARE NEEDED IN THE WIRING OF THAT NODE.
  * @author Vasily Shakhov (MLearner)
  * @author John Blanco
  * @author Jesse Greenberg
@@ -131,12 +129,13 @@ define( function( require ) {
   /**
    * Constructor for a BulbNode.
    *
-   * @param currentAmplitudeProperty - current amplitude through the circuit, determines brightness
+   * @param {LightBulb} lightBulb
+   * @param voltageProperty - voltage across the terminals of the lightbulb, determines brightness
    * @param {Property.<string>} circuitConnectionProperty
    * @param {Object} [options]
    * @constructor
    */
-  function BulbNode( currentAmplitudeProperty, circuitConnectionProperty, options ) {
+  function BulbNode( lightBulb, voltageProperty, circuitConnectionProperty, options ) {
 
     Node.call( this );
     var thisNode = this;
@@ -149,10 +148,9 @@ define( function( require ) {
     var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 50, true );
 
     // Update the halo as the needle angle changes.
-    currentAmplitudeProperty.link( function( current ) {
+    voltageProperty.link( function( voltage ) {
       if ( circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-        //debugger;
-        var targetScaleFactor = bulbBrightnessMap( Math.abs( current ) );
+        var targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
         if ( targetScaleFactor < 0.1 ) {
           thisNode.bulb.haloNode.visible = false;
         }
