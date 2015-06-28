@@ -7,64 +7,65 @@
  * @author Jesse Greenberg
  */
 define( function( require ) {
-  'use strict';
+    'use strict';
 
-  // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
-  var Battery = require( 'CAPACITOR_LAB_BASICS/common/model/Battery' );
-  var CurrentIndicator = require( 'CAPACITOR_LAB_BASICS/common/model/CurrentIndicator' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
-  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+    // modules
+    var inherit = require( 'PHET_CORE/inherit' );
+    var PropertySet = require( 'AXON/PropertySet' );
+    var Battery = require( 'CAPACITOR_LAB_BASICS/common/model/Battery' );
+    var CurrentIndicator = require( 'CAPACITOR_LAB_BASICS/common/model/CurrentIndicator' );
+    var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+    var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
-  /**
-   * Constructor
-   *
-   * @param {CircuitConfig} config circuit configuration values
-   * @param {number} numberOfCapacitors number of capacitors in the circuit
-   * @param {number} numberOfLightBulbs number of lightBulbs in the circuit
-   * @param {function} createCircuitComponents   function for creating cirucit components
-   * @param {function} createWires function for creating wires
-   */
-  function AbstractCircuit( config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires ) {
+    /**
+     * Constructor
+     *
+     * @param {CircuitConfig} config circuit configuration values
+     * @param {number} numberOfCapacitors number of capacitors in the circuit
+     * @param {number} numberOfLightBulbs number of lightBulbs in the circuit
+     * @param {function} createCircuitComponents   function for creating cirucit components
+     * @param {function} createWires function for creating wires
+     */
+    function AbstractCircuit( config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires ) {
 
-    var thisCircuit = this; // extend scope for nested callbacks.
-    PropertySet.call( this, {
-      currentAmplitude: 0,
-      circuitConnection: CircuitConnectionEnum.BATTERY_CONNECTED
-    } );
+      var thisCircuit = this; // extend scope for nested callbacks.
+      PropertySet.call( this, {
+        currentAmplitude: 0,
+        circuitConnection: CircuitConnectionEnum.BATTERY_CONNECTED
+      } );
 
-    this.previousTotalCharge = -1; // no value, @private
+      this.previousTotalCharge = -1; // no value, @private
 
-    // create basic circuit components
-    this.battery = new Battery( config.batteryLocation, CLConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform );
-    this.circuitComponents = createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs );
+      // create basic circuit components
+      this.battery = new Battery( config.batteryLocation, CLConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform );
+      this.circuitComponents = createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs );
 
-    // capture the circuit components into individual arrays.  Note that using splice assumes order of capacitors and
-    // then lightbulbs. If new order is important, new method is necessary.
-    // TODO: Perhaps a better method is needed anyway.
-    this.capacitors = this.circuitComponents.slice( 0, numberOfCapacitors );
-    this.lightBulbs = this.circuitComponents.slice( numberOfCapacitors, numberOfLightBulbs + 1 );
+      // capture the circuit components into individual arrays.  Note that using splice assumes order of capacitors and
+      // then lightbulbs. If new order is important, new method is necessary.
+      // TODO: Perhaps a better method is needed anyway.
+      this.capacitors = this.circuitComponents.slice( 0, numberOfCapacitors );
+      this.lightBulbs = this.circuitComponents.slice( numberOfCapacitors, numberOfLightBulbs + 1 );
 
-    this.wires = createWires( config, this.battery, this.circuitComponents, this.circuitConnectionProperty );
+      this.wires = createWires( config, this.battery, this.circuitComponents, this.circuitConnectionProperty );
 
-    // create the current indicators
-    this.topCurrentIndicator = new CurrentIndicator( this, 0 /* initial rotation*/ );
-    this.bottomCurrentIndicator = new CurrentIndicator( this, Math.PI /* initial rotation*/ );
+      // create the current indicators
+      this.topCurrentIndicator = new CurrentIndicator( this, 0 /* initial rotation*/ );
+      this.bottomCurrentIndicator = new CurrentIndicator( this, Math.PI /* initial rotation*/ );
 
-    // Make sure all is well with circuit components.  Circuit must include at least one circuit component and two wires.
-    assert && assert( this.circuitComponents.length >= 1 );
-    assert && assert( this.wires.length >= 2 );
-    assert( this.wires.length >= 2 );
+      // Make sure all is well with circuit components.  Circuit must include at least one circuit component and two wires.
+      assert && assert( this.circuitComponents.length >= 1 );
+      assert && assert( this.wires.length >= 2 );
+      assert( this.wires.length >= 2 );
 
-    // TODO: Link it all up.
-    this.circuitConnectionProperty.link( function( circuitConnection ) {
-      thisCircuit.wires.forEach( function( wire ) {
-        wire.segments.forEach( function( segment ) {
-          segment.update( circuitConnection );
+      // TODO: Link it all up.
+      this.circuitConnectionProperty.link( function( circuitConnection ) {
+        // update start and end points of each wire segment
+        thisCircuit.wires.forEach( function( wire ) {
+          wire.segments.forEach( function( segment ) {
+            segment.update( circuitConnection );
+          } );
         } );
       } );
-    } );
 
       // observe capacitors
       //CapacitorChangeListener capacitorChangeListener = new CapacitorChangeListener() {
@@ -78,9 +79,10 @@ define( function( require ) {
       //}
 
       /*
-       * When the battery voltage changes, update the plate voltages. Do NOT automatically do this when adding the
-       * observer because updatePlateVoltages is implemented by the subclass, and all necessary fields in the subclass
-       * may not be initialized.
+       * When the battery voltage changes and the battery is connected, update the plate voltages.
+       * Do NOT automatically do this when adding the observer because
+       * updatePlateVoltages is implemented by the subclass, and all
+       * necessary fields in the subclass may not be initialized.
        */
       this.battery.voltageProperty.lazyLink( function() {
         thisCircuit.updatePlateVoltages();
@@ -243,9 +245,7 @@ define( function( require ) {
         }
         this.previousTotalCharge = Q;
       }
-
     } );
   }
-
-  )
-  ;
+)
+;

@@ -56,13 +56,20 @@ define( function( require ) {
     // Make sure that the charges are correct when the battery is reconnected to the circuit.
     this.circuitConnectionProperty.link( function( circuitConnection ) {
       /*
-       * When disconnecting the circuit, set the disconnected plate charge to whatever the total plate charge was with
+       * When disconnecting the battery, set the disconnected plate charge to whatever the total plate charge was with
        * the battery connected.  Need to do this before changing the plate voltages property.
        */
-      if ( circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+      if ( circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
         thisCircuit.setDisconnectedPlateCharge( thisCircuit.getTotalCharge() );
       }
       thisCircuit.updatePlateVoltages();
+
+      // if light bulb connected, reset values for transient calculations
+      if ( circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        thisCircuit.capacitor.transientTime = 0;
+        thisCircuit.capacitor.voltageAtSwitchClose = thisCircuit.capacitor.platesVoltage;
+      }
+
     } );
 
     // TODO: Not sure this needs to be called at end of constructor.
@@ -78,6 +85,18 @@ define( function( require ) {
       this.circuitConnectionProperty.reset();
     },
 
+    step: function( dt ) {
+
+      // step through common circuit components
+      ParallelCircuit.prototype.step.call( this, dt );
+
+      // discharge the capacitor when it is in parallel with the light bulb.
+      if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        this.capacitor.discharge( this.lightBulb.resistance, dt );
+      }
+
+    },
+
     /**
      * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
      * calls this method from its constructor. Remember to call this method at the end of this class' constructor.
@@ -86,11 +105,13 @@ define( function( require ) {
      */
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
-        var V = this.battery.voltage;
-        if ( this.circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
-          V = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance(); // V = Q/C
+        if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+          this.capacitor.platesVoltage = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance(); // V = Q/C
         }
-        this.capacitor.platesVoltage = V;
+        if( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+          this.capacitor.platesVoltage = this.battery.voltage;
+        }
+
       }
     },
 
@@ -141,7 +162,7 @@ define( function( require ) {
     setDisconnectedPlateCharge: function( disconnectedPlateCharge ) {
       if ( disconnectedPlateCharge !== this.disconnectedPlateCharge ) {
         this.disconnectedPlateCharge = disconnectedPlateCharge;
-        if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        if ( this.circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
           this.updatePlateVoltages();
           //this.trigger( 'circuitChanged' );
           //this.fireCircuitChanged(); TODO

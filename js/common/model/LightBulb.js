@@ -20,13 +20,16 @@ define( function( require ) {
 
   /**
    * Constructor for the Capacitor.
+   *
    * @param {Vector3} location
+   * @param {number} resistance
    * @constructor
    */
-  function LightBulb( location ) {
+  function LightBulb( location, resistance ) {
 
     // immutable variables.
     this.location = location;
+    this.resistance = 1.12E13; // TODO: TEST VALUE.  RESISTANCE IS VERY LARGE FOR AESTHETICS OF BULB FADE OUT TIME.
 
     PropertySet.call( this, {
       /* Populate with required properties */

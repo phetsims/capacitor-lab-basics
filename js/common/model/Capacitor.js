@@ -41,6 +41,10 @@ define( function( require ) {
    */
   function Capacitor( location, plateWidth, plateSeparation, dielectricMaterial, dielectricOffset, modelViewTransform ) {
 
+    // public variables
+    this.transientTime = 0; // model time updated when the switch is closed and while the capacitor is discharging
+    this.voltageAtSwitchClose = 0; // voltage of the plates when the bulb switch is initially closed
+
     // immutable variables.
     this.modelViewTransform = modelViewTransform;
     this.shapeCreator = new CapacitorShapeCreator( this, modelViewTransform );
@@ -353,6 +357,28 @@ define( function( require ) {
      */
     getAirEField: function() {
       return this.getPlatesAirEField() - this.getEffectiveEField();
+    },
+
+    /**
+     * Discharge the capacitor when it is in parallel with some resistance.  This updates the voltage of the plates
+     * assuming the solution
+     *
+     * Vc = Vo*exp( -t / ( R * C ) )
+     *
+     * to the differential equation
+     *
+     * Ic = - R*C * dVc/dt
+     *
+     * @param {number} R
+     * @param {number} dt
+     */
+    discharge: function( R, dt ) {
+      var C = this.getTotalCapacitance();
+      this.transientTime += dt; // step time since switch is closed
+      var exp = Math.exp( -this.transientTime / ( R * C ) );
+
+      this.platesVoltage = Math.max( 0, this.voltageAtSwitchClose * exp );
+
     }
 
   } );

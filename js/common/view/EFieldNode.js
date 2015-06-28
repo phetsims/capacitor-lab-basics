@@ -91,17 +91,6 @@ define( function( require ) {
         thisNode.update();
       }
     } );
-    // TODO
-    //capacitor.addCapacitorChangeListener( new CapacitorChangeListener() {
-    //  public void capacitorChanged() {
-    //    if ( isVisible() ) {
-    //      update();
-    //    }
-    //  }
-    //} );
-
-    //this.update();
-
   }
 
   return inherit( Node, EFieldNode, {
@@ -110,11 +99,9 @@ define( function( require ) {
      * Update the node when it becomes visible.  Overrides setVisible in Node.
      */
     setVisible: function( visible ) {
-      if ( visible !== this.isVisible() ) {
-        Node.prototype.setVisible.call( this, visible );
-        if ( visible ) {
-          this.update();
-        }
+      Node.prototype.setVisible.call( this, visible );
+      if ( visible ) {
+        this.update();
       }
     },
 
