@@ -21,6 +21,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
+  var Line = require( 'SCENERY/nodes/Line');
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var SubSupText = require( 'SCENERY_PHET/SubSupText' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -35,9 +36,15 @@ define( function( require ) {
   var TRACK_STROKE_COLOR = 'black';
   var TRACK_LINE_WIDTH = 1;
 
+  // measure
+  var MEASURE_LINE_WIDTH = 1;
+  var MEASURE_STROKE_COLOR = 'black';
+
   // bar
   var BAR_STROKE_COLOR = TRACK_STROKE_COLOR;
   var BAR_LINE_WIDTH = TRACK_LINE_WIDTH;
+  var BAR_SIZE = new Dimension2( 35, 200 );
+  var BAR_OFFSET_FROM_MEASURE = 8;
 
   // ticks
   var NUMBER_OF_TICKS = 10;
@@ -71,8 +78,50 @@ define( function( require ) {
   var unitsJoulesString = require( 'string!CAPACITOR_LAB_BASICS/units.joules' );
   //var joulesString = require( 'string!CAPACITOR_LAB_BASICS/joules' );
 
+
   /**
-   * Constructor for the TrackNode, the track that the bar moves in.  Origin is at upper-left corner.
+   * Constructor for the MeasureNode that gauges the magnitude of the bar meter.  This is a vertical line with tick
+   * marks to provide a sense of scale.  The origin is at the top of the vertical line.
+   */
+  function MeasureNode() {
+
+    // create the line shape
+    Line.call( this, 0, 0, 0, BAR_SIZE.height, {
+      stroke: MEASURE_STROKE_COLOR,
+      lineWidth: MEASURE_LINE_WIDTH
+    } ) ;
+
+    // minor ticks
+    var deltaY = this.height / NUMBER_OF_TICKS;
+    for ( var i = 0; i < NUMBER_OF_TICKS; i++ ) {
+      var tickMarkNode = new TickMarkNode( MINOR_TICK_MARK_LENGTH );
+      this.addChild( tickMarkNode );
+      var xOffset = MINOR_TICKS_OUTSIDE ? -MINOR_TICK_MARK_LENGTH : 0;
+      tickMarkNode.translation = new Vector2( xOffset, ( i + 1 ) * deltaY );
+    }
+
+    // majors ticks, for min and max
+    this.maxTickMarkNode = new TickMarkNode( MAJOR_TICK_MARK_LENGTH ); // @private
+    this.addChild( this.maxTickMarkNode );
+    this.minTickMarkNode = new TickMarkNode( MAJOR_TICK_MARK_LENGTH ); // @private
+    this.addChild( this.minTickMarkNode );
+
+    // layout
+    // max tick mark at top of track
+    var x = -this.maxTickMarkNode.bounds.width;
+    var y = this.translation.y;
+    this.maxTickMarkNode.translation = new Vector2( x, y );
+
+    // min tick mark at bottom of track
+    x = -this.minTickMarkNode.bounds.width;
+    y = this.bounds.maxY;
+    this.minTickMarkNode.translation = new Vector2( x, y );
+
+  }
+
+  inherit( Line, MeasureNode );
+  /**
+   * Constructor for the measureNode, the track that the bar moves in.  Origin is at upper-left corner.  The track is
    */
   function TrackNode() {
     Rectangle.call( this, 0, 0, TRACK_SIZE.width, TRACK_SIZE.height, {
@@ -98,7 +147,7 @@ define( function( require ) {
     this.value = value;
     this.maxValue = maxValue;
 
-    Rectangle.call( this, 0, 0, TRACK_SIZE.width, TRACK_SIZE.height, {
+    Rectangle.call( this, BAR_OFFSET_FROM_MEASURE, 0, BAR_SIZE.width, BAR_SIZE.height, {
       fill: barColor,
       stroke: BAR_STROKE_COLOR,
       lineWidth: BAR_LINE_WIDTH
@@ -128,7 +177,7 @@ define( function( require ) {
       var percent = Math.min( 1, Math.abs( this.value ) / this.maxValue );
       var y = ( 1 - percent ) * TRACK_SIZE.height;
       var height = TRACK_SIZE.height - y;
-      this.setRect( 0, y, TRACK_SIZE.width, height );
+      this.setRect( BAR_OFFSET_FROM_MEASURE, y, BAR_SIZE.width, height );
     }
 
   } );
@@ -275,7 +324,7 @@ define( function( require ) {
   /**
    * Constructor.
    *
-   * @param {BarMeter} meter
+   * @param {BarMeter}
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {string} barColor
    * @param {string} title
@@ -292,29 +341,18 @@ define( function( require ) {
     this.value = meter.value;
     this.exponentProperty = new Property( exponent );
 
+    // measure
+    this.measureNode = new MeasureNode();
+    this.addChild( this.measureNode );
+
     // track
-    this.trackNode = new TrackNode();
-    this.addChild( this.trackNode );
+    //this.trackNode = new TrackNode();
+    //this.addChild( this.trackNode );
 
     // bar
     var maxValue = Math.pow( 10, exponent );
     this.barNode = new BarNode( barColor, maxValue, this.value );
     this.addChild( this.barNode );
-
-    // minor ticks
-    var deltaY = TRACK_SIZE.height / NUMBER_OF_TICKS;
-    for ( var i = 0; i < NUMBER_OF_TICKS; i++ ) {
-      var tickMarkNode = new TickMarkNode( MINOR_TICK_MARK_LENGTH );
-      this.addChild( tickMarkNode );
-      var xOffset = MINOR_TICKS_OUTSIDE ? -MINOR_TICK_MARK_LENGTH : 0;
-      tickMarkNode.translation = new Vector2( xOffset, ( i + 1 ) * deltaY );
-    }
-
-    // majors ticks, for min and max
-    this.maxTickMarkNode = new TickMarkNode( MAJOR_TICK_MARK_LENGTH ); // @private
-    this.addChild( this.maxTickMarkNode );
-    this.minTickMarkNode = new TickMarkNode( MAJOR_TICK_MARK_LENGTH ); // @private
-    this.addChild( this.minTickMarkNode );
 
     // min range label
     this.minLabelNode = new RangeLabelNode( "0" );
@@ -325,7 +363,7 @@ define( function( require ) {
     this.addChild( this.maxLabelNode );
 
     // title
-    this.titleNode = new TitleNode( title );
+    this.titleNode = new Text( title , { font: TITLE_FONT } );
     this.addChild( this.titleNode );
 
     // overload indicator
@@ -400,44 +438,35 @@ define( function( require ) {
 
       var x = 0;
       var y = 0;
-      this.trackNode.translation = new Vector2( x, y );
+      this.measureNode.translation = new Vector2( x, y );
+      //this.measureNode.translation = new Vector2( x, y );
 
       // bar inside track
-      this.barNode.translation = this.trackNode.translation;
-
-      // max tick mark at top of track
-      x = -this.maxTickMarkNode.bounds.width;
-      y = this.trackNode.translation.y;
-      this.maxTickMarkNode.translation = new Vector2( x, y );
-
-      // min tick mark at bottom of track
-      x = -this.minTickMarkNode.bounds.width;
-      y = this.trackNode.bounds.maxY;
-      this.minTickMarkNode.translation = new Vector2( x, y );
+      this.barNode.translation = this.measureNode.translation;
 
       // max label centered on max tick
-      x = this.maxTickMarkNode.bounds.minX - this.maxLabelNode.bounds.width - 2;
-      y = this.maxTickMarkNode.bounds.centerY - ( this.maxLabelNode.bounds.height / 2 );
+      x = this.measureNode.bounds.minX - this.maxLabelNode.bounds.width - 5;
+      y = this.measureNode.bounds.minY + ( this.maxLabelNode.bounds.height / 2 );
       this.maxLabelNode.translation = new Vector2( x, y );
 
       // min label centered on min tick
-      x = this.minTickMarkNode.bounds.minX - this.minLabelNode.bounds.width - 2;
-      y = this.minTickMarkNode.bounds.centerY - ( this.minLabelNode.bounds.height / 2 );
+      x = this.measureNode.bounds.minX - this.minLabelNode.bounds.width - 5;
+      y = this.measureNode.bounds.maxY;
       this.minLabelNode.translation = new Vector2( x, y );
 
-      // overload indicator centered above track
-      x = this.trackNode.bounds.centerX;
-      y = this.trackNode.bounds.minY - this.overloadIndicatorNode.bounds.height - 1;
+      // overload indicator centered above bar
+      x = this.barNode.bounds.centerX;
+      y = this.barNode.bounds.minY - this.overloadIndicatorNode.bounds.height - 1;
       this.overloadIndicatorNode.translation = new Vector2( x, y );
 
-      // title centered below track
-      x = this.trackNode.bounds.centerX - ( this.titleNode.bounds.width / 2 );
+      // title centered below the entire meter
+      x = this.barNode.centerX - ( this.titleNode.bounds.width / 2 );
       y = this.minLabelNode.bounds.maxY + 25;
       this.titleNode.translation = new Vector2( x, y );
 
       // value centered below title
       x = this.titleNode.bounds.centerX - ( this.valueNode.bounds.width / 2 );
-      y = this.titleNode.bounds.maxY + 25;
+      y = this.titleNode.bounds.maxY + 15;
       this.valueNode.translation = new Vector2( x, y );
 
     },

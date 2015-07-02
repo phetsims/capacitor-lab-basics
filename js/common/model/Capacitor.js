@@ -376,9 +376,7 @@ define( function( require ) {
       var C = this.getTotalCapacitance();
       this.transientTime += dt; // step time since switch is closed
       var exp = Math.exp( -this.transientTime / ( R * C ) );
-
       this.platesVoltage = Math.max( 0, this.voltageAtSwitchClose * exp );
-
     }
 
   } );

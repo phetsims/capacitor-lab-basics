@@ -25,7 +25,7 @@ define( function( require ) {
 
   // Strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
-  var plateChargeTopString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge.top' );
+  var plateChargeString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge' );
   var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
   //var connectBatteryString = require( 'string!CAPACITOR_LAB/connectBattery' );
   //var disconnectBatteryString = require( 'string!CAPACITOR_LAB/disconnectBattery' );
@@ -67,7 +67,7 @@ define( function( require ) {
 
     // meters
     var capacitanceMeterNode = new BarMeterNode.CapacitanceMeterNode( model.capacitanceMeter, this.modelViewTransform, capacitanceString );
-    var plateChargeMeterNode = new BarMeterNode.PlateChargeMeterNode( model.plateChargeMeter, this.modelViewTransform, plateChargeTopString );
+    var plateChargeMeterNode = new BarMeterNode.PlateChargeMeterNode( model.plateChargeMeter, this.modelViewTransform, plateChargeString );
     var storedEnergyMeterNode = new BarMeterNode.StoredEnergyMeterNode( model.storedEnergyMeter, this.modelViewTransform, storedEnergyString );
     //VoltmeterNode voltmeterNode = new VoltmeterNode( model.voltmeter, mvt );
     //EFieldDetectorNode eFieldDetectorNode = new EFieldDetectorNode( model.eFieldDetector, mvt, eFieldReferenceMagnitude, globalProperties.dev, eFieldDetectorSimplified );

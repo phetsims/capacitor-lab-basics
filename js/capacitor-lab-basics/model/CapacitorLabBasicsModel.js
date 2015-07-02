@@ -35,13 +35,13 @@ define( function( require ) {
   var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
 
   // Capacitance meter
-  var CAPACITANCE_METER_LOCATION = new Vector3( 0.038, 0.0017, 0 );
+  var CAPACITANCE_METER_LOCATION = new Vector3( 0.0475, 0.0017, 0 );
 
   // Plate Charge meter
-  var PLATE_CHARGE_METER_LOCATION = new Vector3( 0.049, 0.0017, 0 );
+  var PLATE_CHARGE_METER_LOCATION = new Vector3( 0.055, 0.0017, 0 );
 
   // Stored Energy meter
-  var STORED_ENERGY_METER_LOCATION = new Vector3( 0.06, 0.0017, 0 );
+  var STORED_ENERGY_METER_LOCATION = new Vector3( 0.0625, 0.0017, 0 );
 
   // E-Field Detector
   var EFIELD_DETECTOR_BODY_LOCATION = new Vector3( 0.043, 0.041, 0 );
