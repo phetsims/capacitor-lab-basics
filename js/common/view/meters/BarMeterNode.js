@@ -21,7 +21,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
-  var Line = require( 'SCENERY/nodes/Line');
+  var Line = require( 'SCENERY/nodes/Line' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var SubSupText = require( 'SCENERY_PHET/SubSupText' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -89,7 +89,7 @@ define( function( require ) {
     Line.call( this, 0, 0, 0, BAR_SIZE.height, {
       stroke: MEASURE_STROKE_COLOR,
       lineWidth: MEASURE_LINE_WIDTH
-    } ) ;
+    } );
 
     // minor ticks
     var deltaY = this.height / NUMBER_OF_TICKS;
@@ -222,20 +222,6 @@ define( function( require ) {
   } );
 
   /**
-   * Title used to indicate the purpose of this meter. Origin is at upper-left corner of bounding box.
-   *
-   * @param {string} label
-   * @constructor
-   */
-  function TitleNode( label ) {
-    Text.call( this, label, {
-      font: TITLE_FONT
-    } );
-  }
-
-  inherit( Text, TitleNode );
-
-  /**
    * Constructor for the OverloadIndicatorNode. Overload indicator, visible when the value is greater than what the bar
    * is capable of displaying.  The indicator is an arrow that points upward.
    *
@@ -292,36 +278,6 @@ define( function( require ) {
   } );
 
   /**
-   * Constructor for a TimesTenValueNode.  This is a number in scientific notation with with units.
-   *
-   * @param {Property.<number>} valueProperty
-   * @param {number} exponent
-   * @param {string} units
-   * @constructor
-   */
-  function TimesTenValueNode( valueProperty, exponent, units ) {
-
-    //this.unitText = new Text( units, { font: VALUE_FONT } );
-
-    ScientificNotationNode.call( this, valueProperty, {
-      font: VALUE_FONT,
-      fill: VALUE_COLOR,
-      mantissaDecimalPlaces: 2,
-      exponent: exponent
-    } );
-
-    //this.valueProperty.link( function() {
-    //  thisNode.unitText.left = thisNode.unitText.parents[0].right + 2;
-    //} );
-
-    // layout
-    //this.addChild( this.unitText );
-
-  }
-
-  inherit( ScientificNotationNode, TimesTenValueNode );
-
-  /**
    * Constructor.
    *
    * @param {BarMeter}
@@ -363,16 +319,23 @@ define( function( require ) {
     this.addChild( this.maxLabelNode );
 
     // title
-    this.titleNode = new Text( title , { font: TITLE_FONT } );
+    this.titleNode = new Text( title, { font: TITLE_FONT } );
     this.addChild( this.titleNode );
 
     // overload indicator
     this.overloadIndicatorNode = new OverloadIndicatorNode( barColor, maxValue, this.value );
     this.addChild( this.overloadIndicatorNode );
 
-    // value
-    this.valueNode = new TimesTenValueNode( meter.valueProperty, this.exponentProperty.value, units );
+    // value in scientific notation with units
+    this.valueNode = new ScientificNotationNode( meter.valueProperty, {
+      font: VALUE_FONT,
+      fill: VALUE_COLOR,
+      mantissaDecimalPlaces: 2,
+      exponent: exponent
+    } );
+    this.unitsNode = new Text( units, { font: VALUE_FONT, fill: VALUE_COLOR } );
     this.addChild( this.valueNode );
+    this.addChild( this.unitsNode );
 
     // observers
     // value
@@ -385,11 +348,6 @@ define( function( require ) {
     meter.locationProperty.link( function( location ) {
       thisNode.translation = modelViewTransform.modelToViewPosition( location );
     } );
-    //meter.locationProperty.addObserver( new SimpleObserver() {
-    //  public void update() {
-    //    setOffset( mvt.modelToView( meter.locationProperty.get() ) );
-    //  }
-    //} );
 
     // visibility
     meter.visibleProperty.link( function( visible ) {
@@ -468,6 +426,12 @@ define( function( require ) {
       x = this.titleNode.bounds.centerX - ( this.valueNode.bounds.width / 2 );
       y = this.titleNode.bounds.maxY + 15;
       this.valueNode.translation = new Vector2( x, y );
+
+      // units to the right of the value node.
+      // TODO: IS THIS i18n FRIENDLY? PROBABLY NOT.
+      x = this.valueNode.bounds.maxX + ( this.unitsNode.bounds.width / 2 );
+      y = this.titleNode.bounds.maxY + 15;
+      this.unitsNode.translation = new Vector2( x, y );
 
     },
 
