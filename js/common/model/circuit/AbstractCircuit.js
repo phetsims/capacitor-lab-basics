@@ -55,7 +55,6 @@ define( function( require ) {
     // Make sure all is well with circuit components.  Circuit must include at least one circuit component and two wires.
     assert && assert( this.circuitComponents.length >= 1 );
     assert && assert( this.wires.length >= 2 );
-    assert( this.wires.length >= 2 );
 
     // TODO: Link it all up.
     this.circuitConnectionProperty.link( function( circuitConnection ) {
