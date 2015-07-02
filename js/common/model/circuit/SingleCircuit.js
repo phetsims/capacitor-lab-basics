@@ -122,7 +122,7 @@ define( function( require ) {
      * @return {number}
      */
     getTotalVoltage: function() {
-      if ( this.circuitConnection !== CircuitConnectionEnum.OPEN_CIRCUIT ) {
+      if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
         return ParallelCircuit.prototype.getTotalVoltage.call( this );
       }
       else {
