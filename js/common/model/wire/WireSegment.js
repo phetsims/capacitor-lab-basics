@@ -30,7 +30,8 @@ define( function( require ) {
     },
 
     update: function() {
-      console.log( ' this segment does not have an update function.' );
+      // TODO: Catch updates for segments that do not need this function.
+      //console.log( ' this segment does not have an update function.' );
     }
   }, {
 
