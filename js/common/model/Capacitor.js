@@ -374,9 +374,9 @@ define( function( require ) {
      */
     discharge: function( R, dt ) {
       var C = this.getTotalCapacitance();
-      this.transientTime += dt; // step time since switch is closed
+      this.transientTime += dt; // step time since switch was closed
       var exp = Math.exp( -this.transientTime / ( R * C ) );
-      this.platesVoltage = Math.max( 0, this.voltageAtSwitchClose * exp );
+      this.platesVoltage = this.voltageAtSwitchClose * exp;
     }
 
   } );
