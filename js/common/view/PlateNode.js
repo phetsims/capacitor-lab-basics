@@ -16,6 +16,7 @@ define( function( require ) {
   var BoxNode = require( 'CAPACITOR_LAB_BASICS/common/view/BoxNode' );
   var PlateChargeNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateChargeNode' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var Bounds3 = require( 'DOT/Bounds3' );
 
   // constants
   // capacitor plates
@@ -25,9 +26,11 @@ define( function( require ) {
 
     BoxNode.call( this, modelViewTransform, PLATE_COLOR, capacitor.plateSize );
 
-    //this.dielectricPlateChargeNode = new DielectricPlateChargeNode( capacitor, mvt, polarity, maxPlateCharge, dielectricPlateChargeTransparency );
-    //addChild( dielectricPlateChargeNode );
-    this.airPlateChargeNode = PlateChargeNode.AirPlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge );
+    this.modelViewTransform = modelViewTransform;
+
+    // Charges restricted to the largest possible top face on a capacitor plate.  Bounds needed for canvas.
+    var canvasBounds = this.getMaxBoxNodeBounds();
+    this.airPlateChargeNode = PlateChargeNode.AirPlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge, canvasBounds );
     this.addChild( this.airPlateChargeNode );
 
   }
@@ -42,7 +45,22 @@ define( function( require ) {
     setChargeVisible: function( visible ) {
       //dielectricPlateChargeNode.setVisible( visible );
       this.airPlateChargeNode.visible = visible;
+    },
+
+    /**
+     * Get bounds for a plate with maximum width.  Useful for layout and bounds calculations.
+     *
+     * @return {Bounds3}
+     */
+    getMaxBoxNodeBounds: function() {
+      var maxWidthBoxNode = new BoxNode(
+        this.modelViewTransform,
+        PLATE_COLOR,
+        new Bounds3( 0, 0, 0, CLConstants.PLATE_WIDTH_RANGE.max, CLConstants.PLATE_HEIGHT, CLConstants.PLATE_WIDTH_RANGE.max )
+      );
+      return maxWidthBoxNode.bounds;
     }
+
   }, {
 
     /**

@@ -380,5 +380,4 @@ define( function( require ) {
     }
 
   } );
-
 } );

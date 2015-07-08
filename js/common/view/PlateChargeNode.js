@@ -19,34 +19,47 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var IGridSizeStrategy = require( 'CAPACITOR_LAB_BASICS/common/view/IGridSizeStrategy' );
-  var PlusNode = require( 'SCENERY_PHET/PlusNode' );
-  var MinusNode = require( 'SCENERY_PHET/PlusNode' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
-  var Color = require( 'SCENERY/util/Color' );
   var Util = require( 'DOT/Util' );
+  var CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
 
   // constants
   var DEBUG_OUTPUT_ENABLED = false; // developer tool for debugging
-  var POSITIVE_CHARGE_COLOR = PhetColorScheme.RED_COLORBLIND;
-  var NEGATIVE_CHARGE_COLOR = Color.BLUE;
+  var POSITIVE_CHARGE_COLOR = PhetColorScheme.RED_COLORBLIND.computeCSS(); // CSS passed into context fillStyle
+  var NEGATIVE_CHARGE_COLOR = 'blue';
 
   /**
-   * Convenience constructor for a Positive Charge using constants of this sim.
+   * Draw a positive charge with canvas.  'Plus' sign is painted with two overlapping rectangles around a center
+   * location.
+   *
+   * TODO: THIS COULD BE COLLAPSED WITH addNegativeCharge INTO A SINGLE FUNCTION.  COULD BE A CLEANER SOLUTION.
+   *
+   * @param {Vector2} location - center location of the charge in view space
+   * @param {CanvasRenderingContext2D} context - context for the canvas methods
    */
-  function PositiveChargeNode() {
-    PlusNode.call( this, { size: CLConstants.NEGATIVE_CHARGE_SIZE, fill: POSITIVE_CHARGE_COLOR } );
-  }
+  function addPositiveCharge( location, context ) {
+    var chargeWidth = CLConstants.NEGATIVE_CHARGE_SIZE.width;
+    var chargeHeight = CLConstants.NEGATIVE_CHARGE_SIZE.height;
 
-  inherit( PlusNode, PositiveChargeNode );
+    context.fillStyle = POSITIVE_CHARGE_COLOR;
+    context.fillRect( location.x - chargeWidth / 2, location.y - chargeHeight / 2, chargeWidth, chargeHeight );
+    context.fillRect( location.x - chargeHeight / 2, location.y - chargeWidth / 2, chargeHeight, chargeWidth );
+
+  }
 
   /**
-   * Convenience constructor for a Negative Charge using constants of this sim.
+   * Draw a negative charge with canvas.  'Minus' sign is painted with a single rectangle around a center location.
+   *
+   * @param {Vector2} location
+   * @param {CanvasRenderingContext2D} context
    */
-  function NegativeChargeNode() {
-    MinusNode.call( this, { size: CLConstants.NEGATIVE_CHARGE_SIZE, fill: NEGATIVE_CHARGE_COLOR } );
-  }
+  function addNegativeCharge( location, context ) {
+    var chargeWidth = CLConstants.NEGATIVE_CHARGE_SIZE.width;
+    var chargeHeight = CLConstants.NEGATIVE_CHARGE_SIZE.height;
 
-  inherit( MinusNode, NegativeChargeNode );
+    context.fillStyle = NEGATIVE_CHARGE_COLOR;
+    context.fillRect( location.x - chargeWidth / 2, location.y - chargeHeight, chargeWidth, chargeHeight );
+  }
 
   /**
    * Constructor for a PlateChargeNode.
@@ -56,11 +69,12 @@ define( function( require ) {
    * @param {string} polarity
    * @param {number} maxPlateCharge
    * @param {number} transparency
+   * @param {Bounds2} canvasBounds
    * @constructor
    */
-  function PlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge, transparency ) {
+  function PlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge, transparency, canvasBounds ) {
 
-    Node.call( this );
+    CanvasNode.call( this, { canvasBounds: canvasBounds } );
     var thisNode = this; // extend scope for nested callbacks
 
     this.capacitor = capacitor;
@@ -73,34 +87,14 @@ define( function( require ) {
     this.parentNode = new Node(); // @private parent node for charges
     this.addChild( this.parentNode );
 
-    // construct and store all charge nodes up front so that they do not need to be constructed in real time.
-    /* TODO - this is just a start - come back to clean this up and get working later.
-     this.positiveChargeNodes = [];
-     this.negativeChargeNodes = [];
-     for( var i = 0; i < CLConstants.NUMBER_OF_PLATE_CHARGES.max; i++ ) {
-     var newPositiveCharge = new PositiveChargeNode();
-     var newNegativeCharge = new NegativeChargeNode();
-
-     newPositiveCharge.opacity = 0;
-     newNegativeCharge.opacity = 0;
-
-     this.parentNode.addChild( newPositiveCharge );
-     this.parentNode.addChild( newNegativeCharge );
-
-     this.positiveChargeNodes.push( newPositiveCharge );
-     this.negativeChargeNodes.push( newNegativeCharge );
-     */
-
-    //}
-
     capacitor.multilink( [ 'plateSize', 'plateSeparation', 'platesVoltage' ], function() {
       if ( thisNode.isVisible() ) {
-        thisNode.update();
+        thisNode.invalidatePaint();
       }
     } );
   }
 
-  inherit( Node, PlateChargeNode, {
+  inherit( CanvasNode, PlateChargeNode, {
 
     /**
      * Charge on the portion of the plate that this node handles.
@@ -135,31 +129,27 @@ define( function( require ) {
      * @param {boolean} visible
      */
     setVisible: function( visible ) {
-      Node.prototype.setVisible.call( this, visible );
+      CanvasNode.prototype.setVisible.call( this, visible );
       if ( visible ) {
-        this.update();
+        this.invalidatePaint();
       }
     },
 
     /**
      * Updates the view to match the model.  Charges are arranged in a grid.
+     *
+     * @param {CanvasContextWrapper} wrapper
      */
-    update: function() {
+    paintCanvas: function( wrapper ) {
+
+      var context = wrapper.context;
+
       var plateCharge = this.getPlateCharge();
       var numberOfCharges = this.getNumberOfCharges( plateCharge, this.maxPlateCharge );
 
-      //console.log( numberOfCharges );
-
-      // remove existing charges by setting opacity to zero
-      //this.parentNode.children.forEach( function( child ) {
-      //  child.opacity = 0;
-      //} );
-      this.parentNode.removeAllChildren();
-
-      // compute grid dimensions
       if ( numberOfCharges > 0 ) {
 
-        var zMargin = this.modelViewTransform.viewToModelDeltaXY( new PositiveChargeNode().bounds.width, 0 ).x;
+        var zMargin = this.modelViewTransform.viewToModelDeltaXY( CLConstants.NEGATIVE_CHARGE_SIZE.width, 0 ).x;
 
         var gridWidth = this.getContactWidth(); // contact between plate and dielectric
         var gridDepth = this.capacitor.plateSize.depth - ( 2 * zMargin );
@@ -177,39 +167,22 @@ define( function( require ) {
         var xOffset = dx / 2;
         var zOffset = dz / 2;
 
-        //var positiveChargeNumber = 0;
-        //var negativeChargeNumber = 0;
-
         // populate the grid
         for ( var row = 0; row < rows; row++ ) {
           for ( var column = 0; column < columns; column++ ) {
 
-            // add a charge
-            //var chargeNode;
-            //if( this.isPositivelyCharged() ) {
-            //  chargeNode = this.positiveChargeNodes[ positiveChargeNumber ];
-            //  positiveChargeNumber++;
-            //}
-            //else {
-            //  chargeNode = this.negativeChargeNodes[ negativeChargeNumber ];
-            //  negativeChargeNumber++;
-            //}
-
-            var chargeNode = this.isPositivelyCharged() ? new PositiveChargeNode() : new NegativeChargeNode();
-
-            //chargeNode.opacity = 1 - this.transparency; // TODO: test this.
-            //chargeNode.opacity = 0.99; // Make desired chargeNode visible.
-
-            this.parentNode.addChild( chargeNode );
-
-            // position the charge in cell in the grid
+            // calculate center position for the charge in cell of the grid
             var x = this.getContactXOrigin() + xOffset + ( column * dx );
             var y = 0;
             var z = -( gridDepth / 2 ) + ( zMargin / 2 ) + zOffset + ( row * dz );
             if ( numberOfCharges === 1 ) {
               z -= dz / 6; //#2935, so that single charge is not obscured by wire connected to center of top plate
             }
-            chargeNode.center = this.modelViewTransform.modelToViewXYZ( x, y, z );
+            var centerPosition = this.modelViewTransform.modelToViewXYZ( x, y, z );
+
+            // add the signed charge to the grid
+            this.isPositivelyCharged() ? addPositiveCharge( centerPosition, context ) : addNegativeCharge( centerPosition, context );
+
           }
         }
 
@@ -241,8 +214,8 @@ define( function( require ) {
     /**
      * Factory function for an AirPlateChargeNode.
      */
-    AirPlateChargeNode: function( capacitor, modelViewTransform, polarity, maxPlateCharge ) {
-      return new AirPlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge );
+    AirPlateChargeNode: function( capacitor, modelViewTransform, polarity, maxPlateCharge, canvasBounds ) {
+      return new AirPlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge, canvasBounds );
     }
   } );
 
@@ -253,12 +226,13 @@ define( function( require ) {
    * @param {Capacitor} capacitor
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {string} polarity
-   * @param {number} maxPlateCharge
+   * @param {number} maxPlateCharge,
+   * @param {Bounds2} canvasBounds
    * @constructor
    */
-  function AirPlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge ) {
+  function AirPlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge, canvasBounds ) {
 
-    PlateChargeNode.call( this, capacitor, modelViewTransform, polarity, maxPlateCharge, 1 );
+    PlateChargeNode.call( this, capacitor, modelViewTransform, polarity, maxPlateCharge, 1, canvasBounds );
 
   }
 
