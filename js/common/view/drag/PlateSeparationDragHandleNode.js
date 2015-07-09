@@ -75,7 +75,7 @@ define( function( require ) {
     x = 0;
     y = lineNode.bounds.minY - 2;
     arrowNode.translation = new Vector2( x, y );
-    x = arrowNode.bounds.maxX - this.valueNode.bounds.width;
+    x = arrowNode.bounds.maxX;
     y = arrowNode.bounds.minY - this.valueNode.bounds.height;
     this.valueNode.translation = new Vector2( x, y );
 
@@ -105,7 +105,7 @@ define( function( require ) {
      * Attach drag handle to top capacitor plate, in center the plate's top face.
      */
     updateOffset: function() {
-      var x = this.capacitor.location.x - ( 0.3 * this.capacitor.plateSize.width );
+      var x = this.capacitor.location.x + ( 0.3 * this.capacitor.plateSize.width );
       var y = this.capacitor.location.y - ( this.capacitor.plateSeparation / 2 ) - this.capacitor.plateSize.height;
       var z = 0;
       this.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );

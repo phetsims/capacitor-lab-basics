@@ -34,7 +34,7 @@ define( function( require ) {
     SimpleDragHandler.call( this, {
       start: function( event ) {
         var pMouse = event.pointer.point;
-        var pOrigin = modelViewTransform.modelToViewDeltaXYZ( -capacitor.plateSize.width / 2, 0, -capacitor.plateSize.width / 2 );
+        var pOrigin = modelViewTransform.modelToViewDeltaXYZ( capacitor.plateSize.width / 2, 0, capacitor.plateSize.width / 2 );
         thisHandler.clickXOffset = pMouse.x - pOrigin.x;
       },
       drag: function( event ) {
@@ -76,8 +76,8 @@ define( function( require ) {
      * @return {number}
      */
     getModelX: function( pMouse, samplePlateWidth ) {
-      var pFrontLeftCorner = this.modelViewTransform.modelToViewXYZ( -samplePlateWidth / 2, 0, -samplePlateWidth / 2 );
-      return pMouse.x - pFrontLeftCorner.x - this.clickXOffset;
+      var pBackRightCorner = this.modelViewTransform.modelToViewXYZ( samplePlateWidth / 2, 0, samplePlateWidth / 2 );
+      return pMouse.x - pBackRightCorner.x - this.clickXOffset;
     }
   } );
 } );

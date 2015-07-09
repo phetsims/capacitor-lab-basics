@@ -73,16 +73,16 @@ define( function( require ) {
     // layout: arrow below line, rotate into alignment with top plate's pseudo-3D diagonal
     var x = 0;
     var y = 0;
-    var angle = ( -Math.PI / 2 ) + ( modelViewTransform.yaw / 2 ); // aligned with diagonal of plate surface
+    var angle = ( Math.PI / 2 ) + ( modelViewTransform.yaw / 2 ); // aligned with diagonal of plate surface
     var lineArrowSpacing = 2;
     lineNode.translation = new Vector2( x, y );
     lineNode.rotation = angle;
-    x = lineNode.bounds.minX - lineArrowSpacing;
-    y = lineNode.bounds.maxY + lineArrowSpacing;
+    x = lineNode.bounds.maxX + lineArrowSpacing;
+    y = lineNode.bounds.minY - lineArrowSpacing;
     arrowNode.translation = new Vector2( x, y );
     arrowNode.rotation = angle;
-    x = lineNode.bounds.maxX - this.valueNode.bounds.width;
-    y = lineNode.bounds.minY - this.valueNode.bounds.height;
+    x = lineNode.bounds.maxX;
+    y = lineNode.bounds.minY - this.valueNode.bounds.height - 5;
     this.valueNode.translation = new Vector2( x, y );
 
     // watch for model changes
@@ -105,11 +105,11 @@ define( function( require ) {
       this.valueNode.setValue( millimetersSquared );
     },
 
-    // Attach drag handle to capacitor's top plate, at front-left corner of top face.
+    // Attach drag handle to capacitor's top plate, at back-irght corner of top face.
     updateOffset: function() {
-      var x = this.capacitor.location.x - ( this.capacitor.plateSize.width / 2 );
+      var x = this.capacitor.location.x + ( this.capacitor.plateSize.width / 2 );
       var y = this.capacitor.location.y - ( this.capacitor.plateSeparation / 2 ) - this.capacitor.plateSize.height;
-      var z = this.capacitor.location.z - ( this.capacitor.plateSize.depth / 2 );
+      var z = this.capacitor.location.z + ( this.capacitor.plateSize.depth / 2 );
       this.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
     }
   } );
