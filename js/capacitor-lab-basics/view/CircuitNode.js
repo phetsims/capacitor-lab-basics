@@ -64,8 +64,8 @@ define( function( require ) {
     var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE, valuesVisibleProperty  );
 
     // current indicators
-    this.topCurrentIndicatorNode = new CurrentIndicatorNode( circuit.topCurrentIndicator );
-    this.bottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.bottomCurrentIndicator );
+    this.topCurrentIndicatorNode = new CurrentIndicatorNode( circuit, 0 );
+    this.bottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit, Math.PI );
 
     // controls
     this.plateChargeControlNode = new PlateChargeControlNode( circuit, new Range( -maxPlateCharge, maxPlateCharge ) );

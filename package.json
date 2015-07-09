@@ -6,6 +6,9 @@
   "phetLibs": [
     "capacitor-lab-basics"
   ],
+  "preload": [
+    "../sherpa/lib/Tween-r12.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/phetsims/capacitor-lab-basics.git"

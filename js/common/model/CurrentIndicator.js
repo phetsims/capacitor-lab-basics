@@ -46,6 +46,13 @@ define( function( require ) {
       this.updateOrientation( this.circuit.currentAmplitude );
     },
 
+    /**
+     * Updates the opacitiy value for this model element based on the current amplitude. Any non-zero current amplitude
+     * results in a constant opacity. When current amplitude goes to zero, a the node will gradually fade out to be
+     * fully transparent, making it effectively invisible.
+     *
+     * @param {number} current
+     */
     updateOpacity: function( current ) {
       // if current is flowing, set opacity to max value.
       if ( Math.abs( current ) > 0 ) {

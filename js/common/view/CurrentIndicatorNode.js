@@ -43,23 +43,25 @@ define( function( require ) {
   var ELECTRON_MINUS_SIZE = new Dimension2( 0.6 * ELECTRON_DIAMETER, 0.1 * ELECTRON_DIAMETER );
 
   // constants
-  var MAX_OPACITY = 0.75; // range is 0-1
-  var FADEOUT_DURATION = 500; // ms
-  var FADEOUT_STEP_RATE = 10; // ms
+  //var MAX_OPACITY = 0.75; // range is 0-1
+  //var FADEOUT_DURATION = 500; // ms
+  //var FADEOUT_STEP_RATE = 10; // ms
 
   /**
    * Constructor. Rotation angles should be set such that +dV/dt indicates current flow towards the positive terminal
    * of the battery.
    *
-   * @param {CurrentIndicator} currentIndicator
+   * @param {SingleCircuit} circuit
+   * @param {number} positiveOrientation
    * @constructor
    */
-  function CurrentIndicatorNode( currentIndicator ) {
+  function CurrentIndicatorNode( circuit, positiveOrientation ) {
 
-    Node.call( this ); // TODO: Perhaps extend ArrowNode?
+    Node.call( this, { opacity: 0 } ); // TODO: Perhaps extend ArrowNode?
     var thisNode = this;
+    this.positiveOrientation = positiveOrientation;
 
-    this.deltaOpacity = MAX_OPACITY / ( FADEOUT_DURATION / FADEOUT_STEP_RATE );
+    //this.deltaOpacity = MAX_OPACITY / ( FADEOUT_DURATION / FADEOUT_STEP_RATE );
 
     var arrowNode = new ArrowNode( ARROW_TAIL_LOCATION.x, ARROW_TAIL_LOCATION.y, ARROW_TIP_LOCATION.x, ARROW_TIP_LOCATION.y, {
       headHeight: ARROW_HEAD_HEIGHT,
@@ -96,52 +98,45 @@ define( function( require ) {
     electronNode.translate( x, y );
     minusNode.center = electronNode.center;
 
-    // listen for model updates
-    currentIndicator.opacityProperty.link( function( opacity ) {
-      thisNode.opacity = opacity;
-    } );
-
-    currentIndicator.rotationProperty.link( function( rotation ) {
-      thisNode.rotation = rotation;
+    // observer current
+    circuit.currentAmplitudeProperty.lazyLink( function( currentAmplitude ) {
+      if ( thisNode.visible ) {
+        thisNode.updateOpacity();
+        thisNode.updateOrientation( currentAmplitude );
+      }
     } );
 
   }
 
   return inherit( Node, CurrentIndicatorNode, {
 
-    /**
-     * Updates the transparency of this node based on the current amplitude. Any non-zero current amplitude results in
-     * a constant transparency. When current amplitude goes to zero, a Piccolo activity is scheduled which gradually
-     * fades this node to fully transparent, making it effectively invisible.
-     *
-     * @param {number} current
-     */
-    updateOpacity: function( current ) {
+    updateOpacity: function() {
+      var thisNode = this;
 
-      // if a fade out is in progress, stop it without fully fading out and set to max opacity
-      if ( this.opacity > 0 && this.opacity < MAX_OPACITY ) {
-        this.opacity = MAX_OPACITY;
-      }
+      // set visible immediately
+      this.opacity = 1;
 
-      if ( current !== 0 ) {
-        // constant transparency for non-zero current amplitude
-        this.opacity = MAX_OPACITY;
-      }
-      else {
-        // gradually fade out
-        this.opacity = Math.max( 0, this.opacity - this.deltaOpacity );
-      }
+      var tweenOpacity, tweenParameters;
+      tweenParameters = { opacity: 1 };
+
+      // fade out
+      tweenOpacity = new TWEEN.Tween( tweenParameters )
+        .to( { opacity: 0 }, 2000 )
+        .onUpdate( function() { thisNode.opacity = tweenParameters.opacity; } )
+        .delay( 1000 );
+      tweenOpacity.start();
     },
 
     /**
      * Updates the orientation of the current indicator, based on the sign of the current amplitude.
      *
-     * @param {number} current
+     * @param {number} currentAmplitude
      */
-    updateOrientation: function( current ) {
-      if ( current !== 0 ) {
-        this.rotation = ( current > 0 ) ? this.positiveOrientation : this.positiveOrientation + Math.PI;
+    updateOrientation: function( currentAmplitude ) {
+      if( currentAmplitude !== 0 ) {
+        this.rotation = currentAmplitude > 0 ? this.positiveOrientation : this.positiveOrientation + Math.PI;
       }
     }
+
   } );
 } );

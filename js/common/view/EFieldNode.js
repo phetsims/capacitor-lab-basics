@@ -21,7 +21,7 @@ define( function( require ) {
   var ARROW_SIZE = new Dimension2( 10, 15 );
   var LINE_WIDTH = 2;
   var ARROW_COLOR = 'black';
-  
+
   /**
    * Draw an EField line using with canvas.
    *
