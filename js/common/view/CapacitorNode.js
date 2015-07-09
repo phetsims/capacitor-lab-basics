@@ -14,6 +14,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PlateNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateNode' );
   var EFieldNode = require( 'CAPACITOR_LAB_BASICS/common/view/EFieldNode' );
+  var Bounds2 = require( 'DOT/Bounds2' );
 
   /**
    * Constructor for a CapacitorNode.
@@ -37,11 +38,11 @@ define( function( require ) {
     // child nodes
     this.topPlateNode = PlateNode.TopPlateNode( capacitor, modelViewTransform, maxPlateCharge );
     this.bottomPlateNode = PlateNode.BottomPlateNode( capacitor, modelViewTransform, maxPlateCharge );
-    var eFieldNode = new EFieldNode( capacitor, modelViewTransform, maxEffectiveEField );
+    var eFieldNode = new EFieldNode( capacitor, modelViewTransform, maxEffectiveEField, this.getPlatesBounds() );
 
     // rendering order
     this.addChild( this.bottomPlateNode );
-    this.addChild( eFieldNode ); // Performance is too poor, commenting out for now.
+    this.addChild( eFieldNode );
     this.addChild( this.topPlateNode );
 
     // observers
@@ -84,6 +85,20 @@ define( function( require ) {
 
       // adjust the dielectric offset
       //updateDielectricOffset();
+    },
+
+    /**
+     * Get the bound of the capacitor from the plates.  Allows for bounds to be passed into the canvas node before the
+     * children are added to the view.
+     *
+     * @returns {Bounds2}
+     */
+    getPlatesBounds: function() {
+      return new Bounds2(
+        this.topPlateNode.left,
+        this.topPlateNode.top,
+        this.bottomPlateNode.right,
+        this.bottomPlateNode.bottom );
     }
   } );
 } );

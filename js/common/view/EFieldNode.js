@@ -14,57 +14,49 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
-  var Path = require( 'SCENERY/nodes/Path' );
-  var Shape = require( 'KITE/shape' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
 
   // constants
   var ARROW_SIZE = new Dimension2( 10, 15 );
   var LINE_WIDTH = 2;
   var ARROW_COLOR = 'black';
-
-
+  
   /**
-   * Constructor for the EFieldLineNode.
+   * Draw an EField line using with canvas.
    *
+   * @param {Vector2} position - origin, at the center of the line
    * @param {number} length length of the line in view coordinates
    * @param {string} direction
-   * @constructor
+   * @param {CanvasRenderingContext2D} context
    */
-  function EFieldLineNode( length, direction ) {
-
-    // TODO: Extend Path.
-    Node.call( this );
+  function drawEFieldLine( position, length, direction, context ) {
 
     // line, origin at center
-    var lineNode = new Path( new Shape.lineSegment( 0, -length / 2, 0, length / 2 ), {
-      stroke: ARROW_COLOR,
-      lineWidth: LINE_WIDTH
-    } );
-    this.addChild( lineNode );
+    context.moveTo( position.x, position.y - length / 2 );
+    context.lineTo( position.x, position.y + length / 2 );
 
-    // arrow, shape points "up", origin at center
+    // pull out for readability
     var w = ARROW_SIZE.width;
     var h = ARROW_SIZE.height;
-    var arrowShape = new Shape()
-      .moveTo( 0, -h / 2 ) // tip
-      .lineTo( w / 2, h / 2 ) // clockwise
-      .lineTo( -w / 2, h / 2 );
-    //path.closePath();
 
-    var arrowNode = new Path( arrowShape, {
-      fill: ARROW_COLOR
-    } );
-    this.addChild( arrowNode );
-    if ( direction === CLConstants.DIRECTION.DOWN ) {
-      arrowNode.rotation = Math.PI;
+    // path for the UP arrow
+    if ( direction === CLConstants.DIRECTION.UP ) {
+      context.moveTo( position.x, position.y - h / 2 );
+      context.lineTo( position.x + w / 2, position.y + h / 2 );
+      context.lineTo( position.x - w / 2, position.y + h / 2 );
     }
 
-    // no additional layout needed, handled above by geometry specification
+    // path for the DOWN arrow
+    else if ( direction === CLConstants.DIRECTION.DOWN ) {
+      context.moveTo( position.x, position.y + h / 2 );
+      context.lineTo( position.x - w / 2, position.y - h / 2 );
+      context.lineTo( position.x + w / 2, position.y - h / 2 );
+    }
+
+    else { console.error( 'EFieldLine must be of orientation UP or DOWN' ); }
 
   }
-
-  inherit( Node, EFieldLineNode );
 
   /**
    * Constructor for the EFieldNode.
@@ -72,28 +64,26 @@ define( function( require ) {
    * @param {Capacitor} capacitor
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {number} maxEffectiveEField
+   * @param {Bounds2} canvasBounds
    * @constructor
    */
-  function EFieldNode( capacitor, modelViewTransform, maxEffectiveEField ) {
+  function EFieldNode( capacitor, modelViewTransform, maxEffectiveEField, canvasBounds ) {
 
-    Node.call( this );
+    CanvasNode.call( this, { canvasBounds: canvasBounds } );
     var thisNode = this;
 
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
     this.maxEffectiveEField = maxEffectiveEField;
 
-    this.parentNode = new Node();
-    this.addChild( this.parentNode );
-
     capacitor.multilink( [ 'platesVoltage', 'plateSeparation', 'plateSize' ], function() {
       if ( thisNode.visible ) {
-        thisNode.update();
+        thisNode.invalidatePaint();
       }
     } );
   }
 
-  return inherit( Node, EFieldNode, {
+  return inherit( CanvasNode, EFieldNode, {
 
     /**
      * Update the node when it becomes visible.  Overrides setVisible in Node.
@@ -101,14 +91,13 @@ define( function( require ) {
     setVisible: function( visible ) {
       Node.prototype.setVisible.call( this, visible );
       if ( visible ) {
-        this.update();
+        this.invalidatePaint();
       }
     },
 
-    update: function() {
+    paintCanvas: function( wrapper ) {
 
-      // clear existing field lines
-      this.parentNode.removeAllChildren();
+      var context = wrapper.context;
 
       // compute density (spacing) of field lines
       var effectiveEField = this.capacitor.getEffectiveEField();
@@ -116,14 +105,16 @@ define( function( require ) {
 
       if ( lineSpacing > 0 ) {
 
+        context.beginPath();
+
         // relevant model values
         var plateWidth = this.capacitor.plateSize.width;
         var plateDepth = plateWidth;
         var plateSeparation = this.capacitor.plateSeparation;
 
         /*
-         * Create field lines, working from the center outwards so that
-         * lines appear/disappear at edges of plate as E_effective changes.
+         * Create field lines, working from the center outwards so that lines appear/disappear at edges of plate as
+         * E_effective changes.
          */
         var length = this.modelViewTransform.modelToViewDeltaXYZ( 0, plateSeparation, 0 ).y;
         var direction = ( effectiveEField >= 0 ) ? CLConstants.DIRECTION.DOWN : CLConstants.DIRECTION.UP;
@@ -132,27 +123,29 @@ define( function( require ) {
           var z = lineSpacing / 2;
           while ( z <= plateDepth / 2 ) {
 
-            // add 4 lines, one for each quadrant
-            var lineNode0 = new EFieldLineNode( length, direction );
-            var lineNode1 = new EFieldLineNode( length, direction );
-            var lineNode2 = new EFieldLineNode( length, direction );
-            var lineNode3 = new EFieldLineNode( length, direction );
-            this.parentNode.addChild( lineNode0 );
-            this.parentNode.addChild( lineNode1 );
-            this.parentNode.addChild( lineNode2 );
-            this.parentNode.addChild( lineNode3 );
-
-            // position the lines
+            // calculate position for the lines
             var y = 0;
-            lineNode0.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
-            lineNode1.translation = this.modelViewTransform.modelToViewXYZ( -x, y, z );
-            lineNode2.translation = this.modelViewTransform.modelToViewXYZ( x, y, -z );
-            lineNode3.translation = this.modelViewTransform.modelToViewXYZ( -x, y, -z );
+            var line0Translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
+            var line1Translation = this.modelViewTransform.modelToViewXYZ( -x, y, z );
+            var line2Translation = this.modelViewTransform.modelToViewXYZ( x, y, -z );
+            var line3Translation = this.modelViewTransform.modelToViewXYZ( -x, y, -z );
+
+            // add 4 lines, one for each quadrant
+            drawEFieldLine( line0Translation, length, direction, context );
+            drawEFieldLine( line1Translation, length, direction, context );
+            drawEFieldLine( line2Translation, length, direction, context );
+            drawEFieldLine( line3Translation, length, direction, context );
 
             z += lineSpacing;
           }
           x += lineSpacing;
         }
+        // stroke the whole path
+        context.strokeStyle = ARROW_COLOR;
+        context.fillStyle = ARROW_COLOR;
+        context.lineWidth = LINE_WIDTH;
+        context.fill();
+        context.stroke();
       }
     },
 

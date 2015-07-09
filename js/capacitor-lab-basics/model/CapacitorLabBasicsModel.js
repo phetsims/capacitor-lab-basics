@@ -21,6 +21,7 @@ define( function( require ) {
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
   var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CapacitorLabModel = require( 'CAPACITOR_LAB_BASICS/common/model/CapacitorLabModel' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
 
@@ -167,11 +168,17 @@ define( function( require ) {
         plateWidth: CLConstants.PLATE_WIDTH_RANGE.min,
         plateSeparation: CLConstants.PLATE_SEPARATION_RANGE.min,
         wireThickness: CLConstants.WIRE_THICKNESS,
-        wireExtent: WIRE_EXTENT
+        wireExtent: WIRE_EXTENT,
+        dielectricMaterial: DielectricMaterial.CustomDielectricMaterial( CLConstants.DIELECTRIC_CONSTANT_RANGE.min ),
+        dielectricOffset: CLConstants.DIELECTRIC_OFFSET_RANGE.min
       } );
 
       var circuit = new SingleCircuit( circuitConfig );
+
+      // disconnect the battery and set the max plate charge
+      circuit.circuitConnection = CircuitConnectionEnum.OPEN_CIRCUIT;
       circuit.setDisconnectedPlateCharge( this.getMaxPlateCharge() );
+
       return circuit.capacitor.getEffectiveEField();
     },
 
