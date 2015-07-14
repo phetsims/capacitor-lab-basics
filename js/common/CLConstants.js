@@ -81,8 +81,8 @@ define( function( require ) {
 
     // model-view transform.  Note explicit conversion to radians
     MVT_SCALE: 15000, // scale factor when going from model to view
-    MVT_YAW: -45 * 180, // rotation about the vertical axis, right-hand rule determines sign.
-    MVT_PITCH: 30 * 180, // rotation about the horizontal axis, right-hand rule determines sign
+    MVT_YAW: -45 * Math.PI / 180, // rotation about the vertical axis, right-hand rule determines sign.
+    MVT_PITCH: 30 * Math.PI / 180, // rotation about the horizontal axis, right-hand rule determines sign
 
     DRAG_HANDLE_ARROW_LENGTH: 35, // pixels
 

@@ -73,7 +73,7 @@ define( function( require ) {
     // layout: arrow below line, rotate into alignment with top plate's pseudo-3D diagonal
     var x = 0;
     var y = 0;
-    var angle = ( Math.PI / 2 ) + ( modelViewTransform.yaw / 2 ); // aligned with diagonal of plate surface
+    var angle = ( - Math.PI / 2 ) + ( modelViewTransform.yaw / 2 ); // aligned with diagonal of plate surface
     var lineArrowSpacing = 2;
     lineNode.translation = new Vector2( x, y );
     lineNode.rotation = angle;
