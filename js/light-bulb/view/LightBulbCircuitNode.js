@@ -22,7 +22,6 @@ define( function( require ) {
   var Vector3 = require( 'DOT/Vector3' );
   var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
-  var PlateChargeControlNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/control/PlateChargeControlNode' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var Range = require( 'DOT/Range' );
   var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
@@ -67,9 +66,6 @@ define( function( require ) {
     this.topCurrentIndicatorNode = new CurrentIndicatorNode( circuit, 0 );
     this.bottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit, Math.PI );
 
-    // controls
-    this.plateChargeControlNode = new PlateChargeControlNode( circuit, new Range( -maxPlateCharge, maxPlateCharge ) );
-
     // rendering order
     this.addChild( lightBulbNode );
     this.addChild( this.bottomWireNode );
@@ -80,7 +76,6 @@ define( function( require ) {
     this.addChild( this.bottomCurrentIndicatorNode );
     this.addChild( plateSeparationDragHandleNode );
     this.addChild( plateAreaDragHandleNode );
-    this.addChild( this.plateChargeControlNode );
 
     // layout TODO: Much of the layout will need to be fixed or tidied.  Many design decisions to be made.
     var x = 0;
@@ -114,10 +109,6 @@ define( function( require ) {
     this.topWireNode.translation = new Vector2( 0, 0 );
     this.bottomWireNode.translation = new Vector2( 0, 0 );
 
-    // Plate Charge control
-    this.plateChargeControlNode.center = batteryNode.center;
-    //this.plateChargeControlNode.translation = ( modelViewTransform.modelToViewPosition( new Vector3( circuit.capacitor.location.x - 0.030, 0.001, 0 ) ) );
-
     // observers
     circuit.circuitConnectionProperty.link( function( circuitConnection ) {
       thisNode.updateConnectivity( circuitConnection );
@@ -140,9 +131,6 @@ define( function( require ) {
 
       this.topCurrentIndicatorNode.setVisible( isBatteryConnected );
       this.bottomCurrentIndicatorNode.setVisible( isBatteryConnected );
-
-      // plate charge control
-      this.plateChargeControlNode.visible = !isCapacitorConnected;
 
     }
   } );

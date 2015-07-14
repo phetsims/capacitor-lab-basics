@@ -14,11 +14,11 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
-  var CircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/CircuitNode' );
+  var LightBulbCircuitNode = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/LightBulbCircuitNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
   var CapacitorLabBasicsLightBulbControl = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/control/CapacitorLabBasicsLightBulbControl' );
-  var CircuitControlPanel = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/view/control/CircuitControlPanel' );
+  var CircuitControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CircuitControlPanel' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var PlayPauseButton = require( 'SCENERY_PHET/buttons/PlayPauseButton' );
   var StepButton = require( 'SCENERY_PHET/buttons/StepButton' );
@@ -62,7 +62,7 @@ define( function( require ) {
     //var eFieldReferenceMagnitude = model.getEFieldReferenceMagnitude();
 
     // circuit
-    var circuitNode = new CircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisibleProperty,
+    var lightBulbCircuitNode = new LightBulbCircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisibleProperty,
       model.eFieldVisibleProperty, model.valuesVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
     // meters
@@ -111,10 +111,11 @@ define( function( require ) {
     } );
 
     // rendering order
-    this.addChild( circuitNode );
+    this.addChild( lightBulbCircuitNode);
     this.addChild( capacitanceMeterNode );
     this.addChild( plateChargeMeterNode );
     this.addChild( storedEnergyMeterNode );
+    //addChild( eFieldDetectorNode );
     //addChild( voltmeterNode );
     //addChild( shapesDebugParentNode );
     this.addChild( capacitorLabBasicsLightBulbControl );
