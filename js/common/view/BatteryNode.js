@@ -22,7 +22,6 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
-  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var Vector2 = require( 'DOT/Vector2' );
 
   // constants
@@ -33,36 +32,10 @@ define( function( require ) {
   // images
   var batteryUpImage = require( 'image!CAPACITOR_LAB_BASICS/battery_3D_up.png' );
   var batteryDownImage = require( 'image!CAPACITOR_LAB_BASICS/battery_3D_down.png' );
-  var sliderKnobImage = require( 'image!CAPACITOR_LAB_BASICS/sliderKnob.png' );
-  var sliderKnobHighlightImage = require( 'image!CAPACITOR_LAB_BASICS/sliderKnobHighlight.png' );
 
   // strings
   var pattern_0value1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
-
-  /**
-   * ThumbNode for the BatteryNode slider.
-   *
-   * @constructor
-   */
-  function ThumbNode() {
-    var thumbNode = new Image( sliderKnobImage );
-    Node.call( this, { touchArea: thumbNode.bounds.dilated( 15 ), mouseArea: thumbNode.bounds } );
-    this.addChild( thumbNode );
-
-    // highlight thumb on pointer over
-    this.addInputListener( new ButtonListener( {
-      over: function( event ) {
-        thumbNode.image = sliderKnobHighlightImage;
-      },
-      up: function( event ) {
-        thumbNode.image = sliderKnobImage;
-      }
-    } ) );
-    this.rotate( -Math.PI / 2 ); // Rotate node to match rotated slider
-  }
-
-  inherit( Node, ThumbNode );
 
   /**
    * Ticks for the slider on the BatteryNode.  This is used instead of HSlider ticks because these ticks need to be
@@ -115,7 +88,7 @@ define( function( require ) {
     var trackLength = 0.60 * imageNode.bounds.height;
     var sliderNode = new HSlider( battery.voltageProperty, voltageRange, {
       trackSize: new Dimension2( trackLength, 1 ),
-      thumbNode: new ThumbNode(),
+      thumbSize: new Dimension2( 22, 30 ),
       endDrag: function() {
         if ( Math.abs( battery.voltage ) < CLConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {
           battery.voltage = 0;
