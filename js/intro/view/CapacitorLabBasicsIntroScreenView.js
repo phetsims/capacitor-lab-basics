@@ -75,7 +75,7 @@ define( function( require ) {
     // play/pause button
     this.playPauseButton = new PlayPauseButton( model.playingProperty,
       {
-        bottom:  this.layoutBounds.bottom - 20,
+        bottom: this.layoutBounds.bottom - 20,
         centerX: this.layoutBounds.centerX - 25,
         radius: 25
       } );
@@ -97,7 +97,7 @@ define( function( require ) {
     this.resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
       bottom: this.layoutBounds.bottom - 20,
-      right:  this.layoutBounds.right - 30,
+      right: this.layoutBounds.right - 30,
       radius: 25
     } );
 

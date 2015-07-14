@@ -15,6 +15,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
   // strings
   var connectBatteryString = require( 'string!CAPACITOR_LAB_BASICS/connectBattery' );
@@ -23,7 +24,7 @@ define( function( require ) {
   /**
    * Constructor for the BatteryConnectionButtonNode.
    *
-   * @param { SingleCircuit } circuit
+   * @param {SingleCircuit} circuit
    * @constructor
    */
   function BatteryConnectionButtonNode( circuit ) {
@@ -38,7 +39,7 @@ define( function( require ) {
       baseColor: 'white',
       content: connectButtonContent,
       listener: function() {
-        circuit.setBatteryConnected( true ); // connect the battery to the circuit.
+        circuit.circuitConnection = CircuitConnectionEnum.BATTERY_CONNECTED; // connect the battery to the circuit.
       }
     } );
 
@@ -47,14 +48,14 @@ define( function( require ) {
       baseColor: 'white',
       content: disconnectButtonContent,
       listener: function() {
-        circuit.setBatteryConnected( false );
+        circuit.circuitConnection = CircuitConnectionEnum.OPEN_CIRCUIT;
       }
     } );
 
     // toggle which button is visible.
-    circuit.batteryConnectedProperty.link( function( batteryConnected ) {
-      connectBatteryButton.visible = !batteryConnected;
-      disconnectBatteryButton.visible = batteryConnected;
+    circuit.circuitConnectionProperty.link( function( circuitConnection ) {
+      connectBatteryButton.visible = ( circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT);
+      disconnectBatteryButton.visible = ( circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED );
     } );
 
     this.addChild( connectBatteryButton );

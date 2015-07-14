@@ -31,7 +31,7 @@ define( function( require ) {
     var thisCircuit = this; // extend scope for nested callbacks.
     PropertySet.call( this, {
       currentAmplitude: 0,
-      circuitConnection: CircuitConnectionEnum.BATTERY_CONNECTED
+      circuitConnection: CircuitConnectionEnum.BATTERY_CONNECTED //TODO: Rename to connectionProperty.
     } );
 
     this.previousTotalCharge = -1; // no value, @private

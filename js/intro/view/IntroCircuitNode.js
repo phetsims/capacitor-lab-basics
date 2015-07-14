@@ -21,6 +21,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
+  var BatteryConnectionButtonNode = require( 'CAPACITOR_LAB_BASICS/intro/view/control/BatteryConnectionButtonNode' );
 
   /**
    * Constructor for a CircuitNode.
@@ -54,6 +55,9 @@ define( function( require ) {
     var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE, valuesVisibleProperty );
     var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE, valuesVisibleProperty );
 
+    // connection control
+    var batteryConnectionButtonNode = new BatteryConnectionButtonNode( circuit );
+
     // current indicators
     this.topCurrentIndicatorNode = new CurrentIndicatorNode( circuit, 0 );
     this.bottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit, Math.PI );
@@ -67,6 +71,7 @@ define( function( require ) {
     this.addChild( this.bottomCurrentIndicatorNode );
     this.addChild( plateSeparationDragHandleNode );
     this.addChild( plateAreaDragHandleNode );
+    this.addChild( batteryConnectionButtonNode );
 
     // layout TODO: Much of the layout will need to be fixed or tidied.  Many design decisions to be made.
     var x = 0;
@@ -82,7 +87,7 @@ define( function( require ) {
     var topWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getTopWire().thickness, 0, 0 ).x;
     x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
     //x = this.topWireNode.bounds.centerX;
-    y = this.topWireNode.bounds.minY + ( topWireThickness / 2 ) + 70; // TODO clean up after discussion of feature.
+    y = this.topWireNode.bounds.minY + ( topWireThickness / 2 ); // TODO clean up after discussion of feature.
     this.topCurrentIndicatorNode.translate( x, y );
 
     // bottom current indicator
@@ -96,6 +101,11 @@ define( function( require ) {
     // explicitly defines the layout.
     this.topWireNode.translation = new Vector2( 0, 0 );
     this.bottomWireNode.translation = new Vector2( 0, 0 );
+
+    // Connect/Disconnect Battery button
+    x = batteryNode.bounds.minX;
+    y = this.topCurrentIndicatorNode.bounds.minY - batteryConnectionButtonNode.height - 10;
+    batteryConnectionButtonNode.translation = new Vector2( x, y );
 
   }
 

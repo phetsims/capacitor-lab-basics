@@ -51,9 +51,6 @@ define( function( require ) {
         if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           this.capacitor.platesVoltage = this.battery.voltage;
         }
-        else {
-          console.error( "For the intro screen, the battery must be connected" );
-        }
       }
     },
 
@@ -66,9 +63,6 @@ define( function( require ) {
     getTotalVoltage: function() {
       if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
         return ParallelCircuit.prototype.getTotalVoltage.call( this );
-      }
-      else {
-        console.error( "For the intro screen, the battery must be connected" );
       }
     },
 
@@ -103,7 +97,6 @@ define( function( require ) {
     getTotalCharge: function() {
       return this.capacitor.getTotalPlateCharge();
     }
-
   } );
 
 } );
