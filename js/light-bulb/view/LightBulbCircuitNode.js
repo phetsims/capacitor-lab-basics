@@ -23,7 +23,6 @@ define( function( require ) {
   var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
-  var Range = require( 'DOT/Range' );
   var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
 
   /**
@@ -123,7 +122,7 @@ define( function( require ) {
 
       // As long as the circuit is not open, the circuit is considered connected.
       var isBatteryConnected = ( circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED );
-      var isCapacitorConnected = ( circuitConnection !== CircuitConnectionEnum.OPEN_CIRCUIT );
+      //var isCapacitorConnected = ( circuitConnection !== CircuitConnectionEnum.OPEN_CIRCUIT );
 
       // visible when battery is connected
       //this.topWireNode.visible = isConnected;
