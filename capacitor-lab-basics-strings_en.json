@@ -8,6 +8,12 @@
   "capacitor-lab-basics.name": {
     "value": "Capacitor Lab: Basics"
   },
+  "intro.title": {
+    "value": "Intro"
+  },
+  "lightBulb.title": {
+    "value": "Light Bulb"
+  },
   "chargeMeterTitle": {
     "value": "Top Plate Charge (C)"
   },

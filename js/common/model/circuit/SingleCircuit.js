@@ -10,15 +10,8 @@
  * |     |
  * |-----|
  *
- * Unlike other circuits in this simulation, the battery can be disconnected.  When the battery is disconnected, plate
- * charge can be controlled directly.
- *
- * This circuit is used in all 3 modules.  In version 1.00, it was the sole circuit in the simulation. It was heavily
- * refactored to support the Multiple Capacitors module introduced in version 2.00.
- *
  * Variable names used in this implementation where chosen to match the specification in the design document, and
  * therefore violate Java naming conventions.
- *
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
@@ -40,62 +33,12 @@ define( function( require ) {
    */
   function SingleCircuit( config ) {
 
-    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 1 /* numberOfLightBulbs */ );
-    var thisCircuit = this;
+    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 0 /* numberOfLightBulbs */ );
 
     this.capacitor = this.capacitors[ 0 ];
-    this.lightBulb = this.lightBulbs[ 0 ];
-
-    this.addProperty( 'disconnectedPlateCharge', this.getTotalCharge() );
-
-    // Set the plate voltages only when the connected circuit item changes.
-    this.disconnectedPlateChargeProperty.link( function() {
-      thisCircuit.setDisconnectedPlateVoltage();
-    } );
-
-    // Make sure that the charges are correct when the battery is reconnected to the circuit.
-    this.circuitConnectionProperty.link( function( circuitConnection ) {
-      /*
-       * When disconnecting the battery, set the disconnected plate charge to whatever the total plate charge was with
-       * the battery connected.  Need to do this before changing the plate voltages property.
-       */
-      if ( circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
-        thisCircuit.setDisconnectedPlateCharge( thisCircuit.getTotalCharge() );
-      }
-      thisCircuit.updatePlateVoltages();
-
-      // if light bulb connected, reset values for transient calculations
-      if ( circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-        thisCircuit.capacitor.transientTime = 0;
-        thisCircuit.capacitor.voltageAtSwitchClose = thisCircuit.capacitor.platesVoltage;
-      }
-
-    } );
-
-    // TODO: Not sure this needs to be called at end of constructor.
-    //updatePlateVoltages(); // Must call this at end of constructor!
-
   }
 
   return inherit( ParallelCircuit, SingleCircuit, {
-
-    reset: function() {
-      //super.reset()
-      ParallelCircuit.prototype.reset.call( this ); // TODO: Make sure this is correct and goes all the way to AbstractCircuit.
-      this.circuitConnectionProperty.reset();
-    },
-
-    step: function( dt ) {
-
-      // step through common circuit components
-      ParallelCircuit.prototype.step.call( this, dt );
-
-      // discharge the capacitor when it is in parallel with the light bulb.
-      if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-        this.capacitor.discharge( this.lightBulb.resistance, dt );
-      }
-
-    },
 
     /**
      * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
@@ -105,13 +48,12 @@ define( function( require ) {
      */
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
-        if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
-          this.capacitor.platesVoltage = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance(); // V = Q/C
-        }
-        if( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           this.capacitor.platesVoltage = this.battery.voltage;
         }
-
+        else {
+          console.error( "For the intro screen, the battery must be connected" );
+        }
       }
     },
 
@@ -126,7 +68,7 @@ define( function( require ) {
         return ParallelCircuit.prototype.getTotalVoltage.call( this );
       }
       else {
-        return this.capacitor.platesVoltage;
+        console.error( "For the intro screen, the battery must be connected" );
       }
     },
 
@@ -151,32 +93,6 @@ define( function( require ) {
         }
       }
       return voltage;
-    },
-
-    /**
-     * Sets the value used for plate charge when the battery is disconnected.
-     * (design doc symbol: Q_total)
-     *
-     * @param {number} disconnectedPlateCharge Coulombs
-     */
-    setDisconnectedPlateCharge: function( disconnectedPlateCharge ) {
-      if ( disconnectedPlateCharge !== this.disconnectedPlateCharge ) {
-        this.disconnectedPlateCharge = disconnectedPlateCharge;
-        if ( this.circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
-          this.updatePlateVoltages();
-          //this.trigger( 'circuitChanged' );
-          //this.fireCircuitChanged(); TODO
-        }
-      }
-    },
-
-    /**
-     * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
-     */
-    setDisconnectedPlateVoltage: function() {
-      if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
-        this.updatePlateVoltages();
-      }
     },
 
     /**

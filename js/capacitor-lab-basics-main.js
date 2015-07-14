@@ -4,17 +4,24 @@
  * Main entry point for the sim.
  *
  * @author Emily Randall
+ * @author Jesse Greenberg
  */
 define( function( require ) {
   'use strict';
 
   // modules
-  var CapacitorLabScreen = require( 'CAPACITOR_LAB_BASICS/capacitor-lab-basics/CapacitorLabBasicsScreen' );
+  var CapacitorLabBasicsLightBulbScreen = require( 'CAPACITOR_LAB_BASICS/light-bulb/CapacitorLabBasicsLightBulbScreen' );
+  var CapacitorLabBasicsIntroScreen = require( 'CAPACITOR_LAB_BASICS/intro/CapacitorLabBasicsIntroScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
 
   // strings
   var simTitle = require( 'string!CAPACITOR_LAB_BASICS/capacitor-lab-basics.name' );
+
+  var screens = [
+    new CapacitorLabBasicsIntroScreen(),
+    new CapacitorLabBasicsLightBulbScreen()
+  ];
 
   var simOptions = {
     credits: {
@@ -36,7 +43,7 @@ define( function( require ) {
   }
 
   SimLauncher.launch( function() {
-    var sim = new Sim( simTitle, [ new CapacitorLabScreen() ], simOptions );
+    var sim = new Sim( simTitle, screens, simOptions );
     sim.start();
   } );
 } );
