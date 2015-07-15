@@ -49,8 +49,8 @@ define( function( require ) {
     this.wires = createWires( config, this.battery, this.circuitComponents, this.circuitConnectionProperty );
 
     // create the current indicators
-    this.topCurrentIndicator = new CurrentIndicator( this, 0 /* initial rotation*/ );
-    this.bottomCurrentIndicator = new CurrentIndicator( this, Math.PI /* initial rotation*/ );
+    this.topCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, 0 /* initial rotation*/ );
+    this.bottomCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, Math.PI /* initial rotation*/ );
 
     // Make sure all is well with circuit components.  Circuit must include at least one circuit component and two wires.
     assert && assert( this.circuitComponents.length >= 1 );

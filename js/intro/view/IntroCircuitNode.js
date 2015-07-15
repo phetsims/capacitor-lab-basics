@@ -59,8 +59,8 @@ define( function( require ) {
     var batteryConnectionButtonNode = new BatteryConnectionButtonNode( circuit );
 
     // current indicators
-    this.topCurrentIndicatorNode = new CurrentIndicatorNode( circuit, 0 );
-    this.bottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit, Math.PI );
+    this.topCurrentIndicatorNode = new CurrentIndicatorNode( circuit.topCurrentIndicator, 0 );
+    this.bottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.bottomCurrentIndicator, Math.PI );
 
     // rendering order
     this.addChild( this.bottomWireNode );

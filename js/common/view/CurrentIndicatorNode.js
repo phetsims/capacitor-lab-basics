@@ -43,25 +43,25 @@ define( function( require ) {
   var ELECTRON_MINUS_SIZE = new Dimension2( 0.6 * ELECTRON_DIAMETER, 0.1 * ELECTRON_DIAMETER );
 
   // constants
-  //var MAX_OPACITY = 0.75; // range is 0-1
-  //var FADEOUT_DURATION = 500; // ms
-  //var FADEOUT_STEP_RATE = 10; // ms
+  var MAX_OPACITY = 0.75; // range is 0-1
+  var FADEOUT_DURATION = 2000; // ms
+  var FADEOUT_STEP_RATE = 10; // ms
+  var DELTA_OPACITY = MAX_OPACITY / ( FADEOUT_DURATION / FADEOUT_STEP_RATE );
 
   /**
    * Constructor. Rotation angles should be set such that +dV/dt indicates current flow towards the positive terminal
    * of the battery.
    *
-   * @param {SingleCircuit} circuit
+   * @param {CurrentIndicator} currentIndicator
    * @param {number} positiveOrientation
    * @constructor
    */
-  function CurrentIndicatorNode( circuit, positiveOrientation ) {
+  function CurrentIndicatorNode( currentIndicator, positiveOrientation ) {
 
     Node.call( this, { opacity: 0 } ); // TODO: Perhaps extend ArrowNode?
     var thisNode = this;
     this.positiveOrientation = positiveOrientation;
 
-    //this.deltaOpacity = MAX_OPACITY / ( FADEOUT_DURATION / FADEOUT_STEP_RATE );
 
     var arrowNode = new ArrowNode( ARROW_TAIL_LOCATION.x, ARROW_TAIL_LOCATION.y, ARROW_TIP_LOCATION.x, ARROW_TIP_LOCATION.y, {
       headHeight: ARROW_HEAD_HEIGHT,
@@ -99,32 +99,24 @@ define( function( require ) {
     minusNode.center = electronNode.center;
 
     // observer current
-    circuit.currentAmplitudeProperty.lazyLink( function( currentAmplitude ) {
-      if ( thisNode.visible ) {
-        thisNode.updateOpacity();
-        thisNode.updateOrientation( currentAmplitude );
-      }
+    currentIndicator.multilink( ['opacity', 'rotation' ], function() {
+      thisNode.opacity = currentIndicator.opacity;
+      thisNode.rotation = currentIndicator.rotation;
     } );
 
   }
 
   return inherit( Node, CurrentIndicatorNode, {
 
-    updateOpacity: function() {
-      var thisNode = this;
-
-      // set visible immediately
-      this.opacity = 1;
-
-      var tweenOpacity, tweenParameters;
-      tweenParameters = { opacity: 1 };
-
-      // fade out
-      tweenOpacity = new TWEEN.Tween( tweenParameters )
-        .to( { opacity: 0 }, 2000 )
-        .onUpdate( function() { thisNode.opacity = tweenParameters.opacity; } )
-        .delay( 1000 );
-      tweenOpacity.start();
+    updateOpacity: function( currentAmplitude ) {
+      // if current is flowing, set opacity to max value.
+      if ( Math.abs( currentAmplitude ) > 0 ) {
+        this.opacity = MAX_OPACITY;
+      }
+      else {
+        // gradually fade out
+        this.opacity = Math.max( 0, this.opacity - DELTA_OPACITY );
+      }
     },
 
     /**
@@ -133,7 +125,7 @@ define( function( require ) {
      * @param {number} currentAmplitude
      */
     updateOrientation: function( currentAmplitude ) {
-      if( currentAmplitude !== 0 ) {
+      if ( currentAmplitude !== 0 ) {
         this.rotation = currentAmplitude > 0 ? this.positiveOrientation : this.positiveOrientation + Math.PI;
       }
     }
