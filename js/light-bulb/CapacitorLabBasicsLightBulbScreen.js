@@ -30,7 +30,7 @@ define( function( require ) {
     Screen.call( this, capacitorLabBasicsLightBulbTitle, icon,
       function() { return new CapacitorLabBasicLightBulbsModel( new CLModelViewTransform3D() ); },
       function( model ) { return new CapacitorLabBasicsLightBulbScreenView( model ); },
-      { backgroundColor: '#9ddcf8' }
+      { backgroundColor: '#ECFFF5' }
     );
 
   }
