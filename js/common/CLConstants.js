@@ -84,7 +84,7 @@ define( function( require ) {
     MVT_YAW: -45 * Math.PI / 180, // rotation about the vertical axis, right-hand rule determines sign.
     MVT_PITCH: 30 * Math.PI / 180, // rotation about the horizontal axis, right-hand rule determines sign
 
-    DRAG_HANDLE_ARROW_LENGTH: 35, // pixels
+    DRAG_HANDLE_ARROW_LENGTH: 45, // pixels
 
     // default exponents for the meters
     CAPACITANCE_METER_VALUE_EXPONENT: -12,
@@ -108,7 +108,7 @@ define( function( require ) {
     CAPACITANCE_CONTROL_EXPONENT: -13,
 
     // colors used throughout the sim, each representing a physical quantity
-    CAPACITANCE_COLOR: 'green',
+    CAPACITANCE_COLOR: 'rgb( 61, 179, 79 )',
     E_FIELD_COLOR: 'black',
     STORED_ENERGY_COLOR: 'yellow',
     POSITIVE_CHARGE_COLOR: PhetColorScheme.RED_COLORBLIND,

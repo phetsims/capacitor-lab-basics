@@ -70,7 +70,7 @@ define( function( require ) {
     // TODO: Layout calculations are messy, come back soon to clean up.
     var minWidth = this.right - capacitanceMeterNode.left;
     var capacitorLabBasicsIntroControl = new CapacitorLabBasicsIntroControl( model, minWidth );
-    capacitorLabBasicsIntroControl.translation = this.layoutBounds.rightCenter.minusXY( capacitorLabBasicsIntroControl.width + 10, 50 );
+    capacitorLabBasicsIntroControl.translation = this.layoutBounds.rightTop.minusXY( capacitorLabBasicsIntroControl.width + 10, -10 );
 
     // play/pause button
     this.playPauseButton = new PlayPauseButton( model.playingProperty,

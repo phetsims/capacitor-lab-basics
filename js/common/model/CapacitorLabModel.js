@@ -26,7 +26,7 @@ define( function( require ) {
     PropertySet.call( this, {
       plateChargesVisible: CLConstants.PLATE_CHARGES_VISIBLE,
       eFieldVisible: CLConstants.EFIELD_VISIBLE,
-      capacitanceMeterVisible: false,
+      capacitanceMeterVisible: true,
       plateChargeMeterVisible: false,
       storedEnergyMeterVisible: false,
       voltmeterVisible: false,

@@ -17,7 +17,7 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
 
   // constants
-  var NORMAL_COLOR = 'green';
+  var NORMAL_COLOR = 'rgb( 61, 179, 79 )';
   var HIGHLIGHT_COLOR = 'yellow';
   var STROKE_COLOR = 'black';
   var LINE_WIDTH = 1;
@@ -43,9 +43,9 @@ define( function( require ) {
       stroke: STROKE_COLOR,
       lineWidth: LINE_WIDTH,
       doubleHead: true,
-      headHeight: length / 4,
+      headHeight: length,
       headWidth: length / 2,
-      tailWidth: length / 6
+      tailWidth: length / 5
     } );
 
     // highlight the arrow on pointer over
