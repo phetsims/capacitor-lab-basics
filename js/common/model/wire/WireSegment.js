@@ -35,7 +35,7 @@ define( function( require ) {
     }
   }, {
 
-    // Factory methods to publicly construct various segments.
+    // Factory methods to publicly construct various segments. TODO: Flesh out with update functions.
     BatteryTopWireSegment: function( battery, startYOffset, endPoint ) { return new BatteryTopWireSegment( battery, startYOffset, endPoint ); },
     BatteryBottomWireSegment: function( battery, startYOffset, endPoint ) { return new BatteryBottomWireSegment( battery, startYOffset, endPoint ); },
     ComponentTopWireSegment: function( component, endPoint ) { return new ComponentTopWireSegment( component, endPoint ); },
@@ -46,8 +46,34 @@ define( function( require ) {
     VerticalBottomWireSegment: function( battery, startPoint ) {
       return new WireSegment( startPoint, new Vector2( startPoint.x, battery.location.y + battery.getBottomTerminalYOffset() ) );
     },
-    SwitchSegment: function( startPoint, endPoint, switchLength, circuitConnection ) { return new SwitchSegment( startPoint, endPoint, switchLength, circuitConnection ); }
-
+    // TODO: Update functions for the following will need to be specified, this will justify factory functions.
+    BatteryTopToSwitchSegment: function( startPoint, endPoint ) {
+      return new WireSegment( startPoint, endPoint );
+    },
+    BatteryBottomToSwitchSegment: function( startPoint, endPoint ) {
+      return new WireSegment( startPoint, endPoint );
+    },
+    LightBulbTopWireSegment: function( startPoint, endPoint ) {
+      return new WireSegment( startPoint, endPoint );
+    },
+    LightBulbBottomWireSegment: function( startPoint, endPoint ) {
+      return new WireSegment( startPoint, endPoint );
+    },
+    BulbTopToSwitchSegment: function( startPoint, endPoint ) {
+      return new WireSegment( startPoint, endPoint );
+    },
+    BulbBottomToSwitchSegment: function( startPoint, endPoint ) {
+      return new WireSegment( startPoint, endPoint );
+    },
+    CapacitorTopToSwitchSegment: function( startPoint, endPoint ) {
+      return new WireSegment( startPoint, endPoint );
+    },
+    CapacitorBottomToSwitchSegment: function( startPoint, endPoint ) {
+      return new WireSegment( startPoint, endPoint );
+    },
+    SwitchSegment: function( startPoint, endPoint ) {
+      return new SwitchSegment( startPoint, endPoint );
+    }
   } );
 
   /**
@@ -95,7 +121,7 @@ define( function( require ) {
    * @param {Vector2} endPoint
    */
   function ComponentBottomWireSegment( component, startPoint ) {
-    ComponentWireSegment.call( this, component, startPoint, component.getBottomConnectionPoint().toVector2());
+    ComponentWireSegment.call( this, component, startPoint, component.getBottomConnectionPoint().toVector2() );
   }
 
   inherit( ComponentWireSegment, ComponentBottomWireSegment, {
@@ -133,7 +159,7 @@ define( function( require ) {
   } );
 
   /**
-   *  Constructor for a BatteryWireSegment.  This incluWs any wire segment that is connected to a battery.
+   *  Constructor for a BatteryWireSegment.  This includes any wire segment that is connected to a battery.
    *
    *  @param {Battery} battery
    *  @param {number} startYOffset
@@ -191,29 +217,20 @@ define( function( require ) {
     }
   } );
 
-  function SwitchSegment( startPoint, closedEndPoint, switchLength, circuitConnection ) {
-    this.circuitConnection = circuitConnection;
-    this.closedEndPoint = closedEndPoint;
-    this.startPoint = startPoint;
-    this.switchLength = switchLength;
-
-    WireSegment.call( this, startPoint, closedEndPoint );
+  /**
+   *
+   * @param hingePoint
+   * @param connectionPoint
+   * @constructor
+   */
+  function SwitchSegment( hingePoint, activeConnection ) {
+    WireSegment.call( this, hingePoint, activeConnection.location );
   }
 
   inherit( WireSegment, SwitchSegment, {
 
-    update: function( circuitConnection ) {
-
-      if ( circuitConnection !== this.circuitConnection ) {
-        var xOffset = Math.cos( Math.PI / 4 ) * ( this.switchLength );
-        var yOffset = Math.sin( Math.PI / 4 ) * ( this.switchLength );
-        this.endPoint = this.startPoint.minusXY( xOffset, yOffset );
-      }
-      else {
-        // switch should be closed
-        this.endPoint = this.closedEndPoint;
-      }
-
+    update: function( activeConnection ) {
+      this.endPoint = activeConnection.location;
     }
   } );
 
