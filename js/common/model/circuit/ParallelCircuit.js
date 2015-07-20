@@ -25,9 +25,11 @@ define( function( require ) {
   var AbstractCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/AbstractCircuit' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
   var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
+  var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var WireBatteryToCircuitComponents = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireBatteryToCircuitComponents' );
 
-  // Function for creating all circuit components. Assumes that the desired order is capcaitors and then lightbulbs.
+  // Function for creating all circuit components. Assumes that the desired order is capacitors and then lightBulbs.
   function createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs ) {
 
     var x = config.batteryLocation.x + config.capacitorXSpacing;
@@ -65,7 +67,7 @@ define( function( require ) {
   }
 
   // Function for creating wires.
-  function createWires( config, battery, circuitComponents, circuitConnectionProperty ) {
+  function createWires( config, battery, circuitComponents, circuitSwitches, circuitConnectionProperty ) {
     var wires = [];
     wires.push( WireBatteryToCircuitComponents.WireBatteryToCircuitComponentsTop(
       config.modelViewTransform,
@@ -74,6 +76,7 @@ define( function( require ) {
       config.capacitorXSpacing,
       battery,
       circuitComponents,
+      circuitSwitches,
       circuitConnectionProperty ) );
     wires.push( WireBatteryToCircuitComponents.WireBatteryToCircuitComponentsBottom(
       config.modelViewTransform,
@@ -82,8 +85,34 @@ define( function( require ) {
       config.capacitorXSpacing,
       battery,
       circuitComponents,
+      circuitSwitches,
       circuitConnectionProperty ) );
     return wires;
+  }
+
+  // function for creating circuit switches.
+  function createCircuitSwitches( config, numberOfCapacitors, numberOfLightBulbs, circuitConnectionProperty ) {
+
+    // A switch exists for all middle circuit components.
+    var numComponentsWithSwitches = numberOfCapacitors + numberOfLightBulbs - 1;
+
+    var x = config.batteryLocation.x + config.capacitorXSpacing;
+    var topY = config.batteryLocation.y - CLConstants.PLATE_SEPARATION_RANGE.max - CLConstants.SWITCH_Y_SPACING;
+    var bottomY = config.batteryLocation.y + CLConstants.PLATE_SEPARATION_RANGE.max + CLConstants.SWITCH_Y_SPACING;
+    var z = config.batteryLocation.z;
+
+    var circuitSwitches = [];
+
+    // create the top circuit switches.
+    for( var i = 0; i < numComponentsWithSwitches; i ++ ) {
+      var topStartPoint = new Vector3( x, topY, z );
+      var bottomStartPoint = new Vector3( x, bottomY, z );
+      var topCircuitSwitch = CircuitSwitch.CircuitTopSwitch( topStartPoint, config.modelViewTransform, circuitConnectionProperty );
+      var bottomCircuitSwitch = CircuitSwitch.CircuitBottomSwitch( bottomStartPoint, config.modelViewTransform, circuitConnectionProperty );
+      circuitSwitches.push( topCircuitSwitch, bottomCircuitSwitch );
+      x += config.capacitorXSpacing;
+    }
+    return circuitSwitches;
   }
 
   /**
@@ -95,7 +124,7 @@ define( function( require ) {
    */
   function ParallelCircuit( config, numberOfCapacitors, numberOfLightBulbs ) {
 
-    AbstractCircuit.call( this, config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires );
+    AbstractCircuit.call( this, config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires, createCircuitSwitches );
 
   }
 
