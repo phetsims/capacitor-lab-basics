@@ -40,6 +40,10 @@ define( function( require ) {
     PLATE_SEPARATION_RANGE: new Range( 0.005, 0.01, 0.01 ), // meters
     CAPACITANCE_RANGE: new Range( 1E-13, 3E-13 ), // Farads
 
+    // switch
+    SWITCH_WIRE_LENGTH: 0.005, // in meters TODO: Calculate this for accuracy.
+    SWITCH_Y_SPACING: 0.0025, // spacing between circuit components and the switch
+
     // dielectric
     DIELECTRIC_CONSTANT_RANGE: new Range( 1, 5, 5 ), // dimensionless
     DIELECTRIC_OFFSET_RANGE: new Range( 0, PLATE_WIDTH_RANGE.max, PLATE_WIDTH_RANGE.defaultValue ), // meters
