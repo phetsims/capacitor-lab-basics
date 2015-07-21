@@ -99,6 +99,7 @@ define( function( require ) {
     NUMBER_OF_PLATE_CHARGES: new Range( 1, 625 ),
     NEGATIVE_CHARGE_SIZE: new Dimension2( 7, 2 ),
     PLATE_CHARGES_VISIBLE: true,
+    ELECTRON_CHARGE: 1.60218E-19,
 
     // E-field
     NUMBER_OF_EFIELD_LINES: new Range( 4, 900 ), // number of lines on smallest plate
