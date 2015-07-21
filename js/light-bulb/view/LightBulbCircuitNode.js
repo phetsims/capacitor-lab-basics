@@ -24,11 +24,12 @@ define( function( require ) {
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
+  var SwitchNode = require( 'CAPACITOR_LAB_BASICS/common/view/SwitchNode' );
 
   /**
    * Constructor for a CircuitNode.
    *
-   * @param {SingleCircuit} circuit
+   * @param {LightBulbCircuit} circuit
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
@@ -57,6 +58,12 @@ define( function( require ) {
 
     var lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.platesVoltageProperty, circuit.circuitConnectionProperty, modelViewTransform );
 
+    // switches
+    this.circuitSwitchNodes = [];
+    circuit.circuitSwitches.forEach( function( circuitSwitch ) {
+      thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, modelViewTransform ) );
+    } );
+
     // drag handles
     var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE, valuesVisibleProperty );
     var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE, valuesVisibleProperty  );
@@ -66,11 +73,14 @@ define( function( require ) {
     this.bottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.bottomCurrentIndicator, Math.PI );
 
     // rendering order
-    this.addChild( lightBulbNode );
     this.addChild( this.bottomWireNode );
     this.addChild( batteryNode );
     this.addChild( capacitorNode );
     this.addChild( this.topWireNode );
+    this.addChild( lightBulbNode );
+    this.circuitSwitchNodes.forEach( function( circuitSwitchNode ) {
+      thisNode.addChild( circuitSwitchNode );
+    } );
     this.addChild( this.topCurrentIndicatorNode );
     this.addChild( this.bottomCurrentIndicatorNode );
     this.addChild( plateSeparationDragHandleNode );

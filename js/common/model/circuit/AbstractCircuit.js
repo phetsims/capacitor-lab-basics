@@ -25,8 +25,9 @@ define( function( require ) {
    * @param {number} numberOfLightBulbs number of lightBulbs in the circuit
    * @param {function} createCircuitComponents   function for creating cirucit components
    * @param {function} createWires function for creating wires
+   * @param {function} createCircuitSwitches function for creating wires
    */
-  function AbstractCircuit( config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires ) {
+  function AbstractCircuit( config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires, createCircuitSwitches ) {
 
     var thisCircuit = this; // extend scope for nested callbacks.
     PropertySet.call( this, {
@@ -39,6 +40,7 @@ define( function( require ) {
     // create basic circuit components
     this.battery = new Battery( config.batteryLocation, CLConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform );
     this.circuitComponents = createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs );
+    this.circuitSwitches = createCircuitSwitches( config, numberOfCapacitors, numberOfLightBulbs, this.circuitConnectionProperty );
 
     // capture the circuit components into individual arrays.  Note that using splice assumes order of capacitors and
     // then lightbulbs. If new order is important, new method is necessary.
@@ -46,7 +48,7 @@ define( function( require ) {
     this.capacitors = this.circuitComponents.slice( 0, numberOfCapacitors );
     this.lightBulbs = this.circuitComponents.slice( numberOfCapacitors, numberOfLightBulbs + 1 );
 
-    this.wires = createWires( config, this.battery, this.circuitComponents, this.circuitConnectionProperty );
+    this.wires = createWires( config, this.battery, this.circuitComponents, this.circuitSwitches, this.circuitConnectionProperty );
 
     // create the current indicators
     this.topCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, 0 /* initial rotation*/ );

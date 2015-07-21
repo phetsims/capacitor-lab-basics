@@ -40,13 +40,14 @@ define( function( require ) {
    * @param {CircuitConfig} config
    * @constructor
    */
-  function SingleCircuit( config ) {
+  function LightBulbCircuit( config ) {
 
     ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 1 /* numberOfLightBulbs */ );
     var thisCircuit = this;
 
     this.capacitor = this.capacitors[ 0 ];
     this.lightBulb = this.lightBulbs[ 0 ];
+    //console.log( this.capacitor.location );
 
     this.addProperty( 'disconnectedPlateCharge', this.getTotalCharge() );
 
@@ -79,7 +80,7 @@ define( function( require ) {
 
   }
 
-  return inherit( ParallelCircuit, SingleCircuit, {
+  return inherit( ParallelCircuit, LightBulbCircuit, {
 
     reset: function() {
       //super.reset()

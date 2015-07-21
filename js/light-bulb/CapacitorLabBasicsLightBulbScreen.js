@@ -25,7 +25,7 @@ define( function( require ) {
   function CapacitorLabBasicsLightBulbScreen() {
 
     // TODO: Icons need to be created for this sim.
-    var icon = new Rectangle( 0, 0, 100, 100, { fill: 'blue' } );
+    var icon = new Rectangle( 0, 0, 548, 373, { fill: 'blue' } );
 
     Screen.call( this, capacitorLabBasicsLightBulbTitle, icon,
       function() { return new CapacitorLabBasicLightBulbsModel( new CLModelViewTransform3D() ); },

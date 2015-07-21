@@ -25,7 +25,7 @@ define( function( require ) {
   function CapacitorLabBasicsIntroScreen() {
 
     // TODO: Icons need to be created for this sim.
-    var icon = new Rectangle( 0, 0, 100, 100, { fill: 'red' } );
+    var icon = new Rectangle( 0, 0, 548, 373, { fill: 'red' } );
 
     Screen.call( this, capacitorLabBasicsIntroTitle, icon,
       function() { return new CapacitorLabBasicsIntroModel( new CLModelViewTransform3D() ); },
