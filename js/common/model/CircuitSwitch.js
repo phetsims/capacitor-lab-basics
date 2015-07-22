@@ -46,7 +46,7 @@ define( function( require ) {
 
     // add the switch wire that spans two connection points. Default connection is battery.
     this.switchSegment = WireSegment.SwitchSegment( hingePoint, this.activeConnection );
-    this.switchWire = new Wire( modelViewTransform, 5, [ this.switchSegment ] );
+    this.switchWire = new Wire( modelViewTransform, CLConstants.WIRE_THICKNESS, [ this.switchSegment ] );
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
@@ -86,7 +86,7 @@ define( function( require ) {
           connectionPoint = connection.location;
         }
       } );
-      return connectionPoint;
+      return connectionPoint.toVector2();
     },
 
     getLightBulbConnectionPoint: function() {

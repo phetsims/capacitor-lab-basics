@@ -3,6 +3,8 @@
 /**
  * Base class for all bar meter model elements.
  *
+ * TODO: Location no longer needs to be a model property since the meter is not draggable anymore.
+ *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
  */

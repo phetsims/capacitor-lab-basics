@@ -15,6 +15,7 @@ define( function( require ) {
   var BatteryNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryNode' );
   var CapacitorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CapacitorNode' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
+  var SwitchNode = require( 'CAPACITOR_LAB_BASICS/common/view/SwitchNode' );
   var CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
   var Node = require( 'SCENERY/nodes/Node' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
@@ -39,6 +40,7 @@ define( function( require ) {
                              maxEffectiveEField ) {
 
     Node.call( this );
+    var thisNode = this;
 
     this.circuit = circuit;
 
@@ -48,8 +50,23 @@ define( function( require ) {
     var capacitorNode = new CapacitorNode( circuit.capacitor, modelViewTransform, plateChargeVisibleProperty,
       eFieldVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
-    this.topWireNode = new WireNode( circuit.getTopWire() ); // @private
-    this.bottomWireNode = new WireNode( circuit.getBottomWire() ); // @private
+    this.topWireNode = new Node();
+    this.bottomWireNode = new Node();
+    this.circuit.getTopWires().forEach( function( topWire ) {
+      thisNode.topWireNode.addChild( new WireNode( topWire ) );
+    } );
+    this.circuit.getBottomWires().forEach( function( bottomWire ) {
+      thisNode.bottomWireNode.addChild( new WireNode( bottomWire ) );
+    } );
+
+    //this.topWireNode = new WireNode( circuit.getTopWire() ); // @private
+    //this.bottomWireNode = new WireNode( circuit.getBottomWire() ); // @private
+
+    // switches
+    this.circuitSwitchNodes = [];
+    circuit.circuitSwitches.forEach( function( circuitSwitch ) {
+      thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, modelViewTransform ) );
+    } );
 
     // drag handles
     var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE, valuesVisibleProperty );
@@ -67,6 +84,9 @@ define( function( require ) {
     this.addChild( batteryNode );
     this.addChild( capacitorNode );
     this.addChild( this.topWireNode );
+    this.circuitSwitchNodes.forEach( function( circuitSwitchNode ) {
+      thisNode.addChild( circuitSwitchNode );
+    } );
     this.addChild( this.topCurrentIndicatorNode );
     this.addChild( this.bottomCurrentIndicatorNode );
     this.addChild( plateSeparationDragHandleNode );
@@ -84,17 +104,17 @@ define( function( require ) {
     capacitorNode.center = modelViewTransform.modelToViewPosition( circuit.capacitor.location );
 
     // top current indicator
-    var topWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getTopWire().thickness, 0, 0 ).x;
+    //var topWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getTopWire().thickness, 0, 0 ).x;
     x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
     //x = this.topWireNode.bounds.centerX;
-    y = this.topWireNode.bounds.minY + ( topWireThickness / 2 ); // TODO clean up after discussion of feature.
+    y = this.topWireNode.bounds.minY + ( 7 / 2 ); // TODO clean up after discussion of feature.
     this.topCurrentIndicatorNode.translate( x, y );
 
     // bottom current indicator
-    var bottomWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getBottomWire.thickness, 0, 0 ).x;
+    //var bottomWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getBottomWire.thickness, 0, 0 ).x;
     x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
     //x = this.bottomWireNode.bounds.getCenterX();
-    y = this.bottomWireNode.bounds.getMaxY() - ( bottomWireThickness / 2 );
+    y = this.bottomWireNode.bounds.getMaxY() - ( 7 / 2 );
     this.bottomCurrentIndicatorNode.translate( x, y );
 
     // wires shapes are in model coordinate frame, so the nodes live at (0,0) the following does nothing but it

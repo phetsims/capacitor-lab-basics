@@ -25,15 +25,12 @@ define( function( require ) {
    * @param {string} connectionPoint one of 'TOP' or 'BOTTOM'
    * @param {ModelViewTransform2} modelViewTransform
    * @param {number} thickness
-   * @param {number} wireExtent how far the wire extends beyond the capacitor, in meters
    * @param {Battery} battery
-   * @param {array.<Capacitor>} circuitComponents
-   * @param {array.<CircuitSwitch>} circuitSwitches
+   * @param {CircuitSwitch} circuitSwitch
    * @param {Property.<string>} circuitConnectionProperty
    * @constructor
    */
-  function WireBatteryToCircuitSwitch( connectionPoint, modelViewTransform, thickness, battery, circuitSwitch,
-                                       circuitConnectionProperty ) {
+  function WireBatteryToCircuitSwitch( connectionPoint, modelViewTransform, thickness, battery, circuitSwitch ) {
 
     var segments = [];
 
@@ -43,12 +40,11 @@ define( function( require ) {
 
     // add the vertical segment.
     // TODO: 0 should be getEndOffset
-    segments.push( this.getBatteryVerticalSegment( connectionPoint, battery ) );
+    segments.push( this.getBatteryVerticalSegment( connectionPoint, battery, leftCorner ) );
 
     // connect battery to switch connection point.
     segments.push( this.getBatteryToSwitchSegment( connectionPoint, circuitSwitch, leftCorner ) );
-
-    Wire.call( this, modelViewTransform, thickness, segments, circuitConnectionProperty );
+    Wire.call( this, modelViewTransform, thickness, segments, connectionPoint );
 
   }
 
@@ -122,15 +118,15 @@ define( function( require ) {
       }
     },
 
-    getBatteryToSwitchSegment: function( connectionPoint, sortedSwitches, endPoint ) {
+    getBatteryToSwitchSegment: function( connectionPoint, circuitSwitch, endPoint ) {
       var switchConnectionPoint;
       if ( connectionPoint === ConnectionPoint.TOP ) {
-        switchConnectionPoint = sortedSwitches[ 0 ].getBatteryConnectionPoint();
-        return WireSegment.BatteryTopToSwitchSegment( switchConnectionPoint, endPoint );
+        switchConnectionPoint = circuitSwitch.getBatteryConnectionPoint();
+        return WireSegment.BatteryTopToSwitchSegment( endPoint, switchConnectionPoint );
       }
       else {
-        switchConnectionPoint = sortedSwitches[ 1 ].getBatteryConnectionPoint();
-        return WireSegment.BatteryBottomToSwitchSegment( switchConnectionPoint, endPoint );
+        switchConnectionPoint = circuitSwitch.getBatteryConnectionPoint();
+        return WireSegment.BatteryBottomToSwitchSegment( endPoint, switchConnectionPoint );
       }
     },
 
@@ -203,12 +199,12 @@ define( function( require ) {
     /**
      * Factory functions for public access to specific constructors.
      */
-    WireBatteryToCircuitComponentsBottom: function( modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents, circuitSwitches, circuitConnectionProperty ) {
-      return new WireBatteryToCircuitComponents( ConnectionPoint.BOTTOM, modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents, circuitSwitches, circuitConnectionProperty );
+    WireBatteryToCircuitSwitchBottom: function( modelViewTransform, thickness, battery, circuitSwitch ) {
+      return new WireBatteryToCircuitSwitch( ConnectionPoint.BOTTOM, modelViewTransform, thickness, battery, circuitSwitch );
     },
 
-    WireBatteryToCircuitComponentsTop: function( modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents, circuitSwitches, circuitConnectionProperty ) {
-      return new WireBatteryToCircuitComponents( ConnectionPoint.TOP, modelViewTransform, thickness, wireExtent, componentSpacing, battery, circuitComponents, circuitSwitches, circuitConnectionProperty );
+    WireBatteryToCircuitSwitchTop: function( modelViewTransform, thickness, battery, circuitSwitch ) {
+      return new WireBatteryToCircuitSwitch( ConnectionPoint.TOP, modelViewTransform, thickness, battery, circuitSwitch );
     }
 
   } );

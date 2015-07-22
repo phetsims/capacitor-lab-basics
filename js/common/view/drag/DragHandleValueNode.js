@@ -51,7 +51,7 @@ define( function( require ) {
 
     // layout: value below label, left-justified
     labelNode.translation = new Vector2( 0, 0 );
-    this.valueNode.translation = new Vector2( 0, labelNode.bottom + 10 );
+    this.valueNode.translation = new Vector2( 0, labelNode.bottom + 15 );
 
     this.setValue( value );
 

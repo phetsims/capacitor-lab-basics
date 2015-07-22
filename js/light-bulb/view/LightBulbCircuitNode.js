@@ -53,8 +53,16 @@ define( function( require ) {
     var capacitorNode = new CapacitorNode( circuit.capacitor, modelViewTransform, plateChargeVisibleProperty,
       eFieldVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
-    this.topWireNode = new WireNode( circuit.getTopWire() ); // @private
-    this.bottomWireNode = new WireNode( circuit.getBottomWire() ); // @private
+    this.topWireNode = new Node();
+    this.bottomWireNode = new Node();
+    this.circuit.getTopWires().forEach( function( topWire ) {
+      thisNode.topWireNode.addChild( new WireNode( topWire ) );
+    } );
+    this.circuit.getBottomWires().forEach( function( bottomWire ) {
+      thisNode.bottomWireNode.addChild( new WireNode( bottomWire ) );
+    } );
+    //this.topWireNode = new WireNode( circuit.getTopWire() ); // @private
+    //this.bottomWireNode = new WireNode( circuit.getBottomWire() ); // @private
 
     var lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.platesVoltageProperty, circuit.circuitConnectionProperty, modelViewTransform );
 
@@ -100,17 +108,17 @@ define( function( require ) {
     lightBulbNode.center = modelViewTransform.modelToViewPosition( circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
 
     // top current indicator
-    var topWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getTopWire().thickness, 0, 0 ).x;
+    //var topWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getTopWire().thickness, 0, 0 ).x;
     x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
     //x = this.topWireNode.bounds.centerX;
-    y = this.topWireNode.bounds.minY + ( topWireThickness / 2 ) + 70; // TODO clean up after discussion of feature.
+    y = this.topWireNode.bounds.minY + ( 7 / 2 ) + 70; // TODO clean up after discussion of feature.
     this.topCurrentIndicatorNode.translate( x, y );
 
     // bottom current indicator
-    var bottomWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getBottomWire.thickness, 0, 0 ).x;
+    //var bottomWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getBottomWire().thickness, 0, 0 ).x;
     x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
     //x = this.bottomWireNode.bounds.getCenterX();
-    y = this.bottomWireNode.bounds.getMaxY() - ( bottomWireThickness / 2 );
+    y = this.bottomWireNode.bounds.getMaxY() - ( 7 / 2 );
     this.bottomCurrentIndicatorNode.translate( x, y );
 
     // wires shapes are in model coordinate frame, so the nodes live at (0,0) the following does nothing but it

@@ -76,7 +76,7 @@ define( function( require ) {
     y = lineNode.bounds.minY - 2;
     arrowNode.translation = new Vector2( x, y );
     x = arrowNode.bounds.maxX;
-    y = arrowNode.bounds.minY - this.valueNode.bounds.height;
+    y = arrowNode.bounds.minY - this.valueNode.bounds.height / 2;
     this.valueNode.translation = new Vector2( x, y );
 
     // update when related model properties change

@@ -40,7 +40,7 @@ define( function( require ) {
     // create basic circuit components
     this.battery = new Battery( config.batteryLocation, CLConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform );
     this.circuitComponents = createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs );
-    this.circuitSwitches = createCircuitSwitches( config, numberOfCapacitors, numberOfLightBulbs, this.circuitConnectionProperty );
+    this.circuitSwitches = createCircuitSwitches( config, numberOfCapacitors, this.circuitConnectionProperty );
 
     // capture the circuit components into individual arrays.  Note that using splice assumes order of capacitors and
     // then lightbulbs. If new order is important, new method is necessary.
@@ -48,7 +48,8 @@ define( function( require ) {
     this.capacitors = this.circuitComponents.slice( 0, numberOfCapacitors );
     this.lightBulbs = this.circuitComponents.slice( numberOfCapacitors, numberOfLightBulbs + 1 );
 
-    this.wires = createWires( config, this.battery, this.circuitComponents, this.circuitSwitches, this.circuitConnectionProperty );
+    // TODO: Replace this.lightBulbs[0] with the single lightBulb.
+    this.wires = createWires( config, this.battery, this.lightBulbs[0], this.circuitSwitches, this.circuitConnectionProperty );
 
     // create the current indicators
     this.topCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, 0 /* initial rotation*/ );
@@ -129,21 +130,35 @@ define( function( require ) {
     },
 
     /**
-     * Gets the wire connected to the battery's top terminal.
+     * Gets the wires connected to the top of circuit components.
      *
-     * @return {Wire}
+     * @return {array.<Wire>} topWires
      */
-    getTopWire: function() {
-      return this.wires[ 0 ];
+    getTopWires: function() {
+      var topWires  = [];
+      this.wires.forEach( function( wire ) {
+        if( wire.connectionPoint === CLConstants.CONNECTION_POINTS.TOP ) {
+          topWires.push( wire );
+        }
+
+      } );
+      return topWires;
     },
 
     /**
      * Gets the wire connected to the battery's bottom terminal.
      *
-     * @return {Wire}
+     * @return {array.<Wire>} bottomWires
      */
-    getBottomWire: function() {
-      return this.wires[ this.wires.length - 1 ];
+    getBottomWires: function() {
+      var bottomWires = [];
+      this.wires.forEach( function( wire ) {
+        if( wire.connectionPoint === CLConstants.CONNECTION_POINTS.BOTTOM ) {
+          bottomWires.push( wire );
+        }
+
+      } );
+      return bottomWires;
     },
 
     /**

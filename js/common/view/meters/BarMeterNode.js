@@ -43,8 +43,8 @@ define( function( require ) {
   // bar
   var BAR_STROKE_COLOR = TRACK_STROKE_COLOR;
   var BAR_LINE_WIDTH = TRACK_LINE_WIDTH;
-  var BAR_SIZE = new Dimension2( 35, 200 );
-  var BAR_OFFSET_FROM_MEASURE = 8;
+  var BAR_SIZE = new Dimension2( 30, 200 );
+  var BAR_OFFSET_FROM_MEASURE = 4;
 
   // ticks
   var NUMBER_OF_TICKS = 10;
@@ -59,7 +59,7 @@ define( function( require ) {
   //var RANGE_LABEL_COLOR = 'black';
 
   // title
-  var TITLE_FONT = new PhetFont( { weight: 'bold', size: 16 } );
+  var TITLE_FONT = new PhetFont( 16 );
   //var TITLE_COLOR = 'black';
 
   // value display

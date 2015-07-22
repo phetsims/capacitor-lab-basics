@@ -27,22 +27,23 @@ define( function( require ) {
 
   // constants
   // Circuit
-  var BATTERY_LOCATION = new Vector3( 0.005, 0.030, 0 ); // meters
-  var CAPACITOR_X_SPACING = 0.020; // meters
+  var BATTERY_LOCATION = new Vector3( 0.0055, 0.042, 0 ); // meters
+  var CAPACITOR_X_SPACING = 0.0180; // meters
+  var LIGHT_BULB_X_SPACING = 0.0220; // meters
   var CAPACITOR_Y_SPACING = 0; // meters
   var PLATE_WIDTH = CLConstants.PLATE_WIDTH_RANGE.defaultValue;
   var PLATE_SEPARATION = CLConstants.PLATE_SEPARATION_RANGE.defaultValue;
   var WIRE_THICKNESS = CLConstants.WIRE_THICKNESS;
-  var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
+  var WIRE_EXTENT = 0.017; // how far the wire extends above or below the capacitor (meters)
 
   // Capacitance meter
-  var CAPACITANCE_METER_LOCATION = new Vector3( 0.0475, 0.0017, 0 );
+  var CAPACITANCE_METER_LOCATION = new Vector3( 0.0325, 0.0017, 0 );
 
   // Plate Charge meter
-  var PLATE_CHARGE_METER_LOCATION = new Vector3( 0.055, 0.0017, 0 );
+  var PLATE_CHARGE_METER_LOCATION = new Vector3( 0.040, 0.0017, 0 );
 
   // Stored Energy meter
-  var STORED_ENERGY_METER_LOCATION = new Vector3( 0.0625, 0.0017, 0 );
+  var STORED_ENERGY_METER_LOCATION = new Vector3( 0.0475, 0.0017, 0 );
 
   // E-Field Detector
   var EFIELD_DETECTOR_BODY_LOCATION = new Vector3( 0.043, 0.041, 0 );
@@ -74,6 +75,7 @@ define( function( require ) {
     var circuitConfig = new CircuitConfig( {
       modelViewTransform: modelViewTransform,
       batteryLocation: BATTERY_LOCATION,
+      lightBulbXSpacing: LIGHT_BULB_X_SPACING,
       capacitorXSpacing: CAPACITOR_X_SPACING,
       capacitorYSpacing: CAPACITOR_Y_SPACING,
       plateWidth: PLATE_WIDTH,
