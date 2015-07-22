@@ -26,7 +26,7 @@ define( function( require ) {
 
   // strings
   var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
-  var eFieldLinesString = require( 'string!CAPACITOR_LAB_BASICS/eFieldLines' );
+  var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
   var valuesString = require( 'string!CAPACITOR_LAB_BASICS/values' );
   var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
@@ -50,7 +50,7 @@ define( function( require ) {
         property: model.plateChargesVisibleProperty
       },
       {
-        string: eFieldLinesString,
+        string: eFieldString,
         property: model.eFieldVisibleProperty
       },
       {
