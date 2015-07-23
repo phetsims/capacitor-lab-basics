@@ -90,7 +90,7 @@ define( function( require ) {
     CANVAS_RENDERING_SIZE: new Dimension2( 1024, 864 ),
 
     // model-view transform.  Note explicit conversion to radians
-    MVT_SCALE: 13500, // scale factor when going from model to view
+    MVT_SCALE: 12000, // scale factor when going from model to view
     MVT_YAW: -45 * Math.PI / 180, // rotation about the vertical axis, right-hand rule determines sign.
     MVT_PITCH: 30 * Math.PI / 180, // rotation about the horizontal axis, right-hand rule determines sign
 
