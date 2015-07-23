@@ -15,10 +15,13 @@ define( function( require ) {
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
 
   // constants
-  var CONNECTION_POINT_RADIUS = 8;
+  var CONNECTION_POINT_RADIUS = 6;
 
   // colors
-  var CONNECTION_POINT_COLOR = 'black';
+  var CONNECTED_POINT_COLOR = 'black';
+  var CONNECTED_POINT_STROKE = 'rgb( 170, 170, 170 )';
+  var DISCONNECTED_POINT_COLOR = 'rgb( 151, 208, 255 )';
+  var DISCONNECTED_POINT_STROKE = 'rgb( 235, 190, 185 )';
   var CONNECTION_POINT_HIGHLIGHTED = 'yellow';
 
   /**
@@ -32,12 +35,36 @@ define( function( require ) {
   function ConnectionPointNode( connectionType, circuitConnectionProperty, options ) {
 
     options = _.extend( {
-      fill: CONNECTION_POINT_COLOR,
-      lineWidth: 3,
-      stroke: CONNECTION_POINT_COLOR
+      fill: DISCONNECTED_POINT_COLOR,
+      lineWidth: 2,
+      stroke: DISCONNECTED_POINT_STROKE
     } );
     Circle.call( this, CONNECTION_POINT_RADIUS, options );
     var thisNode = this;
+
+    function setPinConnected() {
+      thisNode.fill = CONNECTED_POINT_COLOR;
+      thisNode.stroke = CONNECTED_POINT_STROKE;
+    }
+    function setPinDisconnected() {
+      thisNode.fill = DISCONNECTED_POINT_COLOR;
+      thisNode.stroke = DISCONNECTED_POINT_STROKE;
+    }
+
+    // link pin style properties to the circuit connection. Needs to be done in addition to the button listener so that
+    // all connection points update when a single connection point is interacted with.
+    circuitConnectionProperty.link( function( circuitConnection ) {
+      if( connectionType === circuitConnection ) {
+        setPinConnected();
+      }
+      else {
+        setPinDisconnected();
+      }
+    } );
+
+    if( connectionType === circuitConnectionProperty.value ) {
+      setPinConnected();
+    }
 
     // Add input listener to set circuit state.
     this.addInputListener( new ButtonListener( {
@@ -45,7 +72,12 @@ define( function( require ) {
         thisNode.fill = CONNECTION_POINT_HIGHLIGHTED;
       },
       up: function( event ) {
-        thisNode.fill = CONNECTION_POINT_COLOR;
+        if( connectionType === circuitConnectionProperty.value ) {
+          setPinConnected();
+        }
+        else {
+          setPinDisconnected();
+        }
       },
       down: function( event ) {
         circuitConnectionProperty.set( connectionType );
