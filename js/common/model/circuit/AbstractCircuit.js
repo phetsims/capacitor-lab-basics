@@ -49,7 +49,8 @@ define( function( require ) {
     this.lightBulbs = this.circuitComponents.slice( numberOfCapacitors, numberOfLightBulbs + 1 );
 
     // TODO: Replace this.lightBulbs[0] with the single lightBulb.
-    this.wires = createWires( config, this.battery, this.lightBulbs[0], this.circuitSwitches, this.circuitConnectionProperty );
+    // TODO: Replace this.capacitors[0] with the single capacitor.
+    this.wires = createWires( config, this.battery, this.lightBulbs[0], this.capacitors[0], this.circuitSwitches, this.circuitConnectionProperty );
 
     // create the current indicators
     this.topCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, 0 /* initial rotation*/ );
@@ -60,14 +61,27 @@ define( function( require ) {
     assert && assert( this.wires.length >= 2 );
 
     // TODO: Link it all up.
-    this.circuitConnectionProperty.link( function( circuitConnection ) {
+    function updateSegments( circuitConnection ) {
       // update start and end points of each wire segment
       thisCircuit.wires.forEach( function( wire ) {
         wire.segments.forEach( function( segment ) {
           segment.update( circuitConnection );
         } );
       } );
+    }
+    // udpate all segments when the connection property changes.
+    this.circuitConnectionProperty.link( function( circuitConnection ) {
+      updateSegments( circuitConnection );
     } );
+
+    // update all segments when capacitor plate geometry changes.
+    this.capacitors.forEach( function( capacitor ) {
+      capacitor.plateSeparationProperty.link( function() {
+        updateSegments( thisCircuit.circuitConnection );
+      } );
+    } );
+
+
 
     // observe capacitors
     //CapacitorChangeListener capacitorChangeListener = new CapacitorChangeListener() {

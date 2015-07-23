@@ -46,7 +46,6 @@ define( function( require ) {
 
   }
 
-
   return inherit( Wire, WireLightBulbToCircuitSwitch, {
     /**
      * Gets the Y coordinate of the horizontal wire. It extends wireExtent distance above/below the component that is
@@ -74,7 +73,7 @@ define( function( require ) {
 
     getRightCorner: function( connectionPoint, lightBulb, horizontalY ) {
       if ( connectionPoint === ConnectionPoint.TOP ) {
-        return new Vector2( lightBulb.location.x, horizontalY );
+        return new Vector2( lightBulb.getTopConnectionPoint().x, horizontalY );
       }
       else {
         return new Vector2( lightBulb.getBottomConnectionPoint().x, horizontalY );
@@ -98,14 +97,6 @@ define( function( require ) {
         return WireSegment.BatteryBottomWireSegment( battery, endPoint );
       }
     },
-    //getBatteryWireSegment: function( connectionPoint, battery, endOffset, endPoint ) {
-    //  if ( connectionPoint === ConnectionPoint.TOP ) {
-    //    return WireSegment.BatteryTopWireSegment( battery, endOffset, endPoint );
-    //  }
-    //  else {
-    //    return WireSegment.BatteryBottomWireSegment( battery, endOffset, endPoint );
-    //  }
-    //},
 
     getLightBulbWireSegment: function( connectionPoint, lightBulb, endPoint ) {
       if ( connectionPoint === ConnectionPoint.TOP ) {

@@ -40,40 +40,13 @@ define( function( require ) {
     BatteryBottomWireSegment: function( battery, endPoint ) { return new BatteryBottomWireSegment( battery, endPoint ); },
     ComponentTopWireSegment: function( component, endPoint ) { return new ComponentTopWireSegment( component, endPoint ); },
     ComponentBottomWireSegment: function( component, endPoint ) { return new ComponentBottomWireSegment( component, endPoint ); },
+    SwitchSegment: function( startPoint, endPoint ) { return new SwitchSegment( startPoint, endPoint ); },
 
-    VerticalTopWireSegment: function( battery, startPoint ) {
-      return new WireSegment( startPoint, new Vector2( startPoint.x, battery.location.y + battery.getTopTerminalYOffset() ) );
-    },
-    VerticalBottomWireSegment: function( battery, startPoint ) {
-      return new WireSegment( startPoint, new Vector2( startPoint.x, battery.location.y + battery.getBottomTerminalYOffset() ) );
-    },
-    // TODO: Update functions for the following will need to be specified, this will justify factory functions.
     BatteryTopToSwitchSegment: function( startPoint, endPoint ) {
       return new WireSegment( startPoint, endPoint );
     },
     BatteryBottomToSwitchSegment: function( startPoint, endPoint ) {
       return new WireSegment( startPoint, endPoint );
-    },
-    LightBulbTopWireSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
-    },
-    LightBulbBottomWireSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
-    },
-    BulbTopToSwitchSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
-    },
-    BulbBottomToSwitchSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
-    },
-    CapacitorTopToSwitchSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
-    },
-    CapacitorBottomToSwitchSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
-    },
-    SwitchSegment: function( startPoint, endPoint ) {
-      return new SwitchSegment( startPoint, endPoint );
     }
   } );
 
@@ -87,7 +60,6 @@ define( function( require ) {
   function ComponentWireSegment( component, startPoint, endPoint ) {
     WireSegment.call( this, startPoint, endPoint );
     this.component = component;
-    //component.addPlateSeparationObserver(); TODO
   }
 
   inherit( WireSegment, ComponentWireSegment, {
@@ -108,9 +80,9 @@ define( function( require ) {
   }
 
   inherit( ComponentWireSegment, ComponentTopWireSegment, {
-    //update: function() {
-    //  this.endPoint = this.component.getTopConnectionPoint().toVector2();
-    //}
+    update: function() {
+      this.startPoint = this.component.getTopConnectionPoint().toVector2();
+    }
   } );
 
   /**
@@ -125,9 +97,9 @@ define( function( require ) {
   }
 
   inherit( ComponentWireSegment, ComponentBottomWireSegment, {
-    //update: function() {
-    //  this.endPoint = this.component.getBottomConnectionPoint().toVector2();
-    //}
+    update: function() {
+      this.startPoint = this.component.getBottomConnectionPoint().toVector2();
+    }
   } );
 
   /**
@@ -139,9 +111,6 @@ define( function( require ) {
 
     this.topComponent = topComponent;
     this.bottomComponent = bottomComponent;
-
-    //topCapacitor.addPlateSeparationObserver( this ); TODO
-    //bottomCapacitor.addPlateSeparationObserver( this ); TODO
 
   }
 
