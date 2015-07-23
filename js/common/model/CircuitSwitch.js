@@ -50,7 +50,7 @@ define( function( require ) {
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
-      thisSwitch.activeConnection = thisSwitch.getConnection( circuitConnection ); // TODO: Will this work? then clean/generalize.
+      thisSwitch.activeConnection = thisSwitch.getConnection( circuitConnection );
       thisSwitch.switchSegment.update( thisSwitch.activeConnection );
     } );
 
