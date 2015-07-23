@@ -24,6 +24,30 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var CapacitanceCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/intro/model/CapacitanceCircuitSwitch' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var Vector3 = require( 'DOT/Vector3' );
+
+  // Create the single circuit switch for single circuit
+  function createCircuitSwitch( config, numberOfCapacitors, circuitConnectionProperty ) {
+
+    // switch location
+    var x = config.batteryLocation.x + config.capacitorXSpacing;
+    var topY = config.batteryLocation.y - CLConstants.PLATE_SEPARATION_RANGE.max - CLConstants.SWITCH_Y_SPACING;
+    var bottomY = config.batteryLocation.y + CLConstants.PLATE_SEPARATION_RANGE.max + CLConstants.SWITCH_Y_SPACING;
+    var z = config.batteryLocation.z;
+
+    var circuitSwitches = []; // wrapped for format of AbstractCircuit
+
+    // create the circuit switches
+    var topStartPoint = new Vector3( x, topY, z );
+    var bottomStartPoint = new Vector3( x, bottomY, z );
+    var topCircuitSwitch = CapacitanceCircuitSwitch.CapacitanceCircuitTopSwitch( topStartPoint, config.modelViewTransform, circuitConnectionProperty );
+    var bottomCircuitSwitch = CapacitanceCircuitSwitch.CapacitanceCircuitBottomSwitch( bottomStartPoint, config.modelViewTransform, circuitConnectionProperty );
+    circuitSwitches.push( topCircuitSwitch, bottomCircuitSwitch );
+
+    return circuitSwitches;
+  }
 
   /**
    * Constructor for the Single Capacitor Circuit.
@@ -33,7 +57,9 @@ define( function( require ) {
    */
   function SingleCircuit( config ) {
 
-    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 0 /* numberOfLightBulbs */ );
+    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 0 /* numberOfLightBulbs */, {
+      circuitSwitchFactory: createCircuitSwitch
+    } );
 
     this.capacitor = this.capacitors[ 0 ];
   }
