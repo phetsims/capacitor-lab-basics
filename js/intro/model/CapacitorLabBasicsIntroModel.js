@@ -26,8 +26,8 @@ define( function( require ) {
 
   // constants
   // Circuit
-  var BATTERY_LOCATION = new Vector3( 0.005, 0.030, 0 ); // meters
-  var CAPACITOR_X_SPACING = 0.020; // meters
+  var BATTERY_LOCATION = new Vector3( 0.0065, 0.030, 0 ); // meters
+  var CAPACITOR_X_SPACING = 0.024; // meters
   var CAPACITOR_Y_SPACING = 0; // meters
   var PLATE_WIDTH = CLConstants.PLATE_WIDTH_RANGE.defaultValue;
   var PLATE_SEPARATION = CLConstants.PLATE_SEPARATION_RANGE.defaultValue;

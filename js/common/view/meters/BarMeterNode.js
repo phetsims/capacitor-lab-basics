@@ -31,7 +31,7 @@ define( function( require ) {
 
   // constants
   // track
-  var TRACK_SIZE = new Dimension2( 50, 200 );
+  var TRACK_SIZE = new Dimension2( 30, 120 );
   var TRACK_FILL_COLOR = 'white';
   var TRACK_STROKE_COLOR = 'black';
   var TRACK_LINE_WIDTH = 1;
@@ -43,7 +43,7 @@ define( function( require ) {
   // bar
   var BAR_STROKE_COLOR = TRACK_STROKE_COLOR;
   var BAR_LINE_WIDTH = TRACK_LINE_WIDTH;
-  var BAR_SIZE = new Dimension2( 30, 200 );
+  var BAR_SIZE = new Dimension2( 18, 120 );
   var BAR_OFFSET_FROM_MEASURE = 4;
 
   // ticks
@@ -55,15 +55,15 @@ define( function( require ) {
   var MINOR_TICKS_OUTSIDE = true; // true=ticks outside bar, false=ticks inside bar
 
   // range labels
-  var RANGE_LABEL_FONT = new PhetFont( 14 );
+  var RANGE_LABEL_FONT = new PhetFont( 11 );
   //var RANGE_LABEL_COLOR = 'black';
 
   // title
-  var TITLE_FONT = new PhetFont( 16 );
+  var TITLE_FONT = new PhetFont( 12 );
   //var TITLE_COLOR = 'black';
 
   // value display
-  var VALUE_FONT = new PhetFont( 16 );
+  var VALUE_FONT = new PhetFont( 11 );
   var VALUE_COLOR = 'black';
 
   // overload indicator
@@ -72,12 +72,8 @@ define( function( require ) {
 
   // strings
   var unitsFaradsString = require( 'string!CAPACITOR_LAB_BASICS/units.farads' );
-  //var faradsString = require( 'string!CAPACITOR_LAB_BASICS/farads' );
   var unitsCoulombsString = require( 'string!CAPACITOR_LAB_BASICS/units.coulombs' );
-  //var coulombsString = require( 'string!CAPACITOR_LAB_BASICS/coulombs' );
   var unitsJoulesString = require( 'string!CAPACITOR_LAB_BASICS/units.joules' );
-  //var joulesString = require( 'string!CAPACITOR_LAB_BASICS/joules' );
-
 
   /**
    * Constructor for the MeasureNode that gauges the magnitude of the bar meter.  This is a vertical line with tick
@@ -341,12 +337,6 @@ define( function( require ) {
     // value
     meter.valueProperty.link( function( value ) {
       thisNode.setValue( value );
-    } );
-
-    // location
-    // TODO: Linking now, but meters are not to be dragable at this time.  Note that if decide to unlink, set initial position elsewhere.
-    meter.locationProperty.link( function( location ) {
-      thisNode.translation = modelViewTransform.modelToViewPosition( location );
     } );
 
     // visibility

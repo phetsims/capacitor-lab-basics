@@ -27,10 +27,10 @@ define( function( require ) {
 
   // constants
   // Circuit
-  var BATTERY_LOCATION = new Vector3( 0.0055, 0.042, 0 ); // meters
+  var BATTERY_LOCATION = new Vector3( 0.0065, 0.030, 0 ); // meters
   var CAPACITOR_X_SPACING = 0.0180; // meters
-  var LIGHT_BULB_X_SPACING = 0.0220; // meters
-  var CAPACITOR_Y_SPACING = 0; // meters
+  var LIGHT_BULB_X_SPACING = 0.023; // meters
+  var CAPACITOR_Y_SPACING = 0.0010; // meters
   var PLATE_WIDTH = CLConstants.PLATE_WIDTH_RANGE.defaultValue;
   var PLATE_SEPARATION = CLConstants.PLATE_SEPARATION_RANGE.defaultValue;
   var WIRE_THICKNESS = CLConstants.WIRE_THICKNESS;

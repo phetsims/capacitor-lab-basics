@@ -111,7 +111,7 @@ define( function( require ) {
     //var topWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getTopWire().thickness, 0, 0 ).x;
     x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
     //x = this.topWireNode.bounds.centerX;
-    y = this.topWireNode.bounds.minY + ( 7 / 2 ) + 70; // TODO clean up after discussion of feature.
+    y = this.topWireNode.bounds.minY + ( 7 / 2 ); // TODO clean up after discussion of feature.
     this.topCurrentIndicatorNode.translate( x, y );
 
     // bottom current indicator

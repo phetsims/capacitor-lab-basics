@@ -15,7 +15,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var IntroCircuitNode = require( 'CAPACITOR_LAB_BASICS/intro/view/IntroCircuitNode' );
-  var Bounds2 = require( 'DOT/Bounds2' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
   var CapacitorLabBasicsIntroControl = require( 'CAPACITOR_LAB_BASICS/intro/view/control/CapacitorLabBasicsIntroControl' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
@@ -29,7 +28,7 @@ define( function( require ) {
    */
   function CapacitorLabBasicsIntroScreenView( model ) {
 
-    ScreenView.call( this, { layoutBounds: new Bounds2( 0, 0, 1024, 864 ) } );
+    ScreenView.call( this );
 
     this.modelViewTransform = model.modelViewTransform;
 
@@ -55,6 +54,7 @@ define( function( require ) {
     var capacitorLabBasicsIntroControl = new CapacitorLabBasicsIntroControl( model, minWidth );
     capacitorLabBasicsIntroControl.translation = this.layoutBounds.rightTop.minusXY( capacitorLabBasicsIntroControl.width + 10, -10 );
 
+    capacitanceMeterNode.rightTop = capacitorLabBasicsIntroControl.leftTop.minusXY( 15, 0 );
     // reset button
     this.resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },

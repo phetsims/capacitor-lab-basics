@@ -81,8 +81,8 @@ define( function( require ) {
     y = lineNode.bounds.minY - lineArrowSpacing;
     arrowNode.translation = new Vector2( x, y );
     arrowNode.rotation = angle;
-    x = lineNode.bounds.maxX;
-    y = lineNode.bounds.minY - this.valueNode.bounds.height - 5;
+    x = lineNode.bounds.maxX + this.valueNode.bounds.width / 3;
+    y = lineNode.bounds.minY - this.valueNode.bounds.height - 14;
     this.valueNode.translation = new Vector2( x, y );
 
     // watch for model changes
