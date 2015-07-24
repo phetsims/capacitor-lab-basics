@@ -15,7 +15,15 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Noah Podolefsky"
   },
-  "probe_3D_black.png": {
+  "probe_3D_black_large.png": {
+    "text": [
+      "Copyright 2002-2015 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Noah Podolefsky"
+  },
+  "probe_3D_black_large_cutout.png": {
     "text": [
       "Copyright 2002-2015 University of Colorado Boulder"
     ],
@@ -31,7 +39,31 @@
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Noah Podolefsky"
   },
-  "probe_3D_red.png": {
+  "probe_3D_field_cutout.png": {
+    "text": [
+      "Copyright 2002-2015 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Noah Podolefsky"
+  },
+  "probe_3D_red_large.png": {
+    "text": [
+      "Copyright 2002-2015 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Noah Podolefsky"
+  },
+  "probe_3D_red_large_cutout.png": {
+    "text": [
+      "Copyright 2002-2015 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Noah Podolefsky"
+  },
+  "probe_3D_red_large_outline.png": {
     "text": [
       "Copyright 2002-2015 University of Colorado Boulder"
     ],
