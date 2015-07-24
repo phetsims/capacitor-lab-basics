@@ -21,8 +21,8 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
 
   // constants
-  var LABEL_FONT = new PhetFont( { weight: 'bold', size: 18 } );
-  var VALUE_FONT = new PhetFont( { size: 16 } );
+  var LABEL_FONT = new PhetFont( { weight: 'bold', size: 12 } );
+  var VALUE_FONT = new PhetFont( { size: 12 } );
 
   // strings
   var pattern_0value1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
@@ -51,7 +51,7 @@ define( function( require ) {
 
     // layout: value below label, left-justified
     labelNode.translation = new Vector2( 0, 0 );
-    this.valueNode.translation = new Vector2( 0, labelNode.bottom + 10 );
+    this.valueNode.translation = new Vector2( 0, labelNode.bottom + 15 );
 
     this.setValue( value );
 

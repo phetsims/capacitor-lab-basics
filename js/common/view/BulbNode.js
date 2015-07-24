@@ -32,9 +32,9 @@ define( function( require ) {
   var bulbBaseImage = require( 'image!CAPACITOR_LAB_BASICS/light-bulb-base.png' );
 
   // constants
-  var BULB_HEIGHT = 125;
+  var BULB_HEIGHT = 130;
   var BULB_WIDTH = 65;
-  var BULB_BASE_WIDTH = 36;
+  var BULB_BASE_WIDTH = 42;
   var NUM_FILAMENT_ZIG_ZAGS = 8;
   var FILAMENT_ZIG_ZAG_SPAN = 8;
 
@@ -145,7 +145,7 @@ define( function( require ) {
 
     // TODO: Still testing this mapping funciton.  Not spending a lot of time on it because we do not have input from
     // TODO: the design team about what this behavior should be like.
-    var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 50, true );
+    var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 400, true );
 
     // Update the halo as the needle angle changes.
     voltageProperty.link( function( voltage ) {

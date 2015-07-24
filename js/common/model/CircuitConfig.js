@@ -21,6 +21,7 @@ define( function( require ) {
       // TODO: Populate defaults with intro screen values.
       modelViewTransform: ModelViewTransform2.createIdentity(),
       batteryLocation: new Vector3( 0, 0, 0 ),
+      lightBulbXSpacing: 0,
       capacitorXSpacing: 0,
       capacitorYSpacing: 0,
       plateWidth: 0,
@@ -28,10 +29,11 @@ define( function( require ) {
       dielectricMaterial: DielectricMaterial.Air(),
       dielectricOffset: 0.02, // meters
       wireExtent: 0,
-      wireThickness: 1
+      wireThickness: 0.0005 // meters
     }, options );
 
     this.modelViewTransform = options.modelViewTransform;
+    this.lightBulbXSpacing = options.lightBulbXSpacing;
     this.batteryLocation = options.batteryLocation;
     this.capacitorXSpacing = options.capacitorXSpacing;
     this.capacitorYSpacing = options.capacitorYSpacing;

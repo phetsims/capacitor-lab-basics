@@ -1,35 +1,35 @@
 {
-  "comment": "# capacitor-lab-basics 1.0.0-dev.2 Thu Jul 09 2015 10:05:22 GMT-0600 (MDT)",
+  "comment": "# capacitor-lab-basics 1.0.0-dev.3 Thu Jul 23 2015 10:12:13 GMT-0600 (MDT)",
   "assert": {
     "sha": "858e65ac477bf1861883ce06eed56d9fdefa5027",
     "branch": "master"
   },
   "axon": {
-    "sha": "f4996f9d182deb1b9e799c9ec6282bf8dcfa43bc",
+    "sha": "579f8c660b519d9381e4e85833702eb7d370a733",
     "branch": "master"
   },
   "brand": {
-    "sha": "4f2e72652272550f99d69b4344d70b9e426d20c7",
+    "sha": "3c45cb6fe87c342c377a90453be9fa8649818f59",
     "branch": "phet"
   },
   "capacitor-lab-basics": {
-    "sha": "d567f8f89b0038f339e5605e76b78437d747bc53",
+    "sha": "7150b0f2635e14eb6190674f4f87a69e68541bb6",
     "branch": "master"
   },
   "chipper": {
-    "sha": "60d51106184b1a1e7d332a4ab035ac2f3e0d2c0e",
+    "sha": "b737909c0e646c22e463e9c59fa4fc142a44c2df",
     "branch": "master"
   },
   "dot": {
-    "sha": "d19258b9bcd0b83abc8c214edf2ca4fe4e7503b0",
+    "sha": "e34c6b2c53b83ea1f8d2a5091cadfdc6353a501d",
     "branch": "master"
   },
   "joist": {
-    "sha": "1e98990633200b6bd86527b490a6eab09ce162fc",
+    "sha": "35a12c18242cbe15ff3ad69617c12cf76acf9bad",
     "branch": "master"
   },
   "kite": {
-    "sha": "7c4096a15d7a2732acf02573f838c0b645b9b0df",
+    "sha": "2497814682e359a8500fcb2a6dca2e276a00b6f9",
     "branch": "master"
   },
   "phet-core": {
@@ -41,19 +41,19 @@
     "branch": "master"
   },
   "scenery": {
-    "sha": "cc546d89794aafd594ca9c2711323db43c705518",
+    "sha": "24a4d9ab86af58c0de7fff1a0c28673227741846",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "9846118769ccad04e22ed5de4e667ea306903713",
+    "sha": "f3f305457bc3771a720de717cd17ba27a3de7f24",
     "branch": "master"
   },
   "sherpa": {
-    "sha": "75a3c42e9ce2f715d7123bf01cf62beddf690454",
+    "sha": "b1ce778911672de02bbfc7edd3227bab43007f1b",
     "branch": "master"
   },
   "sun": {
-    "sha": "21b0c9a4ed62927fd77ef8c08dfb3b4f7cf01179",
+    "sha": "dc08e5f3cdf78c54df51fc1cdfcc20b61dc0c98a",
     "branch": "master"
   }
 }

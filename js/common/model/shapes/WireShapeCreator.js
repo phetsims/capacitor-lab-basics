@@ -14,7 +14,14 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Shape = require( 'KITE/Shape' );
+  var LineStyles = require( 'KITE/util/LineStyles' );
   //var Line = require( 'KITE/segments/Line' );
+
+  var strokeStyles = new LineStyles( {
+    lineWidth: 7,
+    lineCap: 'round',
+    lineJoin: 'round'
+  } );
 
 
   // constants
@@ -55,11 +62,22 @@ define( function( require ) {
 
     createWireShape: function() {
       var wireShape = new Shape();
-      this.wire.segments.forEach( function( segment ) {
-        wireShape.moveToPoint( segment.startPoint );
-        wireShape.lineToPoint( segment.endPoint );
-      } );
-      return this.modelViewTransform.modelToViewShape( wireShape );
+
+      // move to the start point of the first wire segment
+      wireShape.moveToPoint( this.wire.segments[ 0 ].startPoint ).lineToPoint( this.wire.segments[ 0 ].endPoint );
+
+      // go through the points 'tip to tail', assuming they are in the desired order
+      for ( var i = 1; i < this.wire.segments.length; i++ ) {
+
+        //var lastSegment = this.wire.segments[ i - 1 ];
+        var currentSegment = this.wire.segments[ i ];
+        wireShape.lineToPoint( currentSegment.endPoint );
+
+      }
+      // return shape defined by the transformed shape stroked above
+      wireShape = this.modelViewTransform.modelToViewShape( wireShape );
+      wireShape = wireShape.getStrokedShape( strokeStyles );
+      return wireShape;
     },
 
     /**

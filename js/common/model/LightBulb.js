@@ -14,9 +14,10 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
   var Vector3 = require( 'DOT/Vector3' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var Range = require( 'DOT/Range' );
 
   // constants
-  var BULB_BASE_SIZE = new Dimension2( 0.0020, 0.001425 );
+  var BULB_BASE_SIZE = new Dimension2( 0.0030, 0.001425 );
 
   /**
    * Constructor for the Capacitor.
@@ -25,14 +26,16 @@ define( function( require ) {
    * @param {number} resistance
    * @constructor
    */
-  function LightBulb( location, resistance ) {
+  function LightBulb( location ) {
 
-    // immutable variables.
+    // immutable variables
     this.location = location;
-    this.resistance = 1.12E13; // TODO: TEST VALUE.  RESISTANCE IS VERY LARGE FOR AESTHETICS OF BULB FADE OUT TIME.
 
+    // mutable variables
+    this.resistanceRange = new Range( 1E9, 5E13, 1E13 ); // temporary resistance range for design.
     PropertySet.call( this, {
-      /* Populate with required properties */
+      // temporary property so that design can play with decay times.
+      resistance: this.resistanceRange.defaultValue
     } );
   }
   return inherit( PropertySet, LightBulb, {

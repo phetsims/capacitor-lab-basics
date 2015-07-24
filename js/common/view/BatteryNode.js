@@ -81,7 +81,7 @@ define( function( require ) {
     Node.call( this );
 
     // battery image, scaled to match model dimensions
-    var imageNode = new Image( batteryUpImage );
+    var imageNode = new Image( batteryUpImage, { scale: 0.90 } );
     this.addChild( imageNode );
 
     // voltage slider

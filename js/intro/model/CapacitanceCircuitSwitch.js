@@ -1,8 +1,8 @@
 // Copyright 2002-2015, University of Colorado Boulder
 
 /**
- * Circuit switch.  The circuit switch has a start point and an end point.  The start point acts as a hinge, and the end
- * point can switch to new connection points.
+ * Circuit switch for the Capacitance model.  This circuit switch has only two connection points which correspond to
+ * the battery connection and the open switch connection.
  *
  * @author Jesse Greenberg
  */
@@ -27,8 +27,9 @@ define( function( require ) {
    * @param {object} connections
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {Property} circuitConnectionProperty
+   * @constructor
    */
-  function CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty ) {
+  function CapacitanceCircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty ) {
 
     this.initialAngle = 0; // with respect to the vertical ( open switch )
 
@@ -56,7 +57,7 @@ define( function( require ) {
 
   }
 
-  return inherit( PropertySet, CircuitSwitch, {
+  return inherit( PropertySet, CapacitanceCircuitSwitch, {
 
     /**
      * Get the disired connection from the connection type.
@@ -77,7 +78,6 @@ define( function( require ) {
 
     },
 
-
     // TODO: All of these functions should be removed and replaced throughout with calls to getConnection() above.
     getBatteryConnectionPoint: function() {
       var connectionPoint;
@@ -87,16 +87,6 @@ define( function( require ) {
         }
       } );
       return connectionPoint.toVector2();
-    },
-
-    getLightBulbConnectionPoint: function() {
-      var connectionPoint;
-      this.connections.forEach( function( connection ) {
-        if ( connection.connectionType === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-          connectionPoint = connection.location;
-        }
-      } );
-      return connectionPoint;
     },
 
     getOpenConnectionPoint: function() {
@@ -119,15 +109,11 @@ define( function( require ) {
     }
   }, {
 
-    CircuitTopSwitch: function( hingePoint, modelViewTransform, circuitConnectionProperty ) {
+    CapacitanceCircuitTopSwitch: function( hingePoint, modelViewTransform, circuitConnectionProperty ) {
 
       var topPoint = hingePoint.toVector2().minusXY( 0, CLConstants.SWITCH_WIRE_LENGTH );
       var leftPoint = hingePoint.toVector2().minusXY(
         CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE  ),
-        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE  )
-      );
-      var rightPoint = hingePoint.toVector2().minusXY(
-        -CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE  ),
         CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE  )
       );
       var connections = [
@@ -138,23 +124,15 @@ define( function( require ) {
         {
           location: leftPoint.toVector3(),
           connectionType: CircuitConnectionEnum.BATTERY_CONNECTED
-        },
-        {
-          location: rightPoint.toVector3(),
-          connectionType: CircuitConnectionEnum.LIGHT_BULB_CONNECTED
         }
       ];
 
-      return new CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty );
+      return new CapacitanceCircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty );
     },
 
-    CircuitBottomSwitch: function( hingePoint, modelViewTransform, circuitConnectionProperty ) {
+    CapacitanceCircuitBottomSwitch: function( hingePoint, modelViewTransform, circuitConnectionProperty ) {
 
       var topPoint = hingePoint.toVector2().plusXY( 0, CLConstants.SWITCH_WIRE_LENGTH );
-      var rightPoint = hingePoint.toVector2().plusXY(
-        CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE  ),
-        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE  )
-      );
       var leftPoint = hingePoint.toVector2().plusXY(
         -CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE  ),
         CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE  )
@@ -167,14 +145,10 @@ define( function( require ) {
         {
           location: leftPoint.toVector3(),
           connectionType: CircuitConnectionEnum.BATTERY_CONNECTED
-        },
-        {
-          location: rightPoint.toVector3(),
-          connectionType: CircuitConnectionEnum.LIGHT_BULB_CONNECTED
         }
       ];
 
-      return new CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty );
+      return new CapacitanceCircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty );
     }
   } );
 } );

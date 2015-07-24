@@ -194,8 +194,8 @@ define( function( require ) {
     },
 
     /**
-     * Computes number of charges, linearly proportional to plate charge.
-     * All non-zero values below some minimum are mapped to 1 charge.
+     * Computes number of charges, linearly proportional to plate charge.  If plate charge is less than half of an
+     * electron charge, number of charges is zero.
      *
      * @param {number} plateCharge
      * @param {number} maxPlateCharge
@@ -204,8 +204,8 @@ define( function( require ) {
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
       var absCharge = Math.abs( plateCharge );
       var numberOfCharges = Util.toFixedNumber( CLConstants.NUMBER_OF_PLATE_CHARGES.max * ( absCharge / maxPlateCharge ), 0 );
-      if ( absCharge > 0 && numberOfCharges < CLConstants.NUMBER_OF_PLATE_CHARGES.min ) {
-        numberOfCharges = CLConstants.NUMBER_OF_PLATE_CHARGES.min;
+      if( absCharge < CLConstants.ELECTRON_CHARGE / 2 ) {
+        numberOfCharges = 0;
       }
       return numberOfCharges;
     }

@@ -27,13 +27,15 @@ define( function( require ) {
   var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
-  var WireBatteryToCircuitComponents = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireBatteryToCircuitComponents' );
+  var WireBatteryToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireBatteryToCircuitSwitch' );
+  var WireLightBulbToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireLightBulbToCircuitSwitch' );
+  var WireCapacitorToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireCapacitorToCircuitSwitch' );
 
   // Function for creating all circuit components. Assumes that the desired order is capacitors and then lightBulbs.
   function createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs ) {
 
     var x = config.batteryLocation.x + config.capacitorXSpacing;
-    var y = config.batteryLocation.y;
+    var y = config.batteryLocation.y + config.capacitorYSpacing;
     var z = config.batteryLocation.z;
 
     var circuitComponents = [];
@@ -51,50 +53,81 @@ define( function( require ) {
       );
 
       circuitComponents.push( capacitor );
-      x += config.capacitorXSpacing;
+      x += config.lightBulbXSpacing;
     }
 
     // create the light bulbs
     for ( i = 0; i < numberOfLightBulbs; i++ ) {
       //var xOffset = 5 *LightBulb.BULB_BASE_SIZE.width;
-      location = new Vector3( x , y, z );
+      location = new Vector3( x, y, z );
       var lightBulb = new LightBulb( location );
       circuitComponents.push( lightBulb );
-      x += config.capacitorXSpacing;
+      x += config.lightBulbXSpacing;
     }
 
     return circuitComponents;
   }
 
   // Function for creating wires.
-  function createWires( config, battery, circuitComponents, circuitSwitches, circuitConnectionProperty ) {
+  function createWires( config, battery, lightBulb, capacitor, circuitSwitches, circuitConnectionProperty ) {
     var wires = [];
-    wires.push( WireBatteryToCircuitComponents.WireBatteryToCircuitComponentsTop(
+    // wire battery to switch
+    wires.push( WireBatteryToCircuitSwitch.WireBatteryToCircuitSwitchTop(
       config.modelViewTransform,
       config.wireThickness,
-      config.wireExtent,
-      config.capacitorXSpacing,
       battery,
-      circuitComponents,
-      circuitSwitches,
-      circuitConnectionProperty ) );
-    wires.push( WireBatteryToCircuitComponents.WireBatteryToCircuitComponentsBottom(
+      circuitSwitches[ 0 ], // TODO: get the single switch.
+      circuitConnectionProperty
+    ) );
+    wires.push( WireBatteryToCircuitSwitch.WireBatteryToCircuitSwitchBottom(
       config.modelViewTransform,
       config.wireThickness,
-      config.wireExtent,
-      config.capacitorXSpacing,
       battery,
-      circuitComponents,
-      circuitSwitches,
-      circuitConnectionProperty ) );
+      circuitSwitches[ 1 ], // TODO: get the single switch.
+      circuitConnectionProperty
+    ) );
+
+    // wire capacitor to the switches
+    wires.push( WireCapacitorToCircuitSwitch.WireCapacitorToCircuitSwitchTop(
+      config.modelViewTransform,
+      config.wireThickness,
+      capacitor,
+      circuitSwitches[ 0 ], // TODO: get the single switch.
+      circuitConnectionProperty
+    ) );
+    wires.push( WireCapacitorToCircuitSwitch.WireCapacitorToCircuitSwitchBottom(
+      config.modelViewTransform,
+      config.wireThickness,
+      capacitor,
+      circuitSwitches[ 1 ], // TODO: get the single switch.
+      circuitConnectionProperty
+    ) );
+
+    if ( lightBulb !== undefined ) {
+      //  // wire light bulb to switch
+      wires.push( WireLightBulbToCircuitSwitch.WireLightBulbToCircuitSwitchTop(
+        config.modelViewTransform,
+        config.wireThickness,
+        lightBulb,
+        circuitSwitches[ 0 ], // TODO: get the single switch.
+        circuitConnectionProperty
+      ) );
+      wires.push( new WireLightBulbToCircuitSwitch.WireLightBulbToCircuitSwitchBottom(
+        config.modelViewTransform,
+        config.wireThickness,
+        lightBulb,
+        circuitSwitches[ 1 ], // TODO: get the single switch.
+        circuitConnectionProperty
+      ) );
+    }
     return wires;
   }
 
   // function for creating circuit switches.
-  function createCircuitSwitches( config, numberOfCapacitors, numberOfLightBulbs, circuitConnectionProperty ) {
+  function createCircuitSwitches( config, numberOfCapacitors, circuitConnectionProperty ) {
 
-    // A switch exists for all middle circuit components.
-    var numComponentsWithSwitches = numberOfCapacitors + numberOfLightBulbs - 1;
+    // a switch exists for every capacitor.
+    var numComponentsWithSwitches = numberOfCapacitors;
 
     var x = config.batteryLocation.x + config.capacitorXSpacing;
     var topY = config.batteryLocation.y - CLConstants.PLATE_SEPARATION_RANGE.max - CLConstants.SWITCH_Y_SPACING;
@@ -104,7 +137,7 @@ define( function( require ) {
     var circuitSwitches = [];
 
     // create the top circuit switches.
-    for( var i = 0; i < numComponentsWithSwitches; i ++ ) {
+    for ( var i = 0; i < numComponentsWithSwitches; i++ ) {
       var topStartPoint = new Vector3( x, topY, z );
       var bottomStartPoint = new Vector3( x, bottomY, z );
       var topCircuitSwitch = CircuitSwitch.CircuitTopSwitch( topStartPoint, config.modelViewTransform, circuitConnectionProperty );
@@ -121,10 +154,15 @@ define( function( require ) {
    * @param {CircuitConfig} config
    * @param {number} numberOfCapacitors
    * @param {number} numberOfLightBulbs
+   * @param {object} options
    */
-  function ParallelCircuit( config, numberOfCapacitors, numberOfLightBulbs ) {
+  function ParallelCircuit( config, numberOfCapacitors, numberOfLightBulbs, options ) {
 
-    AbstractCircuit.call( this, config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires, createCircuitSwitches );
+    options = _.extend( {
+      circuitSwitchFactory: createCircuitSwitches
+    }, options );
+
+    AbstractCircuit.call( this, config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires, options.circuitSwitchFactory );
 
   }
 

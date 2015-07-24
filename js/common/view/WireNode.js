@@ -14,9 +14,9 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
 
   // constants
-  var WIRE_LINE_WIDTH = 7.5;
-  var WIRE_STROKE = 'black';
-  var WIRE_FILL = 'lightgray';
+  var WIRE_LINE_WIDTH = 2;
+  var WIRE_STROKE = 'rgb( 143, 143, 143 )';
+  var WIRE_FILL = 'rgb( 170, 170, 170 )';
 
   /**
    * Constructor for the wire node.

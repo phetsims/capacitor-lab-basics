@@ -11,6 +11,9 @@
   "intro.title": {
     "value": "Intro"
   },
+  "capacitance.title": {
+    "value": "Capacitance"
+  },
   "lightBulb.title": {
     "value": "Light Bulb"
   },

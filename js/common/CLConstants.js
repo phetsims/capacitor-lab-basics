@@ -26,6 +26,12 @@ define( function( require ) {
     // world
     WORLD_DRAG_MARGIN: 0.001, // meters
 
+    // possible connection points for circuit components
+    CONNECTION_POINTS: {
+      TOP: 'TOP',
+      BOTTOM: 'BOTTOM'
+    },
+
     // battery
     BATTERY_VOLTAGE_RANGE: new Range( -1.5, 1.5, 0 ), // Volts
     BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD: 0.1, // Volts
@@ -41,7 +47,7 @@ define( function( require ) {
     CAPACITANCE_RANGE: new Range( 1E-13, 3E-13 ), // Farads
 
     // switch
-    SWITCH_WIRE_LENGTH: 0.005, // in meters TODO: Calculate this for accuracy.
+    SWITCH_WIRE_LENGTH: 0.0064, // in meters TODO: Calculate this for accuracy.
     SWITCH_Y_SPACING: 0.0025, // spacing between circuit components and the switch
 
     // dielectric
@@ -84,7 +90,7 @@ define( function( require ) {
     CANVAS_RENDERING_SIZE: new Dimension2( 1024, 864 ),
 
     // model-view transform.  Note explicit conversion to radians
-    MVT_SCALE: 15000, // scale factor when going from model to view
+    MVT_SCALE: 12000, // scale factor when going from model to view
     MVT_YAW: -45 * Math.PI / 180, // rotation about the vertical axis, right-hand rule determines sign.
     MVT_PITCH: 30 * Math.PI / 180, // rotation about the horizontal axis, right-hand rule determines sign
 
@@ -99,6 +105,7 @@ define( function( require ) {
     NUMBER_OF_PLATE_CHARGES: new Range( 1, 625 ),
     NEGATIVE_CHARGE_SIZE: new Dimension2( 7, 2 ),
     PLATE_CHARGES_VISIBLE: true,
+    ELECTRON_CHARGE: 1.60218E-19,
 
     // E-field
     NUMBER_OF_EFIELD_LINES: new Range( 4, 900 ), // number of lines on smallest plate

@@ -13,7 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector2 = require( 'DOT/Vector2' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
-    var ButtonListener = require( 'SCENERY/input/ButtonListener' );
+  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var Property = require( 'AXON/Property' );
 
   // constants

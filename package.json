@@ -1,6 +1,6 @@
 {
   "name": "capacitor-lab-basics",
-  "version": "1.0.0-dev.2",
+  "version": "1.0.0-dev.3",
   "license": "GPLv3",
   "simTitleStringKey": "CAPACITOR_LAB_BASICS/capacitor-lab-basics.name",
   "phetLibs": [

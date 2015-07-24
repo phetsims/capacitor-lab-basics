@@ -21,12 +21,13 @@ define( function( require ) {
   /**
    * Constructor for a Wire.
    */
-  function Wire( modelViewTransform, thickness, segments ) {
+  function Wire( modelViewTransform, thickness, segments, connectionPoint ) {
 
     //assert && assert( segments !== undefined, 'Wire segments undefined for wire.' );
     assert && assert( thickness > 0 );
 
     this.segments = segments;
+    this.connectionPoint = connectionPoint; //
     this.thickness = thickness;
     this.shapeCreator = new WireShapeCreator( this, modelViewTransform );
     var shape = this.shapeCreator.createWireShape();

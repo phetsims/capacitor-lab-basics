@@ -36,43 +36,17 @@ define( function( require ) {
   }, {
 
     // Factory methods to publicly construct various segments. TODO: Flesh out with update functions.
-    BatteryTopWireSegment: function( battery, startYOffset, endPoint ) { return new BatteryTopWireSegment( battery, startYOffset, endPoint ); },
-    BatteryBottomWireSegment: function( battery, startYOffset, endPoint ) { return new BatteryBottomWireSegment( battery, startYOffset, endPoint ); },
+    BatteryTopWireSegment: function( battery, endPoint ) { return new BatteryTopWireSegment( battery, endPoint ); },
+    BatteryBottomWireSegment: function( battery, endPoint ) { return new BatteryBottomWireSegment( battery, endPoint ); },
     ComponentTopWireSegment: function( component, endPoint ) { return new ComponentTopWireSegment( component, endPoint ); },
     ComponentBottomWireSegment: function( component, endPoint ) { return new ComponentBottomWireSegment( component, endPoint ); },
-    VerticalTopWireSegment: function( battery, startPoint ) {
-      return new WireSegment( startPoint, new Vector2( startPoint.x, battery.location.y + battery.getTopTerminalYOffset() ) );
-    },
-    VerticalBottomWireSegment: function( battery, startPoint ) {
-      return new WireSegment( startPoint, new Vector2( startPoint.x, battery.location.y + battery.getBottomTerminalYOffset() ) );
-    },
-    // TODO: Update functions for the following will need to be specified, this will justify factory functions.
+    SwitchSegment: function( startPoint, endPoint ) { return new SwitchSegment( startPoint, endPoint ); },
+
     BatteryTopToSwitchSegment: function( startPoint, endPoint ) {
       return new WireSegment( startPoint, endPoint );
     },
     BatteryBottomToSwitchSegment: function( startPoint, endPoint ) {
       return new WireSegment( startPoint, endPoint );
-    },
-    LightBulbTopWireSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
-    },
-    LightBulbBottomWireSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
-    },
-    BulbTopToSwitchSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
-    },
-    BulbBottomToSwitchSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
-    },
-    CapacitorTopToSwitchSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
-    },
-    CapacitorBottomToSwitchSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
-    },
-    SwitchSegment: function( startPoint, endPoint ) {
-      return new SwitchSegment( startPoint, endPoint );
     }
   } );
 
@@ -86,7 +60,6 @@ define( function( require ) {
   function ComponentWireSegment( component, startPoint, endPoint ) {
     WireSegment.call( this, startPoint, endPoint );
     this.component = component;
-    //component.addPlateSeparationObserver(); TODO
   }
 
   inherit( WireSegment, ComponentWireSegment, {
@@ -95,7 +68,6 @@ define( function( require ) {
     }
   } );
 
-
   /**
    * Constructor for ComponentTopWireSegment.  This is a wire segment whose start point is connected to the top plate
    * of a component.  Adjusts the start point when the plate separation changes.
@@ -103,13 +75,13 @@ define( function( require ) {
    * @param {Capacitor || LightBulb} component
    * @param {Vector2} endPoint
    */
-  function ComponentTopWireSegment( component, startPoint ) {
-    ComponentWireSegment.call( this, component, startPoint, component.getTopConnectionPoint().toVector2() );
+  function ComponentTopWireSegment( component, endPoint ) {
+    ComponentWireSegment.call( this, component, component.getTopConnectionPoint().toVector2(), endPoint );
   }
 
   inherit( ComponentWireSegment, ComponentTopWireSegment, {
     update: function() {
-      this.endPoint = this.component.getTopConnectionPoint().toVector2();
+      this.startPoint = this.component.getTopConnectionPoint().toVector2();
     }
   } );
 
@@ -120,13 +92,13 @@ define( function( require ) {
    * @param {Capacitor || LightBulb} component
    * @param {Vector2} endPoint
    */
-  function ComponentBottomWireSegment( component, startPoint ) {
-    ComponentWireSegment.call( this, component, startPoint, component.getBottomConnectionPoint().toVector2() );
+  function ComponentBottomWireSegment( component, endPoint ) {
+    ComponentWireSegment.call( this, component, component.getBottomConnectionPoint().toVector2(), endPoint );
   }
 
   inherit( ComponentWireSegment, ComponentBottomWireSegment, {
     update: function() {
-      this.endPoint = this.component.getBottomConnectionPoint().toVector2();
+      this.startPoint = this.component.getBottomConnectionPoint().toVector2();
     }
   } );
 
@@ -139,9 +111,6 @@ define( function( require ) {
 
     this.topComponent = topComponent;
     this.bottomComponent = bottomComponent;
-
-    //topCapacitor.addPlateSeparationObserver( this ); TODO
-    //bottomCapacitor.addPlateSeparationObserver( this ); TODO
 
   }
 
@@ -162,14 +131,12 @@ define( function( require ) {
    *  Constructor for a BatteryWireSegment.  This includes any wire segment that is connected to a battery.
    *
    *  @param {Battery} battery
-   *  @param {number} startYOffset
    *  @param {Vector2} startPoint
    *  @param {Vector2} endPoint
    */
-  function BatteryWireSegment( battery, startYOffset, startPoint, endPoint ) {
+  function BatteryWireSegment( battery, startPoint, endPoint ) {
     WireSegment.call( this, startPoint, endPoint );
     this.battery = battery;
-    this.startYOffset = startYOffset;
     //battery.addPolarityObserver( this ); TODO
   }
 
@@ -184,17 +151,16 @@ define( function( require ) {
    * of a battery.  Adjusts the start point when the battery's polarity changes.
    *
    * @param {Battery} battery
-   * @param {number} startYOffset
    * @param {Vector2} endPoint
    */
-  function BatteryTopWireSegment( battery, startYOffset, endPoint ) {
-    BatteryWireSegment.call( this, battery, startYOffset, new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ), endPoint );
+  function BatteryTopWireSegment( battery, endPoint ) {
+    BatteryWireSegment.call( this, battery,  new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ), endPoint );
   }
 
   inherit( BatteryWireSegment, BatteryTopWireSegment, {
     update: function() {
       var battery = this.battery;
-      this.startPoint = new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() - this.startYOffset );
+      this.startPoint = new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() );
     }
   } );
 
@@ -203,17 +169,16 @@ define( function( require ) {
    * terminal of a battery.  Adjusts the start point when the battery's polarity changes.
    *
    * @param {Battery} battery
-   * @param {number} startYOffset
    * @param {Vector2} endPoint
    */
-  function BatteryBottomWireSegment( battery, startYOffset, endPoint ) {
-    BatteryWireSegment.call( this, battery, startYOffset, new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() ), endPoint );
+  function BatteryBottomWireSegment( battery, endPoint ) {
+    BatteryWireSegment.call( this, battery, new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() ), endPoint );
   }
 
   inherit( BatteryWireSegment, BatteryBottomWireSegment, {
     update: function() {
       var battery = this.battery;
-      this.startPoint = new Vector2( this.battery.location.x, this.battery.location.y + battery.getBottomTerminalYOffset() + this.startYOffset );
+      this.startPoint = new Vector2( this.battery.location.x, this.battery.location.y + battery.getBottomTerminalYOffset() );
     }
   } );
 
