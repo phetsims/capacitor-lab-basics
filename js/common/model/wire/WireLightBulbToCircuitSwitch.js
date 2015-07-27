@@ -122,11 +122,11 @@ define( function( require ) {
     getLightBulbToSwitchSegment: function( connectionPoint, circuitSwitch, endPoint ) {
       var switchConnectionPoint;
       if ( connectionPoint === ConnectionPoint.TOP ) {
-        switchConnectionPoint = circuitSwitch.getLightBulbConnectionPoint().toVector2();
+        switchConnectionPoint = circuitSwitch.getLightBulbConnectionPoint();
         return new WireSegment( endPoint, switchConnectionPoint );
       }
       else {
-        switchConnectionPoint = circuitSwitch.getLightBulbConnectionPoint().toVector2();
+        switchConnectionPoint = circuitSwitch.getLightBulbConnectionPoint();
         return new WireSegment( endPoint, switchConnectionPoint );
       }
     },

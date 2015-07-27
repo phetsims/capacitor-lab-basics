@@ -115,17 +115,17 @@ define( function( require ) {
     getLightBulbToSwitchSegment: function( connectionPoint, circuitSwitch, endPoint ) {
       var switchConnectionPoint;
       if ( connectionPoint === ConnectionPoint.TOP ) {
-        switchConnectionPoint = circuitSwitch.getLightBulbConnectionPoint().toVector2();
+        switchConnectionPoint = circuitSwitch.getLightBulbConnectionPoint();
         return new WireSegment( endPoint, switchConnectionPoint );
       }
       else {
-        switchConnectionPoint = circuitSwitch.getLightBulbConnectionPoint().toVector2();
+        switchConnectionPoint = circuitSwitch.getLightBulbConnectionPoint();
         return new WireSegment( endPoint, switchConnectionPoint );
       }
     },
 
     getCapacitorToSwitchSegment: function( connectionPoint, circuitSwitch, capacitor ) {
-      var switchConnectionPoint = circuitSwitch.getCapacitorConnectionPoint().toVector2();
+      var switchConnectionPoint = circuitSwitch.getCapacitorConnectionPoint();
       if ( connectionPoint === ConnectionPoint.TOP ) {
         return WireSegment.ComponentTopWireSegment( capacitor, switchConnectionPoint );
       }

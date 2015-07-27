@@ -1,8 +1,8 @@
 // Copyright 2002-2015, University of Colorado Boulder
 
 /**
- * Visual representation of a switch.  A switch consists of a line that connects a hinge point and at least one other
- * connection point.
+ * Visual representation of a switch.  A switch consists of a line that connects a hinge point and at least two other
+ * connection points.
  *
  * @author Jesse Greenberg
  */
@@ -14,13 +14,11 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
   var ConnectionPointNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionPointNode' );
+  var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
   var HingePointNode = require( 'CAPACITOR_LAB_BASICS/common/view/HingePointNode' );
-  //var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Vector2 = require( 'DOT/Vector2' );
 
   /**
-   * Constructor for a BatteryNode.
+   * Constructor for a SwitchNode.
    *
    * @param {CircuitSwitch} circuitSwitch
    * @param {CLModelViewTransform3D} modelViewTransform
@@ -33,14 +31,13 @@ define( function( require ) {
     this.circuitSwitch = circuitSwitch;
     this.modelViewTransform = modelViewTransform;
 
-    //var angle = 0;
-    this.clickOffset = new Vector2( 0, 0 );
-
-    // add the switch as a wire node.
+    // add the switch as a wire node
     this.wireSwitchNode = new WireNode( circuitSwitch.switchWire );
     this.addChild( this.wireSwitchNode );
+    this.wireSwitchNode.touchArea = this.wireSwitchNode.bounds;
+    this.wireSwitchNode.cursor = 'pointer';
 
-    // Add the the hinge and all connection points.
+    // add the the hinge and all connection points
     var hingeNode = new HingePointNode();
     hingeNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint );
     this.addChild( hingeNode );
@@ -50,56 +47,18 @@ define( function( require ) {
       thisNode.addChild( connectionPointNode );
     } );
 
-    // add a rectangle child to the wireSwitchNode is draggable.
-    // TODO: Temporary solution, eventually wires will be full shapes, not just lines.
-    this.wireSwitchNode.addChild( new Rectangle( this.wireSwitchNode.bounds.dilated( 10 ) ) );
+    // add the drag handler
+    this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( thisNode ) );
 
-    // TODO For now, the switch state can only be changed by clicking on the desired connection point.
-    // Still working on the drag handler.
-    // drag handler
-    //var lastAngle = circuitSwitch.angle;
-    //var currentAngle = circuitSwitch.angle;
-    //this.wireSwitchNode.addInputListener( new SimpleDragHandler( {
-    //  start: function( event ) {
-    //    var pMouse = event.pointer.point;
-    //    var endPoint = thisNode.circuitSwitch.getSwitchEndPoint();
-    //    var pOrigin = modelViewTransform.modelToViewDeltaXYZ( endPoint.x, endPoint.y, 0 );
-    //    thisNode.clickOffset = pMouse.minus( pOrigin );
-    //  },
-    //  drag: function( event ) {
-    //    var pMouse = event.pointer.point;
-    //    var angle = pMouse.minus( thisNode.clickOffset ).angle();
-    //    circuitSwitch.angle = angle;
-    //  },
-    //  end: function( event ) {
-    //    thisNode.dragging = false;
-    //  }
-    //} ) );
-    //
     // changes visual position
-    //circuitSwitch.angleProperty.link( function( angle ) {
-    //  thisNode.wireSwitchNode.resetTransform();
-    //  thisNode.wireSwitchNode.translate( circuitSwitch.position.x, circuitSwitch.position.y );
-    //  thisNode.wireSwitchNode.rotateAround( modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint ), angle );
-    //} );
+    circuitSwitch.angleProperty.link( function( angle ) {
+      thisNode.wireSwitchNode.resetTransform();
+      thisNode.wireSwitchNode.translate( circuitSwitch.hingePoint.x, circuitSwitch.hingePoint.y );
+      thisNode.wireSwitchNode.rotateAround( modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint ), angle );
+    } );
 
   }
 
-  return inherit( Node, SwitchNode, {
-
-    /**
-     * Determines how far the mouse is from where we grabbed the switch.
-     *
-     * @param {Vector2} pMouse
-     * @param {number} samplePlateWidth
-     * @return {number}
-     */
-    getModelPoint: function( pMouse, samplePlateWidth ) {
-      var switchCenter = this.circuitSwitch.getCenterPoint();
-      return this.modelViewTransform.modelToViewXYZ( switchCenter.x, switchCenter.y, 0 );
-      //var pBackRightCorner = this.modelViewTransform.modelToViewXYZ( samplePlateWidth / 2, 0, samplePlateWidth / 2 );
-      //return pMouse.x - pBackRightCorner.x - this.clickOffset;
-    }
-  } );
+  return inherit( Node, SwitchNode );
 
 } );

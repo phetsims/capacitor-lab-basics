@@ -38,7 +38,7 @@ define( function( require ) {
     this.modelViewTransform = modelViewTransform;
     this.circuitConnectionProperty = circuitConnectionProperty;
 
-    this.activeConnection = this.getConnection( CircuitConnectionEnum.BATTERY_CONNECTED );
+    this.activeConnection = this.getConnection( circuitConnectionProperty.value );
     var thisSwitch = this;
 
     PropertySet.call( this, {
@@ -96,16 +96,24 @@ define( function( require ) {
           connectionPoint = connection.location;
         }
       } );
-      return connectionPoint;
+      return connectionPoint.toVector2();
     },
 
     getSwitchEndPoint: function() {
-      return this.switchSegment.endPoint;
+      return this.switchSegment.endPoint.toVector2();
     },
 
 
     getCapacitorConnectionPoint: function() {
-      return this.hingePoint;
+      return this.hingePoint.toVector2();
+    },
+
+    getRightLimitAngle: function() {
+      return this.getOpenConnectionPoint().minus( this.hingePoint.toVector2() ).angle();
+    },
+
+    getLeftLimitAngle: function() {
+      return this.getBatteryConnectionPoint().minus( this.hingePoint.toVector2() ).angle();
     }
   }, {
 
