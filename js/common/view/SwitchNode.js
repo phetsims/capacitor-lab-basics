@@ -14,8 +14,19 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
   var ConnectionPointNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionPointNode' );
-  var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
   var HingePointNode = require( 'CAPACITOR_LAB_BASICS/common/view/HingePointNode' );
+
+  // TODO: TEMPORARY! remove soon.
+  // add query parameter harness to play with the two different drag styles.
+  var CircuitSwitchDragHandler;
+  var getQueryParameter = phet.chipper.getQueryParameter;
+  var snapDrag = getQueryParameter( 'snapDrag' ) || false;
+  if ( snapDrag) {
+    CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchSnapDragHandler' );
+  }
+  else{
+    CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
+  }
 
   /**
    * Constructor for a SwitchNode.
@@ -46,6 +57,8 @@ define( function( require ) {
       connectionPointNode.translation = modelViewTransform.modelToViewPosition( connection.location );
       thisNode.addChild( connectionPointNode );
     } );
+
+    // add click handler - allows user to click around  aconnectionpoint to set that connection.
 
     // add the drag handler
     this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( thisNode ) );

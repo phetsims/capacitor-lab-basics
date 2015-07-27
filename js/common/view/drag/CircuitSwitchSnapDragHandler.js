@@ -4,8 +4,8 @@
  * Drag handler for the switch node.  The circuit switch can be dragged between connection points, and is also limited
  * to the region in between the possible connection points.
  *
- * TODO: This is one of two possible drag styles.  With this style, the user can drag the switch anywhere within the
- * limiting bounds of the circuit switch.  On drag end, the switch snaps to the cloest connection point.
+ * TODO: This is one of two possible drag styles.  With this style, the switch is motionless until the drag angle is
+ * equal to an angle between two connection points.  At this point, the switch snaps to that connection point.
  *
  * @author Jesse Greenberg
  */
@@ -34,7 +34,9 @@ define( function( require ) {
    * @param {SwitchNode} switchNode
    * @constructor
    */
-  function CircuitSwitchDragHandler( switchNode ) {
+  function CircuitSwitchSnapDragHandler( switchNode ) {
+
+    console.log( 'Using snap drag test handler.' );
 
     var circuitSwitch = switchNode.circuitSwitch; // for readability
 
@@ -65,7 +67,8 @@ define( function( require ) {
         angle = transformedPMouse.minus( hingePoint ).angle();
 
         var leftLimitAngle = circuitSwitch.getLeftLimitAngle();
-        var rightLimitAngle = circuitSwitch.getRightLimitAngle();
+        var openAngle = circuitSwitch.getOpenAngle();
+        var rightLimitAngle = circuitSwitch.getRightLimitAngle(); // same as open angle for CapacitanceSwitch
 
         // get the max and min angles, which depend on circuit switch orientation
         var maxAngle = Math.max( leftLimitAngle, rightLimitAngle );
@@ -79,20 +82,28 @@ define( function( require ) {
           angle = maxAngle;
         }
         currentAngle = angle;
+        var absAngle = Math.abs( angle );
 
-        // make sure that the switch does not snap to connection points if the user drags beyond limiting angles
         if ( Math.abs( distanceBetweenAngles( currentAngle, lastAngle ) ) >= Math.PI / 4 ) {
-          // noop
+          // noop - switch attempting to snap around an angle greater than 270 degrees.
         }
-        else {
-          circuitSwitch.angle = angle - angleOffset;
+        else if ( absAngle > BATTERY_CONNECTED_MIN_ANGLE ) {
+          circuitSwitch.angle = leftLimitAngle - angleOffset;
+          lastAngle = currentAngle;
+        }
+        else if ( absAngle < OPEN_CIRCUIT_MAX_ANGLE && absAngle > OPEN_CIRCUIT_MIN_ANGLE ) {
+          circuitSwitch.angle = openAngle - angleOffset;
+          lastAngle = currentAngle;
+        }
+        else if ( absAngle < LIGHT_BULB_CONNECTED_MAX_ANGLE && absAngle > LIGHT_BULB_CONNECTED_MIN_ANGLE ) {
+          circuitSwitch.angle = rightLimitAngle - angleOffset;
           lastAngle = currentAngle;
         }
 
       },
       end: function( event ) {
 
-        // snap the switch to the nearest connection point and set the active connection
+        // set the active connection
         var absAngle = Math.abs( circuitSwitch.angle + angleOffset );
         angle = 0;
         angleOffset = 0;
@@ -116,6 +127,6 @@ define( function( require ) {
     } );
   }
 
-  return inherit( SimpleDragHandler, CircuitSwitchDragHandler );
+  return inherit( SimpleDragHandler, CircuitSwitchSnapDragHandler );
 
 } );

@@ -114,7 +114,13 @@ define( function( require ) {
 
     getLeftLimitAngle: function() {
       return this.getBatteryConnectionPoint().minus( this.hingePoint.toVector2() ).angle();
+    },
+
+    getOpenAngle: function() {
+      return this.getOpenConnectionPoint().minus( this.hingePoint.toVector2() ).angle();
     }
+
+
   }, {
 
     CapacitanceCircuitTopSwitch: function( hingePoint, modelViewTransform, circuitConnectionProperty ) {
