@@ -55,6 +55,9 @@ define( function( require ) {
     // arrow
     var arrowNode = new DragHandleArrowNode( ARROW_START_LOCATION, ARROW_END_LOCATION );
     this.addInputListener( new PlateSeparationDragHandler( arrowNode, capacitor, modelViewTransform, valueRange ) );
+    this.touchArea = arrowNode.bounds;
+    this.cursor = 'pointer';
+
 
     // line
     var lineNode = new DragHandleLineNode( LINE_START_LOCATION, LINE_END_LOCATION );

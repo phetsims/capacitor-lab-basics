@@ -154,7 +154,7 @@ define( function( require ) {
    * @param {Vector2} endPoint
    */
   function BatteryTopWireSegment( battery, endPoint ) {
-    BatteryWireSegment.call( this, battery,  new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ), endPoint );
+    BatteryWireSegment.call( this, battery, new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ), endPoint );
   }
 
   inherit( BatteryWireSegment, BatteryTopWireSegment, {
@@ -184,18 +184,28 @@ define( function( require ) {
 
   /**
    *
-   * @param hingePoint
-   * @param connectionPoint
+   *
+   * @param {Vector2} hingePoint
+   * @param {object} activeConnection
    * @constructor
    */
   function SwitchSegment( hingePoint, activeConnection ) {
+    this.activeConnection = activeConnection;
+    this.hingePoint = hingePoint;
     WireSegment.call( this, hingePoint, activeConnection.location );
   }
 
   inherit( WireSegment, SwitchSegment, {
 
-    update: function( activeConnection ) {
+    update: function( activeConnection, angle ) {
+      // set the new active connection.
       this.endPoint = activeConnection.location;
+      //else if( angle ){
+      //   TODO: Replace 0.0064 with clconstant.
+      //var newX = this.hingePoint.x + 0.0064 * Math.cos( angle );
+      //var newY = this.hingePoint.y + 0.0064 * Math.sin( angle );
+      //this.endPoint = new Vector2( newX, newY );
+      //}
     }
   } );
 

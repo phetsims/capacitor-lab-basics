@@ -142,6 +142,16 @@ define( function( require ) {
       var bottomStartPoint = new Vector3( x, bottomY, z );
       var topCircuitSwitch = CircuitSwitch.CircuitTopSwitch( topStartPoint, config.modelViewTransform, circuitConnectionProperty );
       var bottomCircuitSwitch = CircuitSwitch.CircuitBottomSwitch( bottomStartPoint, config.modelViewTransform, circuitConnectionProperty );
+
+      // link the top and bottom circuit switches together so that they rotate together
+      topCircuitSwitch.angleProperty.link( function( angle ) {
+        bottomCircuitSwitch.angle = -angle;
+      } );
+      bottomCircuitSwitch.angleProperty.link( function( angle ) {
+        topCircuitSwitch.angle = -angle;
+      } );
+
+
       circuitSwitches.push( topCircuitSwitch, bottomCircuitSwitch );
       x += config.capacitorXSpacing;
     }

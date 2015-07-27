@@ -30,14 +30,14 @@ define( function( require ) {
    */
   function CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty ) {
 
-    this.initialAngle = 0; // with respect to the vertical ( open switch )
+    this.initialAngle = 0; // with respect to the horizontal ( open switch )
 
     this.hingePoint = hingePoint;
     this.connections = connections;
     this.modelViewTransform = modelViewTransform;
     this.circuitConnectionProperty = circuitConnectionProperty;
 
-    this.activeConnection = this.getConnection( CircuitConnectionEnum.BATTERY_CONNECTED );
+    this.activeConnection = this.getConnection( circuitConnectionProperty.value );
     var thisSwitch = this;
 
     PropertySet.call( this, {
@@ -53,6 +53,8 @@ define( function( require ) {
       thisSwitch.activeConnection = thisSwitch.getConnection( circuitConnection );
       thisSwitch.switchSegment.update( thisSwitch.activeConnection );
     } );
+
+    //
 
   }
 
@@ -96,7 +98,7 @@ define( function( require ) {
           connectionPoint = connection.location;
         }
       } );
-      return connectionPoint;
+      return connectionPoint.toVector2();
     },
 
     getOpenConnectionPoint: function() {
@@ -106,16 +108,24 @@ define( function( require ) {
           connectionPoint = connection.location;
         }
       } );
-      return connectionPoint;
+      return connectionPoint.toVector2();
     },
 
     getSwitchEndPoint: function() {
-      return this.switchSegment.endPoint;
+      return this.switchSegment.endPoint.toVector2();
     },
 
 
     getCapacitorConnectionPoint: function() {
-      return this.hingePoint;
+      return this.hingePoint.toVector2();
+    },
+
+    getRightLimitAngle: function() {
+      return this.getLightBulbConnectionPoint().minus( this.hingePoint.toVector2() ).angle();
+    },
+
+    getLeftLimitAngle: function() {
+      return this.getBatteryConnectionPoint().minus( this.hingePoint.toVector2() ).angle();
     }
   }, {
 
