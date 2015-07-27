@@ -1,3 +1,5 @@
+// Copyright 2002-2015, University of Colorado Boulder
+
 /**
  * Drag handler for the switch node.  The circuit switch can be dragged between connection points, and is also limited
  * to the region in between the possible connection points.
