@@ -41,6 +41,7 @@ define( function( require ) {
     } );
     Circle.call( this, CONNECTION_POINT_RADIUS, options );
     var thisNode = this;
+    this.cursor = 'pointer';
 
     function setPinConnected() {
       thisNode.fill = CONNECTED_POINT_COLOR;
