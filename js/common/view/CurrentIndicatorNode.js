@@ -26,9 +26,9 @@ define( function( require ) {
 
   // constants
   // arrow properties
-  var ARROW_LENGTH = 175;
-  var ARROW_HEAD_WIDTH = 60;
-  var ARROW_HEAD_HEIGHT = 50;
+  var ARROW_LENGTH = 88;
+  var ARROW_HEAD_WIDTH = 30;
+  var ARROW_HEAD_HEIGHT = 25;
   var ARROW_TAIL_WIDTH = 0.4 * ARROW_HEAD_WIDTH;
   var ARROW_TIP_LOCATION = new Vector2( 0, 0 ); // origin at the tip
   var ARROW_TAIL_LOCATION = new Vector2( ARROW_LENGTH, 0 );
@@ -61,7 +61,6 @@ define( function( require ) {
     Node.call( this, { opacity: 0 } ); // TODO: Perhaps extend ArrowNode?
     var thisNode = this;
     this.positiveOrientation = positiveOrientation;
-
 
     var arrowNode = new ArrowNode( ARROW_TAIL_LOCATION.x, ARROW_TAIL_LOCATION.y, ARROW_TIP_LOCATION.x, ARROW_TIP_LOCATION.y, {
       headHeight: ARROW_HEAD_HEIGHT,

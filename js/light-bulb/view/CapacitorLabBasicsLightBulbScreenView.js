@@ -18,7 +18,6 @@ define( function( require ) {
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
   var CapacitorLabBasicsLightBulbControl = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/control/CapacitorLabBasicsLightBulbControl' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  var ResistanceSlider = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/control/ResistanceSlider' );
 
   // Strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
@@ -59,16 +58,9 @@ define( function( require ) {
     var capacitorLabBasicsLightBulbControl = new CapacitorLabBasicsLightBulbControl( model );
     capacitorLabBasicsLightBulbControl.translation = this.layoutBounds.rightTop.minusXY( capacitorLabBasicsLightBulbControl.width + 15, -20 );
 
-    // TODO: Resistance slider to play with the internal resistance of the lightbulb. Remove after testing.
-    var title = 'Resistance: ';
-    var numberProperty = model.circuit.lightBulb.resistanceProperty;
-    var numberRange = model.circuit.lightBulb.resistanceRange;
-
-    var resistanceSlider = new ResistanceSlider( title, numberProperty, numberRange );
     storedEnergyMeterNode.rightTop = capacitorLabBasicsLightBulbControl.leftTop.minusXY( 15, 10 );
     plateChargeMeterNode.rightCenter = storedEnergyMeterNode.leftCenter.minusXY( 15, 0 );
     capacitanceMeterNode.rightCenter = plateChargeMeterNode.leftCenter;
-    resistanceSlider.rightTop = capacitorLabBasicsLightBulbControl.centerBottom.plusXY( 0, 60 );
 
     // reset button
     this.resetAllButton = new ResetAllButton( {
@@ -86,7 +78,6 @@ define( function( require ) {
     //addChild( voltmeterNode );
     this.addChild( capacitorLabBasicsLightBulbControl );
     this.addChild( this.resetAllButton );
-    this.addChild( resistanceSlider );
   }
 
   return inherit( ScreenView, CapacitorLabBasicsLightBulbScreenView );

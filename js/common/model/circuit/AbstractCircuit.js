@@ -50,11 +50,11 @@ define( function( require ) {
 
     // TODO: Replace this.lightBulbs[0] with the single lightBulb.
     // TODO: Replace this.capacitors[0] with the single capacitor.
-    this.wires = createWires( config, this.battery, this.lightBulbs[0], this.capacitors[0], this.circuitSwitches, this.circuitConnectionProperty );
+    this.wires = createWires( config, this.battery, this.lightBulbs[ 0 ], this.capacitors[ 0 ], this.circuitSwitches, this.circuitConnectionProperty );
 
     // create the current indicators
-    this.topCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, 0 /* initial rotation*/ );
-    this.bottomCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, Math.PI /* initial rotation*/ );
+    this.batteryTopCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, 0 /* initial rotation*/ );
+    this.batteryBottomCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, Math.PI /* initial rotation*/ );
 
     // Make sure all is well with circuit components.  Circuit must include at least one circuit component and two wires.
     assert && assert( this.circuitComponents.length >= 1 );
@@ -69,6 +69,7 @@ define( function( require ) {
         } );
       } );
     }
+
     // udpate all segments when the connection property changes.
     this.circuitConnectionProperty.link( function( circuitConnection ) {
       updateSegments( circuitConnection );
@@ -80,7 +81,6 @@ define( function( require ) {
         updateSegments( thisCircuit.circuitConnection );
       } );
     } );
-
 
 
     // observe capacitors
@@ -130,8 +130,8 @@ define( function( require ) {
 
     step: function( dt ) {
       this.updateCurrentAmplitude( dt );
-      this.topCurrentIndicator.step( dt );
-      this.bottomCurrentIndicator.step( dt );
+      this.batteryTopCurrentIndicator.step( dt );
+      this.batteryBottomCurrentIndicator.step( dt );
     },
 
     /**
@@ -149,9 +149,9 @@ define( function( require ) {
      * @return {array.<Wire>} topWires
      */
     getTopWires: function() {
-      var topWires  = [];
+      var topWires = [];
       this.wires.forEach( function( wire ) {
-        if( wire.connectionPoint === CLConstants.CONNECTION_POINTS.TOP ) {
+        if ( wire.connectionPoint === CLConstants.CONNECTION_POINTS.TOP ) {
           topWires.push( wire );
         }
 
@@ -167,7 +167,7 @@ define( function( require ) {
     getBottomWires: function() {
       var bottomWires = [];
       this.wires.forEach( function( wire ) {
-        if( wire.connectionPoint === CLConstants.CONNECTION_POINTS.BOTTOM ) {
+        if ( wire.connectionPoint === CLConstants.CONNECTION_POINTS.BOTTOM ) {
           bottomWires.push( wire );
         }
 
@@ -269,7 +269,6 @@ define( function( require ) {
       var Q = this.getTotalCharge();
       if ( this.previousTotalCharge !== -1 ) {
         var dQ = Q - this.previousTotalCharge;
-        //var dt = clock.getSimulationTimeChange();
         var amplitude = dQ / dt;
         this.currentAmplitude = amplitude;
       }

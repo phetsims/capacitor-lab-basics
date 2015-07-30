@@ -76,8 +76,8 @@ define( function( require ) {
     var batteryConnectionButtonNode = new BatteryConnectionButtonNode( circuit );
 
     // current indicators
-    this.topCurrentIndicatorNode = new CurrentIndicatorNode( circuit.topCurrentIndicator, 0 );
-    this.bottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.bottomCurrentIndicator, Math.PI );
+    this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.batteryTopCurrentIndicator, 0 );
+    this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.batteryBottomCurrentIndicator, Math.PI );
 
     // rendering order
     this.addChild( this.bottomWireNode );
@@ -87,8 +87,8 @@ define( function( require ) {
     this.circuitSwitchNodes.forEach( function( circuitSwitchNode ) {
       thisNode.addChild( circuitSwitchNode );
     } );
-    this.addChild( this.topCurrentIndicatorNode );
-    this.addChild( this.bottomCurrentIndicatorNode );
+    this.addChild( this.batteryTopCurrentIndicatorNode );
+    this.addChild( this.batteryBottomCurrentIndicatorNode );
     this.addChild( plateSeparationDragHandleNode );
     this.addChild( plateAreaDragHandleNode );
     this.addChild( batteryConnectionButtonNode );
@@ -108,14 +108,14 @@ define( function( require ) {
     x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
     //x = this.topWireNode.bounds.centerX;
     y = this.topWireNode.bounds.minY + ( 7 / 2 ); // TODO clean up after discussion of feature.
-    this.topCurrentIndicatorNode.translate( x, y );
+    this.batteryTopCurrentIndicatorNode.translate( x, y );
 
     // bottom current indicator
     //var bottomWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getBottomWire.thickness, 0, 0 ).x;
     x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
     //x = this.bottomWireNode.bounds.getCenterX();
     y = this.bottomWireNode.bounds.getMaxY() - ( 7 / 2 );
-    this.bottomCurrentIndicatorNode.translate( x, y );
+    this.batteryBottomCurrentIndicatorNode.translate( x, y );
 
     // wires shapes are in model coordinate frame, so the nodes live at (0,0) the following does nothing but it
     // explicitly defines the layout.
@@ -124,7 +124,7 @@ define( function( require ) {
 
     // Connect/Disconnect Battery button
     x = batteryNode.bounds.minX;
-    y = this.topCurrentIndicatorNode.bounds.minY - batteryConnectionButtonNode.height - 10;
+    y = this.batteryTopCurrentIndicatorNode.bounds.minY - batteryConnectionButtonNode.height - 10;
     batteryConnectionButtonNode.translation = new Vector2( x, y );
 
   }

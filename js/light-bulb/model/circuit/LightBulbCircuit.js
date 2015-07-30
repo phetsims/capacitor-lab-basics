@@ -32,6 +32,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
+  var CurrentIndicator = require( 'CAPACITOR_LAB_BASICS/common/model/CurrentIndicator' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
   /**
@@ -47,7 +48,10 @@ define( function( require ) {
 
     this.capacitor = this.capacitors[ 0 ];
     this.lightBulb = this.lightBulbs[ 0 ];
-    //console.log( this.capacitor.location );
+
+    // create the light bulb current indicators
+    this.bulbTopCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, Math.PI /* initial rotation*/ );
+    this.bulbBottomCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, 0 /* initial rotation*/ );
 
     this.addProperty( 'disconnectedPlateCharge', this.getTotalCharge() );
 
@@ -92,6 +96,10 @@ define( function( require ) {
 
       // step through common circuit components
       ParallelCircuit.prototype.step.call( this, dt );
+
+      // step light bulb current indicators
+      this.bulbTopCurrentIndicator.step( dt );
+      this.bulbBottomCurrentIndicator.step( dt );
 
       // discharge the capacitor when it is in parallel with the light bulb.
       if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {

@@ -39,7 +39,7 @@ define( function( require ) {
    * @constructor
    */
   function LightBulbCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, valuesVisibleProperty, maxPlateCharge,
-                        maxEffectiveEField ) {
+                                 maxEffectiveEField ) {
 
     Node.call( this ); // supertype constructor
 
@@ -74,11 +74,14 @@ define( function( require ) {
 
     // drag handles
     var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE, valuesVisibleProperty );
-    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE, valuesVisibleProperty  );
+    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE, valuesVisibleProperty );
 
     // current indicators
-    this.topCurrentIndicatorNode = new CurrentIndicatorNode( circuit.topCurrentIndicator, 0 );
-    this.bottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.bottomCurrentIndicator, Math.PI );
+    this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.batteryTopCurrentIndicator, 0 );
+    this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.batteryBottomCurrentIndicator, Math.PI );
+
+    this.bulbTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.bulbTopCurrentIndicator, 0 );
+    this.bulbBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.bulbBottomCurrentIndicator, Math.PI );
 
     // rendering order
     this.addChild( this.bottomWireNode );
@@ -89,8 +92,10 @@ define( function( require ) {
     this.circuitSwitchNodes.forEach( function( circuitSwitchNode ) {
       thisNode.addChild( circuitSwitchNode );
     } );
-    this.addChild( this.topCurrentIndicatorNode );
-    this.addChild( this.bottomCurrentIndicatorNode );
+    this.addChild( this.batteryTopCurrentIndicatorNode );
+    this.addChild( this.batteryBottomCurrentIndicatorNode );
+    this.addChild( this.bulbTopCurrentIndicatorNode );
+    this.addChild( this.bulbBottomCurrentIndicatorNode );
     this.addChild( plateSeparationDragHandleNode );
     this.addChild( plateAreaDragHandleNode );
 
@@ -107,22 +112,28 @@ define( function( require ) {
     // LightBulb - translate so that center is the center of the base.
     lightBulbNode.center = modelViewTransform.modelToViewPosition( circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
 
-    // top current indicator
-    //var topWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getTopWire().thickness, 0, 0 ).x;
-    x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
-    //x = this.topWireNode.bounds.centerX;
+    // top left current indicator
+    x = batteryNode.centerX + ( this.circuitSwitchNodes[ 0 ].left - batteryNode.centerX ) / 2 + this.batteryTopCurrentIndicatorNode.width / 2;
     y = this.topWireNode.bounds.minY + ( 7 / 2 ); // TODO clean up after discussion of feature.
-    this.topCurrentIndicatorNode.translate( x, y );
+    this.batteryTopCurrentIndicatorNode.translate( x, y );
 
-    // bottom current indicator
-    //var bottomWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getBottomWire().thickness, 0, 0 ).x;
-    x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
-    //x = this.bottomWireNode.bounds.getCenterX();
+    // bottom left current indicator
+    x = batteryNode.centerX + ( this.circuitSwitchNodes[ 0 ].left - batteryNode.centerX ) / 2 + this.batteryBottomCurrentIndicatorNode.width / 2;
     y = this.bottomWireNode.bounds.getMaxY() - ( 7 / 2 );
-    this.bottomCurrentIndicatorNode.translate( x, y );
+    this.batteryBottomCurrentIndicatorNode.translate( x, y );
 
-    // wires shapes are in model coordinate frame, so the nodes live at (0,0) the following does nothing but it
-    // explicitly defines the layout.
+    // top right current indicator
+    x = this.circuitSwitchNodes[ 0 ].right + ( lightBulbNode.left - this.circuitSwitchNodes[ 0 ].right ) / 2;
+    y = this.topWireNode.bounds.minY + ( 7 / 2 );
+    this.bulbTopCurrentIndicatorNode.translate( x, y );
+
+    // bottom right current indicator
+    x = this.circuitSwitchNodes[ 0 ].right + ( lightBulbNode.left - this.circuitSwitchNodes[ 0 ].right ) / 2;
+    //x = ( lightBulbNode.left - this.circuitSwitchNodes[ 0 ].centerX ) / 2;
+    y = this.bottomWireNode.bounds.maxY - ( 7 / 2 );
+    this.bulbBottomCurrentIndicatorNode.translate( x, y );
+
+    // wires shapes are in model coordinate frame, so the nodes live at (0,0) the following does nothing
     this.topWireNode.translation = new Vector2( 0, 0 );
     this.bottomWireNode.translation = new Vector2( 0, 0 );
 
@@ -140,15 +151,13 @@ define( function( require ) {
 
       // As long as the circuit is not open, the circuit is considered connected.
       var isBatteryConnected = ( circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED );
-      //var isCapacitorConnected = ( circuitConnection !== CircuitConnectionEnum.OPEN_CIRCUIT );
+      var isLightBulbConnected = ( circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
 
-      // visible when battery is connected
-      //this.topWireNode.visible = isConnected;
-      //this.bottomWireNode.visible = isConnected;
+      this.batteryTopCurrentIndicatorNode.setVisible( isBatteryConnected );
+      this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected );
 
-      this.topCurrentIndicatorNode.setVisible( isBatteryConnected );
-      this.bottomCurrentIndicatorNode.setVisible( isBatteryConnected );
-
+      this.bulbTopCurrentIndicatorNode.setVisible( isLightBulbConnected );
+      this.bulbBottomCurrentIndicatorNode.setVisible( isLightBulbConnected );
     }
   } );
 
