@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.0.0-dev.3 Thu Jul 23 2015 10:12:13 GMT-0600 (MDT)",
+  "comment": "# capacitor-lab-basics 1.0.0-dev.4 Thu Jul 30 2015 10:43:30 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "858e65ac477bf1861883ce06eed56d9fdefa5027",
     "branch": "master"
@@ -9,15 +9,15 @@
     "branch": "master"
   },
   "brand": {
-    "sha": "3c45cb6fe87c342c377a90453be9fa8649818f59",
+    "sha": "cd34c36674d5fda7f2fa54e5c3040783ecec8156",
     "branch": "phet"
   },
   "capacitor-lab-basics": {
-    "sha": "7150b0f2635e14eb6190674f4f87a69e68541bb6",
+    "sha": "eb628ace3c530bc5c567c471ce79d5fdfd23e212",
     "branch": "master"
   },
   "chipper": {
-    "sha": "b737909c0e646c22e463e9c59fa4fc142a44c2df",
+    "sha": "5f21a18f863a38660094e7da2433b15fce7c8c5b",
     "branch": "master"
   },
   "dot": {
@@ -25,7 +25,7 @@
     "branch": "master"
   },
   "joist": {
-    "sha": "35a12c18242cbe15ff3ad69617c12cf76acf9bad",
+    "sha": "431672c3f726f44ec2c8188c9df2bb35f8a35d8b",
     "branch": "master"
   },
   "kite": {
@@ -45,15 +45,15 @@
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "f3f305457bc3771a720de717cd17ba27a3de7f24",
+    "sha": "d075767b043c228639c3177279764f6410577733",
     "branch": "master"
   },
   "sherpa": {
-    "sha": "b1ce778911672de02bbfc7edd3227bab43007f1b",
+    "sha": "9ef12f0feb99d5f39600542c7715c952e3a57e0b",
     "branch": "master"
   },
   "sun": {
-    "sha": "dc08e5f3cdf78c54df51fc1cdfcc20b61dc0c98a",
+    "sha": "e38cdc37853f531115e61abf9afe099cd6a3eb8b",
     "branch": "master"
   }
 }
