@@ -60,7 +60,7 @@ define( function( require ) {
     for ( i = 0; i < numberOfLightBulbs; i++ ) {
       //var xOffset = 5 *LightBulb.BULB_BASE_SIZE.width;
       location = new Vector3( x, y, z );
-      var lightBulb = new LightBulb( location );
+      var lightBulb = new LightBulb( location, config.lightBulbResistance );
       circuitComponents.push( lightBulb );
       x += config.lightBulbXSpacing;
     }

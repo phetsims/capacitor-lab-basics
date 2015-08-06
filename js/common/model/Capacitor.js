@@ -212,7 +212,7 @@ define( function( require ) {
      * @return {boolean}
      */
     intersectsTopPlate: function( shape ) {
-      return shape.intersectsBounds( this.shapeCreator( this.shapeCreator.createTopPlateShapeOccluded() ) );
+      return shape.intersectsBounds( this.shapeCreator.createTopPlateShapeOccluded() );
     },
 
     /**

@@ -11,10 +11,8 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
   var Vector3 = require( 'DOT/Vector3' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var Range = require( 'DOT/Range' );
 
   // constants
   var BULB_BASE_SIZE = new Dimension2( 0.0030, 0.001425 );
@@ -23,22 +21,17 @@ define( function( require ) {
    * Constructor for the Capacitor.
    *
    * @param {Vector3} location
-   * @param {number} resistance
+   * @param {number} resistance - internal resistance of the bulb
    * @constructor
    */
-  function LightBulb( location ) {
+  function LightBulb( location, resistance ) {
 
     // immutable variables
     this.location = location;
+    this.resistance = resistance;
 
-    // mutable variables
-    this.resistanceRange = new Range( 1E9, 5E13, 1E13 ); // temporary resistance range for design.
-    PropertySet.call( this, {
-      // temporary property so that design can play with decay times.
-      resistance: this.resistanceRange.defaultValue
-    } );
   }
-  return inherit( PropertySet, LightBulb, {
+  return inherit( Object, LightBulb, {
 
     /**
      * The top connection point is the top center of light bulb, which is the center of the
