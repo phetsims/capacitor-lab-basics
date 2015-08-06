@@ -28,7 +28,7 @@ define( function( require ) {
    */
   var POSITIVE_TERMINAL_ELLIPSE_SIZE = new Dimension2( 0.0025, 0.0005 );
   var POSITIVE_TERMINAL_CYLINDER_HEIGHT = 0.0009;
-  var POSITIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.000505;
+  var POSITIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) - 0.0002;
 
   /*
    * Negative terminal is part of the image file.
@@ -36,7 +36,7 @@ define( function( require ) {
    * The origin of the terminal is at the center of the ellipse.
    */
   var NEGATIVE_TERMINAL_ELLIPSE_SIZE = new Dimension2( 0.0035, 0.0009 ); // dimension of the ellipse that defines the negative terminal
-  var NEGATIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.00105; // center of the negative terminal, when it's the top terminal
+  var NEGATIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.0005; // center of the negative terminal, when it's the top terminal
 
   // Object literal holding possible battery polarities.
   //var POLARITY = {
@@ -127,7 +127,7 @@ define( function( require ) {
     // TODO: remove the following if possible.  Static functions will not work because these values are
     // required in BatteryShapeCreator, and battery is already dependent on this.
     getPositiveTerminalEllipseSize: function() {
-      return  POSITIVE_TERMINAL_ELLIPSE_SIZE;
+      return POSITIVE_TERMINAL_ELLIPSE_SIZE;
     },
 
     getNegativeTerminalEllipseSize: function() {
@@ -135,16 +135,8 @@ define( function( require ) {
     },
 
     getPositiveTerminalCylinderHeight: function() {
-      return NEGATIVE_TERMINAL_ELLIPSE_SIZE;
+      return POSITIVE_TERMINAL_CYLINDER_HEIGHT;
     }
-
-  }, {
-
-    // Static values for public access.
-    BODY_SIZE: BODY_SIZE,
-    POSITIVE_TERMINAL_CYLINDER_HEIGHT: POSITIVE_TERMINAL_CYLINDER_HEIGHT,
-    POSITIVE_TERMINAL_ELLIPSE_SIZE: POSITIVE_TERMINAL_ELLIPSE_SIZE,
-    NEGATIVE_TERMINAL_ELLIPSE_SIZE: NEGATIVE_TERMINAL_ELLIPSE_SIZE
 
   } );
 

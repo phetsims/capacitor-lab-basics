@@ -70,6 +70,8 @@ define( function( require ) {
       } );
     }
 
+    // Whenever a circuit property changes, all segments are updated. This works, but is excessive.  If there are
+    // performance issues, these links would be a great place to start.
     // udpate all segments when the connection property changes.
     this.circuitConnectionProperty.link( function( circuitConnection ) {
       updateSegments( circuitConnection );
@@ -80,6 +82,11 @@ define( function( require ) {
       capacitor.plateSeparationProperty.link( function() {
         updateSegments( thisCircuit.circuitConnection );
       } );
+    } );
+
+    // update all segments when battery polarity changes.
+    this.battery.polarityProperty.link( function( polarity ) {
+      updateSegments( thisCircuit.circuitConnection );
     } );
 
 
