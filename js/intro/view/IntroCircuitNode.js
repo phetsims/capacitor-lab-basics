@@ -22,7 +22,6 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
-  var BatteryConnectionButtonNode = require( 'CAPACITOR_LAB_BASICS/intro/view/control/BatteryConnectionButtonNode' );
 
   /**
    * Constructor for a CircuitNode.
@@ -71,10 +70,7 @@ define( function( require ) {
     // drag handles
     var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE, valuesVisibleProperty );
     var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE, valuesVisibleProperty );
-
-    // connection control
-    var batteryConnectionButtonNode = new BatteryConnectionButtonNode( circuit );
-
+    
     // current indicators
     this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.batteryTopCurrentIndicator, 0 );
     this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.batteryBottomCurrentIndicator, Math.PI );
@@ -91,7 +87,6 @@ define( function( require ) {
     this.addChild( this.batteryBottomCurrentIndicatorNode );
     this.addChild( plateSeparationDragHandleNode );
     this.addChild( plateAreaDragHandleNode );
-    this.addChild( batteryConnectionButtonNode );
 
     // layout TODO: Much of the layout will need to be fixed or tidied.  Many design decisions to be made.
     var x = 0;
@@ -121,11 +116,6 @@ define( function( require ) {
     // explicitly defines the layout.
     this.topWireNode.translation = new Vector2( 0, 0 );
     this.bottomWireNode.translation = new Vector2( 0, 0 );
-
-    // Connect/Disconnect Battery button
-    x = batteryNode.bounds.minX;
-    y = this.batteryTopCurrentIndicatorNode.bounds.minY - batteryConnectionButtonNode.height - 10;
-    batteryConnectionButtonNode.translation = new Vector2( x, y );
 
   }
 
