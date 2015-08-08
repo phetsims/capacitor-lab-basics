@@ -33,7 +33,6 @@ define( function( require ) {
   var topPlateChargeString = require( 'string!CAPACITOR_LAB_BASICS/topPlateCharge' );
   var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
   var graphsString = require( 'string!CAPACITOR_LAB_BASICS/graphs' );
-  var voltmeterString = require( 'string!CAPACITOR_LAB_BASICS/voltmeter' );
 
   /**
    * Constructor.
@@ -86,23 +85,11 @@ define( function( require ) {
     var graphsVisibilityControlPanel = createControlPanel( graphsVisibilityControlBox, minWidth );
     var viewVisibilityControlPanel = createControlPanel( viewVisibilityControlBox, minWidth );
 
-    var voltMeterButton = new RectangularPushButton( {
-      content: new Text( voltmeterString, { font: PANEL_TITLE_FONT } ),
-      listener: function() {
-        model.voltmeterVisible = !model.voltmeterVisible;
-      },
-      minWidth: minWidth / 2,
-      minHeight: minWidth / 2,
-      baseColor: 'white'
-    } );
-
     LayoutBox.call( this, {
       children: [
         graphsVisibilityControlPanel,
         new VStrut( PANEL_VERTICAL_SPACE ),
         viewVisibilityControlPanel,
-        new VStrut( PANEL_VERTICAL_SPACE ),
-        voltMeterButton
       ],
       align: 'left'
     } );
