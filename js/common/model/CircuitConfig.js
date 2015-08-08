@@ -29,7 +29,8 @@ define( function( require ) {
       dielectricMaterial: DielectricMaterial.Air(),
       dielectricOffset: 0.02, // meters
       wireExtent: 0,
-      wireThickness: 0.0005 // meters
+      wireThickness: 0.0005, // meters
+      lightBulbResistance: 5E12
     }, options );
 
     this.modelViewTransform = options.modelViewTransform;
@@ -43,6 +44,7 @@ define( function( require ) {
     this.wireExtent = options.wireExtent;
     this.dielectricMaterial = options.dielectricMaterial;
     this.dielectricOffset = options.dielectricOffset;
+    this.lightBulbResistance = options.lightBulbResistance;
 
   }
 

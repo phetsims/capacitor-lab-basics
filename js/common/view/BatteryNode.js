@@ -30,8 +30,8 @@ define( function( require ) {
   var TICK_LABEL_SPACING = 5;
 
   // images
-  var batteryUpImage = require( 'image!CAPACITOR_LAB_BASICS/battery_3D_up.png' );
-  var batteryDownImage = require( 'image!CAPACITOR_LAB_BASICS/battery_3D_down.png' );
+  var batteryUpImage = require( 'image!CAPACITOR_LAB_BASICS/battery.png' );
+  var batteryDownImage = require( 'image!CAPACITOR_LAB_BASICS/battery_upside-down.png' );
 
   // strings
   var pattern_0value1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
@@ -81,7 +81,7 @@ define( function( require ) {
     Node.call( this );
 
     // battery image, scaled to match model dimensions
-    var imageNode = new Image( batteryUpImage, { scale: 0.90 } );
+    var imageNode = new Image( batteryUpImage, { scale: 0.30 } );
     this.addChild( imageNode );
 
     // voltage slider

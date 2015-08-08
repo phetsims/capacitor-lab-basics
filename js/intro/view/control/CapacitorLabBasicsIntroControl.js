@@ -17,7 +17,6 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
   var VStrut = require( 'SCENERY/nodes/VStrut' );
-  var RectangularPushButton = require( 'SUN/buttons/RectangularPushButton' );
 
   // constants
   var PANEL_TITLE_FONT = new PhetFont( { weight: 'bold', size: 18 } );
@@ -30,7 +29,6 @@ define( function( require ) {
   var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
   var valuesString = require( 'string!CAPACITOR_LAB_BASICS/values' );
   var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
-  var voltmeterString = require( 'string!CAPACITOR_LAB_BASICS/voltmeter' );
 
   /**
    * Constructor.
@@ -60,21 +58,9 @@ define( function( require ) {
     var viewVisibilityControlBox = createControlBox( viewString, viewVerticalCheckBoxGroup );
     var viewVisibilityControlPanel = createControlPanel( viewVisibilityControlBox, minWidth );
 
-    var voltMeterButton = new RectangularPushButton( {
-      content: new Text( voltmeterString, { font: PANEL_TITLE_FONT } ),
-      listener: function() {
-        model.voltmeterVisible = !model.voltmeterVisible;
-      },
-      minWidth: minWidth / 2,
-      minHeight: minWidth / 2,
-      baseColor: 'white'
-    } );
-
     LayoutBox.call( this, {
       children: [
-        viewVisibilityControlPanel,
-        new VStrut( PANEL_VERTICAL_SPACE ),
-        voltMeterButton
+        viewVisibilityControlPanel
       ],
       align: 'left'
     } );
