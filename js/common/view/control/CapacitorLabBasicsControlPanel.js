@@ -16,7 +16,6 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
   var VStrut = require( 'SCENERY/nodes/VStrut' );
-  var RectangularPushButton = require( 'SUN/buttons/RectangularPushButton' );
 
   // constants
   var PANEL_TITLE_FONT = new PhetFont( { weight: 'bold', size: 18 } );
