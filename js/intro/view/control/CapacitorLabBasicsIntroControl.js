@@ -22,7 +22,6 @@ define( function( require ) {
   var PANEL_TITLE_FONT = new PhetFont( { weight: 'bold', size: 18 } );
   var CHECK_BOX_FONT = new PhetFont( 16 );
   var TITLE_VERTICAL_SPACE = 10;
-  var PANEL_VERTICAL_SPACE = 30;
 
   // strings
   var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
