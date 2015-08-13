@@ -164,7 +164,7 @@ define( function( require ) {
    * @param {CircuitConfig} config
    * @param {number} numberOfCapacitors
    * @param {number} numberOfLightBulbs
-   * @param {object} options
+   * @param {Object} options
    */
   function ParallelCircuit( config, numberOfCapacitors, numberOfLightBulbs, options ) {
 

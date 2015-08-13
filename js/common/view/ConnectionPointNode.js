@@ -29,7 +29,7 @@ define( function( require ) {
    *
    * @param {string} connectionType
    * @param {Property} circuitConnectionProperty
-   * @param {object} options
+   * @param {Object} options
    * @constructor
    */
   function ConnectionPointNode( connectionType, circuitConnectionProperty, options ) {

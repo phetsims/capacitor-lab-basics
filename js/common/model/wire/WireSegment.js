@@ -186,7 +186,7 @@ define( function( require ) {
    *
    *
    * @param {Vector2} hingePoint
-   * @param {object} activeConnection
+   * @param {Object} activeConnection
    * @constructor
    */
   function SwitchSegment( hingePoint, activeConnection ) {

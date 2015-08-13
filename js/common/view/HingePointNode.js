@@ -24,7 +24,7 @@ define( function( require ) {
   /**
    * Constructor for the ConnectionPointNode.
    *
-   * @param {object} options
+   * @param {Object} options
    * @constructor
    */
   function HingePointNode( options ) {

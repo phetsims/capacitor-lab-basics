@@ -32,7 +32,7 @@ define( function( require ) {
   /**
    * Constructor for the ConnectionAreaInputListener.
    *
-   * @param {object} connection
+   * @param {Object} connection
    * @param {Vector2} hingePoint
    * @param {ConnectionPointNode} connectionPointNode
    * @param {CLModelViewTransform3D} modelViewTransform
