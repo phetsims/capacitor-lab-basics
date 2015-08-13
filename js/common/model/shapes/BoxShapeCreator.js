@@ -140,7 +140,7 @@ define( function( require ) {
      * A complete box, relative to a specific origin.
      *
      * TODO: Previously, this was built up using constructional area geometry.  For now, I will return an array that
-     * can be added to the scene in parts.  This may not be how BoxShapeCreator is used so keep this on the mind.
+     * can be added to the scene in parts.
      *
      * @param {number} x
      * @param {number} y

@@ -87,7 +87,7 @@ define( function( require ) {
     //----------------------------------------------------------------------------
 
     // reference coordinate frame size for world nodes
-    CANVAS_RENDERING_SIZE: new Dimension2( 1024, 864 ),
+    CANVAS_RENDERING_SIZE: new Dimension2( 1024, 618 ),
 
     // model-view transform.  Note explicit conversion to radians
     MVT_SCALE: 12000, // scale factor when going from model to view

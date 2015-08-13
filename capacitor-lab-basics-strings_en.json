@@ -104,14 +104,17 @@
   "joules": {
     "value": "Joules"
   },
+  "voltage": {
+    "value": "Voltage"
+  },
   "units.joules": {
     "value": "J"
   },
   "units.volts": {
     "value": " V"
   },
-  "volt.unknown": {
-    "value": "? V"
+  "volts.unknown": {
+    "value": "?"
   },
   "voltmeter": {
     "value": "Voltmeter"

@@ -37,16 +37,16 @@ define( function( require ) {
     /**
      * Top plate, unoccluded.
      *
-     * @return {Shape}
+     * @return {array.<Shape>}
      */
     createTopPlateShape: function() {
-      return this.createBoxShape( this.capacitor.location.x, this.capacitor.getTopPlateCenter().y, this.capacitor.location.z, this.capacitor.plateSize );
+      return this.createBoxShape( this.capacitor.location.x, this.capacitor.getTopConnectionPoint().y, this.capacitor.location.z, this.capacitor.plateSize );
     },
 
     /**
      * Bottom plate, unoccluded.
      *
-     * @return {Shape}
+     * @return {array.<Shape>}
      */
     createBottomPlateShape: function() {
       return this.createBoxShape( this.capacitor.location.x, this.capacitor.location.y + ( this.capacitor.plateSeparation / 2 ), this.capacitor.location.z, this.capacitor.plateSize );
@@ -85,7 +85,7 @@ define( function( require ) {
     /**
      * Visible portion of the top plate. Nothing occludes the top plate.
      *
-     * @return
+     * @return {array.<Shape>}
      */
     createTopPlateShapeOccluded: function() {
       return this.createTopPlateShape();
@@ -94,10 +94,11 @@ define( function( require ) {
     /**
      * Visible portion of the bottom plate. May be partially occluded by the top plate.
      *
-     * @return {Shape}
+     * @return {array.<Shape>}
      */
     createBottomPlateShapeOccluded: function() {
       // TODO: This will need an alternative solution without CAG
+      return this.createBottomPlateShape(); //
       //return ShapeUtils.subtract( createBottomPlateShape(), createTopPlateShape() );
     },
 
@@ -126,9 +127,17 @@ define( function( require ) {
     // general shapes
     //----------------------------------------------------------------------------------------
 
-    // A box, relative to a specific origin.
+    /**
+     * Create an array of planar shapes that form a box.
+     * @param x
+     * @param y
+     * @param z
+     * @param size
+     *
+     * @returns {array.<Shape>}
+     */
     createBoxShape: function( x, y, z, size ) {
-      return this.boxShapeCreator.createBoxShape( x, y, z, size.width, size.height, size.deptb );
+      return this.boxShapeCreator.createBoxShape( x, y, z, size.width, size.height, size.depth );
     },
 
     // Encapsulation of empty shape.

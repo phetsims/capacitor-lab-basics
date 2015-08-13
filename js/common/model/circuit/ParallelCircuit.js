@@ -227,7 +227,16 @@ define( function( require ) {
      * @returns {boolean}
      */
     connectedToBatteryTop: function( shape ) {
-      return this.battery.intersectsTopTerminal( shape ) || this.getTopWire().shape.intersectsBounds( shape ) || this.intersectsSomeTopPlate( shape );
+      var intersectsTopTerminal = this.battery.intersectsTopTerminal( shape );
+      var intersectsTopWire = false;
+      this.getTopWires().forEach( function( topWire ) {
+        if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
+          intersectsTopWire = true;
+        }
+      } );
+      var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
+      return intersectsTopTerminal || intersectsTopWire || intersectsSomeTopPlate;
+      //return this.battery.intersectsTopTerminal( shape ) || this.getTopWires().shape.intersectsBounds( shape ) || this.intersectsSomeTopPlate( shape );
     },
 
     /**
@@ -237,7 +246,16 @@ define( function( require ) {
      * @returns {boolean}
      */
     connectedToBatteryBottom: function( shape ) {
-      return this.battery.intersectsBottomTerminal( shape ) || this.getBottomWire().shape.intersectsBounds( shape ) || this.intersectsSomeBottomPlate( shape );
+      var intersectsBottomTerminal = this.battery.intersectsBottomTerminal( shape );
+      var intersectsBottomWires = false;
+      this.getBottomWires().forEach( function( bottomWire ) {
+        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+          intersectsBottomWires = true;
+        }
+      } );
+      var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
+      return intersectsBottomTerminal || intersectsBottomWires || intersectsSomeBottomPlate;
+      //return this.battery.intersectsBottomTerminal( shape ) || this.getBottomWire().shape.intersectsBounds( shape ) || this.intersectsSomeBottomPlate( shape );
     },
 
     /**

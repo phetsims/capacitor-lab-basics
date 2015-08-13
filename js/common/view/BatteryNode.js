@@ -119,7 +119,6 @@ define( function( require ) {
         imageNode.image = batteryDownImage;
       }
     } );
-
   }
 
   return inherit( Node, BatteryNode, {} );

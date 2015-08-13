@@ -5,20 +5,21 @@
  * Shapes are in the global view coordinate frame.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Jesse Greenberg
  */
 define( function( require ) {
   'use strict';
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var Rectangle = require( 'DOT/Rectangle' );
+  var Shape = require( 'KITE/Shape' );
   var Matrix3 = require( 'DOT/Matrix3' );
 
   /**
    * Constructor for a VoltmeterShapeCreator.
    *
    * @param {Voltmeter} voltmeter
-   * @param {CLModelViewTransform} modelViewTransform
+   * @param {CLModelViewTransform3D} modelViewTransform
    * @constructor
    */
   function VoltmeterShapeCreator( voltmeter, modelViewTransform ) {
@@ -36,7 +37,7 @@ define( function( require ) {
      * @return {Shape}
      */
     getPositiveProbeTipShape: function() {
-      return this.getProbeTipShape( this.voltmeter.positiveProbeLocation, -this.modelViewTransform.MVT_YAW );
+      return this.getProbeTipShape( this.voltmeter.positiveProbeLocation, -this.modelViewTransform.yaw );
     },
 
     /**
@@ -45,16 +46,16 @@ define( function( require ) {
      * @return {Shape}
      */
     getNegativeProbeTipShape: function() {
-      return this.getProbeTipShape( this.voltmeter.negativeProbeLocation, -this.modelViewTransform.MVT_YAW );
+      return this.getProbeTipShape( this.voltmeter.negativeProbeLocation, -this.modelViewTransform.yaw );
     },
 
     // Gets the shape of a probe tip relative to some specified origin.
     getProbeTipShape: function( origin, theta ) {
       var width = this.voltmeter.getProbeTipSizeReference().width;
-      var height = this.voltmeter.getProbeTopSizeReference().height;
-      var x = origin.x - ( width / 2 );
+      var height = this.voltmeter.getProbeTipSizeReference().height;
+      var x = origin.x + width / 2; // TODO: adding the width justifies the shape.  Probably some white space in the images.
       var y = origin.y;
-      var r = new Rectangle( x, y, width, height );
+      var r = Shape.rectangle( x, y, width, height );
       var t = Matrix3.rotationAround( theta, origin.x, origin.y );
       var s = r.transformed( t );
       return this.modelViewTransform.modelToViewShape( s );

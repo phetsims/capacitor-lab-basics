@@ -4,6 +4,7 @@
  * Visual representation of a wire.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Jesse Greenberg
  */
 define( function( require ) {
   'use strict';

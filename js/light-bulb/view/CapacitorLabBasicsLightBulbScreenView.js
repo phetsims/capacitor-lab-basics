@@ -18,6 +18,7 @@ define( function( require ) {
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
   var CapacitorLabBasicsLightBulbControl = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/control/CapacitorLabBasicsLightBulbControl' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
 
   // Strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
@@ -50,7 +51,7 @@ define( function( require ) {
     var capacitanceMeterNode = new BarMeterNode.CapacitanceMeterNode( model.capacitanceMeter, this.modelViewTransform, capacitanceString );
     var plateChargeMeterNode = new BarMeterNode.PlateChargeMeterNode( model.plateChargeMeter, this.modelViewTransform, plateChargeString );
     var storedEnergyMeterNode = new BarMeterNode.StoredEnergyMeterNode( model.storedEnergyMeter, this.modelViewTransform, storedEnergyString );
-    //VoltmeterNode voltmeterNode = new VoltmeterNode( model.voltmeter, mvt );
+    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
@@ -75,7 +76,7 @@ define( function( require ) {
     this.addChild( capacitanceMeterNode );
     this.addChild( plateChargeMeterNode );
     this.addChild( storedEnergyMeterNode );
-    //addChild( voltmeterNode );
+    this.addChild( voltmeterNode );
     this.addChild( capacitorLabBasicsLightBulbControl );
     this.addChild( this.resetAllButton );
   }

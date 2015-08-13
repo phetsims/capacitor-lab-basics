@@ -1,99 +1,83 @@
 // Copyright 2002-2015, University of Colorado Boulder
 
+/**
+ * Base class for voltmeter probes.
+ *
+ * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Jesse Greenberg
+ */
 define( function( require ) {
   'use strict';
 
   // modules
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Input = require( 'SCENERY/input/Input' );
-  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
-  var Vector2 = require( 'DOT/Vector2' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
 
   // images
-  var redProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_red_large.png' );
-  var blackProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_black_large.png' );
-  
+  var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_red_large.png' );
+  var blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_black_large.png' );
+
   /**
-   * Constructor to hold the image of either the red probe or the black probe for the voltmeter
-   * @param {CapacitorLabModel} model
-   * @param {boolean} isRedProbe: checks if the probe is red or black
-   **/
-  function VoltmeterProbeNode(model, isRedProbe, options) {
-    options = _.extend({cursor: 'pointer', focusable:true}, options);
-    
-    var image = redProbeImage;
-    if (!isRedProbe) {
-      image = blackProbeImage;
-    }
-    Image.call( this, image, options );
-    
+   * Constructor.
+   *
+   * @param {Image} image image of the probe
+   * @param {Property} locationProperty property to observer for the probe's location
+   * @param {CLModelViewTransform3D} modelViewTransform model-view transform
+   */
+  function VoltmeterProbeNode( image, locationProperty, modelViewTransform, voltmeter ) {
+
+    Node.call( this );
     var thisNode = this;
-    var focusGone = true;
-    
-    this.locations = [new Vector2(-355, 100),
-                      new Vector2(-385, -47),
-                      new Vector2(-280, 45),
-                      new Vector2(-280, 155),
-                      new Vector2(-385, 246)];
-    if (!isRedProbe) {
-      this.locations = [new Vector2(-315, 100),
-                        new Vector2(-345, -47),
-                        new Vector2(-240, 45),
-                        new Vector2(-240, 155),
-                        new Vector2(-345, 246)];
-    }
-    this.loc = 0;
-    
-    // drag handler
-    var probeOffset = {};
-    var probeDragHandler = new SimpleDragHandler( {
-      //When dragging across it in a mobile device, pick it up
-      allowTouchSnag: true,
-      start: function( event ) {
-        probeOffset.x = thisNode.globalToParentPoint( event.pointer.point ).x - thisNode.centerX;
-        probeOffset.y = thisNode.globalToParentPoint( event.pointer.point ).y - thisNode.centerY;
-      },
-      //Translate on drag events
-      drag: function( event ) {
-        var point = thisNode.globalToParentPoint( event.pointer.point );
-        var desiredPosition = point.copy().subtract( probeOffset );
-        model.moveProbeToPosition( desiredPosition, isRedProbe );
-      }
+    this.locationProperty = locationProperty; // @public
+
+    // TODO: A mipmap will likely be necessary at this size.
+    var imageNode = new Image( image, { scale: 0.25 } );
+    this.addChild( imageNode );
+    var x = -imageNode.bounds.width / 2;
+    var y = 0;
+    imageNode.translate( x, y );
+
+    this.connectionOffset = imageNode.centerBottom; // @public connect wire to bottom center
+
+    // image is vertical, rotate into pseudo-3D perspective after computing the connection offset
+    this.rotate( -modelViewTransform.yaw );
+    this.connectionOffset.rotate( -modelViewTransform.yaw );
+
+    // update position with model
+    locationProperty.link( function( location ) {
+      thisNode.translation = modelViewTransform.modelToViewPosition( location );
     } );
-    this.addInputListener( probeDragHandler );
-    
-    this.addInputListener( {
-      keydown: function( event, trail ) {
-        var keyCode = event.domEvent.keyCode;
-        if ( keyCode === Input.KEY_RIGHT_ARROW ) {
-          thisNode.loc = (thisNode.loc + 1) % thisNode.locations.length;
-          model.moveProbeToPosition( thisNode.locations[thisNode.loc], isRedProbe );
-          thisNode.getParent().moveToGhost( thisNode, isRedProbe, thisNode.loc );
-        }
-        else if ( keyCode === Input.KEY_LEFT_ARROW ) {
-          thisNode.loc = (thisNode.loc - 1) % thisNode.locations.length;
-          if (thisNode.loc < 0) {
-            thisNode.loc = thisNode.locations.length - 1;
-          }
-          model.moveProbeToPosition( thisNode.locations[thisNode.loc], isRedProbe );
-          thisNode.getParent().moveToGhost( thisNode, isRedProbe, thisNode.loc );
-        }
-      }
+
+    // make draggable TODO: Add restrictive bounds for MovableDragHandler.
+    this.movableDragHandler = new MovableDragHandler( locationProperty, {
+      modelViewTransform: modelViewTransform
     } );
-    Input.focusedTrailProperty.link( function() {
-      if (Input.focusedTrailProperty.value !== null) {
-        if (thisNode === Input.focusedTrailProperty.value.lastNode()) {
-          thisNode.getParent().toggleGhosts( isRedProbe );
-          focusGone = false;
-        }
-        else if (!focusGone) {
-          thisNode.getParent().toggleGhosts( isRedProbe );
-          focusGone = true;
-        }
-      }
-    } );
+    this.addInputListener( this.movableDragHandler );
+    this.cursor = 'pointer';
   }
-  
-  return inherit( Image, VoltmeterProbeNode);
+
+  return inherit( Node, VoltmeterProbeNode, {
+
+    /**
+     * Gets the point, relative to the probe, where the wire connects to the probe. Returns a new Vector2.
+     *
+     * @returns {Vector2}
+     */
+    getConnectionOffset: function() {
+      return this.connectionOffset.copy();
+    }
+  }, {
+
+    // Factory functions to create both Positive and negative probes.
+    PositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform ) {
+      return new VoltmeterProbeNode( redVoltmeterProbeImage, voltmeter.positiveProbeLocationProperty, modelViewTransform, voltmeter );
+    },
+    NegativeVoltmeterProbeNode: function( voltmeter, modelViewTransform ) {
+      return new VoltmeterProbeNode( blackVoltmeterProbeImage, voltmeter.negativeProbeLocationProperty, modelViewTransform, voltmeter );
+    }
+
+  } );
+
 } );

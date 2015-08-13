@@ -17,13 +17,13 @@ define( function( require ) {
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
-  var PROBE_TIP_SIZE = new Dimension2( 0.0005, 0.0015 ); // meters
+  var PROBE_TIP_SIZE = new Dimension2( 0.001, 0.0018 ); // meters
 
   /**
    * Constructor for a Voltmeter.
    *
    * @param {AbstractCircuit} circuit
-   * @param {Bounds2} worldBounds
+   * @param {Bounds2} dragBounds
    * @param {ModelViewTransform2} modelViewTransform
    * @param {Vector3} bodyLocation
    * @param {Vector3} positiveProbeLocation
@@ -31,8 +31,9 @@ define( function( require ) {
    * @param {boolean} visible
    * @constructor
    */
-  function Voltmeter( circuit, worldBounds, modelViewTransform, bodyLocation, positiveProbeLocation, negativeProbeLocation, visible ) {
+  function Voltmeter( circuit, dragBounds, modelViewTransform, bodyLocation, positiveProbeLocation, negativeProbeLocation, visible ) {
 
+    // @public
     PropertySet.call( this, {
       visible: visible,
       bodyLocation: bodyLocation,
@@ -40,23 +41,23 @@ define( function( require ) {
       negativeProbeLocation: negativeProbeLocation,
       value: 0 // Wil be properly initialized by updateValue
     } );
+    var thisMeter = this;
 
     this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform );
     this.circuit = circuit;
-    //circuitChangeListener = new CircuitChangeListener() { TODO
-    //  public void circuitChanged() {
-    //    updateValue();
-    //  }
-    //};
-    //circuit.addCircuitChangeListener( circuitChangeListener );
+    this.dragBounds = dragBounds;
 
-    // update value when probes move TODO
-    //RichSimpleObserver probeObserver = new RichSimpleObserver() {
-    //  public void update() {
-    //    updateValue();
-    //  }
-    //};
-    //probeObserver.observe( positiveProbeLocationProperty, negativeProbeLocationProperty );
+    // whenever a capacitor changes, update the value.
+    circuit.capacitors.forEach( function( capacitor ) {
+      capacitor.platesVoltageProperty.link( function( voltage ) {
+        thisMeter.updateValue();
+      } );
+    } );
+
+    // update the value when the probes move.
+    this.multilink( [ 'negativeProbeLocation', 'positiveProbeLocation' ], function() {
+      thisMeter.updateValue();
+    } );
 
   }
 
@@ -64,16 +65,16 @@ define( function( require ) {
 
     updateValue: function() {
       if ( this.probesAreTouching() ) {
-        this.valueProperty = 0;
+        this.value = 0;
       }
       else {
-        this.valueProperty = this.circuit.getVoltageBetween( this.shapeCreator.getPositivePropeTipShape(), this.shapeCreator.getNegativePropeTipShape() );
+        this.value = this.circuit.getVoltageBetween( this.shapeCreator.getPositiveProbeTipShape(), this.shapeCreator.getNegativeProbeTipShape() );
       }
     },
 
     // Probes are touching if their tips intersect.
     probesAreTouching: function() {
-      return this.shapeCreator.getPositiveProbeTipShape().intersectsBounds( this.shapeCreator.getNegativeProbeTimShape().bounds );
+      return this.shapeCreator.getPositiveProbeTipShape().intersectsBounds( this.shapeCreator.getNegativeProbeTipShape() );
     },
 
     setCircuit: function( circuit ) {

@@ -51,7 +51,7 @@ define( function( require ) {
      */
     createTopTerminalShape: function() {
       if ( this.battery.polarity === CLConstants.POLARITY.POSITIVE ) {
-        return this.createPositiveTerminalShape( this.battery.location );
+        return this.createPositiveTerminalShapeBody( this.battery.location );
       }
       else {
         return this.createNegativeTerminalShape( this.battery.location );
@@ -72,13 +72,13 @@ define( function( require ) {
       var ellipseHeight = this.createPositiveTerminalShapeTop( origin ).bounds.height;
 
       // wall of the cylinder
-      var cylinderWidth = this.battery.getPositiveTerminalEllipseSize().getWidth();
+      var cylinderWidth = this.battery.getPositiveTerminalEllipseSize().width;
       var cylinderHeight = this.battery.getPositiveTerminalCylinderHeight();
-      var cylinderY = origin.getY() + this.battery.getTopTerminalYOffset();
+      var cylinderY = origin.y + this.battery.getTopTerminalYOffset();
       var wallShape = new Rectangle( origin.x, cylinderY, cylinderWidth, cylinderHeight );
 
       return this.modelViewTransform.modelToViewShape( new Shape()
-        .moveTo( wallShape.minX )// Top left of wall.
+        .moveTo( wallShape.minX, wallShape.minY )// Top left of wall.
         .ellipticalArc( wallShape.centerX, wallShape.minY, wallShape.width / 2, ellipseHeight / 2, 0, Math.PI, 0, false )
         .lineTo( wallShape.maxX, wallShape.maxY )// Bottom right of wall.
         .ellipticalArc( wallShape.centerX, wallShape.maxY, wallShape.width / 2, wallShape.height / 2, 0, 0, Math.PI, false )
@@ -91,7 +91,8 @@ define( function( require ) {
       var ellipseWidth = this.battery.getPositiveTerminalEllipseSize().width;
       var ellipseHeight = this.battery.getPositiveTerminalEllipseSize().height;
       var ellipseY = origin.y + this.battery.getTopTerminalYOffset();
-      return this.modelViewTransform.modelToViewShape( new Shape.ellipse( origin.x, ellipseY, ellipseWidth / 2, ellipseHeight / 2, 0, 0, Math.PI / 2, false ) );
+      //return this.modelViewTransform.modelToViewShape( Shape.ellipse( origin.x, ellipseY, ellipseWidth / 2, ellipseHeight / 2, 0, 0, Math.PI / 2, false ) );
+      return Shape.ellipse( origin.x, ellipseY, ellipseWidth / 2, ellipseHeight / 2, 0, 0, Math.PI / 2, false );
 
     },
 

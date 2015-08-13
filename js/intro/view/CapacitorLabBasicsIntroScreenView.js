@@ -17,7 +17,12 @@ define( function( require ) {
   var IntroCircuitNode = require( 'CAPACITOR_LAB_BASICS/intro/view/IntroCircuitNode' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
   var CapacitorLabBasicsIntroControl = require( 'CAPACITOR_LAB_BASICS/intro/view/control/CapacitorLabBasicsIntroControl' );
+  var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  var Path = require( 'SCENERY/nodes/Path' );
+
+  // constants
+  var DEBUG_SHAPES = false;
 
   // Strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
@@ -46,7 +51,7 @@ define( function( require ) {
 
     // meters
     var capacitanceMeterNode = new BarMeterNode.CapacitanceMeterNode( model.capacitanceMeter, this.modelViewTransform, capacitanceString );
-    //VoltmeterNode voltmeterNode = new VoltmeterNode( model.voltmeter, mvt );
+    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
@@ -55,6 +60,7 @@ define( function( require ) {
     capacitorLabBasicsIntroControl.translation = this.layoutBounds.rightTop.minusXY( capacitorLabBasicsIntroControl.width + 10, -10 );
 
     capacitanceMeterNode.rightTop = capacitorLabBasicsIntroControl.leftTop.minusXY( 15, 0 );
+
     // reset button
     this.resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
@@ -66,10 +72,27 @@ define( function( require ) {
     // rendering order
     this.addChild( introCircuitNode );
     this.addChild( capacitanceMeterNode );
-    //addChild( voltmeterNode );
-    //addChild( shapesDebugParentNode );
+    this.addChild( voltmeterNode );
+    //this.addChild( shapesDebugParentNode );
     this.addChild( capacitorLabBasicsIntroControl );
     this.addChild( this.resetAllButton );
+
+    // debug shapes for probe collision testing, to be removed soon
+    if ( DEBUG_SHAPES ) {
+      var topTerminalNode = new Path( model.circuit.battery.shapeCreator.createPositiveTerminalShapeBody( model.circuit.battery.location ), {
+        fill: 'rgba( 1, 0, 0, 0.5 )'
+      } );
+      this.addChild( topTerminalNode );
+      // add a shape at the tip of the probe for debugging probe tip collisions.
+      this.addChild( new Path( model.voltmeter.shapeCreator.getPositiveProbeTipShape(), {
+          fill: 'rgba( 1, 0, 0, 0.5 )'
+        } )
+      );
+      this.addChild( new Path( model.voltmeter.shapeCreator.getNegativeProbeTipShape(), {
+          fill: 'rgba( 1, 0, 0, 0.5 )'
+        } )
+      );
+    }
   }
 
   return inherit( ScreenView, CapacitorLabBasicsIntroScreenView );

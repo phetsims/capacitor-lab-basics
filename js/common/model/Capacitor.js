@@ -212,7 +212,14 @@ define( function( require ) {
      * @return {boolean}
      */
     intersectsTopPlate: function( shape ) {
-      return shape.intersectsBounds( this.shapeCreator.createTopPlateShapeOccluded() );
+      var intersectsTopPlate = false;
+      this.shapeCreator.createTopPlateShapeOccluded().forEach( function( topPlateShape ) {
+        if( shape.intersectsBounds( topPlateShape.bounds ) ) {
+          intersectsTopPlate = true;
+        }
+      } );
+      return intersectsTopPlate;
+      //return shape.intersectsBounds( this.shapeCreator.createTopPlateShapeOccluded() );
     },
 
     /**
@@ -222,7 +229,15 @@ define( function( require ) {
      * @return {boolean}
      */
     intersectsBottomPlate: function( shape ) {
-      return shape.intersectsBounds( this.shapeCreator.createBottomPlateShapeOccluded() );
+      var intersectsBottomPlate = false;
+      this.shapeCreator.createBottomPlateShapeOccluded().forEach( function( bottomPlateShape ) {
+        if( shape.intersectsBounds( bottomPlateShape.bounds ) ) {
+          intersectsBottomPlate = true;
+        }
+      } );
+      return intersectsBottomPlate;
+
+      //return shape.intersectsBounds( this.shapeCreator.createBottomPlateShapeOccluded() );
     },
 
     /**
