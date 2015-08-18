@@ -15,9 +15,6 @@
   },
   "phet": {
     "requirejsNamespace": "CAPACITOR_LAB_BASICS",
-    "simTitleStringKey": "CAPACITOR_LAB_BASICS/capacitor-lab-basics.name",
-    "phetLibs": [
-      "capacitor-lab-basics"
-    ]
+    "simTitleStringKey": "CAPACITOR_LAB_BASICS/capacitor-lab-basics.name"
   }
 }
