@@ -12,4 +12,4 @@ Development. This guide includes how to obtain simulation code and its dependenc
 the sims, as well as other important information.
 
 ### License
-See the <a href="https://github.com/phetsims/capacitor-lab/blob/master/LICENSE" target="_blank">LICENSE</a>
+See the <a href="https://github.com/phetsims/capacitor-lab-basics/blob/master/LICENSE" target="_blank">LICENSE</a>
