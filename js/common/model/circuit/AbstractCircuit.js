@@ -130,7 +130,7 @@ define( function( require ) {
 
     reset: function() {
       this.battery.reset();
-      this.circuitComponents.forEach( function( capacitor ) {
+      this.capacitors.forEach( function( capacitor ) {
         capacitor.reset();
       } );
     },
