@@ -9,8 +9,8 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var CapacitorLabBasicsIntroModel = require( 'CAPACITOR_LAB_BASICS/intro/model/CapacitorLabBasicsIntroModel' );
-  var CapacitorLabBasicsIntroScreenView = require( 'CAPACITOR_LAB_BASICS/intro/view/CapacitorLabBasicsIntroScreenView' );
+  var CapacitorLabBasicsIntroModel = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitorLabBasicsIntroModel' );
+  var CapacitorLabBasicsIntroScreenView = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitorLabBasicsIntroScreenView' );
   var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );

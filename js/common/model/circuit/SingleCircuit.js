@@ -24,7 +24,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
-  var CapacitanceCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/intro/model/CapacitanceCircuitSwitch' );
+  var CapacitanceCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitanceCircuitSwitch' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Vector3 = require( 'DOT/Vector3' );
 

@@ -14,9 +14,9 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
-  var IntroCircuitNode = require( 'CAPACITOR_LAB_BASICS/intro/view/IntroCircuitNode' );
+  var IntroCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/IntroCircuitNode' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
-  var CapacitorLabBasicsIntroControl = require( 'CAPACITOR_LAB_BASICS/intro/view/control/CapacitorLabBasicsIntroControl' );
+  var CapacitorLabBasicsIntroControl = require( 'CAPACITOR_LAB_BASICS/capacitance/view/control/CapacitorLabBasicsIntroControl' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var Path = require( 'SCENERY/nodes/Path' );

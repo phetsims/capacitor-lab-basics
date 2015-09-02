@@ -11,7 +11,7 @@ define( function( require ) {
 
   // modules
   var CapacitorLabBasicsLightBulbScreen = require( 'CAPACITOR_LAB_BASICS/light-bulb/CapacitorLabBasicsLightBulbScreen' );
-  var CapacitorLabBasicsIntroScreen = require( 'CAPACITOR_LAB_BASICS/intro/CapacitorLabBasicsIntroScreen' );
+  var CapacitorLabBasicsIntroScreen = require( 'CAPACITOR_LAB_BASICS/capacitance/CapacitorLabBasicsIntroScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
 
