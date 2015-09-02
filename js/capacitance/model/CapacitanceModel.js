@@ -16,7 +16,7 @@ define( function( require ) {
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Vector3 = require( 'DOT/Vector3' );
   var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
-  var SingleCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/SingleCircuit' );
+  var SingleCircuit = require( 'CAPACITOR_LAB_BASICS/capacitance/model/circuit/SingleCircuit' );
   var BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
