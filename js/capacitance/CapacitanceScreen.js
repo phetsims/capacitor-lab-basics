@@ -10,7 +10,7 @@ define( function( require ) {
 
   // modules
   var CapacitanceModel = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitanceModel' );
-  var CapacitorLabBasicsIntroScreenView = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitorLabBasicsIntroScreenView' );
+  var CapacitanceScreenView = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceScreenView' );
   var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -22,18 +22,18 @@ define( function( require ) {
   /**
    * @constructor
    */
-  function CapacitorLabBasicsIntroScreen() {
+  function CapacitanceScreen() {
 
     // TODO: Icons need to be created for this sim.
     var icon = new Rectangle( 0, 0, 548, 373, { fill: 'red' } );
 
     Screen.call( this, capacitorLabBasicsCapacitanceTitle, icon,
       function() { return new CapacitanceModel( new CLModelViewTransform3D() ); },
-      function( model ) { return new CapacitorLabBasicsIntroScreenView( model ); },
+      function( model ) { return new CapacitanceScreenView( model ); },
       { backgroundColor: 'rgb( 236, 255, 245 )'}
     );
 
   }
 
-  return inherit( Screen, CapacitorLabBasicsIntroScreen );
+  return inherit( Screen, CapacitanceScreen );
 } );

@@ -14,7 +14,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
-  var IntroCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/IntroCircuitNode' );
+  var CapacitanceCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceCircuitNode' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
   var CapacitanceControlPanel = require( 'CAPACITOR_LAB_BASICS/capacitance/view/control/CapacitanceControlPanel' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
@@ -31,7 +31,7 @@ define( function( require ) {
    * @param {CapacitorLabBasicsModel} model
    * @constructor
    */
-  function CapacitorLabBasicsIntroScreenView( model ) {
+  function CapacitanceScreenView( model ) {
 
     ScreenView.call( this );
 
@@ -46,7 +46,7 @@ define( function( require ) {
     //var eFieldReferenceMagnitude = model.getEFieldReferenceMagnitude();
 
     // circuit
-    var introCircuitNode = new IntroCircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisibleProperty,
+    var capacitanceCircuitNode = new CapacitanceCircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisibleProperty,
       model.eFieldVisibleProperty, model.valuesVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
     // meters
@@ -70,10 +70,9 @@ define( function( require ) {
     } );
 
     // rendering order
-    this.addChild( introCircuitNode );
+    this.addChild( capacitanceCircuitNode );
     this.addChild( capacitanceMeterNode );
     this.addChild( voltmeterNode );
-    //this.addChild( shapesDebugParentNode );
     this.addChild( capacitanceControlPanel );
     this.addChild( this.resetAllButton );
 
@@ -95,5 +94,5 @@ define( function( require ) {
     }
   }
 
-  return inherit( ScreenView, CapacitorLabBasicsIntroScreenView );
+  return inherit( ScreenView, CapacitanceScreenView );
 } );

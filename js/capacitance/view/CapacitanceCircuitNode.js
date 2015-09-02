@@ -35,7 +35,7 @@ define( function( require ) {
    * @param {number} maxEffectiveEField
    * @constructor
    */
-  function IntroCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, valuesVisibleProperty, maxPlateCharge,
+  function CapacitanceCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, valuesVisibleProperty, maxPlateCharge,
                              maxEffectiveEField ) {
 
     Node.call( this );
@@ -119,6 +119,6 @@ define( function( require ) {
 
   }
 
-  return inherit( Node, IntroCircuitNode );
+  return inherit( Node, CapacitanceCircuitNode );
 
 } );
