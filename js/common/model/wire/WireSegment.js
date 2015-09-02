@@ -35,7 +35,7 @@ define( function( require ) {
     }
   }, {
 
-    // Factory methods to publicly construct various segments. TODO: Flesh out with update functions.
+    // Factory methods to construct various wire segments.
     BatteryTopWireSegment: function( battery, endPoint ) { return new BatteryTopWireSegment( battery, endPoint ); },
     BatteryBottomWireSegment: function( battery, endPoint ) { return new BatteryBottomWireSegment( battery, endPoint ); },
     ComponentTopWireSegment: function( component, endPoint ) { return new ComponentTopWireSegment( component, endPoint ); },
@@ -183,7 +183,7 @@ define( function( require ) {
   } );
 
   /**
-   *
+   * Constructor for a switch segment.
    *
    * @param {Vector2} hingePoint
    * @param {Object} activeConnection

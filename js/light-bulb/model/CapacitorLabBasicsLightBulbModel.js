@@ -22,7 +22,7 @@ define( function( require ) {
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
   var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
-  var CapacitorLabModel = require( 'CAPACITOR_LAB_BASICS/common/model/CapacitorLabModel' );
+  var CapacitorLabBasicsModel = require( 'CAPACITOR_LAB_BASICS/common/model/CapacitorLabBasicsModel' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
 
   // constants
@@ -67,7 +67,7 @@ define( function( require ) {
    */
   function CapacitorLabBasicsLightBulbModel( modelViewTransform ) {
 
-    CapacitorLabModel.call( this );
+    CapacitorLabBasicsModel.call( this );
 
     this.modelViewTransform = modelViewTransform;
 
@@ -103,7 +103,7 @@ define( function( require ) {
 
   }
 
-  return inherit( CapacitorLabModel, CapacitorLabBasicsLightBulbModel, {
+  return inherit( CapacitorLabBasicsModel, CapacitorLabBasicsLightBulbModel, {
 
     /**
      * Reset function for this model.

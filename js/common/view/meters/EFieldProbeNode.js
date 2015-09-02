@@ -15,7 +15,7 @@ define( function( require ) {
 
   /**
    * Constructor to contain the image of the electric field probe and its drag handler
-   * @param {CapacitorLabModel} model
+   * @param {CapacitorLabBasicsModel} model
    */
   function EFieldProbeNode(model, options) {
     options = _.extend({cursor: 'pointer', focusable: true}, options);

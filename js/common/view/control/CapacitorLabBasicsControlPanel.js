@@ -36,7 +36,7 @@ define( function( require ) {
   /**
    * Constructor.
    *
-   * @param {CapacitorLabModel} model
+   * @param {CapacitorLabBasicsModel} model
    * @param {number} minWidth - minimum width of the panels, calculated by layout in the screen view.
    * @constructor
    */

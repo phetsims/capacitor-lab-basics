@@ -84,7 +84,7 @@ define( function( require ) {
 //
 //  /**
 //   * Constructor for the voltmeter
-//   * @param {CapacitorLabModel} model
+//   * @param {CapacitorLabBasicsModel} model
 //   * @param {CircuitNode} circuit
 //   * @param {object} options
 //   **/

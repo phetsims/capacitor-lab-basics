@@ -25,7 +25,7 @@ define( function( require ) {
 
   /**
    * Constructor for the slider that controls the charge on the capacitor when the battery is disconnected
-   * @param {CapacitorLabModel} model
+   * @param {CapacitorLabBasicsModel} model
    **/
   function PlateChargeSlider( model, options ) {
     Node.call( this, options );

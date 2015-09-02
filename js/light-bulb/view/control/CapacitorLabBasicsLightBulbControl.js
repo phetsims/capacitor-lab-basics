@@ -37,7 +37,7 @@ define( function( require ) {
   /**
    * Constructor.
    *
-   * @param {CapacitorLabModel} model
+   * @param {CapacitorLabBasicsModel} model
    * @constructor
    */
   function CapacitorLabBasicsControlPanel( model ) {

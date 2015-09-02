@@ -21,7 +21,7 @@ define( function( require ) {
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
   var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
-  var CapacitorLabModel = require( 'CAPACITOR_LAB_BASICS/common/model/CapacitorLabModel' );
+  var CapacitorLabBasicsModel = require( 'CAPACITOR_LAB_BASICS/common/model/CapacitorLabBasicsModel' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
 
   // constants
@@ -48,9 +48,9 @@ define( function( require ) {
    *
    * @param {CLModelViewTransform3D} modelViewTransform
    */
-  function CapacitorLabBasicsModel( modelViewTransform ) {
+  function CapacitanceModel( modelViewTransform ) {
 
-    CapacitorLabModel.call( this );
+    CapacitorLabBasicsModel.call( this );
 
     this.modelViewTransform = modelViewTransform;
 
@@ -79,7 +79,7 @@ define( function( require ) {
 
   }
 
-  return inherit( CapacitorLabModel, CapacitorLabBasicsModel, {
+  return inherit( CapacitorLabBasicsModel, CapacitanceModel, {
 
     /**
      * Reset function for this model.

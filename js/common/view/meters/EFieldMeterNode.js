@@ -26,7 +26,7 @@ define( function( require ) {
 
   /**
    * Constructor for the electric field meter
-   * @param {CapacitorLabModel} model
+   * @param {CapacitorLabBasicsModel} model
    * @param {CapacitorNode} capacitor
    **/
   function EFieldMeterNode(model, capacitor, options) {
