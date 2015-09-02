@@ -11,6 +11,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
   // constants
   var ConnectionPoint = {
@@ -34,7 +35,7 @@ define( function( require ) {
     var segments = [];
 
     // y coordinate of the horizontal wire
-    var horizontalY = circuitSwitch.getBatteryConnectionPoint().y;
+    var horizontalY = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED ).y;
     var leftCorner = new Vector2( battery.location.x, horizontalY );
 
     // add the vertical segment.
@@ -120,11 +121,11 @@ define( function( require ) {
     getBatteryToSwitchSegment: function( connectionPoint, circuitSwitch, endPoint ) {
       var switchConnectionPoint;
       if ( connectionPoint === ConnectionPoint.TOP ) {
-        switchConnectionPoint = circuitSwitch.getBatteryConnectionPoint();
+        switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
         return WireSegment.BatteryTopToSwitchSegment( endPoint, switchConnectionPoint );
       }
       else {
-        switchConnectionPoint = circuitSwitch.getBatteryConnectionPoint();
+        switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
         return WireSegment.BatteryBottomToSwitchSegment( endPoint, switchConnectionPoint );
       }
     },
@@ -134,11 +135,11 @@ define( function( require ) {
       var bottomSwitch = sortedSwiches[ 1 ];
       var switchConnectionPoint;
       if ( connectionPoint === ConnectionPoint.TOP ) {
-        switchConnectionPoint = topSwitch.getLightBulbConnectionPoint();
+        switchConnectionPoint = topSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
         return WireSegment.BulbTopToSwitchSegment( switchConnectionPoint, endPoint );
       }
       else {
-        switchConnectionPoint = bottomSwitch.getLightBulbConnectionPoint();
+        switchConnectionPoint = bottomSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
         return WireSegment.BulbBottomToSwitchSegment( switchConnectionPoint, endPoint );
       }
     },

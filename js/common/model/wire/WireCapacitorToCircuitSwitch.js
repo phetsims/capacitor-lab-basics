@@ -11,6 +11,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
   // constants
   var ConnectionPoint = {
@@ -103,11 +104,11 @@ define( function( require ) {
     getBatteryToSwitchSegment: function( connectionPoint, circuitSwitch, endPoint ) {
       var switchConnectionPoint;
       if ( connectionPoint === ConnectionPoint.TOP ) {
-        switchConnectionPoint = circuitSwitch.getBatteryConnectionPoint();
+        switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
         return WireSegment.BatteryTopToSwitchSegment( endPoint, switchConnectionPoint );
       }
       else {
-        switchConnectionPoint = circuitSwitch.getBatteryConnectionPoint();
+        switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
         return WireSegment.BatteryBottomToSwitchSegment( endPoint, switchConnectionPoint );
       }
     },
@@ -115,11 +116,11 @@ define( function( require ) {
     getLightBulbToSwitchSegment: function( connectionPoint, circuitSwitch, endPoint ) {
       var switchConnectionPoint;
       if ( connectionPoint === ConnectionPoint.TOP ) {
-        switchConnectionPoint = circuitSwitch.getLightBulbConnectionPoint();
+        switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
         return new WireSegment( endPoint, switchConnectionPoint );
       }
       else {
-        switchConnectionPoint = circuitSwitch.getLightBulbConnectionPoint();
+        switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
         return new WireSegment( endPoint, switchConnectionPoint );
       }
     },

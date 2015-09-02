@@ -71,64 +71,49 @@ define( function( require ) {
           returnConnection = connection;
         }
       } );
-      if( returnConnection === 'undefined' ) {
+      if ( returnConnection === 'undefined' ) {
         console.error( 'Requested connection type that does not exist for this circuit' );
       }
       return returnConnection;
-
     },
 
-
-    // TODO: All of these functions should be removed and replaced throughout with calls to getConnection() above.
-    getBatteryConnectionPoint: function() {
-      var connectionPoint;
+    /**
+     * Convenience method for getting the connection locations. Similar to getConnection above, but directly returns
+     * the location.
+     *
+     * @param {string} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
+     */
+    getConnectionPoint: function( connectionType ) {
+      var returnConnectionPoint;
       this.connections.forEach( function( connection ) {
-        if ( connection.connectionType === CircuitConnectionEnum.BATTERY_CONNECTED ) {
-          connectionPoint = connection.location;
+        if ( connection.connectionType === connectionType ) {
+          returnConnectionPoint = connection.location;
         }
       } );
-      return connectionPoint.toVector2();
-    },
-
-    getLightBulbConnectionPoint: function() {
-      var connectionPoint;
-      this.connections.forEach( function( connection ) {
-        if ( connection.connectionType === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-          connectionPoint = connection.location;
-        }
-      } );
-      return connectionPoint.toVector2();
-    },
-
-    getOpenConnectionPoint: function() {
-      var connectionPoint;
-      this.connections.forEach( function( connection ) {
-        if ( connection.connectionType === CircuitConnectionEnum.OPEN_CIRCUIT ) {
-          connectionPoint = connection.location;
-        }
-      } );
-      return connectionPoint.toVector2();
+      if ( returnConnectionPoint === 'undefined' ) {
+        console.error( 'Requested connection type that does not exist for this circuit.' );
+      }
+      return returnConnectionPoint.toVector2();
     },
 
     getSwitchEndPoint: function() {
       return this.switchSegment.endPoint.toVector2();
     },
 
-
     getCapacitorConnectionPoint: function() {
       return this.hingePoint.toVector2();
     },
 
     getRightLimitAngle: function() {
-      return this.getLightBulbConnectionPoint().minus( this.hingePoint.toVector2() ).angle();
+      return this.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED ).minus( this.hingePoint.toVector2() ).angle();
     },
 
     getLeftLimitAngle: function() {
-      return this.getBatteryConnectionPoint().minus( this.hingePoint.toVector2() ).angle();
+      return this.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED ).minus( this.hingePoint.toVector2() ).angle();
     },
 
     getOpenAngle: function() {
-      return this.getOpenConnectionPoint().minus( this.hingePoint.toVector2() ).angle();
+      return this.getConnectionPoint( CircuitConnectionEnum.OPEN_CIRCUIT ).minus( this.hingePoint.toVector2() ).angle();
     }
   }, {
 
@@ -136,12 +121,12 @@ define( function( require ) {
 
       var topPoint = hingePoint.toVector2().minusXY( 0, CLConstants.SWITCH_WIRE_LENGTH );
       var leftPoint = hingePoint.toVector2().minusXY(
-        CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE  ),
-        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE  )
+        CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
+        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
       );
       var rightPoint = hingePoint.toVector2().minusXY(
-        -CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE  ),
-        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE  )
+        -CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
+        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
       );
       var connections = [
         {
@@ -165,12 +150,12 @@ define( function( require ) {
 
       var topPoint = hingePoint.toVector2().plusXY( 0, CLConstants.SWITCH_WIRE_LENGTH );
       var rightPoint = hingePoint.toVector2().plusXY(
-        CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE  ),
-        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE  )
+        CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
+        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
       );
       var leftPoint = hingePoint.toVector2().plusXY(
-        -CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE  ),
-        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE  )
+        -CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
+        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
       );
       var connections = [
         {
