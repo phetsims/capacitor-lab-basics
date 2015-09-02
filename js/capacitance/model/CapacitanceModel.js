@@ -44,7 +44,7 @@ define( function( require ) {
   var VOLTMETER_VISIBLE = false;
 
   /**
-   * Constructor for the CapacitorLabBasicsIntroModel.
+   * Constructor for the CapacitanceModel.
    *
    * @param {CLModelViewTransform3D} modelViewTransform
    */

@@ -9,7 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var CapacitorLabBasicsIntroModel = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitorLabBasicsIntroModel' );
+  var CapacitanceModel = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitanceModel' );
   var CapacitorLabBasicsIntroScreenView = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitorLabBasicsIntroScreenView' );
   var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -28,7 +28,7 @@ define( function( require ) {
     var icon = new Rectangle( 0, 0, 548, 373, { fill: 'red' } );
 
     Screen.call( this, capacitorLabBasicsCapacitanceTitle, icon,
-      function() { return new CapacitorLabBasicsIntroModel( new CLModelViewTransform3D() ); },
+      function() { return new CapacitanceModel( new CLModelViewTransform3D() ); },
       function( model ) { return new CapacitorLabBasicsIntroScreenView( model ); },
       { backgroundColor: 'rgb( 236, 255, 245 )'}
     );
