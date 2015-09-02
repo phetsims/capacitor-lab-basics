@@ -41,22 +41,12 @@ define( function( require ) {
     this.circuit = circuit;
     this.valueFunction = valueFunction;
 
-    circuit.capacitor.multilink( ['plateSize', 'plateSeparation', 'platesVoltage' ], function() {
+    circuit.capacitor.multilink( [ 'plateSize', 'plateSeparation', 'platesVoltage' ], function() {
       thisMeter.updateValue();
     } );
   }
 
   return inherit( PropertySet, BarMeter, {
-
-    setCircuit: function( circuit ) {
-      debugger;
-      if( this.circuit !== circuit ) {
-        //this.circuit.removeCircuitChangeListener( circuitChangeListener ); TODO
-        this.circuit = circuit;
-        //this.circuit.addCircuitChangeListener( circuitChangeListener ); TODO
-        this.updateValue();
-      }
-    },
 
     updateValue: function() {
       this.value = this.valueFunction( this.circuit );
@@ -81,7 +71,7 @@ define( function( require ) {
         } );
     },
 
-    StoredEnergyMeter: function( circuit, worldBounds, location, visibleProperty,valueVisibleProperty ) {
+    StoredEnergyMeter: function( circuit, worldBounds, location, visibleProperty, valueVisibleProperty ) {
       return new BarMeter( circuit, worldBounds, location, visibleProperty, valueVisibleProperty,
         function() {
           return circuit.getStoredEnergy();

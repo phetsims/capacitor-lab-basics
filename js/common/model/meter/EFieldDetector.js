@@ -103,16 +103,6 @@ define( function( require ) {
       return topPlateShape.containsPoint( viewPoint );
     },
 
-    setCircuit: function( circuit ) {
-      debugger;
-      if ( circuit !== this.circuit ) {
-        //this.circuit.removeCircuitChangeListener( circuitChangeListener ); TODO
-        this.circuit = circuit;
-        //this.circuit.addCircuitChangeListener( circuitChangeListener ); TODO
-        this.updateVectors();
-      }
-    },
-
     updateVectors: function() {
       // update values displayed by the meter based on probe location
       this.plateVector = this.circuit.getPlatesDielectricEFieldAt( this.probeLocation );

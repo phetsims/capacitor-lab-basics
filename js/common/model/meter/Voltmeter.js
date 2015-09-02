@@ -84,16 +84,6 @@ define( function( require ) {
       return this.shapeCreator.getPositiveProbeTipShape().intersectsBounds( this.shapeCreator.getNegativeProbeTipShape() );
     },
 
-    setCircuit: function( circuit ) {
-      debugger;
-      if ( circuit !== this.circuit ) {
-        //this.circuit.removeCircuitChangeListener( circuitChangeListener ); TODO
-        this.circuit = circuit;
-        //this.circuit.addCircuitChangeListener( circuitChangeListener );
-        this.updateValue();
-      }
-    },
-
     /**
      * Get the probe tip size in model coordinates
      *
