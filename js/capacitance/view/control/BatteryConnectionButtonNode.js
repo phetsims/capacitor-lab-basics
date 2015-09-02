@@ -24,7 +24,7 @@ define( function( require ) {
   /**
    * Constructor for the BatteryConnectionButtonNode.
    *
-   * @param {SingleCircuit} circuit
+   * @param {CapacitanceCircuit} circuit
    * @constructor
    */
   function BatteryConnectionButtonNode( circuit ) {

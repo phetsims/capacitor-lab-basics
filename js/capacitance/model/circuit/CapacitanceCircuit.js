@@ -62,7 +62,7 @@ define( function( require ) {
    * @param {CircuitConfig} config
    * @constructor
    */
-  function SingleCircuit( config ) {
+  function CapacitanceCircuit( config ) {
 
     ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 0 /* numberOfLightBulbs */, {
       circuitSwitchFactory: createCircuitSwitch
@@ -71,7 +71,7 @@ define( function( require ) {
     this.capacitor = this.capacitors[ 0 ];
   }
 
-  return inherit( ParallelCircuit, SingleCircuit, {
+  return inherit( ParallelCircuit, CapacitanceCircuit, {
 
     /**
      * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass

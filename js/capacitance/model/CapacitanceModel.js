@@ -16,7 +16,7 @@ define( function( require ) {
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Vector3 = require( 'DOT/Vector3' );
   var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
-  var SingleCircuit = require( 'CAPACITOR_LAB_BASICS/capacitance/model/circuit/SingleCircuit' );
+  var CapacitanceCircuit = require( 'CAPACITOR_LAB_BASICS/capacitance/model/circuit/CapacitanceCircuit' );
   var BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
@@ -68,7 +68,7 @@ define( function( require ) {
 
     this.dielectricMaterial = DielectricMaterial.Air();
 
-    this.circuit = new SingleCircuit( circuitConfig );
+    this.circuit = new CapacitanceCircuit( circuitConfig );
     this.worldBounds = CLConstants.CANVAS_RENDERING_SIZE.toBounds();
 
     this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, this.capacitanceMeterVisibleProperty, this.valuesVisibleProperty );
@@ -148,7 +148,7 @@ define( function( require ) {
         dielectricOffset: CLConstants.DIELECTRIC_OFFSET_RANGE.min
       } );
 
-      var circuit = new SingleCircuit( circuitConfig );
+      var circuit = new CapacitanceCircuit( circuitConfig );
 
       // disconnect the battery and set the max plate charge
       //circuit.circuitConnection = CircuitConnectionEnum.OPEN_CIRCUIT;

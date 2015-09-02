@@ -26,7 +26,7 @@ define( function( require ) {
   /**
    * Constructor for a CircuitNode.
    *
-   * @param {SingleCircuit} circuit
+   * @param {CapacitanceCircuit} circuit
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty

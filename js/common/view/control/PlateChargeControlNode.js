@@ -108,7 +108,7 @@ define( function( require ) {
   /**
    * Constructor.
    *
-   * @param {SingleCircuit} circuit
+   * @param {CapacitanceCircuit} circuit
    * @param {Range} range
    * @constructor
    */
