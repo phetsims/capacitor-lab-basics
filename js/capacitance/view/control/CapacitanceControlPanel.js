@@ -36,7 +36,7 @@ define( function( require ) {
    * @param {number} minWidth - minimum width of the panels, calculated by layout in the screen view.
    * @constructor
    */
-  function CapacitorLabBasicsIntroControl( model, minWidth ) {
+  function CapacitanceControlPanel( model, minWidth ) {
 
     var viewAssets = [
       {
@@ -117,6 +117,6 @@ define( function( require ) {
     } );
   }
 
-  return inherit( LayoutBox, CapacitorLabBasicsIntroControl );
+  return inherit( LayoutBox, CapacitanceControlPanel );
 
 } );
