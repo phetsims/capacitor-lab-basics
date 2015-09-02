@@ -1,7 +1,7 @@
 // Copyright 2002-2015, University of Colorado Boulder
 
 /**
- * The "Basics" model for Capacitor Lab.
+ * The main model for the "Light Bulb" screen of Capacitor Lab: Basics.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg

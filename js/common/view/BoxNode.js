@@ -79,7 +79,6 @@ define( function( require ) {
      */
     getFrontColor: function( baseColor ) {
       return baseColor.darkerColor();
-      //return getDarkerColor( getTopColor( baseColor ) );
     },
 
     /**
@@ -90,7 +89,6 @@ define( function( require ) {
      */
     getSideColor: function( baseColor ) {
       return baseColor.darkerColor().darkerColor();
-      //return getDarkerColor( getDarkerColor( baseColor ) );
     },
 
     setColor: function( color ) {

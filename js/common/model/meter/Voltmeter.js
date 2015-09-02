@@ -63,6 +63,9 @@ define( function( require ) {
 
   return inherit( PropertySet, Voltmeter, {
 
+    /**
+     * Update the meter value.
+     */
     updateValue: function() {
       if ( this.probesAreTouching() ) {
         this.value = 0;
@@ -72,12 +75,17 @@ define( function( require ) {
       }
     },
 
-    // Probes are touching if their tips intersect.
+    /**
+     * Probes are touching if their tips intersect.
+     *
+     * @returns {boolean}
+     */
     probesAreTouching: function() {
       return this.shapeCreator.getPositiveProbeTipShape().intersectsBounds( this.shapeCreator.getNegativeProbeTipShape() );
     },
 
     setCircuit: function( circuit ) {
+      debugger;
       if ( circuit !== this.circuit ) {
         //this.circuit.removeCircuitChangeListener( circuitChangeListener ); TODO
         this.circuit = circuit;
@@ -86,13 +94,13 @@ define( function( require ) {
       }
     },
 
+    /**
+     * Get the probe tip size in model coordinates
+     *
+     * @returns {Dimension2}
+     */
     getProbeTipSizeReference: function() {
       return PROBE_TIP_SIZE;
     }
-  }, {
-
-    // Get the probe tip size if needed. TODO: Remove if not used publicly.
-    PROBE_TIP_SIZE: PROBE_TIP_SIZE
-
   } );
 } );

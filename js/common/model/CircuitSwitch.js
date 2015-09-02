@@ -54,14 +54,13 @@ define( function( require ) {
       thisSwitch.switchSegment.update( thisSwitch.activeConnection );
     } );
 
-    //
-
   }
 
   return inherit( PropertySet, CircuitSwitch, {
 
     /**
      * Get the disired connection from the connection type.
+     *
      * @param connectionType
      * @returns {object}
      */

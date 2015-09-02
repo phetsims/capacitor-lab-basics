@@ -46,15 +46,8 @@ define( function( require ) {
      */
     step: function( dt ) {
       if ( this.playing ) {
-        // TODO
-      }
-    },
 
-    /**
-     * Manually step one frame, assuming 60fps.
-     */
-    manualStep: function() {
-      // TODO
+      }
     }
 
   } );

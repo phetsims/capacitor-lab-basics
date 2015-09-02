@@ -23,10 +23,8 @@ define( function( require ) {
    * @param {ModelViewTransform2} modelViewTransform
    */
   function BatteryShapeCreator( battery, modelViewTransform ) {
-    // TODO: Make private if possible.
-    this.battery = battery;
-    this.modelViewTransform = modelViewTransform; //@private
-
+    this.battery = battery; // @public
+    this.modelViewTransform = modelViewTransform; // @private
   }
 
   return inherit( Object, BatteryShapeCreator, {
@@ -82,16 +80,22 @@ define( function( require ) {
         .ellipticalArc( wallShape.centerX, wallShape.minY, wallShape.width / 2, ellipseHeight / 2, 0, Math.PI, 0, false )
         .lineTo( wallShape.maxX, wallShape.maxY )// Bottom right of wall.
         .ellipticalArc( wallShape.centerX, wallShape.maxY, wallShape.width / 2, wallShape.height / 2, 0, 0, Math.PI, false )
-        .close() ); // Connect final line.
+        .close() // Connect final line.
+      );
 
     },
 
+    /**
+     * Create the top of the positive terminal.  Use with createPositiveTerminalBodyShape() to create the entire shape
+     * of the top terminal.
+     *
+     * @param {Vector3} origin
+     */
     createPositiveTerminalShapeTop: function( origin ) {
 
       var ellipseWidth = this.battery.getPositiveTerminalEllipseSize().width;
       var ellipseHeight = this.battery.getPositiveTerminalEllipseSize().height;
       var ellipseY = origin.y + this.battery.getTopTerminalYOffset();
-      //return this.modelViewTransform.modelToViewShape( Shape.ellipse( origin.x, ellipseY, ellipseWidth / 2, ellipseHeight / 2, 0, 0, Math.PI / 2, false ) );
       return Shape.ellipse( origin.x, ellipseY, ellipseWidth / 2, ellipseHeight / 2, 0, 0, Math.PI / 2, false );
 
     },

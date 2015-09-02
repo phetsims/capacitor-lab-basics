@@ -1,7 +1,8 @@
 // Copyright 2002-2015, University of Colorado Boulder
 
 /**
- * Control panel for Capacitor Lab: Basics.  Controls visibility of nodes, meters, and physical values.
+ * Control panel for "Light Bulb" screen of Capacitor Lab: Basics.  Controls visibility of nodes, meters, and physical
+ * values.
  *
  * @author Jesse Greenberg
  */
@@ -87,7 +88,7 @@ define( function( require ) {
       children: [
         graphsVisibilityControlPanel,
         new VStrut( PANEL_VERTICAL_SPACE ),
-        viewVisibilityControlPanel,
+        viewVisibilityControlPanel
       ],
       align: 'left'
     } );

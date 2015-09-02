@@ -41,15 +41,16 @@ define( function( require ) {
    */
   function Capacitor( location, plateWidth, plateSeparation, dielectricMaterial, dielectricOffset, modelViewTransform ) {
 
-    // public variables
+    // @public
     this.transientTime = 0; // model time updated when the switch is closed and while the capacitor is discharging
     this.voltageAtSwitchClose = 0; // voltage of the plates when the bulb switch is initially closed
 
-    // immutable variables.
+    // @private
     this.modelViewTransform = modelViewTransform;
     this.shapeCreator = new CapacitorShapeCreator( this, modelViewTransform );
     this.location = location;
 
+    // @public
     PropertySet.call( this, {
       plateSize: new Bounds3( 0, 0, 0, plateWidth, CLConstants.PLATE_HEIGHT, plateWidth ), // Square plates.
       plateSeparation: plateSeparation,
@@ -57,21 +58,6 @@ define( function( require ) {
       dielectricMaterial: dielectricMaterial,
       dielectricOffset: dielectricOffset // in meters, default is totally outside of capacitor plates.
     } );
-
-    // TODO: Include listeners.
-    //// if observable properties change, so do derived properties
-    //propertiesObserver = new SimpleObserver() {
-    //  public void update() {
-    //    fireCapacitorChanged();
-    //  }
-    //};
-    //plateSizeProperty.addObserver( propertiesObserver );
-    //plateSeparationProperty.addObserver( propertiesObserver );
-    //dielectricOffsetProperty.addObserver( propertiesObserver );
-    //dielectricMaterialProperty.addObserver( propertiesObserver );
-    //dielectricMaterialProperty.get().addDielectricConstantObserver( propertiesObserver );
-    //platesVoltageProperty.addObserver( propertiesObserver );
-
   }
 
   return inherit( PropertySet, Capacitor, {
@@ -219,7 +205,6 @@ define( function( require ) {
         }
       } );
       return intersectsTopPlate;
-      //return shape.intersectsBounds( this.shapeCreator.createTopPlateShapeOccluded() );
     },
 
     /**
@@ -236,8 +221,6 @@ define( function( require ) {
         }
       } );
       return intersectsBottomPlate;
-
-      //return shape.intersectsBounds( this.shapeCreator.createBottomPlateShapeOccluded() );
     },
 
     /**
@@ -250,17 +233,6 @@ define( function( require ) {
      */
     isBetweenPlates: function( point ) {
       return this.isInsideAirBetweenPlates( point );
-    },
-
-    /**
-     * Is a point inside the Shape that is the 2D projection of air between the plates?
-     *
-     * TODO: Requires ShapeCreators of this sim.
-     * @param {Vector3} point a point in the global 3D model coordinate frame
-     * @return {boolean}
-     */
-    isInsideAirBetweenPlates: function( point ) {
-      //return this.shapeCreator.createAirBetweenPlatesShapeOccluded().contains( mvt.modelToView( p ) );
     },
 
     /**

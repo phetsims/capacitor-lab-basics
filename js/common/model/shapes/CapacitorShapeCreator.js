@@ -53,14 +53,6 @@ define( function( require ) {
     },
 
     /**
-     * Volume between the capacitor plates.
-     * TODO: I assume that this is specific to the dielectric portion.  Skipping for noow.
-     */
-    //createBetweenPlatesShape: function() {
-    //  return createBoxShape( capacitor.getX(), capacitor.getY() - ( capacitor.getPlateSeparation() / 2 ), capacitor.getZ(), capacitor.getDielectricSize() );
-    //}
-
-    /**
      * Air that is between the capacitor plates.
      *
      * @return {Shape}
@@ -71,17 +63,10 @@ define( function( require ) {
       }
       else {
         // Dielectrics are not being ported yet. we should never reach this!
-        //return ShapeUtils.subtract( createBetweenPlatesShape(), createDielectricBetweenPlatesShape() );
+        assert && assert( 'Dielectrics have not yet been ported, dielectric offset should always be zero.' );
       }
     },
 
-    //----------------------------------------------------------------------------------------
-    // occluded shapes
-    // TODO: Occlusion is done with constructive area geometry.  See if we can find another way to do this without that
-    //  option.
-    //  It seems that the best way to do this for capacitors is to handle entirely with layering.  The top capacitor
-    //  will always be above the bottom capacitor.
-    //----------------------------------------------------------------------------------------
     /**
      * Visible portion of the top plate. Nothing occludes the top plate.
      *
@@ -97,9 +82,7 @@ define( function( require ) {
      * @return {array.<Shape>}
      */
     createBottomPlateShapeOccluded: function() {
-      // TODO: This will need an alternative solution without CAG
-      return this.createBottomPlateShape(); //
-      //return ShapeUtils.subtract( createBottomPlateShape(), createTopPlateShape() );
+      return this.createBottomPlateShape();
     },
 
     /**
@@ -109,7 +92,6 @@ define( function( require ) {
      */
     createDielectricBetweenPlatesShapeOccluded: function() {
       console.log( 'Dielectrics have not been ported yet!' );
-      //return ShapeUtils.subtract( createDielectricBetweenPlatesShape(), createTopPlateShape() );
     },
 
     /**
@@ -126,7 +108,6 @@ define( function( require ) {
     //----------------------------------------------------------------------------------------
     // general shapes
     //----------------------------------------------------------------------------------------
-
     /**
      * Create an array of planar shapes that form a box.
      * @param x

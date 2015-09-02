@@ -30,6 +30,7 @@ define( function( require ) {
    */
   function WireSwitch( modelViewTransform, thickness, startPoint, componentSpacing, connectionType ) {
 
+    debugger;
     var segments = [];
     this.connectiontype = connectionType;
     this.componentSpacing = componentSpacing;

@@ -2,16 +2,14 @@
 
 /**
  * Model of a circuit with a battery (B) connected to a single capacitor (C1).  This is treated as a special case of a
- * parallel circuit, with some added features.
+ * parallel circuit, with some added features.  The capacitor also has a switch attached to it so that it can be
+ * disconnected from the battery.
  *
  * |-----|
- * |     |
- * B    C1
- * |     |
+ * |      /
+ * B     C
+ * |      \
  * |-----|
- *
- * Variable names used in this implementation where chosen to match the specification in the design document, and
- * therefore violate Java naming conventions.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg

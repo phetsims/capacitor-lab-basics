@@ -49,6 +49,7 @@ define( function( require ) {
   return inherit( PropertySet, BarMeter, {
 
     setCircuit: function( circuit ) {
+      debugger;
       if( this.circuit !== circuit ) {
         //this.circuit.removeCircuitChangeListener( circuitChangeListener ); TODO
         this.circuit = circuit;
@@ -64,7 +65,7 @@ define( function( require ) {
   }, {
 
     /**
-     * Factory functions for public access to specific constructors.
+     * Factory functions create specific meters.
      */
     CapacitanceMeter: function( circuit, worldBounds, location, visibleProperty, valueVisibleProperty ) {
       return new BarMeter( circuit, worldBounds, location, visibleProperty, valueVisibleProperty,

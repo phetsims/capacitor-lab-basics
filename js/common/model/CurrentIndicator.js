@@ -43,6 +43,10 @@ define( function( require ) {
 
   return inherit( PropertySet, CurrentIndicator, {
 
+    /**
+     * Step function.
+     * @param {number} dt
+     */
     step: function( dt ) {
       this.updateOpacity( this.currentAmplitudeProperty.value, dt );
       this.updateOrientation( this.currentAmplitudeProperty.value );

@@ -18,7 +18,7 @@ define( function( require ) {
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
   /**
-   * Constructor
+   * Constructor for the AbstractCircuit.
    *
    * @param {CircuitConfig} config circuit configuration values
    * @param {number} numberOfCapacitors number of capacitors in the circuit
@@ -29,11 +29,11 @@ define( function( require ) {
    */
   function AbstractCircuit( config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires, createCircuitSwitches ) {
 
-    var thisCircuit = this; // extend scope for nested callbacks.
     PropertySet.call( this, {
       currentAmplitude: 0,
-      circuitConnection: CircuitConnectionEnum.OPEN_CIRCUIT //TODO: Rename to connectionProperty.
+      circuitConnection: CircuitConnectionEnum.OPEN_CIRCUIT
     } );
+    var thisCircuit = this;
 
     this.previousTotalCharge = -1; // no value, @private
 
@@ -42,9 +42,8 @@ define( function( require ) {
     this.circuitComponents = createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs );
     this.circuitSwitches = createCircuitSwitches( config, numberOfCapacitors, this.circuitConnectionProperty );
 
-    // capture the circuit components into individual arrays.  Note that using splice assumes order of capacitors and
+    // capture the circuit components into individual arrays.  Note that using slice assumes order of capacitors and
     // then lightbulbs. If new order is important, new method is necessary.
-    // TODO: Perhaps a better method is needed anyway.
     this.capacitors = this.circuitComponents.slice( 0, numberOfCapacitors );
     this.lightBulbs = this.circuitComponents.slice( numberOfCapacitors, numberOfLightBulbs + 1 );
 
@@ -60,7 +59,6 @@ define( function( require ) {
     assert && assert( this.circuitComponents.length >= 1 );
     assert && assert( this.wires.length >= 2 );
 
-    // TODO: Link it all up.
     function updateSegments( circuitConnection ) {
       // update start and end points of each wire segment
       thisCircuit.wires.forEach( function( wire ) {
@@ -89,18 +87,6 @@ define( function( require ) {
       updateSegments( thisCircuit.circuitConnection );
     } );
 
-
-    // observe capacitors
-    //CapacitorChangeListener capacitorChangeListener = new CapacitorChangeListener() {
-    //  public void capacitorChanged() {
-    //    updatePlateVoltages();
-    //    fireCircuitChanged();
-    //  }
-    //};
-    //for ( Capacitor capacitor : capacitors ) {
-    //  capacitor.addCapacitorChangeListener( capacitorChangeListener );
-    //}
-
     /*
      * When the battery voltage changes and the battery is connected, update the plate voltages.
      * Do NOT automatically do this when adding the observer because
@@ -110,11 +96,6 @@ define( function( require ) {
     this.battery.voltageProperty.lazyLink( function() {
       thisCircuit.updatePlateVoltages();
     } );
-    //battery.addVoltageObserver( new SimpleObserver() {
-    //  public void update() {
-    //    updatePlateVoltages();
-    //  }
-    //}, false /* notifyOnAdd */ );
 
   }
 
@@ -135,6 +116,11 @@ define( function( require ) {
       } );
     },
 
+    /**
+     * Step function for the AbstractCircuit.  Updates current amplitude and current indicators.
+     *
+     * @param {number} dt
+     */
     step: function( dt ) {
       this.updateCurrentAmplitude( dt );
       this.batteryTopCurrentIndicator.step( dt );
@@ -143,8 +129,8 @@ define( function( require ) {
 
     /**
      * Default implementation has a connected battery.
-     * In the "single capacitor" circuit, we'll override this and add a setter, so that the battery can be dynamically
-     * connected and disconnected in the "Dielectric" module.
+     * In some other circuits, we'll override this and add a setter, so that the battery can be dynamically
+     * connected and disconnected.
      */
     isBatteryConnected: function() {
       return true;
@@ -191,7 +177,10 @@ define( function( require ) {
       return this.getTotalVoltage() * this.getTotalCapacitance();
     },
 
-    // Since the default is a connected battery, the total voltage is the battery voltage.
+    /**
+     * Since the default is a connected battery, the total voltage is the battery voltage.
+     * @returns {number}
+     */
     getTotalVoltage: function() {
       return this.battery.voltage;
     },
@@ -211,10 +200,11 @@ define( function( require ) {
     /**
      * Gets the voltage at a shape, with respect to ground. Returns NaN if the Shape is not connected to the circuit.
      *
+     * @param {Shape} shape
      * @return {number}
      */
     getVoltageAt: function( shape ) {
-      console.log( 'getVoltageAT() should be implemented in descendant classes of AbstractCircuit' );
+      console.log( 'getVoltageAt() should be implemented in descendant classes of AbstractCircuit' );
     },
 
     /**
@@ -260,7 +250,6 @@ define( function( require ) {
       this.capacitors.forEach( function( capacitor ) {
         if ( capacitor.isInsideAirBetweenPlates( location ) ) {
           eField = capacitor.getPlatesAirEField();
-          // return; //break
         }
       } );
       return eField;
@@ -276,8 +265,7 @@ define( function( require ) {
       var Q = this.getTotalCharge();
       if ( this.previousTotalCharge !== -1 ) {
         var dQ = Q - this.previousTotalCharge;
-        var amplitude = dQ / dt;
-        this.currentAmplitude = amplitude;
+        this.currentAmplitude = dQ / dt;
       }
       this.previousTotalCharge = Q;
     }

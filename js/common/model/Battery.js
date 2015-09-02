@@ -38,12 +38,6 @@ define( function( require ) {
   var NEGATIVE_TERMINAL_ELLIPSE_SIZE = new Dimension2( 0.0035, 0.0009 ); // dimension of the ellipse that defines the negative terminal
   var NEGATIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.0005; // center of the negative terminal, when it's the top terminal
 
-  // Object literal holding possible battery polarities.
-  //var POLARITY = {
-  //  POSITIVE: 'POSITIVE',
-  //  NEGATIVE: 'NEGATIVE'
-  //};
-
   /**
    * Constructor for a Battery.
    *
@@ -111,7 +105,7 @@ define( function( require ) {
       return BODY_SIZE.height / 2;
     },
 
-    /*
+    /**
      * Gets the offset of the top terminal from the battery's origin, in model coordinates (meters).
      * This offset depends on the polarity.
      */
@@ -124,8 +118,6 @@ define( function( require ) {
       }
     },
 
-    // TODO: remove the following if possible.  Static functions will not work because these values are
-    // required in BatteryShapeCreator, and battery is already dependent on this.
     getPositiveTerminalEllipseSize: function() {
       return POSITIVE_TERMINAL_ELLIPSE_SIZE;
     },
@@ -137,7 +129,5 @@ define( function( require ) {
     getPositiveTerminalCylinderHeight: function() {
       return POSITIVE_TERMINAL_CYLINDER_HEIGHT;
     }
-
   } );
-
 } );

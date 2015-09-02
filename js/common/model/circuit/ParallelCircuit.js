@@ -4,13 +4,14 @@
  * Model of a circuit with a battery (B) and N circuitComponents (Z1...Zn) in parallel.  Switches exist between
  * circuit connections so that elements can be added or removed from the circuit as desired.
  *
- *  |--`--|--`---|--`---|
- *  |     |      |      |
+ *  |-----|------|------|
+ *  |      /      /      /
  *  |     |      |      |
  *  B     Z1     Z2    Z3
  *  |     |      |      |
  *  |     |      |      |
- *  |--`--|--`---|--`---|
+ *   \     \      \      \
+ *  |-----|------|------|
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
@@ -31,7 +32,16 @@ define( function( require ) {
   var WireLightBulbToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireLightBulbToCircuitSwitch' );
   var WireCapacitorToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireCapacitorToCircuitSwitch' );
 
-  // Function for creating all circuit components. Assumes that the desired order is capacitors and then lightBulbs.
+  /**
+   * Function which creates circuit components for the parallel circuit.  The function is constructed so that
+   * capacitors are before light bulbs in left to right order.  If order of circuit components matters, this is the
+   * function to change.
+   *
+   * @param {CircuitConfig} config - object defining the circuit
+   * @param {number} numberOfCapacitors
+   * @param {number} numberOfLightBulbs
+   * @returns {Array} circuitComponents
+   */
   function createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs ) {
 
     var x = config.batteryLocation.x + config.capacitorXSpacing;
@@ -40,8 +50,8 @@ define( function( require ) {
 
     var circuitComponents = [];
 
-    var location;
     // create the capacitors
+    var location;
     for ( var i = 0; i < numberOfCapacitors; i++ ) {
       location = new Vector3( x, y, z );
       var capacitor = new Capacitor(
@@ -58,7 +68,6 @@ define( function( require ) {
 
     // create the light bulbs
     for ( i = 0; i < numberOfLightBulbs; i++ ) {
-      //var xOffset = 5 *LightBulb.BULB_BASE_SIZE.width;
       location = new Vector3( x, y, z );
       var lightBulb = new LightBulb( location, config.lightBulbResistance );
       circuitComponents.push( lightBulb );
@@ -68,7 +77,19 @@ define( function( require ) {
     return circuitComponents;
   }
 
-  // Function for creating wires.
+  /**
+   * Function that creates all wires of the circuit.  Right now, the function only works for a circuit with 2 switches,
+   * one above and one below the circuit.  If more switches or circuit components are required, this is the function
+   * that needs to be fixed.
+   *
+   * @param config
+   * @param battery
+   * @param lightBulb
+   * @param capacitor
+   * @param circuitSwitches
+   * @param circuitConnectionProperty
+   * @returns {Array}
+   */
   function createWires( config, battery, lightBulb, capacitor, circuitSwitches, circuitConnectionProperty ) {
     var wires = [];
     // wire battery to switch

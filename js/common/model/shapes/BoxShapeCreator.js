@@ -99,11 +99,11 @@ define( function( require ) {
     /**
      * Right-side face is a parallelogram.
      *
-     *    p1
-     *   / |
-     *  /  |
-     * /   |
-     * /   p2
+     *     p1
+     *   /  |
+     *  /   |
+     * /    |
+     * /    p2
      * p0   /
      * |   /
      * |  /

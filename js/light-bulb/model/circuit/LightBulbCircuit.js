@@ -1,26 +1,22 @@
 // Copyright 2002-2015, University of Colorado Boulder
 
 /**
- * Model of a circuit with a battery (B) connected to a single capacitor (C1).  This is treated as a special case of a
- * parallel circuit, with some added features.
+ * Model for the "Light Bulb" circuit, which extends ParallelCircuit.  This circuit is composed of a battery, capacitor
+ * and a light bulb.  The capacitor is connected to a switch so that it can be connected to either the light bulb OR
+ * the battery, but not both at the same time.  The capacitor can also be entirely disconnected from the circuit. This
+ * is illustrated in the following diagram:
  *
- * |-----|
- * |     |
- * B    C1
- * |     |
- * |-----|
+ * |-----|------|
+ * |      /     |
+ * |     |      |
+ * B     C      Z
+ * |     |      |
+ * |      \     |
+ * |-----|------|
  *
- * Unlike other circuits in this simulation, the battery can be disconnected.  When the battery is disconnected, plate
- * charge can be controlled directly.
- *
- * This circuit is used in all 3 modules.  In version 1.00, it was the sole circuit in the simulation. It was heavily
- * refactored to support the Multiple Capacitors module introduced in version 2.00.
- *
- * Variable names used in this implementation where chosen to match the specification in the design document, and
- * therefore violate Java naming conventions.
- *
- * TODO: This documentation is not correct.
- *
+ * B = Battery
+ * C = Capacitor, connected in parallel through switches
+ * Z = Light Bulb
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
@@ -78,10 +74,6 @@ define( function( require ) {
       }
 
     } );
-
-    // TODO: Not sure this needs to be called at end of constructor.
-    //updatePlateVoltages(); // Must call this at end of constructor!
-
   }
 
   return inherit( ParallelCircuit, LightBulbCircuit, {

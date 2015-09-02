@@ -49,6 +49,13 @@ define( function( require ) {
       return this.getProbeTipShape( this.voltmeter.negativeProbeLocation, -this.modelViewTransform.yaw );
     },
 
+    /**
+     * Get the shape of a probe tip relative to some specified origin.
+     *
+     * @param {Vector3} origin
+     * @param {number} theta - rotation of modelViewTransform for 3D perspective
+     * @returns {shape}
+     */
     // Gets the shape of a probe tip relative to some specified origin.
     getProbeTipShape: function( origin, theta ) {
       var width = this.voltmeter.getProbeTipSizeReference().width;

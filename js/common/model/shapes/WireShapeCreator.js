@@ -3,8 +3,6 @@
 /**
  * Creates the 2D shape for a wire. Shapes are in the global view coordinate frame.
  *
- * TODO: See about extending Shape for all of these types.
- *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
  */
@@ -15,18 +13,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Shape = require( 'KITE/Shape' );
   var LineStyles = require( 'KITE/util/LineStyles' );
-  //var Line = require( 'KITE/segments/Line' );
-
-  var strokeStyles = new LineStyles( {
-    lineWidth: 7,
-    lineCap: 'round',
-    lineJoin: 'round'
-  } );
-
-
-  // constants
-  // Determines how the wires are capped. If you change this, you'll need to fiddle with getEndOffset and getCornerOffset.
-  //var CAP_STYLE = BasicStroke.CAP_ROUND;
 
   /**
    * Constructor for WireShapeCreator.
@@ -61,6 +47,13 @@ define( function( require ) {
     },
 
     createWireShape: function() {
+
+      // stroke styles for the wire shapes.
+      var strokeStyles = new LineStyles( {
+        lineWidth: 7,
+        lineCap: 'round',
+        lineJoin: 'round'
+      } );
       var wireShape = new Shape();
 
       // move to the start point of the first wire segment
@@ -68,13 +61,12 @@ define( function( require ) {
 
       // go through the points 'tip to tail', assuming they are in the desired order
       for ( var i = 1; i < this.wire.segments.length; i++ ) {
-
         //var lastSegment = this.wire.segments[ i - 1 ];
         var currentSegment = this.wire.segments[ i ];
         wireShape.lineToPoint( currentSegment.endPoint );
-
       }
-      // return shape defined by the transformed shape stroked above
+
+      // return a transformed shape defined by the stroke styles.
       wireShape = this.modelViewTransform.modelToViewShape( wireShape );
       wireShape = wireShape.getStrokedShape( strokeStyles );
       return wireShape;
@@ -86,21 +78,28 @@ define( function( require ) {
      * @param {WireSegment} segment
      * @returns {Shape}
      */
-    createWireSegmentShape: function( segment /*, thickness */ ) {
+    createWireSegmentShape: function( segment /* thickness */ ) {
       var line = new Shape.lineSegment( segment.startPoint.x, segment.startPoint.y, segment.endPoint.x, segment.endPoint.y );
-      //var stroke = new BasicStroke( (float) thickness, CAP_STYLE, BasicStroke.JOIN_MITER );
-      //var s = new Area( stroke.createStrokedShape( line ) );
       return this.modelViewTransform.modelToViewShape( line );
     },
 
-    // Offset required to make 2 segments join seamlessly at a corner. This is specific to CAP_STYLE.
+    /**
+     * Offset required to make 2 segments join seamlessly at a corner.  This is specific to strokeStyles of the wire
+     * shape.
+     *
+     * @returns {number}
+     */
     getCornerOffset: function() {
       return 0;
     },
 
-    // Offset required to make a wire align properly with some endpoint (eg, a battery terminal). This is specific to CAP_STYLE.
+    /**
+     * Offset required to make a wire align properly with some endpoint (eg, a battery terminal).
+     * This is specific to strokeStyles of the wire shape.
+     *
+     * @returns {number}
+     */
     getEndOffset: function() {
-      //return 0;
       return this.wire.thickness / 2;
     }
   } );

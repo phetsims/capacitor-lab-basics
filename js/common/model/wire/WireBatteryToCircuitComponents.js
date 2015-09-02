@@ -100,7 +100,6 @@ define( function( require ) {
 
     }
 
-
     Wire.call( this, modelViewTransform, thickness, segments, circuitConnectionProperty );
 
   }

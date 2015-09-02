@@ -20,10 +20,14 @@ define( function( require ) {
 
   /**
    * Constructor for a Wire.
+   *
+   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {number} thickness
+   * @param {Array.<WireSegment>} segments
+   * @param {Vector3} connectionPoint
    */
   function Wire( modelViewTransform, thickness, segments, connectionPoint ) {
 
-    //assert && assert( segments !== undefined, 'Wire segments undefined for wire.' );
     assert && assert( thickness > 0 );
 
     this.segments = segments;
@@ -36,15 +40,6 @@ define( function( require ) {
       shape: shape
     } );
     var thisWire = this;
-
-    //this.circuitConnectionProperty.link( function( circuitConnection ) {
-    //  console.log( 'circuit connection property changed, updating all wire segments ' );
-    //  thisCircuit.wires.forEach( function( wire ) {
-    //    wire.segments.forEach( function( segment ) {
-    //      segment.update( circuitConnection );
-    //    } )
-    //  } );
-    //} );
 
     // Whenever a segment changes, update the shape.
     this.segments.forEach( function( segment ) {
@@ -66,7 +61,7 @@ define( function( require ) {
     },
 
     /**
-     * Function that creates the shape of this wire directly.
+     * Function that creates the shape of this wire through the shape creator.
      */
     createShapes: function() {
       return this.shapeCreator.createWireShapes();
@@ -83,6 +78,7 @@ define( function( require ) {
 
     /**
      * Get the end offset of the wire.
+     *
      * @returns {number}
      */
     getEndOffset: function() {

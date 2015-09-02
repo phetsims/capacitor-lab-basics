@@ -104,6 +104,7 @@ define( function( require ) {
     },
 
     setCircuit: function( circuit ) {
+      debugger;
       if ( circuit !== this.circuit ) {
         //this.circuit.removeCircuitChangeListener( circuitChangeListener ); TODO
         this.circuit = circuit;
