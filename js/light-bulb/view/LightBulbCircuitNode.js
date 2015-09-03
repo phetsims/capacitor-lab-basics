@@ -137,7 +137,6 @@ define( function( require ) {
     circuit.circuitConnectionProperty.link( function( circuitConnection ) {
       thisNode.updateConnectivity( circuitConnection );
     } );
-
   }
 
   return inherit( Node, LightBulbCircuitNode, {

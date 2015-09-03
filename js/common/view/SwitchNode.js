@@ -16,16 +16,17 @@ define( function( require ) {
   var ConnectionPointNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionPointNode' );
   var HingePointNode = require( 'CAPACITOR_LAB_BASICS/common/view/HingePointNode' );
   var ConnectionAreaInputListener = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaInputListener' );
+  var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
 
   // TODO: TEMPORARY! remove soon.
   // add query parameter harness to play with the two different drag styles.
   var CircuitSwitchDragHandler;
   var getQueryParameter = phet.chipper.getQueryParameter;
   var snapDrag = getQueryParameter( 'snapDrag' ) || false;
-  if ( snapDrag) {
+  if ( snapDrag ) {
     CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchSnapDragHandler' );
   }
-  else{
+  else {
     CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
   }
 
@@ -46,6 +47,11 @@ define( function( require ) {
     // add the switch as a wire node
     this.wireSwitchNode = new WireNode( circuitSwitch.switchWire );
     this.wireSwitchNode.cursor = 'pointer';
+
+    // add a shaded sphere to the end of the wire node to represent a connection point at the end of the switch.
+    var shadedSphereNode = new ShadedSphereNode( 16 );
+    shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
+    this.wireSwitchNode.addChild( shadedSphereNode );
 
     // add the the hinge
     var hingeNode = new HingePointNode();
@@ -70,17 +76,22 @@ define( function( require ) {
     // add the drag handler
     this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( thisNode ) );
 
-    // changes visual position
+    // changes visual position as the user drags the switch.
     circuitSwitch.angleProperty.link( function( angle ) {
       thisNode.wireSwitchNode.resetTransform();
       thisNode.wireSwitchNode.translate( circuitSwitch.hingePoint.x, circuitSwitch.hingePoint.y );
       thisNode.wireSwitchNode.rotateAround( modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint ), angle );
     } );
 
-    // rendering order
+    // Make sure that the shaded sphere snaps to the correct position when connection property changes.
+    circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
+      shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
+    } );
+
+    // rendering order, important for behavior of click areas and drag handlers
     _.each( connectionListeners, function( connectionListener ) { thisNode.addChild( connectionListener ); } );
-    this.addChild( this.wireSwitchNode );
     _.each( connectionPointNodes, function( connectionPointNode ) { thisNode.addChild( connectionPointNode ); } );
+    this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );
 
 
