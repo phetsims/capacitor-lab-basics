@@ -99,16 +99,11 @@ define( function( require ) {
     capacitorNode.center = modelViewTransform.modelToViewPosition( circuit.capacitor.location );
 
     // top current indicator
-    //var topWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getTopWire().thickness, 0, 0 ).x;
-    x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
-    //x = this.topWireNode.bounds.centerX;
+    x = batteryNode.right + ( this.circuitSwitchNodes[0].left - batteryNode.right ) / 2;
     y = this.topWireNode.bounds.minY + ( 7 / 2 ); // TODO clean up after discussion of feature.
     this.batteryTopCurrentIndicatorNode.translate( x, y );
 
     // bottom current indicator
-    //var bottomWireThickness = modelViewTransform.modelToViewDeltaXYZ( circuit.getBottomWire.thickness, 0, 0 ).x;
-    x = batteryNode.centerX + ( capacitorNode.centerX - batteryNode.centerX ) / 2;
-    //x = this.bottomWireNode.bounds.getCenterX();
     y = this.bottomWireNode.bounds.getMaxY() - ( 7 / 2 );
     this.batteryBottomCurrentIndicatorNode.translate( x, y );
 

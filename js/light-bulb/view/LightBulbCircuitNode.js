@@ -112,12 +112,11 @@ define( function( require ) {
     lightBulbNode.center = modelViewTransform.modelToViewPosition( circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
 
     // top left current indicator
-    x = batteryNode.centerX + ( this.circuitSwitchNodes[ 0 ].left - batteryNode.centerX ) / 2 + this.batteryTopCurrentIndicatorNode.width / 2;
+    x = batteryNode.right + ( this.circuitSwitchNodes[0].left - batteryNode.right ) / 2;
     y = this.topWireNode.bounds.minY + ( 7 / 2 ); // TODO clean up after discussion of feature.
     this.batteryTopCurrentIndicatorNode.translate( x, y );
 
     // bottom left current indicator
-    x = batteryNode.centerX + ( this.circuitSwitchNodes[ 0 ].left - batteryNode.centerX ) / 2 + this.batteryBottomCurrentIndicatorNode.width / 2;
     y = this.bottomWireNode.bounds.getMaxY() - ( 7 / 2 );
     this.batteryBottomCurrentIndicatorNode.translate( x, y );
 
@@ -127,8 +126,6 @@ define( function( require ) {
     this.bulbTopCurrentIndicatorNode.translate( x, y );
 
     // bottom right current indicator
-    x = this.circuitSwitchNodes[ 0 ].right + ( lightBulbNode.left - this.circuitSwitchNodes[ 0 ].right ) / 2;
-    //x = ( lightBulbNode.left - this.circuitSwitchNodes[ 0 ].centerX ) / 2;
     y = this.bottomWireNode.bounds.maxY - ( 7 / 2 );
     this.bulbBottomCurrentIndicatorNode.translate( x, y );
 
