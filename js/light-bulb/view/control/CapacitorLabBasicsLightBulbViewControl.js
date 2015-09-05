@@ -13,6 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Panel = require( 'SUN/Panel' );
   var VerticalCheckBoxGroup = require( 'SUN/VerticalCheckBoxGroup' );
+  var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
@@ -22,13 +23,9 @@ define( function( require ) {
   var PANEL_TITLE_FONT = new PhetFont( { weight: 'bold', size: 14 } );
   var CHECK_BOX_FONT = new PhetFont( 12 );
   var TITLE_VERTICAL_SPACE = 10;
-  var PANEL_VERTICAL_SPACE = 30;
+  var PANEL_VERTICAL_SPACE = 5;
 
   // strings
-  var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
-  var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
-  var valuesString = require( 'string!CAPACITOR_LAB_BASICS/values' );
-  var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
   var topPlateChargeString = require( 'string!CAPACITOR_LAB_BASICS/topPlateCharge' );
   var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
@@ -42,21 +39,10 @@ define( function( require ) {
    */
   function CapacitorLabBasicsControlPanel( model ) {
 
-    var viewAssets = [
-      {
-        string: plateChargesString,
-        property: model.plateChargesVisibleProperty
-      },
-      {
-        string: eFieldString,
-        property: model.eFieldVisibleProperty
-      },
-      {
-        string: valuesString,
-        property: model.valuesVisibleProperty
-      }
-    ];
+    // create the common view control panel.
+    var viewControlPanel = new CapacitorLabBasicsViewControl( model );
 
+    // create the panel that controls graphs visibility.
     var graphAssets = [
       {
         string: capacitanceString,
@@ -72,23 +58,19 @@ define( function( require ) {
       }
     ];
 
-    var viewCheckBoxItems = createCheckBoxItems( viewAssets );
     var graphsCheckBoxItems = createCheckBoxItems( graphAssets );
 
-    var viewVerticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems );
     var graphsVerticalCheckBoxGroup = new VerticalCheckBoxGroup( graphsCheckBoxItems );
 
-    var viewVisibilityControlBox = createControlBox( viewString, viewVerticalCheckBoxGroup );
     var graphsVisibilityControlBox = createControlBox( graphsString, graphsVerticalCheckBoxGroup );
 
     var graphsVisibilityControlPanel = createControlPanel( graphsVisibilityControlBox );
-    var viewVisibilityControlPanel = createControlPanel( viewVisibilityControlBox );
 
     LayoutBox.call( this, {
       children: [
         graphsVisibilityControlPanel,
         new VStrut( PANEL_VERTICAL_SPACE ),
-        viewVisibilityControlPanel
+        viewControlPanel
       ],
       align: 'left'
     } );

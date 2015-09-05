@@ -38,7 +38,7 @@ define( function( require ) {
    * @param {number} minWidth - minimum width of the panels, calculated by layout in the screen view.
    * @constructor
    */
-  function CapacitorLabBasicsViewControl( model, minWidth ) {
+  function CapacitorLabBasicsViewControl( model  ) {
     var viewAssets = [
       {
         string: plateChargesString,
