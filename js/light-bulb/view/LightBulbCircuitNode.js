@@ -33,12 +33,13 @@ define( function( require ) {
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
    * @param {Property.<boolean>} valuesVisibleProperty
+   * @param {Property.<boolean>} currentIndicatorsVisibleProperty
    * @param {number} maxPlateCharge
    * @param {number} maxEffectiveEField
    * @constructor
    */
-  function LightBulbCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, valuesVisibleProperty, maxPlateCharge,
-                                 maxEffectiveEField ) {
+  function LightBulbCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
+                                 valuesVisibleProperty, currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField ) {
 
     Node.call( this ); // supertype constructor
 
@@ -112,7 +113,7 @@ define( function( require ) {
     lightBulbNode.center = modelViewTransform.modelToViewPosition( circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
 
     // top left current indicator
-    x = batteryNode.right + ( this.circuitSwitchNodes[0].left - batteryNode.right ) / 2;
+    x = batteryNode.right + ( this.circuitSwitchNodes[ 0 ].left - batteryNode.right ) / 2;
     y = this.topWireNode.bounds.minY + ( 7 / 2 ); // TODO clean up after discussion of feature.
     this.batteryTopCurrentIndicatorNode.translate( x, y );
 
@@ -136,6 +137,13 @@ define( function( require ) {
     // observers
     circuit.circuitConnectionProperty.link( function( circuitConnection ) {
       thisNode.updateConnectivity( circuitConnection );
+    } );
+
+    currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
+      thisNode.batteryTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
+      thisNode.batteryBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
+      thisNode.bulbTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
+      thisNode.bulbBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
     } );
   }
 

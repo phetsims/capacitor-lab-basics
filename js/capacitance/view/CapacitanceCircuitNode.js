@@ -31,12 +31,13 @@ define( function( require ) {
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
    * @param {Property.<boolean>} valuesVisibleProperty
+   * @param {Property.<boolean>} currentIndicatorsVisibleProeprty
    * @param {number} maxPlateCharge
    * @param {number} maxEffectiveEField
    * @constructor
    */
-  function CapacitanceCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, valuesVisibleProperty, maxPlateCharge,
-                             maxEffectiveEField ) {
+  function CapacitanceCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
+                                   valuesVisibleProperty, currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField ) {
 
     Node.call( this );
     var thisNode = this;
@@ -111,6 +112,12 @@ define( function( require ) {
     // explicitly defines the layout.
     this.topWireNode.translation = new Vector2( 0, 0 );
     this.bottomWireNode.translation = new Vector2( 0, 0 );
+
+    // observers
+    currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
+      thisNode.batteryTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
+      thisNode.batteryBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
+    } );
 
   }
 
