@@ -16,7 +16,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var LightBulbCircuitNode = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/LightBulbCircuitNode' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
-  var CapacitorLabBasicsLightBulbControl = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/control/CapacitorLabBasicsLightBulbControl' );
+  var CapacitorLabBasicsGraphControl = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/control/CapacitorLabBasicsGraphControl' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
 
@@ -55,11 +55,10 @@ define( function( require ) {
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
-    //var minWidth = storedEnergyMeterNode.right - plateChargeMeterNode.left * 2;
-    var capacitorLabBasicsLightBulbControl = new CapacitorLabBasicsLightBulbControl( model );
-    capacitorLabBasicsLightBulbControl.translation = this.layoutBounds.rightTop.minusXY( capacitorLabBasicsLightBulbControl.width + 15, -20 );
+    var capacitorLabBasicsGraphControl = new CapacitorLabBasicsGraphControl( model );
+    capacitorLabBasicsGraphControl.translation = this.layoutBounds.rightTop.minusXY( capacitorLabBasicsGraphControl.width + 15, -20 );
 
-    storedEnergyMeterNode.rightTop = capacitorLabBasicsLightBulbControl.leftTop.minusXY( 15, 10 );
+    storedEnergyMeterNode.rightTop = capacitorLabBasicsGraphControl.leftTop.minusXY( 15, 10 );
     plateChargeMeterNode.rightCenter = storedEnergyMeterNode.leftCenter.minusXY( 15, 0 );
     capacitanceMeterNode.rightCenter = plateChargeMeterNode.leftCenter;
 
@@ -77,7 +76,7 @@ define( function( require ) {
     this.addChild( plateChargeMeterNode );
     this.addChild( storedEnergyMeterNode );
     this.addChild( voltmeterNode );
-    this.addChild( capacitorLabBasicsLightBulbControl );
+    this.addChild( capacitorLabBasicsGraphControl);
     this.addChild( this.resetAllButton );
   }
 

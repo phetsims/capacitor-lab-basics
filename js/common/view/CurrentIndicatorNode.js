@@ -41,7 +41,7 @@ define( function( require ) {
   var ELECTRON_STROKE_COLOR = 'black';
   var ELECTRON_MINUS_COLOR = 'black';
   var ELECTRON_MINUS_SIZE = new Dimension2( 0.6 * ELECTRON_DIAMETER, 0.1 * ELECTRON_DIAMETER );
-  
+
   /**
    * Constructor. Rotation angles should be set such that +dV/dt indicates current flow towards the positive terminal
    * of the battery.
