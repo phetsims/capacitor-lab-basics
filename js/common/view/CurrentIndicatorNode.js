@@ -46,7 +46,6 @@ define( function( require ) {
   var MAX_OPACITY = 0.75; // range is 0-1
   var FADEOUT_DURATION = 2000; // ms
   var FADEOUT_STEP_RATE = 10; // ms
-  var DELTA_OPACITY = MAX_OPACITY / ( FADEOUT_DURATION / FADEOUT_STEP_RATE );
 
   /**
    * Constructor. Rotation angles should be set such that +dV/dt indicates current flow towards the positive terminal

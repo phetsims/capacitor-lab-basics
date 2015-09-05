@@ -2,6 +2,9 @@
   "capacitance": {
     "value": "Capacitance"
   },
+  "current": {
+    "value": "Current"
+  },
   "capMeterTitle": {
     "value": "Capacitance (F)"
   },

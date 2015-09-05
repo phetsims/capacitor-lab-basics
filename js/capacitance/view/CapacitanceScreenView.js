@@ -16,7 +16,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var CapacitanceCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceCircuitNode' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
-  var CapacitanceControlPanel = require( 'CAPACITOR_LAB_BASICS/capacitance/view/control/CapacitanceControlPanel' );
+  var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var Path = require( 'SCENERY/nodes/Path' );
@@ -56,10 +56,11 @@ define( function( require ) {
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
     var minWidth = this.right - capacitanceMeterNode.left;
-    var capacitanceControlPanel = new CapacitanceControlPanel( model, minWidth );
-    capacitanceControlPanel.translation = this.layoutBounds.rightTop.minusXY( capacitanceControlPanel.width + 10, -10 );
+    //var capacitanceControlPanel = new CapacitanceControlPanel( model, minWidth );
+    var capacitanceViewControl = new CapacitorLabBasicsViewControl( model, minWidth );
+    capacitanceViewControl.translation = this.layoutBounds.rightTop.minusXY( capacitanceViewControl.width + 10, -10 );
 
-    capacitanceMeterNode.rightTop = capacitanceControlPanel.leftTop.minusXY( 15, 0 );
+    capacitanceMeterNode.rightTop = capacitanceViewControl.leftTop.minusXY( 15, 0 );
 
     // reset button
     this.resetAllButton = new ResetAllButton( {
@@ -73,7 +74,7 @@ define( function( require ) {
     this.addChild( capacitanceCircuitNode );
     this.addChild( capacitanceMeterNode );
     this.addChild( voltmeterNode );
-    this.addChild( capacitanceControlPanel );
+    this.addChild( capacitanceViewControl );
     this.addChild( this.resetAllButton );
 
     // debug shapes for probe collision testing, to be removed soon

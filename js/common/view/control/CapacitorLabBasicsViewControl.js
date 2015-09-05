@@ -89,22 +89,6 @@ define( function( require ) {
   }
 
   /**
-   * Create an outlining control panel for a layout box with a minimum width.
-   *
-   * @param {LayoutBox} layoutBox
-   * @param {number} minWidth
-   * @returns {Panel}
-   */
-  function createControlPanel( layoutBox, minWidth ) {
-    return new Panel( layoutBox, {
-      xMargin: 10,
-      yMargin: 10,
-      minWidth: minWidth,
-      align: 'left'
-    } );
-  }
-
-  /**
    * Create a layout box with a title and a group of check boxes.
    * @param {string} titleString
    * @param {VerticalCheckBoxGroup} checkBoxGroup
@@ -121,6 +105,6 @@ define( function( require ) {
     } );
   }
 
-  return inherit( LayoutBox, CapacitorLabBasicsViewControl );
+  return inherit( Panel, CapacitorLabBasicsViewControl );
 
 } );
