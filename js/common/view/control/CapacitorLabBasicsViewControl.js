@@ -1,7 +1,9 @@
 // Copyright 2002-2015, University of Colorado Boulder
 
 /**
- * Control panel for Capacitor Lab: Basics.  Controls visibility of nodes, meters, and physical values.
+ * Control panel for view elements in Capacitor Lab: Basics.  Controls the visibility of plate charges, current
+ * indicators, electric field and values.  This set of controls is used in both the 'light-bulb' anc 'capacitance'
+ * screens.
  *
  * @author Jesse Greenberg
  */
@@ -21,17 +23,13 @@ define( function( require ) {
   var PANEL_TITLE_FONT = new PhetFont( { weight: 'bold', size: 18 } );
   var CHECK_BOX_FONT = new PhetFont( 16 );
   var TITLE_VERTICAL_SPACE = 10;
-  var PANEL_VERTICAL_SPACE = 30;
 
   // strings
   var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
   var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
   var valuesString = require( 'string!CAPACITOR_LAB_BASICS/values' );
   var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
-  var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
-  var topPlateChargeString = require( 'string!CAPACITOR_LAB_BASICS/topPlateCharge' );
-  var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
-  var graphsString = require( 'string!CAPACITOR_LAB_BASICS/graphs' );
+  var currentString = require( 'string!CAPACITOR_LAB_BASICS/current' );
 
   /**
    * Constructor.
@@ -40,12 +38,15 @@ define( function( require ) {
    * @param {number} minWidth - minimum width of the panels, calculated by layout in the screen view.
    * @constructor
    */
-  function CapacitorLabBasicsControlPanel( model, minWidth ) {
-
+  function CapacitorLabBasicsViewControl( model, minWidth ) {
     var viewAssets = [
       {
         string: plateChargesString,
         property: model.plateChargesVisibleProperty
+      },
+      {
+        string: currentString,
+        property: model.currentIndicatorsVisibleProperty
       },
       {
         string: eFieldString,
@@ -57,39 +58,14 @@ define( function( require ) {
       }
     ];
 
-    var graphAssets = [
-      {
-        string: capacitanceString,
-        property: model.capacitanceMeterVisibleProperty
-      },
-      {
-        string: topPlateChargeString,
-        property: model.plateChargeMeterVisibleProperty
-      },
-      {
-        string: storedEnergyString,
-        property: model.storedEnergyMeterVisibleProperty
-      }
-    ];
-
     var viewCheckBoxItems = createCheckBoxItems( viewAssets );
-    var graphsCheckBoxItems = createCheckBoxItems( graphAssets );
-
     var viewVerticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems );
-    var graphsVerticalCheckBoxGroup = new VerticalCheckBoxGroup( graphsCheckBoxItems );
-
     var viewVisibilityControlBox = createControlBox( viewString, viewVerticalCheckBoxGroup );
-    var graphsVisibilityControlBox = createControlBox( graphsString, graphsVerticalCheckBoxGroup );
+    //var viewVisibilityControlPanel = createControlPanel( viewVisibilityControlBox, minWidth );
 
-    var graphsVisibilityControlPanel = createControlPanel( graphsVisibilityControlBox, minWidth );
-    var viewVisibilityControlPanel = createControlPanel( viewVisibilityControlBox, minWidth );
-
-    LayoutBox.call( this, {
-      children: [
-        graphsVisibilityControlPanel,
-        new VStrut( PANEL_VERTICAL_SPACE ),
-        viewVisibilityControlPanel,
-      ],
+    Panel.call( this, viewVisibilityControlBox, {
+      xMargin: 10,
+      yMargin: 10,
       align: 'left'
     } );
   }
@@ -145,6 +121,6 @@ define( function( require ) {
     } );
   }
 
-  return inherit( LayoutBox, CapacitorLabBasicsControlPanel );
+  return inherit( LayoutBox, CapacitorLabBasicsViewControl );
 
 } );

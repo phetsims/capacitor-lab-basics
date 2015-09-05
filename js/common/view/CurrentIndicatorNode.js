@@ -98,36 +98,12 @@ define( function( require ) {
     minusNode.center = electronNode.center;
 
     // observer current
-    currentIndicator.multilink( ['opacity', 'rotation' ], function() {
+    currentIndicator.multilink( [ 'opacity', 'rotation' ], function() {
       thisNode.opacity = currentIndicator.opacity;
       thisNode.rotation = currentIndicator.rotation;
     } );
 
   }
 
-  return inherit( Node, CurrentIndicatorNode, {
-
-    updateOpacity: function( currentAmplitude ) {
-      // if current is flowing, set opacity to max value.
-      if ( Math.abs( currentAmplitude ) > 0 ) {
-        this.opacity = MAX_OPACITY;
-      }
-      else {
-        // gradually fade out
-        this.opacity = Math.max( 0, this.opacity - DELTA_OPACITY );
-      }
-    },
-
-    /**
-     * Updates the orientation of the current indicator, based on the sign of the current amplitude.
-     *
-     * @param {number} currentAmplitude
-     */
-    updateOrientation: function( currentAmplitude ) {
-      if ( currentAmplitude !== 0 ) {
-        this.rotation = currentAmplitude > 0 ? this.positiveOrientation : this.positiveOrientation + Math.PI;
-      }
-    }
-
-  } );
+  return inherit( Node, CurrentIndicatorNode );
 } );

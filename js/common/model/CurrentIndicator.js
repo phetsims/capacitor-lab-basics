@@ -23,7 +23,7 @@ define( function( require ) {
   /**
    * Constructor.
    *
-   * @param {Property.<number>} currentAmplitude
+   * @param {Property.<number>} currentAmplitudeProperty
    * @param {number} positiveOrientation rotation angle for +dV/dt (radians)
    * @constructor
    */
