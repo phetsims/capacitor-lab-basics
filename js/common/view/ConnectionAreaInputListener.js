@@ -16,6 +16,7 @@ define( function( require ) {
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var Node = require( 'SCENERY/nodes/Node' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
 
   // constants
   var DEBUG = false; // shows the rectangular bounding area
@@ -23,10 +24,8 @@ define( function( require ) {
   var BOUNDING_ANGLE = Math.PI / 8;
   var AREA_FILL = DEBUG ? 'rgba( 1, 1, 1, 0.65 )' : null;
 
-  var CONNECTED_POINT_COLOR = 'black';
-  var CONNECTED_POINT_STROKE = 'rgb( 170, 170, 170 )';
   var DISCONNECTED_POINT_COLOR = 'rgb( 151, 208, 255 )';
-  var DISCONNECTED_POINT_STROKE = 'rgb( 235, 190, 185 )';
+  var DISCONNECTED_POINT_STROKE = PhetColorScheme.RED_COLORBLIND;
   var CONNECTION_POINT_HIGHLIGHTED = 'yellow';
 
   /**
@@ -55,28 +54,15 @@ define( function( require ) {
     triangleNode.touchArea = triangleShape;
     triangleNode.cursor = 'pointer';
 
-    function setPinConnected() {
-      connectionPointNode.fill = CONNECTED_POINT_COLOR;
-      connectionPointNode.stroke = CONNECTED_POINT_STROKE;
-    }
-    function setPinDisconnected() {
+    function resetPinColors() {
       connectionPointNode.fill = DISCONNECTED_POINT_COLOR;
       connectionPointNode.stroke = DISCONNECTED_POINT_STROKE;
     }
 
     var connectionType = connection.connectionType; // for readability
     circuitConnectionProperty.link( function( circuitConnection ) {
-      if( connectionType === circuitConnection ) {
-        setPinConnected();
-      }
-      else {
-        setPinDisconnected();
-      }
+      resetPinColors();
     } );
-
-    if( connectionType === circuitConnectionProperty.value ) {
-      setPinConnected();
-    }
 
     // Add input listener to set circuit state.
     this.addInputListener( new ButtonListener( {
@@ -84,12 +70,7 @@ define( function( require ) {
         connectionPointNode.fill = CONNECTION_POINT_HIGHLIGHTED;
       },
       up: function( event ) {
-        if( connectionType === circuitConnectionProperty.value ) {
-          setPinConnected();
-        }
-        else {
-          setPinDisconnected();
-        }
+        resetPinColors();
       },
       down: function( event ) {
         circuitConnectionProperty.set( connectionType );

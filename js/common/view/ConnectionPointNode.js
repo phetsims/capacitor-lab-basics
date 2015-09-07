@@ -13,15 +13,14 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Circle = require( 'SCENERY/nodes/Circle' );
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
+  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
 
   // constants
   var CONNECTION_POINT_RADIUS = 6;
 
   // colors
-  var CONNECTED_POINT_COLOR = 'black';
-  var CONNECTED_POINT_STROKE = 'rgb( 170, 170, 170 )';
   var DISCONNECTED_POINT_COLOR = 'rgb( 151, 208, 255 )';
-  var DISCONNECTED_POINT_STROKE = 'rgb( 235, 190, 185 )';
+  var DISCONNECTED_POINT_STROKE = PhetColorScheme.RED_COLORBLIND;
   var CONNECTION_POINT_HIGHLIGHTED = 'yellow';
 
   /**
@@ -37,17 +36,14 @@ define( function( require ) {
     options = _.extend( {
       fill: DISCONNECTED_POINT_COLOR,
       lineWidth: 2,
+      lineDash: [ 3, 3 ],
       stroke: DISCONNECTED_POINT_STROKE
     } );
     Circle.call( this, CONNECTION_POINT_RADIUS, options );
     var thisNode = this;
     this.cursor = 'pointer';
 
-    function setPinConnected() {
-      thisNode.fill = CONNECTED_POINT_COLOR;
-      thisNode.stroke = CONNECTED_POINT_STROKE;
-    }
-    function setPinDisconnected() {
+    function resetPinColors() {
       thisNode.fill = DISCONNECTED_POINT_COLOR;
       thisNode.stroke = DISCONNECTED_POINT_STROKE;
     }
@@ -55,17 +51,8 @@ define( function( require ) {
     // link pin style properties to the circuit connection. Needs to be done in addition to the button listener so that
     // all connection points update when a single connection point is interacted with.
     circuitConnectionProperty.link( function( circuitConnection ) {
-      if( connectionType === circuitConnection ) {
-        setPinConnected();
-      }
-      else {
-        setPinDisconnected();
-      }
+      resetPinColors();
     } );
-
-    if( connectionType === circuitConnectionProperty.value ) {
-      setPinConnected();
-    }
 
     // Add input listener to set circuit state.
     this.addInputListener( new ButtonListener( {
@@ -73,12 +60,7 @@ define( function( require ) {
         thisNode.fill = CONNECTION_POINT_HIGHLIGHTED;
       },
       up: function( event ) {
-        if( connectionType === circuitConnectionProperty.value ) {
-          setPinConnected();
-        }
-        else {
-          setPinDisconnected();
-        }
+        resetPinColors();
       },
       down: function( event ) {
         circuitConnectionProperty.set( connectionType );
