@@ -32,8 +32,6 @@ define( function( require ) {
       location: location,
       value: valueFunction( circuit )
     } );
-    // TODO: added outside of PropertySet because the property is held first in the model. Look into a nicer way of doing this.
-    // Best option is probably to take the properties out of CapacitorLabBasicsModel and just keep it here.
     this.visibleProperty = visibleProperty;
     this.valueVisibleProperty = valueVisibleProperty;
     var thisMeter = this;

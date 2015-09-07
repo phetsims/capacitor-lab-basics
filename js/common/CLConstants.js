@@ -98,8 +98,8 @@ define( function( require ) {
 
     // default exponents for the meters
     CAPACITANCE_METER_VALUE_EXPONENT: -12,
-    PLATE_CHARGE_METER_VALUE_EXPONENT: -13,
-    STORED_ENERGY_METER_VALUE_EXPONENT: -13,
+    PLATE_CHARGE_METER_VALUE_EXPONENT: -12,
+    STORED_ENERGY_METER_VALUE_EXPONENT: -12,
 
     // plate charges
     NUMBER_OF_PLATE_CHARGES: new Range( 1, 625 ),
