@@ -31,7 +31,8 @@ define( function( require ) {
 
     PropertySet.call( this, {
       currentAmplitude: 0,
-      circuitConnection: CircuitConnectionEnum.OPEN_CIRCUIT
+      circuitConnection: CircuitConnectionEnum.OPEN_CIRCUIT,
+      disconnectedPlateCharge: 0
     } );
     var thisCircuit = this;
 
@@ -70,21 +71,45 @@ define( function( require ) {
 
     // Whenever a circuit property changes, all segments are updated. This works, but is excessive.  If there are
     // performance issues, these links would be a great place to start.
-    // udpate all segments when the connection property changes.
-    this.circuitConnectionProperty.link( function( circuitConnection ) {
+    // udpate all segments, disconnected plate charge, and plate voltages when the connection property changes
+    this.circuitConnectionProperty.lazyLink( function( circuitConnection ) {
+      /*
+       * When disconnecting the battery, set the disconnected plate charge to whatever the total plate charge was with
+       * the battery connected.  Need to do this before changing the plate voltages property.
+       */
+      if ( circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        thisCircuit.setDisconnectedPlateCharge( thisCircuit.getTotalCharge() );
+      }
+      thisCircuit.updatePlateVoltages();
+
       updateSegments( circuitConnection );
     } );
 
-    // update all segments when capacitor plate geometry changes.
+    // update all segments and the plate voltages when capacitor plate geometry changes.  Lazy link because there is
+    // no guarantee that capacitors have been constructed.
     this.capacitors.forEach( function( capacitor ) {
-      capacitor.plateSeparationProperty.link( function() {
+      capacitor.plateSeparationProperty.lazyLink( function() {
         updateSegments( thisCircuit.circuitConnection );
+        thisCircuit.updatePlateVoltages();
+      } );
+    } );
+
+    // update the plate voltages when the capacitor plate size changes.  Lazy link because there is no guarantee that
+    // capacators have been constructed.
+    this.capacitors.forEach( function( capacitor ) {
+      capacitor.plateSizeProperty.lazyLink( function() {
+        thisCircuit.updatePlateVoltages();
       } );
     } );
 
     // update all segments when battery polarity changes.
     this.battery.polarityProperty.link( function( polarity ) {
       updateSegments( thisCircuit.circuitConnection );
+    } );
+
+    // when the disconnected plate charge property changes, set the disconnected plate voltage.
+    this.disconnectedPlateChargeProperty.lazyLink( function() {
+      thisCircuit.setDisconnectedPlateVoltage();
     } );
 
     /*
@@ -107,6 +132,27 @@ define( function( require ) {
      */
     updatePlateVoltages: function() {
       console.log( 'updatePlateVoltages should be implemented in descendant classes.' );
+    },
+
+    /**
+     * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
+     */
+    setDisconnectedPlateVoltage: function() {
+      if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        this.updatePlateVoltages();
+      }
+    },
+
+    /**
+     * Sets the value used for plate charge when the battery is disconnected.
+     * (design doc symbol: Q_total)
+     *
+     * @param {number} disconnectedPlateCharge Coulombs
+     */
+    setDisconnectedPlateCharge: function( disconnectedPlateCharge ) {
+      if ( disconnectedPlateCharge !== this.disconnectedPlateCharge ) {
+        this.disconnectedPlateCharge = disconnectedPlateCharge;
+      }
     },
 
     reset: function() {

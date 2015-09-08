@@ -49,12 +49,12 @@ define( function( require ) {
     this.bulbTopCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, Math.PI /* initial rotation*/ );
     this.bulbBottomCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, 0 /* initial rotation*/ );
 
-    this.addProperty( 'disconnectedPlateCharge', this.getTotalCharge() );
+    //this.addProperty( 'disconnectedPlateCharge', this.getTotalCharge() );
 
     // Set the plate voltages only when the connected circuit item changes.
-    this.disconnectedPlateChargeProperty.link( function() {
-      thisCircuit.setDisconnectedPlateVoltage();
-    } );
+    //this.disconnectedPlateChargeProperty.link( function() {
+    //  thisCircuit.setDisconnectedPlateVoltage();
+    //} );
 
     // Make sure that the charges are correct when the battery is reconnected to the circuit.
     this.circuitConnectionProperty.link( function( circuitConnection ) {
@@ -104,7 +104,6 @@ define( function( require ) {
      * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
      * calls this method from its constructor. Remember to call this method at the end of this class' constructor.
      *
-     * TODO: Edit the documentation here, call at end of constructor is probably unnecessary.
      */
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
@@ -114,7 +113,6 @@ define( function( require ) {
         if( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           this.capacitor.platesVoltage = this.battery.voltage;
         }
-
       }
     },
 

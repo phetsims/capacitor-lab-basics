@@ -75,14 +75,15 @@ define( function( require ) {
 
     /**
      * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
-     * calls this method from its constructor. Remember to call this method at the end of this class' constructor.
-     *
-     * TODO: Edit the documentation here, call at end of constructor is probably unnecessary.
+     * calls this method from its constructor.
      */
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
         if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           this.capacitor.platesVoltage = this.battery.voltage;
+        }
+        else {
+          this.capacitor.platesVoltage = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance();
         }
       }
     },

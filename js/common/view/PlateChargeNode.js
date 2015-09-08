@@ -204,7 +204,7 @@ define( function( require ) {
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
       var absCharge = Math.abs( plateCharge );
       var numberOfCharges = Util.toFixedNumber( CLConstants.NUMBER_OF_PLATE_CHARGES.max * ( absCharge / maxPlateCharge ), 0 );
-      if( absCharge < CLConstants.ELECTRON_CHARGE / 2 ) {
+      if ( absCharge < CLConstants.ELECTRON_CHARGE / 2 ) {
         numberOfCharges = 0;
       }
       return numberOfCharges;

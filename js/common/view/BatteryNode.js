@@ -102,18 +102,18 @@ define( function( require ) {
     } );
 
     // function to create the tick mark labels using a string pattern.
-    var createTickLabels = function( value ) {
+    var createTickLabels = function( value, textFill ) {
       var labelText = new Text( StringUtils.format( pattern_0value1units, value, unitsVoltsString ), {
         font: LABEL_FONT,
-        fill: 'white'
+        fill: textFill
       } );
       labelText.rotate( Math.PI / 2 ); // rotate label to match rotation of the slider.
       return labelText;
     };
     // add the tick marks
-    sliderNode.addMajorTick( voltageRange.max, createTickLabels( voltageRange.max ) );
-    sliderNode.addMajorTick( voltageRange.defaultValue, createTickLabels( voltageRange.defaultValue ) );
-    sliderNode.addMajorTick( voltageRange.min, createTickLabels( voltageRange.min ) );
+    sliderNode.addMajorTick( voltageRange.max, createTickLabels( voltageRange.max, 'black' ) );
+    sliderNode.addMajorTick( voltageRange.defaultValue, createTickLabels( voltageRange.defaultValue, 'white' ) );
+    sliderNode.addMajorTick( voltageRange.min, createTickLabels( voltageRange.min, 'white' ) );
 
     // keeping until the TODO above is resolved.
     //var batteryTicks = [
