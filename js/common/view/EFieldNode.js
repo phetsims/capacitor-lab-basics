@@ -40,18 +40,23 @@ define( function( require ) {
     var w = ARROW_SIZE.width;
     var h = ARROW_SIZE.height;
 
+    // make sure that the arrow path is centered along the field line.
+    // dividing by 4 aligns better than dividing by 2 for the narrow line width.
+    var xOffset = LINE_WIDTH / 4;
+    var arrowCenter = position.x + xOffset;
+
     // path for the UP arrow
     if ( direction === CLConstants.DIRECTION.UP ) {
-      context.moveTo( position.x, position.y - h / 2 );
-      context.lineTo( position.x + w / 2, position.y + h / 2 );
-      context.lineTo( position.x - w / 2, position.y + h / 2 );
+      context.moveTo( arrowCenter, position.y - h / 2 );
+      context.lineTo( arrowCenter + w / 2, position.y + h / 2 );
+      context.lineTo( arrowCenter - w / 2, position.y + h / 2 );
     }
 
     // path for the DOWN arrow
     else if ( direction === CLConstants.DIRECTION.DOWN ) {
-      context.moveTo( position.x, position.y + h / 2 );
-      context.lineTo( position.x - w / 2, position.y - h / 2 );
-      context.lineTo( position.x + w / 2, position.y - h / 2 );
+      context.moveTo( arrowCenter, position.y + h / 2 );
+      context.lineTo( arrowCenter - w / 2, position.y - h / 2 );
+      context.lineTo( arrowCenter + w / 2, position.y - h / 2 );
     }
 
     else { console.error( 'EFieldLine must be of orientation UP or DOWN' ); }
