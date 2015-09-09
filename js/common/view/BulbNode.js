@@ -166,6 +166,11 @@ define( function( require ) {
         thisNode.bulb.haloNode.visible = false;
       }
     } );
+
+    // make sure that the light bulb turns off instantly when disconnected from capacitor.
+    circuitConnectionProperty.link( function( circuitConnection ) {
+      thisNode.bulb.haloNode.visible = ( CircuitConnectionEnum.LIGHT_BULB_CONNECTED === circuitConnection );
+    } );
   }
 
   return inherit( Node, BulbNode, {}, {
