@@ -265,7 +265,6 @@ define( function( require ) {
         return 0;
       }
       else {
-        console.log( 'you should not be here.' );
         return dielectricCharge;
       }
     },
