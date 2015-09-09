@@ -143,7 +143,6 @@ define( function( require ) {
     paintCanvas: function( wrapper ) {
 
       var context = wrapper.context;
-
       var plateCharge = this.getPlateCharge();
       var numberOfCharges = this.getNumberOfCharges( plateCharge, this.maxPlateCharge );
 
@@ -203,9 +202,10 @@ define( function( require ) {
      */
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
       var absCharge = Math.abs( plateCharge );
+      //console.log( absCharge );
       var numberOfCharges = Util.toFixedNumber( CLConstants.NUMBER_OF_PLATE_CHARGES.max * ( absCharge / maxPlateCharge ), 0 );
-      if ( absCharge < CLConstants.ELECTRON_CHARGE / 2 ) {
-        numberOfCharges = 0;
+      if( absCharge > 0 && numberOfCharges < CLConstants.NUMBER_OF_PLATE_CHARGES.min ) {
+        numberOfCharges = CLConstants.NUMBER_OF_PLATE_CHARGES.min;
       }
       return numberOfCharges;
     }
@@ -240,7 +240,7 @@ define( function( require ) {
 
     // Gets the portion of the plate charge due to air.
     getPlateCharge: function() {
-      return this.capacitor.getAirPlateCharge();
+      return this.capacitor.getTotalPlateCharge();
     },
 
     // Gets the x offset (relative to the plate origin) of the portion of the plate that is in contact with air.

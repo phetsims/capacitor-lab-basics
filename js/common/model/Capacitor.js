@@ -200,7 +200,7 @@ define( function( require ) {
     intersectsTopPlate: function( shape ) {
       var intersectsTopPlate = false;
       this.shapeCreator.createTopPlateShapeOccluded().forEach( function( topPlateShape ) {
-        if( shape.intersectsBounds( topPlateShape.bounds ) ) {
+        if ( shape.intersectsBounds( topPlateShape.bounds ) ) {
           intersectsTopPlate = true;
         }
       } );
@@ -216,7 +216,7 @@ define( function( require ) {
     intersectsBottomPlate: function( shape ) {
       var intersectsBottomPlate = false;
       this.shapeCreator.createBottomPlateShapeOccluded().forEach( function( bottomPlateShape ) {
-        if( shape.intersectsBounds( bottomPlateShape.bounds ) ) {
+        if ( shape.intersectsBounds( bottomPlateShape.bounds ) ) {
           intersectsBottomPlate = true;
         }
       } );
@@ -236,14 +236,21 @@ define( function( require ) {
     },
 
     /**
-     * Gets the charge for the portion of the top plate contacting the air.
+     * Gets the charge for the portion of the top plate contacting the air.  If charge is less than half of an electron
+     * charge, return 0.
      * (design doc symbol: Q_air)
      *
      * @return {number} charge, in Coulombs
      *
      */
     getAirPlateCharge: function() {
-      return this.getAirCapacitance() * this.platesVoltage;
+      var airPlateCharge = this.getAirCapacitance() * this.platesVoltage;
+      if ( Math.abs( airPlateCharge ) < CLConstants.ELECTRON_CHARGE / 2 ) {
+        return 0;
+      }
+      else {
+        return airPlateCharge;
+      }
     },
 
     /**
@@ -253,7 +260,14 @@ define( function( require ) {
      * @return {number} charge, in Coulombs
      */
     getDielectricPlateCharge: function() {
-      return this.getDielectricCapacitance() * this.platesVoltage;
+      var dielectricCharge = this.getDielectricCapacitance() * this.platesVoltage;
+      if ( Math.abs( dielectricCharge ) < CLConstants.ELECTRON_CHARGE / 2 ) {
+        return 0;
+      }
+      else {
+        console.log( 'you should not be here.' );
+        return dielectricCharge;
+      }
     },
 
     /**
@@ -303,12 +317,20 @@ define( function( require ) {
 
     /**
      * Gets the effective (net) field between the plates. This is uniform everywhere between the plates.
+     * If the total charge on the plate is less than half that of a single electron, effective field is zero.
+     *
      * (design doc symbol: E_effective)
      *
      * @return {number} Volts/meter
      */
     getEffectiveEField: function() {
-      return this.platesVoltage / this.plateSeparation;
+      var totalPlateCharge = this.getTotalPlateCharge();
+      if ( Math.abs( totalPlateCharge ) < CLConstants.ELECTRON_CHARGE / 2 ) {
+        return 0;
+      }
+      else {
+        return this.platesVoltage / this.plateSeparation;
+      }
     },
 
     /**

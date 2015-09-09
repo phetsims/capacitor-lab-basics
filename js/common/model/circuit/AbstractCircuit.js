@@ -309,6 +309,9 @@ define( function( require ) {
      */
     updateCurrentAmplitude: function( dt ) {
       var Q = this.getTotalCharge();
+      if ( Q < CLConstants.ELECTRON_CHARGE / 2 ) {
+        Q = 0;
+      }
       if ( this.previousTotalCharge !== -1 ) {
         var dQ = Q - this.previousTotalCharge;
         this.currentAmplitude = dQ / dt;
