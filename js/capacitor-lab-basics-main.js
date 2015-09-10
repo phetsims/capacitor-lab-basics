@@ -16,7 +16,7 @@ define( function( require ) {
   var SimLauncher = require( 'JOIST/SimLauncher' );
 
   // strings
-  var simTitle = require( 'string!CAPACITOR_LAB_BASICS/capacitor-lab-basics.name' );
+  var simTitle = require( 'string!CAPACITOR_LAB_BASICS/capacitor-lab-basics.title' );
 
   var screens = [
     new CapacitanceScreen(),
