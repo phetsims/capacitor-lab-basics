@@ -22,6 +22,7 @@ define( function( require ) {
 
   function DielectricMaterial( name, dielectricConstant, color ) {
 
+    // @public (read-only)
     this.name = name;
     this.color = color;
     this.dielectricConstant = dielectricConstant;

@@ -42,7 +42,7 @@ define( function( require ) {
     Node.call( this );
     var thisNode = this;
 
-    this.circuit = circuit;
+    this.circuit = circuit; // @public
 
     // circuit components
     var batteryNode = new BatteryNode( circuit.battery, CLConstants.BATTERY_VOLTAGE_RANGE );

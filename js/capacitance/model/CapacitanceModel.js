@@ -52,7 +52,7 @@ define( function( require ) {
 
     CapacitorLabBasicsModel.call( this );
 
-    this.modelViewTransform = modelViewTransform;
+    this.modelViewTransform = modelViewTransform; // @ public (read-only)
 
     // configuration info for the circuit
     var circuitConfig = new CircuitConfig( {
@@ -66,13 +66,14 @@ define( function( require ) {
       wireThickness: WIRE_THICKNESS
     } );
 
-    this.dielectricMaterial = DielectricMaterial.Air();
+    this.dielectricMaterial = DielectricMaterial.Air(); // @public (read-only)
 
-    this.circuit = new CapacitanceCircuit( circuitConfig );
-    this.worldBounds = CLConstants.CANVAS_RENDERING_SIZE.toBounds();
+    this.circuit = new CapacitanceCircuit( circuitConfig ); // @public
+    this.worldBounds = CLConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
 
     this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, this.capacitanceMeterVisibleProperty, this.valuesVisibleProperty );
 
+    // @public
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform,
       VOLTMETER_BODY_LOCATION, VOLTMETER_POSITIVE_PROBE_LOCATION, VOLTMETER_NEGATIVE_PROBE_LOCATION,
       VOLTMETER_VISIBLE );

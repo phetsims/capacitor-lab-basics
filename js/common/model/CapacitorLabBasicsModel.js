@@ -22,6 +22,7 @@ define( function( require ) {
    */
   function CapacitorLabBasicsModel() {
 
+    // public
     PropertySet.call( this, {
       plateChargesVisible: CLConstants.PLATE_CHARGES_VISIBLE,
       eFieldVisible: CLConstants.EFIELD_VISIBLE,

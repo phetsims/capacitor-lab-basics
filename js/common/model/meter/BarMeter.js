@@ -28,6 +28,7 @@ define( function( require ) {
    */
   function BarMeter( circuit, worldBounds, location, visibleProperty, valueVisibleProperty, valueFunction ) {
 
+    // @public
     PropertySet.call( this, {
       location: location,
       value: valueFunction( circuit )
@@ -36,8 +37,8 @@ define( function( require ) {
     this.valueVisibleProperty = valueVisibleProperty;
     var thisMeter = this;
 
-    this.circuit = circuit;
-    this.valueFunction = valueFunction;
+    this.circuit = circuit; // @private
+    this.valueFunction = valueFunction; // @private
 
     circuit.capacitor.multilink( [ 'plateSize', 'plateSeparation', 'platesVoltage' ], function() {
       thisMeter.updateValue();

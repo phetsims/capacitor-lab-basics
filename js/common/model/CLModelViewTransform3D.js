@@ -39,9 +39,11 @@ define( function( require ) {
       yaw: CLConstants.MVT_YAW // rotation about the vertical (y) axis, sign determined using the right-hand rule (radians)
     }, options );
 
-    this.modelToViewTransform2D = new Transform3( new Matrix3.scaling( options.scale, options.scale ) ); // @private
-    this.viewToModelTransform2D = new Transform3( new Matrix3.scaling( 1 / options.scale, 1 / options.scale ) ); //@private
+    // @private
+    this.modelToViewTransform2D = new Transform3( new Matrix3.scaling( options.scale, options.scale ) );
+    this.viewToModelTransform2D = new Transform3( new Matrix3.scaling( 1 / options.scale, 1 / options.scale ) );
 
+    // @public (read-only)
     this.pitch = options.pitch;
     this.yaw = options.yaw;
 

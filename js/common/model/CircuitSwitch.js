@@ -30,11 +30,13 @@ define( function( require ) {
    */
   function CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty ) {
 
+    // @private
     this.initialAngle = 0; // with respect to the horizontal ( open switch )
-
-    this.hingePoint = hingePoint;
-    this.connections = connections;
     this.modelViewTransform = modelViewTransform;
+    this.connections = connections;
+
+    // @public
+    this.hingePoint = hingePoint;
     this.circuitConnectionProperty = circuitConnectionProperty;
 
     this.activeConnection = this.getConnection( circuitConnectionProperty.value );

@@ -49,6 +49,7 @@ define( function( require ) {
     Node.call( this, PlateSeparationDragHandleNode );
     var thisNode = this;
 
+    // @private
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
 

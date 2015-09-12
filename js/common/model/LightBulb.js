@@ -27,7 +27,7 @@ define( function( require ) {
    */
   function LightBulb( location, resistance ) {
 
-    // immutable variables
+    // @public (read-only)
     this.location = location;
     this.resistance = resistance;
 

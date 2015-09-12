@@ -21,7 +21,7 @@ define( function( require ) {
    * @constructor
    */
   function BoxShapeCreator( modelViewTransform ) {
-    this.modelViewTransform = modelViewTransform;
+    this.modelViewTransform = modelViewTransform; // @public
   }
 
   return inherit( Object, BoxShapeCreator, {

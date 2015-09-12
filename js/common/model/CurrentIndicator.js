@@ -29,12 +29,14 @@ define( function( require ) {
    */
   function CurrentIndicator( currentAmplitudeProperty, positiveOrientation ) {
 
+    // @public
     PropertySet.call( this, {
       opacity: 0,
       rotation: 0
     } );
     this.currentAmplitudeProperty = currentAmplitudeProperty;
 
+    // @private
     this.positiveOrientation = positiveOrientation;
     this.deltaOpacity = MAX_OPACITY / ( FADEOUT_DURATION / FADEOUT_STEP_RATE );
     this.delayTime = 0;

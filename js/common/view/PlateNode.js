@@ -26,10 +26,12 @@ define( function( require ) {
 
     BoxNode.call( this, modelViewTransform, PLATE_COLOR, capacitor.plateSize );
 
-    this.modelViewTransform = modelViewTransform;
+    this.modelViewTransform = modelViewTransform; // @private
 
     // Charges restricted to the largest possible top face on a capacitor plate.  Bounds needed for canvas.
     var canvasBounds = this.getMaxBoxNodeBounds();
+
+    // @private
     this.airPlateChargeNode = PlateChargeNode.AirPlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge, canvasBounds );
     this.addChild( this.airPlateChargeNode );
 

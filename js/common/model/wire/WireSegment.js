@@ -18,6 +18,7 @@ define( function( require ) {
    * Constructor for a WireSegment.
    */
   function WireSegment( startPoint, endPoint ) {
+    // @public
     PropertySet.call( this, {
       startPoint: startPoint,
       endPoint: endPoint

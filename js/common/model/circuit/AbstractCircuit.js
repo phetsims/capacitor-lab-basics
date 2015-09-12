@@ -39,12 +39,14 @@ define( function( require ) {
     this.previousTotalCharge = -1; // no value, @private
 
     // create basic circuit components
+    // @public
     this.battery = new Battery( config.batteryLocation, CLConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform );
     this.circuitComponents = createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs );
     this.circuitSwitches = createCircuitSwitches( config, numberOfCapacitors, this.circuitConnectionProperty );
 
     // capture the circuit components into individual arrays.  Note that using slice assumes order of capacitors and
     // then lightbulbs. If new order is important, new method is necessary.
+    // @public
     this.capacitors = this.circuitComponents.slice( 0, numberOfCapacitors );
     this.lightBulbs = this.circuitComponents.slice( numberOfCapacitors, numberOfLightBulbs + 1 );
 
@@ -53,6 +55,7 @@ define( function( require ) {
     this.wires = createWires( config, this.battery, this.lightBulbs[ 0 ], this.capacitors[ 0 ], this.circuitSwitches, this.circuitConnectionProperty );
 
     // create the current indicators
+    // @public
     this.batteryTopCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, 0 /* initial rotation*/ );
     this.batteryBottomCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, Math.PI /* initial rotation*/ );
 

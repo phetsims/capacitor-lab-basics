@@ -32,12 +32,13 @@ define( function( require ) {
 
     Node.call( this );
     var thisNode = this; // extend scope for nested callbacks
+
+    // @private
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
-
-    // child nodes
     this.topPlateNode = PlateNode.TopPlateNode( capacitor, modelViewTransform, maxPlateCharge );
     this.bottomPlateNode = PlateNode.BottomPlateNode( capacitor, modelViewTransform, maxPlateCharge );
+
     var eFieldNode = new EFieldNode( capacitor, modelViewTransform, maxEffectiveEField, this.getPlatesBounds() );
 
     // rendering order

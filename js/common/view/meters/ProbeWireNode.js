@@ -30,6 +30,8 @@ define( function( require ) {
   function ProbeWireNode( bodyNode, probeNode, bodyControlPointOffset, probeControlPointOffset, bodyConnectionOffset, probeConnectionOffset, color ) {
 
     var thisNode = this;
+
+    // @private
     this.bodyNode = bodyNode;
     this.probeNode = probeNode;
     this.bodyControlPointOffset = bodyControlPointOffset;

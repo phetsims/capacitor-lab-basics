@@ -43,9 +43,9 @@ define( function( require ) {
     } );
     var thisMeter = this;
 
-    this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform );
-    this.circuit = circuit;
-    this.dragBounds = dragBounds;
+    this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform ); // @public (read-only)
+    this.circuit = circuit; // @private
+    this.dragBounds = dragBounds; // @public (read-only)
 
     // whenever a capacitor changes, update the value.
     circuit.capacitors.forEach( function( capacitor ) {

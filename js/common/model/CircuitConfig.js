@@ -33,6 +33,7 @@ define( function( require ) {
       lightBulbResistance: 5E12
     }, options );
 
+    // @public
     this.modelViewTransform = options.modelViewTransform;
     this.lightBulbXSpacing = options.lightBulbXSpacing;
     this.batteryLocation = options.batteryLocation;

@@ -33,10 +33,11 @@ define( function( require ) {
 
     Node.call( this );
 
+    // @private
     this.shapeCreator = new BoxShapeCreator( modelViewTransform );
     this.size = size;
 
-    // front faces
+    // @private front faces
     this.topNode = new Path( this.shapeCreator.createTopFaceBounds3( size ), {
       fill: this.getTopColor( color ),
       lineWidth: LINE_WIDTH,

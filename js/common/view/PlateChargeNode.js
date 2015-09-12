@@ -77,6 +77,7 @@ define( function( require ) {
     CanvasNode.call( this, { canvasBounds: canvasBounds } );
     var thisNode = this; // extend scope for nested callbacks
 
+    // @private
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
     this.polarity = polarity;

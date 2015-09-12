@@ -44,11 +44,11 @@ define( function( require ) {
     // @public
     this.transientTime = 0; // model time updated when the switch is closed and while the capacitor is discharging
     this.voltageAtSwitchClose = 0; // voltage of the plates when the bulb switch is initially closed
+    this.modelViewTransform = modelViewTransform;
+    this.location = location;
 
     // @private
-    this.modelViewTransform = modelViewTransform;
     this.shapeCreator = new CapacitorShapeCreator( this, modelViewTransform );
-    this.location = location;
 
     // @public
     PropertySet.call( this, {

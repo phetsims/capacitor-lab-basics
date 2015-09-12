@@ -42,19 +42,14 @@ define( function( require ) {
     ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 1 /* numberOfLightBulbs */ );
     var thisCircuit = this;
 
+    // @public
     this.capacitor = this.capacitors[ 0 ];
     this.lightBulb = this.lightBulbs[ 0 ];
 
     // create the light bulb current indicators
+    // @public
     this.bulbTopCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, Math.PI /* initial rotation*/ );
     this.bulbBottomCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, 0 /* initial rotation*/ );
-
-    //this.addProperty( 'disconnectedPlateCharge', this.getTotalCharge() );
-
-    // Set the plate voltages only when the connected circuit item changes.
-    //this.disconnectedPlateChargeProperty.link( function() {
-    //  thisCircuit.setDisconnectedPlateVoltage();
-    //} );
 
     // Make sure that the charges are correct when the battery is reconnected to the circuit.
     this.circuitConnectionProperty.link( function( circuitConnection ) {

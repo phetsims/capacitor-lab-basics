@@ -41,12 +41,12 @@ define( function( require ) {
     Node.call( this );
     var thisNode = this;
 
-    this.units = units;
+    this.units = units; // @private
 
     var labelNode = new Text( label, { font: LABEL_FONT } );
     this.addChild( labelNode );
 
-    this.valueNode = new SubSupText( '', { font: VALUE_FONT } );
+    this.valueNode = new SubSupText( '', { font: VALUE_FONT } ); // @private
     this.addChild( this.valueNode );
 
     // layout: value below label, left-justified

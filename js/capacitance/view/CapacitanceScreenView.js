@@ -37,7 +37,7 @@ define( function( require ) {
 
     this.modelViewTransform = model.modelViewTransform;
 
-    this.model = model;
+    this.model = model; // @private
 
     // Maxima, for calibrating various view representations.
     var maxPlateCharge = model.getMaxPlateCharge();
@@ -56,14 +56,12 @@ define( function( require ) {
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
     var minWidth = this.right - capacitanceMeterNode.left;
-    //var capacitanceControlPanel = new CapacitanceControlPanel( model, minWidth );
     var capacitanceViewControl = new CapacitorLabBasicsViewControl( model, minWidth );
     capacitanceViewControl.translation = this.layoutBounds.rightTop.minusXY( capacitanceViewControl.width + 10, -10 );
 
     capacitanceMeterNode.rightTop = capacitanceViewControl.leftTop.minusXY( 15, 0 );
 
-    // reset button
-    this.resetAllButton = new ResetAllButton( {
+    var resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
       bottom: this.layoutBounds.bottom - 20,
       right: this.layoutBounds.right - 30,
@@ -75,7 +73,7 @@ define( function( require ) {
     this.addChild( capacitanceMeterNode );
     this.addChild( voltmeterNode );
     this.addChild( capacitanceViewControl );
-    this.addChild( this.resetAllButton );
+    this.addChild( resetAllButton );
 
     // debug shapes for probe collision testing, to be removed soon
     if ( DEBUG_SHAPES ) {

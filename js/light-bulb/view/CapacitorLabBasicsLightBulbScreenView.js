@@ -33,9 +33,8 @@ define( function( require ) {
 
     ScreenView.call( this );
 
-    this.modelViewTransform = model.modelViewTransform;
-
-    this.model = model;
+    this.modelViewTransform = model.modelViewTransform; // @private
+    this.model = model; // @private
 
     // Maximums, for calibrating various view representations.
     var maxPlateCharge = model.getMaxPlateCharge();
@@ -62,8 +61,7 @@ define( function( require ) {
     plateChargeMeterNode.rightCenter = storedEnergyMeterNode.leftCenter.minusXY( 15, 0 );
     capacitanceMeterNode.rightCenter = plateChargeMeterNode.leftCenter;
 
-    // reset button
-    this.resetAllButton = new ResetAllButton( {
+    var resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
       bottom: this.layoutBounds.bottom - 20,
       right: this.layoutBounds.right - 30,
@@ -77,7 +75,7 @@ define( function( require ) {
     this.addChild( storedEnergyMeterNode );
     this.addChild( voltmeterNode );
     this.addChild( capacitorLabBasicsLightBulbViewControl);
-    this.addChild( this.resetAllButton );
+    this.addChild( resetAllButton );
   }
 
   return inherit( ScreenView, CapacitorLabBasicsLightBulbScreenView );

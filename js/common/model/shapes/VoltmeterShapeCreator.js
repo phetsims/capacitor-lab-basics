@@ -24,6 +24,7 @@ define( function( require ) {
    */
   function VoltmeterShapeCreator( voltmeter, modelViewTransform ) {
 
+    // @private
     this.voltmeter = voltmeter;
     this.modelViewTransform = modelViewTransform;
 

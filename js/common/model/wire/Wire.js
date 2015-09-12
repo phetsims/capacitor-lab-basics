@@ -30,12 +30,13 @@ define( function( require ) {
 
     assert && assert( thickness > 0 );
 
-    this.segments = segments;
-    this.connectionPoint = connectionPoint; //
-    this.thickness = thickness;
-    this.shapeCreator = new WireShapeCreator( this, modelViewTransform );
+    this.segments = segments; // @public
+    this.connectionPoint = connectionPoint; // @public
+    this.thickness = thickness; // @public
+    this.shapeCreator = new WireShapeCreator( this, modelViewTransform ); // @private
     var shape = this.shapeCreator.createWireShape();
 
+    // @public
     PropertySet.call( this, {
       shape: shape
     } );

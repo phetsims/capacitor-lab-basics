@@ -24,11 +24,12 @@ define( function( require ) {
   function PlateAreaDragHandler( dragNode, capacitor, modelViewTransform, valueRange ) {
 
     var thisHandler = this;
+
+    // @private
     this.dragNode = dragNode;
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
     this.valueRange = valueRange;
-
     this.clickXOffset = new Vector2( 0, 0 );
 
     SimpleDragHandler.call( this, {

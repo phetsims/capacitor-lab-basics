@@ -68,7 +68,7 @@ define( function( require ) {
 
     CapacitorLabBasicsModel.call( this );
 
-    this.modelViewTransform = modelViewTransform;
+    this.modelViewTransform = modelViewTransform; // @private
 
     // configuration info for the circuit
     var circuitConfig = new CircuitConfig( {
@@ -83,15 +83,15 @@ define( function( require ) {
       wireThickness: WIRE_THICKNESS
     } );
 
-    this.dielectricMaterial = DielectricMaterial.Air();
+    this.dielectricMaterial = DielectricMaterial.Air(); // @public (read-only)
 
-    this.circuit = new LightBulbCircuit( circuitConfig );
-    this.worldBounds = CLConstants.CANVAS_RENDERING_SIZE.toBounds();
+    this.circuit = new LightBulbCircuit( circuitConfig ); // @public
+    this.worldBounds = CLConstants.CANVAS_RENDERING_SIZE.toBounds(); // private
 
+    // @public
     this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, this.capacitanceMeterVisibleProperty, this.valuesVisibleProperty );
     this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.worldBounds, PLATE_CHARGE_METER_LOCATION, this.plateChargeMeterVisibleProperty, this.valuesVisibleProperty );
     this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.worldBounds, STORED_ENERGY_METER_LOCATION, this.storedEnergyMeterVisibleProperty, this.valuesVisibleProperty );
-
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform,
       VOLTMETER_BODY_LOCATION, VOLTMETER_POSITIVE_PROBE_LOCATION, VOLTMETER_NEGATIVE_PROBE_LOCATION,
       VOLTMETER_VISIBLE );

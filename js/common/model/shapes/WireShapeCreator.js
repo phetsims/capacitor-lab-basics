@@ -21,6 +21,7 @@ define( function( require ) {
    * @param {ModelViewTransform2} modelViewTransform
    */
   function WireShapeCreator( wire, modelViewTransform ) {
+    // @private
     this.wire = wire;
     this.modelViewTransform = modelViewTransform;
   }

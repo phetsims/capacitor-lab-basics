@@ -68,7 +68,7 @@ define( function( require ) {
       circuitSwitchFactory: createCircuitSwitch
     } );
 
-    this.capacitor = this.capacitors[ 0 ];
+    this.capacitor = this.capacitors[ 0 ]; // @public
   }
 
   return inherit( ParallelCircuit, SingleCircuit, {

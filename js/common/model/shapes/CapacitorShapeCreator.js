@@ -24,6 +24,7 @@ define( function( require ) {
    * @constructor
    */
   function CapacitorShapeCreator( capacitor, modelViewTransform ) {
+    // @private
     this.capacitor = capacitor;
     this.boxShapeCreator = new BoxShapeCreator( modelViewTransform );
   }

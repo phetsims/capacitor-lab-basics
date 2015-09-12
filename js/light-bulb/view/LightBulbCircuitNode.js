@@ -44,8 +44,7 @@ define( function( require ) {
     Node.call( this ); // supertype constructor
 
     var thisNode = this;
-
-    this.circuit = circuit;
+    this.circuit = circuit; // @private
 
     // circuit components
     var batteryNode = new BatteryNode( circuit.battery, CLConstants.BATTERY_VOLTAGE_RANGE );
@@ -53,8 +52,8 @@ define( function( require ) {
     var capacitorNode = new CapacitorNode( circuit.capacitor, modelViewTransform, plateChargeVisibleProperty,
       eFieldVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
-    this.topWireNode = new Node();
-    this.bottomWireNode = new Node();
+    this.topWireNode = new Node(); // @private
+    this.bottomWireNode = new Node(); // @private
     this.circuit.getTopWires().forEach( function( topWire ) {
       thisNode.topWireNode.addChild( new WireNode( topWire ) );
     } );
@@ -67,7 +66,7 @@ define( function( require ) {
     var lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.platesVoltageProperty, circuit.circuitConnectionProperty, modelViewTransform );
 
     // switches
-    this.circuitSwitchNodes = [];
+    this.circuitSwitchNodes = []; // @private
     circuit.circuitSwitches.forEach( function( circuitSwitch ) {
       thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, modelViewTransform ) );
     } );
@@ -76,7 +75,7 @@ define( function( require ) {
     var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE, valuesVisibleProperty );
     var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE, valuesVisibleProperty );
 
-    // current indicators
+    // @private current indicators
     this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.batteryTopCurrentIndicator, 0 );
     this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.batteryBottomCurrentIndicator, Math.PI );
 

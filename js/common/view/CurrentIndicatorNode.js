@@ -54,7 +54,7 @@ define( function( require ) {
 
     Node.call( this, { opacity: 0 } ); // TODO: Perhaps extend ArrowNode?
     var thisNode = this;
-    this.positiveOrientation = positiveOrientation;
+    this.positiveOrientation = positiveOrientation; // @private
 
     var arrowNode = new ArrowNode( ARROW_TAIL_LOCATION.x, ARROW_TAIL_LOCATION.y, ARROW_TIP_LOCATION.x, ARROW_TIP_LOCATION.y, {
       headHeight: ARROW_HEAD_HEIGHT,

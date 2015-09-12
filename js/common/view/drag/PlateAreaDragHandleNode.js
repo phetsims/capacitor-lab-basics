@@ -50,6 +50,7 @@ define( function( require ) {
     Node.call( this );
     var thisNode = this;
 
+    // @private
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
 
@@ -64,7 +65,7 @@ define( function( require ) {
 
     // value
     var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
-    // TODO: Is this the best way to handle superscripts?
+    // @private
     this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, unitsMillimetersString + '<sup>' + 2 + '</sup>', valuesVisibleProperty );
 
     // rendering order

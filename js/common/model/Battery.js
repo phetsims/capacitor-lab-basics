@@ -48,6 +48,7 @@ define( function( require ) {
    */
   function Battery( location, voltage, modelViewTransform ) {
 
+    // @public
     PropertySet.call( this, {
       voltage: voltage,
       polarity: CLConstants.POLARITY.POSITIVE
@@ -55,8 +56,8 @@ define( function( require ) {
 
     var thisBattery = this;
 
-    this.location = location; // immutable.
-    this.shapeCreator = new BatteryShapeCreator( this, modelViewTransform );
+    this.location = location; // @public (read-only)
+    this.shapeCreator = new BatteryShapeCreator( this, modelViewTransform ); // @private
 
     this.voltageProperty.link( function() {
       thisBattery.polarity = thisBattery.getPolarity( thisBattery.voltage );
