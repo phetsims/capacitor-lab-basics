@@ -20,14 +20,10 @@ define( function( require ) {
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
-  //var Path = require( 'SCENERY/nodes/Path' ); // keeping until TODO below is resolved.
-  //var Shape = require( 'KITE/Shape' );
   var Vector2 = require( 'DOT/Vector2' );
 
   // constants
   var LABEL_FONT = new PhetFont( 12 );
-  //var TICK_LENGTH = 16; // keeping these values until the TODO below is resolved.
-  //var TICK_LABEL_SPACING = 5;
 
   // images
   var batteryUpImage = require( 'image!CAPACITOR_LAB_BASICS/battery.png' );
@@ -36,42 +32,6 @@ define( function( require ) {
   // strings
   var pattern_0value1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
-
-  /**
-   * Ticks for the slider on the BatteryNode.  This is used instead of HSlider ticks because these ticks need to be
-   * on the side of the slider opposite of what HSlider supports.  If HSlider is ever changed to support more freedom
-   * of tick position, this can be removed.
-   *
-   * TODO: It was decided that the slider can be rotated so that normal HSlider ticks can beused.  But this means
-   * that the slider tick labels are hidden in the specular lighting of the battery.  Keeping this function in case
-   * the slider needs to be rotated again. See issue #15
-   *
-   * @param {number} voltage
-   * @param {Vector2} startPoint starting point of tick.  Tick will extend vertically down from here.
-   * @constructor
-   */
-  //function BatteryTickNode( voltage, startPoint ) {
-  //  Node.call( this ); // supertype constructor
-  //
-  //   add the tick
-  //var tick = new Path( new Shape()
-  //    .moveToPoint( startPoint )
-  //    .lineTo( startPoint.x, startPoint.y + TICK_LENGTH ), {
-  //    lineWidth: 2,
-  //    stroke: 'black'
-  //  }
-  //);
-  //this.addChild( tick );
-
-  // create the label text.
-  //var voltageText = new Text( StringUtils.format( pattern_0value1units, voltage, unitsVoltsString ), { font: LABEL_FONT } );
-  //voltageText.rotate( Math.PI / 2 ); // rotate to match rotated slider.
-  //this.addChild( voltageText );
-  //voltageText.centerX = tick.centerX;
-  //voltageText.top = tick.bottom + TICK_LABEL_SPACING;
-  //}
-
-  //inherit( Node, BatteryTickNode );
 
   /**
    * Constructor for a BatteryNode.
@@ -114,18 +74,6 @@ define( function( require ) {
     sliderNode.addMajorTick( voltageRange.max, createTickLabels( voltageRange.max, 'black' ) );
     sliderNode.addMajorTick( voltageRange.defaultValue, createTickLabels( voltageRange.defaultValue, 'white' ) );
     sliderNode.addMajorTick( voltageRange.min, createTickLabels( voltageRange.min, 'white' ) );
-
-    // keeping until the TODO above is resolved.
-    //var batteryTicks = [
-    //  new BatteryTickNode( voltageRange.max, sliderNode.rightCenter ),
-    //  new BatteryTickNode( voltageRange.defaultValue, sliderNode.center ),
-    //  new BatteryTickNode( voltageRange.min, sliderNode.leftCenter )
-    //];
-    //batteryTicks.forEach( function( tick ) {
-    //  sliderNode.addChild( tick );
-    //  tick.moveToBack(); // Move the tick behind the slider so the thumb is above it.
-    //} );
-    //sliderNode.rotate( -Math.PI / 2 );
 
     sliderNode.rotate( -Math.PI / 2 );
     this.addChild( sliderNode );
