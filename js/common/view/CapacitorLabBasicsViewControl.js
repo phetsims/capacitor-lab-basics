@@ -18,6 +18,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
   var VStrut = require( 'SCENERY/nodes/VStrut' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
 
   // constants
   var PANEL_TITLE_FONT = new PhetFont( { weight: 'bold', size: 18 } );
@@ -38,7 +39,7 @@ define( function( require ) {
    * @param {number} minWidth - minimum width of the panels, calculated by layout in the screen view.
    * @constructor
    */
-  function CapacitorLabBasicsViewControl( model  ) {
+  function CapacitorLabBasicsViewControl( model ) {
     var viewAssets = [
       {
         string: plateChargesString,
@@ -61,7 +62,6 @@ define( function( require ) {
     var viewCheckBoxItems = createCheckBoxItems( viewAssets );
     var viewVerticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems );
     var viewVisibilityControlBox = createControlBox( viewString, viewVerticalCheckBoxGroup );
-    //var viewVisibilityControlPanel = createControlPanel( viewVisibilityControlBox, minWidth );
 
     Panel.call( this, viewVisibilityControlBox, {
       xMargin: 10,
@@ -106,5 +106,4 @@ define( function( require ) {
   }
 
   return inherit( Panel, CapacitorLabBasicsViewControl );
-
 } );
