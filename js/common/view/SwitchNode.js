@@ -17,18 +17,7 @@ define( function( require ) {
   var HingePointNode = require( 'CAPACITOR_LAB_BASICS/common/view/HingePointNode' );
   var ConnectionAreaInputListener = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaInputListener' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
-
-  // TODO: TEMPORARY! remove soon.
-  // add query parameter harness to play with the two different drag styles.
-  var CircuitSwitchDragHandler;
-  var getQueryParameter = phet.chipper.getQueryParameter;
-  var snapDrag = getQueryParameter( 'snapDrag' ) || false;
-  if ( snapDrag ) {
-    CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchSnapDragHandler' );
-  }
-  else {
-    CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
-  }
+  var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
 
   /**
    * Constructor for a SwitchNode.
