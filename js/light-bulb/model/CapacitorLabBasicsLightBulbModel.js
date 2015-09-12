@@ -44,15 +44,6 @@ define( function( require ) {
   // Stored Energy meter
   var STORED_ENERGY_METER_LOCATION = new Vector3( 0.0475, 0.0017, 0 );
 
-  // E-Field Detector
-  var EFIELD_DETECTOR_BODY_LOCATION = new Vector3( 0.043, 0.041, 0 );
-  var EFIELD_DETECTOR_PROBE_LOCATION = BATTERY_LOCATION;
-  var EFIELD_DETECTOR_VISIBLE = false;
-  var EFIELD_PLATE_VECTOR_VISIBLE = true;
-  var EFIELD_DIELECTRIC_VECTOR_VISIBLE = true;
-  var EFIELD_SUM_VECTOR_VISIBLE = true;
-  var EFIELD_VALUES_VISIBLE = true;
-
   // Voltmeter
   var VOLTMETER_BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
   var VOLTMETER_POSITIVE_PROBE_LOCATION = new Vector3( BATTERY_LOCATION.x + 0.015, BATTERY_LOCATION.y, 0 );
