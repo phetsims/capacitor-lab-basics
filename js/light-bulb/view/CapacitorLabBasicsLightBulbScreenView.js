@@ -20,7 +20,7 @@ define( function( require ) {
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
 
-  // Strings
+  // strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
   var plateChargeString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge' );
   var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );

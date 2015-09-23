@@ -24,7 +24,7 @@ define( function( require ) {
   // constants
   var DEBUG_SHAPES = false;
 
-  // Strings
+  // strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
 
   /**
