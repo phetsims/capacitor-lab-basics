@@ -25,7 +25,7 @@ define( function( require ) {
   // constants
   var CHECKBOX_METER_SPACING = 20;
   var CHECKBOX_VERTICAL_SPACING = 13;
-  var VALUE_FONT = new PhetFont( 12 );
+  var VALUE_FONT = new PhetFont( 15 );
   var VALUE_COLOR = 'black';
 
   // strings

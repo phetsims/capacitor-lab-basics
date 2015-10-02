@@ -25,12 +25,12 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // constants
-  var BASE_LINE_LENGTH = 22;
+  var BASE_LINE_LENGTH = 25;
   var BAR_SIZE = new Dimension2( 300, 18 );
   var BASE_LINE_OFFSET = ( BASE_LINE_LENGTH - BAR_SIZE.height ) / 2;
   var BAR_STROKE_COLOR = 'black';
   var BAR_LINE_WIDTH = 1;
-  var VALUE_METER_SPACING = 10;
+  var VALUE_METER_SPACING = 7;
 
   // value display
   var VALUE_FONT = new PhetFont( 12 );
