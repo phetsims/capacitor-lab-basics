@@ -30,12 +30,12 @@ define( function( require ) {
   var valuesString = require( 'string!CAPACITOR_LAB_BASICS/values' );
   var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
   var currentString = require( 'string!CAPACITOR_LAB_BASICS/current' );
+  var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
 
   /**
    * Constructor.
    *
    * @param {CapacitorLabBasicsModel} model
-   * @param {number} minWidth - minimum width of the panels, calculated by layout in the screen view.
    * @constructor
    */
   function CapacitorLabBasicsViewControl( model ) {
@@ -45,16 +45,20 @@ define( function( require ) {
         property: model.plateChargesVisibleProperty
       },
       {
-        string: currentString,
-        property: model.currentIndicatorsVisibleProperty
+        string: barGraphsString,
+        property: model.barGraphsPanelVisibleProperty
+      },
+      {
+        string: valuesString,
+        property: model.valuesVisibleProperty
       },
       {
         string: eFieldString,
         property: model.eFieldVisibleProperty
       },
       {
-        string: valuesString,
-        property: model.valuesVisibleProperty
+        string: currentString,
+        property: model.currentIndicatorsVisibleProperty
       }
     ];
 

@@ -145,7 +145,7 @@ define( function( require ) {
 
     // TODO: Still testing this mapping funciton.  Not spending a lot of time on it because we do not have input from
     // TODO: the design team about what this behavior should be like.
-    var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 400, true );
+    var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 300, true );
 
     // Update the halo as the needle angle changes.
     voltageProperty.link( function( voltage ) {

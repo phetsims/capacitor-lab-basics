@@ -125,7 +125,10 @@ define( function( require ) {
     POSITIVE_CHARGE_COLOR: PhetColorScheme.RED_COLORBLIND,
     NEGATIVE_CHARGE_COLOR: 'blue',
     CUSTOM_DIELECTRIC_COLOR: 'rgb( 255, 255, 125 )', // pale yellow
-    AIR_COLOR: 'rgba( 255, 0, 0, 1 )' // This should never be seen so pick something obviously wrong.
+    AIR_COLOR: 'rgba( 255, 0, 0, 1 )', // This should never be seen so pick something obviously wrong.
+
+    // other common colors
+    METER_PANEL_FILL: 'rgb( 255, 240, 232)'
 
   };
 } );

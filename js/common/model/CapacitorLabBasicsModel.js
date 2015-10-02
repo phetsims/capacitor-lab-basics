@@ -29,6 +29,7 @@ define( function( require ) {
       capacitanceMeterVisible: true,
       plateChargeMeterVisible: false,
       storedEnergyMeterVisible: false,
+      barGraphsPanelVisible: true,
       voltmeterVisible: false,
       eFieldDetectorVisible: false,
       valuesVisible: true,

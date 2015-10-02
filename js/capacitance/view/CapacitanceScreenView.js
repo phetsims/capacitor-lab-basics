@@ -15,7 +15,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var CapacitanceCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceCircuitNode' );
-  var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
   var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
@@ -23,9 +22,6 @@ define( function( require ) {
 
   // constants
   var DEBUG_SHAPES = false;
-
-  // strings
-  var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
 
   /**
    * @param {CapacitorLabBasicsModel} model
@@ -50,16 +46,13 @@ define( function( require ) {
       model.eFieldVisibleProperty, model.valuesVisibleProperty, model.currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
     // meters
-    var capacitanceMeterNode = new BarMeterNode.CapacitanceMeterNode( model.capacitanceMeter, this.modelViewTransform, capacitanceString );
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
-    var minWidth = this.right - capacitanceMeterNode.left;
-    var capacitanceViewControl = new CapacitorLabBasicsViewControl( model, minWidth );
+    //var minWidth = this.layoutBounds.right - capacitanceMeterNode.left;
+    var capacitanceViewControl = new CapacitorLabBasicsViewControl( model, 0 );
     capacitanceViewControl.translation = this.layoutBounds.rightTop.minusXY( capacitanceViewControl.width + 10, -10 );
-
-    capacitanceMeterNode.rightTop = capacitanceViewControl.leftTop.minusXY( 15, 0 );
 
     var resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
@@ -70,7 +63,6 @@ define( function( require ) {
 
     // rendering order
     this.addChild( capacitanceCircuitNode );
-    this.addChild( capacitanceMeterNode );
     this.addChild( voltmeterNode );
     this.addChild( capacitanceViewControl );
     this.addChild( resetAllButton );

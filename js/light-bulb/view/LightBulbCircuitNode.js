@@ -52,7 +52,7 @@ define( function( require ) {
     var capacitorNode = new CapacitorNode( circuit.capacitor, modelViewTransform, plateChargeVisibleProperty,
       eFieldVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
-    this.topWireNode = new Node(); // @private
+    this.topWireNode = new Node(); // @public (read-only)
     this.bottomWireNode = new Node(); // @private
     this.circuit.getTopWires().forEach( function( topWire ) {
       thisNode.topWireNode.addChild( new WireNode( topWire ) );

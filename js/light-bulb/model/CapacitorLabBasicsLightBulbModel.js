@@ -98,7 +98,6 @@ define( function( require ) {
       this.capacitanceMeter.reset();
       this.plateChargeMeter.reset();
       this.storedEnergyMeter.reset();
-      this.eFieldDetector.reset();
       this.voltmeter.reset();
       this.circuit.reset();
     },

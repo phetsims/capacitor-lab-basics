@@ -5,6 +5,9 @@
   "current": {
     "value": "Current"
   },
+  "barGraphs": {
+    "value": "Bar Graphs"
+  },
   "capMeterTitle": {
     "value": "Capacitance (F)"
   },
@@ -114,7 +117,16 @@
     "value": "J"
   },
   "units.volts": {
-    "value": " V"
+    "value": "V"
+  },
+  "units.picoJoules": {
+    "value": "pJ"
+  },
+  "units.picoFarads": {
+    "value": "pF"
+  },
+  "units.picoCoulombs": {
+    "value": "pC"
   },
   "volts.unknown": {
     "value": "?"
