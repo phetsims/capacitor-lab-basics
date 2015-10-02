@@ -19,6 +19,12 @@ define( function( require ) {
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/BarMeterPanel' );
   var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
+  var HSlider = require( 'SUN/HSlider' );
+  var Property = require( 'AXON/Property' );
+  var Image = require( 'SCENERY/nodes/Image' );
+
+  // images
+  var mockupImage = require( 'image!CAPACITOR_LAB_BASICS/Light_Bulb_Screen_Graphs.png' );
 
   /**
    * @param {CapacitorLabBasicsModel} model
@@ -63,6 +69,16 @@ define( function( require ) {
     this.addChild( voltmeterNode );
     this.addChild( capacitorLabBasicsLightBulbViewControl );
     this.addChild( resetAllButton );
+
+    // TODO: For development only: -------------------------------------------------------------------------------
+    //Show the mock-up and a slider to change its transparency
+    var mockupOpacityProperty = new Property( 0.0001 );
+    var image = new Image( mockupImage, { pickable: false } );
+    image.scale( this.layoutBounds.width / image.width, this.layoutBounds.height / image.height );
+    mockupOpacityProperty.linkAttribute( image, 'opacity' );
+    this.addChild( image );
+    this.addChild( new HSlider( mockupOpacityProperty, { min: 0.001, max: 1 }, { top: 10, left: this.layoutBounds.width - 350 } ) );
+    // TODO: -----------------------------------------------------------------------------------------------------
   }
 
   return inherit( ScreenView, CapacitorLabBasicsLightBulbScreenView );
