@@ -71,7 +71,7 @@ define( function( require ) {
     this.circuit = new CapacitanceCircuit( circuitConfig ); // @public
     this.worldBounds = CLConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
 
-    this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, this.capacitanceMeterVisibleProperty, this.valuesVisibleProperty );
+    this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, this.capacitanceMeterVisibleProperty );
 
     // @public
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform,

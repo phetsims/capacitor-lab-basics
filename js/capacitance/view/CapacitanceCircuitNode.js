@@ -30,14 +30,13 @@ define( function( require ) {
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
-   * @param {Property.<boolean>} valuesVisibleProperty
    * @param {Property.<boolean>} currentIndicatorsVisibleProeprty
    * @param {number} maxPlateCharge
    * @param {number} maxEffectiveEField
    * @constructor
    */
   function CapacitanceCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                                   valuesVisibleProperty, currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField ) {
+                                   currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField ) {
 
     Node.call( this );
     var thisNode = this;
@@ -69,9 +68,9 @@ define( function( require ) {
     } );
 
     // drag handles
-    var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE, valuesVisibleProperty );
-    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE, valuesVisibleProperty );
-    
+    var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_SEPARATION_RANGE );
+    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLConstants.PLATE_WIDTH_RANGE );
+
     // current indicators
     this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.batteryTopCurrentIndicator, 0 );
     this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.batteryBottomCurrentIndicator, Math.PI );
@@ -100,7 +99,7 @@ define( function( require ) {
     capacitorNode.center = modelViewTransform.modelToViewPosition( circuit.capacitor.location );
 
     // top current indicator
-    x = batteryNode.right + ( this.circuitSwitchNodes[0].left - batteryNode.right ) / 2;
+    x = batteryNode.right + ( this.circuitSwitchNodes[ 0 ].left - batteryNode.right ) / 2;
     y = this.topWireNode.bounds.minY + ( 7 / 2 ); // TODO clean up after discussion of feature.
     this.batteryTopCurrentIndicatorNode.translate( x, y );
 

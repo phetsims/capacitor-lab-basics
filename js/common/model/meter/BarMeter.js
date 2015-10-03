@@ -22,11 +22,10 @@ define( function( require ) {
    * @param {Bounds2} worldBounds
    * @param {Vector3} location
    * @param {Property.<boolean>} visibleProperty - model property that determines if the entire meter is visible.
-   * @param {Property.<boolean>} valueVisibleProperty - model property that determines if the values are visible
    * @param {Function} valueFunction
    * @constructor
    */
-  function BarMeter( circuit, worldBounds, location, visibleProperty, valueVisibleProperty, valueFunction ) {
+  function BarMeter( circuit, worldBounds, location, visibleProperty, valueFunction ) {
 
     // @public
     PropertySet.call( this, {
@@ -34,7 +33,6 @@ define( function( require ) {
       value: valueFunction( circuit )
     } );
     this.visibleProperty = visibleProperty;
-    this.valueVisibleProperty = valueVisibleProperty;
     var thisMeter = this;
 
     this.circuit = circuit; // @private
@@ -56,22 +54,22 @@ define( function( require ) {
     /**
      * Factory functions create specific meters.
      */
-    CapacitanceMeter: function( circuit, worldBounds, location, visibleProperty, valueVisibleProperty ) {
-      return new BarMeter( circuit, worldBounds, location, visibleProperty, valueVisibleProperty,
+    CapacitanceMeter: function( circuit, worldBounds, location, visibleProperty ) {
+      return new BarMeter( circuit, worldBounds, location, visibleProperty,
         function() {
           return circuit.getTotalCapacitance();
         } );
     },
 
-    PlateChargeMeter: function( circuit, worldBounds, location, visibleProperty, valueVisibleProperty ) {
-      return new BarMeter( circuit, worldBounds, location, visibleProperty, valueVisibleProperty,
+    PlateChargeMeter: function( circuit, worldBounds, location, visibleProperty ) {
+      return new BarMeter( circuit, worldBounds, location, visibleProperty,
         function() {
           return circuit.getTotalCharge();
         } );
     },
 
-    StoredEnergyMeter: function( circuit, worldBounds, location, visibleProperty, valueVisibleProperty ) {
-      return new BarMeter( circuit, worldBounds, location, visibleProperty, valueVisibleProperty,
+    StoredEnergyMeter: function( circuit, worldBounds, location, visibleProperty) {
+      return new BarMeter( circuit, worldBounds, location, visibleProperty,
         function() {
           return circuit.getStoredEnergy();
         } );

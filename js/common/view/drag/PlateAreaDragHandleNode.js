@@ -42,10 +42,9 @@ define( function( require ) {
    * @param {Capacitor} capacitor
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {Range} valueRange
-   * @param {Property.<boolean>} valuesVisibleProperty
    * @constructor
    */
-  function PlateAreaDragHandleNode( capacitor, modelViewTransform, valueRange, valuesVisibleProperty ) {
+  function PlateAreaDragHandleNode( capacitor, modelViewTransform, valueRange ) {
 
     Node.call( this );
     var thisNode = this;
@@ -66,7 +65,7 @@ define( function( require ) {
     // value
     var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
     // @private
-    this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, unitsMillimetersString + '<sup>' + 2 + '</sup>', valuesVisibleProperty );
+    this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, unitsMillimetersString + '<sup>' + 2 + '</sup>' );
 
     // rendering order
     this.addChild( lineNode );

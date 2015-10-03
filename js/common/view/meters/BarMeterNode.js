@@ -93,10 +93,6 @@ define( function( require ) {
       thisNode.visible = visible;
     } );
 
-    meter.valueVisibleProperty.link( function( visible ) {
-      thisNode.valueNode.visible = visible;
-    } );
-
     this.updateLayout();
 
   }

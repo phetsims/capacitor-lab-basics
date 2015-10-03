@@ -43,7 +43,7 @@ define( function( require ) {
 
     // circuit
     var lightBulbCircuitNode = new LightBulbCircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisibleProperty,
-      model.eFieldVisibleProperty, model.valuesVisibleProperty, model.currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField );
+      model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
     // meters
     var barMeterPanel = new BarMeterPanel( model, lightBulbCircuitNode.topWireNode.width );

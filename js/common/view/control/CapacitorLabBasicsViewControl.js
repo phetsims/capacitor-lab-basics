@@ -27,7 +27,6 @@ define( function( require ) {
   // strings
   var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
   var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
-  var valuesString = require( 'string!CAPACITOR_LAB_BASICS/values' );
   var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
   var currentString = require( 'string!CAPACITOR_LAB_BASICS/current' );
   var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
@@ -47,10 +46,6 @@ define( function( require ) {
       {
         string: barGraphsString,
         property: model.barGraphsPanelVisibleProperty
-      },
-      {
-        string: valuesString,
-        property: model.valuesVisibleProperty
       },
       {
         string: eFieldString,

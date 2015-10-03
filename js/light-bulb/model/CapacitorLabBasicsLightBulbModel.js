@@ -80,9 +80,9 @@ define( function( require ) {
     this.worldBounds = CLConstants.CANVAS_RENDERING_SIZE.toBounds(); // private
 
     // @public
-    this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, this.capacitanceMeterVisibleProperty, this.valuesVisibleProperty );
-    this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.worldBounds, PLATE_CHARGE_METER_LOCATION, this.plateChargeMeterVisibleProperty, this.valuesVisibleProperty );
-    this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.worldBounds, STORED_ENERGY_METER_LOCATION, this.storedEnergyMeterVisibleProperty, this.valuesVisibleProperty );
+    this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, this.capacitanceMeterVisibleProperty );
+    this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.worldBounds, PLATE_CHARGE_METER_LOCATION, this.plateChargeMeterVisibleProperty );
+    this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.worldBounds, STORED_ENERGY_METER_LOCATION, this.storedEnergyMeterVisibleProperty );
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform,
       VOLTMETER_BODY_LOCATION, VOLTMETER_POSITIVE_PROBE_LOCATION, VOLTMETER_NEGATIVE_PROBE_LOCATION,
       VOLTMETER_VISIBLE );
