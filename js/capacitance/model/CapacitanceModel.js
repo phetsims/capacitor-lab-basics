@@ -34,9 +34,6 @@ define( function( require ) {
   var WIRE_THICKNESS = CLConstants.WIRE_THICKNESS;
   var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
 
-  // Capacitance meter
-  var CAPACITANCE_METER_LOCATION = new Vector3( 0.0475, 0.0017, 0 );
-
   // Voltmeter
   var VOLTMETER_BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
   var VOLTMETER_POSITIVE_PROBE_LOCATION = new Vector3( BATTERY_LOCATION.x + 0.015, BATTERY_LOCATION.y, 0 );
@@ -71,7 +68,7 @@ define( function( require ) {
     this.circuit = new CapacitanceCircuit( circuitConfig ); // @public
     this.worldBounds = CLConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
 
-    this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, this.capacitanceMeterVisibleProperty );
+    this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty );
 
     // @public
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform,

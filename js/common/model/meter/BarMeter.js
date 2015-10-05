@@ -3,8 +3,6 @@
 /**
  * Base class for all bar meter model elements.
  *
- * TODO: Location no longer needs to be a model property since the meter is not draggable anymore.
- *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
  */
@@ -19,17 +17,14 @@ define( function( require ) {
    * Constructor for a BarMeter.
    *
    * @param {AbstractCircuit} circuit
-   * @param {Bounds2} worldBounds
-   * @param {Vector3} location
    * @param {Property.<boolean>} visibleProperty - model property that determines if the entire meter is visible.
    * @param {Function} valueFunction
    * @constructor
    */
-  function BarMeter( circuit, worldBounds, location, visibleProperty, valueFunction ) {
+  function BarMeter( circuit, visibleProperty, valueFunction ) {
 
     // @public
     PropertySet.call( this, {
-      location: location,
       value: valueFunction( circuit )
     } );
     this.visibleProperty = visibleProperty;
@@ -54,22 +49,22 @@ define( function( require ) {
     /**
      * Factory functions create specific meters.
      */
-    CapacitanceMeter: function( circuit, worldBounds, location, visibleProperty ) {
-      return new BarMeter( circuit, worldBounds, location, visibleProperty,
+    CapacitanceMeter: function( circuit, visibleProperty ) {
+      return new BarMeter( circuit, visibleProperty,
         function() {
           return circuit.getTotalCapacitance();
         } );
     },
 
-    PlateChargeMeter: function( circuit, worldBounds, location, visibleProperty ) {
-      return new BarMeter( circuit, worldBounds, location, visibleProperty,
+    PlateChargeMeter: function( circuit, visibleProperty ) {
+      return new BarMeter( circuit, visibleProperty,
         function() {
           return circuit.getTotalCharge();
         } );
     },
 
-    StoredEnergyMeter: function( circuit, worldBounds, location, visibleProperty) {
-      return new BarMeter( circuit, worldBounds, location, visibleProperty,
+    StoredEnergyMeter: function( circuit, visibleProperty) {
+      return new BarMeter( circuit, visibleProperty,
         function() {
           return circuit.getStoredEnergy();
         } );

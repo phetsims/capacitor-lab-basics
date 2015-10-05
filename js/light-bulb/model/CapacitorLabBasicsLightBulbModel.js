@@ -35,15 +35,6 @@ define( function( require ) {
   var WIRE_THICKNESS = CLConstants.WIRE_THICKNESS;
   var WIRE_EXTENT = 0.017; // how far the wire extends above or below the capacitor (meters)
 
-  // Capacitance meter
-  var CAPACITANCE_METER_LOCATION = new Vector3( 0.0325, 0.0017, 0 );
-
-  // Plate Charge meter
-  var PLATE_CHARGE_METER_LOCATION = new Vector3( 0.040, 0.0017, 0 );
-
-  // Stored Energy meter
-  var STORED_ENERGY_METER_LOCATION = new Vector3( 0.0475, 0.0017, 0 );
-
   // Voltmeter
   var VOLTMETER_BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
   var VOLTMETER_POSITIVE_PROBE_LOCATION = new Vector3( BATTERY_LOCATION.x + 0.015, BATTERY_LOCATION.y, 0 );
@@ -80,9 +71,9 @@ define( function( require ) {
     this.worldBounds = CLConstants.CANVAS_RENDERING_SIZE.toBounds(); // private
 
     // @public
-    this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.worldBounds, CAPACITANCE_METER_LOCATION, this.capacitanceMeterVisibleProperty );
-    this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.worldBounds, PLATE_CHARGE_METER_LOCATION, this.plateChargeMeterVisibleProperty );
-    this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.worldBounds, STORED_ENERGY_METER_LOCATION, this.storedEnergyMeterVisibleProperty );
+    this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty );
+    this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.plateChargeMeterVisibleProperty );
+    this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.storedEnergyMeterVisibleProperty );
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform,
       VOLTMETER_BODY_LOCATION, VOLTMETER_POSITIVE_PROBE_LOCATION, VOLTMETER_NEGATIVE_PROBE_LOCATION,
       VOLTMETER_VISIBLE );
