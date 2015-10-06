@@ -16,8 +16,8 @@ define( function( require ) {
   var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
 
   // images
-  var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_red_large.png' );
-  var blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_3D_black_large.png' );
+  var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
+  var blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_black.png' );
 
   /**
    * Constructor.
@@ -26,7 +26,7 @@ define( function( require ) {
    * @param {Property} locationProperty property to observer for the probe's location
    * @param {CLModelViewTransform3D} modelViewTransform model-view transform
    */
-  function VoltmeterProbeNode( image, locationProperty, modelViewTransform, voltmeter ) {
+  function VoltmeterProbeNode( image, locationProperty, modelViewTransform ) {
 
     Node.call( this );
     var thisNode = this;
@@ -72,10 +72,10 @@ define( function( require ) {
 
     // Factory functions to create both Positive and negative probes.
     PositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform ) {
-      return new VoltmeterProbeNode( redVoltmeterProbeImage, voltmeter.positiveProbeLocationProperty, modelViewTransform, voltmeter );
+      return new VoltmeterProbeNode( redVoltmeterProbeImage, voltmeter.positiveProbeLocationProperty, modelViewTransform );
     },
     NegativeVoltmeterProbeNode: function( voltmeter, modelViewTransform ) {
-      return new VoltmeterProbeNode( blackVoltmeterProbeImage, voltmeter.negativeProbeLocationProperty, modelViewTransform, voltmeter );
+      return new VoltmeterProbeNode( blackVoltmeterProbeImage, voltmeter.negativeProbeLocationProperty, modelViewTransform );
     }
 
   } );

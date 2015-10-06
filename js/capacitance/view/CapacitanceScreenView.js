@@ -16,9 +16,10 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var CapacitanceCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceCircuitNode' );
   var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
-  var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
+  //var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var Path = require( 'SCENERY/nodes/Path' );
+  var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
 
   // constants
   var DEBUG_SHAPES = false;
@@ -46,13 +47,15 @@ define( function( require ) {
       model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
     // meters
-    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
+    //var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
+    var voltmeterToolBoxPanel = new VoltmeterToolBoxPanel();
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
     //var minWidth = this.layoutBounds.right - capacitanceMeterNode.left;
     var capacitanceViewControl = new CapacitorLabBasicsViewControl( model, 0 );
     capacitanceViewControl.translation = this.layoutBounds.rightTop.minusXY( capacitanceViewControl.width + 10, -10 );
+    voltmeterToolBoxPanel.rightTop = capacitanceViewControl.rightBottom.plusXY( 0, 20 );
 
     var resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
@@ -63,7 +66,8 @@ define( function( require ) {
 
     // rendering order
     this.addChild( capacitanceCircuitNode );
-    this.addChild( voltmeterNode );
+    this.addChild( voltmeterToolBoxPanel );
+    //this.addChild( voltmeterNode );
     this.addChild( capacitanceViewControl );
     this.addChild( resetAllButton );
 

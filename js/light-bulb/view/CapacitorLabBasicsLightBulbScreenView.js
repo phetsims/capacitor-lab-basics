@@ -16,15 +16,10 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var LightBulbCircuitNode = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/LightBulbCircuitNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
+  //var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/BarMeterPanel' );
+  var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
   var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
-  var HSlider = require( 'SUN/HSlider' );
-  var Property = require( 'AXON/Property' );
-  var Image = require( 'SCENERY/nodes/Image' );
-
-  // images
-  var mockupImage = require( 'image!CAPACITOR_LAB_BASICS/Light_Bulb_Screen_Graphs.png' );
 
   /**
    * @param {CapacitorLabBasicsModel} model
@@ -47,7 +42,8 @@ define( function( require ) {
 
     // meters
     var barMeterPanel = new BarMeterPanel( model, lightBulbCircuitNode.topWireNode.width );
-    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
+    var voltmeterToolbox = new VoltmeterToolBoxPanel();
+    //var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
@@ -55,6 +51,7 @@ define( function( require ) {
     capacitorLabBasicsLightBulbViewControl.translation = this.layoutBounds.rightTop.minusXY( capacitorLabBasicsLightBulbViewControl.width + 15, -20 );
 
     barMeterPanel.leftBottom = lightBulbCircuitNode.topWireNode.leftTop.minusXY( 0, 30 );
+    voltmeterToolbox.rightTop = capacitorLabBasicsLightBulbViewControl.rightBottom.plusXY( 0, 20 );
 
     var resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
@@ -66,19 +63,11 @@ define( function( require ) {
     // rendering order
     this.addChild( lightBulbCircuitNode );
     this.addChild( barMeterPanel );
-    this.addChild( voltmeterNode );
+    this.addChild( voltmeterToolbox );
+    //this.addChild( voltmeterNode );
     this.addChild( capacitorLabBasicsLightBulbViewControl );
     this.addChild( resetAllButton );
 
-    // TODO: For development only: -------------------------------------------------------------------------------
-    //Show the mock-up and a slider to change its transparency
-    var mockupOpacityProperty = new Property( 0.0001 );
-    var image = new Image( mockupImage, { pickable: false } );
-    image.scale( this.layoutBounds.width / image.width, this.layoutBounds.height / image.height );
-    mockupOpacityProperty.linkAttribute( image, 'opacity' );
-    this.addChild( image );
-    this.addChild( new HSlider( mockupOpacityProperty, { min: 0.001, max: 1 }, { top: 10, left: this.layoutBounds.width - 350 } ) );
-    // TODO: -----------------------------------------------------------------------------------------------------
   }
 
   return inherit( ScreenView, CapacitorLabBasicsLightBulbScreenView );
