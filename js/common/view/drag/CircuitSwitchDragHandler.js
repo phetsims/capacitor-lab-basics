@@ -106,7 +106,7 @@ define( function( require ) {
           circuitSwitch.circuitConnectionProperty.set( 'LIGHT_BULB_CONNECTED' );
         }
         else {
-          console.log( " TODO: Please restrict dragging to the correct bounds." );
+          console.log( ' TODO: Please restrict dragging to the correct bounds.' );
         }
 
         circuitSwitch.angle = angle;

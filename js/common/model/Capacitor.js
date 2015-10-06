@@ -107,7 +107,7 @@ define( function( require ) {
      */
     setPlateSeparation: function( plateSeparation ) {
       if ( plateSeparation <= 0 ) {
-        console.error( "plateSeparation must be > 0: " + plateSeparation );
+        console.error( 'plateSeparation must be > 0: ' + plateSeparation );
       }
       this.plateSeparation = plateSeparation;
     },
@@ -123,7 +123,7 @@ define( function( require ) {
      */
     setPlateWidth: function( plateWidth ) {
       if ( plateWidth <= 0 ) {
-        console.error( "plateWidth must be > 0: " + plateWidth );
+        console.error( 'plateWidth must be > 0: ' + plateWidth );
       }
       this.plateSize = new Bounds3( 0, 0, 0, plateWidth, this.plateSize.height, plateWidth );
     },

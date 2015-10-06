@@ -188,7 +188,7 @@ define( function( require ) {
 
         // debug output
         if ( DEBUG_OUTPUT_ENABLED ) {
-          console.log( numberOfCharges + " charges computed, " + ( rows * columns ) + " charges displayed" );
+          console.log( numberOfCharges + ' charges computed, ' + ( rows * columns ) + ' charges displayed' );
         }
       }
     },

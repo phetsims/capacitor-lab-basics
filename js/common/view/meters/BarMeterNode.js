@@ -107,7 +107,7 @@ define( function( require ) {
      */
     setValue: function( value ) {
       if ( value < 0 ) {
-        console.error( "value must be >= 0 : " + value );
+        console.error( 'value must be >= 0 : ' + value );
       }
       if ( value !== this.value ) {
 
