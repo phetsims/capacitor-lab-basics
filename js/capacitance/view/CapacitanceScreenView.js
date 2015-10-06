@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder5
+// Copyright 2002-2015, University of Colorado Boulder
 
 /**
  * "Intro" ScreenView for Capacitor Lab Basics.
