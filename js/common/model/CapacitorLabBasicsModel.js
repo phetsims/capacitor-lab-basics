@@ -46,7 +46,7 @@ define( function( require ) {
      */
     step: function( dt ) {
       if ( this.playing ) {
-
+        // TODO: Something should maybe be here?
       }
     }
 

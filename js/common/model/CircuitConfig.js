@@ -1,3 +1,5 @@
+// Copyright 2002-2015, University of Colorado Boulder
+
 /**
  * Configuration information for a circuit. This is purely a data structure, whose purpose is to reduce the number of
  * parameters required in constructors and creation methods.
