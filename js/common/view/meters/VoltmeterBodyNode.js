@@ -43,8 +43,9 @@ define( function( require ) {
    *
    * @param {Voltmeter} voltmeter - the voltmeter model
    * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {Property.<boolean>} inUserControlProperty
    */
-  function VoltmeterBodyNode( voltmeter, modelViewTransform ) {
+  function VoltmeterBodyNode( voltmeter, modelViewTransform, inUserControlProperty ) {
 
     Node.call( this );
     var thisNode = this;
@@ -98,7 +99,10 @@ define( function( require ) {
     // TODO: Add restrictive bounds for MovableDragHandler.
     this.movableDragHandler = new MovableDragHandler( voltmeter.bodyLocationProperty, {
       dragBounds: voltmeter.dragBounds,
-      modelViewTransform: modelViewTransform
+      modelViewTransform: modelViewTransform,
+      endDrag: function() {
+        inUserControlProperty.set( false );
+      }
     } );
     thisNode.addInputListener( this.movableDragHandler );
   }
@@ -111,11 +115,11 @@ define( function( require ) {
      * @param {Text} valueText
      * @param {Number} value
      */
-    setValueText: function( valueText, value ){
+    setValueText: function( valueText, value ) {
       if ( isNaN( value ) ) {
         valueText.setText( StringUtils.format( pattern_0value_1units, voltsUnknownString, unitsVoltageString ) );
       }
-      else{
+      else {
         var fixedValue = Util.toFixed( value, 3 );
         valueText.setText( StringUtils.format( pattern_0value_1units, fixedValue, unitsVoltageString ) );
       }

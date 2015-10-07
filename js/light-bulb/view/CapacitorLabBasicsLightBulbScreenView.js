@@ -16,7 +16,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var LightBulbCircuitNode = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/LightBulbCircuitNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  //var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
+  var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/BarMeterPanel' );
   var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
   var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
@@ -42,8 +42,8 @@ define( function( require ) {
 
     // meters
     var barMeterPanel = new BarMeterPanel( model, lightBulbCircuitNode.topWireNode.width );
-    var voltmeterToolbox = new VoltmeterToolBoxPanel();
-    //var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
+    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
+    var voltmeterToolbox = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform, model.voltmeter.inUserControlProperty );
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
@@ -60,12 +60,19 @@ define( function( require ) {
       radius: 25
     } );
 
+    // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide.
+    model.voltmeter.inUserControlProperty.link( function( inUserControl ) {
+      if ( !inUserControl && voltmeterToolbox.bounds.intersectsBounds( voltmeterNode.bounds.eroded( 0 ) ) ) {
+        voltmeterNode.visible = false;
+      }
+    } );
+
     // rendering order
+    this.addChild( capacitorLabBasicsLightBulbViewControl );
     this.addChild( lightBulbCircuitNode );
     this.addChild( barMeterPanel );
     this.addChild( voltmeterToolbox );
-    //this.addChild( voltmeterNode );
-    this.addChild( capacitorLabBasicsLightBulbViewControl );
+    this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
 
   }

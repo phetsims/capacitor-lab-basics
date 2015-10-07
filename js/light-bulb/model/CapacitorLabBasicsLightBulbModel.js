@@ -35,10 +35,10 @@ define( function( require ) {
   var WIRE_THICKNESS = CLConstants.WIRE_THICKNESS;
   var WIRE_EXTENT = 0.017; // how far the wire extends above or below the capacitor (meters)
 
-  // Voltmeter
+  // Voltmeter, positions in meters
   var VOLTMETER_BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
-  var VOLTMETER_POSITIVE_PROBE_LOCATION = new Vector3( BATTERY_LOCATION.x + 0.015, BATTERY_LOCATION.y, 0 );
-  var VOLTMETER_NEGATIVE_PROBE_LOCATION = new Vector3( VOLTMETER_POSITIVE_PROBE_LOCATION.x + 0.005, VOLTMETER_POSITIVE_PROBE_LOCATION.y, 0 );
+  var VOLTMETER_POSITIVE_PROBE_LOCATION = new Vector3( 0.059, 0.00048, 0 );
+  var VOLTMETER_NEGATIVE_PROBE_LOCATION = new Vector3( 0.067, 0.00055, 0 );
   var VOLTMETER_VISIBLE = false;
 
   /**

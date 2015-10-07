@@ -36,6 +36,7 @@ define( function( require ) {
     // @public
     PropertySet.call( this, {
       visible: visible,
+      inUserControl: false,
       bodyLocation: bodyLocation,
       positiveProbeLocation: positiveProbeLocation,
       negativeProbeLocation: negativeProbeLocation,

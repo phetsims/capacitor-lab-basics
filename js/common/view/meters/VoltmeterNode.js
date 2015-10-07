@@ -56,16 +56,16 @@ define( function( require ) {
     Node.call( this );
 
     // construct all parts of the probe
-    var bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform );
+    this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty ); // @public
     var positiveProbeNode = VoltmeterProbeNode.PositiveVoltmeterProbeNode( voltmeter, modelViewTransform );
     var negativeProbeNode = VoltmeterProbeNode.NegativeVoltmeterProbeNode( voltmeter, modelViewTransform );
-    var positiveWireNode = new ProbeWireNode( bodyNode, positiveProbeNode, BODY_CONTROL_POINT_OFFSET, PROBE_CONTROL_POINT_OFFSET,
-      bodyNode.positiveConnectionOffset, positiveProbeNode.connectionOffset, POSITIVE_WIRE_COLOR );
-    var negativeWireNode = new ProbeWireNode( bodyNode, negativeProbeNode, BODY_CONTROL_POINT_OFFSET, PROBE_CONTROL_POINT_OFFSET,
-      bodyNode.negativeConnectionOffset, negativeProbeNode.connectionOffset, NEGATIVE_WIRE_COLOR );
+    var positiveWireNode = new ProbeWireNode( this.bodyNode, positiveProbeNode, BODY_CONTROL_POINT_OFFSET, PROBE_CONTROL_POINT_OFFSET,
+      this.bodyNode.positiveConnectionOffset, positiveProbeNode.connectionOffset, POSITIVE_WIRE_COLOR );
+    var negativeWireNode = new ProbeWireNode( this.bodyNode, negativeProbeNode, BODY_CONTROL_POINT_OFFSET, PROBE_CONTROL_POINT_OFFSET,
+      this.bodyNode.negativeConnectionOffset, negativeProbeNode.connectionOffset, NEGATIVE_WIRE_COLOR );
 
     // rendering order
-    this.addChild( bodyNode );
+    this.addChild( this.bodyNode );
     this.addChild( positiveProbeNode );
     this.addChild( positiveWireNode );
     this.addChild( negativeProbeNode );
@@ -78,7 +78,12 @@ define( function( require ) {
     // Create an icon of the voltmeter, to be used in the toolbox panel.
     VoltmeterIconNode: function() {
       return new VoltmeterIconNode();
-    }
+    },
+
+    // statics for dimensions of the voltmeter body image
+    VOLTMETER_BODY_HEIGHT: voltmeterBodyImage.height,
+    VOLTMETER_BODY_WIDTH: voltmeterBodyImage.width
+
   } );
 
   /**
