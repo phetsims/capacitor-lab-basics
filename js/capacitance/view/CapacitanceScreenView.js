@@ -16,7 +16,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var CapacitanceCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceCircuitNode' );
   var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
-  //var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
+  var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var Path = require( 'SCENERY/nodes/Path' );
   var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
@@ -47,8 +47,8 @@ define( function( require ) {
       model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
     // meters
-    //var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
-    var voltmeterToolBoxPanel = new VoltmeterToolBoxPanel();
+    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
+    var voltmeterToolBoxPanel = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform, model.voltmeter.inUserControlProperty );
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
@@ -64,11 +64,18 @@ define( function( require ) {
       radius: 25
     } );
 
+    // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide.
+    model.voltmeter.inUserControlProperty.link( function( inUserControl ) {
+      if ( !inUserControl && voltmeterToolBoxPanel.bounds.intersectsBounds( voltmeterNode.bounds.eroded( 10 ) ) ) {
+        voltmeterNode.visible = false;
+      }
+    } );
+
     // rendering order
+    this.addChild( capacitanceViewControl );
     this.addChild( capacitanceCircuitNode );
     this.addChild( voltmeterToolBoxPanel );
-    //this.addChild( voltmeterNode );
-    this.addChild( capacitanceViewControl );
+    this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
 
     // debug shapes for probe collision testing, to be removed soon
