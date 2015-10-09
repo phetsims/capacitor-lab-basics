@@ -31,7 +31,7 @@ define( function( require ) {
 
     PropertySet.call( this, {
       currentAmplitude: 0,
-      circuitConnection: CircuitConnectionEnum.OPEN_CIRCUIT,
+      circuitConnection: CircuitConnectionEnum.BATTERY_CONNECTED,
       disconnectedPlateCharge: 0
     } );
     var thisCircuit = this;
