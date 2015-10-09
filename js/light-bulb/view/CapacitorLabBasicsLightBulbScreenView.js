@@ -22,7 +22,7 @@ define( function( require ) {
   var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
 
   /**
-   * @param {CapacitorLabBasicsModel} model
+   * @param {CapacitorLabBasicsLightBulbModel} model
    * @constructor
    */
   function CapacitorLabBasicsLightBulbScreenView( model ) {

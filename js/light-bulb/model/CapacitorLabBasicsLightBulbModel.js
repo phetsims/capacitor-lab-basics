@@ -86,6 +86,7 @@ define( function( require ) {
      * Reset function for this model.
      */
     reset: function() {
+      CapacitorLabBasicsModel.prototype.reset.call( this );
       this.capacitanceMeter.reset();
       this.plateChargeMeter.reset();
       this.storedEnergyMeter.reset();

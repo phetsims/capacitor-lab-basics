@@ -27,6 +27,7 @@ define( function( require ) {
    * @param {VoltmeterNode} voltmeterNode
    * @param {CLModelViewTransform} modelViewTransform
    * @param {Property.<boolean>} inUserControlProperty
+   * @param {Property.<boolean>} voltmeterVisibleProperty
    * @constructor
    */
   function VoltmeterToolBoxPanel( voltmeterNode, modelViewTransform, inUserControlProperty, voltmeterVisibleProperty ) {
