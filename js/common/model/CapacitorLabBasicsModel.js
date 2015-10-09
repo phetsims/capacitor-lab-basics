@@ -33,7 +33,6 @@ define( function( require ) {
       voltmeterVisible: false,
       eFieldDetectorVisible: false,
       currentIndicatorsVisible: true,
-      playing: true // is the sim running or paused?
     } );
   }
 
