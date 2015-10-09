@@ -23,6 +23,7 @@ define( function( require ) {
   var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
   var CapacitorLabBasicsModel = require( 'CAPACITOR_LAB_BASICS/common/model/CapacitorLabBasicsModel' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
   // constants
   // Circuit
@@ -149,8 +150,8 @@ define( function( require ) {
       var circuit = new CapacitanceCircuit( circuitConfig );
 
       // disconnect the battery and set the max plate charge
-      //circuit.circuitConnection = CircuitConnectionEnum.OPEN_CIRCUIT;
-      //circuit.setDisconnectedPlateCharge( this.getMaxPlateCharge() );
+      circuit.circuitConnection = CircuitConnectionEnum.OPEN_CIRCUIT;
+      circuit.setDisconnectedPlateCharge( this.getMaxPlateCharge() );
 
       return circuit.capacitor.getEffectiveEField();
     },
