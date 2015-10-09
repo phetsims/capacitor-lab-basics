@@ -87,15 +87,14 @@ define( function( require ) {
     this.addChild( capacitorNode );
     this.addChild( this.topWireNode );
     this.addChild( lightBulbNode );
-    this.circuitSwitchNodes.forEach( function( circuitSwitchNode ) {
-      thisNode.addChild( circuitSwitchNode );
-    } );
+    this.addChild( this.circuitSwitchNodes[ 0 ] );
     this.addChild( this.batteryTopCurrentIndicatorNode );
     this.addChild( this.batteryBottomCurrentIndicatorNode );
     this.addChild( this.bulbTopCurrentIndicatorNode );
     this.addChild( this.bulbBottomCurrentIndicatorNode );
     this.addChild( plateSeparationDragHandleNode );
     this.addChild( plateAreaDragHandleNode );
+    this.addChild( this.circuitSwitchNodes[ 1 ] );
 
     // layout TODO: Much of the layout will need to be fixed or tidied.  Many design decisions to be made.
     var x = 0;

@@ -29,6 +29,15 @@
   "accessible.voltmeterBlackProbe": {
     "value": "Voltmeter probe 2. Use arrow keys to move probe"
   },
+  "accessible.capacitanceGraph": {
+    "value": "Graph - capacitance. Capacitance is {0}"
+  },
+  "accessible.chargeGraph": {
+    "value": "Graph - capacitor plate charge. Charge is {0}"
+  },
+  "accessible.energyGraph": {
+    "value": "Graph - stored energy. Energy is {0}"
+  },
   "capacitance": {
     "value": "Capacitance"
   },

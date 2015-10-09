@@ -104,6 +104,7 @@ define( function( require ) {
             if ( inUserControlProperty.get() ) {
               bodyElement.focus();
             }
+            console.log(document.getElementsByClassName( 'VoltmeterBody' ));
           } );
   
           var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );

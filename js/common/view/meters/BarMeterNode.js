@@ -23,6 +23,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
 
   // constants
   var BASE_LINE_LENGTH = 25;
@@ -44,6 +45,9 @@ define( function( require ) {
   var unitsPicoCoulombsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoCoulombs' );
   var unitsPicoJoulesString = require( 'string!CAPACITOR_LAB_BASICS/units.picoJoules' );
   var pattern_0value_1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
+  var capacitanceGraphDescription = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitanceGraph' );
+  var energyGraphDescription = require( 'string!CAPACITOR_LAB_BASICS/accessible.chargeGraph' );
+  var chargeGraphDescription = require( 'string!CAPACITOR_LAB_BASICS/accessible.energyGraph' );
 
   /**
    * Constructor.
@@ -53,9 +57,10 @@ define( function( require ) {
    * @param {number} exponent - used to set the scale for the meter graph
    * @param {string} unitsString - string representing units
    * @param {string} titleString - title string for the bar graph
+   * @param {string} descriptionString - description for aria
    * @constructor
    */
-  function BarMeterNode( meter, barColor, exponent, unitsString, titleString ) {
+  function BarMeterNode( meter, barColor, exponent, unitsString, titleString, descriptionString ) {
 
     var thisNode = this;
 
@@ -95,6 +100,29 @@ define( function( require ) {
 
     this.updateLayout();
 
+    // add the accessible content
+    this.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+        var domElement = document.createElement( 'div' );
+        var description = document.createElement( 'p' );
+        description.hidden = 'true';
+        var meterValue = Util.toFixed( Math.pow( 10, 12 ) * meter.value, 2 );
+        var unitsFormatString = StringUtils.format( pattern_0value_1units, meterValue, unitsString );
+        var meterString = StringUtils.format( descriptionString, unitsFormatString )
+        description.innerText = meterString;
+        domElement.appendChild( description );
+        description.id = descriptionString;
+        domElement.setAttribute( 'aria-describedby', meterString );
+        console.log(meterString)
+        
+        domElement.tabIndex = '0';
+
+        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+        domElement.id = accessiblePeer.id;
+        return accessiblePeer;
+
+      }
+    };
   }
 
   inherit( Node, BarMeterNode, {
@@ -150,7 +178,7 @@ define( function( require ) {
      * @constructor
      */
     CapacitanceBarMeterNode: function( meter ) {
-      return new BarMeterNode( meter, CLConstants.CAPACITANCE_COLOR, CLConstants.CAPACITANCE_METER_VALUE_EXPONENT, unitsPicoFaradsString, capacitanceString );
+      return new BarMeterNode( meter, CLConstants.CAPACITANCE_COLOR, CLConstants.CAPACITANCE_METER_VALUE_EXPONENT, unitsPicoFaradsString, capacitanceString, capacitanceGraphDescription );
     },
     /**
      * Factory constructor for a CapacitanceMeterNode.
@@ -168,7 +196,7 @@ define( function( require ) {
      * @constructor
      */
     StoredEnergyBarMeterNode: function( meter ) {
-      return new BarMeterNode( meter, CLConstants.STORED_ENERGY_COLOR, CLConstants.STORED_ENERGY_METER_VALUE_EXPONENT, unitsPicoJoulesString, storedEnergyString );
+      return new BarMeterNode( meter, CLConstants.STORED_ENERGY_COLOR, CLConstants.STORED_ENERGY_METER_VALUE_EXPONENT, unitsPicoJoulesString, storedEnergyString, energyGraphDescription );
     }
   } );
 
@@ -222,7 +250,7 @@ define( function( require ) {
    * @constructor
    */
   function PlateChargeBarMeterNode( meter ) {
-    BarMeterNode.call( this, meter, CLConstants.POSITIVE_CHARGE_COLOR, CLConstants.PLATE_CHARGE_METER_VALUE_EXPONENT, unitsPicoCoulombsString, plateChargeString );
+    BarMeterNode.call( this, meter, CLConstants.POSITIVE_CHARGE_COLOR, CLConstants.PLATE_CHARGE_METER_VALUE_EXPONENT, unitsPicoCoulombsString, plateChargeString, chargeGraphDescription );
   }
 
   inherit( BarMeterNode, PlateChargeBarMeterNode, {

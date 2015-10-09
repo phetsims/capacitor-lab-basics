@@ -118,7 +118,7 @@ define( function( require ) {
         description.innerText = StringUtils.format( voltmeterBodyDescriptionString, voltmeter.value );
         domElement.appendChild( description );
         description.id = voltmeterBodyDescriptionString;
-        domElement.setAttribute( 'aria-describedby', voltmeterBodyDescriptionString );
+        domElement.setAttribute( 'aria-describedby', StringUtils.format( voltmeterBodyDescriptionString, voltmeter.value ) );
         
         domElement.tabIndex = '-1';
 

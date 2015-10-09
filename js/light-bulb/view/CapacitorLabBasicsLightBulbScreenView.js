@@ -68,9 +68,9 @@ define( function( require ) {
     } );
 
     // rendering order
-    this.addChild( capacitorLabBasicsLightBulbViewControl );
     this.addChild( lightBulbCircuitNode );
     this.addChild( barMeterPanel );
+    this.addChild( capacitorLabBasicsLightBulbViewControl );
     this.addChild( voltmeterToolbox );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
