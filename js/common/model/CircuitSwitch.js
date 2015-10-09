@@ -61,7 +61,7 @@ define( function( require ) {
   return inherit( PropertySet, CircuitSwitch, {
 
     /**
-     * Get the disired connection from the connection type.
+     * Get the desired connection from the connection type.
      *
      * @param connectionType
      * @returns {object}

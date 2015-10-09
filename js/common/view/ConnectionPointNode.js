@@ -14,6 +14,12 @@ define( function( require ) {
   var Circle = require( 'SCENERY/nodes/Circle' );
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  
+  // strings
+  var batteryConnectionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToBattery' );
+  var noConnectionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToCenter' );
+  var lightbulbConnectionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToLightbulb' );
 
   // constants
   var CONNECTION_POINT_RADIUS = 6;
@@ -66,6 +72,34 @@ define( function( require ) {
         circuitConnectionProperty.set( connectionType );
       }
     } ) );
+    
+    // add the accessible content
+    this.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+        var domElement = document.createElement( 'input' );
+        if ( connectionType === 'BATTERY_CONNECTED' ) {
+          domElement.value = batteryConnectionString;
+        }
+        else if ( connectionType === 'OPEN_CIRCUIT' ) {
+          domElement.value = noConnectionString;
+        }
+        else {
+          domElement.value = lightbulbConnectionString;
+        }
+        domElement.type = 'button';
+
+        domElement.tabIndex = '0';
+
+        domElement.addEventListener( 'click', function() {
+          circuitConnectionProperty.set( connectionType );
+        } );
+
+        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+        domElement.id = accessiblePeer.id;
+        return accessiblePeer;
+
+      }
+    };
   }
 
   return inherit( Circle, ConnectionPointNode, {} );

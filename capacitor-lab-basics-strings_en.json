@@ -1,4 +1,34 @@
 {
+  "accessible.batterySlider": {
+    "value": "Slider - battery voltage"
+  },
+  "accessible.plateAreaSlider": {
+    "value": "Slider - capacitor plate area"
+  },
+  "accessible.plateSeparationSlider": {
+    "value": "Slider - capacitor plate separation"
+  },
+  "accessible.switchToBattery": {
+    "value": "Toggle - connect capacitor to battery"
+  },
+  "accessible.switchToCenter": {
+    "value": "Toggle - disconnect capacitor from circuit"
+  },
+  "accessible.switchToLightbulb": {
+    "value": "Toggle - connect capacitor to lightbulb"
+  },
+  "accessible.voltmeterToolbox": {
+    "value": "Toolbox"
+  },
+  "accessible.voltmeterBody": {
+    "value": "Voltmeter - measures voltage. Voltage is {0}"
+  },
+  "accessible.voltmeterRedProbe": {
+    "value": "Voltmeter probe 1. Use arrow keys to move probe"
+  },
+  "accessible.voltmeterBlackProbe": {
+    "value": "Voltmeter probe 2. Use arrow keys to move probe"
+  },
   "capacitance": {
     "value": "Capacitance"
   },

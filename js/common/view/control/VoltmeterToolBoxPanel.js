@@ -17,6 +17,10 @@ define( function( require ) {
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var Vector2 = require( 'DOT/Vector2' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  
+  // strings
+  var descriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterToolbox' );
 
   /**
    *
@@ -72,7 +76,41 @@ define( function( require ) {
 
     Panel.call( this, voltmeterIconNode, {
       xMargin: 15,
-      yMargin: 15
+      yMargin: 15,
+      accessibleContent: {
+        createPeer: function( accessibleInstance ) {
+          var domElement = document.createElement( 'input' );
+          domElement.value = descriptionString;
+          domElement.type = 'button';
+  
+          domElement.tabIndex = '0';
+  
+          domElement.addEventListener( 'click', function() {
+            inUserControlProperty.set( !inUserControlProperty.get() );
+            var tab = '0';
+            if ( !inUserControlProperty.get() ) {
+              tab = '-1';
+            }
+            // add the voltmeter to the tab order.
+            var bodyElement = document.getElementsByClassName( 'VoltmeterBody' )[0];
+            bodyElement.tabIndex = tab;
+
+            var redProbe = document.getElementsByClassName( 'RedProbe' )[0];
+            redProbe.tabIndex = tab;
+            var blackProbe = document.getElementsByClassName( 'BlackProbe' )[0];
+            blackProbe.tabIndex = tab;
+            
+            // set focus immediately to the voltmeter body
+            if ( inUserControlProperty.get() ) {
+              bodyElement.focus();
+            }
+          } );
+  
+          var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+          domElement.id = accessiblePeer.id;
+          return accessiblePeer;
+        }
+      }
     } );
 
     inUserControlProperty.link( function( inUserControl ) {

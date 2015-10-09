@@ -21,6 +21,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var Util = require( 'DOT/Util' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
 
   // digital display
   //private static final NumberFormat DISPLAY_VALUE_FORMAT = new DefaultDecimalFormat( "0.00" );
@@ -33,6 +34,7 @@ define( function( require ) {
   var unitsVoltageString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
   var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
   var voltsUnknownString = require( 'string!CAPACITOR_LAB_BASICS/volts.unknown' );
+  var voltmeterBodyDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBody' );
 
   // images
   var voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
@@ -105,6 +107,27 @@ define( function( require ) {
       }
     } );
     thisNode.addInputListener( this.movableDragHandler );
+    
+    // add the accessible content
+    this.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+        var domElement = document.createElement( 'div' );
+        domElement.className = 'VoltmeterBody';
+        var description = document.createElement( 'p' );
+        description.hidden = 'true';
+        description.innerText = StringUtils.format( voltmeterBodyDescriptionString, voltmeter.value );
+        domElement.appendChild( description );
+        description.id = voltmeterBodyDescriptionString;
+        domElement.setAttribute( 'aria-describedby', voltmeterBodyDescriptionString );
+        
+        domElement.tabIndex = '-1';
+
+        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+        domElement.id = accessiblePeer.id;
+        return accessiblePeer;
+
+      }
+    };
   }
 
   return inherit( Node, VoltmeterBodyNode, {

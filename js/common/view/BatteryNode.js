@@ -14,6 +14,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Image = require( 'SCENERY/nodes/Image' );
+  var Input = require( 'SCENERY/input/Input' );
   var HSlider = require( 'SUN/HSlider' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Dimension2 = require( 'DOT/Dimension2' );
@@ -21,6 +22,8 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Vector2 = require( 'DOT/Vector2' );
+  var Util = require( 'DOT/Util' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
 
   // constants
   var LABEL_FONT = new PhetFont( 12 );
@@ -32,6 +35,7 @@ define( function( require ) {
   // strings
   var pattern_0value1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
+  var sliderDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batterySlider' );
 
   /**
    * Constructor for a BatteryNode.
@@ -58,6 +62,36 @@ define( function( require ) {
         if ( Math.abs( battery.voltage ) < CLConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {
           battery.voltage = 0;
         }
+      },
+      accessibleContent: {
+        createPeer: function( accessibleInstance ) {
+          var domElement = document.createElement( 'div' );
+          var description = document.createElement( 'p' );
+          description.hidden = 'true';
+          description.innerText = sliderDescriptionString;
+          domElement.appendChild( description );
+          description.id = sliderDescriptionString;
+          domElement.setAttribute( 'aria-describedby', sliderDescriptionString );
+
+          domElement.tabIndex = '0';
+
+          domElement.addEventListener( 'keydown', function( event ) {
+            var keyCode = event.keyCode;
+            var delta = keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW ? -1 :
+                    keyCode === Input.KEY_RIGHT_ARROW || keyCode === Input.KEY_UP_ARROW ? +1 :
+                    0;
+            if ( delta !== 0 ) {
+              battery.voltageProperty.set( Util.clamp( battery.voltageProperty.get() + voltageRange * 0.1 * delta,
+                                                      voltageRange.min,
+                                                      voltageRange.max ) );
+            }
+          } );
+
+          var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+          domElement.id = accessiblePeer.id;
+          return accessiblePeer;
+
+        }
       }
     } );
 
@@ -71,9 +105,12 @@ define( function( require ) {
       return labelText;
     };
     // add the tick marks
-    sliderNode.addMajorTick( voltageRange.max, createTickLabels( voltageRange.max, 'black' ) );
-    sliderNode.addMajorTick( voltageRange.defaultValue, createTickLabels( voltageRange.defaultValue, 'white' ) );
-    sliderNode.addMajorTick( voltageRange.min, createTickLabels( voltageRange.min, 'white' ) );
+    var maxTick = createTickLabels( voltageRange.max, 'black' );
+    var defaultTick = createTickLabels( voltageRange.defaultValue, 'white' );
+    var minTick = createTickLabels( voltageRange.min, 'white' );
+    sliderNode.addMajorTick( voltageRange.max, maxTick );
+    sliderNode.addMajorTick( voltageRange.defaultValue, defaultTick );
+    sliderNode.addMajorTick( voltageRange.min, minTick );
 
     sliderNode.rotate( -Math.PI / 2 );
     this.addChild( sliderNode );
@@ -85,9 +122,13 @@ define( function( require ) {
     battery.polarityProperty.link( function( polarity ) {
       if ( polarity === CLConstants.POLARITY.POSITIVE ) {
         imageNode.image = batteryUpImage;
+        minTick.fill = 'white';
+        maxTick.fill = 'black';
       }
       else {
         imageNode.image = batteryDownImage;
+        minTick.fill = 'black';
+        maxTick.fill = 'white';
       }
     } );
   }

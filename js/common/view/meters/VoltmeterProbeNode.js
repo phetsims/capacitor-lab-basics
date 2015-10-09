@@ -14,10 +14,15 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
 
   // images
   var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
   var blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_black.png' );
+  
+  // strings
+  var redVoltmeterDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterRedProbe' );
+  var blackVoltmeterDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBlackProbe' );
 
   /**
    * Constructor.
@@ -26,7 +31,7 @@ define( function( require ) {
    * @param {Property} locationProperty property to observer for the probe's location
    * @param {CLModelViewTransform3D} modelViewTransform model-view transform
    */
-  function VoltmeterProbeNode( image, locationProperty, modelViewTransform ) {
+  function VoltmeterProbeNode( image, descriptionString, className, locationProperty, modelViewTransform ) {
 
     Node.call( this );
     var thisNode = this;
@@ -56,6 +61,27 @@ define( function( require ) {
     } );
     this.addInputListener( this.movableDragHandler );
     this.cursor = 'pointer';
+    
+    // add the accessible content
+    this.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+        var domElement = document.createElement( 'div' );
+        domElement.className = className;
+        var description = document.createElement( 'p' );
+        description.hidden = 'true';
+        description.innerText = descriptionString
+        domElement.appendChild( description );
+        description.id = descriptionString;
+        domElement.setAttribute( 'aria-describedby', descriptionString );
+        
+        domElement.tabIndex = '-1';
+
+        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+        domElement.id = accessiblePeer.id;
+        return accessiblePeer;
+
+      }
+    };
   }
 
   return inherit( Node, VoltmeterProbeNode, {
@@ -72,10 +98,10 @@ define( function( require ) {
 
     // Factory functions to create both Positive and negative probes.
     PositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform ) {
-      return new VoltmeterProbeNode( redVoltmeterProbeImage, voltmeter.positiveProbeLocationProperty, modelViewTransform );
+      return new VoltmeterProbeNode( redVoltmeterProbeImage, redVoltmeterDescriptionString, 'RedProbe', voltmeter.positiveProbeLocationProperty, modelViewTransform );
     },
     NegativeVoltmeterProbeNode: function( voltmeter, modelViewTransform ) {
-      return new VoltmeterProbeNode( blackVoltmeterProbeImage, voltmeter.negativeProbeLocationProperty, modelViewTransform );
+      return new VoltmeterProbeNode( blackVoltmeterProbeImage, blackVoltmeterDescriptionString, 'BlackProbe', voltmeter.negativeProbeLocationProperty, modelViewTransform );
     }
 
   } );

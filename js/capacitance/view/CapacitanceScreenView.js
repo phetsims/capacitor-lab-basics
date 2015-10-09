@@ -72,8 +72,8 @@ define( function( require ) {
     } );
 
     // rendering order
-    this.addChild( capacitanceViewControl );
     this.addChild( capacitanceCircuitNode );
+    this.addChild( capacitanceViewControl );
     this.addChild( voltmeterToolBoxPanel );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );

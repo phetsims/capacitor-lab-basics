@@ -20,6 +20,9 @@ define( function( require ) {
   var PlateSeparationDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandler' );
   var DragHandleValueNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleValueNode' );
   var DragHandleLineNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleLineNode' );
+  var Input = require( 'SCENERY/input/Input' );
+  var Util = require( 'DOT/Util' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
 
   // constants
   // endpoints for vertical double-headed arrow
@@ -34,6 +37,7 @@ define( function( require ) {
   // strings
   var separationString = require( 'string!CAPACITOR_LAB_BASICS/separation' );
   var unitsMillimetersString = require( 'string!CAPACITOR_LAB_BASICS/units.millimeters' );
+  var sliderDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateSeparationSlider' );
 
   /**
    * Constructor for the PlateSeparationDragHandlerNode.
@@ -55,6 +59,35 @@ define( function( require ) {
     // arrow
     var arrowNode = new DragHandleArrowNode( ARROW_START_LOCATION, ARROW_END_LOCATION );
     this.addInputListener( new PlateSeparationDragHandler( arrowNode, capacitor, modelViewTransform, valueRange ) );
+    arrowNode.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+        var domElement = document.createElement( 'div' );
+        var description = document.createElement( 'p' );
+        description.hidden = 'true';
+        description.innerText = sliderDescriptionString;
+        domElement.appendChild( description );
+        description.id = sliderDescriptionString;
+        domElement.setAttribute( 'aria-describedby', sliderDescriptionString );
+
+        domElement.tabIndex = '0';
+
+        domElement.addEventListener( 'keydown', function( event ) {
+          var keyCode = event.keyCode;
+          var delta = keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW ? -1 :
+                  keyCode === Input.KEY_RIGHT_ARROW || keyCode === Input.KEY_UP_ARROW ? +1 :
+                  0;
+          var range = valueRange.max - valueRange.min;
+          capacitor.plateSeparationProperty.set( Util.clamp( capacitor.plateSeparationProperty.get() + range * 0.1 * delta,
+                                                  valueRange.min,
+                                                  valueRange.max ) );
+        } );
+
+        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+        domElement.id = accessiblePeer.id;
+        return accessiblePeer;
+
+      }
+    };
     this.touchArea = arrowNode.bounds;
     this.cursor = 'pointer';
 

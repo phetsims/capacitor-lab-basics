@@ -80,13 +80,15 @@ define( function( require ) {
     this.addChild( batteryNode );
     this.addChild( capacitorNode );
     this.addChild( this.topWireNode );
-    this.circuitSwitchNodes.forEach( function( circuitSwitchNode ) {
+    this.addChild( this.circuitSwitchNodes[ 0 ] );
+    /*this.circuitSwitchNodes.forEach( function( circuitSwitchNode ) {
       thisNode.addChild( circuitSwitchNode );
-    } );
+    } );*/
     this.addChild( this.batteryTopCurrentIndicatorNode );
     this.addChild( this.batteryBottomCurrentIndicatorNode );
     this.addChild( plateSeparationDragHandleNode );
     this.addChild( plateAreaDragHandleNode );
+    this.addChild( this.circuitSwitchNodes[ 1 ] );
 
     // layout TODO: Much of the layout will need to be fixed or tidied.  Many design decisions to be made.
     var x = 0;
