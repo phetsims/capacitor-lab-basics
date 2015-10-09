@@ -33,6 +33,7 @@ define( function( require ) {
   function VoltmeterToolBoxPanel( voltmeterNode, modelViewTransform, inUserControlProperty, voltmeterVisibleProperty ) {
 
     var thisToolBoxPanel = this;
+    this.voltmeterNode = voltmeterNode; // @private
 
     // create the icon for the toolbox.
     var voltmeterIconNode = VoltmeterNode.VoltmeterIconNode();
@@ -89,12 +90,16 @@ define( function( require ) {
 
           domElement.addEventListener( 'click', function() {
             inUserControlProperty.set( !inUserControlProperty.get() );
+            voltmeterVisibleProperty.set( !voltmeterVisibleProperty.get() );
+
             var tab = '0';
             if ( !inUserControlProperty.get() ) {
               tab = '-1';
             }
             // add the voltmeter to the tab order.
-            var bodyElement = document.getElementsByClassName( 'VoltmeterBody' )[ 0 ];
+            //var bodyElement = document.getElementsByClassName( 'VoltmeterBody' )[ 0 ];
+            var bodyElementId = thisToolBoxPanel.voltmeterNode.bodyNode.accessibleVoltmeterBodyId;
+            var bodyElement = document.getElementById( bodyElementId );
             bodyElement.tabIndex = tab;
 
             var redProbe = document.getElementsByClassName( 'RedProbe' )[ 0 ];
@@ -106,7 +111,7 @@ define( function( require ) {
             if ( inUserControlProperty.get() ) {
               bodyElement.focus();
             }
-            console.log(document.getElementsByClassName( 'VoltmeterBody' ));
+            console.log( bodyElement );
           } );
 
           var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );

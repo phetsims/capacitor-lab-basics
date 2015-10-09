@@ -114,20 +114,25 @@ define( function( require ) {
     // add the accessible content
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
+        var trail = accessibleInstance.trail;
+
         var domElement = document.createElement( 'div' );
         domElement.className = 'VoltmeterBody';
+
+        // add this voltmeter instance ID to the thisNode so that the panel can have access to the node.
+        domElement.id = 'voltmeter-' + trail.getUniqueId();
+        thisNode.accessibleVoltmeterBodyId = domElement.id;
+
         var description = document.createElement( 'p' );
         description.hidden = 'true';
         description.innerText = StringUtils.format( voltmeterBodyDescriptionString, voltmeter.value );
         domElement.appendChild( description );
         description.id = voltmeterBodyDescriptionString;
         domElement.setAttribute( 'aria-describedby', StringUtils.format( voltmeterBodyDescriptionString, voltmeter.value ) );
-        
+
         domElement.tabIndex = '-1';
 
-        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-        domElement.id = accessiblePeer.id;
-        return accessiblePeer;
+        return new AccessiblePeer( accessibleInstance, domElement );
 
       }
     };
