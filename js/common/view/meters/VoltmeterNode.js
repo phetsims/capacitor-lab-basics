@@ -51,9 +51,10 @@ define( function( require ) {
    * @param {Voltmeter} voltmeter - the voltmeter model
    * @param {CLModelViewTransform3D} modelViewTransform
    */
-  function VoltmeterNode( voltmeter, modelViewTransform ) {
+  function VoltmeterNode( voltmeter, modelViewTransform, voltmeterVisibleProperty ) {
 
     Node.call( this );
+    var thisNode = this;
 
     // construct all parts of the probe
     this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty ); // @public
@@ -70,6 +71,10 @@ define( function( require ) {
     this.addChild( positiveWireNode );
     this.addChild( negativeProbeNode );
     this.addChild( negativeWireNode );
+
+    voltmeterVisibleProperty.link( function( voltmeterVisible ) {
+      thisNode.visible = voltmeterVisible;
+    } );
 
   }
 

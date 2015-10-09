@@ -17,14 +17,13 @@ define( function( require ) {
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
   var Panel = require( 'SUN/Panel' );
   var CheckBox = require( 'SUN/CheckBox' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   // constants
-  var CHECKBOX_METER_SPACING = 20;
-  var CHECKBOX_VERTICAL_SPACING = 13;
+  var CHECKBOX_VERTICAL_SPACING = 28;
   var VALUE_FONT = new PhetFont( 15 );
   var VALUE_COLOR = 'black';
 
@@ -44,6 +43,8 @@ define( function( require ) {
 
     var thisPanel = this;
 
+    var parentNode = new Node(); // node that will contain all check boxes and bar meter nodes
+
     // create the bar meter nodes with their text values.
     var meterNodes = new Node();
     var capacitanceMeterNode = BarMeterNode.CapacitanceBarMeterNode( model.capacitanceMeter );
@@ -52,6 +53,7 @@ define( function( require ) {
     meterNodes.children = [ capacitanceMeterNode, plateChargeMeterNode, storedEnergyMeterNode ];
 
     // create checkboxes for each meter node
+    var checkBoxNodes = new Node();
     var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR };
 
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
@@ -63,28 +65,38 @@ define( function( require ) {
     var storedEnergyTitle = new Text( storedEnergyString, fontOptions );
     var storedEnergyCheckBox = new CheckBox( storedEnergyTitle, model.storedEnergyMeterVisibleProperty );
 
-    // checkboxes go in a layout box aligned to the left
-    var checkBoxLayoutBox = new LayoutBox( {
-      children: [ capacitanceCheckBox, plateChargeCheckBox, storedEnergyCheckBox ],
-      align: 'left',
-      orientation: 'vertical',
-      spacing: CHECKBOX_VERTICAL_SPACING
-    } );
+    checkBoxNodes.children = [ capacitanceCheckBox, plateChargeCheckBox, storedEnergyCheckBox ];
 
-    // plate meter nodes and check boxes in a horizontal layout box.
-    var checkBoxMeterLayoutBox = new LayoutBox( {
-      children: [ checkBoxLayoutBox, meterNodes ],
-      orientation: 'horizontal',
-      spacing: CHECKBOX_METER_SPACING
-    } );
+    parentNode.children = [ checkBoxNodes, meterNodes ];
 
-    capacitanceMeterNode.centerY = -( capacitanceCheckBox.height + CHECKBOX_VERTICAL_SPACING );
-    storedEnergyMeterNode.centerY = ( capacitanceCheckBox.height + CHECKBOX_VERTICAL_SPACING );
+    // layout
+    var x = 0;
+    var y = 0;
 
-    Panel.call( this, checkBoxMeterLayoutBox, {
+    // check boxes aligned vertically, centered left
+    capacitanceCheckBox.translation = new Vector2( 0, 0 );
+    plateChargeCheckBox.translation = new Vector2( 0, CHECKBOX_VERTICAL_SPACING );
+    storedEnergyCheckBox.translation = new Vector2( 0, 2 * CHECKBOX_VERTICAL_SPACING );
+
+
+    //capacitanceMeterNode.axisLine.center = new Vector2( 90, capacitanceCheckBox. );
+    x = capacitanceCheckBox.right + 120;
+    y = capacitanceCheckBox.centerY + 2;
+    capacitanceMeterNode.axisLine.translation = new Vector2( x, y );
+
+    x = capacitanceMeterNode.axisLine.x;
+    y = plateChargeCheckBox.centerY + 2;
+    plateChargeMeterNode.axisLine.translation = new Vector2( x, y );
+
+    y = storedEnergyCheckBox.centerY + 2;
+    storedEnergyMeterNode.axisLine.translation = new Vector2( x, y );
+
+    Panel.call( this, parentNode, {
       fill: CLConstants.METER_PANEL_FILL,
       minWidth: minWidth,
-      align: 'left'
+      align: 'left',
+      xMargin: 10,
+      yMargin: 10
     } );
 
     // link visibility to the model property

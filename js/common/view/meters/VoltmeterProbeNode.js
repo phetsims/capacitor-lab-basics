@@ -19,7 +19,7 @@ define( function( require ) {
   // images
   var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
   var blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_black.png' );
-  
+
   // strings
   var redVoltmeterDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterRedProbe' );
   var blackVoltmeterDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBlackProbe' );
@@ -61,7 +61,7 @@ define( function( require ) {
     } );
     this.addInputListener( this.movableDragHandler );
     this.cursor = 'pointer';
-    
+
     // add the accessible content
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
@@ -69,11 +69,11 @@ define( function( require ) {
         domElement.className = className;
         var description = document.createElement( 'p' );
         description.hidden = 'true';
-        description.innerText = descriptionString
+        description.innerText = descriptionString;
         domElement.appendChild( description );
         description.id = descriptionString;
         domElement.setAttribute( 'aria-describedby', descriptionString );
-        
+
         domElement.tabIndex = '-1';
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );

@@ -42,8 +42,9 @@ define( function( require ) {
 
     // meters
     var barMeterPanel = new BarMeterPanel( model, lightBulbCircuitNode.topWireNode.width );
-    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
-    var voltmeterToolbox = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform, model.voltmeter.inUserControlProperty );
+    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty );
+    var voltmeterToolbox = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform,
+      model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty );
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
@@ -62,7 +63,7 @@ define( function( require ) {
 
     // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide.
     model.voltmeter.inUserControlProperty.link( function( inUserControl ) {
-      if ( !inUserControl && voltmeterToolbox.bounds.intersectsBounds( voltmeterNode.bounds.eroded( 0 ) ) ) {
+      if ( !inUserControl && voltmeterToolbox.bounds.intersectsBounds( voltmeterNode.bounds.eroded( 500 ) ) ) {
         voltmeterNode.visible = false;
       }
     } );

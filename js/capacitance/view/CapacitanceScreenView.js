@@ -20,6 +20,7 @@ define( function( require ) {
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var Path = require( 'SCENERY/nodes/Path' );
   var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
+  var CapacitanceBarMeterPanel = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceBarMeterPanel' );
 
   // constants
   var DEBUG_SHAPES = false;
@@ -47,8 +48,9 @@ define( function( require ) {
       model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
     // meters
-    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform );
-    var voltmeterToolBoxPanel = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform, model.voltmeter.inUserControlProperty );
+    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty );
+    var voltmeterToolBoxPanel = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform,
+      model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty );
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
@@ -56,6 +58,9 @@ define( function( require ) {
     var capacitanceViewControl = new CapacitorLabBasicsViewControl( model, 0 );
     capacitanceViewControl.translation = this.layoutBounds.rightTop.minusXY( capacitanceViewControl.width + 10, -10 );
     voltmeterToolBoxPanel.rightTop = capacitanceViewControl.rightBottom.plusXY( 0, 20 );
+
+    var capacitanceBarMeterPanel = new CapacitanceBarMeterPanel( model, capacitanceCircuitNode.width );
+    capacitanceBarMeterPanel.leftBottom = capacitanceCircuitNode.topWireNode.leftTop.minusXY( 0, 60 );
 
     var resetAllButton = new ResetAllButton( {
       listener: function() { model.reset(); },
@@ -66,14 +71,15 @@ define( function( require ) {
 
     // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide.
     model.voltmeter.inUserControlProperty.link( function( inUserControl ) {
-      if ( !inUserControl && voltmeterToolBoxPanel.bounds.intersectsBounds( voltmeterNode.bounds.eroded( 10 ) ) ) {
-        voltmeterNode.visible = false;
+      if ( !inUserControl && voltmeterToolBoxPanel.bounds.intersectsBounds( voltmeterNode.bounds ) ) {
+        model.voltmeterVisibleProperty.set( false );
       }
     } );
 
     // rendering order
-    this.addChild( capacitanceCircuitNode );
     this.addChild( capacitanceViewControl );
+    this.addChild( capacitanceBarMeterPanel );
+    this.addChild( capacitanceCircuitNode );
     this.addChild( voltmeterToolBoxPanel );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );

@@ -18,7 +18,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var Vector2 = require( 'DOT/Vector2' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
-  
+
   // strings
   var descriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterToolbox' );
 
@@ -29,7 +29,7 @@ define( function( require ) {
    * @param {Property.<boolean>} inUserControlProperty
    * @constructor
    */
-  function VoltmeterToolBoxPanel( voltmeterNode, modelViewTransform, inUserControlProperty ) {
+  function VoltmeterToolBoxPanel( voltmeterNode, modelViewTransform, inUserControlProperty, voltmeterVisibleProperty ) {
 
     var thisToolBoxPanel = this;
 
@@ -42,6 +42,7 @@ define( function( require ) {
       start: function( event ) {
         // pull the voltmeter out of the toolbox
         inUserControlProperty.set( true );
+        voltmeterVisibleProperty.set( true );
 
         // find the root parent screenView
         var testNode = thisToolBoxPanel;
@@ -82,9 +83,9 @@ define( function( require ) {
           var domElement = document.createElement( 'input' );
           domElement.value = descriptionString;
           domElement.type = 'button';
-  
+
           domElement.tabIndex = '0';
-  
+
           domElement.addEventListener( 'click', function() {
             inUserControlProperty.set( !inUserControlProperty.get() );
             var tab = '0';
@@ -92,21 +93,21 @@ define( function( require ) {
               tab = '-1';
             }
             // add the voltmeter to the tab order.
-            var bodyElement = document.getElementsByClassName( 'VoltmeterBody' )[0];
+            var bodyElement = document.getElementsByClassName( 'VoltmeterBody' )[ 0 ];
             bodyElement.tabIndex = tab;
 
-            var redProbe = document.getElementsByClassName( 'RedProbe' )[0];
+            var redProbe = document.getElementsByClassName( 'RedProbe' )[ 0 ];
             redProbe.tabIndex = tab;
-            var blackProbe = document.getElementsByClassName( 'BlackProbe' )[0];
+            var blackProbe = document.getElementsByClassName( 'BlackProbe' )[ 0 ];
             blackProbe.tabIndex = tab;
-            
+
             // set focus immediately to the voltmeter body
             if ( inUserControlProperty.get() ) {
               bodyElement.focus();
             }
             console.log(document.getElementsByClassName( 'VoltmeterBody' ));
           } );
-  
+
           var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
           domElement.id = accessiblePeer.id;
           return accessiblePeer;
@@ -114,10 +115,10 @@ define( function( require ) {
       }
     } );
 
-    inUserControlProperty.link( function( inUserControl ) {
-      voltmeterNode.visible = inUserControl;
-      voltmeterIconNode.visible = !inUserControl;
+    voltmeterVisibleProperty.link( function( voltmeterVisible ) {
+      voltmeterIconNode.visible = !voltmeterVisible;
     } );
+
   }
 
   return inherit( Panel, VoltmeterToolBoxPanel );

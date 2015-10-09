@@ -86,8 +86,9 @@ define( function( require ) {
     } );
 
     Node.call( this );
-    this.children = [ this.axisLine, this.valueNode, this.barNode ];
-
+    this.axisLine.children = [ this.valueNode, this.barNode ];
+    //this.children = [ this.axisLine, this.valueNode, this.barNode ];
+    this.addChild( this.axisLine );
     // observers
     meter.valueProperty.link( function( value ) {
       thisNode.setValue( value );
@@ -108,13 +109,13 @@ define( function( require ) {
         description.hidden = 'true';
         var meterValue = Util.toFixed( Math.pow( 10, 12 ) * meter.value, 2 );
         var unitsFormatString = StringUtils.format( pattern_0value_1units, meterValue, unitsString );
-        var meterString = StringUtils.format( descriptionString, unitsFormatString )
+        var meterString = StringUtils.format( descriptionString, unitsFormatString );
         description.innerText = meterString;
         domElement.appendChild( description );
         description.id = descriptionString;
         domElement.setAttribute( 'aria-describedby', meterString );
-        console.log(meterString)
-        
+        console.log( meterString );
+
         domElement.tabIndex = '0';
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );

@@ -102,12 +102,15 @@ define( function( require ) {
     this.movableDragHandler = new MovableDragHandler( voltmeter.bodyLocationProperty, {
       dragBounds: voltmeter.dragBounds,
       modelViewTransform: modelViewTransform,
+      startDrag: function() {
+        inUserControlProperty.set( true );
+      },
       endDrag: function() {
         inUserControlProperty.set( false );
       }
     } );
     thisNode.addInputListener( this.movableDragHandler );
-    
+
     // add the accessible content
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
