@@ -27,7 +27,7 @@ define( function( require ) {
 
   // constants
   var BASE_LINE_LENGTH = 25;
-  var BAR_SIZE = new Dimension2( 275, 18 );
+  var BAR_SIZE = new Dimension2( 245, 18 );
   var BASE_LINE_OFFSET = ( BASE_LINE_LENGTH - BAR_SIZE.height ) / 2;
   var BAR_STROKE_COLOR = 'black';
   var BAR_LINE_WIDTH = 1;
