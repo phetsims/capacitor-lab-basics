@@ -133,31 +133,30 @@ define( function( require ) {
 
     // observers
     circuit.circuitConnectionProperty.link( function( circuitConnection ) {
-      thisNode.updateConnectivity( circuitConnection );
+      thisNode.updateCurrentVisibility( circuitConnection, currentIndicatorsVisibleProperty.value );
     } );
 
+    // link current indicator visibility to the view control value
     currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
-      thisNode.batteryTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
-      thisNode.batteryBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
-      thisNode.bulbTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
-      thisNode.bulbBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
+      thisNode.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
+
   }
 
   return inherit( Node, LightBulbCircuitNode, {
 
     // Updates the circuit components and controls to match the state of the battery connection.
-    updateConnectivity: function( circuitConnection ) {
+    updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
 
       // As long as the circuit is not open, the circuit is considered connected.
       var isBatteryConnected = ( circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED );
       var isLightBulbConnected = ( circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
 
-      this.batteryTopCurrentIndicatorNode.setVisible( isBatteryConnected );
-      this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected );
+      this.batteryTopCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
+      this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
 
-      this.bulbTopCurrentIndicatorNode.setVisible( isLightBulbConnected );
-      this.bulbBottomCurrentIndicatorNode.setVisible( isLightBulbConnected );
+      this.bulbTopCurrentIndicatorNode.setVisible( isLightBulbConnected && currentIndicatorsVisible );
+      this.bulbBottomCurrentIndicatorNode.setVisible( isLightBulbConnected && currentIndicatorsVisible );
     }
   } );
 
