@@ -60,6 +60,11 @@ define( function( require ) {
       thisMeter.updateValue();
     } );
 
+    // update the value when the circuit connection property changes
+    circuit.circuitConnectionProperty.link( function( circuitConnection ) {
+      thisMeter.updateValue();
+    } );
+
   }
 
   return inherit( PropertySet, Voltmeter, {
