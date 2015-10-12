@@ -35,7 +35,6 @@ define( function( require ) {
     this.thickness = thickness; // @public
     this.shapeCreator = new WireShapeCreator( this, modelViewTransform ); // @private
     var shape = this.shapeCreator.createWireShape();
-    console.log( this.connectionPoint );
 
     // @public
     PropertySet.call( this, {

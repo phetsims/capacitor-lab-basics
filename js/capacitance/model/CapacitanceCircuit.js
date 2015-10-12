@@ -62,7 +62,7 @@ define( function( require ) {
    * @param {CircuitConfig} config
    * @constructor
    */
-  function SingleCircuit( config ) {
+  function CapacitanceCircuit( config ) {
 
     ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 0 /* numberOfLightBulbs */, {
       circuitSwitchFactory: createCircuitSwitch
@@ -71,7 +71,7 @@ define( function( require ) {
     this.capacitor = this.capacitors[ 0 ]; // @public
   }
 
-  return inherit( ParallelCircuit, SingleCircuit, {
+  return inherit( ParallelCircuit, CapacitanceCircuit, {
 
     /**
      * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
@@ -88,6 +88,10 @@ define( function( require ) {
       }
     },
 
+    getCapacitorPlateVoltage: function() {
+      return this.capacitor.platesVoltage;
+    },
+
     /**
      * Normally the total voltage is equivalent to the battery voltage. But disconnecting the battery changes how we
      * compute total voltage, so override this method.
@@ -95,32 +99,9 @@ define( function( require ) {
      * @return {number}
      */
     getTotalVoltage: function() {
-      if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
-        return ParallelCircuit.prototype.getTotalVoltage.call( this );
-      }
-    },
-
-    /**
-     * Gets the voltage at a shape, with respect to ground. Returns Number.NaN if the Shape is not connected to the
-     * circuit.
-     *
-     * @param {Shape} shape
-     * @return {number}
-     */
-    getVoltageAt: function( shape ) {
-      var voltage = Number.NaN;
-      if ( this.circuitConnection !== CircuitConnectionEnum.OPEN_CIRCUIT ) {
-        voltage = ParallelCircuit.prototype.getVoltageAt.call( this, shape );
-      }
-      else {
-        if ( this.intersectsSomeTopPlate( shape ) ) {
-          voltage = this.getTotalVoltage();
-        }
-        else if ( this.intersectsSomeBottomPlate( shape ) ) {
-          voltage = 0;
-        }
-      }
-      return voltage;
+      //if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+      return ParallelCircuit.prototype.getTotalVoltage.call( this );
+      //}
     },
 
     /**

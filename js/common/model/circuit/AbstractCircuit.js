@@ -122,7 +122,9 @@ define( function( require ) {
      * necessary fields in the subclass may not be initialized.
      */
     this.battery.voltageProperty.lazyLink( function() {
-      thisCircuit.updatePlateVoltages();
+      if ( thisCircuit.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        thisCircuit.updatePlateVoltages();
+      }
     } );
 
   }
@@ -261,9 +263,10 @@ define( function( require ) {
      */
     getTopSwitchWires: function() {
       var topCircuitSwitchWires = [];
-      this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP ) {
-          topCircuitSwitchWires.push( wire );
+      this.circuitSwitches.forEach( function( circuitSwitch ) {
+        var switchWire = circuitSwitch.switchWire;
+        if ( switchWire.connectionPoint === CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP ) {
+          topCircuitSwitchWires.push( switchWire );
         }
       } );
       return topCircuitSwitchWires;
@@ -276,9 +279,10 @@ define( function( require ) {
      */
     getBottomSwitchWires: function() {
       var bottomCircuitSwitchWires = [];
-      this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM ) {
-          bottomCircuitSwitchWires.push( wire );
+      this.circuitSwitches.forEach( function( circuitSwitch ) {
+        var switchWire = circuitSwitch.switchWire;
+        if ( switchWire.connectionPoint === CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM ) {
+          bottomCircuitSwitchWires.push( switchWire );
         }
       } );
       return bottomCircuitSwitchWires;
@@ -327,7 +331,7 @@ define( function( require ) {
 
       var bottomWires = [];
       bottomWires = bottomWires.concat( bottomBatteryWires );
-      bottomWires = bottomWires.concat( bottomLightBulbWires);
+      bottomWires = bottomWires.concat( bottomLightBulbWires );
       bottomWires = bottomWires.concat( bottomCapacitorWires );
       bottomWires = bottomWires.concat( bottomSwitchWires );
 
@@ -380,7 +384,7 @@ define( function( require ) {
      */
     getStoredEnergy: function() {
       var C_total = this.getTotalCapacitance(); // F
-      var V_total = this.getTotalVoltage(); // V
+      var V_total = this.getCapacitorPlateVoltage(); // V
       return 0.5 * C_total * V_total * V_total; // Joules (J)
     },
 

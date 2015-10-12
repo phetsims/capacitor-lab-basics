@@ -105,7 +105,7 @@ define( function( require ) {
         if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
           this.capacitor.platesVoltage = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance(); // V = Q/C
         }
-        if( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           this.capacitor.platesVoltage = this.battery.voltage;
         }
       }
@@ -118,12 +118,16 @@ define( function( require ) {
      * @return {number}
      */
     getTotalVoltage: function() {
-      if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
-        return ParallelCircuit.prototype.getTotalVoltage.call( this );
-      }
-      else {
-        return this.capacitor.platesVoltage;
-      }
+      //if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+      return ParallelCircuit.prototype.getTotalVoltage.call( this );
+      //}
+      //else {
+      //  return this.capacitor.platesVoltage;
+      //}
+    },
+
+    getCapacitorPlateVoltage: function() {
+      return this.capacitor.platesVoltage;
     },
 
     /**
@@ -135,18 +139,69 @@ define( function( require ) {
      */
     getVoltageAt: function( shape ) {
       var voltage = Number.NaN;
-      if ( this.circuitConnection !== CircuitConnectionEnum.OPEN_CIRCUIT ) {
+
+      // find voltage in parallel circuit cases
+      if ( this.circuitConnectionProperty.value !== CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
         voltage = ParallelCircuit.prototype.getVoltageAt.call( this, shape );
       }
+
+      // if a light bulb is connected, set voltage to the voltage of the disharging capacitor
       else {
-        if ( this.intersectsSomeTopPlate( shape ) ) {
-          voltage = this.getTotalVoltage();
+        if ( this.connectedToLightBulbTop( shape ) ) {
+          voltage = this.getCapacitorPlateVoltage();
         }
-        else if ( this.intersectsSomeBottomPlate( shape ) ) {
+        else if ( this.connectedToLightBulbBottom( shape ) ) {
           voltage = 0;
         }
       }
+
       return voltage;
+    },
+
+    connectedToLightBulbTop: function( shape ) {
+
+      var intersectsTopWires = false;
+      var topLightBulbWires = this.getTopLightBulbWires();
+      var topCapacitorWires = this.getTopCapacitorWires();
+      var topSwitchWires = this.getTopSwitchWires();
+
+      var topWires = [];
+      topWires = topWires.concat( topLightBulbWires );
+      topWires = topWires.concat( topCapacitorWires );
+      topWires = topWires.concat( topSwitchWires );
+
+      topWires.forEach( function( bottomWire ) {
+        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+          intersectsTopWires = true;
+        }
+      } );
+
+      var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
+      return intersectsTopWires || intersectsSomeTopPlate;
+
+    },
+
+    connectedToLightBulbBottom: function( shape ) {
+
+      var intersectsBottomWires = false;
+      var bottomLightBulbWires = this.getBottomLightBulbWires();
+      var bottomCapacitorWires = this.getBottomCapacitorWires();
+      var bottomSwitchWires = this.getBottomSwitchWires();
+
+      var bottomWires = [];
+      bottomWires = bottomWires.concat( bottomLightBulbWires );
+      bottomWires = bottomWires.concat( bottomCapacitorWires );
+      bottomWires = bottomWires.concat( bottomSwitchWires );
+
+      bottomWires.forEach( function( bottomWire ) {
+        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+          intersectsBottomWires = true;
+        }
+      } );
+
+      var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
+      return intersectsBottomWires || intersectsSomeBottomPlate;
+
     },
 
     /**
@@ -164,7 +219,8 @@ define( function( require ) {
           //this.fireCircuitChanged(); TODO
         }
       }
-    },
+    }
+    ,
 
     /**
      * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
@@ -173,7 +229,8 @@ define( function( require ) {
       if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         this.updatePlateVoltages();
       }
-    },
+    }
+    ,
 
     /**
      * Gets the total charge in the circuit.(design doc symbol: Q_total)
@@ -186,4 +243,5 @@ define( function( require ) {
 
   } );
 
-} );
+} )
+;

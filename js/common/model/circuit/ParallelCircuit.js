@@ -31,6 +31,7 @@ define( function( require ) {
   var WireBatteryToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireBatteryToCircuitSwitch' );
   var WireLightBulbToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireLightBulbToCircuitSwitch' );
   var WireCapacitorToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireCapacitorToCircuitSwitch' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
   /**
    * Function which creates circuit components for the parallel circuit.  The function is constructed so that
@@ -201,15 +202,18 @@ define( function( require ) {
 
     /**
      * Update the plate voltages.  This must be called at the end of the constructor.  See documentation in
-     * AbstractCircuit.
+     * AbstractCircuit.  Plate voltage updates only if connected to the battery.
      *
      * TODO: Not so sure about this anymore.
      */
-    updatePlateVoltages: function() {
-      this.capacitors.forEach( function( capacitor ) {
-        capacitor.platesVoltage = this.getTotalVoltage(); // voltage across all capacitors is the same
-      } );
-    },
+    //updatePlateVoltages: function() {
+    //  var thisCircuit = this;
+    //  if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+    //    this.capacitors.forEach( function( capacitor ) {
+    //      capacitor.platesVoltage = thisCircuit.getTotalVoltage(); // voltage across all capacitors is the same
+    //    } );
+    //  }
+    //},
 
     /**
      * Get the total capacitance of all parallel capacitors in this circuit using C_total = C1 + C2 + ... + Cn
@@ -232,13 +236,98 @@ define( function( require ) {
      */
     getVoltageAt: function( shape ) {
       var voltage = Number.NaN;
-      if ( this.connectedToBatteryTop( shape ) ) {
-        voltage = this.getTotalVoltage();
+      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        if ( this.connectedToBatteryTop( shape ) ) {
+          voltage = this.getTotalVoltage();
+        }
+        else if ( this.connectedToBatteryBottom( shape ) ) {
+          voltage = 0;
+        }
       }
-      else if ( this.connectedToBatteryBottom( shape ) ) {
-        voltage = 0;
+      else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
+          voltage = this.getCapacitorPlateVoltage();
+        }
+        else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
+          voltage = 0;
+        }
       }
       return voltage;
+    },
+
+    connectedToDisconnectedCapacitorBottom: function( shape ) {
+
+      var intersectsBottomWires = false;
+      var bottomCapacitorWires = this.getBottomCapacitorWires();
+      var bottomSwitchWires = this.getBottomSwitchWires();
+      var bottomWires = bottomCapacitorWires.concat( bottomSwitchWires );
+
+      bottomWires.forEach( function( bottomWire ) {
+        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+          intersectsBottomWires = true;
+        }
+      } );
+
+      var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
+      return intersectsBottomWires || intersectsSomeBottomPlate;
+    },
+
+    connectedToDisconnectedCapacitorTop: function( shape ) {
+      var intersectsTopWire = false;
+
+      // only the wires that are connected to the battery
+      var topCapacitorWires = this.getTopCapacitorWires();
+      var topCircuitSwitchWires = this.getTopSwitchWires();
+      var topWires = topCapacitorWires.concat( topCircuitSwitchWires );
+      topWires.forEach( function( topWire ) {
+        if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
+          intersectsTopWire = true;
+        }
+      } );
+
+      var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
+      return intersectsTopWire || intersectsSomeTopPlate;
+    },
+
+    /**
+     * Check to see if shape connects any wires that are connected to the battery top when the batteyr is disconnected.
+     * @param shape
+     * @returns {*|boolean}
+     */
+    connectedToDisconnectedBatteryTop: function( shape ) {
+      var intersectsTopTerminal = this.battery.intersectsTopTerminal( shape );
+      var intersectsTopWire = false;
+
+      // only the wires that are connected to the battery
+      var topBatteryWires = this.getTopBatteryWires();
+      topBatteryWires.forEach( function( topWire ) {
+        if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
+          intersectsTopWire = true;
+        }
+      } );
+
+      return intersectsTopTerminal || intersectsTopWire;
+    },
+
+    /**
+     * True if shape is touching part of the circuit that is connected to the battery's bottom terminal when the battery
+     * is disconnected.
+     *
+     * @param {Shape} shape
+     * @returns {boolean}
+     */
+    connectedToDisconnectedBatteryBottom: function( shape ) {
+      var intersectsBottomTerminal = this.battery.intersectsBottomTerminal( shape );
+      var intersectsBottomWires = false;
+      var bottomBatteryWires = this.getBottomBatteryWires();
+
+      bottomBatteryWires.forEach( function( bottomWire ) {
+        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+          intersectsBottomWires = true;
+        }
+      } );
+
+      return intersectsBottomTerminal || intersectsBottomWires;
     },
 
     /**
@@ -250,14 +339,16 @@ define( function( require ) {
     connectedToBatteryTop: function( shape ) {
       var intersectsTopTerminal = this.battery.intersectsTopTerminal( shape );
       var intersectsTopWire = false;
-      this.getTopWires().forEach( function( topWire ) {
+      var topBatteryWires = this.getTopBatteryWires();
+      topBatteryWires = topBatteryWires.concat( this.getTopCapacitorWires() );
+      topBatteryWires = topBatteryWires.concat( this.getTopSwitchWires() );
+      topBatteryWires.forEach( function( topWire ) {
         if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
           intersectsTopWire = true;
         }
       } );
       var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
       return intersectsTopTerminal || intersectsTopWire || intersectsSomeTopPlate;
-      //return this.battery.intersectsTopTerminal( shape ) || this.getTopWires().shape.intersectsBounds( shape ) || this.intersectsSomeTopPlate( shape );
     },
 
     /**
@@ -269,14 +360,16 @@ define( function( require ) {
     connectedToBatteryBottom: function( shape ) {
       var intersectsBottomTerminal = this.battery.intersectsBottomTerminal( shape );
       var intersectsBottomWires = false;
-      this.getBottomWires().forEach( function( bottomWire ) {
+      var bottomBatteryWires = this.getBottomBatteryWires();
+      bottomBatteryWires = bottomBatteryWires.concat( this.getBottomCapacitorWires() );
+      bottomBatteryWires = bottomBatteryWires.concat( this.getBottomSwitchWires() );
+      bottomBatteryWires.forEach( function( bottomWire ) {
         if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
         }
       } );
       var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
       return intersectsBottomTerminal || intersectsBottomWires || intersectsSomeBottomPlate;
-      //return this.battery.intersectsBottomTerminal( shape ) || this.getBottomWire().shape.intersectsBounds( shape ) || this.intersectsSomeBottomPlate( shape );
     },
 
     /**
