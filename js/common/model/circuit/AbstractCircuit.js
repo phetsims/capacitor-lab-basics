@@ -196,12 +196,10 @@ define( function( require ) {
       var topBatteryWires = this.getTopBatteryWires();
       var topLightBulbWires = this.getTopLightBulbWires();
       var topCapacitorWires = this.getTopCapacitorWires();
-      var topSwitchWires = this.getTopSwitchWires();
 
       var topWires = [];
       topWires = topWires.concat( topBatteryWires );
       topWires = topWires.concat( topLightBulbWires );
-      topWires = topWires.concat( topSwitchWires );
       topWires = topWires.concat( topCapacitorWires );
       return topWires;
     },
@@ -327,13 +325,11 @@ define( function( require ) {
       var bottomBatteryWires = this.getBottomBatteryWires();
       var bottomLightBulbWires = this.getBottomLightBulbWires();
       var bottomCapacitorWires = this.getBottomCapacitorWires();
-      var bottomSwitchWires = this.getBottomSwitchWires();
 
       var bottomWires = [];
       bottomWires = bottomWires.concat( bottomBatteryWires );
       bottomWires = bottomWires.concat( bottomLightBulbWires );
       bottomWires = bottomWires.concat( bottomCapacitorWires );
-      bottomWires = bottomWires.concat( bottomSwitchWires );
 
       return bottomWires;
     },
