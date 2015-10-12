@@ -26,9 +26,10 @@ define( function( require ) {
    * @param {Vector3} hingePoint
    * @param {Object} connections
    * @param {CLModelViewTransform3D} modelViewTransform
-   * @param {Property} circuitConnectionProperty
+   * @param {Property} circuitConnectionProperty,
+   * @param {string} connectionLocation
    */
-  function CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty ) {
+  function CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty, connectionLocation ) {
 
     // @private
     this.initialAngle = 0; // with respect to the horizontal ( open switch )
@@ -46,9 +47,9 @@ define( function( require ) {
       angle: this.initialAngle
     } );
 
-    // add the switch wire that spans two connection points. Default connection is battery.
+    // add the switch wire that spans two connection points. Default connection is to the battery.
     this.switchSegment = WireSegment.SwitchSegment( hingePoint, this.activeConnection );
-    this.switchWire = new Wire( modelViewTransform, CLConstants.WIRE_THICKNESS, [ this.switchSegment ] );
+    this.switchWire = new Wire( modelViewTransform, CLConstants.WIRE_THICKNESS, [ this.switchSegment ], connectionLocation );
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
@@ -145,7 +146,7 @@ define( function( require ) {
         }
       ];
 
-      return new CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty );
+      return new CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP );
     },
 
     CircuitBottomSwitch: function( hingePoint, modelViewTransform, circuitConnectionProperty ) {
@@ -174,7 +175,7 @@ define( function( require ) {
         }
       ];
 
-      return new CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty );
+      return new CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM );
     }
   } );
 } );

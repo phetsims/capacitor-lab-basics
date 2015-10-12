@@ -28,10 +28,16 @@ define( function( require ) {
     // world
     WORLD_DRAG_MARGIN: 0.001, // meters
 
-    // possible connection points for circuit components
-    CONNECTION_POINTS: {
-      TOP: 'TOP',
-      BOTTOM: 'BOTTOM'
+    // possible connection points for circuit wires
+    WIRE_CONNECTIONS: {
+      BATTERY_TOP: 'BATTERY_TOP',
+      BATTERY_BOTTOM: 'BATTERY_BOTTOM',
+      LIGHT_BULB_TOP: 'LIGHT_BULB_TOP',
+      LIGHT_BULB_BOTTOM: 'LIGHT_BULB_BOTTOM',
+      CAPACITOR_TOP: 'CAPACITOR_TOP',
+      CAPACITOR_BOTTOM: 'CAPACITOR_BOTTOM',
+      CIRCUIT_SWITCH_TOP: 'CIRCUIT_SWITCH_TOP',
+      CIRCUIT_SWITCH_BOTTOM: 'CIRCUIT_SWITCH_BOTTOM'
     },
 
     // battery

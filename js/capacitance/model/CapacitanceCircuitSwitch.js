@@ -25,10 +25,11 @@ define( function( require ) {
    * @param {Object} connections
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {Property} circuitConnectionProperty
+   * @param {string} connectionLocation
    * @constructor
    */
-  function CapacitanceCircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty ) {
-    CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty );
+  function CapacitanceCircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty, connectionLocation ) {
+    CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, connectionLocation );
   }
 
   return inherit( CircuitSwitch, CapacitanceCircuitSwitch, {
@@ -62,7 +63,7 @@ define( function( require ) {
         }
       ];
 
-      return new CapacitanceCircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty );
+      return new CapacitanceCircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP );
     },
 
     CapacitanceCircuitBottomSwitch: function( hingePoint, modelViewTransform, circuitConnectionProperty ) {
@@ -83,7 +84,7 @@ define( function( require ) {
         }
       ];
 
-      return new CapacitanceCircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty );
+      return new CapacitanceCircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM );
     }
   } );
 } );

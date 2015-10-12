@@ -62,7 +62,6 @@ define( function( require ) {
 
       // go through the points 'tip to tail', assuming they are in the desired order
       for ( var i = 1; i < this.wire.segments.length; i++ ) {
-        //var lastSegment = this.wire.segments[ i - 1 ];
         var currentSegment = this.wire.segments[ i ];
         wireShape.lineToPoint( currentSegment.endPoint );
       }

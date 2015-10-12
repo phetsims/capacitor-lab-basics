@@ -24,7 +24,7 @@ define( function( require ) {
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {number} thickness
    * @param {Array.<WireSegment>} segments
-   * @param {Vector3} connectionPoint
+   * @param {string} connectionPoint
    */
   function Wire( modelViewTransform, thickness, segments, connectionPoint ) {
 
@@ -35,6 +35,7 @@ define( function( require ) {
     this.thickness = thickness; // @public
     this.shapeCreator = new WireShapeCreator( this, modelViewTransform ); // @private
     var shape = this.shapeCreator.createWireShape();
+    console.log( this.connectionPoint );
 
     // @public
     PropertySet.call( this, {

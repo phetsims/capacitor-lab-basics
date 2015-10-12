@@ -191,14 +191,127 @@ define( function( require ) {
      * @return {array.<Wire>} topWires
      */
     getTopWires: function() {
-      var topWires = [];
-      this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLConstants.CONNECTION_POINTS.TOP ) {
-          topWires.push( wire );
-        }
+      var topBatteryWires = this.getTopBatteryWires();
+      var topLightBulbWires = this.getTopLightBulbWires();
+      var topCapacitorWires = this.getTopCapacitorWires();
+      var topSwitchWires = this.getTopSwitchWires();
 
-      } );
+      var topWires = [];
+      topWires = topWires.concat( topBatteryWires );
+      topWires = topWires.concat( topLightBulbWires );
+      topWires = topWires.concat( topSwitchWires );
+      topWires = topWires.concat( topCapacitorWires );
       return topWires;
+    },
+
+    /**
+     * Get all top wires that are connected to the battery.
+     */
+    getTopBatteryWires: function() {
+      var topBatteryWires = [];
+      this.wires.forEach( function( wire ) {
+        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
+          topBatteryWires.push( wire );
+        }
+      } );
+      return topBatteryWires;
+    },
+
+    /**
+     * Get all top wires that are connected to the battery.
+     */
+    getBottomBatteryWires: function() {
+      var bottomBatteryWires = [];
+      this.wires.forEach( function( wire ) {
+        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM ) {
+          bottomBatteryWires.push( wire );
+        }
+      } );
+      return bottomBatteryWires;
+    },
+
+    /**
+     * Get all top wires that are connected to the battery.
+     */
+    getTopLightBulbWires: function() {
+      var topLightBulbWires = [];
+      this.wires.forEach( function( wire ) {
+        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
+          topLightBulbWires.push( wire );
+        }
+      } );
+      return topLightBulbWires;
+    },
+
+    /**
+     * Get all top wires that are connected to the battery.
+     */
+    getBottomLightBulbWires: function() {
+      var bottomLightBulbWires = [];
+      this.wires.forEach( function( wire ) {
+        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM ) {
+          bottomLightBulbWires.push( wire );
+        }
+      } );
+      return bottomLightBulbWires;
+    },
+
+    /**
+     * Get all the top wires that connect the circuit switch.
+     */
+    getTopSwitchWires: function() {
+      var topCircuitSwitchWires = [];
+      this.wires.forEach( function( wire ) {
+        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP ) {
+          topCircuitSwitchWires.push( wire );
+        }
+      } );
+      return topCircuitSwitchWires;
+    },
+
+    /**
+     * Get all the bottom wires that connect the circuit switch.
+     *
+     * @returns {array.<Wire>}
+     */
+    getBottomSwitchWires: function() {
+      var bottomCircuitSwitchWires = [];
+      this.wires.forEach( function( wire ) {
+        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM ) {
+          bottomCircuitSwitchWires.push( wire );
+        }
+      } );
+      return bottomCircuitSwitchWires;
+    },
+
+    /**
+     * Get all the bottom wires that connect the circuit switch.
+     *
+     * @returns {array.<Wire>}
+     */
+    getTopCapacitorWires: function() {
+      var topCapacitorWires = [];
+      this.wires.forEach( function( wire ) {
+        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
+          topCapacitorWires.push( wire );
+        }
+      } );
+      return topCapacitorWires;
+    },
+
+    /**
+     * Get all the bottom wires that connect the circuit switch.
+     *
+     * @returns {array.<Wire>}
+     */
+    getBottomCapacitorWires: function() {
+      var bottomCapacitorWires = [];
+      this.wires.forEach( function( wire ) {
+        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM ) {
+          bottomCapacitorWires.push( wire );
+        }
+      } );
+      return bottomCapacitorWires;
     },
 
     /**
@@ -207,13 +320,17 @@ define( function( require ) {
      * @return {array.<Wire>} bottomWires
      */
     getBottomWires: function() {
-      var bottomWires = [];
-      this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLConstants.CONNECTION_POINTS.BOTTOM ) {
-          bottomWires.push( wire );
-        }
+      var bottomBatteryWires = this.getBottomBatteryWires();
+      var bottomLightBulbWires = this.getBottomLightBulbWires();
+      var bottomCapacitorWires = this.getBottomCapacitorWires();
+      var bottomSwitchWires = this.getBottomSwitchWires();
 
-      } );
+      var bottomWires = [];
+      bottomWires = bottomWires.concat( bottomBatteryWires );
+      bottomWires = bottomWires.concat( bottomLightBulbWires);
+      bottomWires = bottomWires.concat( bottomCapacitorWires );
+      bottomWires = bottomWires.concat( bottomSwitchWires );
+
       return bottomWires;
     },
 
