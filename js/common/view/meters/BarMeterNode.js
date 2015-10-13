@@ -87,10 +87,10 @@ define( function( require ) {
     } );
 
     // @public arrow node used to indicate when the value has gone beyond the scale of this meter
-    this.arrowNode = new ArrowNode( 0, 0, BAR_SIZE.height, 0, {
+    this.arrowNode = new ArrowNode( 0, 0, BAR_SIZE.height + 2, 0, {
       fill: barColor,
-      headWidth: BAR_SIZE.height,
-      tailWidth: 10,
+      headWidth: BAR_SIZE.height + 5,
+      tailWidth: 12,
       stroke: 'black'
     } );
 
