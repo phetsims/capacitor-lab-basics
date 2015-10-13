@@ -78,9 +78,7 @@ define( function( require ) {
     plateChargeCheckBox.translation = new Vector2( 0, CHECKBOX_VERTICAL_SPACING );
     storedEnergyCheckBox.translation = new Vector2( 0, 2 * CHECKBOX_VERTICAL_SPACING );
 
-
-    //capacitanceMeterNode.axisLine.center = new Vector2( 90, capacitanceCheckBox. );
-    x = capacitanceCheckBox.right + 120;
+    x = capacitanceCheckBox.right + capacitanceMeterNode.valueNode.width + 40;
     y = capacitanceCheckBox.centerY + 2;
     capacitanceMeterNode.axisLine.translation = new Vector2( x, y );
 

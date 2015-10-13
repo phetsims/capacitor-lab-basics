@@ -24,10 +24,11 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
 
   // constants
   var BASE_LINE_LENGTH = 25;
-  var BAR_SIZE = new Dimension2( 245, 18 );
+  var BAR_SIZE = new Dimension2( 255, 18 );
   var BASE_LINE_OFFSET = ( BASE_LINE_LENGTH - BAR_SIZE.height ) / 2;
   var BAR_STROKE_COLOR = 'black';
   var BAR_LINE_WIDTH = 1;
@@ -64,7 +65,7 @@ define( function( require ) {
 
     var thisNode = this;
 
-    var maxValue = Math.pow( 10, exponent ); // max value for this meter
+    this.maxValue = Math.pow( 10, exponent ); // max value for this meter
 
     this.meter = meter; // @private
     this.unitsString = unitsString; // @private
@@ -77,7 +78,7 @@ define( function( require ) {
     } );
 
     // @private bar node which represents the magnitude of the meter
-    this.barNode = new BarNode( barColor, meter.value, maxValue );
+    this.barNode = new BarNode( barColor, meter.value, this.maxValue );
 
     // @public value with hundredths precision and units, set in setValue()
     this.valueNode = new Text( '', {
@@ -85,13 +86,22 @@ define( function( require ) {
       fill: VALUE_COLOR
     } );
 
+    // @public arrow node used to indicate when the value has gone beyond the scale of this meter
+    this.arrowNode = new ArrowNode( 0, 0, 18, 0, {
+      fill: barColor,
+      headWidth: 18,
+      tailWidth: 10,
+      stroke: 'black'
+    } );
+
     Node.call( this );
-    this.axisLine.children = [ this.valueNode, this.barNode ];
-    //this.children = [ this.axisLine, this.valueNode, this.barNode ];
+    this.axisLine.children = [ this.valueNode, this.barNode, this.arrowNode ];
     this.addChild( this.axisLine );
+
     // observers
     meter.valueProperty.link( function( value ) {
       thisNode.setValue( value );
+      thisNode.updateArrow();
     } );
 
     // visibility
@@ -129,6 +139,16 @@ define( function( require ) {
   inherit( Node, BarMeterNode, {
 
     /**
+     * Sets the color used to fill the bar and the overload indicator arrow.
+     *
+     * @param color
+     */
+    setBarColor: function( color ) {
+      this.barNode.fill = color;
+      this.arrowNode.fill = color;
+    },
+
+    /**
      * Sets the value displayed by the meter.
      * Updates the bar and the value below the meter.
      *
@@ -156,12 +176,14 @@ define( function( require ) {
     },
 
     /**
-     * Sets the color used to fill the bar.
-     *
-     * @param color
+     * Update the overload indicator arrow  visibility and position.
      */
-    setBarColor: function( color ) {
-      this.barNode.fill = color;
+    updateArrow: function() {
+      // update position
+      this.arrowNode.left = this.barNode.right + VALUE_METER_SPACING;
+
+      // update visibility
+      this.arrowNode.visible = this.meter.value > this.maxValue;
     },
 
     updateLayout: function() {
