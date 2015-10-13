@@ -147,8 +147,7 @@ define( function( require ) {
     // TODO: the design team about what this behavior should be like.
     var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 300, true );
 
-    // Update the halo as the needle angle changes.
-    voltageProperty.link( function( voltage ) {
+    var updateBrightnessScale = function( voltage ) {
       if ( circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
         var targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
         if ( targetScaleFactor < 0.1 ) {
@@ -165,11 +164,17 @@ define( function( require ) {
       else {
         thisNode.bulb.haloNode.visible = false;
       }
+    };
+
+    // Update the halo as the needle angle changes.
+    voltageProperty.link( function( voltage ) {
+      updateBrightnessScale( voltage );
     } );
+
 
     // make sure that the light bulb turns off instantly when disconnected from capacitor.
     circuitConnectionProperty.link( function( circuitConnection ) {
-      thisNode.bulb.haloNode.visible = ( CircuitConnectionEnum.LIGHT_BULB_CONNECTED === circuitConnection );
+      updateBrightnessScale( voltageProperty.value );
     } );
   }
 
