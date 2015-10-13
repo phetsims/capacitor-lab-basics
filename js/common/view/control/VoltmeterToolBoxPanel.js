@@ -18,6 +18,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var Vector2 = require( 'DOT/Vector2' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
 
   // strings
   var descriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterToolbox' );
@@ -80,6 +81,7 @@ define( function( require ) {
     Panel.call( this, voltmeterIconNode, {
       xMargin: 15,
       yMargin: 15,
+      fill: CLConstants.METER_PANEL_FILL,
       accessibleContent: {
         createPeer: function( accessibleInstance ) {
           var domElement = document.createElement( 'input' );

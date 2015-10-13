@@ -18,6 +18,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
   var VStrut = require( 'SCENERY/nodes/VStrut' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
 
   // constants
   var PANEL_TITLE_FONT = new PhetFont( { weight: 'bold', size: 18 } );
@@ -64,7 +65,8 @@ define( function( require ) {
     Panel.call( this, viewVisibilityControlBox, {
       xMargin: 10,
       yMargin: 10,
-      align: 'left'
+      align: 'left',
+      fill: CLConstants.METER_PANEL_FILL
     } );
   }
 

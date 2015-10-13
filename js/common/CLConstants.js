@@ -137,7 +137,7 @@ define( function( require ) {
     AIR_COLOR: 'rgba( 255, 0, 0, 1 )', // This should never be seen so pick something obviously wrong.
 
     // other common colors
-    METER_PANEL_FILL: 'rgb( 255, 240, 232)'
+    METER_PANEL_FILL: 'rgb( 255, 245, 237)'
 
   };
 } );
