@@ -55,7 +55,7 @@ define( function( require ) {
     this.bodyLocationProperty = voltmeter.bodyLocationProperty; // @public
 
     // body of the meter
-    var imageNode = new Image( voltmeterBodyImage, { scale: 0.42 } );
+    var imageNode = new Image( voltmeterBodyImage, { scale: 0.336 } );
     this.addChild( imageNode );
 
     // text label
