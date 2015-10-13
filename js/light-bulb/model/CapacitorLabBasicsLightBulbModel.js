@@ -37,8 +37,8 @@ define( function( require ) {
 
   // Voltmeter, positions in meters
   var VOLTMETER_BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
-  var VOLTMETER_POSITIVE_PROBE_LOCATION = new Vector3( 0.059, 0.00048, 0 );
-  var VOLTMETER_NEGATIVE_PROBE_LOCATION = new Vector3( 0.067, 0.00055, 0 );
+  var VOLTMETER_POSITIVE_PROBE_LOCATION = new Vector3( 0.0669, 0.0298, 0 );
+  var VOLTMETER_NEGATIVE_PROBE_LOCATION = new Vector3( 0.0707, 0.0329, 0 );
   var VOLTMETER_VISIBLE = false;
 
   /**
