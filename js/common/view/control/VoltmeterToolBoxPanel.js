@@ -69,6 +69,13 @@ define( function( require ) {
 
       },
 
+      end: function( event ) {
+        // if the bounds of the voltmeter body intersects the tool box
+        if ( thisToolBoxPanel.bounds.intersectsBounds( voltmeterNode.bodyNode.bounds.eroded( 40 ) ) ) {
+          voltmeterVisibleProperty.set( false );
+        }
+      },
+
       translate: function( translationParams ) {
         // TODO: restrict dragging to the screenView bounds
         var unconstrainedLocation = voltmeterNode.bodyNode.bodyLocationProperty.value.plus( this.modelViewTransform.viewToModelDelta( translationParams.delta ) );

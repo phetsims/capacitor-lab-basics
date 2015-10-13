@@ -63,7 +63,7 @@ define( function( require ) {
 
     // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide.
     model.voltmeter.inUserControlProperty.link( function( inUserControl ) {
-      if ( !inUserControl && voltmeterToolbox.bounds.intersectsBounds( voltmeterNode.bounds.eroded( 40 ) ) ) {
+      if ( !inUserControl && voltmeterToolbox.bounds.intersectsBounds( voltmeterNode.bodyNode.bounds.eroded( 40 ) ) ) {
         model.voltmeterVisibleProperty.set( false );
       }
     } );
