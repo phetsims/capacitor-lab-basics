@@ -101,9 +101,7 @@ define( function( require ) {
       }
     },
 
-    paintCanvas: function( wrapper ) {
-
-      var context = wrapper.context;
+    paintCanvas: function( context ) {
 
       // compute density (spacing) of field lines
       var effectiveEField = this.capacitor.getEffectiveEField();

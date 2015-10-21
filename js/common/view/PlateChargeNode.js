@@ -139,11 +139,10 @@ define( function( require ) {
     /**
      * Updates the view to match the model.  Charges are arranged in a grid.
      *
-     * @param {CanvasContextWrapper} wrapper
+     * @param {CanvasRenderingContext2D} context
      */
-    paintCanvas: function( wrapper ) {
+    paintCanvas: function( context ) {
 
-      var context = wrapper.context;
       var plateCharge = this.getPlateCharge();
       var numberOfCharges = this.getNumberOfCharges( plateCharge, this.maxPlateCharge );
 
