@@ -111,7 +111,7 @@ define( function( require ) {
       var width = this.battery.getNegativeTerminalEllipseSize().width;
       var height = this.battery.getNegativeTerminalEllipseSize().height;
       var y = origin.y + this.battery.getTopTerminalYOffset();
-      return this.modelViewTransform.modelToViewShape( new Shape.ellipse( origin.x, y, width / 2, height / 2, 0, 0, Math.PI, false ) );
+      return this.modelViewTransform.modelToViewShape( Shape.ellipse( origin.x, y, width / 2, height / 2, 0, 0, Math.PI, false ) );
     }
 
   } );

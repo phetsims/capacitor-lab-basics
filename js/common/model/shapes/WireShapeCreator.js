@@ -79,7 +79,7 @@ define( function( require ) {
      * @returns {Shape}
      */
     createWireSegmentShape: function( segment /* thickness */ ) {
-      var line = new Shape.lineSegment( segment.startPoint.x, segment.startPoint.y, segment.endPoint.x, segment.endPoint.y );
+      var line = Shape.lineSegment( segment.startPoint.x, segment.startPoint.y, segment.endPoint.x, segment.endPoint.y );
       return this.modelViewTransform.modelToViewShape( line );
     },
 
