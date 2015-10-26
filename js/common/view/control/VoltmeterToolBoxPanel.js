@@ -111,16 +111,19 @@ define( function( require ) {
             var bodyElement = document.getElementById( bodyElementId );
             bodyElement.tabIndex = tab;
 
-            var redProbe = document.getElementsByClassName( 'RedProbe' )[ 0 ];
+            var redProbeId = thisToolBoxPanel.voltmeterNode.positiveProbeNode.accessibleProbeId;
+            var redProbe = document.getElementById( redProbeId );
+            //var redProbe = document.getElementsByClassName( 'RedProbe' )[ 0 ];
             redProbe.tabIndex = tab;
-            var blackProbe = document.getElementsByClassName( 'BlackProbe' )[ 0 ];
+            //var blackProbe = document.getElementsByClassName( 'BlackProbe' )[ 0 ];
+            var blackProbeId = thisToolBoxPanel.voltmeterNode.negativeProbeNode.accessibleProbeId;
+            var blackProbe = document.getElementById( blackProbeId );
             blackProbe.tabIndex = tab;
 
             // set focus immediately to the voltmeter body
             if ( inUserControlProperty.get() ) {
               bodyElement.focus();
             }
-            console.log( bodyElement );
           } );
 
           var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );

@@ -231,7 +231,7 @@ define( function( require ) {
     },
 
     /**
-     * Get all top wires that are connected to the battery.
+     * Get all top wires that are connected to the light bulb.
      */
     getTopLightBulbWires: function() {
       var topLightBulbWires = [];
@@ -244,7 +244,7 @@ define( function( require ) {
     },
 
     /**
-     * Get all top wires that are connected to the battery.
+     * Get all top wires that are connected to the light bulb.
      */
     getBottomLightBulbWires: function() {
       var bottomLightBulbWires = [];
@@ -287,7 +287,7 @@ define( function( require ) {
     },
 
     /**
-     * Get all the bottom wires that connect the circuit switch.
+     * Get all the top wires that are connected to the capacitor.
      *
      * @returns {array.<Wire>}
      */
@@ -302,7 +302,7 @@ define( function( require ) {
     },
 
     /**
-     * Get all the bottom wires that connect the circuit switch.
+     * Get all the bottom wires that are connected to the capacitor.
      *
      * @returns {array.<Wire>}
      */

@@ -124,7 +124,6 @@ define( function( require ) {
         domElement.appendChild( description );
         description.id = descriptionString;
         domElement.setAttribute( 'aria-describedby', meterString );
-        console.log( meterString );
 
         domElement.tabIndex = '0';
 

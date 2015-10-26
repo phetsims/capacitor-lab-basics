@@ -58,18 +58,18 @@ define( function( require ) {
 
     // construct all parts of the probe
     this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty ); // @public
-    var positiveProbeNode = VoltmeterProbeNode.PositiveVoltmeterProbeNode( voltmeter, modelViewTransform );
-    var negativeProbeNode = VoltmeterProbeNode.NegativeVoltmeterProbeNode( voltmeter, modelViewTransform );
-    var positiveWireNode = new ProbeWireNode( this.bodyNode, positiveProbeNode, BODY_CONTROL_POINT_OFFSET, PROBE_CONTROL_POINT_OFFSET,
-      this.bodyNode.positiveConnectionOffset, positiveProbeNode.connectionOffset, POSITIVE_WIRE_COLOR );
-    var negativeWireNode = new ProbeWireNode( this.bodyNode, negativeProbeNode, BODY_CONTROL_POINT_OFFSET, PROBE_CONTROL_POINT_OFFSET,
-      this.bodyNode.negativeConnectionOffset, negativeProbeNode.connectionOffset, NEGATIVE_WIRE_COLOR );
+    this.positiveProbeNode = VoltmeterProbeNode.PositiveVoltmeterProbeNode( voltmeter, modelViewTransform );
+    this.negativeProbeNode = VoltmeterProbeNode.NegativeVoltmeterProbeNode( voltmeter, modelViewTransform );
+    var positiveWireNode = new ProbeWireNode( this.bodyNode, this.positiveProbeNode, BODY_CONTROL_POINT_OFFSET, PROBE_CONTROL_POINT_OFFSET,
+      this.bodyNode.positiveConnectionOffset, this.positiveProbeNode.connectionOffset, POSITIVE_WIRE_COLOR );
+    var negativeWireNode = new ProbeWireNode( this.bodyNode, this.negativeProbeNode, BODY_CONTROL_POINT_OFFSET, PROBE_CONTROL_POINT_OFFSET,
+      this.bodyNode.negativeConnectionOffset, this.negativeProbeNode.connectionOffset, NEGATIVE_WIRE_COLOR );
 
     // rendering order
     this.addChild( this.bodyNode );
-    this.addChild( positiveProbeNode );
+    this.addChild( this.positiveProbeNode );
     this.addChild( positiveWireNode );
-    this.addChild( negativeProbeNode );
+    this.addChild( this.negativeProbeNode );
     this.addChild( negativeWireNode );
 
     voltmeterVisibleProperty.link( function( voltmeterVisible ) {

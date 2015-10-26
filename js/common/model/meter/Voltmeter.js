@@ -13,6 +13,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
   // constants
@@ -97,6 +99,39 @@ define( function( require ) {
      */
     getProbeTipSizeReference: function() {
       return PROBE_TIP_SIZE;
+    },
+    
+    getUsefulProbeLocations: function() {
+      var points = [];
+      var topWires = this.circuit.getTopWires();
+      var bottomWires = this.circuit.getBottomWires();
+      topWires.forEach( function( wire ) {
+        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ||
+            wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
+          wire.segments.forEach( function( segment ) {
+            if ( segment.startPoint.y === segment.endPoint.y ) {
+              points.push( new Vector3( ( segment.startPoint.x + segment.endPoint.x ) / 2, segment.endPoint.y - wire.thickness / 2, 0) );
+            }
+          } );
+        }
+      } );
+      this.circuit.capacitors.forEach( function( capacitor ) {
+        var top = capacitor.getTopConnectionPoint();
+        points.push( new Vector3( top.x - capacitor.plateSize.width / 4, top.y, top.z ) );
+        var bottom = capacitor.getBottomConnectionPoint();
+        points.push( new Vector3( bottom.x - capacitor.plateSize.width / 4, bottom.y, bottom.z ) );
+      } );
+      bottomWires.forEach( function( wire ) {
+        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM ||
+            wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM ) {
+          wire.segments.forEach( function( segment ) {
+            if ( segment.startPoint.y === segment.endPoint.y ) {
+              points.push( new Vector3( ( segment.startPoint.x + segment.endPoint.x ) / 2, segment.endPoint.y - wire.thickness / 2, 0) );
+            }
+          } );
+        }
+      } );
+      return points;
     }
   } );
 } );

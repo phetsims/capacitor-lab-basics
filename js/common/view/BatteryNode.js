@@ -68,7 +68,7 @@ define( function( require ) {
           var domElement = document.createElement( 'div' );
           var description = document.createElement( 'p' );
           description.hidden = 'true';
-          description.innerText = sliderDescriptionString;
+          description.innerHTML = sliderDescriptionString;
           domElement.appendChild( description );
           description.id = sliderDescriptionString;
           domElement.setAttribute( 'aria-describedby', sliderDescriptionString );
@@ -81,7 +81,8 @@ define( function( require ) {
                     keyCode === Input.KEY_RIGHT_ARROW || keyCode === Input.KEY_UP_ARROW ? +1 :
                     0;
             if ( delta !== 0 ) {
-              battery.voltageProperty.set( Util.clamp( battery.voltageProperty.get() + voltageRange * 0.1 * delta,
+              var voltage = voltageRange.max - voltageRange.min
+              battery.voltageProperty.set( Util.clamp( battery.voltageProperty.get() + voltage * 0.1 * delta,
                                                       voltageRange.min,
                                                       voltageRange.max ) );
             }
