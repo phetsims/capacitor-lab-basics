@@ -16,7 +16,6 @@ define( function( require ) {
   var Input = require( 'SCENERY/input/Input' );
   var Node = require( 'SCENERY/nodes/Node' );
   var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
-  var Vector3 = require( 'DOT/Vector3' );
 
   // images
   var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );

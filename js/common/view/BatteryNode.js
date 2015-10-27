@@ -81,7 +81,7 @@ define( function( require ) {
                     keyCode === Input.KEY_RIGHT_ARROW || keyCode === Input.KEY_UP_ARROW ? +1 :
                     0;
             if ( delta !== 0 ) {
-              var voltage = voltageRange.max - voltageRange.min
+              var voltage = voltageRange.max - voltageRange.min;
               battery.voltageProperty.set( Util.clamp( battery.voltageProperty.get() + voltage * 0.1 * delta,
                                                       voltageRange.min,
                                                       voltageRange.max ) );
