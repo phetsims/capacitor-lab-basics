@@ -76,6 +76,22 @@ define( function( require ) {
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
 
+    // accessible content
+    this.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+
+        // generate the 'supertype peer' for the ScreenView in the parallel DOM.
+        var accessiblePeer = ScreenView.ScreenViewAccessiblePeer( accessibleInstance );
+
+        // add a global event listener to all children of this screen view, bubbles through all children
+        accessiblePeer.domElement.addEventListener( 'keydown', function( event ) {
+          // 'global' event behavior in here...
+        } );
+
+        return accessiblePeer;
+      }
+    };
+
   }
 
   return inherit( ScreenView, CapacitorLabBasicsLightBulbScreenView );
