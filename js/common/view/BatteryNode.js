@@ -33,9 +33,9 @@ define( function( require ) {
   var batteryDownImage = require( 'image!CAPACITOR_LAB_BASICS/battery_upside-down.png' );
 
   // strings
-  var pattern_0value1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
+  var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
-  var sliderDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batterySlider' );
+  var accessibleBatterySliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batterySlider' );
 
   /**
    * Constructor for a BatteryNode.
@@ -68,10 +68,10 @@ define( function( require ) {
           var domElement = document.createElement( 'div' );
           var description = document.createElement( 'p' );
           description.hidden = 'true';
-          description.innerHTML = sliderDescriptionString;
+          description.innerHTML = accessibleBatterySliderString;
           domElement.appendChild( description );
-          description.id = sliderDescriptionString;
-          domElement.setAttribute( 'aria-describedby', sliderDescriptionString );
+          description.id = accessibleBatterySliderString;
+          domElement.setAttribute( 'aria-describedby', accessibleBatterySliderString );
 
           domElement.tabIndex = '0';
 
@@ -98,7 +98,7 @@ define( function( require ) {
 
     // function to create the tick mark labels using a string pattern.
     var createTickLabels = function( value, textFill ) {
-      var labelText = new Text( StringUtils.format( pattern_0value1units, value, unitsVoltsString ), {
+      var labelText = new Text( StringUtils.format( pattern0Value1UnitsString, value, unitsVoltsString ), {
         font: LABEL_FONT,
         fill: textFill
       } );

@@ -45,10 +45,10 @@ define( function( require ) {
   var unitsPicoFaradsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoFarads' );
   var unitsPicoCoulombsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoCoulombs' );
   var unitsPicoJoulesString = require( 'string!CAPACITOR_LAB_BASICS/units.picoJoules' );
-  var pattern_0value_1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
-  var capacitanceGraphDescription = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitanceGraph' );
-  var energyGraphDescription = require( 'string!CAPACITOR_LAB_BASICS/accessible.chargeGraph' );
-  var chargeGraphDescription = require( 'string!CAPACITOR_LAB_BASICS/accessible.energyGraph' );
+  var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
+  var accessibleCapacitanceGraphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitanceGraph' );
+  var accessibleChargeGraphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.chargeGraph' );
+  var accessibleEnergyGraphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.energyGraph' );
 
   /**
    * Constructor.
@@ -118,7 +118,7 @@ define( function( require ) {
         var description = document.createElement( 'p' );
         description.hidden = 'true';
         var meterValue = Util.toFixed( Math.pow( 10, 12 ) * meter.value, 2 );
-        var unitsFormatString = StringUtils.format( pattern_0value_1units, meterValue, unitsString );
+        var unitsFormatString = StringUtils.format( pattern0Value1UnitsString, meterValue, unitsString );
         var meterString = StringUtils.format( descriptionString, unitsFormatString );
         description.innerText = meterString;
         domElement.appendChild( description );
@@ -166,7 +166,7 @@ define( function( require ) {
 
         // all meters read in pico units, compensate by multiplying by 10^12
         var meterValue = Util.toFixed( Math.pow( 10, 12 ) * this.meter.value, 2 );
-        var unitsFormatString = StringUtils.format( pattern_0value_1units, meterValue, this.unitsString );
+        var unitsFormatString = StringUtils.format( pattern0Value1UnitsString, meterValue, this.unitsString );
         this.valueNode.setText( unitsFormatString );
 
         // layout
@@ -200,7 +200,7 @@ define( function( require ) {
      * @constructor
      */
     CapacitanceBarMeterNode: function( meter ) {
-      return new BarMeterNode( meter, CLConstants.CAPACITANCE_COLOR, CLConstants.CAPACITANCE_METER_VALUE_EXPONENT, unitsPicoFaradsString, capacitanceString, capacitanceGraphDescription );
+      return new BarMeterNode( meter, CLConstants.CAPACITANCE_COLOR, CLConstants.CAPACITANCE_METER_VALUE_EXPONENT, unitsPicoFaradsString, capacitanceString, accessibleCapacitanceGraphString );
     },
     /**
      * Factory constructor for a CapacitanceMeterNode.
@@ -218,7 +218,7 @@ define( function( require ) {
      * @constructor
      */
     StoredEnergyBarMeterNode: function( meter ) {
-      return new BarMeterNode( meter, CLConstants.STORED_ENERGY_COLOR, CLConstants.STORED_ENERGY_METER_VALUE_EXPONENT, unitsPicoJoulesString, storedEnergyString, energyGraphDescription );
+      return new BarMeterNode( meter, CLConstants.STORED_ENERGY_COLOR, CLConstants.STORED_ENERGY_METER_VALUE_EXPONENT, unitsPicoJoulesString, storedEnergyString, accessibleChargeGraphString );
     }
   } );
 
@@ -272,7 +272,7 @@ define( function( require ) {
    * @constructor
    */
   function PlateChargeBarMeterNode( meter ) {
-    BarMeterNode.call( this, meter, CLConstants.POSITIVE_CHARGE_COLOR, CLConstants.PLATE_CHARGE_METER_VALUE_EXPONENT, unitsPicoCoulombsString, plateChargeString, chargeGraphDescription );
+    BarMeterNode.call( this, meter, CLConstants.POSITIVE_CHARGE_COLOR, CLConstants.PLATE_CHARGE_METER_VALUE_EXPONENT, unitsPicoCoulombsString, plateChargeString, accessibleEnergyGraphString );
   }
 
   inherit( BarMeterNode, PlateChargeBarMeterNode, {

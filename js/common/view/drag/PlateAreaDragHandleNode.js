@@ -33,7 +33,7 @@ define( function( require ) {
   // strings
   var plateAreaString = require( 'string!CAPACITOR_LAB_BASICS/plateArea' );
   var unitsMillimetersString = require( 'string!CAPACITOR_LAB_BASICS/units.millimeters' );
-  var sliderDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateAreaSlider' );
+  var accessiblePlateAreaSliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateAreaSlider' );
 
   // endpoints for a vertical line, this will be rotated to point along the plate's pseudo-3D diagonal
   var LINE_LENGTH = 22;
@@ -65,10 +65,10 @@ define( function( require ) {
         var domElement = document.createElement( 'div' );
         var description = document.createElement( 'p' );
         description.hidden = 'true';
-        description.innerText = sliderDescriptionString;
+        description.innerText = accessiblePlateAreaSliderString;
         domElement.appendChild( description );
-        description.id = sliderDescriptionString;
-        domElement.setAttribute( 'aria-describedby', sliderDescriptionString );
+        description.id = accessiblePlateAreaSliderString;
+        domElement.setAttribute( 'aria-describedby', accessiblePlateAreaSliderString );
 
         domElement.tabIndex = '0';
 

@@ -22,8 +22,8 @@ define( function( require ) {
   var blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_black.png' );
 
   // strings
-  var redVoltmeterDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterRedProbe' );
-  var blackVoltmeterDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBlackProbe' );
+  var accessibleVoltmeterRedProbeString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterRedProbe' );
+  var accessibleVoltmeterBlackProbeString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBlackProbe' );
   
   /**
    * Constructor.
@@ -120,10 +120,10 @@ define( function( require ) {
 
     // Factory functions to create both Positive and negative probes.
     PositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform ) {
-      return new VoltmeterProbeNode( redVoltmeterProbeImage, redVoltmeterDescriptionString, 'RedProbe', voltmeter.positiveProbeLocationProperty, voltmeter.getUsefulProbeLocations(), modelViewTransform );
+      return new VoltmeterProbeNode( redVoltmeterProbeImage, accessibleVoltmeterRedProbeString, 'RedProbe', voltmeter.positiveProbeLocationProperty, voltmeter.getUsefulProbeLocations(), modelViewTransform );
     },
     NegativeVoltmeterProbeNode: function( voltmeter, modelViewTransform ) {
-      return new VoltmeterProbeNode( blackVoltmeterProbeImage, blackVoltmeterDescriptionString, 'BlackProbe', voltmeter.negativeProbeLocationProperty, voltmeter.getUsefulProbeLocations(), modelViewTransform );
+      return new VoltmeterProbeNode( blackVoltmeterProbeImage, accessibleVoltmeterBlackProbeString, 'BlackProbe', voltmeter.negativeProbeLocationProperty, voltmeter.getUsefulProbeLocations(), modelViewTransform );
     }
 
   } );

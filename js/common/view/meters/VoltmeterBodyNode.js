@@ -31,14 +31,14 @@ define( function( require ) {
   var TITLE_FONT = new PhetFont( { size: 20 } );
 
   // strings
-  var unitsVoltageString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
+  var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
   var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
   var voltsUnknownString = require( 'string!CAPACITOR_LAB_BASICS/volts.unknown' );
-  var voltmeterBodyDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBody' );
+  var accessibleVoltmeterBodyString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBody' );
+  var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
 
   // images
   var voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
-  var pattern_0value_1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
 
   /**
    * Constructor
@@ -63,7 +63,7 @@ define( function( require ) {
     labelText.center = new Vector2( imageNode.width / 2, imageNode.height / 3 );
     this.addChild( labelText );
 
-    var valueString = StringUtils.format( pattern_0value_1units, voltmeter.value, unitsVoltageString );
+    var valueString = StringUtils.format( pattern0Value1UnitsString, voltmeter.value, unitsVoltsString );
     var valueText = new Text( valueString, { font: DISPLAY_FONT } );
 
     // add the display to the
@@ -125,10 +125,10 @@ define( function( require ) {
 
         var description = document.createElement( 'p' );
         description.hidden = 'true';
-        description.innerText = StringUtils.format( voltmeterBodyDescriptionString, voltmeter.value );
+        description.innerText = StringUtils.format( accessibleVoltmeterBodyString, voltmeter.value );
         domElement.appendChild( description );
-        description.id = voltmeterBodyDescriptionString;
-        domElement.setAttribute( 'aria-describedby', StringUtils.format( voltmeterBodyDescriptionString, voltmeter.value ) );
+        description.id = accessibleVoltmeterBodyString;
+        domElement.setAttribute( 'aria-describedby', StringUtils.format( accessibleVoltmeterBodyString, voltmeter.value ) );
 
         domElement.tabIndex = '-1';
 
@@ -148,11 +148,11 @@ define( function( require ) {
      */
     setValueText: function( valueText, value ) {
       if ( isNaN( value ) ) {
-        valueText.setText( StringUtils.format( pattern_0value_1units, voltsUnknownString, unitsVoltageString ) );
+        valueText.setText( StringUtils.format( pattern0Value1UnitsString, voltsUnknownString, unitsVoltsString ) );
       }
       else {
         var fixedValue = Util.toFixed( value, 3 );
-        valueText.setText( StringUtils.format( pattern_0value_1units, fixedValue, unitsVoltageString ) );
+        valueText.setText( StringUtils.format( pattern0Value1UnitsString, fixedValue, unitsVoltsString ) );
       }
       //valueText.center = this.center;
     }
