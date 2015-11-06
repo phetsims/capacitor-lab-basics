@@ -44,7 +44,7 @@ define( function( require ) {
     this.circuit = circuit; // @public
 
     // circuit components
-    var batteryNode = new BatteryNode( circuit.battery, CLConstants.BATTERY_VOLTAGE_RANGE );
+    this.batteryNode = new BatteryNode( circuit.battery, CLConstants.BATTERY_VOLTAGE_RANGE, "capacitance" );
 
     var capacitorNode = new CapacitorNode( circuit.capacitor, modelViewTransform, plateChargeVisibleProperty,
       eFieldVisibleProperty, maxPlateCharge, maxEffectiveEField );
@@ -77,7 +77,7 @@ define( function( require ) {
 
     // rendering order
     this.addChild( this.bottomWireNode );
-    this.addChild( batteryNode );
+    this.addChild( this.batteryNode );
     this.addChild( capacitorNode );
     this.addChild( this.topWireNode );
     this.addChild( this.circuitSwitchNodes[ 0 ] );
@@ -95,13 +95,13 @@ define( function( require ) {
     var y = 0;
 
     // battery
-    batteryNode.center = modelViewTransform.modelToViewPosition( circuit.battery.location );
+    this.batteryNode.center = modelViewTransform.modelToViewPosition( circuit.battery.location );
 
     // capacitor
     capacitorNode.center = modelViewTransform.modelToViewPosition( circuit.capacitor.location );
 
     // top current indicator
-    x = batteryNode.right + ( this.circuitSwitchNodes[ 0 ].left - batteryNode.right ) / 2;
+    x = this.batteryNode.right + ( this.circuitSwitchNodes[ 0 ].left - this.batteryNode.right ) / 2;
     y = this.topWireNode.bounds.minY + ( 7 / 2 ); // TODO clean up after discussion of feature.
     this.batteryTopCurrentIndicatorNode.translate( x, y );
 

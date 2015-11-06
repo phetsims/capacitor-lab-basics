@@ -36,6 +36,7 @@ define( function( require ) {
   var pattern_0value1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
   var sliderDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batterySlider' );
+  var voltageDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batteryVoltage' );
 
   /**
    * Constructor for a BatteryNode.
@@ -44,9 +45,10 @@ define( function( require ) {
    * @param {Range} voltageRange
    * @constructor
    */
-  function BatteryNode( battery, voltageRange ) {
+  function BatteryNode( battery, voltageRange, accessibleId ) {
 
     Node.call( this );
+    this.accessibleId = accessibleId + "-battery";
 
     // battery image, scaled to match model dimensions
     var imageNode = new Image( batteryUpImage, { scale: 0.30 } );
@@ -65,13 +67,22 @@ define( function( require ) {
       },
       accessibleContent: {
         createPeer: function( accessibleInstance ) {
+          var trail = accessibleInstance.trail;
+          
           var domElement = document.createElement( 'div' );
-          var description = document.createElement( 'p' );
-          description.hidden = 'true';
-          description.innerHTML = sliderDescriptionString;
-          domElement.appendChild( description );
-          description.id = sliderDescriptionString;
+          
+          var sliderDescription = document.createElement( 'p' );
+          sliderDescription.innerText = sliderDescriptionString;
+          domElement.appendChild( sliderDescription );
+          sliderDescription.id = sliderDescriptionString;
+          
+          var voltageDescription = document.createElement( 'p' );
+          var voltageValue = Util.toFixed( battery.voltageProperty.get(), 2 );
+          voltageDescription.innerText = StringUtils.format( voltageDescriptionString, voltageValue );
+          domElement.appendChild( voltageDescription );
+          
           domElement.setAttribute( 'aria-describedby', sliderDescriptionString );
+          domElement.setAttribute( 'aria-live', "polite" );
 
           domElement.tabIndex = '0';
 
@@ -81,15 +92,17 @@ define( function( require ) {
                     keyCode === Input.KEY_RIGHT_ARROW || keyCode === Input.KEY_UP_ARROW ? +1 :
                     0;
             if ( delta !== 0 ) {
-              var voltage = voltageRange.max - voltageRange.min
+              var voltage = voltageRange.max - voltageRange.min;
               battery.voltageProperty.set( Util.clamp( battery.voltageProperty.get() + voltage * 0.1 * delta,
                                                       voltageRange.min,
                                                       voltageRange.max ) );
+              var voltageValue = Util.toFixed( battery.voltageProperty.get(), 2 );
+              voltageDescription.innerText = StringUtils.format( voltageDescriptionString, voltageValue );
             }
           } );
 
           var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-          domElement.id = accessiblePeer.id;
+          domElement.id = accessibleId + "-battery";
           return accessiblePeer;
 
         }

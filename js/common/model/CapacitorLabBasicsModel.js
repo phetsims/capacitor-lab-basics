@@ -32,7 +32,8 @@ define( function( require ) {
       barGraphsPanelVisible: true,
       voltmeterVisible: false,
       eFieldDetectorVisible: false,
-      currentIndicatorsVisible: true
+      currentIndicatorsVisible: true,
+      keyboardHelpVisible: false
     } );
   }
 

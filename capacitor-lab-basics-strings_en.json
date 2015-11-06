@@ -2,6 +2,9 @@
   "accessible.batterySlider": {
     "value": "Slider - battery voltage"
   },
+  "accessible.batteryVoltage": {
+    "value": "Voltage is {0} volts"
+  },
   "accessible.plateAreaSlider": {
     "value": "Slider - capacitor plate area"
   },
@@ -21,7 +24,13 @@
     "value": "Toolbox"
   },
   "accessible.voltmeterBody": {
-    "value": "Voltmeter - measures voltage. Voltage is {0}"
+    "value": "Voltmeter - measures voltage"
+  },
+  "accessible.voltmeterValue": {
+    "value": "Measured voltage is {0} volts"
+  },
+  "accessible.voltmeterUnknownValue": {
+    "value": "Voltage cannot be measured"
   },
   "accessible.voltmeterRedProbe": {
     "value": "Voltmeter probe 1. Use arrow keys to move probe"
@@ -29,14 +38,74 @@
   "accessible.voltmeterBlackProbe": {
     "value": "Voltmeter probe 2. Use arrow keys to move probe"
   },
+  "accessible.graph": {
+    "value": "Graph of {0}. "
+  },
+  "accessible.graphCheckbox": {
+    "value": "Show graph of {0}. "
+  },
+  "accessible.graphPanel": {
+    "value": "Panel - bar graphs"
+  },
   "accessible.capacitanceGraph": {
-    "value": "Graph - capacitance. Capacitance is {0}"
+    "value": "Capacitance is {0} picoFarads"
   },
   "accessible.chargeGraph": {
-    "value": "Graph - capacitor plate charge. Charge is {0}"
+    "value": "Plate charge is {0} picoCoulombs"
   },
   "accessible.energyGraph": {
-    "value": "Graph - stored energy. Energy is {0}"
+    "value": "Stored energy is {0} picoJoules"
+  },
+  "accessible.currentFlowing": {
+    "value": "Current is flowing"
+  },
+  "accessible.currentOff": {
+    "value": "No current is flowing"
+  },
+  "accessible.plateArea": {
+    "value": "Plate area is {0} millimeters squared"
+  },
+  "accessible.plateSeparation": {
+    "value": "Plate separation is {0} millimeters"
+  },
+  "keyDescriptions.tab": {
+    "value": "Tab: Navigates through elements"
+  },
+  "keyDescriptions.enter": {
+    "value": "Enter: Enters groupings of elements"
+  },
+  "keyDescriptions.escape": {
+    "value": "Escape: Leaves groupings of elements"
+  },
+  "keyDescriptions.spacebar": {
+    "value": "Spacebar: Toggles checkboxes"
+  },
+  "keyDescriptions.arrows": {
+    "value": "Arrow keys: Move moveable objects like sliders"
+  },
+  "keyDescriptions.h": {
+    "value": "H: Brings up help menu"
+  },
+  "keyDescriptions.title": {
+    "value": "Keyboard Bindings"
+  },
+  "probe.topBatteryWire": {
+    "value": "Probe tip is on the wire connecting the battery to the top of the capacitor"
+  },
+  "probe.bottomBatteryWire": {
+    "value": "Probe tip is on the wire connecting the battery to the bottom of the capacitor"
+  },
+  "probe.topLightBulbWire": {
+    "value": "Probe tip is on the wire connecting the light bulb to the top of the capacitor"
+  },
+  "probe.bottomLighBulbWire": {
+    "value": "Probe tip is on the wire connecting the light bulb to the bottom of the capacitor"
+  },
+  "probe.topCapacitorPlate": {
+    "value": "Probe tip is on the top capacitor plate"
+  },
+  "probe.bottomCapacitorPlate": {
+    "value": "Probe tip is on the bottom capacitor plate"
   },
   "capacitance": {
     "value": "Capacitance"
@@ -59,8 +128,14 @@
   "capacitance.title": {
     "value": "Capacitance"
   },
+  "capacitance.description": {
+    "value": "Capacitor Lab Basics. There is a circuit with a battery connected to a capacitor. On the battery, there is a slider to control the voltage. Next to the capacitor, there are arrows to control the plate separation and plate area."
+  },
   "lightBulb.title": {
     "value": "Light Bulb"
+  },
+  "lightBulb.description": {
+    "value": "Capacitor Lab Basics. There is a circuit with a battery on the left connected to a capacitor in the center. There is a light bulb to the right of the capacitor, currently disconnected from the circuit.  There are switches above and below the capacitor to disconnect it from the battery and connect it to the lightbulb."
   },
   "chargeMeterTitle": {
     "value": "Top Plate Charge (C)"

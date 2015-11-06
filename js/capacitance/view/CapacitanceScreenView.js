@@ -21,9 +21,14 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
   var CapacitanceBarMeterPanel = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceBarMeterPanel' );
+  var KeyboardHelpPanel = require( 'CAPACITOR_LAB_BASICS/common/view/KeyboardHelpPanel' );
+  var Input = require( 'SCENERY/input/Input' );
 
   // constants
   var DEBUG_SHAPES = false;
+  
+  // strings
+  var descriptionString = require( 'string!CAPACITOR_LAB_BASICS/capacitance.description' );
 
   /**
    * @param {CapacitorLabBasicsModel} model
@@ -31,7 +36,9 @@ define( function( require ) {
    */
   function CapacitanceScreenView( model ) {
 
-    ScreenView.call( this );
+    ScreenView.call( this, {
+      screenDescription: descriptionString
+    } );
 
     this.modelViewTransform = model.modelViewTransform;
 
@@ -68,6 +75,10 @@ define( function( require ) {
       right: this.layoutBounds.right - 30,
       radius: 25
     } );
+    
+    var keyboardHelpPanel = new KeyboardHelpPanel( model );
+    keyboardHelpPanel.centerX = ( this.layoutBounds.right + this.layoutBounds.left ) / 2;
+    keyboardHelpPanel.centerY = ( this.layoutBounds.top + this.layoutBounds.bottom ) / 2;
 
     // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide.
     model.voltmeter.inUserControlProperty.link( function( inUserControl ) {
@@ -83,6 +94,7 @@ define( function( require ) {
     this.addChild( voltmeterToolBoxPanel );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
+    this.addChild( keyboardHelpPanel );
 
     // debug shapes for probe collision testing, to be removed soon
     if ( DEBUG_SHAPES ) {
@@ -100,6 +112,39 @@ define( function( require ) {
         } )
       );
     }
+    
+    // accessible content
+    var activeElement = document.activeElement;
+    this.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+
+        // generate the 'supertype peer' for the ScreenView in the parallel DOM.
+        var accessiblePeer = ScreenView.ScreenViewAccessiblePeer( accessibleInstance );
+
+        // add a global event listener to all children of this screen view, bubbles through all children
+        accessiblePeer.domElement.addEventListener( 'keydown', function( event ) {
+          // 'global' event behavior in here...
+          // keycode = 'h'
+          if ( event.keyCode === 72 ) {
+            model.keyboardHelpVisibleProperty.set( true );
+            var panel = document.getElementById( keyboardHelpPanel.accessibleId );
+            panel.focus();
+          }
+          else if ( event.keyCode === Input.KEY_TAB || event.keyCode === Input.KEY_ESC ) {
+            if ( model.keyboardHelpVisibleProperty.get() ) {
+              var batteryElem = document.getElementById( capacitanceCircuitNode.batteryNode.accessibleId );
+              activeElement = activeElement === document.body ? batteryElem : activeElement;
+              activeElement.focus();
+              model.keyboardHelpVisibleProperty.set( false );
+            }
+            activeElement = document.activeElement;
+          }
+        } );
+
+        return accessiblePeer;
+      }
+    };
+
   }
 
   return inherit( ScreenView, CapacitanceScreenView );
