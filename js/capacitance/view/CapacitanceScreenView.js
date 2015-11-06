@@ -130,7 +130,7 @@ define( function( require ) {
             var panel = document.getElementById( keyboardHelpPanel.accessibleId );
             panel.focus();
           }
-          else if ( event.keyCode === Input.KEY_TAB || event.keyCode === Input.KEY_ESC ) {
+          else if ( event.keyCode === Input.KEY_TAB || event.keyCode === Input.KEY_ESCAPE ) {
             if ( model.keyboardHelpVisibleProperty.get() ) {
               var batteryElem = document.getElementById( capacitanceCircuitNode.batteryNode.accessibleId );
               activeElement = activeElement === document.body ? batteryElem : activeElement;

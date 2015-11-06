@@ -17,7 +17,7 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
 
   // strings
-  var capacitorLabBasicsCapacitanceTitle = require( 'string!CAPACITOR_LAB_BASICS/capacitance.title' );
+  var capacitanceTitleString = require( 'string!CAPACITOR_LAB_BASICS/capacitance.title' );
 
   /**
    * @constructor
@@ -27,7 +27,7 @@ define( function( require ) {
     // TODO: Icons need to be created for this sim.
     var icon = new Rectangle( 0, 0, 548, 373, { fill: 'red' } );
 
-    Screen.call( this, capacitorLabBasicsCapacitanceTitle, icon,
+    Screen.call( this, capacitanceTitleString, icon,
       function() { return new CapacitanceModel( new CLModelViewTransform3D() ); },
       function( model ) { return new CapacitanceScreenView( model ); },
       { backgroundColor: 'rgb( 151, 208, 255 )' }

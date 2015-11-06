@@ -15,11 +15,11 @@ define( function( require ) {
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
-  
+
   // strings
-  var batteryConnectionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToBattery' );
-  var noConnectionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToCenter' );
-  var lightbulbConnectionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToLightbulb' );
+  var accessibleSwitchToBatteryString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToBattery' );
+  var accessibleSwitchToCenterString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToCenter' );
+  var accessibleSwitchToLightbulbString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToLightbulb' );
 
   // constants
   var CONNECTION_POINT_RADIUS = 6;
@@ -72,19 +72,19 @@ define( function( require ) {
         circuitConnectionProperty.set( connectionType );
       }
     } ) );
-    
+
     // add the accessible content
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var domElement = document.createElement( 'input' );
         if ( connectionType === 'BATTERY_CONNECTED' ) {
-          domElement.value = batteryConnectionString;
+          domElement.value = accessibleSwitchToBatteryString;
         }
         else if ( connectionType === 'OPEN_CIRCUIT' ) {
-          domElement.value = noConnectionString;
+          domElement.value = accessibleSwitchToCenterString;
         }
         else {
-          domElement.value = lightbulbConnectionString;
+          domElement.value = accessibleSwitchToLightbulbString;
         }
         domElement.type = 'button';
 

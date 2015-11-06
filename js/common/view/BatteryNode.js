@@ -33,10 +33,10 @@ define( function( require ) {
   var batteryDownImage = require( 'image!CAPACITOR_LAB_BASICS/battery_upside-down.png' );
 
   // strings
-  var pattern_0value1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
+  var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
-  var sliderDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batterySlider' );
   var voltageDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batteryVoltage' );
+  var accessibleBatterySliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batterySlider' );
 
   /**
    * Constructor for a BatteryNode.
@@ -72,16 +72,16 @@ define( function( require ) {
           var domElement = document.createElement( 'div' );
           
           var sliderDescription = document.createElement( 'p' );
-          sliderDescription.innerText = sliderDescriptionString;
+          sliderDescription.innerText = accessibleBatterySliderString;
           domElement.appendChild( sliderDescription );
-          sliderDescription.id = sliderDescriptionString;
+          sliderDescription.id = accessibleBatterySliderString;
           
           var voltageDescription = document.createElement( 'p' );
           var voltageValue = Util.toFixed( battery.voltageProperty.get(), 2 );
           voltageDescription.innerText = StringUtils.format( voltageDescriptionString, voltageValue );
           domElement.appendChild( voltageDescription );
           
-          domElement.setAttribute( 'aria-describedby', sliderDescriptionString );
+          domElement.setAttribute( 'aria-describedby', accessibleBatterySliderString );
           domElement.setAttribute( 'aria-live', "polite" );
 
           domElement.tabIndex = '0';
@@ -111,7 +111,7 @@ define( function( require ) {
 
     // function to create the tick mark labels using a string pattern.
     var createTickLabels = function( value, textFill ) {
-      var labelText = new Text( StringUtils.format( pattern_0value1units, value, unitsVoltsString ), {
+      var labelText = new Text( StringUtils.format( pattern0Value1UnitsString, value, unitsVoltsString ), {
         font: LABEL_FONT,
         fill: textFill
       } );

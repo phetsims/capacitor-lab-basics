@@ -37,7 +37,7 @@ define( function( require ) {
   // strings
   var separationString = require( 'string!CAPACITOR_LAB_BASICS/separation' );
   var unitsMillimetersString = require( 'string!CAPACITOR_LAB_BASICS/units.millimeters' );
-  var sliderDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateSeparationSlider' );
+  var accessiblePlateSeparationSliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateSeparationSlider' );
 
   /**
    * Constructor for the PlateSeparationDragHandlerNode.
@@ -64,10 +64,10 @@ define( function( require ) {
         var domElement = document.createElement( 'div' );
         var description = document.createElement( 'p' );
         description.hidden = 'true';
-        description.innerText = sliderDescriptionString;
+        description.innerText = accessiblePlateSeparationSliderString;
         domElement.appendChild( description );
-        description.id = sliderDescriptionString;
-        domElement.setAttribute( 'aria-describedby', sliderDescriptionString );
+        description.id = accessiblePlateSeparationSliderString;
+        domElement.setAttribute( 'aria-describedby', accessiblePlateSeparationSliderString );
 
         domElement.tabIndex = '0';
 

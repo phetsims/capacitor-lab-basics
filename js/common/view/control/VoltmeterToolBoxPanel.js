@@ -21,7 +21,7 @@ define( function( require ) {
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
 
   // strings
-  var descriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterToolbox' );
+  var accessibleVoltmeterToolboxString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterToolbox' );
 
   /**
    *
@@ -92,7 +92,7 @@ define( function( require ) {
       accessibleContent: {
         createPeer: function( accessibleInstance ) {
           var domElement = document.createElement( 'input' );
-          domElement.value = descriptionString;
+          domElement.value = accessibleVoltmeterToolboxString;
           domElement.type = 'button';
 
           domElement.tabIndex = '0';

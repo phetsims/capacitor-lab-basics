@@ -16,7 +16,7 @@ define( function( require ) {
   var SimLauncher = require( 'JOIST/SimLauncher' );
 
   // strings
-  var simTitle = require( 'string!CAPACITOR_LAB_BASICS/capacitor-lab-basics.title' );
+  var capacitorLabBasicsTitleString = require( 'string!CAPACITOR_LAB_BASICS/capacitor-lab-basics.title' );
 
   var screens = [
     new CapacitanceScreen(),
@@ -43,7 +43,7 @@ define( function( require ) {
   }
 
   SimLauncher.launch( function() {
-    var sim = new Sim( simTitle, screens, simOptions );
+    var sim = new Sim( capacitorLabBasicsTitleString, screens, simOptions );
     sim.start();
   } );
 } );

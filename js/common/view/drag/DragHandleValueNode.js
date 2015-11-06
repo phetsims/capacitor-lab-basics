@@ -25,7 +25,7 @@ define( function( require ) {
   var VALUE_FONT = new PhetFont( { size: 12 } );
 
   // strings
-  var pattern_0value1units = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
+  var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
 
   /**
    * Constructor for the DragHandleValueNode.
@@ -64,7 +64,7 @@ define( function( require ) {
      */
     setValue: function( value ) {
       var formattedValue = Util.toFixed( value, 1 /* one decimal place */ );
-      this.valueNode.setText( StringUtils.format( pattern_0value1units, formattedValue, this.units ) );
+      this.valueNode.setText( StringUtils.format( pattern0Value1UnitsString, formattedValue, this.units ) );
     }
 
   } );
