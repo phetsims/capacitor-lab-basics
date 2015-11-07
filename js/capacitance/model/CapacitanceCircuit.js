@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Model of a circuit with a battery (B) connected to a single capacitor (C1).  This is treated as a special case of a

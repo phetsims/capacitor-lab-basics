@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Circuit for the for the "Dielectric" module.  Contains the circuit components and controls for manipulating the

@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Control panel for "Light Bulb" screen of Capacitor Lab: Basics.  Controls visibility of nodes, meters, and physical

@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Interface for all strategies used to determine the size of the grid used to cover a 2D surface with objects.

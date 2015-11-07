@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2014-2015, University of Colorado Boulder
 
 /**
  * Visual representation of a capacitor plate.  For a partially-inserted dielectric, the portion of the plate that

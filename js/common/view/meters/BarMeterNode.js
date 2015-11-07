@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2014-2015, University of Colorado Boulder
 
 /**
  * Abstract base class for all bar meter nodes.  Factory functions allow for creating all specific meter subclasses.

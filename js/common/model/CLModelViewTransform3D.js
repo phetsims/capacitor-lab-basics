@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Provides the transforms between model and view 3D-coordinate systems. In both coordinate systems, +x is to the right,

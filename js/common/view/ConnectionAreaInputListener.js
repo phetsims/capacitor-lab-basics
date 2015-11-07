@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Triangular area that extends from the switch hinge point to a connection point.  The user can click anywhere in this

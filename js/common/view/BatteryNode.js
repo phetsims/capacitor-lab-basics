@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2014-2015, University of Colorado Boulder
 
 /**
  * Visual representation of a DC battery, with a control for setting its voltage. Image flips when the polarity of the
