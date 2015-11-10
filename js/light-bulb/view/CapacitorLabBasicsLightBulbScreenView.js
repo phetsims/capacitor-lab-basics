@@ -24,7 +24,7 @@ define( function( require ) {
   var Input = require( 'SCENERY/input/Input' );
   
   // strings
-  var descriptionString = require( 'string!CAPACITOR_LAB_BASICS/lightBulb.description' );
+  var lightBulbDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/lightBulb.description' );
 
   /**
    * @param {CapacitorLabBasicsLightBulbModel} model
@@ -33,7 +33,7 @@ define( function( require ) {
   function CapacitorLabBasicsLightBulbScreenView( model ) {
 
     ScreenView.call( this, {
-      screenDescription: descriptionString
+      screenDescription: lightBulbDescriptionString
     } );
 
     this.modelViewTransform = model.modelViewTransform; // @private

@@ -25,14 +25,14 @@ define( function( require ) {
   var OPTIONS_VERTICAL_SPACE = 8;
 
   // strings
-  var tabString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.tab' );
-  var enterString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.enter' );
-  var escapeString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.escape' );
-  var spacebarString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.spacebar' );
-  var arrowString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.arrows' );
-  var hString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.h' );
-  var titleString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.title' );
-  var strings = [ tabString, enterString, escapeString, spacebarString, arrowString, hString ];
+  var keyDescriptionsTabString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.tab' );
+  var keyDescriptionsEnterString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.enter' );
+  var keyDescriptionsEscapeString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.escape' );
+  var keyDescriptionsSpacebarString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.spacebar' );
+  var keyDescriptionsArrowsString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.arrows' );
+  var keyDescriptionsHString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.h' );
+  var keyDescriptionsTitleString = require( 'string!CAPACITOR_LAB_BASICS/keyDescriptions.title' );
+  var strings = [ keyDescriptionsTabString, keyDescriptionsEnterString, keyDescriptionsEscapeString, keyDescriptionsSpacebarString, keyDescriptionsArrowsString, keyDescriptionsHString ];
 
   /**
    * Constructor.
@@ -41,13 +41,13 @@ define( function( require ) {
    * @constructor
    */
   function KeyboardHelpPanel( model ) {
-    var titleText = new Text( titleString, { font: PANEL_TITLE_FONT } );
-    var tabText = new Text( tabString, { font: SHORTCUT_FONT } );
-    var enterText = new Text( enterString, { font: SHORTCUT_FONT } );
-    var escapeText = new Text( escapeString, { font: SHORTCUT_FONT } );
-    var spacebarText = new Text( spacebarString, { font: SHORTCUT_FONT } );
-    var arrowText = new Text( arrowString, { font: SHORTCUT_FONT } );
-    var hText = new Text( hString, { font: SHORTCUT_FONT } );
+    var titleText = new Text( keyDescriptionsTitleString, { font: PANEL_TITLE_FONT } );
+    var tabText = new Text( keyDescriptionsTabString, { font: SHORTCUT_FONT } );
+    var enterText = new Text( keyDescriptionsEnterString, { font: SHORTCUT_FONT } );
+    var escapeText = new Text( keyDescriptionsEscapeString, { font: SHORTCUT_FONT } );
+    var spacebarText = new Text( keyDescriptionsSpacebarString, { font: SHORTCUT_FONT } );
+    var arrowText = new Text( keyDescriptionsArrowsString, { font: SHORTCUT_FONT } );
+    var hText = new Text( keyDescriptionsHString, { font: SHORTCUT_FONT } );
     
     var helpBox = new LayoutBox( {
       children: [
@@ -88,9 +88,9 @@ define( function( require ) {
         
         var title = document.createElement( 'h1' );
         title.hidden = 'true';
-        title.innerHTML = titleString;
+        title.innerHTML = keyDescriptionsTitleString;
         domElement.appendChild( title );
-        title.id = titleString;
+        title.id = keyDescriptionsTitleString;
         
         strings.forEach( function( s ) {
           var description = document.createElement( 'p' );
@@ -100,7 +100,7 @@ define( function( require ) {
           description.id = s;
         } );
         
-        domElement.setAttribute( 'aria-describedby', titleString );
+        domElement.setAttribute( 'aria-describedby', keyDescriptionsTitleString );
         domElement.tabIndex = '-1';
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
