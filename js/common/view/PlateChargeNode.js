@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Base class for representation of plate charge.  Plate charge is represented as an integer number of '+' or '-'
@@ -180,7 +180,7 @@ define( function( require ) {
             var centerPosition = this.modelViewTransform.modelToViewXYZ( x, y, z );
 
             // add the signed charge to the grid
-            this.isPositivelyCharged() ? addPositiveCharge( centerPosition, context.context ) : addNegativeCharge( centerPosition, context.context );
+            this.isPositivelyCharged() ? addPositiveCharge( centerPosition, context ) : addNegativeCharge( centerPosition, context );
 
           }
         }

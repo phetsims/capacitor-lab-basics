@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Visual representation of a connection point on the circuit.  This is a black circle with input handling.  Clicking

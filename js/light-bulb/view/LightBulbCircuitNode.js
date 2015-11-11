@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Circuit node for the "Light Bulb" screen.
@@ -46,7 +46,7 @@ define( function( require ) {
     this.circuit = circuit; // @private
 
     // circuit components
-    this.batteryNode = new BatteryNode( circuit.battery, CLConstants.BATTERY_VOLTAGE_RANGE, "lightBulb" );
+    this.batteryNode = new BatteryNode( circuit.battery, CLConstants.BATTERY_VOLTAGE_RANGE, 'lightBulb' );
 
     var capacitorNode = new CapacitorNode( circuit.capacitor, modelViewTransform, plateChargeVisibleProperty,
       eFieldVisibleProperty, maxPlateCharge, maxEffectiveEField );

@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Model of a capacitor, used in the Introduction and Dielectric tabs, where we have a single capacitor whose geometry

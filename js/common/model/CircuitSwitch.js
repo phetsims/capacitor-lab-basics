@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Circuit switch.  The circuit switch has a start point and an end point.  The start point acts as a hinge, and the end

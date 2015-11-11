@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * A wire is a collection of connected wire segments. It contains a creator object that creates the wire shape. The

@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2014-2015, University of Colorado Boulder
 
 /**
  * Visual representation of a DC battery, with a control for setting its voltage. Image flips when the polarity of the
@@ -35,7 +35,7 @@ define( function( require ) {
   // strings
   var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
-  var voltageDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batteryVoltage' );
+  var accessibleBatteryVoltageString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batteryVoltage' );
   var accessibleBatterySliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batterySlider' );
 
   /**
@@ -48,7 +48,7 @@ define( function( require ) {
   function BatteryNode( battery, voltageRange, accessibleId ) {
 
     Node.call( this );
-    this.accessibleId = accessibleId + "-battery";
+    this.accessibleId = accessibleId + '-battery';
 
     // battery image, scaled to match model dimensions
     var imageNode = new Image( batteryUpImage, { scale: 0.30 } );
@@ -76,11 +76,11 @@ define( function( require ) {
           
           var voltageDescription = document.createElement( 'p' );
           var voltageValue = Util.toFixed( battery.voltageProperty.get(), 2 );
-          voltageDescription.innerText = StringUtils.format( voltageDescriptionString, voltageValue );
+          voltageDescription.innerText = StringUtils.format( accessibleBatteryVoltageString, voltageValue );
           domElement.appendChild( voltageDescription );
           
           domElement.setAttribute( 'aria-describedby', accessibleBatterySliderString );
-          domElement.setAttribute( 'aria-live', "polite" );
+          domElement.setAttribute( 'aria-live', 'polite' );
 
           domElement.tabIndex = '0';
 
@@ -95,12 +95,12 @@ define( function( require ) {
                                                       voltageRange.min,
                                                       voltageRange.max ) );
               var voltageValue = Util.toFixed( battery.voltageProperty.get(), 2 );
-              voltageDescription.innerText = StringUtils.format( voltageDescriptionString, voltageValue );
+              voltageDescription.innerText = StringUtils.format( accessibleBatteryVoltageString, voltageValue );
             }
           } );
 
           var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-          domElement.id = accessibleId + "-battery";
+          domElement.id = accessibleId + '-battery';
           return accessiblePeer;
 
         }

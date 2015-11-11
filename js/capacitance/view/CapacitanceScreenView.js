@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * "Intro" ScreenView for Capacitor Lab Basics.
@@ -28,7 +28,7 @@ define( function( require ) {
   var DEBUG_SHAPES = false;
   
   // strings
-  var descriptionString = require( 'string!CAPACITOR_LAB_BASICS/capacitance.description' );
+  var capacitanceDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/capacitance.description' );
 
   /**
    * @param {CapacitorLabBasicsModel} model
@@ -37,7 +37,7 @@ define( function( require ) {
   function CapacitanceScreenView( model ) {
 
     ScreenView.call( this, {
-      screenDescription: descriptionString
+      screenDescription: capacitanceDescriptionString
     } );
 
     this.modelViewTransform = model.modelViewTransform;

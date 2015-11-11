@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Arrow and electron that indicates the direction of current flow. Visibility of this node is handled via its

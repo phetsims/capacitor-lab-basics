@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Creates 2D projections of shapes that are related to the 3D capacitor model. All of these shapes are 2D projections

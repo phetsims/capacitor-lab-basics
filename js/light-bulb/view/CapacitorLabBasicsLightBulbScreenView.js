@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * ScreenView for "Light Bulb" screen of Capacitor Lab: Basics.
@@ -24,7 +24,7 @@ define( function( require ) {
   var Input = require( 'SCENERY/input/Input' );
   
   // strings
-  var descriptionString = require( 'string!CAPACITOR_LAB_BASICS/lightBulb.description' );
+  var lightBulbDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/lightBulb.description' );
 
   /**
    * @param {CapacitorLabBasicsLightBulbModel} model
@@ -33,7 +33,7 @@ define( function( require ) {
   function CapacitorLabBasicsLightBulbScreenView( model ) {
 
     ScreenView.call( this, {
-      screenDescription: descriptionString
+      screenDescription: lightBulbDescriptionString
     } );
 
     this.modelViewTransform = model.modelViewTransform; // @private

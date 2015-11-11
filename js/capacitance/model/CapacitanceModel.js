@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * The "Intro" model for Capacitor Lab: Basics.  The intro model has a battery connected in parallel to a capacitor, and

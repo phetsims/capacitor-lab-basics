@@ -1,4 +1,4 @@
-// Copyright 2002-2015, University of Colorado Boulder
+// Copyright 2015, University of Colorado Boulder
 
 /**
  * Drag handle for changing the plate separation.  Origin is at the end of the dashed line that is farthest from the
