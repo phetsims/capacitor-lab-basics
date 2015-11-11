@@ -36,8 +36,8 @@ define( function( require ) {
   var voltsUnknownString = require( 'string!CAPACITOR_LAB_BASICS/volts.unknown' );
   var accessibleVoltmeterBodyString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBody' );
   var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
-  var voltageUnknownDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterUnknownValue' );
-  var voltageValueDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterValue' );
+  var accessibleVoltmeterUnknownValueString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterUnknownValue' );
+  var accessibleVoltmeterValueString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterValue' );
 
   // images
   var voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
@@ -131,11 +131,11 @@ define( function( require ) {
         bodyDescription.id = accessibleVoltmeterBodyString;
         
         var voltageDescription = document.createElement( 'p' );
-        voltageDescription.innerText = voltageUnknownDescriptionString;
+        voltageDescription.innerText = accessibleVoltmeterUnknownValueString;
         domElement.appendChild( voltageDescription );
         
         domElement.setAttribute( 'aria-describedby', StringUtils.format( accessibleVoltmeterBodyString, voltmeter.value ) );
-        domElement.setAttribute( 'aria-live', "polite" );
+        domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.tabIndex = '-1';
 
@@ -155,19 +155,20 @@ define( function( require ) {
      */
     setValueText: function( valueText, value ) {
       var domElement = document.getElementById( this.accessibleVoltmeterBodyId );
+      var description;
       if ( isNaN( value ) ) {
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, voltsUnknownString, unitsVoltsString ) );
         if ( domElement !== null ) {
-          var description = domElement.childNodes[1];
-          description.innerText = voltageUnknownDescriptionString; 
+          description = domElement.childNodes[1];
+          description.innerText = accessibleVoltmeterUnknownValueString;
         }
       }
       else {
         var fixedValue = Util.toFixed( value, 3 );
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, fixedValue, unitsVoltsString ) );
         if ( domElement !== null ) {
-          var description = domElement.childNodes[1];
-          description.innerText = StringUtils.format( voltageValueDescriptionString, fixedValue ); 
+          description = domElement.childNodes[1];
+          description.innerText = StringUtils.format( accessibleVoltmeterValueString, fixedValue );
         }
       }
       //valueText.center = this.center;

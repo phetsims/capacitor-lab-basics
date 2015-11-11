@@ -49,7 +49,7 @@ define( function( require ) {
   var accessibleCapacitanceGraphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitanceGraph' );
   var accessibleChargeGraphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.chargeGraph' );
   var accessibleEnergyGraphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.energyGraph' );
-  var graphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.graph' );
+  var accessibleGraphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.graph' );
 
   /**
    * Constructor.
@@ -121,7 +121,7 @@ define( function( require ) {
         var domElement = document.createElement( 'div' );
         
         var graphDescription = document.createElement( 'p' );
-        graphDescription.innerText = StringUtils.format( graphString, titleString );
+        graphDescription.innerText = StringUtils.format( accessibleGraphString, titleString );
         
         var valueDescription = document.createElement( 'p' );
         var meterValue = Util.toFixed( Math.pow( 10, 12 ) * meter.value, 2 );
@@ -130,8 +130,8 @@ define( function( require ) {
         domElement.appendChild( graphDescription );
         domElement.appendChild( valueDescription );
         
-        domElement.setAttribute( 'aria-describedby', StringUtils.format( graphString, titleString ) );
-        domElement.setAttribute( 'aria-live', "polite" );
+        domElement.setAttribute( 'aria-describedby', StringUtils.format( accessibleGraphString, titleString ) );
+        domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.tabIndex = tabIndex;
 

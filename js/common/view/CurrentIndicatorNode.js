@@ -27,8 +27,8 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   
   // strings
-  var currentFlowingString = require( 'string!CAPACITOR_LAB_BASICS/accessible.currentFlowing' );
-  var currentOffString = require( 'string!CAPACITOR_LAB_BASICS/accessible.currentOff' );
+  var accessibleCurrentFlowingString = require( 'string!CAPACITOR_LAB_BASICS/accessible.currentFlowing' );
+  var accessibleCurrentOffString = require( 'string!CAPACITOR_LAB_BASICS/accessible.currentOff' );
 
   // constants
   // arrow properties
@@ -105,10 +105,10 @@ define( function( require ) {
         domElement.className = 'CurrentIndicator';
 
         var description = document.createElement( 'p' );
-        description.innerText = currentOffString;
+        description.innerText = accessibleCurrentOffString;
         domElement.appendChild( description );
         
-        domElement.setAttribute( 'aria-live', "polite" );
+        domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.tabIndex = '-1';
         domElement.id = 'current-' + trail.getUniqueId();
@@ -125,7 +125,7 @@ define( function( require ) {
       var domElement = document.getElementById( thisNode.accessibleId );
       if ( domElement && thisNode.visible === true && Util.toFixedNumber(thisNode.rotation, 0) === 0 ) {
         var description = domElement.firstChild;
-        var string = thisNode.opacity === 0 ? currentOffString : currentFlowingString;
+        var string = thisNode.opacity === 0 ? accessibleCurrentOffString : accessibleCurrentFlowingString;
         if ( description.innerText !== string ) {
           description.innerText = string;
         }

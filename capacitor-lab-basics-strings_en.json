@@ -104,7 +104,7 @@
   "probe.topLightBulbWire": {
     "value": "Probe tip is on the wire connecting the light bulb to the top of the capacitor"
   },
-  "probe.bottomLighBulbWire": {
+  "probe.bottomLightBulbWire": {
     "value": "Probe tip is on the wire connecting the light bulb to the bottom of the capacitor"
   },
   "probe.topCapacitorPlate": {

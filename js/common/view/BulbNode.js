@@ -42,7 +42,7 @@ define( function( require ) {
   var BULB_BASE_WIDTH = 42;
   var NUM_FILAMENT_ZIG_ZAGS = 8;
   var FILAMENT_ZIG_ZAG_SPAN = 8;
-  var ACCESSIBLE_ID = "LightBulbDescription";
+  var ACCESSIBLE_ID = 'LightBulbDescription';
 
   function createBulb( options ) {
 
@@ -161,7 +161,7 @@ define( function( require ) {
         domElement.appendChild( description );
         
         domElement.setAttribute( 'aria-describedby', accessibleLightBulbDarkString );
-        domElement.setAttribute( 'aria-live', "polite" );
+        domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.tabIndex = '-1';
 

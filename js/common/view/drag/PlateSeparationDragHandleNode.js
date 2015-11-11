@@ -39,7 +39,7 @@ define( function( require ) {
   var separationString = require( 'string!CAPACITOR_LAB_BASICS/separation' );
   var unitsMillimetersString = require( 'string!CAPACITOR_LAB_BASICS/units.millimeters' );
   var accessiblePlateSeparationSliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateSeparationSlider' );
-  var separationDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateSeparation' );
+  var accessiblePlateSeparationString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateSeparation' );
 
 
   /**
@@ -73,11 +73,11 @@ define( function( require ) {
         
         var valueDescription = document.createElement( 'p' );
         var millimeters = Util.toFixed( UnitsUtils.metersToMillimeters( capacitor.plateSeparation ), 1 );
-        valueDescription.innerText = StringUtils.format( separationDescriptionString, millimeters );
+        valueDescription.innerText = StringUtils.format( accessiblePlateSeparationString, millimeters );
         domElement.appendChild( valueDescription );
         
         domElement.setAttribute( 'aria-describedby', accessiblePlateSeparationSliderString );
-        domElement.setAttribute( 'aria-live', "polite" );
+        domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.tabIndex = '0';
 
@@ -92,7 +92,7 @@ define( function( require ) {
                                                   valueRange.max ) );
           
           var millimeters = Util.toFixed( UnitsUtils.metersToMillimeters( capacitor.plateSeparation ), 1 );
-          valueDescription.innerText = StringUtils.format( separationDescriptionString, millimeters );
+          valueDescription.innerText = StringUtils.format( accessiblePlateSeparationString, millimeters );
         } );
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );

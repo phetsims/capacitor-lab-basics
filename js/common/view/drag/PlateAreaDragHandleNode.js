@@ -35,7 +35,7 @@ define( function( require ) {
   var plateAreaString = require( 'string!CAPACITOR_LAB_BASICS/plateArea' );
   var unitsMillimetersString = require( 'string!CAPACITOR_LAB_BASICS/units.millimeters' );
   var accessiblePlateAreaSliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateAreaSlider' );
-  var plateAreaDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateArea' );
+  var accessiblePlateAreaString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateArea' );
 
   // endpoints for a vertical line, this will be rotated to point along the plate's pseudo-3D diagonal
   var LINE_LENGTH = 22;
@@ -73,11 +73,11 @@ define( function( require ) {
         
         var valueDescription = document.createElement( 'p' );
         var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
-        valueDescription.innerText = StringUtils.format( plateAreaDescriptionString, millimetersSquared );
+        valueDescription.innerText = StringUtils.format( accessiblePlateAreaString, millimetersSquared );
         domElement.appendChild( valueDescription );
         
         domElement.setAttribute( 'aria-describedby', accessiblePlateAreaSliderString );
-        domElement.setAttribute( 'aria-live', "polite" );
+        domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.tabIndex = '0';
 
@@ -91,7 +91,7 @@ define( function( require ) {
                                                   valueRange.min,
                                                   valueRange.max ) );
           var millimetersSquared = Util.toFixed( UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() ), 1 );
-          valueDescription.innerText = StringUtils.format( plateAreaDescriptionString, millimetersSquared );
+          valueDescription.innerText = StringUtils.format( accessiblePlateAreaString, millimetersSquared );
         } );
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );

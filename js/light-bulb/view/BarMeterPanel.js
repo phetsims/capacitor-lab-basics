@@ -34,8 +34,8 @@ define( function( require ) {
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
   var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
   var plateChargeString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge' );
-  var graphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.graphCheckbox' );
-  var panelDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.graphPanel' );
+  var accessibleGraphCheckboxString = require( 'string!CAPACITOR_LAB_BASICS/accessible.graphCheckbox' );
+  var accessibleGraphPanelString = require( 'string!CAPACITOR_LAB_BASICS/accessible.graphPanel' );
 
   /**
    * Constructor.
@@ -64,19 +64,19 @@ define( function( require ) {
 
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
     var capacitanceCheckBox = new CheckBox( capacitanceTitle, model.capacitanceMeterVisibleProperty, {
-      accessibleLabel: StringUtils.format( graphString, capacitanceString ),
+      accessibleLabel: StringUtils.format( accessibleGraphCheckboxString, capacitanceString ),
       tabIndex: tabIndex
     } );
 
     var plateChargeTitle = new Text( plateChargeString, fontOptions );
     var plateChargeCheckBox = new CheckBox( plateChargeTitle, model.plateChargeMeterVisibleProperty, {
-      accessibleLabel: StringUtils.format( graphString, plateChargeString ),
+      accessibleLabel: StringUtils.format( accessibleGraphCheckboxString, plateChargeString ),
       tabIndex: tabIndex
     } );
 
     var storedEnergyTitle = new Text( storedEnergyString, fontOptions );
     var storedEnergyCheckBox = new CheckBox( storedEnergyTitle, model.storedEnergyMeterVisibleProperty, {
-      accessibleLabel: StringUtils.format( graphString, storedEnergyString ),
+      accessibleLabel: StringUtils.format( accessibleGraphCheckboxString, storedEnergyString ),
       tabIndex: tabIndex
     } );
 
@@ -111,25 +111,26 @@ define( function( require ) {
       xMargin: 10,
       yMargin: 10
     } );
-    
+
     // add the accessible content
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var domElement = document.createElement( 'div' );
-        
+
         var description = document.createElement( 'p' );
-        description.innerText = panelDescriptionString;
+        description.innerText = accessibleGraphPanelString;
         domElement.appendChild( description );
-        
-        domElement.setAttribute( 'aria-describedby', panelDescriptionString );
+
+        domElement.setAttribute( 'aria-describedby', accessibleGraphPanelString );
 
         domElement.tabIndex = '0';
-        
+
         domElement.addEventListener( 'keydown', function( event ) {
           var keyCode = event.keyCode;
+          var firstElem;
           if ( keyCode === Input.KEY_ENTER ) {
             setTabIndex( '0' );
-            var firstElem = document.getElementById( capacitanceCheckBox.accessibleId );
+            firstElem = document.getElementById( capacitanceCheckBox.accessibleId );
             firstElem.focus();
           }
           else if ( keyCode === Input.KEY_ESCAPE ) {
@@ -138,7 +139,7 @@ define( function( require ) {
           }
           else if ( keyCode === Input.KEY_TAB ) {
             var lastElem = document.getElementById( storedEnergyMeterNode.accessibleId );
-            var firstElem = document.getElementById( capacitanceCheckBox.accessibleId );
+            firstElem = document.getElementById( capacitanceCheckBox.accessibleId );
             if ( document.activeElement === lastElem && !event.shiftKey ) {
               event.preventDefault();
               firstElem.focus();
@@ -161,7 +162,7 @@ define( function( require ) {
     model.barGraphsPanelVisibleProperty.link( function( barGraphsPanelVisible ) {
       thisPanel.visible = barGraphsPanelVisible;
     } );
-    
+
     var setTabIndex = function( tabIndex ) {
       meterNodes.children.forEach( function( meter ) {
         var element = document.getElementById( meter.accessibleId );

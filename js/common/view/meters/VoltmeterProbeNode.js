@@ -24,7 +24,7 @@ define( function( require ) {
   // strings
   var accessibleVoltmeterRedProbeString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterRedProbe' );
   var accessibleVoltmeterBlackProbeString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBlackProbe' );
-  
+
   /**
    * Constructor.
    *
@@ -40,8 +40,10 @@ define( function( require ) {
     var thisNode = this;
     this.locationProperty = locationProperty; // @public
     var loc = -1; // @private, used for accessibility
-    var locs = probeLocations[ "points" ];
-    var strings = probeLocations[ "strings" ];
+
+    // TODO: dot notation is better here, will change soon
+    var locs = probeLocations[ 'points' ]; //eslint-disable-line dot-notation
+    var strings = probeLocations[ 'strings' ]; //eslint-disable-line dot-notation
 
     // TODO: A mipmap will likely be necessary at this size.
     var imageNode = new Image( image, { scale: 0.25 } );
@@ -72,15 +74,15 @@ define( function( require ) {
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var trail = accessibleInstance.trail;
-        
+
         var domElement = document.createElement( 'div' );
         domElement.className = className;
-        domElement.setAttribute( 'aria-live', "polite" );
-        
+        domElement.setAttribute( 'aria-live', 'polite' );
+
         // add this probe instance ID to the thisNode so that the panel can have access to the node.
         domElement.id = 'probe-' + trail.getUniqueId();
         thisNode.accessibleProbeId = domElement.id;
-        
+
         var description = document.createElement( 'p' );
         description.innerText = descriptionString;
         domElement.appendChild( description );
@@ -88,20 +90,20 @@ define( function( require ) {
         domElement.setAttribute( 'aria-describedby', descriptionString );
 
         domElement.tabIndex = '-1';
-        
+
         domElement.addEventListener( 'keydown', function( event ) {
-            var keyCode = event.keyCode;
-            if ( keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW ) {
-              loc = loc <= 0 ? locs.length - 1 : loc - 1;
-              locationProperty.set( locs[ loc ] );
-              description.innerText = strings[ loc ];
-            }
-            else if ( keyCode === Input.KEY_RIGHT_ARROW || keyCode === Input.KEY_UP_ARROW ) {
-              loc = ( loc + 1 ) % locs.length;
-              locationProperty.set( locs[ loc ] );
-              description.innerText = strings[ loc ];
-            }
-          } );
+          var keyCode = event.keyCode;
+          if ( keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW ) {
+            loc = loc <= 0 ? locs.length - 1 : loc - 1;
+            locationProperty.set( locs[ loc ] );
+            description.innerText = strings[ loc ];
+          }
+          else if ( keyCode === Input.KEY_RIGHT_ARROW || keyCode === Input.KEY_UP_ARROW ) {
+            loc = ( loc + 1 ) % locs.length;
+            locationProperty.set( locs[ loc ] );
+            description.innerText = strings[ loc ];
+          }
+        } );
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
         return accessiblePeer;
