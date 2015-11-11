@@ -34,12 +34,14 @@ define( function( require ) {
    * @param {Property} locationProperty property to observer for the probe's location
    * @param {CLModelViewTransform3D} modelViewTransform model-view transform
    */
-  function VoltmeterProbeNode( image, descriptionString, className, locationProperty, locs, modelViewTransform ) {
+  function VoltmeterProbeNode( image, descriptionString, className, locationProperty, probeLocations, modelViewTransform ) {
 
     Node.call( this );
     var thisNode = this;
     this.locationProperty = locationProperty; // @public
     var loc = -1; // @private, used for accessibility
+    var locs = probeLocations[ "points" ];
+    var strings = probeLocations[ "strings" ];
 
     // TODO: A mipmap will likely be necessary at this size.
     var imageNode = new Image( image, { scale: 0.25 } );
@@ -73,13 +75,13 @@ define( function( require ) {
         
         var domElement = document.createElement( 'div' );
         domElement.className = className;
+        domElement.setAttribute( 'aria-live', "polite" );
         
         // add this probe instance ID to the thisNode so that the panel can have access to the node.
         domElement.id = 'probe-' + trail.getUniqueId();
         thisNode.accessibleProbeId = domElement.id;
         
         var description = document.createElement( 'p' );
-        description.hidden = 'true';
         description.innerText = descriptionString;
         domElement.appendChild( description );
         description.id = descriptionString;
@@ -92,10 +94,12 @@ define( function( require ) {
             if ( keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW ) {
               loc = loc <= 0 ? locs.length - 1 : loc - 1;
               locationProperty.set( locs[ loc ] );
+              description.innerText = strings[ loc ];
             }
             else if ( keyCode === Input.KEY_RIGHT_ARROW || keyCode === Input.KEY_UP_ARROW ) {
               loc = ( loc + 1 ) % locs.length;
               locationProperty.set( locs[ loc ] );
+              description.innerText = strings[ loc ];
             }
           } );
 

@@ -22,6 +22,7 @@ define( function( require ) {
   var DragHandleLineNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleLineNode' );
   var Input = require( 'SCENERY/input/Input' );
   var Util = require( 'DOT/Util' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
 
   // constants
@@ -38,6 +39,8 @@ define( function( require ) {
   var separationString = require( 'string!CAPACITOR_LAB_BASICS/separation' );
   var unitsMillimetersString = require( 'string!CAPACITOR_LAB_BASICS/units.millimeters' );
   var accessiblePlateSeparationSliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateSeparationSlider' );
+  var separationDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateSeparation' );
+
 
   /**
    * Constructor for the PlateSeparationDragHandlerNode.
@@ -62,12 +65,19 @@ define( function( require ) {
     arrowNode.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var domElement = document.createElement( 'div' );
-        var description = document.createElement( 'p' );
-        description.hidden = 'true';
-        description.innerText = accessiblePlateSeparationSliderString;
-        domElement.appendChild( description );
-        description.id = accessiblePlateSeparationSliderString;
+        
+        var sliderDescription = document.createElement( 'p' );
+        sliderDescription.innerText = accessiblePlateSeparationSliderString;
+        domElement.appendChild( sliderDescription );
+        sliderDescription.id = accessiblePlateSeparationSliderString;
+        
+        var valueDescription = document.createElement( 'p' );
+        var millimeters = Util.toFixed( UnitsUtils.metersToMillimeters( capacitor.plateSeparation ), 1 );
+        valueDescription.innerText = StringUtils.format( separationDescriptionString, millimeters );
+        domElement.appendChild( valueDescription );
+        
         domElement.setAttribute( 'aria-describedby', accessiblePlateSeparationSliderString );
+        domElement.setAttribute( 'aria-live', "polite" );
 
         domElement.tabIndex = '0';
 
@@ -80,6 +90,9 @@ define( function( require ) {
           capacitor.plateSeparationProperty.set( Util.clamp( capacitor.plateSeparationProperty.get() + range * 0.1 * delta,
                                                   valueRange.min,
                                                   valueRange.max ) );
+          
+          var millimeters = Util.toFixed( UnitsUtils.metersToMillimeters( capacitor.plateSeparation ), 1 );
+          valueDescription.innerText = StringUtils.format( separationDescriptionString, millimeters );
         } );
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );

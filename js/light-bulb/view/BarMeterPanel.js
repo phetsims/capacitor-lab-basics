@@ -21,6 +21,9 @@ define( function( require ) {
   var CheckBox = require( 'SUN/CheckBox' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
   var Vector2 = require( 'DOT/Vector2' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var Input = require( 'SCENERY/input/Input' );
 
   // constants
   var CHECKBOX_VERTICAL_SPACING = 28;
@@ -31,6 +34,8 @@ define( function( require ) {
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
   var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
   var plateChargeString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge' );
+  var graphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.graphCheckbox' );
+  var panelDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.graphPanel' );
 
   /**
    * Constructor.
@@ -47,9 +52,10 @@ define( function( require ) {
 
     // create the bar meter nodes with their text values.
     var meterNodes = new Node();
-    var capacitanceMeterNode = BarMeterNode.CapacitanceBarMeterNode( model.capacitanceMeter );
-    var plateChargeMeterNode = BarMeterNode.PlateChargeBarMeterNode( model.plateChargeMeter );
-    var storedEnergyMeterNode = BarMeterNode.StoredEnergyBarMeterNode( model.storedEnergyMeter );
+    var tabIndex = '-1';
+    var capacitanceMeterNode = BarMeterNode.CapacitanceBarMeterNode( model.capacitanceMeter, tabIndex );
+    var plateChargeMeterNode = BarMeterNode.PlateChargeBarMeterNode( model.plateChargeMeter, tabIndex );
+    var storedEnergyMeterNode = BarMeterNode.StoredEnergyBarMeterNode( model.storedEnergyMeter, tabIndex );
     meterNodes.children = [ capacitanceMeterNode, plateChargeMeterNode, storedEnergyMeterNode ];
 
     // create checkboxes for each meter node
@@ -57,13 +63,22 @@ define( function( require ) {
     var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR };
 
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
-    var capacitanceCheckBox = new CheckBox( capacitanceTitle, model.capacitanceMeterVisibleProperty );
+    var capacitanceCheckBox = new CheckBox( capacitanceTitle, model.capacitanceMeterVisibleProperty, {
+      accessibleLabel: StringUtils.format( graphString, capacitanceString ),
+      tabIndex: tabIndex
+    } );
 
     var plateChargeTitle = new Text( plateChargeString, fontOptions );
-    var plateChargeCheckBox = new CheckBox( plateChargeTitle, model.plateChargeMeterVisibleProperty );
+    var plateChargeCheckBox = new CheckBox( plateChargeTitle, model.plateChargeMeterVisibleProperty, {
+      accessibleLabel: StringUtils.format( graphString, plateChargeString ),
+      tabIndex: tabIndex
+    } );
 
     var storedEnergyTitle = new Text( storedEnergyString, fontOptions );
-    var storedEnergyCheckBox = new CheckBox( storedEnergyTitle, model.storedEnergyMeterVisibleProperty );
+    var storedEnergyCheckBox = new CheckBox( storedEnergyTitle, model.storedEnergyMeterVisibleProperty, {
+      accessibleLabel: StringUtils.format( graphString, storedEnergyString ),
+      tabIndex: tabIndex
+    } );
 
     checkBoxNodes.children = [ capacitanceCheckBox, plateChargeCheckBox, storedEnergyCheckBox ];
 
@@ -96,11 +111,71 @@ define( function( require ) {
       xMargin: 10,
       yMargin: 10
     } );
+    
+    // add the accessible content
+    this.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+        var domElement = document.createElement( 'div' );
+        
+        var description = document.createElement( 'p' );
+        description.innerText = panelDescriptionString;
+        domElement.appendChild( description );
+        
+        domElement.setAttribute( 'aria-describedby', panelDescriptionString );
+
+        domElement.tabIndex = '0';
+        
+        domElement.addEventListener( 'keydown', function( event ) {
+          var keyCode = event.keyCode;
+          if ( keyCode === Input.KEY_ENTER ) {
+            setTabIndex( '0' );
+            var firstElem = document.getElementById( capacitanceCheckBox.accessibleId );
+            firstElem.focus();
+          }
+          else if ( keyCode === Input.KEY_ESCAPE ) {
+            domElement.focus();
+            setTabIndex( '-1' );
+          }
+          else if ( keyCode === Input.KEY_TAB ) {
+            var lastElem = document.getElementById( storedEnergyMeterNode.accessibleId );
+            var firstElem = document.getElementById( capacitanceCheckBox.accessibleId );
+            if ( document.activeElement === lastElem && !event.shiftKey ) {
+              event.preventDefault();
+              firstElem.focus();
+            }
+            if ( document.activeElement === firstElem && event.shiftKey ) {
+              event.preventDefault();
+              lastElem.focus();
+            }
+          }
+        } );
+
+        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+        domElement.id = accessiblePeer.id;
+        return accessiblePeer;
+
+      }
+    };
 
     // link visibility to the model property
     model.barGraphsPanelVisibleProperty.link( function( barGraphsPanelVisible ) {
       thisPanel.visible = barGraphsPanelVisible;
     } );
+    
+    var setTabIndex = function( tabIndex ) {
+      meterNodes.children.forEach( function( meter ) {
+        var element = document.getElementById( meter.accessibleId );
+        if ( element ) {
+          element.tabIndex = tabIndex;
+        }
+      } );
+      checkBoxNodes.children.forEach( function( checkbox ) {
+        var element = document.getElementById( checkbox.accessibleId );
+        if ( element ) {
+          element.tabIndex = tabIndex;
+        }
+      } );
+    };
 
   }
 

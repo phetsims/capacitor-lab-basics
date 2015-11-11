@@ -82,7 +82,8 @@ define( function( require ) {
     assets.forEach( function( asset ) {
       items.push( {
         content: new Text( asset.string, { font: CHECK_BOX_FONT } ),
-        property: asset.property
+        property: asset.property,
+        label: asset.string
       } );
     } );
     return items;

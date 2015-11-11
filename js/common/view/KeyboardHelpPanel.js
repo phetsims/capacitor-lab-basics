@@ -87,14 +87,12 @@ define( function( require ) {
         thisNode.accessibleId = domElement.id;
         
         var title = document.createElement( 'h1' );
-        title.hidden = 'true';
         title.innerHTML = titleString;
         domElement.appendChild( title );
         title.id = titleString;
         
         strings.forEach( function( s ) {
           var description = document.createElement( 'p' );
-          description.hidden = 'true';
           description.innerHTML = s;
           domElement.appendChild( description );
           description.id = s;

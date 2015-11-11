@@ -23,6 +23,12 @@ define( function( require ) {
   var MinusNode = require( 'SCENERY_PHET/MinusNode' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var Color = require( 'SCENERY/util/Color' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var Util = require( 'DOT/Util' );
+  
+  // strings
+  var currentFlowingString = require( 'string!CAPACITOR_LAB_BASICS/accessible.currentFlowing' );
+  var currentOffString = require( 'string!CAPACITOR_LAB_BASICS/accessible.currentOff' );
 
   // constants
   // arrow properties
@@ -90,11 +96,40 @@ define( function( require ) {
     y = arrowNode.bounds.centerY;
     electronNode.translate( x, y );
     minusNode.center = electronNode.center;
+    
+    // add the accessible content
+    this.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+        var trail = accessibleInstance.trail;
+        var domElement = document.createElement( 'div' );
+        domElement.className = 'CurrentIndicator';
+
+        var description = document.createElement( 'p' );
+        description.innerText = currentOffString;
+        domElement.appendChild( description );
+        
+        domElement.setAttribute( 'aria-live', "polite" );
+
+        domElement.tabIndex = '-1';
+        domElement.id = 'current-' + trail.getUniqueId();
+        thisNode.accessibleId = domElement.id;
+
+        return new AccessiblePeer( accessibleInstance, domElement );
+      }
+    };
 
     // observer current
     currentIndicator.multilink( [ 'opacity', 'rotation' ], function() {
       thisNode.opacity = currentIndicator.opacity;
       thisNode.rotation = currentIndicator.rotation;
+      var domElement = document.getElementById( thisNode.accessibleId );
+      if ( domElement && thisNode.visible === true && Util.toFixedNumber(thisNode.rotation, 0) === 0 ) {
+        var description = domElement.firstChild;
+        var string = thisNode.opacity === 0 ? currentOffString : currentFlowingString;
+        if ( description.innerText !== string ) {
+          description.innerText = string;
+        }
+      }
     } );
 
   }

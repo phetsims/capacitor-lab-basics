@@ -23,6 +23,7 @@ define( function( require ) {
   var DragHandleLineNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleLineNode' );
   var Input = require( 'SCENERY/input/Input' );
   var Util = require( 'DOT/Util' );
+  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
 
   // constants
@@ -34,6 +35,7 @@ define( function( require ) {
   var plateAreaString = require( 'string!CAPACITOR_LAB_BASICS/plateArea' );
   var unitsMillimetersString = require( 'string!CAPACITOR_LAB_BASICS/units.millimeters' );
   var accessiblePlateAreaSliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateAreaSlider' );
+  var plateAreaDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateArea' );
 
   // endpoints for a vertical line, this will be rotated to point along the plate's pseudo-3D diagonal
   var LINE_LENGTH = 22;
@@ -63,12 +65,19 @@ define( function( require ) {
     arrowNode.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var domElement = document.createElement( 'div' );
-        var description = document.createElement( 'p' );
-        description.hidden = 'true';
-        description.innerText = accessiblePlateAreaSliderString;
-        domElement.appendChild( description );
-        description.id = accessiblePlateAreaSliderString;
+        
+        var sliderDescription = document.createElement( 'p' );
+        sliderDescription.innerText = accessiblePlateAreaSliderString;
+        domElement.appendChild( sliderDescription );
+        sliderDescription.id = accessiblePlateAreaSliderString;
+        
+        var valueDescription = document.createElement( 'p' );
+        var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
+        valueDescription.innerText = StringUtils.format( plateAreaDescriptionString, millimetersSquared );
+        domElement.appendChild( valueDescription );
+        
         domElement.setAttribute( 'aria-describedby', accessiblePlateAreaSliderString );
+        domElement.setAttribute( 'aria-live', "polite" );
 
         domElement.tabIndex = '0';
 
@@ -81,6 +90,8 @@ define( function( require ) {
           capacitor.setPlateWidth( Util.clamp( capacitor.plateSize.width + range * 0.1 * delta,
                                                   valueRange.min,
                                                   valueRange.max ) );
+          var millimetersSquared = Util.toFixed( UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() ), 1 );
+          valueDescription.innerText = StringUtils.format( plateAreaDescriptionString, millimetersSquared );
         } );
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );

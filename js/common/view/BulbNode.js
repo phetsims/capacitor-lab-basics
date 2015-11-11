@@ -27,9 +27,14 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var LinearFunction = require( 'DOT/LinearFunction' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
 
   // images
   var bulbBaseImage = require( 'image!CAPACITOR_LAB_BASICS/light-bulb-base.png' );
+  
+  // strings
+  var accessibleLightBulbLitString = require( 'string!CAPACITOR_LAB_BASICS/accessible.lightBulbLit' );
+  var accessibleLightBulbDarkString = require( 'string!CAPACITOR_LAB_BASICS/accessible.lightBulbDark' );
 
   // constants
   var BULB_HEIGHT = 130;
@@ -37,6 +42,7 @@ define( function( require ) {
   var BULB_BASE_WIDTH = 42;
   var NUM_FILAMENT_ZIG_ZAGS = 8;
   var FILAMENT_ZIG_ZAG_SPAN = 8;
+  var ACCESSIBLE_ID = "LightBulbDescription";
 
   function createBulb( options ) {
 
@@ -142,6 +148,30 @@ define( function( require ) {
 
     this.bulb = createBulb( options );
     this.addChild( this.bulb );
+    
+    // add the accessible content
+    this.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+        var trail = accessibleInstance.trail;
+        var domElement = document.createElement( 'div' );
+        
+        var description = document.createElement( 'p' );
+        description.innerText = accessibleLightBulbDarkString;
+        description.id = ACCESSIBLE_ID;
+        domElement.appendChild( description );
+        
+        domElement.setAttribute( 'aria-describedby', accessibleLightBulbDarkString );
+        domElement.setAttribute( 'aria-live', "polite" );
+
+        domElement.tabIndex = '-1';
+
+        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+        domElement.id = 'lightBulb-' + trail.getUniqueId();
+        thisNode.accessibleId = domElement.id;
+        return accessiblePeer;
+
+      }
+    };
 
     // TODO: Still testing this mapping funciton.  Not spending a lot of time on it because we do not have input from
     // TODO: the design team about what this behavior should be like.
@@ -150,13 +180,20 @@ define( function( require ) {
     var updateBrightnessScale = function( voltage ) {
       if ( circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
         var targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
+        var domElement = document.getElementById( ACCESSIBLE_ID );
         if ( targetScaleFactor < 0.1 ) {
           thisNode.bulb.haloNode.visible = false;
+          if ( domElement ) {
+            domElement.innerText = accessibleLightBulbDarkString;
+          }
         }
         else {
           thisNode.bulb.haloNode.visible = true;
           var scale = targetScaleFactor / thisNode.bulb.haloNode.transform.matrix.scaleVector.x;
           thisNode.bulb.haloNode.scale( scale );
+          if ( domElement ) {
+            domElement.innerText = accessibleLightBulbLitString;
+          }
         }
       }
 

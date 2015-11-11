@@ -68,6 +68,12 @@
   "accessible.plateSeparation": {
     "value": "Plate separation is {0} millimeters"
   },
+  "accessible.lightBulbLit": {
+    "value": "Light bulb is lit"
+  },
+  "accessible.lightBulbDark": {
+    "value": "Light bulb is unlit"
+  },
   "keyDescriptions.tab": {
     "value": "Tab: Navigates through elements"
   },

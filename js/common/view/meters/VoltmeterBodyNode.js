@@ -36,6 +36,8 @@ define( function( require ) {
   var voltsUnknownString = require( 'string!CAPACITOR_LAB_BASICS/volts.unknown' );
   var accessibleVoltmeterBodyString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBody' );
   var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
+  var voltageUnknownDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterUnknownValue' );
+  var voltageValueDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterValue' );
 
   // images
   var voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
@@ -123,12 +125,17 @@ define( function( require ) {
         domElement.id = 'voltmeter-' + trail.getUniqueId();
         thisNode.accessibleVoltmeterBodyId = domElement.id;
 
-        var description = document.createElement( 'p' );
-        description.hidden = 'true';
-        description.innerText = StringUtils.format( accessibleVoltmeterBodyString, voltmeter.value );
-        domElement.appendChild( description );
-        description.id = accessibleVoltmeterBodyString;
+        var bodyDescription = document.createElement( 'p' );
+        bodyDescription.innerText = accessibleVoltmeterBodyString;
+        domElement.appendChild( bodyDescription );
+        bodyDescription.id = accessibleVoltmeterBodyString;
+        
+        var voltageDescription = document.createElement( 'p' );
+        voltageDescription.innerText = voltageUnknownDescriptionString;
+        domElement.appendChild( voltageDescription );
+        
         domElement.setAttribute( 'aria-describedby', StringUtils.format( accessibleVoltmeterBodyString, voltmeter.value ) );
+        domElement.setAttribute( 'aria-live', "polite" );
 
         domElement.tabIndex = '-1';
 
@@ -147,12 +154,21 @@ define( function( require ) {
      * @param {Number} value
      */
     setValueText: function( valueText, value ) {
+      var domElement = document.getElementById( this.accessibleVoltmeterBodyId );
       if ( isNaN( value ) ) {
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, voltsUnknownString, unitsVoltsString ) );
+        if ( domElement !== null ) {
+          var description = domElement.childNodes[1];
+          description.innerText = voltageUnknownDescriptionString; 
+        }
       }
       else {
         var fixedValue = Util.toFixed( value, 3 );
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, fixedValue, unitsVoltsString ) );
+        if ( domElement !== null ) {
+          var description = domElement.childNodes[1];
+          description.innerText = StringUtils.format( voltageValueDescriptionString, fixedValue ); 
+        }
       }
       //valueText.center = this.center;
     }

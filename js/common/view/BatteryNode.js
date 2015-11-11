@@ -67,8 +67,6 @@ define( function( require ) {
       },
       accessibleContent: {
         createPeer: function( accessibleInstance ) {
-          var trail = accessibleInstance.trail;
-          
           var domElement = document.createElement( 'div' );
           
           var sliderDescription = document.createElement( 'p' );
