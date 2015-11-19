@@ -20,6 +20,15 @@
   "accessible.switchToLightbulb": {
     "value": "Toggle - connect capacitor to lightbulb"
   },
+  "accessible.capacitorConnectedToBattery": {
+    "value": "Capacitor connected to battery"
+  },
+  "accessible.capacitorDisconnected": {
+    "value": "Capacitor disconnected from circuit"
+  },
+  "accessible.capacitorConnectedToLightbulb": {
+    "value": "Capacitor connected to lightbulb"
+  },
   "accessible.voltmeterToolbox": {
     "value": "Toolbox"
   },

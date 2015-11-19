@@ -20,6 +20,9 @@ define( function( require ) {
   var accessibleSwitchToBatteryString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToBattery' );
   var accessibleSwitchToCenterString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToCenter' );
   var accessibleSwitchToLightbulbString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToLightbulb' );
+  var accessibleCapacitorConnectedToBatteryString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitorConnectedToBattery' );
+  var accessibleCapacitorDisconnectedString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitorDisconnected' );
+  var accessibleCapacitorConnectedToLightbulbString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitorConnectedToLightbulb' );
 
   // constants
   var CONNECTION_POINT_RADIUS = 6;
@@ -53,6 +56,30 @@ define( function( require ) {
       thisNode.fill = DISCONNECTED_POINT_COLOR;
       thisNode.stroke = DISCONNECTED_POINT_STROKE;
     }
+    
+    var getAccessibleDescription = function() {
+      var description;
+      if ( connectionType === 'BATTERY_CONNECTED' ) {
+        description = accessibleSwitchToBatteryString;
+      }
+      else if ( connectionType === 'OPEN_CIRCUIT' ) {
+        description = accessibleSwitchToCenterString;
+      }
+      else {
+        description = accessibleSwitchToLightbulbString;
+      }
+      var currentConnection = circuitConnectionProperty.get();
+      if ( currentConnection === 'BATTERY_CONNECTED' ) {
+        description += ', ' + accessibleCapacitorConnectedToBatteryString;
+      }
+      else if ( currentConnection === 'OPEN_CIRCUIT' ) {
+        description += ', ' + accessibleCapacitorDisconnectedString;
+      }
+      else {
+        description += ', ' + accessibleCapacitorConnectedToLightbulbString;
+      }
+      return description;
+    };
 
     // link pin style properties to the circuit connection. Needs to be done in addition to the button listener so that
     // all connection points update when a single connection point is interacted with.
@@ -76,26 +103,23 @@ define( function( require ) {
     // add the accessible content
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
+        var trail = accessibleInstance.trail;
+        
         var domElement = document.createElement( 'input' );
-        if ( connectionType === 'BATTERY_CONNECTED' ) {
-          domElement.value = accessibleSwitchToBatteryString;
-        }
-        else if ( connectionType === 'OPEN_CIRCUIT' ) {
-          domElement.value = accessibleSwitchToCenterString;
-        }
-        else {
-          domElement.value = accessibleSwitchToLightbulbString;
-        }
+        domElement.value = getAccessibleDescription();
         domElement.type = 'button';
 
         domElement.tabIndex = '0';
+        domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.addEventListener( 'click', function() {
           circuitConnectionProperty.set( connectionType );
+          domElement.value = getAccessibleDescription();
         } );
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-        domElement.id = accessiblePeer.id;
+        domElement.id = 'connection-' + trail.getUniqueId();
+        thisNode.accessibleId = domElement.id;
         return accessiblePeer;
 
       }
