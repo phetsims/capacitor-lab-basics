@@ -22,6 +22,11 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var Input = require( 'SCENERY/input/Input' );
+  
+  // strings
+  var accessibleCapacitanceCircuitString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitanceCircuit' );
 
   /**
    * Constructor for a CircuitNode.
@@ -81,9 +86,6 @@ define( function( require ) {
     this.addChild( capacitorNode );
     this.addChild( this.topWireNode );
     this.addChild( this.circuitSwitchNodes[ 0 ] );
-    /*this.circuitSwitchNodes.forEach( function( circuitSwitchNode ) {
-      thisNode.addChild( circuitSwitchNode );
-    } );*/
     this.addChild( this.batteryTopCurrentIndicatorNode );
     this.addChild( this.batteryBottomCurrentIndicatorNode );
     this.addChild( plateSeparationDragHandleNode );
@@ -119,6 +121,79 @@ define( function( require ) {
       thisNode.batteryTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
       thisNode.batteryBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
     } );
+    
+    // return array of all accessible content in circuit
+    var getAccessibleIds = function() {
+      var accessibleIds = [];
+      accessibleIds.push( thisNode.batteryNode.accessibleId );
+      thisNode.circuitSwitchNodes.forEach( function( switchNode ) {
+        switchNode.getAccessibleIds().forEach( function( id ) {
+          accessibleIds.push( id );
+        } );
+      } );
+      accessibleIds.push( plateSeparationDragHandleNode.accessibleId );
+      accessibleIds.push( plateAreaDragHandleNode.accessibleId );
+      return accessibleIds;
+    };
+    
+    var setTabIndex = function( tabIndex ) {
+      getAccessibleIds().forEach( function( id ) {
+        var domElement = document.getElementById( id );
+        if ( domElement !== null ) {
+          domElement.tabIndex = tabIndex;
+        }
+      } );
+    };
+    
+    // add the accessible content
+    this.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+        var trail = accessibleInstance.trail;
+        var domElement = document.createElement( 'div' );
+        
+        var description = document.createElement( 'p' );
+        description.innerText = accessibleCapacitanceCircuitString;
+        domElement.appendChild( description );
+        
+        domElement.setAttribute( 'aria-describedby', accessibleCapacitanceCircuitString );
+        domElement.setAttribute( 'aria-live', 'polite' );
+
+        domElement.tabIndex = '0';
+        
+        domElement.addEventListener( 'keydown', function( event ) {
+          var keyCode = event.keyCode;
+          var firstElem;
+          if ( keyCode === Input.KEY_ENTER ) {
+            setTabIndex( '0' );
+            firstElem = document.getElementById( thisNode.batteryNode.accessibleId );
+            firstElem.focus();
+          }
+          else if ( keyCode === Input.KEY_ESCAPE ) {
+            domElement.focus();
+            setTabIndex( '-1' );
+          }
+          else if ( keyCode === Input.KEY_TAB ) {
+            var switchIds = thisNode.circuitSwitchNodes[ 1 ].getAccessibleIds();
+            var lastElem = document.getElementById( switchIds[ switchIds.length - 1 ] );
+            firstElem = document.getElementById( thisNode.batteryNode.accessibleId );
+            if ( document.activeElement === lastElem && !event.shiftKey ) {
+              event.preventDefault();
+              firstElem.focus();
+            }
+            if ( document.activeElement === firstElem && event.shiftKey ) {
+              event.preventDefault();
+              lastElem.focus();
+            }
+          }
+        } );
+
+        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+        domElement.id = 'capacitanceCircuit-' + trail.getUniqueId();
+        thisNode.accessibleId = domElement.id;
+        return accessiblePeer;
+
+      }
+    };
 
   }
 

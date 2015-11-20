@@ -24,6 +24,11 @@ define( function( require ) {
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
   var SwitchNode = require( 'CAPACITOR_LAB_BASICS/common/view/SwitchNode' );
+  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var Input = require( 'SCENERY/input/Input' );
+  
+  // strings
+  var accessibleLightBulbCircuitString = require( 'string!CAPACITOR_LAB_BASICS/accessible.lightBulbCircuit' );
 
   /**
    * Constructor for a CircuitNode.
@@ -140,6 +145,79 @@ define( function( require ) {
     currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
       thisNode.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
+    
+    // return array of all accessible content in circuit
+    var getAccessibleIds = function() {
+      var accessibleIds = [];
+      accessibleIds.push( thisNode.batteryNode.accessibleId );
+      thisNode.circuitSwitchNodes.forEach( function( switchNode ) {
+        switchNode.getAccessibleIds().forEach( function( id ) {
+          accessibleIds.push( id );
+        } );
+      } );
+      accessibleIds.push( plateSeparationDragHandleNode.accessibleId );
+      accessibleIds.push( plateAreaDragHandleNode.accessibleId );
+      return accessibleIds;
+    };
+    
+    var setTabIndex = function( tabIndex ) {
+      getAccessibleIds().forEach( function( id ) {
+        var domElement = document.getElementById( id );
+        if ( domElement !== null ) {
+          domElement.tabIndex = tabIndex;
+        }
+      } );
+    };
+    
+    // add the accessible content
+    this.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+        var trail = accessibleInstance.trail;
+        var domElement = document.createElement( 'div' );
+        
+        var description = document.createElement( 'p' );
+        description.innerText = accessibleLightBulbCircuitString;
+        domElement.appendChild( description );
+        
+        domElement.setAttribute( 'aria-describedby', accessibleLightBulbCircuitString );
+        domElement.setAttribute( 'aria-live', 'polite' );
+
+        domElement.tabIndex = '0';
+        
+        domElement.addEventListener( 'keydown', function( event ) {
+          var keyCode = event.keyCode;
+          var firstElem;
+          if ( keyCode === Input.KEY_ENTER ) {
+            setTabIndex( '0' );
+            firstElem = document.getElementById( thisNode.batteryNode.accessibleId );
+            firstElem.focus();
+          }
+          else if ( keyCode === Input.KEY_ESCAPE ) {
+            domElement.focus();
+            setTabIndex( '-1' );
+          }
+          else if ( keyCode === Input.KEY_TAB ) {
+            var switchIds = thisNode.circuitSwitchNodes[ 1 ].getAccessibleIds();
+            var lastElem = document.getElementById( switchIds[ switchIds.length - 1 ] );
+            firstElem = document.getElementById( thisNode.batteryNode.accessibleId );
+            if ( document.activeElement === lastElem && !event.shiftKey ) {
+              event.preventDefault();
+              firstElem.focus();
+            }
+            if ( document.activeElement === firstElem && event.shiftKey ) {
+              event.preventDefault();
+              lastElem.focus();
+            }
+          }
+        } );
+
+        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+        domElement.id = 'lightBulbCircuit-' + trail.getUniqueId();
+        thisNode.accessibleId = domElement.id;
+        return accessiblePeer;
+
+      }
+    };
 
   }
 

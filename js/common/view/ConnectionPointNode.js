@@ -109,7 +109,7 @@ define( function( require ) {
         domElement.value = getAccessibleDescription();
         domElement.type = 'button';
 
-        domElement.tabIndex = '0';
+        domElement.tabIndex = '-1';
         domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.addEventListener( 'click', function() {

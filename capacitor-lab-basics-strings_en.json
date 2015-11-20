@@ -1,15 +1,15 @@
 {
   "accessible.batterySlider": {
-    "value": "Slider - battery voltage"
+    "value": "Slider - battery voltage. Use arrow keys to change voltage"
   },
   "accessible.batteryVoltage": {
     "value": "Voltage is {0} volts"
   },
   "accessible.plateAreaSlider": {
-    "value": "Slider - capacitor plate area"
+    "value": "Slider - capacitor plate area. Use arrow keys to change plate area"
   },
   "accessible.plateSeparationSlider": {
-    "value": "Slider - capacitor plate separation"
+    "value": "Slider - capacitor plate separation. Use arrow keys to change plate separation"
   },
   "accessible.switchToBattery": {
     "value": "Toggle - connect capacitor to battery"
@@ -30,7 +30,7 @@
     "value": "Capacitor connected to lightbulb"
   },
   "accessible.voltmeterToolbox": {
-    "value": "Toolbox"
+    "value": "Toolbox. Press enter to use voltmeter"
   },
   "accessible.voltmeterBody": {
     "value": "Voltmeter - measures voltage"
@@ -54,7 +54,7 @@
     "value": "Show graph of {0}. "
   },
   "accessible.graphPanel": {
-    "value": "Panel - bar graphs"
+    "value": "Panel - bar graphs. Press enter to interact with bar graphs"
   },
   "accessible.capacitanceGraph": {
     "value": "Capacitance is {0} picoFarads"
@@ -82,6 +82,12 @@
   },
   "accessible.lightBulbDark": {
     "value": "Light bulb is unlit"
+  },
+  "accessible.capacitanceCircuit": {
+    "value": "Circuit containing a battery and a capacitor. Press enter to interact with elements in circuit"
+  },
+  "accessible.lightBulbCircuit": {
+    "value": "Circuit containing a light bulb, a battery, and a capacitor. Press enter to interact with elements in circuit"
   },
   "keyDescriptions.tab": {
     "value": "Tab: Navigates through elements"

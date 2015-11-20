@@ -48,7 +48,8 @@ define( function( require ) {
   function BatteryNode( battery, voltageRange, accessibleId ) {
 
     Node.call( this );
-    this.accessibleId = accessibleId + '-battery';
+    var thisNode = this;
+    this.accessibleId = 'battery-' + accessibleId;
 
     // battery image, scaled to match model dimensions
     var imageNode = new Image( batteryUpImage, { scale: 0.30 } );
@@ -82,7 +83,7 @@ define( function( require ) {
           domElement.setAttribute( 'aria-describedby', accessibleBatterySliderString );
           domElement.setAttribute( 'aria-live', 'polite' );
 
-          domElement.tabIndex = '0';
+          domElement.tabIndex = '-1';
 
           domElement.addEventListener( 'keydown', function( event ) {
             var keyCode = event.keyCode;
@@ -100,7 +101,7 @@ define( function( require ) {
           } );
 
           var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-          domElement.id = accessibleId + '-battery';
+          domElement.id = thisNode.accessibleId;
           return accessiblePeer;
 
         }

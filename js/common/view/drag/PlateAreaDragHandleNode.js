@@ -64,6 +64,7 @@ define( function( require ) {
     arrowNode.addInputListener( new PlateAreaDragHandler( arrowNode, capacitor, modelViewTransform, valueRange ) );
     arrowNode.accessibleContent = {
       createPeer: function( accessibleInstance ) {
+        var trail = accessibleInstance.trail;
         var domElement = document.createElement( 'div' );
         
         var sliderDescription = document.createElement( 'p' );
@@ -79,7 +80,7 @@ define( function( require ) {
         domElement.setAttribute( 'aria-describedby', accessiblePlateAreaSliderString );
         domElement.setAttribute( 'aria-live', 'polite' );
 
-        domElement.tabIndex = '0';
+        domElement.tabIndex = '-1';
 
         domElement.addEventListener( 'keydown', function( event ) {
           var keyCode = event.keyCode;
@@ -95,7 +96,8 @@ define( function( require ) {
         } );
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-        domElement.id = accessiblePeer.id;
+        domElement.id = 'slider-' + trail.getUniqueId();
+        thisNode.accessibleId = domElement.id;
         return accessiblePeer;
 
       }

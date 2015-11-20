@@ -115,6 +115,7 @@ define( function( require ) {
     
     // accessible content
     var activeElement = document.activeElement;
+    var shiftKey = false;
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
 
@@ -132,12 +133,18 @@ define( function( require ) {
           }
           else if ( event.keyCode === Input.KEY_TAB || event.keyCode === Input.KEY_ESCAPE ) {
             if ( model.keyboardHelpVisibleProperty.get() ) {
-              var batteryElem = document.getElementById( capacitanceCircuitNode.batteryNode.accessibleId );
-              activeElement = activeElement === document.body ? batteryElem : activeElement;
+              if ( activeElement === document.body) {
+                activeElement = document.getElementById( capacitanceCircuitNode.accessibleId );
+                event.preventDefault();
+              }
+              if ( shiftKey ) {
+                event.preventDefault();
+              }
               activeElement.focus();
               model.keyboardHelpVisibleProperty.set( false );
             }
             activeElement = document.activeElement;
+            shiftKey = event.shiftKey;
           }
         } );
 

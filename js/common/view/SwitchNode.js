@@ -47,7 +47,7 @@ define( function( require ) {
     hingeNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint );
 
     // create connection points and clickable areas
-    var connectionPointNodes = [];
+    this.connectionPointNodes = [];
     var connectionListeners = [];
     circuitSwitch.connections.forEach( function( connection ) {
       // add the connection point node
@@ -58,7 +58,7 @@ define( function( require ) {
       var connectionAreaInputListener = new ConnectionAreaInputListener( connection, circuitSwitch.hingePoint.toVector2(),
         connectionPointNode, modelViewTransform, circuitSwitch.circuitConnectionProperty );
 
-      connectionPointNodes.push( connectionPointNode );
+      thisNode.connectionPointNodes.push( connectionPointNode );
       connectionListeners.push( connectionAreaInputListener );
     } );
 
@@ -79,13 +79,24 @@ define( function( require ) {
 
     // rendering order, important for behavior of click areas and drag handlers
     _.each( connectionListeners, function( connectionListener ) { thisNode.addChild( connectionListener ); } );
-    _.each( connectionPointNodes, function( connectionPointNode ) { thisNode.addChild( connectionPointNode ); } );
+    _.each( thisNode.connectionPointNodes, function( connectionPointNode ) { thisNode.addChild( connectionPointNode ); } );
     this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );
 
 
   }
 
-  return inherit( Node, SwitchNode );
+  return inherit( Node, SwitchNode, {
+    /**
+     * Return the accessible ids of all the connection point nodes
+     */
+    getAccessibleIds: function() {
+      var accessibleIds = [];
+      this.connectionPointNodes.forEach( function( node ) {
+        accessibleIds.push( node.accessibleId );
+      } );
+      return accessibleIds;
+    }
+  } );
 
 } );
