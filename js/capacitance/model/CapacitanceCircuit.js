@@ -25,6 +25,7 @@ define( function( require ) {
   var CapacitanceCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitanceCircuitSwitch' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Vector3 = require( 'DOT/Vector3' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // Create the single circuit switch for single circuit
   function createCircuitSwitch( config, numberOfCapacitors, circuitConnectionProperty ) {
@@ -71,6 +72,8 @@ define( function( require ) {
     this.capacitor = this.capacitors[ 0 ]; // @public
   }
 
+  capacitorLabBasics.register( 'CapacitanceCircuit', CapacitanceCircuit );
+  
   return inherit( ParallelCircuit, CapacitanceCircuit, {
 
     /**

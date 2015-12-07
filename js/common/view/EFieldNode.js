@@ -16,6 +16,7 @@ define( function( require ) {
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var ARROW_SIZE = new Dimension2( 10, 15 );
@@ -88,6 +89,8 @@ define( function( require ) {
       }
     } );
   }
+
+  capacitorLabBasics.register( 'EFieldNode', EFieldNode );
 
   return inherit( CanvasNode, EFieldNode, {
 

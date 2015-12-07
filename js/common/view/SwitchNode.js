@@ -18,6 +18,7 @@ define( function( require ) {
   var ConnectionAreaInputListener = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaInputListener' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
   var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor for a SwitchNode.
@@ -86,6 +87,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'SwitchNode', SwitchNode );
+  
   return inherit( Node, SwitchNode, {
     /**
      * Return the accessible ids of all the connection point nodes

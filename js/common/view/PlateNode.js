@@ -17,6 +17,7 @@ define( function( require ) {
   var PlateChargeNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateChargeNode' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Bounds3 = require( 'DOT/Bounds3' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   // capacitor plates
@@ -37,6 +38,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'PlateNode', PlateNode );
+  
   return inherit( BoxNode, PlateNode, {
 
     /**

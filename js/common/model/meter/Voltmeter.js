@@ -16,6 +16,7 @@ define( function( require ) {
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
@@ -77,6 +78,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'Voltmeter', Voltmeter );
+  
   return inherit( PropertySet, Voltmeter, {
 
     /**

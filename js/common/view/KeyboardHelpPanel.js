@@ -17,6 +17,7 @@ define( function( require ) {
   var VStrut = require( 'SCENERY/nodes/VStrut' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var PANEL_TITLE_FONT = new PhetFont( { weight: 'bold', size: 18 } );
@@ -111,5 +112,7 @@ define( function( require ) {
     
   }
 
+  capacitorLabBasics.register( 'KeyboardHelpPanel', KeyboardHelpPanel );
+  
   return inherit( Panel, KeyboardHelpPanel );
 } );

@@ -17,6 +17,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var WireShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/WireShapeCreator' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor for a Wire.
@@ -50,6 +51,8 @@ define( function( require ) {
     } );
   }
 
+  capacitorLabBasics.register( 'Wire', Wire );
+  
   return inherit( PropertySet, Wire, {
 
     /**

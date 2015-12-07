@@ -8,6 +8,8 @@
 define( function( require ) {
   'use strict';
 
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+
   var CircuitConnectionEnum = {
     BATTERY_CONNECTED: 'BATTERY_CONNECTED',
     LIGHT_BULB_CONNECTED: 'LIGHT_BULB_CONNECTED',
@@ -17,5 +19,7 @@ define( function( require ) {
   // verify that enum is immutable, without the runtime penalty in production code
   if ( assert ) { Object.freeze( CircuitConnectionEnum ); }
 
+  capacitorLabBasics.register( 'CircuitConnectionEnum', CircuitConnectionEnum );
+  
   return CircuitConnectionEnum;
 } );

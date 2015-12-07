@@ -28,6 +28,7 @@ define( function( require ) {
   var LinearFunction = require( 'DOT/LinearFunction' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // images
   var bulbBaseImage = require( 'image!CAPACITOR_LAB_BASICS/light-bulb-base.png' );
@@ -215,6 +216,8 @@ define( function( require ) {
     } );
   }
 
+  capacitorLabBasics.register( 'BulbNode', BulbNode );
+  
   return inherit( Node, BulbNode, {}, {
 
     /** Factory function to create a BulbNode.  This creates a node that is not linked to any model properties.

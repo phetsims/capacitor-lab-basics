@@ -20,6 +20,7 @@ define( function( require ) {
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Vector2 = require( 'DOT/Vector2' );
   var LinearFunction = require( 'DOT/LinearFunction' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   function PlateAreaDragHandler( dragNode, capacitor, modelViewTransform, valueRange ) {
 
@@ -47,6 +48,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'PlateAreaDragHandler', PlateAreaDragHandler );
+  
   return inherit( SimpleDragHandler, PlateAreaDragHandler, {
 
     /**

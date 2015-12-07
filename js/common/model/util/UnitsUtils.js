@@ -17,6 +17,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var MILLIMETERS_PER_METER = 1000;
@@ -27,6 +28,8 @@ define( function( require ) {
    */
   function UnitsUtils() {}
 
+  capacitorLabBasics.register( 'UnitsUtils', UnitsUtils );
+   
   return inherit( Object, UnitsUtils, {}, {
 
     /**

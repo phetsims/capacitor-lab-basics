@@ -16,6 +16,7 @@ define( function( require ) {
   var Input = require( 'SCENERY/input/Input' );
   var Node = require( 'SCENERY/nodes/Node' );
   var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // images
   var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
@@ -112,6 +113,8 @@ define( function( require ) {
     };
   }
 
+  capacitorLabBasics.register( 'VoltmeterProbeNode', VoltmeterProbeNode );
+  
   return inherit( Node, VoltmeterProbeNode, {
 
     /**

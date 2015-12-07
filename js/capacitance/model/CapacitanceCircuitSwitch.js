@@ -14,6 +14,7 @@ define( function( require ) {
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var SWITCH_ANGLE = Math.PI / 4;
@@ -31,6 +32,8 @@ define( function( require ) {
   function CapacitanceCircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty, connectionLocation ) {
     CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, connectionLocation );
   }
+
+  capacitorLabBasics.register( 'CapacitanceCircuitSwitch', CapacitanceCircuitSwitch );
 
   return inherit( CircuitSwitch, CapacitanceCircuitSwitch, {
 

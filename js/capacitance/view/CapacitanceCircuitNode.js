@@ -24,7 +24,8 @@ define( function( require ) {
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var Input = require( 'SCENERY/input/Input' );
-  
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+
   // strings
   var accessibleCapacitanceCircuitString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitanceCircuit' );
 
@@ -197,6 +198,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'CapacitanceCircuitNode', CapacitanceCircuitNode );
+  
   return inherit( Node, CapacitanceCircuitNode );
 
 } );

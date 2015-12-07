@@ -15,6 +15,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Screen = require( 'JOIST/Screen' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // strings
   var lightBulbTitleString = require( 'string!CAPACITOR_LAB_BASICS/lightBulb.title' );
@@ -35,5 +36,7 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'CapacitorLabBasicsLightBulbScreen', CapacitorLabBasicsLightBulbScreen );
+  
   return inherit( Screen, CapacitorLabBasicsLightBulbScreen );
 } );

@@ -19,6 +19,7 @@ define( function( require ) {
   var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
   var VStrut = require( 'SCENERY/nodes/VStrut' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var PANEL_TITLE_FONT = new PhetFont( { weight: 'bold', size: 18 } );
@@ -106,5 +107,7 @@ define( function( require ) {
     } );
   }
 
+  capacitorLabBasics.register( 'CapacitorLabBasicsViewControl', CapacitorLabBasicsViewControl );
+  
   return inherit( Panel, CapacitorLabBasicsViewControl );
 } );

@@ -16,6 +16,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var BoxShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BoxShapeCreator' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var LINE_WIDTH = 1;
@@ -61,6 +62,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'BoxNode', BoxNode );
+  
   return inherit( Node, BoxNode, {
 
     /**

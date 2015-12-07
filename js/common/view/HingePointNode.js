@@ -12,6 +12,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Circle = require( 'SCENERY/nodes/Circle' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var HINGE_POINT_RADIUS= 8;
@@ -39,6 +40,8 @@ define( function( require ) {
     this.addChild( new Circle( PIN_RADIUS, { fill: PIN_COLOR, center: this.center } ) );
   }
 
+  capacitorLabBasics.register( 'HingePointNode', HingePointNode );
+  
   return inherit( Circle, HingePointNode );
 
 } );

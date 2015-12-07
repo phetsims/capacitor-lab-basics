@@ -19,6 +19,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // strings
   var accessibleVoltmeterToolboxString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterToolbox' );
@@ -138,6 +139,8 @@ define( function( require ) {
     } );
 
   }
+
+  capacitorLabBasics.register( 'VoltmeterToolBoxPanel', VoltmeterToolBoxPanel );
 
   return inherit( Panel, VoltmeterToolBoxPanel );
 } );

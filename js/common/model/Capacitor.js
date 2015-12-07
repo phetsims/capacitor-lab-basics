@@ -28,6 +28,7 @@ define( function( require ) {
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var CapacitorShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/CapacitorShapeCreator' );
   var Bounds3 = require( 'DOT/Bounds3' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor for the Capacitor.
@@ -59,6 +60,8 @@ define( function( require ) {
       dielectricOffset: dielectricOffset // in meters, default is totally outside of capacitor plates.
     } );
   }
+
+  capacitorLabBasics.register( 'Capacitor', Capacitor );
 
   return inherit( PropertySet, Capacitor, {
 

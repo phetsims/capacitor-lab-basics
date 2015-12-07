@@ -17,6 +17,7 @@ define( function( require ) {
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor for the PlateSeparationDragHandler.  This is the drag handler for the capacitor plate separation
@@ -52,6 +53,8 @@ define( function( require ) {
       }
     } );
   }
+
+  capacitorLabBasics.register( 'PlateSeparationDragHandler', PlateSeparationDragHandler );
 
   return inherit( SimpleDragHandler, PlateSeparationDragHandler );
 } );

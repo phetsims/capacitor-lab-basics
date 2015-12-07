@@ -32,6 +32,7 @@ define( function( require ) {
   var WireLightBulbToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireLightBulbToCircuitSwitch' );
   var WireCapacitorToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireCapacitorToCircuitSwitch' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Function which creates circuit components for the parallel circuit.  The function is constructed so that
@@ -198,6 +199,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'ParallelCircuit', ParallelCircuit );
+  
   return inherit( AbstractCircuit, ParallelCircuit, {
 
     /**

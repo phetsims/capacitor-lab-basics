@@ -12,6 +12,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor for a BarMeter.
@@ -38,6 +39,7 @@ define( function( require ) {
     } );
   }
 
+  capacitorLabBasics.register( 'BarMeter', BarMeter );
   return inherit( PropertySet, BarMeter, {
 
     updateValue: function() {

@@ -15,6 +15,7 @@ define( function( require ) {
   var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   var Vector3 = require( 'DOT/Vector3' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constructor
   function CircuitConfig( options ) {
@@ -51,6 +52,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'CircuitConfig', CircuitConfig );
+  
   return inherit( Object, CircuitConfig );
 
 } );

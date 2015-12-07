@@ -25,6 +25,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   // endpoints for a vertical double-headed arrow, this will be rotated to point along the plate's pseudo-3D diagonal
@@ -145,6 +146,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'PlateAreaDragHandleNode', PlateAreaDragHandleNode );
+  
   return inherit( Node, PlateAreaDragHandleNode, {
 
     // synchronizes the value display with the model

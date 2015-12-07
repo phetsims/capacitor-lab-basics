@@ -13,6 +13,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor for a WireSegment.
@@ -25,6 +26,8 @@ define( function( require ) {
     } );
   }
 
+  capacitorLabBasics.register( 'WireSegment', WireSegment );
+  
   inherit( PropertySet, WireSegment, {
     cleanUp: function() {
       console.log( 'cleanUp must be implemented in subclasses.' );

@@ -16,6 +16,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var BatteryShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BatteryShapeCreator' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   // size of the associated image file, determined by visual inspection
@@ -65,6 +66,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'Battery', Battery );
+  
   return inherit( PropertySet, Battery, {
 
     /**

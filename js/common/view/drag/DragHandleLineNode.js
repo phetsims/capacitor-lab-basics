@@ -14,6 +14,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector2 = require( 'DOT/Vector2' );
   var Circle = require( 'SCENERY/nodes/Circle' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var DOT_COLOR = 'black';
@@ -46,6 +47,8 @@ define( function( require ) {
     }
   }
 
+  capacitorLabBasics.register( 'DragHandleLineNode', DragHandleLineNode );
+  
   return inherit( Node, DragHandleLineNode );
 
 } );

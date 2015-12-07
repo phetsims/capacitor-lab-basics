@@ -30,6 +30,7 @@ define( function( require ) {
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
   var CurrentIndicator = require( 'CAPACITOR_LAB_BASICS/common/model/CurrentIndicator' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor for the Single Capacitor Circuit.
@@ -71,6 +72,8 @@ define( function( require ) {
     } );
   }
 
+  capacitorLabBasics.register( 'LightBulbCircuit', LightBulbCircuit );
+  
   return inherit( ParallelCircuit, LightBulbCircuit, {
 
     reset: function() {

@@ -13,6 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Shape = require( 'KITE/Shape' );
   var LineStyles = require( 'KITE/util/LineStyles' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor for WireShapeCreator.
@@ -26,6 +27,8 @@ define( function( require ) {
     this.modelViewTransform = modelViewTransform;
   }
 
+  capacitorLabBasics.register( 'WireShapeCreator', WireShapeCreator );
+  
   return inherit( Object, WireShapeCreator, {
 
     /**
