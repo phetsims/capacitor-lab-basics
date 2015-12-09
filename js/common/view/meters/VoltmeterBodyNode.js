@@ -22,6 +22,7 @@ define( function( require ) {
   var Bounds2 = require( 'DOT/Bounds2' );
   var Util = require( 'DOT/Util' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // digital display
   //private static final NumberFormat DISPLAY_VALUE_FORMAT = new DefaultDecimalFormat( "0.00" );
@@ -145,6 +146,8 @@ define( function( require ) {
     };
   }
 
+  capacitorLabBasics.register( 'VoltmeterBodyNode', VoltmeterBodyNode );
+  
   return inherit( Node, VoltmeterBodyNode, {
 
     /**

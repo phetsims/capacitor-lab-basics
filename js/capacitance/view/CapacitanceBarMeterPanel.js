@@ -20,6 +20,7 @@ define( function( require ) {
   var Panel = require( 'SUN/Panel' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
   var Vector2 = require( 'DOT/Vector2' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var VALUE_FONT = new PhetFont( 15 );
@@ -73,6 +74,8 @@ define( function( require ) {
     } );
 
   }
+
+  capacitorLabBasics.register( 'CapacitanceBarMeterPanel', CapacitanceBarMeterPanel );
 
   return inherit( Panel, CapacitanceBarMeterPanel );
 

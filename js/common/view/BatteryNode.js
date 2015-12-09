@@ -24,6 +24,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Util = require( 'DOT/Util' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var LABEL_FONT = new PhetFont( 12 );
@@ -145,6 +146,8 @@ define( function( require ) {
       }
     } );
   }
+
+  capacitorLabBasics.register( 'BatteryNode', BatteryNode );
 
   return inherit( Node, BatteryNode, {} );
 

@@ -21,8 +21,12 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   function IGridSizeStrategy() {} // TODO: remove this interface?
+
+  capacitorLabBasics.register( 'IGridSizeStrategy', IGridSizeStrategy );
+  
   inherit( Object, IGridSizeStrategy, {
 
     /**
@@ -57,6 +61,8 @@ define( function( require ) {
    * @author Sam Reid
    */
   function CCKStrategyWithRounding() {}
+
+  capacitorLabBasics.register( 'CCKStrategyWithRounding', CCKStrategyWithRounding );
 
   inherit( Object, CCKStrategyWithRounding, {
     getGridSize: function( numberOfObjects, width, height ) {

@@ -13,6 +13,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var MAX_OPACITY = 0.75; // range is 0-1
@@ -43,6 +44,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'CurrentIndicator', CurrentIndicator );
+  
   return inherit( PropertySet, CurrentIndicator, {
 
     /**

@@ -14,6 +14,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Shape = require( 'KITE/Shape' );
   var Matrix3 = require( 'DOT/Matrix3' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor for a VoltmeterShapeCreator.
@@ -30,6 +31,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'VoltmeterShapeCreator', VoltmeterShapeCreator );
+  
   return inherit( Object, VoltmeterShapeCreator, {
 
     /**

@@ -23,6 +23,7 @@ define( function( require ) {
   var CapacitanceBarMeterPanel = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceBarMeterPanel' );
   var KeyboardHelpPanel = require( 'CAPACITOR_LAB_BASICS/common/view/KeyboardHelpPanel' );
   var Input = require( 'SCENERY/input/Input' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var DEBUG_SHAPES = false;
@@ -154,5 +155,7 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'CapacitanceScreenView', CapacitanceScreenView );
+  
   return inherit( ScreenView, CapacitanceScreenView );
 } );

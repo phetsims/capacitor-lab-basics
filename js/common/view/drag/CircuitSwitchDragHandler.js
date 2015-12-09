@@ -15,6 +15,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var BATTERY_CONNECTED_MIN_ANGLE = 3 * Math.PI / 4 - Math.PI / 8;
@@ -116,6 +117,8 @@ define( function( require ) {
     } );
   }
 
+  capacitorLabBasics.register( 'CircuitSwitchDragHandler', CircuitSwitchDragHandler );
+  
   return inherit( SimpleDragHandler, CircuitSwitchDragHandler );
 
 } );

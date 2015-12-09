@@ -15,6 +15,7 @@ define( function( require ) {
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var Property = require( 'AXON/Property' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var NORMAL_COLOR = 'rgb( 61, 179, 79 )';
@@ -58,6 +59,8 @@ define( function( require ) {
       }
     } ) );
   }
+
+  capacitorLabBasics.register( 'DragHandleArrowNode', DragHandleArrowNode );
 
   return inherit( ArrowNode, DragHandleArrowNode );
 } );

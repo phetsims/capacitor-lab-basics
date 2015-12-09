@@ -25,6 +25,7 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // strings
   var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
@@ -77,6 +78,8 @@ define( function( require ) {
     } );
 
   }
+
+  capacitorLabBasics.register( 'VoltmeterNode', VoltmeterNode );
 
   inherit( Node, VoltmeterNode, {}, {
 
@@ -164,6 +167,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'VoltmeterIconNode', VoltmeterIconNode );
+  
   inherit( Node, VoltmeterIconNode );
 
   return VoltmeterNode;

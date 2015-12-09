@@ -16,6 +16,7 @@ define( function( require ) {
   var CurrentIndicator = require( 'CAPACITOR_LAB_BASICS/common/model/CurrentIndicator' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor for the AbstractCircuit.
@@ -129,6 +130,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'AbstractCircuit', AbstractCircuit );
+  
   return inherit( PropertySet, AbstractCircuit, {
 
     /**

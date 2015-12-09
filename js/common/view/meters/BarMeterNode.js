@@ -25,6 +25,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var BASE_LINE_LENGTH = 25;
@@ -144,6 +145,8 @@ define( function( require ) {
     };
   }
 
+  capacitorLabBasics.register( 'BarMeterNode', BarMeterNode );
+  
   inherit( Node, BarMeterNode, {
 
     /**

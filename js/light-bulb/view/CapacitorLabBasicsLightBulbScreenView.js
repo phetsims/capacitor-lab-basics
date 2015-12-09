@@ -22,7 +22,8 @@ define( function( require ) {
   var KeyboardHelpPanel = require( 'CAPACITOR_LAB_BASICS/common/view/KeyboardHelpPanel' );
   var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
   var Input = require( 'SCENERY/input/Input' );
-  
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+    
   // strings
   var lightBulbDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/lightBulb.description' );
 
@@ -128,5 +129,7 @@ define( function( require ) {
     };
   }
 
+  capacitorLabBasics.register( 'CapacitorLabBasicsLightBulbScreenView', CapacitorLabBasicsLightBulbScreenView );
+  
   return inherit( ScreenView, CapacitorLabBasicsLightBulbScreenView );
 } );

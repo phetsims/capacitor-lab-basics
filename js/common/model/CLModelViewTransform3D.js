@@ -24,9 +24,10 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
-   * Constructor for the CLModelViewTransform.
+   * Constructor for the CLModelViewTransform3D.
    *
    * @param {Object} [options]
    * @constructor
@@ -48,6 +49,8 @@ define( function( require ) {
     this.yaw = options.yaw;
 
   }
+
+  capacitorLabBasics.register( 'CLModelViewTransform3D', CLModelViewTransform3D );
 
   return inherit( Object, CLModelViewTransform3D, {
 

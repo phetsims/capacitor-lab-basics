@@ -25,7 +25,8 @@ define( function( require ) {
   var Color = require( 'SCENERY/util/Color' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var Util = require( 'DOT/Util' );
-  
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+
   // strings
   var accessibleCurrentFlowingString = require( 'string!CAPACITOR_LAB_BASICS/accessible.currentFlowing' );
   var accessibleCurrentOffString = require( 'string!CAPACITOR_LAB_BASICS/accessible.currentOff' );
@@ -134,5 +135,7 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'CurrentIndicatorNode', CurrentIndicatorNode );
+  
   return inherit( Node, CurrentIndicatorNode );
 } );

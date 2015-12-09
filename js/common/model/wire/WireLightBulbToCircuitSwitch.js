@@ -14,6 +14,7 @@ define( function( require ) {
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor.
@@ -41,6 +42,8 @@ define( function( require ) {
     Wire.call( this, modelViewTransform, thickness, segments, connectionPoint );
 
   }
+
+  capacitorLabBasics.register( 'WireLightBulbToCircuitSwitch', WireLightBulbToCircuitSwitch );
 
   return inherit( Wire, WireLightBulbToCircuitSwitch, {
     /**

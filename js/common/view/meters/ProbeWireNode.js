@@ -15,6 +15,7 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
   var Vector2 = require( 'DOT/Vector2' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor.
@@ -57,6 +58,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'ProbeWireNode', ProbeWireNode );
+  
   return inherit( Path, ProbeWireNode, {
 
     /**

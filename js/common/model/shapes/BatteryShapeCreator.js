@@ -15,6 +15,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var Rectangle = require( 'DOT/Rectangle' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor for a BatteryShapeCreator.
@@ -27,6 +28,8 @@ define( function( require ) {
     this.modelViewTransform = modelViewTransform; // @private
   }
 
+  capacitorLabBasics.register( 'BatteryShapeCreator', BatteryShapeCreator );
+  
   return inherit( Object, BatteryShapeCreator, {
 
     /**

@@ -23,6 +23,7 @@ define( function( require ) {
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CapacitorLabBasicsModel = require( 'CAPACITOR_LAB_BASICS/common/model/CapacitorLabBasicsModel' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   // Circuit
@@ -80,6 +81,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'CapacitorLabBasicsLightBulbModel', CapacitorLabBasicsLightBulbModel );
+  
   return inherit( CapacitorLabBasicsModel, CapacitorLabBasicsLightBulbModel, {
 
     /**

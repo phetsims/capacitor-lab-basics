@@ -24,6 +24,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   // endpoints for vertical double-headed arrow
@@ -142,6 +143,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'PlateSeparationDragHandleNode', PlateSeparationDragHandleNode );
+  
   return inherit( Node, PlateSeparationDragHandleNode, {
 
     /**

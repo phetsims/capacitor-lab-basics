@@ -26,7 +26,8 @@ define( function( require ) {
   var SwitchNode = require( 'CAPACITOR_LAB_BASICS/common/view/SwitchNode' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var Input = require( 'SCENERY/input/Input' );
-  
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+    
   // strings
   var accessibleLightBulbCircuitString = require( 'string!CAPACITOR_LAB_BASICS/accessible.lightBulbCircuit' );
 
@@ -221,6 +222,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'LightBulbCircuitNode', LightBulbCircuitNode );
+  
   return inherit( Node, LightBulbCircuitNode, {
 
     // Updates the circuit components and controls to match the state of the battery connection.

@@ -14,6 +14,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector3 = require( 'DOT/Vector3' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var BULB_BASE_SIZE = new Dimension2( 0.0030, 0.001425 );
@@ -32,6 +33,9 @@ define( function( require ) {
     this.resistance = resistance;
 
   }
+
+  capacitorLabBasics.register( 'LightBulb', LightBulb );
+  
   return inherit( Object, LightBulb, {
 
     /**

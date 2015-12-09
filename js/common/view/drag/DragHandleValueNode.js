@@ -19,6 +19,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   var SubSupText = require( 'SCENERY_PHET/SubSupText' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var LABEL_FONT = new PhetFont( { weight: 'bold', size: 12 } );
@@ -55,6 +56,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'DragHandleValueNode', DragHandleValueNode );
+  
   return inherit( Node, DragHandleValueNode, {
 
     /**

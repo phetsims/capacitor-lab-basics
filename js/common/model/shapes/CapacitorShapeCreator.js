@@ -15,7 +15,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var BoxShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BoxShapeCreator' );
   var Rectangle = require( 'DOT/Rectangle' );
-
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  
   /**
    * Constructor for a CapacitorShapeCreator.
    *
@@ -29,6 +30,7 @@ define( function( require ) {
     this.boxShapeCreator = new BoxShapeCreator( modelViewTransform );
   }
 
+  capacitorLabBasics.register( 'CapacitorShapeCreator', CapacitorShapeCreator );
 
   return inherit( Object, CapacitorShapeCreator, {
 

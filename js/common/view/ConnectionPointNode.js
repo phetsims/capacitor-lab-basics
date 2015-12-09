@@ -15,6 +15,7 @@ define( function( require ) {
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // strings
   var accessibleSwitchToBatteryString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToBattery' );
@@ -126,6 +127,8 @@ define( function( require ) {
     };
   }
 
+  capacitorLabBasics.register( 'ConnectionPointNode', ConnectionPointNode );
+  
   return inherit( Circle, ConnectionPointNode, {} );
 
 } );

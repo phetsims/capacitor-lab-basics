@@ -16,6 +16,7 @@ define( function( require ) {
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var PropertySet = require( 'AXON/PropertySet' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var SWITCH_ANGLE = Math.PI / 4;
@@ -58,6 +59,8 @@ define( function( require ) {
     } );
 
   }
+
+  capacitorLabBasics.register( 'CircuitSwitch', CircuitSwitch );
 
   return inherit( PropertySet, CircuitSwitch, {
 

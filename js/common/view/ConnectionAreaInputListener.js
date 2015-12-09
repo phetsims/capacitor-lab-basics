@@ -17,6 +17,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var DEBUG = false; // shows the rectangular bounding area
@@ -81,6 +82,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'ConnectionAreaInputListener', ConnectionAreaInputListener );
+  
   return inherit( Node, ConnectionAreaInputListener );
 
 } );

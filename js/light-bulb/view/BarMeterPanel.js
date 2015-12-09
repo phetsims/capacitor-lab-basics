@@ -24,6 +24,7 @@ define( function( require ) {
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var Input = require( 'SCENERY/input/Input' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var CHECKBOX_VERTICAL_SPACING = 28;
@@ -180,6 +181,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'BarMeterPanel', BarMeterPanel );
+  
   return inherit( Panel, BarMeterPanel );
 
 } );

@@ -13,11 +13,12 @@ define( function( require ) {
   var Range = require( 'DOT/Range' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var PLATE_WIDTH_RANGE = new Range( 0.01, 0.02, 0.01 ); // meters
 
-  return {
+  var CLConstants = {
 
     //----------------------------------------------------------------------------
     // Model
@@ -140,4 +141,8 @@ define( function( require ) {
     METER_PANEL_FILL: 'rgb( 255, 245, 237)'
 
   };
+
+  capacitorLabBasics.register( 'CLConstants', CLConstants );
+
+  return CLConstants;
 } );

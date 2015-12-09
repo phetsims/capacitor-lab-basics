@@ -13,6 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   var WIRE_LINE_WIDTH = 2;
@@ -53,6 +54,8 @@ define( function( require ) {
     } );
 
   }
+
+  capacitorLabBasics.register( 'WireNode', WireNode );
 
   return inherit( Node, WireNode );
 } );
