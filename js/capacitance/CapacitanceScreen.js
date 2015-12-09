@@ -30,7 +30,7 @@ define( function( require ) {
     Screen.call( this, capacitanceTitleString, icon,
       function() { return new CapacitanceModel( new CLModelViewTransform3D() ); },
       function( model ) { return new CapacitanceScreenView( model ); },
-      { backgroundColor: 'rgb( 151, 208, 255 )' }
+      { backgroundColor: 'rgb( 194, 227, 255 )' }
     );
 
   }
