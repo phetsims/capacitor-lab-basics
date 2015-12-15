@@ -89,6 +89,22 @@
   "accessible.lightBulbCircuit": {
     "value": "Circuit containing a light bulb, a battery, and a capacitor. Press enter to interact with elements in circuit"
   },
+  "screen.capacitanceLabel": {
+    "value": "The Scene for the Capacitance screen of Capacitor Lab: Basics",
+    "visible": false
+  },  
+  "screen.capacitanceDescription": {
+    "value": "A capacitor, represented by two rectangular plates, is in a circuit with a battery. The battery is to the left and the capacitor to the right. There are switches above and below the capacitor to connect and disconnect it from the battery. It is currently connected. There is a graph labeled Capacitance above the circuit. There is a control panel that controls the visibility of the charges on the capacitor plate, the bar graph, the electric field, and the current.  All but the electric field is currently visible. There is a toolbox containing a voltmeter, which measures voltage. Select Tab for next item, and enter to go inside groups of items. Select H for keyboard help.",
+    "visible": false
+  },
+  "screen.lightBulbLabel": {
+    "value": "The Scene for the Lightbulb screen of Capacitor Lab: Basics",
+    "visible": false
+  },
+  "screen.lightBulbDescription": {
+    "value": "A capacitor, represented by two rectangular plates, is in a circuit with a battery and a light bulb. The battery is to the left of the capacitor, and the light bulb is to the right. There are switches above and below the capacitor to connect and disconnect it from the battery and the light bulb. It is currently connected to the battery. There is a panel of graphs above the circuit.  The graphs are labeled Capacitance, Plate Charge, and Stored Energy. There is a control panel that controls the visibility of the charges on the capacitor plate, the bar graph, the electric field, and the current.  All but the electric field is currently visible. There is a toolbox containing a voltmeter, which measures voltage. Select Tab for next item, and enter to go inside groups of items. Select H for keyboard help.",
+    "visible": false
+  }, 
   "keyDescriptions.tab": {
     "value": "Tab: Navigates through elements"
   },

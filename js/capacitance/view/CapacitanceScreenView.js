@@ -29,7 +29,8 @@ define( function( require ) {
   var DEBUG_SHAPES = false;
   
   // strings
-  var capacitanceDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/capacitance.description' );
+  var screenCapacitanceLabelString = require( 'string!CAPACITOR_LAB_BASICS/screen.capacitanceLabel' );
+  var screenCapacitanceDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/screen.capacitanceDescription' );
 
   /**
    * @param {CapacitorLabBasicsModel} model
@@ -38,7 +39,8 @@ define( function( require ) {
   function CapacitanceScreenView( model ) {
 
     ScreenView.call( this, {
-      screenDescription: capacitanceDescriptionString
+      screenDescription: screenCapacitanceDescriptionString,
+      screenLabel: screenCapacitanceLabelString
     } );
 
     this.modelViewTransform = model.modelViewTransform;

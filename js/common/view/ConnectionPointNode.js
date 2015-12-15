@@ -86,6 +86,10 @@ define( function( require ) {
     // all connection points update when a single connection point is interacted with.
     circuitConnectionProperty.link( function( circuitConnection ) {
       resetPinColors();
+      var domElement = document.getElementById( thisNode.accessibleId );
+      if ( domElement !== null ) {
+        domElement.value = getAccessibleDescription();
+      }
     } );
 
     // Add input listener to set circuit state.
@@ -111,11 +115,12 @@ define( function( require ) {
         domElement.type = 'button';
 
         domElement.tabIndex = '-1';
-        domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.addEventListener( 'click', function() {
           circuitConnectionProperty.set( connectionType );
+          domElement.setAttribute( 'aria-live', 'polite' );
           domElement.value = getAccessibleDescription();
+          domElement.setAttribute( 'aria-live', 'off' );
         } );
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
