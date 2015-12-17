@@ -38,10 +38,7 @@ define( function( require ) {
    */
   function CapacitanceScreenView( model ) {
 
-    ScreenView.call( this, {
-      screenDescription: screenCapacitanceDescriptionString,
-      screenLabel: screenCapacitanceLabelString
-    } );
+    ScreenView.call( this );
 
     this.modelViewTransform = model.modelViewTransform;
 
@@ -123,7 +120,7 @@ define( function( require ) {
       createPeer: function( accessibleInstance ) {
 
         // generate the 'supertype peer' for the ScreenView in the parallel DOM.
-        var accessiblePeer = ScreenView.ScreenViewAccessiblePeer( accessibleInstance );
+        var accessiblePeer = ScreenView.ScreenViewAccessiblePeer( accessibleInstance, screenCapacitanceDescriptionString, screenCapacitanceLabelString );
 
         // add a global event listener to all children of this screen view, bubbles through all children
         accessiblePeer.domElement.addEventListener( 'keydown', function( event ) {
