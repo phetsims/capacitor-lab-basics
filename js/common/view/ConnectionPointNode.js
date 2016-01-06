@@ -21,9 +21,6 @@ define( function( require ) {
   var accessibleSwitchToBatteryString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToBattery' );
   var accessibleSwitchToCenterString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToCenter' );
   var accessibleSwitchToLightbulbString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToLightbulb' );
-  var accessibleCapacitorConnectedToBatteryString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitorConnectedToBattery' );
-  var accessibleCapacitorDisconnectedString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitorDisconnected' );
-  var accessibleCapacitorConnectedToLightbulbString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitorConnectedToLightbulb' );
 
   // constants
   var CONNECTION_POINT_RADIUS = 6;
@@ -59,27 +56,15 @@ define( function( require ) {
     }
     
     var getAccessibleDescription = function() {
-      var description;
       if ( connectionType === 'BATTERY_CONNECTED' ) {
-        description = accessibleSwitchToBatteryString;
+        return accessibleSwitchToBatteryString;
       }
       else if ( connectionType === 'OPEN_CIRCUIT' ) {
-        description = accessibleSwitchToCenterString;
+        return accessibleSwitchToCenterString;
       }
       else {
-        description = accessibleSwitchToLightbulbString;
+        return accessibleSwitchToLightbulbString;
       }
-      var currentConnection = circuitConnectionProperty.get();
-      if ( currentConnection === 'BATTERY_CONNECTED' ) {
-        description += ', ' + accessibleCapacitorConnectedToBatteryString;
-      }
-      else if ( currentConnection === 'OPEN_CIRCUIT' ) {
-        description += ', ' + accessibleCapacitorDisconnectedString;
-      }
-      else {
-        description += ', ' + accessibleCapacitorConnectedToLightbulbString;
-      }
-      return description;
     };
 
     // link pin style properties to the circuit connection. Needs to be done in addition to the button listener so that
@@ -118,9 +103,6 @@ define( function( require ) {
 
         domElement.addEventListener( 'click', function() {
           circuitConnectionProperty.set( connectionType );
-          domElement.setAttribute( 'aria-live', 'polite' );
-          domElement.value = getAccessibleDescription();
-          domElement.setAttribute( 'aria-live', 'off' );
         } );
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );

@@ -38,6 +38,8 @@ define( function( require ) {
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
   var accessibleBatteryVoltageString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batteryVoltage' );
   var accessibleBatterySliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batterySlider' );
+  var accessibleBatteryString = require( 'string!CAPACITOR_LAB_BASICS/accessible.battery' );
+  var accessibleBatteryDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batteryDescription' );
 
   /**
    * Constructor for a BatteryNode.
@@ -51,6 +53,35 @@ define( function( require ) {
     Node.call( this );
     var thisNode = this;
     this.accessibleId = 'battery-' + accessibleId;
+    
+    // add the accessible content
+    this.accessibleContent = {
+      createPeer: function( accessibleInstance ) {
+        var trail = accessibleInstance.trail;
+        // battery-widget
+        var domElement = document.createElement( 'div' );
+        
+        var label = document.createElement( 'h4' );
+        label.innerText = accessibleBatteryString;
+        label.id = 'battery-label-' + accessibleId;
+        domElement.appendChild( label );
+        
+        var description = document.createElement( 'p' );
+        description.innerText = accessibleBatteryDescriptionString;
+        description.id = 'battery-description-' + accessibleId;
+        domElement.appendChild( description );
+        
+        domElement.setAttribute( 'aria-describedby', description.id );
+        domElement.setAttribute( 'aria-labeledby', label.id );
+
+        domElement.tabIndex = '-1';
+
+        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+        domElement.id = 'battery-' + trail.getUniqueId();
+        return accessiblePeer;
+
+      }
+    };
 
     // battery image, scaled to match model dimensions
     var imageNode = new Image( batteryUpImage, { scale: 0.30 } );

@@ -83,23 +83,26 @@ define( function( require ) {
       createPeer: function( accessibleInstance ) {
         var trail = accessibleInstance.trail;
         
-        var domElement = document.createElement( 'div' );
+        var domElement = document.createElement( 'section' );
         domElement.id = 'help-' + trail.getUniqueId();
         thisNode.accessibleId = domElement.id;
         
-        var title = document.createElement( 'h1' );
+        var title = document.createElement( 'h3' );
         title.innerHTML = keyDescriptionsTitleString;
         domElement.appendChild( title );
         title.id = keyDescriptionsTitleString;
         
+        var helpDescription = document.createElement( 'div' );
+        helpDescription.id = 'help-description-' + trail.getUniqueId();
         strings.forEach( function( s ) {
           var description = document.createElement( 'p' );
           description.innerHTML = s;
-          domElement.appendChild( description );
-          description.id = s;
+          helpDescription.appendChild( description );
         } );
+        domElement.appendChild( helpDescription );
         
-        domElement.setAttribute( 'aria-describedby', keyDescriptionsTitleString );
+        domElement.setAttribute( 'aria-labeledby', keyDescriptionsTitleString );
+        domElement.setAttribute( 'aria-describedby', helpDescription.id );
         domElement.tabIndex = '-1';
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );

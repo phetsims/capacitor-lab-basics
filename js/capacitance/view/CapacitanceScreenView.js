@@ -22,6 +22,7 @@ define( function( require ) {
   var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
   var CapacitanceBarMeterPanel = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceBarMeterPanel' );
   var KeyboardHelpPanel = require( 'CAPACITOR_LAB_BASICS/common/view/KeyboardHelpPanel' );
+  var PlayAreaNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlayAreaNode' );
   var Input = require( 'SCENERY/input/Input' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -31,6 +32,8 @@ define( function( require ) {
   // strings
   var screenCapacitanceLabelString = require( 'string!CAPACITOR_LAB_BASICS/screen.capacitanceLabel' );
   var screenCapacitanceDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/screen.capacitanceDescription' );
+  var accessiblePlayAreaLabelString = require( 'string!CAPACITOR_LAB_BASICS/accessible.playAreaLabel' );
+  var accessibleCapacitancePlayAreaDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitancePlayAreaDescription' );
 
   /**
    * @param {CapacitorLabBasicsModel} model
@@ -89,13 +92,19 @@ define( function( require ) {
         model.voltmeterVisibleProperty.set( false );
       }
     } );
+    
+    var playAreaNode = new PlayAreaNode( accessiblePlayAreaLabelString, accessibleCapacitancePlayAreaDescriptionString );
+    playAreaNode.addChild( capacitanceCircuitNode );
+    playAreaNode.addChild( voltmeterToolBoxPanel );
+    playAreaNode.addChild( voltmeterNode );
 
     // rendering order
-    this.addChild( capacitanceCircuitNode );
+    //this.addChild( capacitanceCircuitNode );
+    this.addChild( playAreaNode );
     this.addChild( capacitanceBarMeterPanel );
     this.addChild( capacitanceViewControl );
-    this.addChild( voltmeterToolBoxPanel );
-    this.addChild( voltmeterNode );
+    //this.addChild( voltmeterToolBoxPanel );
+    //this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
     this.addChild( keyboardHelpPanel );
 

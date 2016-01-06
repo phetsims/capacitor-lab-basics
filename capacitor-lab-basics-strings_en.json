@@ -5,6 +5,18 @@
   "accessible.batteryVoltage": {
     "value": "Voltage is {0} volts"
   },
+  "accessible.battery": {
+    "value": "Battery"
+  },
+  "accessible.batteryDescription": {
+    "value": "The battery has a slider on it that controls voltage"
+  },
+  "accessible.capacitor": {
+    "value": "Capacitor"
+  },
+  "accessible.capacitorDescription": {
+    "value": "The capacitor is represented by two rectangular plates, one on top of the other, separated by a small space.  It has a slider above it that controls the separation of the plates, and a slider next to it that controls the area of the plates"
+  },
   "accessible.plateAreaSlider": {
     "value": "Slider - capacitor plate area. Use arrow keys to change plate area"
   },
@@ -29,11 +41,41 @@
   "accessible.capacitorConnectedToLightbulb": {
     "value": "Capacitor connected to lightbulb"
   },
+  "accessible.switchLabel": {
+    "value": "Circuit switches"
+  },
+  "accessible.switchDescription": {
+    "value": "The circuit has two switches, above and below the capacitor, that connect and disconnect the capacitor from the battery."
+  },
+  "accessible.viewControlLabel": {
+    "value": "View control panel"
+  },
+  "accessible.viewControlDescription": {
+    "value": "The view panel controls the visibility of the capacitor plate charges, the bar graphs, the electric field, and the current."
+  },
+  "accessible.playAreaLabel": {
+    "value": "Play Area"
+  },
+  "accessible.capacitancePlayAreaDescription": {
+    "value": "Place to play with a capacitor in a circuit with a battery."
+  },
+  "accessible.lightBulbPlayAreaDescription": {
+    "value": "Place to play with a capacitor that can be in a circuit with a battery or a light bulb."
+  },
   "accessible.voltmeterToolbox": {
-    "value": "Toolbox. Press enter to use voltmeter"
+    "value": "Toolbox"
+  },
+  "accessible.voltmeterToolboxDescription": {
+    "value": "The toolbox contains a voltmeter, which measures voltage.  Press enter to use the voltmeter."
+  },
+  "accessible.voltmeterDescription": {
+    "value": "Press enter to use the voltmeter"
   },
   "accessible.voltmeterBody": {
     "value": "Voltmeter - measures voltage"
+  },
+  "accessible.voltmeterBodyDescription": {
+    "value": "The voltmeter has two probes, one red and one black, connected to the body of the voltmeter with wires.  The body of the voltmeter displays the voltage measured by the probes"
   },
   "accessible.voltmeterValue": {
     "value": "Measured voltage is {0} volts"
@@ -54,7 +96,10 @@
     "value": "Show graph of {0}. "
   },
   "accessible.graphPanel": {
-    "value": "Panel - bar graphs. Press enter to interact with bar graphs"
+    "value": "The panel contains bar graphs. Press enter to interact with bar graphs"
+  },
+  "accessible.graphPanelLabel": {
+    "value": "Graph Panel"
   },
   "accessible.capacitanceGraph": {
     "value": "Capacitance is {0} picoFarads"
@@ -64,6 +109,15 @@
   },
   "accessible.energyGraph": {
     "value": "Stored energy is {0} picoJoules"
+  },
+  "accessible.capacitanceGraphDescription": {
+    "value": "The bar graph of capacitance measures the capacitance of the capacitor"
+  },
+  "accessible.chargeGraphDescription": {
+    "value": "The bar graph of plate charge measures the charges on the top plate of the capacitor"
+  },
+  "accessible.energyGraphDescription": {
+    "value": "The bar graph of stored energy measures the energy stored in the capacitor"
   },
   "accessible.currentFlowing": {
     "value": "Current is flowing"
@@ -83,18 +137,21 @@
   "accessible.lightBulbDark": {
     "value": "Light bulb is unlit"
   },
+  "accessible.circuit": {
+    "value": "Circuit"
+  },
   "accessible.capacitanceCircuit": {
-    "value": "Circuit containing a battery and a capacitor. Press enter to interact with elements in circuit"
+    "value": "The circuit contains a battery and a capacitor. Press enter to interact with elements in circuit"
   },
   "accessible.lightBulbCircuit": {
-    "value": "Circuit containing a light bulb, a battery, and a capacitor. Press enter to interact with elements in circuit"
+    "value": "The circuit contains a light bulb, a battery, and a capacitor. Press enter to interact with elements in circuit"
   },
   "screen.capacitanceLabel": {
     "value": "The Scene for the Capacitance screen of Capacitor Lab: Basics",
     "visible": false
   },  
   "screen.capacitanceDescription": {
-    "value": "A capacitor, represented by two rectangular plates, is in a circuit with a battery. The battery is to the left and the capacitor to the right. There are switches above and below the capacitor to connect and disconnect it from the battery. It is currently connected. There is a graph labeled Capacitance above the circuit. There is a control panel that controls the visibility of the charges on the capacitor plate, the bar graph, the electric field, and the current.  All but the electric field is currently visible. There is a toolbox containing a voltmeter, which measures voltage. Select Tab for next item, and enter to go inside groups of items. Select H for keyboard help.",
+    "value": "A capacitor, represented by two rectangular plates, is in a circuit with a battery. The battery is to the left and the capacitor to the right. There are switches above and below the capacitor to connect and disconnect it from the battery. It is currently connected. There is a graph labeled Capacitance above the circuit. There is a control panel that controls the visibility of the charges on the capacitor plate, the bar graph, the electric field, and the current.  All but the electric field is currently visible. There is a toolbox containing a voltmeter, which measures voltage. Select Tab for next item, and enter to go inside groups of items. Select ? for keyboard help.",
     "visible": false
   },
   "screen.lightBulbLabel": {
@@ -102,7 +159,7 @@
     "visible": false
   },
   "screen.lightBulbDescription": {
-    "value": "A capacitor, represented by two rectangular plates, is in a circuit with a battery and a light bulb. The battery is to the left of the capacitor, and the light bulb is to the right. There are switches above and below the capacitor to connect and disconnect it from the battery and the light bulb. It is currently connected to the battery. There is a panel of graphs above the circuit.  The graphs are labeled Capacitance, Plate Charge, and Stored Energy. There is a control panel that controls the visibility of the charges on the capacitor plate, the bar graph, the electric field, and the current.  All but the electric field is currently visible. There is a toolbox containing a voltmeter, which measures voltage. Select Tab for next item, and enter to go inside groups of items. Select H for keyboard help.",
+    "value": "A capacitor, represented by two rectangular plates, is in a circuit with a battery and a light bulb. The battery is to the left of the capacitor, and the light bulb is to the right. There are switches above and below the capacitor to connect and disconnect it from the battery and the light bulb. It is currently connected to the battery. There is a panel of graphs above the circuit.  The graphs are labeled Capacitance, Plate Charge, and Stored Energy. There is a control panel that controls the visibility of the charges on the capacitor plate, the bar graph, the electric field, and the current.  All but the electric field is currently visible. There is a toolbox containing a voltmeter, which measures voltage. Select Tab for next item, and enter to go inside groups of items. Select ? for keyboard help.",
     "visible": false
   }, 
   "keyDescriptions.tab": {

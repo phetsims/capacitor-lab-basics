@@ -50,6 +50,9 @@ define( function( require ) {
   var accessibleCapacitanceGraphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitanceGraph' );
   var accessibleChargeGraphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.chargeGraph' );
   var accessibleEnergyGraphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.energyGraph' );
+  var accessibleCapacitanceGraphDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitanceGraphDescription' );
+  var accessibleChargeGraphDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.chargeGraphDescription' );
+  var accessibleEnergyGraphDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.energyGraphDescription' );
   var accessibleGraphString = require( 'string!CAPACITOR_LAB_BASICS/accessible.graph' );
 
   /**
@@ -60,11 +63,12 @@ define( function( require ) {
    * @param {number} exponent - used to set the scale for the meter graph
    * @param {string} unitsString - string representing units
    * @param {string} titleString - title string for the bar graph
-   * @param {string} descriptionString - description for aria
+   * @param {string} descriptionString - description of graph for aria
+   * @param {string} valueDescriptionString - description of value of graph for aria
    * @param {string} tabIndex - tab index for accessibility
    * @constructor
    */
-  function BarMeterNode( meter, barColor, exponent, unitsString, titleString, descriptionString, tabIndex ) {
+  function BarMeterNode( meter, barColor, exponent, unitsString, titleString, descriptionString, valueDescriptionString, tabIndex ) {
 
     var thisNode = this;
 
@@ -119,20 +123,27 @@ define( function( require ) {
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var trail = accessibleInstance.trail;
+        // graph-widget
         var domElement = document.createElement( 'div' );
         
+        var graphLabel = document.createElement( 'h3' );
+        graphLabel.innerText = StringUtils.format( accessibleGraphString, titleString );
+        graphLabel.id = graphLabel.innerText;
+        
         var graphDescription = document.createElement( 'p' );
-        graphDescription.innerText = StringUtils.format( accessibleGraphString, titleString );
+        graphDescription.innerText = descriptionString;
+        graphDescription.id = descriptionString;
         
         var valueDescription = document.createElement( 'p' );
         var meterValue = Util.toFixed( Math.pow( 10, 12 ) * meter.value, 2 );
-        valueDescription.innerText = StringUtils.format( descriptionString, meterValue );
+        valueDescription.innerText = StringUtils.format( valueDescriptionString, meterValue );
+        valueDescription.setAttribute( 'aria-live', 'polite' );
         
-        domElement.appendChild( graphDescription );
+        domElement.appendChild( graphLabel );
         domElement.appendChild( valueDescription );
         
-        domElement.setAttribute( 'aria-describedby', StringUtils.format( accessibleGraphString, titleString ) );
-        domElement.setAttribute( 'aria-live', 'polite' );
+        domElement.setAttribute( 'aria-labeledby', graphLabel.id );
+        domElement.setAttribute( 'aria-describedby', graphDescription.id );
 
         domElement.tabIndex = tabIndex;
 
@@ -220,7 +231,7 @@ define( function( require ) {
      * @constructor
      */
     CapacitanceBarMeterNode: function( meter, tabIndex ) {
-      return new BarMeterNode( meter, CLConstants.CAPACITANCE_COLOR, CLConstants.CAPACITANCE_METER_VALUE_EXPONENT, unitsPicoFaradsString, capacitanceString, accessibleCapacitanceGraphString, tabIndex );
+      return new BarMeterNode( meter, CLConstants.CAPACITANCE_COLOR, CLConstants.CAPACITANCE_METER_VALUE_EXPONENT, unitsPicoFaradsString, capacitanceString, accessibleCapacitanceGraphDescriptionString, accessibleCapacitanceGraphString, tabIndex );
     },
     /**
      * Factory constructor for a CapacitanceMeterNode.
@@ -240,7 +251,7 @@ define( function( require ) {
      * @constructor
      */
     StoredEnergyBarMeterNode: function( meter, tabIndex ) {
-      return new BarMeterNode( meter, CLConstants.STORED_ENERGY_COLOR, CLConstants.STORED_ENERGY_METER_VALUE_EXPONENT, unitsPicoJoulesString, storedEnergyString, accessibleEnergyGraphString, tabIndex );
+      return new BarMeterNode( meter, CLConstants.STORED_ENERGY_COLOR, CLConstants.STORED_ENERGY_METER_VALUE_EXPONENT, unitsPicoJoulesString, storedEnergyString, accessibleEnergyGraphDescriptionString, accessibleEnergyGraphString, tabIndex );
     }
   } );
 
@@ -295,7 +306,7 @@ define( function( require ) {
    * @constructor
    */
   function PlateChargeBarMeterNode( meter, tabIndex ) {
-    BarMeterNode.call( this, meter, CLConstants.POSITIVE_CHARGE_COLOR, CLConstants.PLATE_CHARGE_METER_VALUE_EXPONENT, unitsPicoCoulombsString, plateChargeString, accessibleChargeGraphString, tabIndex );
+    BarMeterNode.call( this, meter, CLConstants.POSITIVE_CHARGE_COLOR, CLConstants.PLATE_CHARGE_METER_VALUE_EXPONENT, unitsPicoCoulombsString, plateChargeString, accessibleChargeGraphDescriptionString, accessibleChargeGraphString, tabIndex );
   }
 
   inherit( BarMeterNode, PlateChargeBarMeterNode, {

@@ -28,6 +28,7 @@ define( function( require ) {
 
   // strings
   var accessibleCapacitanceCircuitString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitanceCircuit' );
+  var accessibleCircuitString = require( 'string!CAPACITOR_LAB_BASICS/accessible.circuit' );
 
   /**
    * Constructor for a CircuitNode.
@@ -69,8 +70,10 @@ define( function( require ) {
 
     // switches
     this.circuitSwitchNodes = [];
+    var isLive = true;
     circuit.circuitSwitches.forEach( function( circuitSwitch ) {
-      thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, modelViewTransform ) );
+      thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, isLive, modelViewTransform ) );
+      isLive = false;
     } );
 
     // drag handles
@@ -150,13 +153,21 @@ define( function( require ) {
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var trail = accessibleInstance.trail;
+        // circuit-widget
         var domElement = document.createElement( 'div' );
+        
+        var label = document.createElement( 'h3' );
+        label.innerText = accessibleCircuitString;
+        label.id = 'capacitance-circuit-label';
+        domElement.appendChild( label );
         
         var description = document.createElement( 'p' );
         description.innerText = accessibleCapacitanceCircuitString;
+        description.id = 'capacitance-circuit-description';
         domElement.appendChild( description );
         
-        domElement.setAttribute( 'aria-describedby', accessibleCapacitanceCircuitString );
+        domElement.setAttribute( 'aria-describedby', description.id );
+        domElement.setAttribute( 'aria-labeledby', label.id );
         domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.tabIndex = '0';

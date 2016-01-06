@@ -37,6 +37,7 @@ define( function( require ) {
   var plateChargeString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge' );
   var accessibleGraphCheckboxString = require( 'string!CAPACITOR_LAB_BASICS/accessible.graphCheckbox' );
   var accessibleGraphPanelString = require( 'string!CAPACITOR_LAB_BASICS/accessible.graphPanel' );
+  var accessibleGraphPanelLabelString = require( 'string!CAPACITOR_LAB_BASICS/accessible.graphPanelLabel' );
 
   /**
    * Constructor.
@@ -117,12 +118,19 @@ define( function( require ) {
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var domElement = document.createElement( 'div' );
+        
+        var label = document.createElement( 'h2' );
+        label.innerText = accessibleGraphPanelLabelString;
+        label.id = accessibleGraphPanelLabelString;
+        domElement.appendChild( label );
 
         var description = document.createElement( 'p' );
         description.innerText = accessibleGraphPanelString;
+        description.id = accessibleGraphPanelString;
         domElement.appendChild( description );
 
         domElement.setAttribute( 'aria-describedby', accessibleGraphPanelString );
+        domElement.setAttribute( 'aria-labeledby', accessibleGraphPanelLabelString );
 
         domElement.tabIndex = '0';
 

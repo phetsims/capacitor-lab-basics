@@ -23,6 +23,8 @@ define( function( require ) {
 
   // strings
   var accessibleVoltmeterToolboxString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterToolbox' );
+  var accessibleVoltmeterToolboxDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterToolboxDescription' );
+  var accessibleVoltmeterDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterDescription' );
 
   /**
    *
@@ -92,9 +94,28 @@ define( function( require ) {
       fill: CLConstants.METER_PANEL_FILL,
       accessibleContent: {
         createPeer: function( accessibleInstance ) {
+          var trail = accessibleInstance.trail;
+          var topElement = document.createElement( 'div' );
+          
+          var label = document.createElement( 'h3' );
+          label.innerText = accessibleVoltmeterToolboxString;
+          label.id = 'toolbox-label-' + trail.getUniqueId();
+          topElement.appendChild( label );
+          
+          var description = document.createElement( 'p' );
+          description.innerText = accessibleVoltmeterToolboxDescriptionString;
+          description.id = 'toolbox-description-' + trail.getUniqueId();
+          topElement.appendChild( description );
+          
+          topElement.setAttribute( 'aria-describedby', description.id );
+          topElement.setAttribute( 'aria-labeledby', label.id );
+          
+          topElement.tabIndex = '-1';
+          
           var domElement = document.createElement( 'input' );
-          domElement.value = accessibleVoltmeterToolboxString;
+          domElement.value = accessibleVoltmeterDescriptionString;
           domElement.type = 'button';
+          topElement.appendChild( domElement );
 
           domElement.tabIndex = '0';
 
@@ -107,16 +128,13 @@ define( function( require ) {
               tab = '-1';
             }
             // add the voltmeter to the tab order.
-            //var bodyElement = document.getElementsByClassName( 'VoltmeterBody' )[ 0 ];
             var bodyElementId = thisToolBoxPanel.voltmeterNode.bodyNode.accessibleVoltmeterBodyId;
             var bodyElement = document.getElementById( bodyElementId );
             bodyElement.tabIndex = tab;
 
             var redProbeId = thisToolBoxPanel.voltmeterNode.positiveProbeNode.accessibleProbeId;
             var redProbe = document.getElementById( redProbeId );
-            //var redProbe = document.getElementsByClassName( 'RedProbe' )[ 0 ];
             redProbe.tabIndex = tab;
-            //var blackProbe = document.getElementsByClassName( 'BlackProbe' )[ 0 ];
             var blackProbeId = thisToolBoxPanel.voltmeterNode.negativeProbeNode.accessibleProbeId;
             var blackProbe = document.getElementById( blackProbeId );
             blackProbe.tabIndex = tab;
@@ -127,7 +145,8 @@ define( function( require ) {
             }
           } );
 
-          var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
+          var accessiblePeer = new AccessiblePeer( accessibleInstance, topElement );
+          topElement.id = accessiblePeer.id + '-description';
           domElement.id = accessiblePeer.id;
           return accessiblePeer;
         }
