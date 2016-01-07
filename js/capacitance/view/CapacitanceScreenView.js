@@ -91,17 +91,17 @@ define( function( require ) {
     } );
     
     var playAreaNode = new PlayAreaNode( accessiblePlayAreaLabelString, accessibleCapacitancePlayAreaDescriptionString );
-    playAreaNode.addChild( capacitanceCircuitNode );
-    playAreaNode.addChild( voltmeterToolBoxPanel );
-    playAreaNode.addChild( voltmeterNode );
+    // this.addChild( capacitanceCircuitNode );
+    // this.addChild( voltmeterToolBoxPanel );
+    // this.addChild( voltmeterNode );
 
-    // rendering order
-    //this.addChild( capacitanceCircuitNode );
+    // rendering order - ensure that the playAreaHeading node is at the top
     this.addChild( playAreaNode );
+    this.addChild( capacitanceCircuitNode );
     this.addChild( capacitanceBarMeterPanel );
     this.addChild( capacitanceViewControl );
-    //this.addChild( voltmeterToolBoxPanel );
-    //this.addChild( voltmeterNode );
+    this.addChild( voltmeterToolBoxPanel );
+    this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
     this.addChild( keyboardHelpPanel );
 
