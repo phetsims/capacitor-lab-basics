@@ -77,12 +77,12 @@ define( function( require ) {
           var trail = accessibleInstance.trail;
           
           var label = document.createElement( 'h4' );
-          label.innerText = accessibleViewControlLabelString;
+          label.textContent = accessibleViewControlLabelString;
           label.id = 'viewControlLabel' + trail.getUniqueId();
           domElement.appendChild( label );
   
           var description = document.createElement( 'p' );
-          description.innerText = accessibleViewControlDescriptionString;
+          description.textContent = accessibleViewControlDescriptionString;
           description.id = 'viewControlDescription' + trail.getUniqueId();
           domElement.appendChild( description );
   

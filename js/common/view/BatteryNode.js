@@ -62,12 +62,12 @@ define( function( require ) {
         var domElement = document.createElement( 'div' );
         
         var label = document.createElement( 'h4' );
-        label.innerText = accessibleBatteryString;
+        label.textContent = accessibleBatteryString;
         label.id = 'battery-label-' + accessibleId;
         domElement.appendChild( label );
         
         var description = document.createElement( 'p' );
-        description.innerText = accessibleBatteryDescriptionString;
+        description.textContent = accessibleBatteryDescriptionString;
         description.id = 'battery-description-' + accessibleId;
         domElement.appendChild( description );
         
@@ -103,13 +103,13 @@ define( function( require ) {
           var domElement = document.createElement( 'div' );
           
           var sliderDescription = document.createElement( 'p' );
-          sliderDescription.innerText = accessibleBatterySliderString;
+          sliderDescription.textContent = accessibleBatterySliderString;
           domElement.appendChild( sliderDescription );
           sliderDescription.id = accessibleBatterySliderString;
           
           var voltageDescription = document.createElement( 'p' );
           var voltageValue = Util.toFixed( battery.voltageProperty.get(), 2 );
-          voltageDescription.innerText = StringUtils.format( accessibleBatteryVoltageString, voltageValue );
+          voltageDescription.textContent = StringUtils.format( accessibleBatteryVoltageString, voltageValue );
           domElement.appendChild( voltageDescription );
           
           domElement.setAttribute( 'aria-describedby', accessibleBatterySliderString );
@@ -128,7 +128,7 @@ define( function( require ) {
                                                       voltageRange.min,
                                                       voltageRange.max ) );
               var voltageValue = Util.toFixed( battery.voltageProperty.get(), 2 );
-              voltageDescription.innerText = StringUtils.format( accessibleBatteryVoltageString, voltageValue );
+              voltageDescription.textContent = StringUtils.format( accessibleBatteryVoltageString, voltageValue );
             }
           } );
 

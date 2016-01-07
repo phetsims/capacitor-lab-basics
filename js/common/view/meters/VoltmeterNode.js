@@ -88,12 +88,12 @@ define( function( require ) {
         var domElement = document.createElement( 'div' );
         
         var label = document.createElement( 'h4' );
-        label.innerText = accessibleVoltmeterBodyString;
+        label.textContent = accessibleVoltmeterBodyString;
         label.id = 'voltmeter-label-' + trail.getUniqueId();
         domElement.appendChild( label );
         
         var description = document.createElement( 'p' );
-        description.innerText = accessibleVoltmeterBodyDescriptionString;
+        description.textContent = accessibleVoltmeterBodyDescriptionString;
         description.id = 'voltmeter-description-' + trail.getUniqueId();
         domElement.appendChild( description );
         

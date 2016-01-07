@@ -87,7 +87,7 @@ define( function( require ) {
       shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
       var liveElement = document.getElementById( thisNode.liveAccessibleId );
       if ( liveElement !== null ) {
-        liveElement.innerText = getAccessibleDescription();
+        liveElement.textContent = getAccessibleDescription();
       }
     } );
 
@@ -117,18 +117,18 @@ define( function( require ) {
         var trail = accessibleInstance.trail;
         
         var label = document.createElement( 'h4' );
-        label.innerText = accessibleSwitchLabelString;
+        label.textContent = accessibleSwitchLabelString;
         label.id = 'switchLabel' + trail.getUniqueId();
         domElement.appendChild( label );
 
         var description = document.createElement( 'p' );
-        description.innerText = accessibleSwitchDescriptionString;
+        description.textContent = accessibleSwitchDescriptionString;
         description.id = 'switchDescription' + trail.getUniqueId();
         domElement.appendChild( description );
         
         if ( isLiveRegion ) {
           var liveRegion = document.createElement( 'p' );
-          liveRegion.innerText = getAccessibleDescription();
+          liveRegion.textContent = getAccessibleDescription();
           liveRegion.setAttribute( 'aria-live', 'polite' );
           liveRegion.id = 'live-switch-' + trail.getUniqueId();
           thisNode.liveAccessibleId = liveRegion.id;

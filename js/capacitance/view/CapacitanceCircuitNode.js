@@ -157,12 +157,12 @@ define( function( require ) {
         var domElement = document.createElement( 'div' );
         
         var label = document.createElement( 'h3' );
-        label.innerText = accessibleCircuitString;
+        label.textContent = accessibleCircuitString;
         label.id = 'capacitance-circuit-label';
         domElement.appendChild( label );
         
         var description = document.createElement( 'p' );
-        description.innerText = accessibleCapacitanceCircuitString;
+        description.textContent = accessibleCapacitanceCircuitString;
         description.id = 'capacitance-circuit-description';
         domElement.appendChild( description );
         

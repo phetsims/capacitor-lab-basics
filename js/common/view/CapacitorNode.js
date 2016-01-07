@@ -74,12 +74,12 @@ define( function( require ) {
         var domElement = document.createElement( 'div' );
         
         var label = document.createElement( 'h4' );
-        label.innerText = accessibleCapacitorString;
+        label.textContent = accessibleCapacitorString;
         label.id = 'capacitor-label-' + trail.getUniqueId();
         domElement.appendChild( label );
         
         var description = document.createElement( 'p' );
-        description.innerText = accessibleCapacitorDescriptionString;
+        description.textContent = accessibleCapacitorDescriptionString;
         description.id = 'capacitor-description-' + trail.getUniqueId();
         domElement.appendChild( description );
         

@@ -157,7 +157,7 @@ define( function( require ) {
         var domElement = document.createElement( 'div' );
         
         var description = document.createElement( 'p' );
-        description.innerText = accessibleLightBulbDarkString;
+        description.textContent = accessibleLightBulbDarkString;
         description.id = ACCESSIBLE_ID;
         domElement.appendChild( description );
         
@@ -185,7 +185,7 @@ define( function( require ) {
         if ( targetScaleFactor < 0.1 ) {
           thisNode.bulb.haloNode.visible = false;
           if ( domElement ) {
-            domElement.innerText = accessibleLightBulbDarkString;
+            domElement.textContent = accessibleLightBulbDarkString;
           }
         }
         else {
@@ -193,7 +193,7 @@ define( function( require ) {
           var scale = targetScaleFactor / thisNode.bulb.haloNode.transform.matrix.scaleVector.x;
           thisNode.bulb.haloNode.scale( scale );
           if ( domElement ) {
-            domElement.innerText = accessibleLightBulbLitString;
+            domElement.textContent = accessibleLightBulbLitString;
           }
         }
       }

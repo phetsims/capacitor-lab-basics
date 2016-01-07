@@ -69,13 +69,13 @@ define( function( require ) {
         var domElement = document.createElement( 'div' );
         
         var sliderDescription = document.createElement( 'p' );
-        sliderDescription.innerText = accessiblePlateSeparationSliderString;
+        sliderDescription.textContent = accessiblePlateSeparationSliderString;
         domElement.appendChild( sliderDescription );
         sliderDescription.id = accessiblePlateSeparationSliderString;
         
         var valueDescription = document.createElement( 'p' );
         var millimeters = Util.toFixed( UnitsUtils.metersToMillimeters( capacitor.plateSeparation ), 1 );
-        valueDescription.innerText = StringUtils.format( accessiblePlateSeparationString, millimeters );
+        valueDescription.textContent = StringUtils.format( accessiblePlateSeparationString, millimeters );
         domElement.appendChild( valueDescription );
         
         domElement.setAttribute( 'aria-describedby', accessiblePlateSeparationSliderString );
@@ -94,7 +94,7 @@ define( function( require ) {
                                                   valueRange.max ) );
           
           var millimeters = Util.toFixed( UnitsUtils.metersToMillimeters( capacitor.plateSeparation ), 1 );
-          valueDescription.innerText = StringUtils.format( accessiblePlateSeparationString, millimeters );
+          valueDescription.textContent = StringUtils.format( accessiblePlateSeparationString, millimeters );
         } );
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );

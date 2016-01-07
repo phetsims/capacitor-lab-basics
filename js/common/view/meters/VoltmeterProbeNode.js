@@ -85,7 +85,7 @@ define( function( require ) {
         thisNode.accessibleProbeId = domElement.id;
 
         var description = document.createElement( 'p' );
-        description.innerText = descriptionString;
+        description.textContent = descriptionString;
         domElement.appendChild( description );
         description.id = descriptionString;
         domElement.setAttribute( 'aria-describedby', descriptionString );
@@ -97,12 +97,12 @@ define( function( require ) {
           if ( keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW ) {
             loc = loc <= 0 ? locs.length - 1 : loc - 1;
             locationProperty.set( locs[ loc ] );
-            description.innerText = strings[ loc ];
+            description.textContent = strings[ loc ];
           }
           else if ( keyCode === Input.KEY_RIGHT_ARROW || keyCode === Input.KEY_UP_ARROW ) {
             loc = ( loc + 1 ) % locs.length;
             locationProperty.set( locs[ loc ] );
-            description.innerText = strings[ loc ];
+            description.textContent = strings[ loc ];
           }
         } );
 

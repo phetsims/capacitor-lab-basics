@@ -127,12 +127,12 @@ define( function( require ) {
         thisNode.accessibleVoltmeterBodyId = domElement.id;
 
         var bodyDescription = document.createElement( 'p' );
-        bodyDescription.innerText = accessibleVoltmeterBodyString;
+        bodyDescription.textContent = accessibleVoltmeterBodyString;
         domElement.appendChild( bodyDescription );
         bodyDescription.id = accessibleVoltmeterBodyString;
         
         var voltageDescription = document.createElement( 'p' );
-        voltageDescription.innerText = accessibleVoltmeterUnknownValueString;
+        voltageDescription.textContent = accessibleVoltmeterUnknownValueString;
         domElement.appendChild( voltageDescription );
         
         domElement.setAttribute( 'aria-describedby', StringUtils.format( accessibleVoltmeterBodyString, voltmeter.value ) );
@@ -163,7 +163,7 @@ define( function( require ) {
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, voltsUnknownString, unitsVoltsString ) );
         if ( domElement !== null ) {
           description = domElement.childNodes[1];
-          description.innerText = accessibleVoltmeterUnknownValueString;
+          description.textContent = accessibleVoltmeterUnknownValueString;
         }
       }
       else {
@@ -171,7 +171,7 @@ define( function( require ) {
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, fixedValue, unitsVoltsString ) );
         if ( domElement !== null ) {
           description = domElement.childNodes[1];
-          description.innerText = StringUtils.format( accessibleVoltmeterValueString, fixedValue );
+          description.textContent = StringUtils.format( accessibleVoltmeterValueString, fixedValue );
         }
       }
       //valueText.center = this.center;

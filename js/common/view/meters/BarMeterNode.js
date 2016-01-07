@@ -127,16 +127,16 @@ define( function( require ) {
         var domElement = document.createElement( 'div' );
         
         var graphLabel = document.createElement( 'h3' );
-        graphLabel.innerText = StringUtils.format( accessibleGraphString, titleString );
-        graphLabel.id = graphLabel.innerText;
+        graphLabel.textContent = StringUtils.format( accessibleGraphString, titleString );
+        graphLabel.id = graphLabel.textContent;
         
         var graphDescription = document.createElement( 'p' );
-        graphDescription.innerText = descriptionString;
+        graphDescription.textContent = descriptionString;
         graphDescription.id = descriptionString;
         
         var valueDescription = document.createElement( 'p' );
         var meterValue = Util.toFixed( Math.pow( 10, 12 ) * meter.value, 2 );
-        valueDescription.innerText = StringUtils.format( valueDescriptionString, meterValue );
+        valueDescription.textContent = StringUtils.format( valueDescriptionString, meterValue );
         valueDescription.setAttribute( 'aria-live', 'polite' );
         
         domElement.appendChild( graphLabel );
@@ -196,7 +196,7 @@ define( function( require ) {
         if ( domElement && this.visible ) {
           var meterString = StringUtils.format( this.descriptionString, meterValue );
           var paragraph = domElement.childNodes[1];
-          paragraph.innerText = meterString;
+          paragraph.textContent = meterString;
         }
 
         // layout

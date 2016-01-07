@@ -98,12 +98,12 @@ define( function( require ) {
           var topElement = document.createElement( 'div' );
           
           var label = document.createElement( 'h3' );
-          label.innerText = accessibleVoltmeterToolboxString;
+          label.textContent = accessibleVoltmeterToolboxString;
           label.id = 'toolbox-label-' + trail.getUniqueId();
           topElement.appendChild( label );
           
           var description = document.createElement( 'p' );
-          description.innerText = accessibleVoltmeterToolboxDescriptionString;
+          description.textContent = accessibleVoltmeterToolboxDescriptionString;
           description.id = 'toolbox-description-' + trail.getUniqueId();
           topElement.appendChild( description );
           

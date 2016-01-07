@@ -120,12 +120,12 @@ define( function( require ) {
         var domElement = document.createElement( 'div' );
         
         var label = document.createElement( 'h2' );
-        label.innerText = accessibleGraphPanelLabelString;
+        label.textContent = accessibleGraphPanelLabelString;
         label.id = accessibleGraphPanelLabelString;
         domElement.appendChild( label );
 
         var description = document.createElement( 'p' );
-        description.innerText = accessibleGraphPanelString;
+        description.textContent = accessibleGraphPanelString;
         description.id = accessibleGraphPanelString;
         domElement.appendChild( description );
 

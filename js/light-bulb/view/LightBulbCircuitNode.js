@@ -179,14 +179,15 @@ define( function( require ) {
         var trail = accessibleInstance.trail;
         // circuit-widget
         var domElement = document.createElement( 'div' );
-        
+        domElement.setAttribute( 'role', 'application' );
+
         var label = document.createElement( 'h3' );
-        label.innerText = accessibleCircuitString;
+        label.textContent = accessibleCircuitString;
         label.id = 'lightbulb-circuit-label';
         domElement.appendChild( label );
         
         var description = document.createElement( 'p' );
-        description.innerText = accessibleLightBulbCircuitString;
+        description.textContent = accessibleLightBulbCircuitString;
         description.id = 'lightbulb-circuit-description';
         domElement.appendChild( description );
         

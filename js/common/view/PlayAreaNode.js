@@ -30,12 +30,12 @@ define( function( require ) {
         var trail = accessibleInstance.trail;
         
         var label = document.createElement( 'h2' );
-        label.innerText = accessibleLabelString;
+        label.textContent = accessibleLabelString;
         label.id = 'playAreaLabel' + trail.getUniqueId();
         domElement.appendChild( label );
 
         var description = document.createElement( 'p' );
-        description.innerText = accessibleDescriptionString;
+        description.textContent = accessibleDescriptionString;
         description.id = 'playAreaDescription' + trail.getUniqueId();
         domElement.appendChild( description );
 

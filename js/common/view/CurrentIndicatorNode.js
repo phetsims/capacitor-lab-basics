@@ -106,7 +106,7 @@ define( function( require ) {
         domElement.className = 'CurrentIndicator';
 
         var description = document.createElement( 'p' );
-        description.innerText = accessibleCurrentOffString;
+        description.textContent = accessibleCurrentOffString;
         domElement.appendChild( description );
         
         domElement.setAttribute( 'aria-live', 'polite' );
@@ -127,8 +127,8 @@ define( function( require ) {
       if ( domElement && thisNode.visible === true && Util.toFixedNumber(thisNode.rotation, 0) === 0 ) {
         var description = domElement.firstChild;
         var string = thisNode.opacity === 0 ? accessibleCurrentOffString : accessibleCurrentFlowingString;
-        if ( description.innerText !== string ) {
-          description.innerText = string;
+        if ( description.textContent !== string ) {
+          description.textContent = string;
         }
       }
     } );
