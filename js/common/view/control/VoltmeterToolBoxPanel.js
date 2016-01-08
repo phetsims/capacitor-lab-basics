@@ -43,25 +43,28 @@ define( function( require ) {
     var voltmeterIconNode = VoltmeterNode.VoltmeterIconNode();
 
     var toolBoxDragHandler = new SimpleDragHandler( {
-      parentScreen: null, // needed for coordinate transforms
+      parentScreenView: null, // needed for coordinate transforms
       modelViewTransform: modelViewTransform,
       start: function( event ) {
         // pull the voltmeter out of the toolbox
         inUserControlProperty.set( true );
         voltmeterVisibleProperty.set( true );
 
-        // find the root parent screenView
-        var testNode = thisToolBoxPanel;
-        while ( testNode !== null ) {
-          if ( testNode instanceof ScreenView ) {
-            this.parentScreen = testNode;
-            break;
+        if ( !this.parentScreenView ) {
+          // find the root parent screenView
+          var testNode = thisToolBoxPanel;
+          while ( testNode !== null ) {
+            if ( testNode instanceof ScreenView ) {
+              this.parentScreenView = testNode;
+              break;
+            }
+            testNode = testNode.parents[ 0 ]; // Move up the scene graph by one level
           }
-          testNode = testNode.parents[ 0 ]; // Move up the scene graph by one level
+          assert && assert( this.parentScreenView, 'unable to find parent screen view' );
         }
 
         // initial position of the pointer in the screenView coordinates
-        var initialPosition = this.parentScreen.globalToLocalPoint( event.pointer.point );
+        var initialPosition = this.parentScreenView.globalToLocalPoint( event.pointer.point );
 
         // make sure that the center of the voltmeter body is offset for the
         var offsetPosition = new Vector2( -voltmeterNode.bodyNode.width / 2, -voltmeterNode.bodyNode.height / 2 );
@@ -96,22 +99,22 @@ define( function( require ) {
         createPeer: function( accessibleInstance ) {
           var trail = accessibleInstance.trail;
           var topElement = document.createElement( 'div' );
-          
+
           var label = document.createElement( 'h3' );
           label.textContent = accessibleVoltmeterToolboxString;
           label.id = 'toolbox-label-' + trail.getUniqueId();
           topElement.appendChild( label );
-          
+
           var description = document.createElement( 'p' );
           description.textContent = accessibleVoltmeterToolboxDescriptionString;
           description.id = 'toolbox-description-' + trail.getUniqueId();
           topElement.appendChild( description );
-          
+
           topElement.setAttribute( 'aria-describedby', description.id );
           topElement.setAttribute( 'aria-labeledby', label.id );
-          
+
           topElement.tabIndex = '-1';
-          
+
           var domElement = document.createElement( 'input' );
           domElement.value = accessibleVoltmeterDescriptionString;
           domElement.type = 'button';
