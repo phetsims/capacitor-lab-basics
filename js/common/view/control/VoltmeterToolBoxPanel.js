@@ -43,9 +43,12 @@ define( function( require ) {
     var voltmeterIconNode = VoltmeterNode.VoltmeterIconNode();
 
     var toolBoxDragHandler = new SimpleDragHandler( {
+
       parentScreenView: null, // needed for coordinate transforms
       modelViewTransform: modelViewTransform,
+
       start: function( event ) {
+
         // pull the voltmeter out of the toolbox
         inUserControlProperty.set( true );
         voltmeterVisibleProperty.set( true );
@@ -72,7 +75,6 @@ define( function( require ) {
         // position of the  electricPotential sensor in ScreenView coordinates
         var voltmeterBodyPosition = initialPosition.plus( offsetPosition );
         voltmeterNode.bodyNode.bodyLocationProperty.set( modelViewTransform.viewToModelPosition( voltmeterBodyPosition ) );
-
       },
 
       end: function( event ) {
