@@ -147,6 +147,13 @@ define( function( require ) {
 
         domElement.tabIndex = tabIndex;
 
+        // link the accessible description to the property
+        meter.valueProperty.link( function( value ) {
+          var descriptionValue = Util.toFixed( Math.pow( 10, 12 ) * value, 2 );
+          var meterString = StringUtils.format( valueDescriptionString, descriptionValue );
+          valueDescription.textContent = meterString;
+        } );
+
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
         domElement.id = 'meter-' + trail.getUniqueId();
         thisNode.accessibleId = domElement.id;
@@ -191,13 +198,6 @@ define( function( require ) {
         var meterValue = Util.toFixed( Math.pow( 10, 12 ) * this.meter.value, 2 );
         var unitsFormatString = StringUtils.format( pattern0Value1UnitsString, meterValue, this.unitsString );
         this.valueNode.setText( unitsFormatString );
-        
-        var domElement = document.getElementById( this.accessibleId );
-        if ( domElement && this.visible ) {
-          var meterString = StringUtils.format( this.descriptionString, meterValue );
-          var paragraph = domElement.childNodes[1];
-          paragraph.textContent = meterString;
-        }
 
         // layout
         this.updateLayout;
