@@ -35,7 +35,7 @@ define( function( require ) {
     },
     // TODO: This should be removed for production deployment.
     // disable home screen for accessibility testing.
-    showHomeScreen: false,
+    showHomeScreen: false
   };
 
   // Appending '?dev' to the URL will enable developer-only features.
