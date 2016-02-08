@@ -32,7 +32,10 @@ define( function( require ) {
       qualityAssurance: '',
       graphicArts: '',
       thanks: ''
-    }
+    },
+    // TODO: This should be removed for production deployment.
+    // disable home screen for accessibility testing.
+    showHomeScreen: false,
   };
 
   // Appending '?dev' to the URL will enable developer-only features.
