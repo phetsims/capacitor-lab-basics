@@ -1,31 +1,31 @@
 {
-  "comment": "# capacitor-lab-basics 1.0.0-dev.13 Fri Jan 08 2016 13:59:39 GMT-0700 (Mountain Standard Time)",
+  "comment": "# capacitor-lab-basics 1.0.0-dev.14 Mon Feb 08 2016 10:54:04 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "d4909677d27ed571d5d859d709a0612bf7811db8",
     "branch": "master"
   },
   "axon": {
-    "sha": "5a39ec570a6b10c5e632599c903bacd0d8d2d075",
+    "sha": "a669ea6a848da3f28adc7dbc57020c740d885fd5",
     "branch": "master"
   },
   "brand": {
-    "sha": "c9282935819904d033c0e22d9d36e3590019f38b",
+    "sha": "8c6f9c0402d8d445e61b8692c25b78b0ef09f279",
     "branch": "master"
   },
   "capacitor-lab-basics": {
-    "sha": "765621f401359379eb91a099fcc36c41419daab4",
+    "sha": "619f7e6233cc042329b0a0d05e0acb0c96f34b97",
     "branch": "master"
   },
   "chipper": {
-    "sha": "598dca87189da3f9c955b61ac229ff8def5008a3",
+    "sha": "38916c9147dfbdb291df265378f7c96e3a1a0782",
     "branch": "master"
   },
   "dot": {
-    "sha": "7a28b1a92733cee778e2cf5d22ca45042884d416",
+    "sha": "2852fe4c459f59e47c1e3552ff460314893f73b5",
     "branch": "master"
   },
   "joist": {
-    "sha": "aa84f2d56403bc120d654ec63862579bcc8c1c77",
+    "sha": "15ac13533be61130f83e16350235135ff0dc3bde",
     "branch": "master"
   },
   "kite": {
@@ -33,31 +33,31 @@
     "branch": "master"
   },
   "phet-core": {
-    "sha": "73a034c676ee7b14b99aeeb1e7aad79f579b91b1",
+    "sha": "874a703dc94ace52f052a7339ea8b26cfefce482",
     "branch": "master"
   },
   "phetcommon": {
-    "sha": "d712ace0fd0fa47ab617934aec8721228aefc0fc",
+    "sha": "3db92af30d53b7d6bb3ce3c47c632f622f17986c",
     "branch": "master"
   },
   "scenery": {
-    "sha": "ace9a1cc9c36d6e8c94413ccd09bb5923cb8a20a",
+    "sha": "838086baa1514417379c20f5d945ced6258d74c2",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "6898cf737beeca2f3a394e62a8486fa2447f9a56",
+    "sha": "c1ea3511270a43ac066df94ae9bb2f73737b745b",
     "branch": "master"
   },
   "sherpa": {
-    "sha": "f699921576e4d4a9e196a94894a7c20377fd3b3d",
+    "sha": "1591d10c6b34df52a5725a69e796d661dfaa504a",
     "branch": "master"
   },
   "sun": {
-    "sha": "441ad636b8d16d42e3c1319c3038ce381647081b",
+    "sha": "9373371a1075762dbc4d086496eac7621ade0a37",
     "branch": "master"
   },
   "tandem": {
-    "sha": "873e03879d6af9bf642151585cb27e1605c817fb",
+    "sha": "a283486846aa4800464e1b36d8fcf56a1c2423a8",
     "branch": "master"
   }
 }
