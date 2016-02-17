@@ -75,6 +75,7 @@ define( function( require ) {
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var trail = accessibleInstance.trail;
+        var uniqueId = trail.getUniqueId();
 
         var domElement = document.createElement( 'div' );
         domElement.className = className;
@@ -87,8 +88,8 @@ define( function( require ) {
         var description = document.createElement( 'p' );
         description.textContent = descriptionString;
         domElement.appendChild( description );
-        description.id = descriptionString;
-        domElement.setAttribute( 'aria-describedby', descriptionString );
+        description.id = 'probe-description-' + uniqueId;
+        domElement.setAttribute( 'aria-describedby', description.id );
 
         domElement.tabIndex = '-1';
 

@@ -118,6 +118,7 @@ define( function( require ) {
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var trail = accessibleInstance.trail;
+        var uniqueId = trail.getUniqueId();
 
         var domElement = document.createElement( 'div' );
         domElement.className = 'VoltmeterBody';
@@ -129,13 +130,15 @@ define( function( require ) {
         var bodyDescription = document.createElement( 'p' );
         bodyDescription.textContent = accessibleVoltmeterBodyString;
         domElement.appendChild( bodyDescription );
-        bodyDescription.id = accessibleVoltmeterBodyString;
-        
+        bodyDescription.id = 'body-description-' + uniqueId;
+
         var voltageDescription = document.createElement( 'p' );
+        voltageDescription.id = 'voltage-description-' + uniqueId;
         voltageDescription.textContent = accessibleVoltmeterUnknownValueString;
         domElement.appendChild( voltageDescription );
         
-        domElement.setAttribute( 'aria-describedby', StringUtils.format( accessibleVoltmeterBodyString, voltmeter.value ) );
+        domElement.setAttribute( 'aria-labelledby', bodyDescription.id );
+        domElement.setAttribute( 'aria-describedby', voltageDescription.id );
         domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.tabIndex = '-1';

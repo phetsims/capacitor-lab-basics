@@ -100,19 +100,22 @@ define( function( require ) {
       },
       accessibleContent: {
         createPeer: function( accessibleInstance ) {
+          var trail = accessibleInstance.trail;
+          var uniqueId = trail.getUniqueId();
+
           var domElement = document.createElement( 'div' );
           
           var sliderDescription = document.createElement( 'p' );
           sliderDescription.textContent = accessibleBatterySliderString;
           domElement.appendChild( sliderDescription );
-          sliderDescription.id = accessibleBatterySliderString;
-          
+          sliderDescription.id = 'slider-description-' + uniqueId;
+
           var voltageDescription = document.createElement( 'p' );
           var voltageValue = Util.toFixed( battery.voltageProperty.get(), 2 );
           voltageDescription.textContent = StringUtils.format( accessibleBatteryVoltageString, voltageValue );
           domElement.appendChild( voltageDescription );
           
-          domElement.setAttribute( 'aria-describedby', accessibleBatterySliderString );
+          domElement.setAttribute( 'aria-describedby', sliderDescription.id );
           domElement.setAttribute( 'aria-live', 'polite' );
 
           domElement.tabIndex = '-1';

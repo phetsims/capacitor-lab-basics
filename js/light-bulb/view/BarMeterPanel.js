@@ -117,20 +117,23 @@ define( function( require ) {
     // add the accessible content
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
+        var trail = accessibleInstance.trail;
+        var uniqueId = trail.getUniqueId();
+
         var domElement = document.createElement( 'div' );
         
         var label = document.createElement( 'h2' );
         label.textContent = accessibleGraphPanelLabelString;
-        label.id = accessibleGraphPanelLabelString;
+        label.id = 'panel-label-' + uniqueId;
         domElement.appendChild( label );
 
         var description = document.createElement( 'p' );
         description.textContent = accessibleGraphPanelString;
-        description.id = accessibleGraphPanelString;
+        description.id = 'panel-description-' + uniqueId;
         domElement.appendChild( description );
 
-        domElement.setAttribute( 'aria-describedby', accessibleGraphPanelString );
-        domElement.setAttribute( 'aria-labeledby', accessibleGraphPanelLabelString );
+        domElement.setAttribute( 'aria-describedby', description.id );
+        domElement.setAttribute( 'aria-labeledby', label.id );
 
         domElement.tabIndex = '0';
 

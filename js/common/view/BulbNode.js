@@ -154,6 +154,7 @@ define( function( require ) {
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var trail = accessibleInstance.trail;
+
         var domElement = document.createElement( 'div' );
         
         var description = document.createElement( 'p' );
@@ -161,7 +162,7 @@ define( function( require ) {
         description.id = ACCESSIBLE_ID;
         domElement.appendChild( description );
         
-        domElement.setAttribute( 'aria-describedby', accessibleLightBulbDarkString );
+        domElement.setAttribute( 'aria-describedby', ACCESSIBLE_ID );
         domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.tabIndex = '-1';
