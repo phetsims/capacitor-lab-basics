@@ -183,7 +183,7 @@ define( function( require ) {
         }
       } );
       checkBoxNodes.children.forEach( function( checkbox ) {
-        var element = document.getElementById( checkbox.accessibleId );
+        var element = checkbox.accessibleInstances[0].peer.domElement;
         if ( element ) {
           element.tabIndex = tabIndex;
         }
