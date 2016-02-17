@@ -82,18 +82,19 @@ define( function( require ) {
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var trail = accessibleInstance.trail;
+        var uniqueId = trail.getUniqueId();
         
         var domElement = document.createElement( 'section' );
-        domElement.id = 'help-' + trail.getUniqueId();
+        domElement.id = 'help-' + uniqueId;
         thisNode.accessibleId = domElement.id;
         
         var title = document.createElement( 'h3' );
         title.innerHTML = keyDescriptionsTitleString;
         domElement.appendChild( title );
-        title.id = keyDescriptionsTitleString;
+        title.id = 'keyboard-help-title-' + uniqueId;
         
         var helpDescription = document.createElement( 'div' );
-        helpDescription.id = 'help-description-' + trail.getUniqueId();
+        helpDescription.id = 'help-description-' + uniqueId;
         strings.forEach( function( s ) {
           var description = document.createElement( 'p' );
           description.innerHTML = s;
@@ -101,7 +102,7 @@ define( function( require ) {
         } );
         domElement.appendChild( helpDescription );
         
-        domElement.setAttribute( 'aria-labeledby', keyDescriptionsTitleString );
+        domElement.setAttribute( 'aria-labeledby', title.id );
         domElement.setAttribute( 'aria-describedby', helpDescription.id );
         domElement.tabIndex = '-1';
 

@@ -66,19 +66,20 @@ define( function( require ) {
     arrowNode.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var trail = accessibleInstance.trail;
+        var uniqueId = trail.getUniqueId();
         var domElement = document.createElement( 'div' );
         
         var sliderDescription = document.createElement( 'p' );
         sliderDescription.textContent = accessiblePlateSeparationSliderString;
         domElement.appendChild( sliderDescription );
-        sliderDescription.id = accessiblePlateSeparationSliderString;
+        sliderDescription.id = 'slider-description-' + uniqueId;
         
         var valueDescription = document.createElement( 'p' );
         var millimeters = Util.toFixed( UnitsUtils.metersToMillimeters( capacitor.plateSeparation ), 1 );
         valueDescription.textContent = StringUtils.format( accessiblePlateSeparationString, millimeters );
         domElement.appendChild( valueDescription );
         
-        domElement.setAttribute( 'aria-describedby', accessiblePlateSeparationSliderString );
+        domElement.setAttribute( 'aria-describedby', sliderDescription.id );
         domElement.setAttribute( 'aria-live', 'polite' );
 
         domElement.tabIndex = '-1';

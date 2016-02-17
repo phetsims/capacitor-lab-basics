@@ -123,16 +123,17 @@ define( function( require ) {
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var trail = accessibleInstance.trail;
+        var uniqueId = trail.getUniqueId();
         // graph-widget
         var domElement = document.createElement( 'div' );
         
         var graphLabel = document.createElement( 'h3' );
         graphLabel.textContent = StringUtils.format( accessibleGraphString, titleString );
-        graphLabel.id = graphLabel.textContent;
+        graphLabel.id = 'graph-label-' + uniqueId;
         
         var graphDescription = document.createElement( 'p' );
         graphDescription.textContent = descriptionString;
-        graphDescription.id = descriptionString;
+        graphDescription.id = 'graph-description-' + uniqueId;
         
         var valueDescription = document.createElement( 'p' );
         var meterValue = Util.toFixed( Math.pow( 10, 12 ) * meter.value, 2 );
