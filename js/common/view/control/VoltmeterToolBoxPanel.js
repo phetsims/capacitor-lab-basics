@@ -20,6 +20,7 @@ define( function( require ) {
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Node = require( 'SCENERY/nodes/Node' );
 
   // strings
   var accessibleVoltmeterToolboxString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterToolbox' );
@@ -93,34 +94,66 @@ define( function( require ) {
     } );
     voltmeterIconNode.addInputListener( toolBoxDragHandler );
 
-    Panel.call( this, voltmeterIconNode, {
+    // wrap all off this content inside of a node that will hold the input element and its descriptions
+    Node.call( this, {
+      accessibleContent: {
+        createPeer: function( accessibleInstance ) {
+          var trail = accessibleInstance.trail;
+          var uniqueId = trail.getUniqueId();
+
+          var domElement = document.createElement( 'div' );
+          domElement.id = 'voltmeter-toolbox-container-' + uniqueId;
+
+          return new AccessiblePeer( accessibleInstance, domElement );
+        }
+      }
+    } );
+
+    // TODO: description and label nodes should be abstracted
+    // create nodes to contain accessible labels and descriptions
+    var labelElementNode = new Node( {
+      accessibleContent: {
+        createPeer: function( accessibleInstance ) {
+          var trail = accessibleInstance.trail;
+          var uniqueId = trail.getUniqueId();
+
+          var domElement = document.createElement( 'h3' );
+          domElement.textContent = accessibleVoltmeterToolboxString;
+          domElement.id = 'toolbox-label-' + uniqueId;
+
+          return new AccessiblePeer( accessibleInstance, domElement );
+        }
+      }
+    } );
+    this.addChild( labelElementNode );
+
+    var descriptionElementNode = new Node( {
+      accessibleContent: {
+        createPeer: function( accessibleInstance ) {
+          var trail = accessibleInstance.trail;
+          var uniqueId = trail.getUniqueId();
+
+          var domElement = document.createElement( 'p' );
+          domElement.textContent = accessibleVoltmeterToolboxDescriptionString;
+          domElement.id = 'toolbox-description-' + uniqueId;
+
+          return new AccessiblePeer( accessibleInstance, domElement );
+        }
+      }
+    } );
+    this.addChild( descriptionElementNode );
+
+    var toolboxPanel = new Panel( voltmeterIconNode, {
       xMargin: 15,
       yMargin: 15,
       fill: CLConstants.METER_PANEL_FILL,
       accessibleContent: {
+        focusHighlight: thisToolBoxPanel.bounds,
         createPeer: function( accessibleInstance ) {
-          var trail = accessibleInstance.trail;
-          var topElement = document.createElement( 'div' );
-
-          var label = document.createElement( 'h3' );
-          label.textContent = accessibleVoltmeterToolboxString;
-          label.id = 'toolbox-label-' + trail.getUniqueId();
-          topElement.appendChild( label );
-
-          var description = document.createElement( 'p' );
-          description.textContent = accessibleVoltmeterToolboxDescriptionString;
-          description.id = 'toolbox-description-' + trail.getUniqueId();
-          topElement.appendChild( description );
-
-          topElement.setAttribute( 'aria-describedby', description.id );
-          topElement.setAttribute( 'aria-labeledby', label.id );
-
-          topElement.tabIndex = '-1';
 
           var domElement = document.createElement( 'input' );
           domElement.value = accessibleVoltmeterDescriptionString;
           domElement.type = 'button';
-          topElement.appendChild( domElement );
 
           domElement.tabIndex = '0';
 
@@ -150,13 +183,17 @@ define( function( require ) {
             }
           } );
 
-          var accessiblePeer = new AccessiblePeer( accessibleInstance, topElement );
-          topElement.id = accessiblePeer.id + '-description';
-          domElement.id = accessiblePeer.id;
+          // set aria label and describedby attributes
+          domElement.setAttribute( 'aria-labelledby', labelElementNode.accessibleInstances[0].peer.domElement.id );
+          domElement.setAttribute( 'aria-describedby', descriptionElementNode.accessibleInstances[0].peer.domElement.id );
+
+
+          var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
           return accessiblePeer;
         }
       }
     } );
+    this.addChild( toolboxPanel );
 
     voltmeterVisibleProperty.link( function( voltmeterVisible ) {
       voltmeterIconNode.visible = !voltmeterVisible;
@@ -166,5 +203,5 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'VoltmeterToolBoxPanel', VoltmeterToolBoxPanel );
 
-  return inherit( Panel, VoltmeterToolBoxPanel );
+  return inherit( Node, VoltmeterToolBoxPanel );
 } );
