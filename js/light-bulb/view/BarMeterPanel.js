@@ -142,7 +142,7 @@ define( function( require ) {
           var firstElem;
           if ( keyCode === Input.KEY_ENTER ) {
             setTabIndex( '0' );
-            firstElem = document.getElementById( capacitanceCheckBox.accessibleId );
+            firstElem = capacitanceCheckBox.accessibleInstances[0].peer.domElement;
             firstElem.focus();
           }
           else if ( keyCode === Input.KEY_ESCAPE ) {
@@ -151,7 +151,7 @@ define( function( require ) {
           }
           else if ( keyCode === Input.KEY_TAB ) {
             var lastElem = document.getElementById( storedEnergyMeterNode.accessibleId );
-            firstElem = document.getElementById( capacitanceCheckBox.accessibleId );
+            firstElem = capacitanceCheckBox.accessibleInstances[0].peer.domElement;            
             if ( document.activeElement === lastElem && !event.shiftKey ) {
               event.preventDefault();
               firstElem.focus();
