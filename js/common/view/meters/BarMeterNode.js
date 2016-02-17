@@ -138,13 +138,17 @@ define( function( require ) {
         var valueDescription = document.createElement( 'p' );
         var meterValue = Util.toFixed( Math.pow( 10, 12 ) * meter.value, 2 );
         valueDescription.textContent = StringUtils.format( valueDescriptionString, meterValue );
+        valueDescription.id = 'value-description-' + uniqueId;
         valueDescription.setAttribute( 'aria-live', 'polite' );
         
         domElement.appendChild( graphLabel );
+        domElement.appendChild( graphDescription );
         domElement.appendChild( valueDescription );
         
         domElement.setAttribute( 'aria-labeledby', graphLabel.id );
-        domElement.setAttribute( 'aria-describedby', graphDescription.id );
+
+        var describedbyId = graphDescription.id + ' ' + valueDescription.id;
+        domElement.setAttribute( 'aria-describedby', describedbyId );
 
         domElement.tabIndex = tabIndex;
 
