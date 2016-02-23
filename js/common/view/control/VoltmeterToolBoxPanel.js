@@ -43,10 +43,8 @@ define( function( require ) {
     // create the icon for the toolbox.
     var voltmeterIconNode = VoltmeterNode.VoltmeterIconNode();
 
+    var parentScreenView = null; // needed for coordinate transforms
     var toolBoxDragHandler = new SimpleDragHandler( {
-
-      parentScreenView: null, // needed for coordinate transforms
-      modelViewTransform: modelViewTransform,
 
       start: function( event ) {
 
@@ -54,21 +52,21 @@ define( function( require ) {
         inUserControlProperty.set( true );
         voltmeterVisibleProperty.set( true );
 
-        if ( !this.parentScreenView ) {
+        if ( !parentScreenView ) {
           // find the root parent screenView
           var testNode = thisToolBoxPanel;
           while ( testNode !== null ) {
             if ( testNode instanceof ScreenView ) {
-              this.parentScreenView = testNode;
+              parentScreenView = testNode;
               break;
             }
             testNode = testNode.parents[ 0 ]; // Move up the scene graph by one level
           }
-          assert && assert( this.parentScreenView, 'unable to find parent screen view' );
+          assert && assert( parentScreenView, 'unable to find parent screen view' );
         }
 
         // initial position of the pointer in the screenView coordinates
-        var initialPosition = this.parentScreenView.globalToLocalPoint( event.pointer.point );
+        var initialPosition = parentScreenView.globalToLocalPoint( event.pointer.point );
 
         // make sure that the center of the voltmeter body is offset for the
         var offsetPosition = new Vector2( -voltmeterNode.bodyNode.width / 2, -voltmeterNode.bodyNode.height / 2 );
@@ -87,7 +85,7 @@ define( function( require ) {
 
       translate: function( translationParams ) {
         // TODO: restrict dragging to the screenView bounds
-        var unconstrainedLocation = voltmeterNode.bodyNode.bodyLocationProperty.value.plus( this.modelViewTransform.viewToModelDelta( translationParams.delta ) );
+        var unconstrainedLocation = voltmeterNode.bodyNode.bodyLocationProperty.value.plus( modelViewTransform.viewToModelDelta( translationParams.delta ) );
         voltmeterNode.bodyNode.bodyLocationProperty.set( unconstrainedLocation );
       }
 
