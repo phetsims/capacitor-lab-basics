@@ -18,11 +18,6 @@ define( function( require ) {
   // strings
   var capacitorLabBasicsTitleString = require( 'string!CAPACITOR_LAB_BASICS/capacitor-lab-basics.title' );
 
-  var screens = [
-    new CapacitanceScreen(),
-    new CapacitorLabBasicsLightBulbScreen()
-  ];
-
   var simOptions = {
     credits: {
       //TODO fill in proper credits, all of these fields are optional, see joist.AboutDialog
@@ -46,6 +41,10 @@ define( function( require ) {
   }
 
   SimLauncher.launch( function() {
+    var screens = [
+      new CapacitanceScreen(),
+      new CapacitorLabBasicsLightBulbScreen()
+    ];
     var sim = new Sim( capacitorLabBasicsTitleString, screens, simOptions );
     sim.start();
   } );
