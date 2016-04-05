@@ -155,8 +155,7 @@ define( function( require ) {
 
           domElement.tabIndex = '0';
 
-          domElement.addEventListener( 'click', function() {
-            inUserControlProperty.set( !inUserControlProperty.get() );
+          domElement.addEventListener( 'click', function( event ) {
             voltmeterVisibleProperty.set( !voltmeterVisibleProperty.get() );
           } );
 
@@ -174,7 +173,7 @@ define( function( require ) {
             redProbe.hidden = !voltmeterVisible;
             blackProbe.hidden = !voltmeterVisible;
 
-            if( inUserControlProperty.get() ) {
+            if( voltmeterVisible ) {
               bodyElement.focus();
             }
           } );
