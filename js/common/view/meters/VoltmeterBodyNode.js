@@ -141,7 +141,8 @@ define( function( require ) {
         domElement.setAttribute( 'aria-describedby', voltageDescription.id );
         domElement.setAttribute( 'aria-live', 'polite' );
 
-        domElement.tabIndex = '-1';
+        domElement.setAttribute( 'hidden', true );
+        domElement.tabIndex = '0';
 
         return new AccessiblePeer( accessibleInstance, domElement );
 

@@ -90,8 +90,9 @@ define( function( require ) {
         domElement.appendChild( description );
         description.id = 'probe-description-' + uniqueId;
         domElement.setAttribute( 'aria-describedby', description.id );
+        domElement.setAttribute( 'hidden', true );
 
-        domElement.tabIndex = '-1';
+        domElement.tabIndex = '0';
 
         domElement.addEventListener( 'keydown', function( event ) {
           var keyCode = event.keyCode;

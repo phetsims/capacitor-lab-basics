@@ -158,25 +158,23 @@ define( function( require ) {
           domElement.addEventListener( 'click', function() {
             inUserControlProperty.set( !inUserControlProperty.get() );
             voltmeterVisibleProperty.set( !voltmeterVisibleProperty.get() );
+          } );
 
-            var tab = '0';
-            if ( !inUserControlProperty.get() ) {
-              tab = '-1';
-            }
-            // add the voltmeter to the tab order.
+          voltmeterVisibleProperty.lazyLink( function( voltmeterVisible ) {
+
             var bodyElementId = thisToolBoxPanel.voltmeterNode.bodyNode.accessibleVoltmeterBodyId;
             var bodyElement = document.getElementById( bodyElementId );
-            bodyElement.tabIndex = tab;
 
             var redProbeId = thisToolBoxPanel.voltmeterNode.positiveProbeNode.accessibleProbeId;
             var redProbe = document.getElementById( redProbeId );
-            redProbe.tabIndex = tab;
             var blackProbeId = thisToolBoxPanel.voltmeterNode.negativeProbeNode.accessibleProbeId;
             var blackProbe = document.getElementById( blackProbeId );
-            blackProbe.tabIndex = tab;
 
-            // set focus immediately to the voltmeter body
-            if ( inUserControlProperty.get() ) {
+            bodyElement.hidden = !voltmeterVisible;
+            redProbe.hidden = !voltmeterVisible;
+            blackProbe.hidden = !voltmeterVisible;
+
+            if( inUserControlProperty.get() ) {
               bodyElement.focus();
             }
           } );
