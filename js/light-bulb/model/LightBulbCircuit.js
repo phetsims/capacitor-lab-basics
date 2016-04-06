@@ -32,6 +32,10 @@ define( function( require ) {
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
+  // During exponential voltage drop, circuit voltage crosses this threshold,
+  // below which we no longer call discharge() for efficiency.
+  var MIN_VOLTAGE = 1e-4; // Volts
+
   /**
    * Constructor for the Single Capacitor Circuit.
    *
@@ -40,7 +44,7 @@ define( function( require ) {
    */
   function LightBulbCircuit( config ) {
 
-    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 1 /* numberOfLightBulbs */ );
+    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */ , 1 /* numberOfLightBulbs */ );
     var thisCircuit = this;
 
     // @public
@@ -73,7 +77,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'LightBulbCircuit', LightBulbCircuit );
-  
+
   return inherit( ParallelCircuit, LightBulbCircuit, {
 
     reset: function() {
@@ -92,7 +96,8 @@ define( function( require ) {
       this.bulbBottomCurrentIndicator.step( dt );
 
       // discharge the capacitor when it is in parallel with the light bulb.
-      if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+      if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED &&
+        this.capacitor.platesVoltage > MIN_VOLTAGE ) {
         this.capacitor.discharge( this.lightBulb.resistance, dt );
       }
 
@@ -152,8 +157,7 @@ define( function( require ) {
       else {
         if ( this.connectedToLightBulbTop( shape ) ) {
           voltage = this.getCapacitorPlateVoltage();
-        }
-        else if ( this.connectedToLightBulbBottom( shape ) ) {
+        } else if ( this.connectedToLightBulbBottom( shape ) ) {
           voltage = 0;
         }
       }
@@ -222,8 +226,7 @@ define( function( require ) {
           //this.fireCircuitChanged(); TODO
         }
       }
-    }
-    ,
+    },
 
     /**
      * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
@@ -232,8 +235,7 @@ define( function( require ) {
       if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         this.updatePlateVoltages();
       }
-    }
-    ,
+    },
 
     /**
      * Gets the total charge in the circuit.(design doc symbol: Q_total)
@@ -246,5 +248,4 @@ define( function( require ) {
 
   } );
 
-} )
-;
+} );

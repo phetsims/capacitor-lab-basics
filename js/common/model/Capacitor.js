@@ -250,8 +250,7 @@ define( function( require ) {
       var airPlateCharge = this.getAirCapacitance() * this.platesVoltage;
       if ( Math.abs( airPlateCharge ) < CLConstants.MIN_PLATE_CHARGE ) {
         return 0;
-      }
-      else {
+      } else {
         return airPlateCharge;
       }
     },
@@ -264,10 +263,9 @@ define( function( require ) {
      */
     getDielectricPlateCharge: function() {
       var dielectricCharge = this.getDielectricCapacitance() * this.platesVoltage;
-      if ( Math.abs( dielectricCharge ) < CLConstants.MIN_PLATE_CHARGE) {
+      if ( Math.abs( dielectricCharge ) < CLConstants.MIN_PLATE_CHARGE ) {
         return 0;
-      }
-      else {
+      } else {
         return dielectricCharge;
       }
     },
@@ -329,8 +327,7 @@ define( function( require ) {
       var totalPlateCharge = this.getTotalPlateCharge();
       if ( Math.abs( totalPlateCharge ) < CLConstants.MIN_PLATE_CHARGE ) {
         return 0;
-      }
-      else {
+      } else {
         return this.platesVoltage / this.plateSeparation;
       }
     },
