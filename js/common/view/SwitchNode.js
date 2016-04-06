@@ -15,12 +15,12 @@ define( function( require ) {
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
   var ConnectionPointNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionPointNode' );
   var HingePointNode = require( 'CAPACITOR_LAB_BASICS/common/view/HingePointNode' );
-  var ConnectionAreaInputListener = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaInputListener' );
+  var ConnectionAreaNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaNode' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
   var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
-  
+
   // strings
   var accessibleSwitchLabelString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchLabel' );
   var accessibleSwitchDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchDescription' );
@@ -65,11 +65,11 @@ define( function( require ) {
       connectionPointNode.translation = modelViewTransform.modelToViewPosition( connection.location );
 
       // add the clickable area for the connection point
-      var connectionAreaInputListener = new ConnectionAreaInputListener( connection, circuitSwitch.hingePoint.toVector2(),
+      var connectionAreaNode = new ConnectionAreaNode( connection, circuitSwitch.hingePoint.toVector2(),
         connectionPointNode, modelViewTransform, circuitSwitch.circuitConnectionProperty );
 
       thisNode.connectionPointNodes.push( connectionPointNode );
-      connectionListeners.push( connectionAreaInputListener );
+      connectionListeners.push( connectionAreaNode );
     } );
 
     // add the drag handler
@@ -92,30 +92,32 @@ define( function( require ) {
     } );
 
     // rendering order, important for behavior of click areas and drag handlers
-    _.each( connectionListeners, function( connectionListener ) { thisNode.addChild( connectionListener ); } );
-    _.each( thisNode.connectionPointNodes, function( connectionPointNode ) { thisNode.addChild( connectionPointNode ); } );
+    _.each( connectionListeners, function( connectionListener ) {
+      thisNode.addChild( connectionListener );
+    } );
+    _.each( thisNode.connectionPointNodes, function( connectionPointNode ) {
+      thisNode.addChild( connectionPointNode );
+    } );
     this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );
-    
+
     var getAccessibleDescription = function() {
       var currentConnection = circuitSwitch.circuitConnectionProperty.get();
       if ( currentConnection === 'BATTERY_CONNECTED' ) {
         return accessibleCapacitorConnectedToBatteryString;
-      }
-      else if ( currentConnection === 'OPEN_CIRCUIT' ) {
+      } else if ( currentConnection === 'OPEN_CIRCUIT' ) {
         return accessibleCapacitorDisconnectedString;
-      }
-      else {
+      } else {
         return accessibleCapacitorConnectedToLightbulbString;
       }
     };
-    
+
     // add the accessible content
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
         var domElement = document.createElement( 'div' );
         var trail = accessibleInstance.trail;
-        
+
         var label = document.createElement( 'h4' );
         label.textContent = accessibleSwitchLabelString;
         label.id = 'switchLabel' + trail.getUniqueId();
@@ -125,7 +127,7 @@ define( function( require ) {
         description.textContent = accessibleSwitchDescriptionString;
         description.id = 'switchDescription' + trail.getUniqueId();
         domElement.appendChild( description );
-        
+
         if ( isLiveRegion ) {
           var liveRegion = document.createElement( 'p' );
           liveRegion.textContent = getAccessibleDescription();
@@ -151,7 +153,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'SwitchNode', SwitchNode );
-  
+
   return inherit( Node, SwitchNode, {
     /**
      * Return the accessible ids of all the connection point nodes
