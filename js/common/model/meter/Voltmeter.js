@@ -132,10 +132,10 @@ define( function( require ) {
       } );
       this.circuit.capacitors.forEach( function( capacitor ) {
         var top = capacitor.getTopConnectionPoint();
-        points.push( new Vector3( top.x - capacitor.plateSize.width / 4, top.y, top.z ) );
+        points.push( new Vector3( top.x - capacitor.plateSize.width / 4, top.y + 0.0005, top.z ) );
         strings.push( probeTopCapacitorPlateString );
         var bottom = capacitor.getBottomConnectionPoint();
-        points.push( new Vector3( bottom.x - capacitor.plateSize.width / 4, bottom.y, bottom.z ) );
+        points.push( new Vector3( bottom.x - capacitor.plateSize.width / 4, bottom.y -0.002, bottom.z ) );
         strings.push( probeBottomCapacitorPlateString );
       } );
       bottomWires.forEach( function( wire ) {
