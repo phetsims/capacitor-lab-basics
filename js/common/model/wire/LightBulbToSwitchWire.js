@@ -55,23 +55,6 @@ define( function( require ) {
       }
     },
 
-    /**
-     * Gets a wire segment that attaches to the specified terminal (top or bottom) of a battery.
-     *
-     * @param connectionPoint
-     * @param battery
-     * @param endPoint
-     * @returns {WireSegment}
-     */
-    getBatteryVerticalSegment: function( connectionPoint, battery, endPoint ) {
-
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
-        return WireSegment.BatteryTopWireSegment( battery, endPoint );
-      } else {
-        return WireSegment.BatteryBottomWireSegment( battery, endPoint );
-      }
-    },
-
     getLightBulbWireSegment: function( connectionPoint, lightBulb, endPoint ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
         return WireSegment.ComponentTopWireSegment( lightBulb, endPoint );
