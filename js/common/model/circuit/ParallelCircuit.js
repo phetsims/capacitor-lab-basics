@@ -28,9 +28,9 @@ define( function( require ) {
   var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
-  var WireBatteryToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireBatteryToCircuitSwitch' );
-  var WireLightBulbToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireLightBulbToCircuitSwitch' );
-  var WireCapacitorToCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireCapacitorToCircuitSwitch' );
+  var BatteryToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/BatteryToSwitchWire' );
+  var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
+  var CapacitorToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/CapacitorToSwitchWire' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -95,14 +95,14 @@ define( function( require ) {
   function createWires( config, battery, lightBulb, capacitor, circuitSwitches, circuitConnectionProperty ) {
     var wires = [];
     // wire battery to switch
-    wires.push( WireBatteryToCircuitSwitch.WireBatteryToCircuitSwitchTop(
+    wires.push( BatteryToSwitchWire.BatteryToSwitchWireTop(
       config.modelViewTransform,
       config.wireThickness,
       battery,
       circuitSwitches[ 0 ], // TODO: get the single switch.
       circuitConnectionProperty
     ) );
-    wires.push( WireBatteryToCircuitSwitch.WireBatteryToCircuitSwitchBottom(
+    wires.push( BatteryToSwitchWire.BatteryToSwitchWireBottom(
       config.modelViewTransform,
       config.wireThickness,
       battery,
@@ -111,14 +111,14 @@ define( function( require ) {
     ) );
 
     // wire capacitor to the switches
-    wires.push( WireCapacitorToCircuitSwitch.WireCapacitorToCircuitSwitchTop(
+    wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireTop(
       config.modelViewTransform,
       config.wireThickness,
       capacitor,
       circuitSwitches[ 0 ], // TODO: get the single switch.
       circuitConnectionProperty
     ) );
-    wires.push( WireCapacitorToCircuitSwitch.WireCapacitorToCircuitSwitchBottom(
+    wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireBottom(
       config.modelViewTransform,
       config.wireThickness,
       capacitor,
@@ -128,14 +128,14 @@ define( function( require ) {
 
     if ( lightBulb !== undefined ) {
       //  // wire light bulb to switch
-      wires.push( WireLightBulbToCircuitSwitch.WireLightBulbToCircuitSwitchTop(
+      wires.push( LightBulbToSwitchWire.LightBulbToSwitchWireTop(
         config.modelViewTransform,
         config.wireThickness,
         lightBulb,
         circuitSwitches[ 0 ], // TODO: get the single switch.
         circuitConnectionProperty
       ) );
-      wires.push( new WireLightBulbToCircuitSwitch.WireLightBulbToCircuitSwitchBottom(
+      wires.push( new LightBulbToSwitchWire.LightBulbToSwitchWireBottom(
         config.modelViewTransform,
         config.wireThickness,
         lightBulb,
@@ -200,7 +200,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'ParallelCircuit', ParallelCircuit );
-  
+
   return inherit( AbstractCircuit, ParallelCircuit, {
 
     /**

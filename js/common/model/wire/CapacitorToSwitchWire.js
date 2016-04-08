@@ -25,7 +25,7 @@ define( function( require ) {
    * @param {CircuitSwitch} circuitSwitch
    * @constructor
    */
-  function WireCapacitorToCircuitSwitch( connectionPoint, modelViewTransform, thickness, capacitor, circuitSwitch ) {
+  function CapacitorToSwitchWire( connectionPoint, modelViewTransform, thickness, capacitor, circuitSwitch ) {
     var segments = [];
 
     // add the vertical segment.
@@ -34,9 +34,9 @@ define( function( require ) {
     Wire.call( this, modelViewTransform, thickness, segments, connectionPoint );
   }
 
-  capacitorLabBasics.register( 'WireCapacitorToCircuitSwitch', WireCapacitorToCircuitSwitch );
-  
-  return inherit( Wire, WireCapacitorToCircuitSwitch, {
+  capacitorLabBasics.register( 'CapacitorToSwitchWire', CapacitorToSwitchWire );
+
+  return inherit( Wire, CapacitorToSwitchWire, {
     /**
      * Gets the Y coordinate of the horizontal wire. It extends wireExtent distance above/below the component that is
      * closest to the wire.
@@ -52,8 +52,7 @@ define( function( require ) {
         circuitComponents.forEach( function( component ) {
           y = Math.min( y, component.location.y - wireExtent );
         } );
-      }
-      else {
+      } else {
         circuitComponents.forEach( function( component ) {
           y = Math.max( y, component.location.y + wireExtent );
         } );
@@ -64,8 +63,7 @@ define( function( require ) {
     getRightCorner: function( connectionPoint, lightBulb, horizontalY ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
         return new Vector2( lightBulb.location.x, horizontalY );
-      }
-      else {
+      } else {
         return new Vector2( lightBulb.getBottomConnectionPoint().x, horizontalY );
       }
     },
@@ -82,8 +80,7 @@ define( function( require ) {
 
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
         return WireSegment.BatteryTopWireSegment( battery, endPoint );
-      }
-      else {
+      } else {
         return WireSegment.BatteryBottomWireSegment( battery, endPoint );
       }
     },
@@ -91,8 +88,7 @@ define( function( require ) {
     getLightBulbWireSegment: function( connectionPoint, lightBulb, endPoint ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
         return WireSegment.ComponentTopWireSegment( lightBulb, endPoint );
-      }
-      else {
+      } else {
         return WireSegment.ComponentBottomWireSegment( lightBulb, endPoint );
       }
     },
@@ -102,8 +98,7 @@ define( function( require ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
         switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
         return WireSegment.BatteryTopToSwitchSegment( endPoint, switchConnectionPoint );
-      }
-      else {
+      } else {
         switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
         return WireSegment.BatteryBottomToSwitchSegment( endPoint, switchConnectionPoint );
       }
@@ -114,8 +109,7 @@ define( function( require ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
         switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
         return new WireSegment( endPoint, switchConnectionPoint );
-      }
-      else {
+      } else {
         switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
         return new WireSegment( endPoint, switchConnectionPoint );
       }
@@ -125,8 +119,7 @@ define( function( require ) {
       var switchConnectionPoint = circuitSwitch.getCapacitorConnectionPoint();
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
         return WireSegment.ComponentTopWireSegment( capacitor, switchConnectionPoint );
-      }
-      else {
+      } else {
         return WireSegment.ComponentBottomWireSegment( capacitor, switchConnectionPoint );
       }
     },
@@ -141,11 +134,9 @@ define( function( require ) {
     getVerticalWireSegment: function( connectionPoint, battery, startPoint ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
         return WireSegment.VerticalTopWireSegment( battery, startPoint );
-      }
-      else if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM ) {
+      } else if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM ) {
         return WireSegment.VerticalBottomWireSegment( battery, startPoint );
-      }
-      else {
+      } else {
         assert && assert( 'Connection point must be one of "TOP" or "BOTTOM" ' );
       }
     },
@@ -161,8 +152,7 @@ define( function( require ) {
     getComponentWireSegment: function( connectionPoint, component, startPoint ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
         return WireSegment.ComponentTopWireSegment( component, startPoint );
-      }
-      else {
+      } else {
         return WireSegment.ComponentBottomWireSegment( component, startPoint );
       }
     }
@@ -172,14 +162,15 @@ define( function( require ) {
     /**
      * Factory functions for public access to specific constructors.
      */
-    WireCapacitorToCircuitSwitchTop: function( modelViewTransform, thickness, capacitor, circuitSwitch ) {
-      return new WireCapacitorToCircuitSwitch( CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP, modelViewTransform, thickness, capacitor, circuitSwitch );
+    CapacitorToSwitchWireTop: function( modelViewTransform, thickness, capacitor, circuitSwitch ) {
+      return new CapacitorToSwitchWire( CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP, modelViewTransform, thickness, capacitor, circuitSwitch );
     },
 
-    WireCapacitorToCircuitSwitchBottom: function( modelViewTransform, thickness, capacitor, circuitSwitch ) {
-      return new WireCapacitorToCircuitSwitch( CLConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM, modelViewTransform, thickness, capacitor, circuitSwitch );
+    CapacitorToSwitchWireBottom: function( modelViewTransform, thickness, capacitor, circuitSwitch ) {
+      return new CapacitorToSwitchWire( CLConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM, modelViewTransform, thickness, capacitor, circuitSwitch );
     }
 
   } );
 
 } );
+

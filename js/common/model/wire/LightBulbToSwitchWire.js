@@ -26,7 +26,7 @@ define( function( require ) {
    * @param {CircuitSwitch} circuitSwitch
    * @constructor
    */
-  function WireLightBulbToCircuitSwitch( connectionPoint, modelViewTransform, thickness, lightBulb, circuitSwitch ) {
+  function LightBulbToSwitchWire( connectionPoint, modelViewTransform, thickness, lightBulb, circuitSwitch ) {
     var segments = [];
 
     // y coordinate of the horizontal wire
@@ -43,9 +43,9 @@ define( function( require ) {
 
   }
 
-  capacitorLabBasics.register( 'WireLightBulbToCircuitSwitch', WireLightBulbToCircuitSwitch );
+  capacitorLabBasics.register( 'LightBulbToSwitchWire', LightBulbToSwitchWire );
 
-  return inherit( Wire, WireLightBulbToCircuitSwitch, {
+  return inherit( Wire, LightBulbToSwitchWire, {
     /**
      * Gets the Y coordinate of the horizontal wire. It extends wireExtent distance above/below the component that is
      * closest to the wire.
@@ -178,12 +178,12 @@ define( function( require ) {
     /**
      * Factory functions for public access to specific constructors.
      */
-    WireLightBulbToCircuitSwitchBottom: function( modelViewTransform, thickness, lightBulb, circuitSwitch ) {
-      return new WireLightBulbToCircuitSwitch( CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM, modelViewTransform, thickness, lightBulb, circuitSwitch );
+    LightBulbToSwitchWireBottom: function( modelViewTransform, thickness, lightBulb, circuitSwitch ) {
+      return new LightBulbToSwitchWire( CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM, modelViewTransform, thickness, lightBulb, circuitSwitch );
     },
 
-    WireLightBulbToCircuitSwitchTop: function( modelViewTransform, thickness, lightBulb, circuitSwitch ) {
-      return new WireLightBulbToCircuitSwitch( CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP, modelViewTransform, thickness, lightBulb, circuitSwitch );
+    LightBulbToSwitchWireTop: function( modelViewTransform, thickness, lightBulb, circuitSwitch ) {
+      return new LightBulbToSwitchWire( CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP, modelViewTransform, thickness, lightBulb, circuitSwitch );
     }
 
   } );

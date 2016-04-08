@@ -26,7 +26,7 @@ define( function( require ) {
    * @param {Property.<string>} circuitConnectionProperty
    * @constructor
    */
-  function WireBatteryToCircuitSwitch( connectionPoint, modelViewTransform, thickness, battery, circuitSwitch ) {
+  function BatteryToSwitchWire( connectionPoint, modelViewTransform, thickness, battery, circuitSwitch ) {
 
     var segments = [];
 
@@ -44,9 +44,9 @@ define( function( require ) {
 
   }
 
-  capacitorLabBasics.register( 'WireBatteryToCircuitSwitch', WireBatteryToCircuitSwitch );
-  
-  return inherit( Wire, WireBatteryToCircuitSwitch, {
+  capacitorLabBasics.register( 'BatteryToSwitchWire', BatteryToSwitchWire );
+
+  return inherit( Wire, BatteryToSwitchWire, {
     /**
      * Gets the Y coordinate of the horizontal wire. It extends wireExtent distance above/below the component that is
      * closest to the wire.
@@ -197,12 +197,12 @@ define( function( require ) {
     /**
      * Factory functions for public access to specific constructors.
      */
-    WireBatteryToCircuitSwitchBottom: function( modelViewTransform, thickness, battery, circuitSwitch ) {
-      return new WireBatteryToCircuitSwitch( CLConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM, modelViewTransform, thickness, battery, circuitSwitch );
+    BatteryToSwitchWireBottom: function( modelViewTransform, thickness, battery, circuitSwitch ) {
+      return new BatteryToSwitchWire( CLConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM, modelViewTransform, thickness, battery, circuitSwitch );
     },
 
-    WireBatteryToCircuitSwitchTop: function( modelViewTransform, thickness, battery, circuitSwitch ) {
-      return new WireBatteryToCircuitSwitch( CLConstants.WIRE_CONNECTIONS.BATTERY_TOP, modelViewTransform, thickness, battery, circuitSwitch );
+    BatteryToSwitchWireTop: function( modelViewTransform, thickness, battery, circuitSwitch ) {
+      return new BatteryToSwitchWire( CLConstants.WIRE_CONNECTIONS.BATTERY_TOP, modelViewTransform, thickness, battery, circuitSwitch );
     }
 
   } );
