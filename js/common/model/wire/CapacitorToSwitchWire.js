@@ -38,17 +38,6 @@ define( function( require ) {
 
   return inherit( Wire, CapacitorToSwitchWire, {
 
-    getLightBulbToSwitchSegment: function( connectionPoint, circuitSwitch, endPoint ) {
-      var switchConnectionPoint;
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
-        switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-        return new WireSegment( endPoint, switchConnectionPoint );
-      } else {
-        switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-        return new WireSegment( endPoint, switchConnectionPoint );
-      }
-    },
-
     getCapacitorToSwitchSegment: function( connectionPoint, circuitSwitch, capacitor ) {
       var switchConnectionPoint = circuitSwitch.getCapacitorConnectionPoint();
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
