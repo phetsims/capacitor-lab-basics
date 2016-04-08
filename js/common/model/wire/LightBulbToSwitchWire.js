@@ -63,17 +63,6 @@ define( function( require ) {
       }
     },
 
-    getBatteryToSwitchSegment: function( connectionPoint, circuitSwitch, endPoint ) {
-      var switchConnectionPoint;
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
-        switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-        return WireSegment.BatteryTopToSwitchSegment( endPoint, switchConnectionPoint );
-      } else {
-        switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-        return WireSegment.BatteryBottomToSwitchSegment( endPoint, switchConnectionPoint );
-      }
-    },
-
     getLightBulbToSwitchSegment: function( connectionPoint, circuitSwitch, endPoint ) {
       var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
       return new WireSegment( endPoint, switchConnectionPoint );
