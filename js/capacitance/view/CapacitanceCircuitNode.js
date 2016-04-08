@@ -17,6 +17,7 @@ define( function( require ) {
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
   var SwitchNode = require( 'CAPACITOR_LAB_BASICS/common/view/SwitchNode' );
   var CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var Node = require( 'SCENERY/nodes/Node' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -125,6 +126,14 @@ define( function( require ) {
       thisNode.batteryTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
       thisNode.batteryBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
     } );
+
+    circuit.circuitConnectionProperty.link( function( circuitConnection ) {
+      thisNode.updateCurrentVisibility( circuitConnection, currentIndicatorsVisibleProperty.value );
+    } );
+
+    currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
+      thisNode.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
+    } );
     
     // return array of all accessible content in circuit
     var getAccessibleIds = function() {
@@ -211,6 +220,16 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'CapacitanceCircuitNode', CapacitanceCircuitNode );
   
-  return inherit( Node, CapacitanceCircuitNode );
+  return inherit( Node, CapacitanceCircuitNode, {
 
+    // Updates the circuit components and controls to match the state of the battery connection.
+    updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
+
+      var isBatteryConnected = ( circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED );
+
+      this.batteryTopCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
+      this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
+    }
+
+  } );
 } );
