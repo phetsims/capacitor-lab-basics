@@ -15,7 +15,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
-  var HINGE_POINT_RADIUS= 8;
+  var HINGE_POINT_RADIUS = 8;
   var PIN_RADIUS = 5;
 
   // TODO: Move to constants.
@@ -37,11 +37,14 @@ define( function( require ) {
     } );
     Circle.call( this, HINGE_POINT_RADIUS, options );
 
-    this.addChild( new Circle( PIN_RADIUS, { fill: PIN_COLOR, center: this.center } ) );
+    this.addChild( new Circle( PIN_RADIUS, {
+      fill: PIN_COLOR,
+      center: this.center
+    } ) );
   }
 
   capacitorLabBasics.register( 'HingePointNode', HingePointNode );
-  
+
   return inherit( Circle, HingePointNode );
 
 } );
