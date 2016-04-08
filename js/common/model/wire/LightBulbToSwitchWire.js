@@ -29,15 +29,27 @@ define( function( require ) {
   function LightBulbToSwitchWire( connectionPoint, modelViewTransform, thickness, lightBulb, circuitSwitch ) {
     var segments = [];
 
-    // y coordinate of the horizontal wire
+    // Get y coordinate of the horizontal wire
     var horizontalY = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED ).y;
-    var rightCorner = this.getRightCorner( connectionPoint, lightBulb, horizontalY );
+
+    // Get x coordinate of the connection point
+    var isTop = connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP;
+    var connectionPointX = isTop ? lightBulb.getTopConnectionPoint().x : lightBulb.getBottomConnectionPoint().x;
+
+    var rightCorner = new Vector2( connectionPointX, horizontalY );
 
     // add the vertical segment.
-    segments.push( this.getLightBulbWireSegment( connectionPoint, lightBulb, rightCorner ) );
+    var verticalSegment;
+    if ( isTop ) {
+      verticalSegment = WireSegment.ComponentTopWireSegment( lightBulb, rightCorner );
+    } else {
+      verticalSegment = WireSegment.ComponentBottomWireSegment( lightBulb, rightCorner );
+    }
+    segments.push( verticalSegment );
 
     // connect lightbulb to switch connection point.
-    segments.push( this.getLightBulbToSwitchSegment( connectionPoint, circuitSwitch, rightCorner ) );
+    var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
+    segments.push( new WireSegment( rightCorner, switchConnectionPoint ) );
 
     Wire.call( this, modelViewTransform, thickness, segments, connectionPoint );
 
@@ -45,30 +57,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'LightBulbToSwitchWire', LightBulbToSwitchWire );
 
-  return inherit( Wire, LightBulbToSwitchWire, {
-
-    getRightCorner: function( connectionPoint, lightBulb, horizontalY ) {
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
-        return new Vector2( lightBulb.getTopConnectionPoint().x, horizontalY );
-      } else {
-        return new Vector2( lightBulb.getBottomConnectionPoint().x, horizontalY );
-      }
-    },
-
-    getLightBulbWireSegment: function( connectionPoint, lightBulb, endPoint ) {
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
-        return WireSegment.ComponentTopWireSegment( lightBulb, endPoint );
-      } else {
-        return WireSegment.ComponentBottomWireSegment( lightBulb, endPoint );
-      }
-    },
-
-    getLightBulbToSwitchSegment: function( connectionPoint, circuitSwitch, endPoint ) {
-      var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-      return new WireSegment( endPoint, switchConnectionPoint );
-    }
-
-  }, {
+  return inherit( Wire, LightBulbToSwitchWire, {}, {
 
     /**
      * Factory functions for public access to specific constructors.
