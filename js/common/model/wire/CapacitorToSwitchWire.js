@@ -56,39 +56,6 @@ define( function( require ) {
       } else {
         return WireSegment.ComponentBottomWireSegment( capacitor, switchConnectionPoint );
       }
-    },
-
-    /**
-     * Return a vertical wire segment from the battery connection point to the horizontal wires in the parallel circuit.
-     *
-     * @param {string} connectionPoint The connection type for the component, one of TOP or BOTTOM
-     * @param {Battery} battery
-     * @param {Vector2} startPoint
-     */
-    getVerticalWireSegment: function( connectionPoint, battery, startPoint ) {
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
-        return WireSegment.VerticalTopWireSegment( battery, startPoint );
-      } else if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM ) {
-        return WireSegment.VerticalBottomWireSegment( battery, startPoint );
-      } else {
-        assert && assert( 'Connection point must be one of "TOP" or "BOTTOM" ' );
-      }
-    },
-
-    /**
-     * Gets a wire segment that attaches to the specified circuit component.
-     *
-     * @param connectionPoint
-     * @param component
-     * @param endPoint
-     * @returns {WireSegment}
-     */
-    getComponentWireSegment: function( connectionPoint, component, startPoint ) {
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
-        return WireSegment.ComponentTopWireSegment( component, startPoint );
-      } else {
-        return WireSegment.ComponentBottomWireSegment( component, startPoint );
-      }
     }
 
   }, {

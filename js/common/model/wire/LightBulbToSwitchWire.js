@@ -66,52 +66,6 @@ define( function( require ) {
     getLightBulbToSwitchSegment: function( connectionPoint, circuitSwitch, endPoint ) {
       var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
       return new WireSegment( endPoint, switchConnectionPoint );
-    },
-
-    getCapacitorToSwitchSegment: function( connectionPoint, sortedSwitches, capacitor ) {
-      var topSwitch = sortedSwitches[ 0 ];
-      var bottomSwitch = sortedSwitches[ 1 ];
-      var switchConnectionPoint;
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
-        switchConnectionPoint = topSwitch.getCapacitorConnectionPoint();
-        return WireSegment.CapacitorTopToSwitchSegment( capacitor.getTopConnectionPoint(), switchConnectionPoint );
-      } else {
-        switchConnectionPoint = bottomSwitch.getCapacitorConnectionPoint();
-        return WireSegment.CapacitorTopToSwitchSegment( capacitor.getBottomConnectionPoint(), switchConnectionPoint );
-      }
-    },
-
-    /**
-     * Return a vertical wire segment from the battery connection point to the horizontal wires in the parallel circuit.
-     *
-     * @param {string} connectionPoint The connection type for the component, one of TOP or BOTTOM
-     * @param {Battery} battery
-     * @param {Vector2} startPoint
-     */
-    getVerticalWireSegment: function( connectionPoint, battery, startPoint ) {
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
-        return WireSegment.VerticalTopWireSegment( battery, startPoint );
-      } else if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM ) {
-        return WireSegment.VerticalBottomWireSegment( battery, startPoint );
-      } else {
-        assert && assert( 'Connection point must be one of "TOP" or "BOTTOM" ' );
-      }
-    },
-
-    /**
-     * Gets a wire segment that attaches to the specified circuit component.
-     *
-     * @param connectionPoint
-     * @param component
-     * @param endPoint
-     * @returns {WireSegment}
-     */
-    getComponentWireSegment: function( connectionPoint, component, startPoint ) {
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
-        return WireSegment.ComponentTopWireSegment( component, startPoint );
-      } else {
-        return WireSegment.ComponentBottomWireSegment( component, startPoint );
-      }
     }
 
   }, {
