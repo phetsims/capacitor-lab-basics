@@ -21,7 +21,7 @@ define( function( require ) {
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
   var PROBE_TIP_SIZE = new Dimension2( 0.001, 0.0018 ); // meters
-  
+
   // strings
   var probeTopBatteryWireString = require( 'string!CAPACITOR_LAB_BASICS/probe.topBatteryWire' );
   var probeBottomBatteryWireString = require( 'string!CAPACITOR_LAB_BASICS/probe.bottomBatteryWire' );
@@ -59,27 +59,27 @@ define( function( require ) {
     this.circuit = circuit; // @private
     this.dragBounds = dragBounds; // @public (read-only)
 
-    // whenever a capacitor changes, update the value.
+    // Whenever a capacitor changes, update the value.
     circuit.capacitors.forEach( function( capacitor ) {
-      capacitor.platesVoltageProperty.link( function( voltage ) {
+      capacitor.platesVoltageProperty.link( function() {
         thisMeter.updateValue();
       } );
     } );
 
-    // update the value when the probes move.
+    // Update the value when the probes move.
     this.multilink( [ 'negativeProbeLocation', 'positiveProbeLocation' ], function() {
       thisMeter.updateValue();
     } );
 
-    // update the value when the circuit connection property changes
-    circuit.circuitConnectionProperty.link( function( circuitConnection ) {
+    // Update the value when the circuit connection property changes
+    circuit.circuitConnectionProperty.link( function() {
       thisMeter.updateValue();
     } );
 
   }
 
   capacitorLabBasics.register( 'Voltmeter', Voltmeter );
-  
+
   return inherit( PropertySet, Voltmeter, {
 
     /**
@@ -88,8 +88,7 @@ define( function( require ) {
     updateValue: function() {
       if ( this.probesAreTouching() ) {
         this.value = 0;
-      }
-      else {
+      } else {
         this.value = this.circuit.getVoltageBetween( this.shapeCreator.getPositiveProbeTipShape(), this.shapeCreator.getNegativeProbeTipShape() );
       }
     },
@@ -111,7 +110,7 @@ define( function( require ) {
     getProbeTipSizeReference: function() {
       return PROBE_TIP_SIZE;
     },
-    
+
     getUsefulProbeLocations: function() {
       var points = [];
       var strings = [];
@@ -120,10 +119,10 @@ define( function( require ) {
       var bottomWires = this.circuit.getBottomWires();
       topWires.forEach( function( wire ) {
         if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ||
-            wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
+          wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
           wire.segments.forEach( function( segment ) {
             if ( segment.startPoint.y === segment.endPoint.y ) {
-              points.push( new Vector3( ( segment.startPoint.x + segment.endPoint.x ) / 2, segment.endPoint.y - wire.thickness / 2, 0) );
+              points.push( new Vector3( ( segment.startPoint.x + segment.endPoint.x ) / 2, segment.endPoint.y - wire.thickness / 2, 0 ) );
               description = wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ? probeTopBatteryWireString : probeTopLightBulbWireString;
               strings.push( description );
             }
@@ -140,17 +139,21 @@ define( function( require ) {
       } );
       bottomWires.forEach( function( wire ) {
         if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM ||
-            wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM ) {
+          wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM ) {
           wire.segments.forEach( function( segment ) {
             if ( segment.startPoint.y === segment.endPoint.y ) {
-              points.push( new Vector3( ( segment.startPoint.x + segment.endPoint.x ) / 2, segment.endPoint.y - wire.thickness / 2, 0) );
+              points.push( new Vector3( ( segment.startPoint.x + segment.endPoint.x ) / 2, segment.endPoint.y - wire.thickness / 2, 0 ) );
               description = wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM ? probeBottomBatteryWireString : probeBottomLightBulbWireString;
               strings.push( description );
             }
           } );
         }
       } );
-      return {'points': points, 'strings': strings};
+      return {
+        'points': points,
+        'strings': strings
+      };
     }
   } );
 } );
+
