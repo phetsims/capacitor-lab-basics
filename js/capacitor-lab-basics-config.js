@@ -36,6 +36,7 @@ require.config( {
     SCENERY: '../../scenery/js',
     SCENERY_PHET: '../../scenery-phet/js',
     SUN: '../../sun/js',
+    TWIXT: '../../twixt/js',
 
     // this sim
     CAPACITOR_LAB_BASICS: '.'

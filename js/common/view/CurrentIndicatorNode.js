@@ -23,6 +23,7 @@ define( function( require ) {
   var MinusNode = require( 'SCENERY_PHET/MinusNode' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var Color = require( 'SCENERY/util/Color' );
+  var OpacityTo = require( 'TWIXT/OpacityTo' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
@@ -51,7 +52,7 @@ define( function( require ) {
    * @param {number} positiveOrientation
    * @constructor
    */
-  function CurrentIndicatorNode( currentIndicator, positiveOrientation ) {
+  function CurrentIndicatorNode( currentAmplitudeProperty, positiveOrientation ) {
 
     Node.call( this, { opacity: 0 } ); // TODO: Perhaps extend ArrowNode?
     var thisNode = this;
@@ -92,15 +93,61 @@ define( function( require ) {
     electronNode.translate( x, y );
     minusNode.center = electronNode.center;
 
-    // observer current
-    currentIndicator.multilink( [ 'opacity', 'rotation' ], function() {
-      thisNode.opacity = currentIndicator.opacity;
-      thisNode.rotation = currentIndicator.rotation;
-    } );
+    // @private - {OpacityTo} animation that will fade out the node
+    this.animation = null;
 
+    // observe current to determine rotation and opacity
+    currentAmplitudeProperty.lazyLink( function( currentAmplitude ) {
+
+      // only start this animation if the current indicator is visible
+      if( thisNode.isVisible() ) {
+        thisNode.startAnimation();
+      }
+
+      // update the orientation of the indicator
+      if( currentAmplitude > 0 ) {
+        thisNode.rotation = positiveOrientation;
+      }
+      else if( currentAmplitude < 0 ) {
+        thisNode.rotation = positiveOrientation + Math.PI;
+      }
+    } );
   }
 
   capacitorLabBasics.register( 'CurrentIndicatorNode', CurrentIndicatorNode );
   
-  return inherit( Node, CurrentIndicatorNode );
+  return inherit( Node, CurrentIndicatorNode, {
+
+    /**
+     * Start the animation, canceling the animation if it is in progress
+    */
+    startAnimation: function() {
+
+      // stop animation if it's already running
+      this.animation && this.animation.stop();
+
+      // start animation, show symbol and gradually fade out by modulating opacity
+      var thisNode = this;
+      this.animation = new OpacityTo( this, {
+        startOpacity: 0.75,
+        endOpacity: 0,
+        duration: 1500, // fade out time, ms
+        easing: TWEEN.Easing.Quartic.In, // most of opacity change happens at end of duration
+        onComplete: function() {
+          thisNode.animation = null;
+        }
+      } );
+      this.animation.start();
+    },
+
+    /**
+     * Stop the animation.  No op if there is no animation running
+     */
+    stopAnimation: function() {
+      if ( this.animation ) {
+        this.animation.stop();
+      }
+    }
+
+  } );
 } );
