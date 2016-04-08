@@ -35,13 +35,29 @@ define( function( require ) {
     var leftCorner = new Vector2( battery.location.x, horizontalY );
 
     // add the vertical segment.
-    // TODO: 0 should be getEndOffset
-    segments.push( this.getBatteryVerticalSegment( connectionPoint, battery, leftCorner ) );
+    var verticalSegment;
+    if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
+      verticalSegment = WireSegment.BatteryTopWireSegment( battery, leftCorner );
+    } else {
+      verticalSegment = WireSegment.BatteryBottomWireSegment( battery, leftCorner );
+    }
+
+    segments.push( verticalSegment );
 
     // connect battery to switch connection point.
-    segments.push( this.getBatteryToSwitchSegment( connectionPoint, circuitSwitch, leftCorner ) );
-    Wire.call( this, modelViewTransform, thickness, segments, connectionPoint );
+    var switchSegment;
+    var switchConnectionPoint;
 
+    if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
+      switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
+      switchSegment = WireSegment.BatteryTopToSwitchSegment( leftCorner, switchConnectionPoint );
+    } else {
+      switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
+      switchSegment = WireSegment.BatteryBottomToSwitchSegment( leftCorner, switchConnectionPoint );
+    }
+
+    segments.push( switchSegment );
+    Wire.call( this, modelViewTransform, thickness, segments, connectionPoint );
   }
 
   capacitorLabBasics.register( 'BatteryToSwitchWire', BatteryToSwitchWire );
