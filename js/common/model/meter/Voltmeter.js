@@ -59,22 +59,30 @@ define( function( require ) {
     this.circuit = circuit; // @private
     this.dragBounds = dragBounds; // @public (read-only)
 
-    // Whenever a capacitor changes, update the value.
+    /**
+     * Update the value of the meter, called when many different properties change
+     */
+    var updateValue = function() {
+      if ( thisMeter.probesAreTouching() ) {
+        thisMeter.value = 0;
+      }
+      else {
+        var positiveProbeShape = thisMeter.shapeCreator.getPositiveProbeTipShape();
+        var negativeProbeShape = thisMeter.shapeCreator.getNegativeProbeTipShape();
+        thisMeter.value = thisMeter.circuit.getVoltageBetween( positiveProbeShape, negativeProbeShape );
+      }
+    };
+
+    // search through capacitors, update value if plate voltage changes
     circuit.capacitors.forEach( function( capacitor ) {
-      capacitor.platesVoltageProperty.link( function() {
-        thisMeter.updateValue();
-      } );
+      capacitor.platesVoltageProperty.link( updateValue );
     } );
 
-    // Update the value when the probes move.
-    this.multilink( [ 'negativeProbeLocation', 'positiveProbeLocation' ], function() {
-      thisMeter.updateValue();
-    } );
+    // update the value when the probes move
+    this.multilink( [ 'negativeProbeLocation', 'positiveProbeLocation' ], updateValue );
 
-    // Update the value when the circuit connection property changes
-    circuit.circuitConnectionProperty.link( function() {
-      thisMeter.updateValue();
-    } );
+    // update the value when the circuit connection property changes
+    circuit.circuitConnectionProperty.link( updateValue );
 
   }
 
@@ -83,20 +91,10 @@ define( function( require ) {
   return inherit( PropertySet, Voltmeter, {
 
     /**
-     * Update the meter value.
-     */
-    updateValue: function() {
-      if ( this.probesAreTouching() ) {
-        this.value = 0;
-      } else {
-        this.value = this.circuit.getVoltageBetween( this.shapeCreator.getPositiveProbeTipShape(), this.shapeCreator.getNegativeProbeTipShape() );
-      }
-    },
-
-    /**
      * Probes are touching if their tips intersect.
      *
      * @returns {boolean}
+        thisMeter.updateValue();
      */
     probesAreTouching: function() {
       return this.shapeCreator.getPositiveProbeTipShape().intersectsBounds( this.shapeCreator.getNegativeProbeTipShape() );
