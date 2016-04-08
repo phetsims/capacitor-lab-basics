@@ -48,14 +48,6 @@ define( function( require ) {
 
   return inherit( Wire, BatteryToSwitchWire, {
 
-    getRightCorner: function( connectionPoint, lightBulb, horizontalY ) {
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-        return new Vector2( lightBulb.location.x, horizontalY );
-      } else {
-        return new Vector2( lightBulb.getBottomConnectionPoint().x, horizontalY );
-      }
-    },
-
     /**
      * Gets a wire segment that attaches to the specified terminal (top or bottom) of a battery.
      *
@@ -70,14 +62,6 @@ define( function( require ) {
         return WireSegment.BatteryTopWireSegment( battery, endPoint );
       } else {
         return WireSegment.BatteryBottomWireSegment( battery, endPoint );
-      }
-    },
-
-    getLightBulbWireSegment: function( connectionPoint, lightBulb, endPoint ) {
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-        return WireSegment.LightBulbTopWireSegment( lightBulb.getTopConnectionPoint(), endPoint );
-      } else {
-        return WireSegment.LightBulbBottomWireSegment( lightBulb.getBottomConnectionPoint(), endPoint );
       }
     },
 
