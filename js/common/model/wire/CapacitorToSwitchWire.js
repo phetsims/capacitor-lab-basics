@@ -7,11 +7,9 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Vector2 = require( 'DOT/Vector2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
-  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
