@@ -33,12 +33,15 @@ define( function( require ) {
     options = _.extend( {
       fill: CONNECTION_POINT_COLOR,
       lineWidth: 3,
-      stroke: CONNECTION_POINT_COLOR
+      stroke: CONNECTION_POINT_COLOR,
+      innerPinRadius: PIN_RADIUS,
+      pinFillColor: PIN_COLOR
     } );
     Circle.call( this, HINGE_POINT_RADIUS, options );
 
-    this.addChild( new Circle( PIN_RADIUS, {
-      fill: PIN_COLOR,
+    // Inner circle of hings
+    this.addChild( new Circle( options.innerPinRadius, {
+      fill: options.pinFillColor,
       center: this.center
     } ) );
   }
