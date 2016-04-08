@@ -76,19 +76,6 @@ define( function( require ) {
       }
     },
 
-    getBulbToSwitchSegment: function( connectionPoint, sortedSwiches, endPoint ) {
-      var topSwitch = sortedSwiches[ 0 ];
-      var bottomSwitch = sortedSwiches[ 1 ];
-      var switchConnectionPoint;
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-        switchConnectionPoint = topSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-        return WireSegment.BulbTopToSwitchSegment( switchConnectionPoint, endPoint );
-      } else {
-        switchConnectionPoint = bottomSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-        return WireSegment.BulbBottomToSwitchSegment( switchConnectionPoint, endPoint );
-      }
-    },
-
     getCapacitorToSwitchSegment: function( connectionPoint, sortedSwitches, capacitor ) {
       var topSwitch = sortedSwitches[ 0 ];
       var bottomSwitch = sortedSwitches[ 1 ];
