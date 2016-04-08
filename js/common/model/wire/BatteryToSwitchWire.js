@@ -62,37 +62,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'BatteryToSwitchWire', BatteryToSwitchWire );
 
-  return inherit( Wire, BatteryToSwitchWire, {
-
-    /**
-     * Gets a wire segment that attaches to the specified terminal (top or bottom) of a battery.
-     *
-     * @param connectionPoint
-     * @param battery
-     * @param endPoint
-     * @returns {WireSegment}
-     */
-    getBatteryVerticalSegment: function( connectionPoint, battery, endPoint ) {
-
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-        return WireSegment.BatteryTopWireSegment( battery, endPoint );
-      } else {
-        return WireSegment.BatteryBottomWireSegment( battery, endPoint );
-      }
-    },
-
-    getBatteryToSwitchSegment: function( connectionPoint, circuitSwitch, endPoint ) {
-      var switchConnectionPoint;
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-        switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-        return WireSegment.BatteryTopToSwitchSegment( endPoint, switchConnectionPoint );
-      } else {
-        switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-        return WireSegment.BatteryBottomToSwitchSegment( endPoint, switchConnectionPoint );
-      }
-    }
-
-  }, {
+  return inherit( Wire, BatteryToSwitchWire, {}, {
 
     /**
      * Factory functions for public access to specific constructors.
