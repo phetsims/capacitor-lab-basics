@@ -37,28 +37,6 @@ define( function( require ) {
   capacitorLabBasics.register( 'CapacitorToSwitchWire', CapacitorToSwitchWire );
 
   return inherit( Wire, CapacitorToSwitchWire, {
-    /**
-     * Gets the Y coordinate of the horizontal wire. It extends wireExtent distance above/below the component that is
-     * closest to the wire.
-     *
-     * @param {string} connectionPoint, one of 'TOP', 'BOTTOM'
-     * @param {array} circuitComponents
-     * @param {number} wireExtent
-     * @return {number}
-     */
-    getHorizontalY: function( connectionPoint, circuitComponents, wireExtent ) {
-      var y = circuitComponents[ 0 ].location.y;
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
-        circuitComponents.forEach( function( component ) {
-          y = Math.min( y, component.location.y - wireExtent );
-        } );
-      } else {
-        circuitComponents.forEach( function( component ) {
-          y = Math.max( y, component.location.y + wireExtent );
-        } );
-      }
-      return y;
-    },
 
     getRightCorner: function( connectionPoint, lightBulb, horizontalY ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {

@@ -47,36 +47,11 @@ define( function( require ) {
   capacitorLabBasics.register( 'BatteryToSwitchWire', BatteryToSwitchWire );
 
   return inherit( Wire, BatteryToSwitchWire, {
-    /**
-     * Gets the Y coordinate of the horizontal wire. It extends wireExtent distance above/below the component that is
-     * closest to the wire.
-     *
-     * @param {string} connectionPoint, one of 'TOP', 'BOTTOM'
-     * @param {array} circuitComponents
-     * @param {number} wireExtent
-     * @return {number}
-     */
-    getHorizontalY: function( connectionPoint, circuitComponents, wireExtent ) {
-      var y = circuitComponents[ 0 ].location.y;
-
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-        circuitComponents.forEach( function( component ) {
-          y = Math.min( y, component.location.y - wireExtent );
-        } );
-      }
-      else {
-        circuitComponents.forEach( function( component ) {
-          y = Math.max( y, component.location.y + wireExtent );
-        } );
-      }
-      return y;
-    },
 
     getRightCorner: function( connectionPoint, lightBulb, horizontalY ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
         return new Vector2( lightBulb.location.x, horizontalY );
-      }
-      else {
+      } else {
         return new Vector2( lightBulb.getBottomConnectionPoint().x, horizontalY );
       }
     },
@@ -93,25 +68,15 @@ define( function( require ) {
 
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
         return WireSegment.BatteryTopWireSegment( battery, endPoint );
-      }
-      else {
+      } else {
         return WireSegment.BatteryBottomWireSegment( battery, endPoint );
       }
     },
-    //getBatteryWireSegment: function( connectionPoint, battery, endOffset, endPoint ) {
-    //  if ( connectionPoint === ConnectionPoint.TOP ) {
-    //    return WireSegment.BatteryTopWireSegment( battery, endOffset, endPoint );
-    //  }
-    //  else {
-    //    return WireSegment.BatteryBottomWireSegment( battery, endOffset, endPoint );
-    //  }
-    //},
 
     getLightBulbWireSegment: function( connectionPoint, lightBulb, endPoint ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
         return WireSegment.LightBulbTopWireSegment( lightBulb.getTopConnectionPoint(), endPoint );
-      }
-      else {
+      } else {
         return WireSegment.LightBulbBottomWireSegment( lightBulb.getBottomConnectionPoint(), endPoint );
       }
     },
@@ -121,8 +86,7 @@ define( function( require ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
         switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
         return WireSegment.BatteryTopToSwitchSegment( endPoint, switchConnectionPoint );
-      }
-      else {
+      } else {
         switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
         return WireSegment.BatteryBottomToSwitchSegment( endPoint, switchConnectionPoint );
       }
@@ -135,8 +99,7 @@ define( function( require ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
         switchConnectionPoint = topSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
         return WireSegment.BulbTopToSwitchSegment( switchConnectionPoint, endPoint );
-      }
-      else {
+      } else {
         switchConnectionPoint = bottomSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
         return WireSegment.BulbBottomToSwitchSegment( switchConnectionPoint, endPoint );
       }
@@ -149,8 +112,7 @@ define( function( require ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
         switchConnectionPoint = topSwitch.getCapacitorConnectionPoint();
         return WireSegment.CapacitorTopToSwitchSegment( capacitor.getTopConnectionPoint(), switchConnectionPoint );
-      }
-      else {
+      } else {
         switchConnectionPoint = bottomSwitch.getCapacitorConnectionPoint();
         return WireSegment.CapacitorTopToSwitchSegment( capacitor.getBottomConnectionPoint(), switchConnectionPoint );
       }
@@ -166,11 +128,9 @@ define( function( require ) {
     getVerticalWireSegment: function( connectionPoint, battery, startPoint ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
         return WireSegment.VerticalTopWireSegment( battery, startPoint );
-      }
-      else if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM ) {
+      } else if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM ) {
         return WireSegment.VerticalBottomWireSegment( battery, startPoint );
-      }
-      else {
+      } else {
         assert && assert( 'Connection point must be one of "TOP" or "BOTTOM" ' );
       }
     },
@@ -186,8 +146,7 @@ define( function( require ) {
     getComponentWireSegment: function( connectionPoint, component, startPoint ) {
       if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
         return WireSegment.ComponentTopWireSegment( component, startPoint );
-      }
-      else {
+      } else {
         return WireSegment.ComponentBottomWireSegment( component, startPoint );
       }
     }
@@ -208,3 +167,4 @@ define( function( require ) {
   } );
 
 } );
+
