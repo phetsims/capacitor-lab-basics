@@ -27,25 +27,21 @@ define( function( require ) {
     var segments = [];
 
     // add the vertical segment.
-    segments.push( this.getCapacitorToSwitchSegment( connectionPoint, circuitSwitch, capacitor ) );
+    var switchConnectionPoint = circuitSwitch.getCapacitorConnectionPoint();
+    var segment;
+    if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
+      segment = WireSegment.ComponentTopWireSegment( capacitor, switchConnectionPoint );
+    } else {
+      segment = WireSegment.ComponentBottomWireSegment( capacitor, switchConnectionPoint );
+    }
+    segments.push( segment );
 
     Wire.call( this, modelViewTransform, thickness, segments, connectionPoint );
   }
 
   capacitorLabBasics.register( 'CapacitorToSwitchWire', CapacitorToSwitchWire );
 
-  return inherit( Wire, CapacitorToSwitchWire, {
-
-    getCapacitorToSwitchSegment: function( connectionPoint, circuitSwitch, capacitor ) {
-      var switchConnectionPoint = circuitSwitch.getCapacitorConnectionPoint();
-      if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
-        return WireSegment.ComponentTopWireSegment( capacitor, switchConnectionPoint );
-      } else {
-        return WireSegment.ComponentBottomWireSegment( capacitor, switchConnectionPoint );
-      }
-    }
-
-  }, {
+  return inherit( Wire, CapacitorToSwitchWire, {}, {
 
     /**
      * Factory functions for public access to specific constructors.
