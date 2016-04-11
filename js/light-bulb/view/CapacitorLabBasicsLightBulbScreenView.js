@@ -22,6 +22,9 @@ define( function( require ) {
   var KeyboardHelpPanel = require( 'CAPACITOR_LAB_BASICS/common/view/KeyboardHelpPanel' );
   var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+
+  // constants
+  var KEY_H = 72;
     
   // strings
   var screenLightBulbLabelString = require( 'string!CAPACITOR_LAB_BASICS/screen.lightBulbLabel' );
@@ -37,6 +40,8 @@ define( function( require ) {
       screenDescription: screenLightBulbDescriptionString,
       screenlabel: screenLightBulbLabelString
     } );
+
+    var thisScreenView = this;
 
     this.modelViewTransform = model.modelViewTransform; // @private
     this.model = model; // @private
@@ -88,7 +93,6 @@ define( function( require ) {
     this.addChild( voltmeterToolbox );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
-    this.addChild( keyboardHelpPanel );
 
     // accessible content
     this.accessibleContent = {
@@ -99,6 +103,15 @@ define( function( require ) {
 
         // add a global event listener to all children of this screen view, bubbles through all children
         accessiblePeer.domElement.addEventListener( 'keydown', function( event ) {
+
+          if( event.keyCode === KEY_H ) {
+
+            // @private - track the active element so we can 2 it once the help dialog closes
+            thisScreenView.activeElement = document.activeElement;
+
+            // pull up the help dialog
+            keyboardHelpPanel.shownProperty.set( true );
+          }
 
         } );
 

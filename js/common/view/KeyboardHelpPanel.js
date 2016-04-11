@@ -117,10 +117,31 @@ define( function( require ) {
       spacing: 20
     } );
 
+    var dialogAccessibleContent = {
+      createPeer: function( accessibleInstance ) {
+
+        var accessiblePeer = Dialog.DialogAccessiblePeer( accessibleInstance, thisDialog );
+
+        accessiblePeer.domElement.addEventListener( 'keydown', function( event ) {
+          if( event.keyCode === Input.KEY_ESCAPE ) {
+
+            // hide the keyboardHelpPanel
+            thisDialog.shownProperty.set( false );
+
+            // reset focus to the domElement
+            if( screenView.activeElement ) { screenView.activeElement.focus(); }
+          }
+        } );
+
+        return accessiblePeer;
+      }
+    };
+
     Dialog.call( this, contentVBox, {
       modal: true,
       focusable: false,
       hasCloseButton: false,
+      accessibleContent: dialogAccessibleContent,
       layoutStrategy: function( window, simBounds, screenBounds, scale ) {
         // if simBounds are null, return without setting center.
         if ( simBounds !== null ) {

@@ -23,7 +23,6 @@ define( function( require ) {
   var CapacitanceBarMeterPanel = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceBarMeterPanel' );
   var KeyboardHelpPanel = require( 'CAPACITOR_LAB_BASICS/common/view/KeyboardHelpPanel' );
   var PlayAreaNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlayAreaNode' );
-  var Input = require( 'SCENERY/input/Input' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
@@ -132,7 +131,7 @@ define( function( require ) {
         var accessiblePeer = ScreenView.ScreenViewAccessiblePeer( accessibleInstance, screenCapacitanceDescriptionString, screenCapacitanceLabelString );
 
         // add a global event listener to all children of this screen view, bubbles through all children
-        window.addEventListener( 'keydown', function( event ) {
+        accessiblePeer.domElement.addEventListener( 'keydown', function( event ) {
 
           if( event.keyCode === KEY_H ) {
 
@@ -141,14 +140,6 @@ define( function( require ) {
 
             // pull up the help dialog
             keyboardHelpPanel.shownProperty.set( true );
-          }
-          if( event.keyCode === Input.KEY_ESCAPE ) {
-
-            // hide the keyboardHelpPanel
-            keyboardHelpPanel.shownProperty.set( false );
-
-            // reset focus to the domElement
-            if( thisScreenView.activeElement ) { thisScreenView.activeElement.focus(); }
           }
         } );
 
