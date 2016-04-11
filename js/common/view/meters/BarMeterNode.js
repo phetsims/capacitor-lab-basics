@@ -150,13 +150,18 @@ define( function( require ) {
         var describedbyId = graphDescription.id + ' ' + valueDescription.id;
         domElement.setAttribute( 'aria-describedby', describedbyId );
 
-        // domElement.tabIndex = tabIndex;
+        domElement.tabIndex = tabIndex;
 
         // link the accessible description to the property
         meter.valueProperty.link( function( value ) {
           var descriptionValue = Util.toFixed( Math.pow( 10, 12 ) * value, 2 );
           var meterString = StringUtils.format( valueDescriptionString, descriptionValue );
           valueDescription.textContent = meterString;
+        } );
+
+        // node should only be in navigation order if visible
+        meter.visibleProperty.link( function( visible ) {
+          domElement.hidden = !visible;
         } );
 
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
