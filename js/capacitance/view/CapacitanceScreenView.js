@@ -28,6 +28,7 @@ define( function( require ) {
 
   // constants
   var DEBUG_SHAPES = false;
+  var KEY_H = 72;
   
   // strings
   var screenCapacitanceLabelString = require( 'string!CAPACITOR_LAB_BASICS/screen.capacitanceLabel' );
@@ -42,6 +43,7 @@ define( function( require ) {
   function CapacitanceScreenView( model ) {
 
     ScreenView.call( this );
+    var thisScreenView = this;
 
     this.modelViewTransform = model.modelViewTransform;
 
@@ -79,7 +81,7 @@ define( function( require ) {
       radius: 25
     } );
     
-    var keyboardHelpPanel = new KeyboardHelpPanel( model );
+    var keyboardHelpPanel = new KeyboardHelpPanel( model, this );
     keyboardHelpPanel.centerX = ( this.layoutBounds.right + this.layoutBounds.left ) / 2;
     keyboardHelpPanel.centerY = ( this.layoutBounds.top + this.layoutBounds.bottom ) / 2;
 
@@ -103,7 +105,7 @@ define( function( require ) {
     this.addChild( voltmeterToolBoxPanel );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
-    this.addChild( keyboardHelpPanel );
+    // this.addChild( keyboardHelpPanel );
 
     // debug shapes for probe collision testing, to be removed soon
     if ( DEBUG_SHAPES ) {
@@ -123,8 +125,6 @@ define( function( require ) {
     }
     
     // accessible content
-    var activeElement = document.activeElement;
-    var shiftKey = false;
     this.accessibleContent = {
       createPeer: function( accessibleInstance ) {
 
@@ -132,28 +132,23 @@ define( function( require ) {
         var accessiblePeer = ScreenView.ScreenViewAccessiblePeer( accessibleInstance, screenCapacitanceDescriptionString, screenCapacitanceLabelString );
 
         // add a global event listener to all children of this screen view, bubbles through all children
-        accessiblePeer.domElement.addEventListener( 'keydown', function( event ) {
-          // 'global' event behavior in here...
-          // keycode = 'h'
-          if ( event.keyCode === 72 ) {
-            model.keyboardHelpVisibleProperty.set( true );
-            var panel = document.getElementById( keyboardHelpPanel.accessibleId );
-            panel.focus();
+        window.addEventListener( 'keydown', function( event ) {
+
+          if( event.keyCode === KEY_H ) {
+
+            // @private - track the active element so we can 2 it once the help dialog closes
+            thisScreenView.activeElement = document.activeElement;
+
+            // pull up the help dialog
+            keyboardHelpPanel.shownProperty.set( true );
           }
-          else if ( event.keyCode === Input.KEY_TAB || event.keyCode === Input.KEY_ESCAPE ) {
-            if ( model.keyboardHelpVisibleProperty.get() ) {
-              if ( activeElement === document.body) {
-                activeElement = document.getElementById( capacitanceCircuitNode.accessibleId );
-                event.preventDefault();
-              }
-              if ( shiftKey ) {
-                event.preventDefault();
-              }
-              activeElement.focus();
-              model.keyboardHelpVisibleProperty.set( false );
-            }
-            activeElement = document.activeElement;
-            shiftKey = event.shiftKey;
+          if( event.keyCode === Input.KEY_ESCAPE ) {
+
+            // hide the keyboardHelpPanel
+            keyboardHelpPanel.shownProperty.set( false );
+
+            // reset focus to the domElement
+            if( thisScreenView.activeElement ) { thisScreenView.activeElement.focus(); }
           }
         } );
 

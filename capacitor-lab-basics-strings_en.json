@@ -180,6 +180,10 @@
   "keyDescriptions.h": {
     "value": "H: Brings up help menu"
   },
+  "keyboardHelp.close": {
+    "value": "Close",
+    "visible": false
+  },
   "keyDescriptions.title": {
     "value": "Keyboard Bindings"
   },
