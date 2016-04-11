@@ -71,6 +71,9 @@ define( function( require ) {
     // link visibility of this panel to the checkbox
     model.barGraphsPanelVisibleProperty.link( function( barGraphsPanelVisible ) {
       thisPanel.visible = barGraphsPanelVisible;
+
+      // for accessibility, we actually want the meter itself to be explicitly invisible
+      model.capacitanceMeter.visibleProperty.set( barGraphsPanelVisible );
     } );
 
   }

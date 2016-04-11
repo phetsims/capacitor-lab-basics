@@ -163,6 +163,11 @@ define( function( require ) {
           }
         } );
 
+        // dom element should be hidden when invisible
+        model.barGraphsPanelVisibleProperty.link( function( panelVisible ) {
+          domElement.hidden = !panelVisible;
+        } );
+
         var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
         domElement.id = accessiblePeer.id;
         return accessiblePeer;
