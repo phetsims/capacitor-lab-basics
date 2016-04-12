@@ -13,7 +13,13 @@
     "uglify-js": "~2.4.0",
     "requirejs": "~2.1.8"
   },
-  "phet": {
-    "requirejsNamespace": "CAPACITOR_LAB_BASICS"
+    "phet": {
+    "requirejsNamespace": "CAPACITOR_LAB_BASICS",
+    "preload": [
+      "../sherpa/lib/Tween-r12.js"
+    ],
+    "phetLibs": [
+      "twixt"
+    ]
   }
 }
