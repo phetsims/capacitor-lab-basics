@@ -26,7 +26,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'BoxShapeCreator', BoxShapeCreator );
-  
+
   return inherit( Object, BoxShapeCreator, {
 
     /**
@@ -172,3 +172,4 @@ define( function( require ) {
     }
   } );
 } );
+

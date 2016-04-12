@@ -28,7 +28,7 @@ define( function( require ) {
 
   // constants
   var DEBUG_SHAPES = false;
-  
+
   // strings
   var screenCapacitanceLabelString = require( 'string!CAPACITOR_LAB_BASICS/screen.capacitanceLabel' );
   var screenCapacitanceDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/screen.capacitanceDescription' );
@@ -73,12 +73,14 @@ define( function( require ) {
     capacitanceBarMeterPanel.leftBottom = capacitanceCircuitNode.topWireNode.leftTop.minusXY( 0, 60 );
 
     var resetAllButton = new ResetAllButton( {
-      listener: function() { model.reset(); },
+      listener: function() {
+        model.reset();
+      },
       bottom: this.layoutBounds.bottom - 20,
       right: this.layoutBounds.right - 30,
       radius: 25
     } );
-    
+
     var keyboardHelpPanel = new KeyboardHelpPanel( model );
     keyboardHelpPanel.centerX = ( this.layoutBounds.right + this.layoutBounds.left ) / 2;
     keyboardHelpPanel.centerY = ( this.layoutBounds.top + this.layoutBounds.bottom ) / 2;
@@ -89,7 +91,7 @@ define( function( require ) {
         model.voltmeterVisibleProperty.set( false );
       }
     } );
-    
+
     var playAreaNode = new PlayAreaNode( accessiblePlayAreaLabelString, accessibleCapacitancePlayAreaDescriptionString );
     // this.addChild( capacitanceCircuitNode );
     // this.addChild( voltmeterToolBoxPanel );
@@ -113,15 +115,13 @@ define( function( require ) {
       this.addChild( topTerminalNode );
       // add a shape at the tip of the probe for debugging probe tip collisions.
       this.addChild( new Path( model.voltmeter.shapeCreator.getPositiveProbeTipShape(), {
-          fill: 'rgba( 1, 0, 0, 0.5 )'
-        } )
-      );
+        fill: 'rgba( 1, 0, 0, 0.5 )'
+      } ) );
       this.addChild( new Path( model.voltmeter.shapeCreator.getNegativeProbeTipShape(), {
-          fill: 'rgba( 1, 0, 0, 0.5 )'
-        } )
-      );
+        fill: 'rgba( 1, 0, 0, 0.5 )'
+      } ) );
     }
-    
+
     // accessible content
     var activeElement = document.activeElement;
     var shiftKey = false;
@@ -139,10 +139,9 @@ define( function( require ) {
             model.keyboardHelpVisibleProperty.set( true );
             var panel = document.getElementById( keyboardHelpPanel.accessibleId );
             panel.focus();
-          }
-          else if ( event.keyCode === Input.KEY_TAB || event.keyCode === Input.KEY_ESCAPE ) {
+          } else if ( event.keyCode === Input.KEY_TAB || event.keyCode === Input.KEY_ESCAPE ) {
             if ( model.keyboardHelpVisibleProperty.get() ) {
-              if ( activeElement === document.body) {
+              if ( activeElement === document.body ) {
                 activeElement = document.getElementById( capacitanceCircuitNode.accessibleId );
                 event.preventDefault();
               }
@@ -164,6 +163,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'CapacitanceScreenView', CapacitanceScreenView );
-  
+
   return inherit( ScreenView, CapacitanceScreenView );
 } );
+

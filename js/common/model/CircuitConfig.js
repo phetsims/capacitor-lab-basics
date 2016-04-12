@@ -11,41 +11,53 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
-  var Vector3 = require( 'DOT/Vector3' );
-  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
+  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Vector3 = require( 'DOT/Vector3' );
+
+  // Constants
+  var BATTERY_LOCATION = new Vector3( 0.0065, 0.030, 0 ); // meters
+  var CAPACITOR_X_SPACING = 0.024; // meters
+  var CAPACITOR_Y_SPACING = 0; // meters
+  var LIGHT_BULB_X_SPACING = 0.023; // meters
+  var PLATE_WIDTH = CLConstants.PLATE_WIDTH_RANGE.defaultValue;
+  var PLATE_SEPARATION = CLConstants.PLATE_SEPARATION_RANGE.defaultValue;
+  var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
+  var WIRE_THICKNESS = CLConstants.WIRE_THICKNESS;
+  var DIELECTRIC_OFFSET = 0.02; // meters
+  var LIGHT_BULB_RESISTANCE = 5e12; // Ohms
 
   // constructor
   function CircuitConfig( options ) {
 
     options = _.extend( {
-      // TODO: Populate defaults with intro screen values.
-      modelViewTransform: ModelViewTransform2.createIdentity(),
-      batteryLocation: new Vector3( 0, 0, 0 ),
-      lightBulbXSpacing: 0,
-      capacitorXSpacing: 0,
-      capacitorYSpacing: 0,
-      plateWidth: 0,
-      plateSeparation: 0,
+      modelViewTransform: new CLModelViewTransform3D(),
+      batteryLocation: BATTERY_LOCATION,
+      capacitorXSpacing: CAPACITOR_X_SPACING,
+      capacitorYSpacing: CAPACITOR_Y_SPACING,
+      plateWidth: PLATE_WIDTH,
+      plateSeparation: PLATE_SEPARATION,
+      wireExtent: WIRE_EXTENT,
+      wireThickness: WIRE_THICKNESS,
+      lightBulbXSpacing: LIGHT_BULB_X_SPACING,
       dielectricMaterial: DielectricMaterial.Air(),
-      dielectricOffset: 0.02, // meters
-      wireExtent: 0,
-      wireThickness: 0.0005, // meters
-      lightBulbResistance: 5E12
+      dielectricOffset: DIELECTRIC_OFFSET,
+      lightBulbResistance: LIGHT_BULB_RESISTANCE
     }, options );
 
     // @public
     this.modelViewTransform = options.modelViewTransform;
-    this.lightBulbXSpacing = options.lightBulbXSpacing;
     this.batteryLocation = options.batteryLocation;
     this.capacitorXSpacing = options.capacitorXSpacing;
     this.capacitorYSpacing = options.capacitorYSpacing;
     this.plateWidth = options.plateWidth;
     this.plateSeparation = options.plateSeparation;
-    this.wireThickness = options.wireThickness;
     this.wireExtent = options.wireExtent;
+    this.wireThickness = options.wireThickness;
+    this.lightBulbXSpacing = options.lightBulbXSpacing;
     this.dielectricMaterial = options.dielectricMaterial;
     this.dielectricOffset = options.dielectricOffset;
     this.lightBulbResistance = options.lightBulbResistance;
@@ -53,7 +65,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'CircuitConfig', CircuitConfig );
-  
+
   return inherit( Object, CircuitConfig );
 
 } );

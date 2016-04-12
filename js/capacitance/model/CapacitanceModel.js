@@ -27,14 +27,6 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
-  // Circuit
-  var BATTERY_LOCATION = new Vector3( 0.0065, 0.030, 0 ); // meters
-  var CAPACITOR_X_SPACING = 0.024; // meters
-  var CAPACITOR_Y_SPACING = 0; // meters
-  var PLATE_WIDTH = CLConstants.PLATE_WIDTH_RANGE.defaultValue;
-  var PLATE_SEPARATION = CLConstants.PLATE_SEPARATION_RANGE.defaultValue;
-  var WIRE_THICKNESS = CLConstants.WIRE_THICKNESS;
-  var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
 
   // Voltmeter
   var VOLTMETER_BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
@@ -53,17 +45,8 @@ define( function( require ) {
 
     this.modelViewTransform = modelViewTransform; // @ public (read-only)
 
-    // configuration info for the circuit
-    var circuitConfig = new CircuitConfig( {
-      modelViewTransform: modelViewTransform,
-      batteryLocation: BATTERY_LOCATION,
-      capacitorXSpacing: CAPACITOR_X_SPACING,
-      capacitorYSpacing: CAPACITOR_Y_SPACING,
-      plateWidth: PLATE_WIDTH,
-      plateSeparation: PLATE_SEPARATION,
-      wireExtent: WIRE_EXTENT,
-      wireThickness: WIRE_THICKNESS
-    } );
+    // Configuration info for the circuit. By design, the defaults are appropriate here.
+    var circuitConfig = new CircuitConfig();
 
     this.dielectricMaterial = DielectricMaterial.Air(); // @public (read-only)
 
@@ -80,7 +63,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'CapacitanceModel', CapacitanceModel );
-  
+
   return inherit( CapacitorLabBasicsModel, CapacitanceModel, {
 
     /**
@@ -141,12 +124,9 @@ define( function( require ) {
      */
     getMaxEffectiveEField: function() {
       var circuitConfig = new CircuitConfig( {
-        capacitorXSpacing: CAPACITOR_X_SPACING,
-        capacitorYSpacing: CAPACITOR_Y_SPACING,
         plateWidth: CLConstants.PLATE_WIDTH_RANGE.min,
         plateSeparation: CLConstants.PLATE_SEPARATION_RANGE.min,
         wireThickness: CLConstants.WIRE_THICKNESS,
-        wireExtent: WIRE_EXTENT,
         dielectricMaterial: DielectricMaterial.CustomDielectricMaterial( CLConstants.DIELECTRIC_CONSTANT_RANGE.min ),
         dielectricOffset: CLConstants.DIELECTRIC_OFFSET_RANGE.min
       } );
