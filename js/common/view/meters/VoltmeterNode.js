@@ -26,12 +26,9 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
 
   // strings
   var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
-  var accessibleVoltmeterBodyString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBody' );
-  var accessibleVoltmeterBodyDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBodyDescription' );
 
   // constants
   // wire is a cubic curve, these are the control point offsets
@@ -79,35 +76,6 @@ define( function( require ) {
     voltmeterVisibleProperty.link( function( voltmeterVisible ) {
       thisNode.visible = voltmeterVisible;
     } );
-    
-    // add the accessible content
-    this.accessibleContent = {
-      createPeer: function( accessibleInstance ) {
-        var trail = accessibleInstance.trail;
-        // voltmeter-widget
-        var domElement = document.createElement( 'div' );
-        
-        var label = document.createElement( 'h4' );
-        label.textContent = accessibleVoltmeterBodyString;
-        label.id = 'voltmeter-label-' + trail.getUniqueId();
-        domElement.appendChild( label );
-        
-        var description = document.createElement( 'p' );
-        description.textContent = accessibleVoltmeterBodyDescriptionString;
-        description.id = 'voltmeter-description-' + trail.getUniqueId();
-        domElement.appendChild( description );
-        
-        domElement.setAttribute( 'aria-describedby', description.id );
-        domElement.setAttribute( 'aria-labeledby', label.id );
-
-        domElement.tabIndex = '-1';
-
-        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-        domElement.id = 'voltmeter-' + trail.getUniqueId();
-        return accessiblePeer;
-
-      }
-    };
 
   }
 
