@@ -17,15 +17,9 @@ define( function( require ) {
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var Vector2 = require( 'DOT/Vector2' );
-  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Node = require( 'SCENERY/nodes/Node' );
-
-  // strings
-  var accessibleVoltmeterToolboxString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterToolbox' );
-  var accessibleVoltmeterToolboxDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterToolboxDescription' );
-  var accessibleVoltmeterDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterDescription' );
 
   /**
    *
@@ -93,103 +87,12 @@ define( function( require ) {
     voltmeterIconNode.addInputListener( toolBoxDragHandler );
 
     // wrap all off this content inside of a node that will hold the input element and its descriptions
-    Node.call( this, {
-      accessibleContent: {
-        createPeer: function( accessibleInstance ) {
-          var trail = accessibleInstance.trail;
-          var uniqueId = trail.getUniqueId();
-
-          var domElement = document.createElement( 'div' );
-          domElement.id = 'voltmeter-toolbox-container-' + uniqueId;
-
-          return new AccessiblePeer( accessibleInstance, domElement );
-        }
-      }
-    } );
-
-    // TODO: description and label nodes should be abstracted
-    // create nodes to contain accessible labels and descriptions
-    var labelElementNode = new Node( {
-      accessibleContent: {
-        createPeer: function( accessibleInstance ) {
-          var trail = accessibleInstance.trail;
-          var uniqueId = trail.getUniqueId();
-
-          var domElement = document.createElement( 'h3' );
-          domElement.textContent = accessibleVoltmeterToolboxString;
-          domElement.id = 'toolbox-label-' + uniqueId;
-
-          return new AccessiblePeer( accessibleInstance, domElement );
-        }
-      }
-    } );
-    this.addChild( labelElementNode );
-
-    var descriptionElementNode = new Node( {
-      accessibleContent: {
-        createPeer: function( accessibleInstance ) {
-          var trail = accessibleInstance.trail;
-          var uniqueId = trail.getUniqueId();
-
-          var domElement = document.createElement( 'p' );
-          domElement.textContent = accessibleVoltmeterToolboxDescriptionString;
-          domElement.id = 'toolbox-description-' + uniqueId;
-
-          return new AccessiblePeer( accessibleInstance, domElement );
-        }
-      }
-    } );
-    this.addChild( descriptionElementNode );
+    Node.call( this );
 
     var toolboxPanel = new Panel( voltmeterIconNode, {
       xMargin: 15,
       yMargin: 15,
-      fill: CLConstants.METER_PANEL_FILL,
-      accessibleContent: {
-        focusHighlight: thisToolBoxPanel.bounds,
-        createPeer: function( accessibleInstance ) {
-
-          var domElement = document.createElement( 'input' );
-          domElement.value = accessibleVoltmeterDescriptionString;
-          domElement.type = 'button';
-
-          domElement.tabIndex = '0';
-
-          domElement.addEventListener( 'click', function() {
-            inUserControlProperty.set( !inUserControlProperty.get() );
-            voltmeterVisibleProperty.set( !voltmeterVisibleProperty.get() );
-
-            var tab = '0';
-            if ( !inUserControlProperty.get() ) {
-              tab = '-1';
-            }
-            // add the voltmeter to the tab order.
-            var bodyElementId = thisToolBoxPanel.voltmeterNode.bodyNode.accessibleVoltmeterBodyId;
-            var bodyElement = document.getElementById( bodyElementId );
-            bodyElement.tabIndex = tab;
-
-            var redProbeId = thisToolBoxPanel.voltmeterNode.positiveProbeNode.accessibleProbeId;
-            var redProbe = document.getElementById( redProbeId );
-            redProbe.tabIndex = tab;
-            var blackProbeId = thisToolBoxPanel.voltmeterNode.negativeProbeNode.accessibleProbeId;
-            var blackProbe = document.getElementById( blackProbeId );
-            blackProbe.tabIndex = tab;
-
-            // set focus immediately to the voltmeter body
-            if ( inUserControlProperty.get() ) {
-              bodyElement.focus();
-            }
-          } );
-
-          // set aria label and describedby attributes
-          domElement.setAttribute( 'aria-labelledby', labelElementNode.accessibleInstances[0].peer.domElement.id );
-          domElement.setAttribute( 'aria-describedby', descriptionElementNode.accessibleInstances[0].peer.domElement.id );
-
-
-          var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-          return accessiblePeer;
-        }
-      }
+      fill: CLConstants.METER_PANEL_FILL
     } );
     this.addChild( toolboxPanel );
 
