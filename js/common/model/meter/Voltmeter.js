@@ -13,22 +13,12 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
-  var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
   var PROBE_TIP_SIZE = new Dimension2( 0.001, 0.0018 ); // meters
-
-  // strings
-  var probeTopBatteryWireString = require( 'string!CAPACITOR_LAB_BASICS/probe.topBatteryWire' );
-  var probeBottomBatteryWireString = require( 'string!CAPACITOR_LAB_BASICS/probe.bottomBatteryWire' );
-  var probeTopLightBulbWireString = require( 'string!CAPACITOR_LAB_BASICS/probe.topLightBulbWire' );
-  var probeBottomLightBulbWireString = require( 'string!CAPACITOR_LAB_BASICS/probe.bottomLightBulbWire' );
-  var probeTopCapacitorPlateString = require( 'string!CAPACITOR_LAB_BASICS/probe.topCapacitorPlate' );
-  var probeBottomCapacitorPlateString = require( 'string!CAPACITOR_LAB_BASICS/probe.bottomCapacitorPlate' );
 
   /**
    * Constructor for a Voltmeter.
@@ -107,50 +97,6 @@ define( function( require ) {
      */
     getProbeTipSizeReference: function() {
       return PROBE_TIP_SIZE;
-    },
-
-    getUsefulProbeLocations: function() {
-      var points = [];
-      var strings = [];
-      var description;
-      var topWires = this.circuit.getTopWires();
-      var bottomWires = this.circuit.getBottomWires();
-      topWires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ||
-          wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
-          wire.segments.forEach( function( segment ) {
-            if ( segment.startPoint.y === segment.endPoint.y ) {
-              points.push( new Vector3( ( segment.startPoint.x + segment.endPoint.x ) / 2, segment.endPoint.y - wire.thickness / 2, 0 ) );
-              description = wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ? probeTopBatteryWireString : probeTopLightBulbWireString;
-              strings.push( description );
-            }
-          } );
-        }
-      } );
-      this.circuit.capacitors.forEach( function( capacitor ) {
-        var top = capacitor.getTopConnectionPoint();
-        points.push( new Vector3( top.x - capacitor.plateSize.width / 4, top.y, top.z ) );
-        strings.push( probeTopCapacitorPlateString );
-        var bottom = capacitor.getBottomConnectionPoint();
-        points.push( new Vector3( bottom.x - capacitor.plateSize.width / 4, bottom.y, bottom.z ) );
-        strings.push( probeBottomCapacitorPlateString );
-      } );
-      bottomWires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM ||
-          wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM ) {
-          wire.segments.forEach( function( segment ) {
-            if ( segment.startPoint.y === segment.endPoint.y ) {
-              points.push( new Vector3( ( segment.startPoint.x + segment.endPoint.x ) / 2, segment.endPoint.y - wire.thickness / 2, 0 ) );
-              description = wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM ? probeBottomBatteryWireString : probeBottomLightBulbWireString;
-              strings.push( description );
-            }
-          } );
-        }
-      } );
-      return {
-        'points': points,
-        'strings': strings
-      };
     }
   } );
 } );
