@@ -22,20 +22,13 @@ define( function( require ) {
   var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
     
-  // strings
-  var screenLightBulbLabelString = require( 'string!CAPACITOR_LAB_BASICS/screen.lightBulbLabel' );
-  var screenLightBulbDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/screen.lightBulbDescription' );
-
   /**
    * @param {CapacitorLabBasicsLightBulbModel} model
    * @constructor
    */
   function CapacitorLabBasicsLightBulbScreenView( model ) {
 
-    ScreenView.call( this, {
-      screenDescription: screenLightBulbDescriptionString,
-      screenlabel: screenLightBulbLabelString
-    } );
+    ScreenView.call( this );
 
     this.modelViewTransform = model.modelViewTransform; // @private
     this.model = model; // @private
