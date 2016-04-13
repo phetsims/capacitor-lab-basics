@@ -20,10 +20,6 @@ define( function( require ) {
   var PlateSeparationDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandler' );
   var DragHandleValueNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleValueNode' );
   var DragHandleLineNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleLineNode' );
-  var Input = require( 'SCENERY/input/Input' );
-  var Util = require( 'DOT/Util' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
@@ -39,9 +35,6 @@ define( function( require ) {
   // strings
   var separationString = require( 'string!CAPACITOR_LAB_BASICS/separation' );
   var unitsMillimetersString = require( 'string!CAPACITOR_LAB_BASICS/units.millimeters' );
-  var accessiblePlateSeparationSliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateSeparationSlider' );
-  var accessiblePlateSeparationString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateSeparation' );
-
 
   /**
    * Constructor for the PlateSeparationDragHandlerNode.
@@ -63,48 +56,7 @@ define( function( require ) {
     // arrow
     var arrowNode = new DragHandleArrowNode( ARROW_START_LOCATION, ARROW_END_LOCATION );
     this.addInputListener( new PlateSeparationDragHandler( arrowNode, capacitor, modelViewTransform, valueRange ) );
-    arrowNode.accessibleContent = {
-      createPeer: function( accessibleInstance ) {
-        var trail = accessibleInstance.trail;
-        var uniqueId = trail.getUniqueId();
-        var domElement = document.createElement( 'div' );
-        
-        var sliderDescription = document.createElement( 'p' );
-        sliderDescription.textContent = accessiblePlateSeparationSliderString;
-        domElement.appendChild( sliderDescription );
-        sliderDescription.id = 'slider-description-' + uniqueId;
-        
-        var valueDescription = document.createElement( 'p' );
-        var millimeters = Util.toFixed( UnitsUtils.metersToMillimeters( capacitor.plateSeparation ), 1 );
-        valueDescription.textContent = StringUtils.format( accessiblePlateSeparationString, millimeters );
-        domElement.appendChild( valueDescription );
-        
-        domElement.setAttribute( 'aria-describedby', sliderDescription.id );
-        domElement.setAttribute( 'aria-live', 'polite' );
 
-        domElement.tabIndex = '-1';
-
-        domElement.addEventListener( 'keydown', function( event ) {
-          var keyCode = event.keyCode;
-          var delta = keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW ? -1 :
-                  keyCode === Input.KEY_RIGHT_ARROW || keyCode === Input.KEY_UP_ARROW ? +1 :
-                  0;
-          var range = valueRange.max - valueRange.min;
-          capacitor.plateSeparationProperty.set( Util.clamp( capacitor.plateSeparationProperty.get() + range * 0.1 * delta,
-                                                  valueRange.min,
-                                                  valueRange.max ) );
-          
-          var millimeters = Util.toFixed( UnitsUtils.metersToMillimeters( capacitor.plateSeparation ), 1 );
-          valueDescription.textContent = StringUtils.format( accessiblePlateSeparationString, millimeters );
-        } );
-
-        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-        domElement.id = 'slider-' + trail.getUniqueId();
-        thisNode.accessibleId = domElement.id;
-        return accessiblePeer;
-
-      }
-    };
     this.touchArea = arrowNode.bounds;
     this.cursor = 'pointer';
 
@@ -125,9 +77,11 @@ define( function( require ) {
     var x = 0;
     var y = 0;
     lineNode.translation = new Vector2( x, y );
+
     x = 0;
     y = lineNode.bounds.minY - 2;
     arrowNode.translation = new Vector2( x, y );
+    
     x = arrowNode.bounds.maxX;
     y = arrowNode.bounds.minY - this.valueNode.bounds.height / 2;
     this.valueNode.translation = new Vector2( x, y );
