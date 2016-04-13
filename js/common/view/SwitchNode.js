@@ -19,24 +19,15 @@ define( function( require ) {
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
   var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
-
-  // strings
-  var accessibleSwitchLabelString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchLabel' );
-  var accessibleSwitchDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchDescription' );
-  var accessibleCapacitorConnectedToBatteryString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitorConnectedToBattery' );
-  var accessibleCapacitorDisconnectedString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitorDisconnected' );
-  var accessibleCapacitorConnectedToLightbulbString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitorConnectedToLightbulb' );
 
   /**
    * Constructor for a SwitchNode.
    *
    * @param {CircuitSwitch} circuitSwitch
-   * @param {boolean} isLiveRegion
    * @param {CLModelViewTransform3D} modelViewTransform
    * @constructor
    */
-  function SwitchNode( circuitSwitch, isLiveRegion, modelViewTransform ) {
+  function SwitchNode( circuitSwitch, modelViewTransform ) {
 
     Node.call( this );
     var thisNode = this;
@@ -85,10 +76,6 @@ define( function( require ) {
     // Make sure that the shaded sphere snaps to the correct position when connection property changes.
     circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
       shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
-      var liveElement = document.getElementById( thisNode.liveAccessibleId );
-      if ( liveElement !== null ) {
-        liveElement.textContent = getAccessibleDescription();
-      }
     } );
 
     // rendering order, important for behavior of click areas and drag handlers
@@ -101,70 +88,10 @@ define( function( require ) {
     this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );
 
-    var getAccessibleDescription = function() {
-      var currentConnection = circuitSwitch.circuitConnectionProperty.get();
-      if ( currentConnection === 'BATTERY_CONNECTED' ) {
-        return accessibleCapacitorConnectedToBatteryString;
-      } else if ( currentConnection === 'OPEN_CIRCUIT' ) {
-        return accessibleCapacitorDisconnectedString;
-      } else {
-        return accessibleCapacitorConnectedToLightbulbString;
-      }
-    };
-
-    // add the accessible content
-    this.accessibleContent = {
-      createPeer: function( accessibleInstance ) {
-        var domElement = document.createElement( 'div' );
-        var trail = accessibleInstance.trail;
-
-        var label = document.createElement( 'h4' );
-        label.textContent = accessibleSwitchLabelString;
-        label.id = 'switchLabel' + trail.getUniqueId();
-        domElement.appendChild( label );
-
-        var description = document.createElement( 'p' );
-        description.textContent = accessibleSwitchDescriptionString;
-        description.id = 'switchDescription' + trail.getUniqueId();
-        domElement.appendChild( description );
-
-        if ( isLiveRegion ) {
-          var liveRegion = document.createElement( 'p' );
-          liveRegion.textContent = getAccessibleDescription();
-          liveRegion.setAttribute( 'aria-live', 'polite' );
-          liveRegion.id = 'live-switch-' + trail.getUniqueId();
-          thisNode.liveAccessibleId = liveRegion.id;
-          domElement.appendChild( liveRegion );
-        }
-
-        domElement.setAttribute( 'aria-describedby', description.id );
-        domElement.setAttribute( 'aria-labeledby', label.id );
-
-        domElement.tabIndex = '-1';
-
-        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-        domElement.id = accessiblePeer.id;
-        return accessiblePeer;
-
-      }
-    };
-
-
   }
 
   capacitorLabBasics.register( 'SwitchNode', SwitchNode );
 
-  return inherit( Node, SwitchNode, {
-    /**
-     * Return the accessible ids of all the connection point nodes
-     */
-    getAccessibleIds: function() {
-      var accessibleIds = [];
-      this.connectionPointNodes.forEach( function( node ) {
-        accessibleIds.push( node.accessibleId );
-      } );
-      return accessibleIds;
-    }
-  } );
+  return inherit( Node, SwitchNode );
 
 } );

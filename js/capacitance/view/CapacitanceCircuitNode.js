@@ -62,10 +62,8 @@ define( function( require ) {
 
     // switches
     this.circuitSwitchNodes = [];
-    var isLive = true;
     circuit.circuitSwitches.forEach( function( circuitSwitch ) {
-      thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, isLive, modelViewTransform ) );
-      isLive = false;
+      thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, modelViewTransform ) );
     } );
 
     // drag handles
