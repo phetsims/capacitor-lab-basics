@@ -14,7 +14,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Image = require( 'SCENERY/nodes/Image' );
-  var Input = require( 'SCENERY/input/Input' );
   var HSlider = require( 'SUN/HSlider' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Dimension2 = require( 'DOT/Dimension2' );
@@ -22,8 +21,6 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Vector2 = require( 'DOT/Vector2' );
-  var Util = require( 'DOT/Util' );
-  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
@@ -36,10 +33,6 @@ define( function( require ) {
   // strings
   var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
-  var accessibleBatteryVoltageString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batteryVoltage' );
-  var accessibleBatterySliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batterySlider' );
-  var accessibleBatteryString = require( 'string!CAPACITOR_LAB_BASICS/accessible.battery' );
-  var accessibleBatteryDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.batteryDescription' );
 
   /**
    * Constructor for a BatteryNode.
@@ -48,40 +41,9 @@ define( function( require ) {
    * @param {Range} voltageRange
    * @constructor
    */
-  function BatteryNode( battery, voltageRange, accessibleId ) {
+  function BatteryNode( battery, voltageRange ) {
 
     Node.call( this );
-    var thisNode = this;
-    this.accessibleId = 'battery-' + accessibleId;
-    
-    // add the accessible content
-    this.accessibleContent = {
-      createPeer: function( accessibleInstance ) {
-        var trail = accessibleInstance.trail;
-        // battery-widget
-        var domElement = document.createElement( 'div' );
-        
-        var label = document.createElement( 'h4' );
-        label.textContent = accessibleBatteryString;
-        label.id = 'battery-label-' + accessibleId;
-        domElement.appendChild( label );
-        
-        var description = document.createElement( 'p' );
-        description.textContent = accessibleBatteryDescriptionString;
-        description.id = 'battery-description-' + accessibleId;
-        domElement.appendChild( description );
-        
-        domElement.setAttribute( 'aria-describedby', description.id );
-        domElement.setAttribute( 'aria-labeledby', label.id );
-
-        domElement.tabIndex = '-1';
-
-        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-        domElement.id = 'battery-' + trail.getUniqueId();
-        return accessiblePeer;
-
-      }
-    };
 
     // battery image, scaled to match model dimensions
     var imageNode = new Image( batteryUpImage, { scale: 0.30 } );
@@ -96,49 +58,6 @@ define( function( require ) {
       endDrag: function() {
         if ( Math.abs( battery.voltage ) < CLConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {
           battery.voltage = 0;
-        }
-      },
-      accessibleContent: {
-        createPeer: function( accessibleInstance ) {
-          var trail = accessibleInstance.trail;
-          var uniqueId = trail.getUniqueId();
-
-          var domElement = document.createElement( 'div' );
-          
-          var sliderDescription = document.createElement( 'p' );
-          sliderDescription.textContent = accessibleBatterySliderString;
-          domElement.appendChild( sliderDescription );
-          sliderDescription.id = 'slider-description-' + uniqueId;
-
-          var voltageDescription = document.createElement( 'p' );
-          var voltageValue = Util.toFixed( battery.voltageProperty.get(), 2 );
-          voltageDescription.textContent = StringUtils.format( accessibleBatteryVoltageString, voltageValue );
-          domElement.appendChild( voltageDescription );
-          
-          domElement.setAttribute( 'aria-describedby', sliderDescription.id );
-          domElement.setAttribute( 'aria-live', 'polite' );
-
-          domElement.tabIndex = '-1';
-
-          domElement.addEventListener( 'keydown', function( event ) {
-            var keyCode = event.keyCode;
-            var delta = keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW ? -1 :
-                    keyCode === Input.KEY_RIGHT_ARROW || keyCode === Input.KEY_UP_ARROW ? +1 :
-                    0;
-            if ( delta !== 0 ) {
-              var voltage = voltageRange.max - voltageRange.min;
-              battery.voltageProperty.set( Util.clamp( battery.voltageProperty.get() + voltage * 0.1 * delta,
-                                                      voltageRange.min,
-                                                      voltageRange.max ) );
-              var voltageValue = Util.toFixed( battery.voltageProperty.get(), 2 );
-              voltageDescription.textContent = StringUtils.format( accessibleBatteryVoltageString, voltageValue );
-            }
-          } );
-
-          var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-          domElement.id = thisNode.accessibleId;
-          return accessiblePeer;
-
         }
       }
     } );

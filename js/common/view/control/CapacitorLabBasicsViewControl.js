@@ -20,7 +20,6 @@ define( function( require ) {
   var VStrut = require( 'SCENERY/nodes/VStrut' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
 
   // constants
   var PANEL_TITLE_FONT = new PhetFont( { weight: 'bold', size: 18 } );
@@ -33,8 +32,6 @@ define( function( require ) {
   var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
   var currentString = require( 'string!CAPACITOR_LAB_BASICS/current' );
   var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
-  var accessibleViewControlLabelString = require( 'string!CAPACITOR_LAB_BASICS/accessible.viewControlLabel' );
-  var accessibleViewControlDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.viewControlDescription' );
 
   /**
    * Constructor.
@@ -70,33 +67,7 @@ define( function( require ) {
       xMargin: 10,
       yMargin: 10,
       align: 'left',
-      fill: CLConstants.METER_PANEL_FILL,
-      accessibleContent: {
-        createPeer: function( accessibleInstance ) {
-          var domElement = document.createElement( 'div' );
-          var trail = accessibleInstance.trail;
-          
-          var label = document.createElement( 'h4' );
-          label.textContent = accessibleViewControlLabelString;
-          label.id = 'viewControlLabel' + trail.getUniqueId();
-          domElement.appendChild( label );
-  
-          var description = document.createElement( 'p' );
-          description.textContent = accessibleViewControlDescriptionString;
-          description.id = 'viewControlDescription' + trail.getUniqueId();
-          domElement.appendChild( description );
-  
-          domElement.setAttribute( 'aria-describedby', description.id );
-          domElement.setAttribute( 'aria-labeledby', label.id );
-  
-          domElement.tabIndex = '-1';
-  
-          var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-          domElement.id = accessiblePeer.id;
-          return accessiblePeer;
-  
-        }
-      }
+      fill: CLConstants.METER_PANEL_FILL
     } );
   }
 

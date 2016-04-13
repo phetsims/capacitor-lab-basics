@@ -204,21 +204,6 @@ define( function( require ) {
   return inherit( AbstractCircuit, ParallelCircuit, {
 
     /**
-     * Update the plate voltages.  This must be called at the end of the constructor.  See documentation in
-     * AbstractCircuit.  Plate voltage updates only if connected to the battery.
-     *
-     * TODO: Not so sure about this anymore.
-     */
-    //updatePlateVoltages: function() {
-    //  var thisCircuit = this;
-    //  if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
-    //    this.capacitors.forEach( function( capacitor ) {
-    //      capacitor.platesVoltage = thisCircuit.getTotalVoltage(); // voltage across all capacitors is the same
-    //    } );
-    //  }
-    //},
-
-    /**
      * Get the total capacitance of all parallel capacitors in this circuit using C_total = C1 + C2 + ... + Cn
      *
      * @returns {number}

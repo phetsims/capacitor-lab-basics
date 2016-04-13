@@ -21,7 +21,6 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var Util = require( 'DOT/Util' );
-  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // digital display
@@ -35,10 +34,7 @@ define( function( require ) {
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
   var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
   var voltsUnknownString = require( 'string!CAPACITOR_LAB_BASICS/volts.unknown' );
-  var accessibleVoltmeterBodyString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterBody' );
   var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
-  var accessibleVoltmeterUnknownValueString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterUnknownValue' );
-  var accessibleVoltmeterValueString = require( 'string!CAPACITOR_LAB_BASICS/accessible.voltmeterValue' );
 
   // images
   var voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
@@ -113,40 +109,6 @@ define( function( require ) {
       }
     } );
     thisNode.addInputListener( this.movableDragHandler );
-
-    // add the accessible content
-    this.accessibleContent = {
-      createPeer: function( accessibleInstance ) {
-        var trail = accessibleInstance.trail;
-        var uniqueId = trail.getUniqueId();
-
-        var domElement = document.createElement( 'div' );
-        domElement.className = 'VoltmeterBody';
-
-        // add this voltmeter instance ID to the thisNode so that the panel can have access to the node.
-        domElement.id = 'voltmeter-' + trail.getUniqueId();
-        thisNode.accessibleVoltmeterBodyId = domElement.id;
-
-        var bodyDescription = document.createElement( 'p' );
-        bodyDescription.textContent = accessibleVoltmeterBodyString;
-        domElement.appendChild( bodyDescription );
-        bodyDescription.id = 'body-description-' + uniqueId;
-
-        var voltageDescription = document.createElement( 'p' );
-        voltageDescription.id = 'voltage-description-' + uniqueId;
-        voltageDescription.textContent = accessibleVoltmeterUnknownValueString;
-        domElement.appendChild( voltageDescription );
-        
-        domElement.setAttribute( 'aria-labelledby', bodyDescription.id );
-        domElement.setAttribute( 'aria-describedby', voltageDescription.id );
-        domElement.setAttribute( 'aria-live', 'polite' );
-
-        domElement.tabIndex = '-1';
-
-        return new AccessiblePeer( accessibleInstance, domElement );
-
-      }
-    };
   }
 
   capacitorLabBasics.register( 'VoltmeterBodyNode', VoltmeterBodyNode );
@@ -160,24 +122,13 @@ define( function( require ) {
      * @param {Number} value
      */
     setValueText: function( valueText, value ) {
-      var domElement = document.getElementById( this.accessibleVoltmeterBodyId );
-      var description;
       if ( isNaN( value ) ) {
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, voltsUnknownString, unitsVoltsString ) );
-        if ( domElement !== null ) {
-          description = domElement.childNodes[1];
-          description.textContent = accessibleVoltmeterUnknownValueString;
-        }
       }
       else {
         var fixedValue = Util.toFixed( value, 3 );
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, fixedValue, unitsVoltsString ) );
-        if ( domElement !== null ) {
-          description = domElement.childNodes[1];
-          description.textContent = StringUtils.format( accessibleVoltmeterValueString, fixedValue );
-        }
       }
-      //valueText.center = this.center;
     }
   } );
 } );

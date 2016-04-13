@@ -21,10 +21,6 @@ define( function( require ) {
   var PlateAreaDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandler' );
   var DragHandleValueNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleValueNode' );
   var DragHandleLineNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleLineNode' );
-  var Input = require( 'SCENERY/input/Input' );
-  var Util = require( 'DOT/Util' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
@@ -35,8 +31,6 @@ define( function( require ) {
   // strings
   var plateAreaString = require( 'string!CAPACITOR_LAB_BASICS/plateArea' );
   var unitsMillimetersString = require( 'string!CAPACITOR_LAB_BASICS/units.millimeters' );
-  var accessiblePlateAreaSliderString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateAreaSlider' );
-  var accessiblePlateAreaString = require( 'string!CAPACITOR_LAB_BASICS/accessible.plateArea' );
 
   // endpoints for a vertical line, this will be rotated to point along the plate's pseudo-3D diagonal
   var LINE_LENGTH = 22;
@@ -63,47 +57,7 @@ define( function( require ) {
     // arrow
     var arrowNode = new DragHandleArrowNode( ARROW_TIP_LOCATION, ARROW_TAIL_LOCATION );
     arrowNode.addInputListener( new PlateAreaDragHandler( arrowNode, capacitor, modelViewTransform, valueRange ) );
-    arrowNode.accessibleContent = {
-      createPeer: function( accessibleInstance ) {
-        var trail = accessibleInstance.trail;
-        var uniqueId = trail.getUniqueId();
-        var domElement = document.createElement( 'div' );
-        
-        var sliderDescription = document.createElement( 'p' );
-        sliderDescription.textContent = accessiblePlateAreaSliderString;
-        domElement.appendChild( sliderDescription );
-        sliderDescription.id = 'slider-description-' + uniqueId;
-        
-        var valueDescription = document.createElement( 'p' );
-        var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
-        valueDescription.textContent = StringUtils.format( accessiblePlateAreaString, millimetersSquared );
-        domElement.appendChild( valueDescription );
-        
-        domElement.setAttribute( 'aria-describedby', sliderDescription.id );
-        domElement.setAttribute( 'aria-live', 'polite' );
 
-        domElement.tabIndex = '-1';
-
-        domElement.addEventListener( 'keydown', function( event ) {
-          var keyCode = event.keyCode;
-          var delta = keyCode === Input.KEY_LEFT_ARROW || keyCode === Input.KEY_DOWN_ARROW ? -1 :
-                  keyCode === Input.KEY_RIGHT_ARROW || keyCode === Input.KEY_UP_ARROW ? +1 :
-                  0;
-          var range = valueRange.max - valueRange.min;
-          capacitor.setPlateWidth( Util.clamp( capacitor.plateSize.width + range * 0.1 * delta,
-                                                  valueRange.min,
-                                                  valueRange.max ) );
-          var millimetersSquared = Util.toFixed( UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() ), 1 );
-          valueDescription.textContent = StringUtils.format( accessiblePlateAreaString, millimetersSquared );
-        } );
-
-        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-        domElement.id = 'slider-' + uniqueId;
-        thisNode.accessibleId = domElement.id;
-        return accessiblePeer;
-
-      }
-    };
     this.touchArea = arrowNode.bounds;
     this.cursor = 'pointer';
 
@@ -127,10 +81,12 @@ define( function( require ) {
     var lineArrowSpacing = 2;
     lineNode.translation = new Vector2( x, y );
     lineNode.rotation = angle;
+
     x = lineNode.bounds.maxX + lineArrowSpacing;
     y = lineNode.bounds.minY - lineArrowSpacing;
     arrowNode.translation = new Vector2( x, y );
     arrowNode.rotation = angle;
+    
     x = lineNode.bounds.maxX + this.valueNode.bounds.width / 3;
     y = lineNode.bounds.minY - this.valueNode.bounds.height - 14;
     this.valueNode.translation = new Vector2( x, y );

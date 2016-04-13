@@ -16,12 +16,7 @@ define( function( require ) {
   var EFieldNode = require( 'CAPACITOR_LAB_BASICS/common/view/EFieldNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   
-  // strings
-  var accessibleCapacitorString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitor' );
-  var accessibleCapacitorDescriptionString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitorDescription' );
-
   /**
    * Constructor for a CapacitorNode.
    *
@@ -65,35 +60,6 @@ define( function( require ) {
     eFieldVisibleProperty.link( function( visible ) {
       eFieldNode.setVisible( visible );
     } );
-    
-    // add the accessible content
-    this.accessibleContent = {
-      createPeer: function( accessibleInstance ) {
-        var trail = accessibleInstance.trail;
-        // capacitor-widget
-        var domElement = document.createElement( 'div' );
-        
-        var label = document.createElement( 'h4' );
-        label.textContent = accessibleCapacitorString;
-        label.id = 'capacitor-label-' + trail.getUniqueId();
-        domElement.appendChild( label );
-        
-        var description = document.createElement( 'p' );
-        description.textContent = accessibleCapacitorDescriptionString;
-        description.id = 'capacitor-description-' + trail.getUniqueId();
-        domElement.appendChild( description );
-        
-        domElement.setAttribute( 'aria-describedby', description.id );
-        domElement.setAttribute( 'aria-labeledby', label.id );
-        
-        domElement.tabIndex = '-1';
-
-        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-        domElement.id = 'capacitor-' + trail.getUniqueId();
-        return accessiblePeer;
-
-      }
-    };
 
   }
 

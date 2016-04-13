@@ -14,13 +14,7 @@ define( function( require ) {
   var Circle = require( 'SCENERY/nodes/Circle' );
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
-  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-
-  // strings
-  var accessibleSwitchToBatteryString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToBattery' );
-  var accessibleSwitchToCenterString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToCenter' );
-  var accessibleSwitchToLightbulbString = require( 'string!CAPACITOR_LAB_BASICS/accessible.switchToLightbulb' );
 
   // constants
   var CONNECTION_POINT_RADIUS = 6;
@@ -54,27 +48,11 @@ define( function( require ) {
       thisNode.fill = DISCONNECTED_POINT_COLOR;
       thisNode.stroke = DISCONNECTED_POINT_STROKE;
     }
-    
-    var getAccessibleDescription = function() {
-      if ( connectionType === 'BATTERY_CONNECTED' ) {
-        return accessibleSwitchToBatteryString;
-      }
-      else if ( connectionType === 'OPEN_CIRCUIT' ) {
-        return accessibleSwitchToCenterString;
-      }
-      else {
-        return accessibleSwitchToLightbulbString;
-      }
-    };
 
     // link pin style properties to the circuit connection. Needs to be done in addition to the button listener so that
     // all connection points update when a single connection point is interacted with.
     circuitConnectionProperty.link( function( circuitConnection ) {
       resetPinColors();
-      var domElement = document.getElementById( thisNode.accessibleId );
-      if ( domElement !== null ) {
-        domElement.value = getAccessibleDescription();
-      }
     } );
 
     // Add input listener to set circuit state.
@@ -89,29 +67,6 @@ define( function( require ) {
         circuitConnectionProperty.set( connectionType );
       }
     } ) );
-
-    // add the accessible content
-    this.accessibleContent = {
-      createPeer: function( accessibleInstance ) {
-        var trail = accessibleInstance.trail;
-        
-        var domElement = document.createElement( 'input' );
-        domElement.value = getAccessibleDescription();
-        domElement.type = 'button';
-
-        domElement.tabIndex = '-1';
-
-        domElement.addEventListener( 'click', function() {
-          circuitConnectionProperty.set( connectionType );
-        } );
-
-        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-        domElement.id = 'connection-' + trail.getUniqueId();
-        thisNode.accessibleId = domElement.id;
-        return accessiblePeer;
-
-      }
-    };
   }
 
   capacitorLabBasics.register( 'ConnectionPointNode', ConnectionPointNode );
