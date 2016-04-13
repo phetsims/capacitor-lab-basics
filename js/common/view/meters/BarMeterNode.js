@@ -173,30 +173,27 @@ define( function( require ) {
      * Factory constructor for a CapacitanceMeterNode.
      *
      * @param {CapacitanceMeter} meter
-     * @param {String} tabIndex
      * @constructor
      */
-    CapacitanceBarMeterNode: function( meter, tabIndex ) {
+    CapacitanceBarMeterNode: function( meter ) {
       return new BarMeterNode( meter, CLConstants.CAPACITANCE_COLOR, CLConstants.CAPACITANCE_METER_VALUE_EXPONENT, unitsPicoFaradsString, capacitanceString );
     },
     /**
      * Factory constructor for a CapacitanceMeterNode.
      *
      * @param {CapacitanceMeter} meter
-     * @param {String} tabIndex
      * @constructor
      */
-    PlateChargeBarMeterNode: function( meter, tabIndex ) {
-      return new PlateChargeBarMeterNode( meter, tabIndex );
+    PlateChargeBarMeterNode: function( meter ) {
+      return new PlateChargeBarMeterNode( meter );
     },
     /**
      * Factory constructor for a CapacitanceMeterNode.
      *
      * @param {CapacitanceMeter} meter
-     * @param {String} tabIndex
      * @constructor
      */
-    StoredEnergyBarMeterNode: function( meter, tabIndex ) {
+    StoredEnergyBarMeterNode: function( meter ) {
       return new BarMeterNode( meter, CLConstants.STORED_ENERGY_COLOR, CLConstants.STORED_ENERGY_METER_VALUE_EXPONENT, unitsPicoJoulesString, storedEnergyString );
     }
   } );
@@ -248,10 +245,9 @@ define( function( require ) {
    * setValue function.
    *
    * @param {PlateChargeMeter} meter
-   * @param {String} tabIndex
    * @constructor
    */
-  function PlateChargeBarMeterNode( meter, tabIndex ) {
+  function PlateChargeBarMeterNode( meter ) {
     BarMeterNode.call( this, meter, CLConstants.POSITIVE_CHARGE_COLOR, CLConstants.PLATE_CHARGE_METER_VALUE_EXPONENT, unitsPicoCoulombsString, plateChargeString );
   }
 
