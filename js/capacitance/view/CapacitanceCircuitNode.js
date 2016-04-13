@@ -23,13 +23,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
-  var AccessiblePeer = require( 'SCENERY/accessibility/AccessiblePeer' );
-  var Input = require( 'SCENERY/input/Input' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-
-  // strings
-  var accessibleCapacitanceCircuitString = require( 'string!CAPACITOR_LAB_BASICS/accessible.capacitanceCircuit' );
-  var accessibleCircuitString = require( 'string!CAPACITOR_LAB_BASICS/accessible.circuit' );
 
   /**
    * Constructor for a CircuitNode.
@@ -66,9 +60,6 @@ define( function( require ) {
       thisNode.bottomWireNode.addChild( new WireNode( bottomWire ) );
     } );
 
-    //this.topWireNode = new WireNode( circuit.getTopWire() ); // @private
-    //this.bottomWireNode = new WireNode( circuit.getBottomWire() ); // @private
-
     // switches
     this.circuitSwitchNodes = [];
     var isLive = true;
@@ -97,7 +88,8 @@ define( function( require ) {
     this.addChild( plateAreaDragHandleNode );
     this.addChild( this.circuitSwitchNodes[ 1 ] );
 
-    // layout TODO: Much of the layout will need to be fixed or tidied.  Many design decisions to be made.
+    // layout
+    // TODO: There are still layout design descisions to be made by the designers, revisit this
     var x = 0;
     var y = 0;
 
@@ -127,6 +119,8 @@ define( function( require ) {
       thisNode.batteryBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
     } );
 
+    // TODO: updateCurrentVisibility is private here, maybe move here from inherit.
+    // (or consider extension from base CLBCircuitNode)
     circuit.circuitConnectionProperty.link( function( circuitConnection ) {
       thisNode.updateCurrentVisibility( circuitConnection, currentIndicatorsVisibleProperty.value );
     } );
@@ -134,87 +128,6 @@ define( function( require ) {
     currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
       thisNode.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
-    
-    // return array of all accessible content in circuit
-    var getAccessibleIds = function() {
-      var accessibleIds = [];
-      accessibleIds.push( thisNode.batteryNode.accessibleId );
-      thisNode.circuitSwitchNodes.forEach( function( switchNode ) {
-        switchNode.getAccessibleIds().forEach( function( id ) {
-          accessibleIds.push( id );
-        } );
-      } );
-      accessibleIds.push( plateSeparationDragHandleNode.accessibleId );
-      accessibleIds.push( plateAreaDragHandleNode.accessibleId );
-      return accessibleIds;
-    };
-    
-    var setTabIndex = function( tabIndex ) {
-      getAccessibleIds().forEach( function( id ) {
-        var domElement = document.getElementById( id );
-        if ( domElement !== null ) {
-          domElement.tabIndex = tabIndex;
-        }
-      } );
-    };
-    
-    // add the accessible content
-    this.accessibleContent = {
-      createPeer: function( accessibleInstance ) {
-        var trail = accessibleInstance.trail;
-        // circuit-widget
-        var domElement = document.createElement( 'div' );
-        
-        var label = document.createElement( 'h3' );
-        label.textContent = accessibleCircuitString;
-        label.id = 'capacitance-circuit-label';
-        domElement.appendChild( label );
-        
-        var description = document.createElement( 'p' );
-        description.textContent = accessibleCapacitanceCircuitString;
-        description.id = 'capacitance-circuit-description';
-        domElement.appendChild( description );
-        
-        domElement.setAttribute( 'aria-describedby', description.id );
-        domElement.setAttribute( 'aria-labeledby', label.id );
-        domElement.setAttribute( 'aria-live', 'polite' );
-
-        domElement.tabIndex = '0';
-        
-        domElement.addEventListener( 'keydown', function( event ) {
-          var keyCode = event.keyCode;
-          var firstElem;
-          if ( keyCode === Input.KEY_ENTER ) {
-            setTabIndex( '0' );
-            firstElem = document.getElementById( thisNode.batteryNode.accessibleId );
-            firstElem.focus();
-          }
-          else if ( keyCode === Input.KEY_ESCAPE ) {
-            domElement.focus();
-            setTabIndex( '-1' );
-          }
-          else if ( keyCode === Input.KEY_TAB ) {
-            var switchIds = thisNode.circuitSwitchNodes[ 1 ].getAccessibleIds();
-            var lastElem = document.getElementById( switchIds[ switchIds.length - 1 ] );
-            firstElem = document.getElementById( thisNode.batteryNode.accessibleId );
-            if ( document.activeElement === lastElem && !event.shiftKey ) {
-              event.preventDefault();
-              firstElem.focus();
-            }
-            if ( document.activeElement === firstElem && event.shiftKey ) {
-              event.preventDefault();
-              lastElem.focus();
-            }
-          }
-        } );
-
-        var accessiblePeer = new AccessiblePeer( accessibleInstance, domElement );
-        domElement.id = 'capacitanceCircuit-' + trail.getUniqueId();
-        thisNode.accessibleId = domElement.id;
-        return accessiblePeer;
-
-      }
-    };
 
   }
 
