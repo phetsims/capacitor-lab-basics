@@ -19,9 +19,7 @@ define( function( require ) {
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/BarMeterPanel' );
   var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
-  var KeyboardHelpPanel = require( 'CAPACITOR_LAB_BASICS/common/view/KeyboardHelpPanel' );
   var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
-  var Input = require( 'SCENERY/input/Input' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
     
   // strings
@@ -71,10 +69,6 @@ define( function( require ) {
       radius: 25
     } );
     
-    var keyboardHelpPanel = new KeyboardHelpPanel( model );
-    keyboardHelpPanel.centerX = ( this.layoutBounds.right + this.layoutBounds.left ) / 2;
-    keyboardHelpPanel.centerY = ( this.layoutBounds.top + this.layoutBounds.bottom ) / 2;
-
     // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide.
     model.voltmeter.inUserControlProperty.link( function( inUserControl ) {
       if ( !inUserControl && voltmeterToolbox.bounds.intersectsBounds( voltmeterNode.bodyNode.bounds.eroded( 40 ) ) ) {
@@ -89,46 +83,7 @@ define( function( require ) {
     this.addChild( voltmeterToolbox );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
-    this.addChild( keyboardHelpPanel );
 
-    // accessible content
-    var activeElement = document.activeElement;
-    var shiftKey = false;
-    this.accessibleContent = {
-      createPeer: function( accessibleInstance ) {
-
-        // generate the 'supertype peer' for the ScreenView in the parallel DOM.
-        var accessiblePeer = ScreenView.ScreenViewAccessiblePeer( accessibleInstance, screenLightBulbDescriptionString, screenLightBulbLabelString );
-
-        // add a global event listener to all children of this screen view, bubbles through all children
-        accessiblePeer.domElement.addEventListener( 'keydown', function( event ) {
-          // 'global' event behavior in here...
-          // keycode = 'h'
-          if ( event.keyCode === 72 ) {
-            model.keyboardHelpVisibleProperty.set( true );
-            var panel = document.getElementById( keyboardHelpPanel.accessibleId );
-            panel.focus();
-          }
-          else if ( event.keyCode === Input.KEY_TAB || event.keyCode === Input.KEY_ESCAPE ) {
-            if ( model.keyboardHelpVisibleProperty.get() ) {
-              if ( activeElement === document.body) {
-                activeElement = document.getElementById( lightBulbCircuitNode.accessibleId );
-                event.preventDefault();
-              }
-              if ( shiftKey ) {
-                event.preventDefault();
-              }
-              activeElement.focus();
-              model.keyboardHelpVisibleProperty.set( false );
-            }
-            activeElement = document.activeElement;
-            shiftKey = event.shiftKey;
-          }
-        } );
-
-        return accessiblePeer;
-      }
-    };
   }
 
   capacitorLabBasics.register( 'CapacitorLabBasicsLightBulbScreenView', CapacitorLabBasicsLightBulbScreenView );
