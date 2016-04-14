@@ -222,6 +222,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'BarMeterNode.BarNode', BarNode );
+
   inherit( Rectangle, BarNode, {
 
     setValue: function( value ) {
@@ -250,6 +252,8 @@ define( function( require ) {
   function PlateChargeBarMeterNode( meter ) {
     BarMeterNode.call( this, meter, CLConstants.POSITIVE_CHARGE_COLOR, CLConstants.PLATE_CHARGE_METER_VALUE_EXPONENT, unitsPicoCoulombsString, plateChargeString );
   }
+
+  capacitorLabBasics.register( 'PlateChargeBarMeterNode', PlateChargeBarMeterNode );
 
   inherit( BarMeterNode, PlateChargeBarMeterNode, {
 

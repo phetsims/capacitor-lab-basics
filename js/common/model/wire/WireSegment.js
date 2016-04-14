@@ -66,6 +66,8 @@ define( function( require ) {
     this.component = component;
   }
 
+  capacitorLabBasics.register( 'ComponentWireSegment', ComponentWireSegment );
+
   inherit( WireSegment, ComponentWireSegment, {
     cleanUp: function() {
       //component.removePlateSeparationObserver(); TODO
@@ -82,6 +84,8 @@ define( function( require ) {
   function ComponentTopWireSegment( component, endPoint ) {
     ComponentWireSegment.call( this, component, component.getTopConnectionPoint().toVector2(), endPoint );
   }
+
+  capacitorLabBasics.register( 'ComponentTopWireSegment', ComponentWireSegment );
 
   inherit( ComponentWireSegment, ComponentTopWireSegment, {
     update: function() {
@@ -100,6 +104,8 @@ define( function( require ) {
     ComponentWireSegment.call( this, component, component.getBottomConnectionPoint().toVector2(), endPoint );
   }
 
+  capacitorLabBasics.register( 'ComponentBottomWireSegment', ComponentBottomWireSegment );
+
   inherit( ComponentWireSegment, ComponentBottomWireSegment, {
     update: function() {
       this.startPoint = this.component.getBottomConnectionPoint().toVector2();
@@ -117,6 +123,8 @@ define( function( require ) {
     this.bottomComponent = bottomComponent;
 
   }
+
+  capacitorLabBasics.register( 'ComponentToComponentWireSegment', ComponentToComponentWireSegment );
 
   inherit( WireSegment, ComponentToComponentWireSegment, {
     cleanUp: function() {
@@ -144,6 +152,8 @@ define( function( require ) {
     //battery.addPolarityObserver( this ); TODO
   }
 
+  capacitorLabBasics.register( 'BatteryWireSegment', BatteryWireSegment );
+
   inherit( WireSegment, BatteryWireSegment, {
     cleanup: function() {
       //battery.removePolarityObserver( this ); TODO
@@ -160,6 +170,8 @@ define( function( require ) {
   function BatteryTopWireSegment( battery, endPoint ) {
     BatteryWireSegment.call( this, battery, new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ), endPoint );
   }
+
+  capacitorLabBasics.register( 'BatteryTopWireSegment', BatteryTopWireSegment );
 
   inherit( BatteryWireSegment, BatteryTopWireSegment, {
     update: function() {
@@ -178,6 +190,8 @@ define( function( require ) {
   function BatteryBottomWireSegment( battery, endPoint ) {
     BatteryWireSegment.call( this, battery, new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() ), endPoint );
   }
+
+  capacitorLabBasics.register( 'BatteryBottomWireSegment', BatteryBottomWireSegment );
 
   inherit( BatteryWireSegment, BatteryBottomWireSegment, {
     update: function() {
@@ -199,6 +213,8 @@ define( function( require ) {
     WireSegment.call( this, hingePoint, activeConnection.location );
   }
 
+  capacitorLabBasics.register( 'SwitchSegment', SwitchSegment );
+  
   inherit( WireSegment, SwitchSegment, {
 
     update: function( activeConnection, angle ) {

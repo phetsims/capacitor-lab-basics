@@ -239,6 +239,8 @@ define( function( require ) {
 
   }
 
+  capacitorLabBasics.register( 'AirPlateChargeNode', AirPlateChargeNode );
+
   inherit( PlateChargeNode, AirPlateChargeNode, {
 
     // Gets the portion of the plate charge due to air.
