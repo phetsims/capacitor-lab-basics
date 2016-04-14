@@ -30,7 +30,7 @@ define( function( require ) {
   var CONNECTION_POINT_HIGHLIGHTED = 'yellow';
 
   /**
-   * Constructor for the ConnectionAreaInputListener.
+   * Constructor for the ConnectionAreaNode.
    *
    * @param {Object} connection
    * @param {Vector2} hingePoint
@@ -39,7 +39,7 @@ define( function( require ) {
    * @param {Property} circuitConnectionProperty
    * @constructor
    */
-  function ConnectionAreaInputListener( connection, hingePoint, connectionPointNode, modelViewTransform, circuitConnectionProperty ) {
+  function ConnectionAreaNode( connection, hingePoint, connectionPointNode, modelViewTransform, circuitConnectionProperty ) {
 
     Node.call( this );
     var connectionVector = connection.location.toVector2().minus( hingePoint ).withMagnitude( CLConstants.SWITCH_WIRE_LENGTH * 3 / 2 );
@@ -82,8 +82,8 @@ define( function( require ) {
 
   }
 
-  capacitorLabBasics.register( 'ConnectionAreaInputListener', ConnectionAreaInputListener );
+  capacitorLabBasics.register( 'ConnectionAreaNode', ConnectionAreaNode );
   
-  return inherit( Node, ConnectionAreaInputListener );
+  return inherit( Node, ConnectionAreaNode );
 
 } );
