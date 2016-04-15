@@ -42,7 +42,8 @@ define( function( require ) {
     ComponentTopWireSegment: function( component, endPoint ) {
       return new ComponentTopWireSegment( component, endPoint );
     },
-    ComponentBottomWireSegment: function( component, endPoint ) { return new ComponentBottomWireSegment( component, endPoint );
+    ComponentBottomWireSegment: function( component, endPoint ) { 
+      return new ComponentBottomWireSegment( component, endPoint );
     },
     SwitchSegment: function( startPoint, endPoint ) {
       return new SwitchSegment( startPoint, endPoint ); },
@@ -72,7 +73,7 @@ define( function( require ) {
 
   /**
    * Constructor for ComponentTopWireSegment.  This is a wire segment whose start point is connected to the top 
-   * connection point of a component.  Adjusts the component geometry.
+   * connection point of a component.  Adjusts the wire geometry when the component changes geometry or orientation.
    *
    * @param {Capacitor || LightBulb} component
    * @param {Vector2} endPoint
@@ -165,7 +166,8 @@ define( function( require ) {
   } );
 
   /**
-   * Constructor for a switch segment.
+   * Constructor for a switch segment.  End point of the switch segment will change depending on the connection
+   * state of the circutit.
    *
    * @param {Vector2} hingePoint
    * @param {Object} activeConnection
