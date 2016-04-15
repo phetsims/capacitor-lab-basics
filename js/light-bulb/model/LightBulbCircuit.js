@@ -97,7 +97,7 @@ define( function( require ) {
 
       // discharge the capacitor when it is in parallel with the light bulb.
       if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED &&
-        this.capacitor.platesVoltage > MIN_VOLTAGE ) {
+        Math.abs( this.capacitor.platesVoltage ) > MIN_VOLTAGE ) {
         this.capacitor.discharge( this.lightBulb.resistance, dt );
       }
 
@@ -249,3 +249,4 @@ define( function( require ) {
   } );
 
 } );
+
