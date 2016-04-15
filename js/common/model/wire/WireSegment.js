@@ -3,7 +3,7 @@
 /**
  * A straight segment of wire. One or more segments are joined to create a Wire.  Contains factory functions to
  * construct wire segments for each of the circuit components, since segments will need unique functions to update
- * their geometry depending on the components they connect
+ * their geometry depending on the components they connect.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
