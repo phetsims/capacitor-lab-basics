@@ -1,7 +1,9 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * A straight segment of wire. One or more segments are joined to create a wire.
+ * A straight segment of wire. One or more segments are joined to create a Wire.  Contains factory functions to
+ * construct wire segments for each of the circuit components, since segments will need unique functions to update
+ * their geometry depending on the components they connect
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
@@ -28,29 +30,22 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'WireSegment', WireSegment );
   
-  inherit( PropertySet, WireSegment, {
-    update: function() {
-      // TODO: Optimize: update should only be called on segments where optimze is defined
-      // This is temporary, and a way to noop for segments where update is not defined
-    }
-  }, {
+  inherit( PropertySet, WireSegment, {}, {
 
-    // Factory methods to construct various wire segments for the different circuit components
-    BatteryTopWireSegment: function( battery, endPoint ) { 
+    // Factory methods to construct various wire segments for the different
+    BatteryTopWireSegment: function( battery, endPoint ) {
       return new BatteryTopWireSegment( battery, endPoint );
     },
     BatteryBottomWireSegment: function( battery, endPoint ) {
-      return new BatteryBottomWireSegment( battery, endPoint ); 
+      return new BatteryBottomWireSegment( battery, endPoint );
     },
-    LightBulbTopWireSegment: function( component, endPoint ) {
+    ComponentTopWireSegment: function( component, endPoint ) {
       return new ComponentTopWireSegment( component, endPoint );
     },
-    LightBulbBottomWireSegment: function( component, endPoint ) {
-      return new ComponentBottomWireSegment( component, endPoint );
+    ComponentBottomWireSegment: function( component, endPoint ) { return new ComponentBottomWireSegment( component, endPoint );
     },
     SwitchSegment: function( startPoint, endPoint ) {
-      return new SwitchSegment( startPoint, endPoint );
-    },
+      return new SwitchSegment( startPoint, endPoint ); },
     BatteryTopToSwitchSegment: function( startPoint, endPoint ) {
       return new WireSegment( startPoint, endPoint );
     },
@@ -76,8 +71,8 @@ define( function( require ) {
   inherit( WireSegment, ComponentWireSegment );
 
   /**
-   * Constructor for ComponentTopWireSegment.  This is a wire segment whose start point is connected to the top plate
-   * of a component.  Adjusts the start point when the plate separation changes.
+   * Constructor for ComponentTopWireSegment.  This is a wire segment whose start point is connected to the top 
+   * connection point of a component.  Adjusts the component geometry.
    *
    * @param {Capacitor || LightBulb} component
    * @param {Vector2} endPoint
@@ -95,8 +90,8 @@ define( function( require ) {
   } );
 
   /**
-   * Constructor for ComponentBottomWireSegment.  Wire segment whose start point is connected to the bottom plate of a
-   * component.  Adjusts the start point when the plate separation changes.
+   * Constructor for ComponentBottomWireSegment.  Wire segment whose start point is connected to the bottom connection 
+   * point of a component.  Adjusts the start point when the component geometry changes.
    *
    * @param {Capacitor || LightBulb} component
    * @param {Vector2} endPoint
@@ -114,26 +109,6 @@ define( function( require ) {
   } );
 
   /**
-   * Constructor for a wire segment that connects the bottom plate of one component to the top plate of another
-   * component. Adjusts the start and end points when the plate separations change.
-   */
-  function ComponentToComponentWireSegment( topComponent, bottomComponent ) {
-    WireSegment.call( this, topComponent.getBottomConnectionPoint().toVector2(), bottomComponent.getTopConnectionPoint().toVector2() );
-
-    this.topComponent = topComponent;
-    this.bottomComponent = bottomComponent;
-  }
-
-  capacitorLabBasics.register( 'ComponentToComponentWireSegment', ComponentToComponentWireSegment );
-
-  inherit( WireSegment, ComponentToComponentWireSegment, {
-    update: function() {
-      this.startPoint = this.topComponent.getBottomConnectionPoint().toVector2();
-      this.endPoint = this.bottomComponent.getTopConnectionPoint().toVector2();
-    }
-  } );
-
-  /**
    *  Constructor for a BatteryWireSegment.  This includes any wire segment that is connected to a battery.
    *
    *  @param {Battery} battery
@@ -143,7 +118,6 @@ define( function( require ) {
   function BatteryWireSegment( battery, startPoint, endPoint ) {
     WireSegment.call( this, startPoint, endPoint );
     this.battery = battery;
-    //battery.addPolarityObserver( this ); TODO
   }
 
   capacitorLabBasics.register( 'BatteryWireSegment', BatteryWireSegment );

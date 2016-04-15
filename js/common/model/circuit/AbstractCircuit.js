@@ -68,7 +68,8 @@ define( function( require ) {
       // update start and end points of each wire segment
       thisCircuit.wires.forEach( function( wire ) {
         wire.segments.forEach( function( segment ) {
-          segment.update( circuitConnection );
+          // not all segments need to be updated
+          segment.update && segment.update( circuitConnection );
         } );
       } );
     }
