@@ -135,6 +135,7 @@ define( function( require ) {
   capacitorLabBasics.register( 'ComponentTopWireSegment', ComponentWireSegment );
 
   inherit( ComponentWireSegment, ComponentTopWireSegment, {
+    // update the start point of the segment, called when the component geometry changes
     update: function() {
       this.startPoint = this.component.getTopConnectionPoint().toVector2();
     }
@@ -154,6 +155,7 @@ define( function( require ) {
   capacitorLabBasics.register( 'ComponentBottomWireSegment', ComponentBottomWireSegment );
 
   inherit( ComponentWireSegment, ComponentBottomWireSegment, {
+    // update the start point of the segment, called when the component geometry changes
     update: function() {
       this.startPoint = this.component.getBottomConnectionPoint().toVector2();
     }
@@ -189,6 +191,7 @@ define( function( require ) {
   capacitorLabBasics.register( 'BatteryTopWireSegment', BatteryTopWireSegment );
 
   inherit( BatteryWireSegment, BatteryTopWireSegment, {
+    // update the start point of the battery top segment, called when the battery changes polarity
     update: function() {
       var battery = this.battery;
       this.startPoint = new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() );
@@ -209,6 +212,7 @@ define( function( require ) {
   capacitorLabBasics.register( 'BatteryBottomWireSegment', BatteryBottomWireSegment );
 
   inherit( BatteryWireSegment, BatteryBottomWireSegment, {
+    // update the start point of teh battery bottom segment, called when battery changes polarity
     update: function() {
       var battery = this.battery;
       this.startPoint = new Vector2( this.battery.location.x, this.battery.location.y + battery.getBottomTerminalYOffset() );
@@ -233,6 +237,7 @@ define( function( require ) {
 
   inherit( WireSegment, SwitchSegment, {
 
+    // update the endpoint for the switch segment, called when the connection point of the circuit changes
     update: function( activeConnection, angle ) {
       // set the new active connection point
       this.endPoint = activeConnection.location;
