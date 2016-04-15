@@ -33,30 +33,80 @@ define( function( require ) {
   inherit( PropertySet, WireSegment, {}, {
 
     // Factory methods to construct various wire segments for the different
+    
+    /**
+     * Return a WireSegment that attaches to the top of a battery
+     * @param {Battery} battery
+     * @param {Vector2} endPoint - end point for the wire segment
+     * @constructor
+     */
     BatteryTopWireSegment: function( battery, endPoint ) {
       return new BatteryTopWireSegment( battery, endPoint );
     },
+
+    /**
+     * Return a WireSegment that attaches to the bottom of a battery
+     * @param {Battery} battery
+     * @param {Vector2} endPoint - end point for the wire segment
+     * @constructor
+     */
     BatteryBottomWireSegment: function( battery, endPoint ) {
       return new BatteryBottomWireSegment( battery, endPoint );
     },
+
+    /**
+     * Return a WireSegment that attaches to the top of a circuit component
+     * @param {Capacitor || LightBulb} component
+     * @param {Vector2} endPoint - end point for the wire segment
+     * @constructor
+     */
     ComponentTopWireSegment: function( component, endPoint ) {
       return new ComponentTopWireSegment( component, endPoint );
     },
+
+    /**
+     * Return a WireSegment that attaches to the bottom of a circuit component
+     * @param {Capacitor || Lightbulb} component
+     * @param {Vector2} endPoint - end point for the wire segment
+     * @constructor
+     */
     ComponentBottomWireSegment: function( component, endPoint ) { 
       return new ComponentBottomWireSegment( component, endPoint );
     },
+
+    /**
+     * Return a WireSegment acts as a switch between two connection points
+     * @param {Vector2} startPoint - start point for the switch segment
+     * @param {Vector2} endPoint - end point for the wire segment
+     * @constructor
+     */
     SwitchSegment: function( startPoint, endPoint ) {
-      return new SwitchSegment( startPoint, endPoint ); },
+      return new SwitchSegment( startPoint, endPoint );
+    },
+
+    /**
+     * Return a WireSegment that attaches a battery top to a switch segment 
+     * @param {Vector2} startPoint
+     * @param {Vector2} endPoint
+     * @constructor
+     */
     BatteryTopToSwitchSegment: function( startPoint, endPoint ) {
       return new WireSegment( startPoint, endPoint );
     },
+
+    /**
+     * Return a WireSegment that attaches a battery bottom to a switch segment
+     * @param {Vector2} startPoint
+     * @param {Vector2} endPoint
+     * @constructor
+     */
     BatteryBottomToSwitchSegment: function( startPoint, endPoint ) {
       return new WireSegment( startPoint, endPoint );
     }
   } );
 
   /**
-   * Constructor for a ComponentWireSegment.  This is any wire segment that is connected to one component.
+   * Constructor for a ComponentWireSegment.  This is any wire segment that is connected to one circuit component.
    *
    * @param {Capacitor || LightBulb} component
    * @param {Vector2} startPoint
