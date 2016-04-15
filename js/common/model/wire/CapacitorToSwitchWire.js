@@ -30,9 +30,9 @@ define( function( require ) {
     var switchConnectionPoint = circuitSwitch.getCapacitorConnectionPoint();
     var segment;
     if ( connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
-      segment = WireSegment.ComponentTopWireSegment( capacitor, switchConnectionPoint );
+      segment = WireSegment.LightBulbTopWireSegment( capacitor, switchConnectionPoint );
     } else {
-      segment = WireSegment.ComponentBottomWireSegment( capacitor, switchConnectionPoint );
+      segment = WireSegment.LightBulbBottomWireSegment( capacitor, switchConnectionPoint );
     }
     segments.push( segment );
 

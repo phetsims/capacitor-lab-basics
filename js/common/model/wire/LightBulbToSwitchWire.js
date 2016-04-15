@@ -41,9 +41,9 @@ define( function( require ) {
     // add the vertical segment.
     var verticalSegment;
     if ( isTop ) {
-      verticalSegment = WireSegment.ComponentTopWireSegment( lightBulb, rightCorner );
+      verticalSegment = WireSegment.LightBulbTopWireSegment( lightBulb, rightCorner );
     } else {
-      verticalSegment = WireSegment.ComponentBottomWireSegment( lightBulb, rightCorner );
+      verticalSegment = WireSegment.LightBulbBottomWireSegment( lightBulb, rightCorner );
     }
     segments.push( verticalSegment );
 

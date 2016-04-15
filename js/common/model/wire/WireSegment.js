@@ -29,23 +29,28 @@ define( function( require ) {
   capacitorLabBasics.register( 'WireSegment', WireSegment );
   
   inherit( PropertySet, WireSegment, {
-    cleanUp: function() {
-      console.log( 'cleanUp must be implemented in subclasses.' );
-    },
-
     update: function() {
-      // TODO: Catch updates for segments that do not need this function.
-      //console.log( ' this segment does not have an update function.' );
+      // TODO: Optimize: update should only be called on segments where optimze is defined
+      // This is temporary, and a way to noop for segments where update is not defined
     }
   }, {
 
-    // Factory methods to construct various wire segments.
-    BatteryTopWireSegment: function( battery, endPoint ) { return new BatteryTopWireSegment( battery, endPoint ); },
-    BatteryBottomWireSegment: function( battery, endPoint ) { return new BatteryBottomWireSegment( battery, endPoint ); },
-    ComponentTopWireSegment: function( component, endPoint ) { return new ComponentTopWireSegment( component, endPoint ); },
-    ComponentBottomWireSegment: function( component, endPoint ) { return new ComponentBottomWireSegment( component, endPoint ); },
-    SwitchSegment: function( startPoint, endPoint ) { return new SwitchSegment( startPoint, endPoint ); },
-
+    // Factory methods to construct various wire segments for the different circuit components
+    BatteryTopWireSegment: function( battery, endPoint ) { 
+      return new BatteryTopWireSegment( battery, endPoint );
+    },
+    BatteryBottomWireSegment: function( battery, endPoint ) {
+      return new BatteryBottomWireSegment( battery, endPoint ); 
+    },
+    LightBulbTopWireSegment: function( component, endPoint ) {
+      return new ComponentTopWireSegment( component, endPoint );
+    },
+    LightBulbBottomWireSegment: function( component, endPoint ) {
+      return new ComponentBottomWireSegment( component, endPoint );
+    },
+    SwitchSegment: function( startPoint, endPoint ) {
+      return new SwitchSegment( startPoint, endPoint );
+    },
     BatteryTopToSwitchSegment: function( startPoint, endPoint ) {
       return new WireSegment( startPoint, endPoint );
     },
@@ -68,11 +73,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'ComponentWireSegment', ComponentWireSegment );
 
-  inherit( WireSegment, ComponentWireSegment, {
-    cleanUp: function() {
-      //component.removePlateSeparationObserver(); TODO
-    }
-  } );
+  inherit( WireSegment, ComponentWireSegment );
 
   /**
    * Constructor for ComponentTopWireSegment.  This is a wire segment whose start point is connected to the top plate
@@ -121,22 +122,15 @@ define( function( require ) {
 
     this.topComponent = topComponent;
     this.bottomComponent = bottomComponent;
-
   }
 
   capacitorLabBasics.register( 'ComponentToComponentWireSegment', ComponentToComponentWireSegment );
 
   inherit( WireSegment, ComponentToComponentWireSegment, {
-    cleanUp: function() {
-      //topCapacitor.removePlateSeparationObserver( this );
-      //bottomCapacitor.removePlateSeparationObserver( this );
-    },
-
     update: function() {
       this.startPoint = this.topComponent.getBottomConnectionPoint().toVector2();
       this.endPoint = this.bottomComponent.getTopConnectionPoint().toVector2();
     }
-
   } );
 
   /**
@@ -154,11 +148,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'BatteryWireSegment', BatteryWireSegment );
 
-  inherit( WireSegment, BatteryWireSegment, {
-    cleanup: function() {
-      //battery.removePolarityObserver( this ); TODO
-    }
-  } );
+  inherit( WireSegment, BatteryWireSegment );
 
   /**
    * Constructor for a BatteryTopWireSegment.  This is a wire segment whose start point is connected to the top terminal
@@ -214,18 +204,12 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'SwitchSegment', SwitchSegment );
-  
+
   inherit( WireSegment, SwitchSegment, {
 
     update: function( activeConnection, angle ) {
-      // set the new active connection.
+      // set the new active connection point
       this.endPoint = activeConnection.location;
-      //else if( angle ){
-      //   TODO: Replace 0.0064 with clconstant.
-      //var newX = this.hingePoint.x + 0.0064 * Math.cos( angle );
-      //var newY = this.hingePoint.y + 0.0064 * Math.sin( angle );
-      //this.endPoint = new Vector2( newX, newY );
-      //}
     }
   } );
 
