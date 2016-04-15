@@ -32,9 +32,7 @@ define( function( require ) {
       storedEnergyMeterVisible: false,
       barGraphsPanelVisible: true,
       voltmeterVisible: false,
-      eFieldDetectorVisible: false,
-      currentIndicatorsVisible: true,
-      keyboardHelpVisible: false
+      currentIndicatorsVisible: true
     } );
   }
 
