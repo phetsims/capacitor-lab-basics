@@ -132,7 +132,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'AbstractCircuit', AbstractCircuit );
-  
+
   return inherit( PropertySet, AbstractCircuit, {
 
     /**
@@ -339,7 +339,7 @@ define( function( require ) {
     },
 
     /**
-     * Get the total capacitance with Q_total = V_total * C_total
+     * Get the total charge with Q_total = V_total * C_total
      *
      * @return {number}
      */
