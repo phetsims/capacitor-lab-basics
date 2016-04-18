@@ -28,7 +28,7 @@ define( function( require ) {
   var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
   var WIRE_THICKNESS = CLConstants.WIRE_THICKNESS;
   var DIELECTRIC_OFFSET = 0.02; // meters
-  var LIGHT_BULB_RESISTANCE = 5e12; // Ohms
+  var LIGHT_BULB_RESISTANCE = 5e12; // Ohms. Artificially large to stretch discharge time
 
   // constructor
   function CircuitConfig( options ) {
