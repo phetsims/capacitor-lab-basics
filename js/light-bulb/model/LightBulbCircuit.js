@@ -91,9 +91,6 @@ define( function( require ) {
       // Step through common circuit components
       ParallelCircuit.prototype.step.call( this, dt );
 
-      // Enforce consistency between I and V/R
-      this.currentAmplitudeProperty.set( this.capacitor.platesVoltage / this.lightBulb.resistance );
-
       // Step light bulb current indicators
       this.bulbTopCurrentIndicator.step( dt );
       this.bulbBottomCurrentIndicator.step( dt );
@@ -260,6 +257,24 @@ define( function( require ) {
      */
     getTotalCharge: function() {
       return this.capacitor.getTotalPlateCharge();
+    },
+
+    /**
+     * Update the current amplitude depending on the circuit connection.  If the capacitor is connected to the light
+     * bulb, find the current by I = V / R.  Otherwise, current is found by dQ/dT.
+     * 
+     * @param  {number} dt
+     */
+    updateCurrentAmplitude: function( dt ) {
+
+      // if the circuit is connected to the light bulb, I = V / R
+      if( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        this.currentAmplitudeProperty.set( this.capacitor.platesVoltage / this.lightBulb.resistance );
+      }
+      else{ 
+        // otherise, I = dQ/dT
+        ParallelCircuit.prototype.updateCurrentAmplitude.call( this, dt );
+      }
     }
 
   } );
