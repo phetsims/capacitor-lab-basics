@@ -300,7 +300,7 @@ define( function( require ) {
       return this.getExcessPlateCharge( CLConstants.EPSILON_AIR, this.getAirCapacitance(), this.platesVoltage );
     },
 
-    /**d
+    /**
      * General solution for excess plate charge.
      *
      * @param {number} epsilon_r dielectric constant, dimensionless

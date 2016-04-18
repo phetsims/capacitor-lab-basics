@@ -45,7 +45,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'CurrentIndicator', CurrentIndicator );
-  
+
   return inherit( PropertySet, CurrentIndicator, {
 
     /**
@@ -59,7 +59,7 @@ define( function( require ) {
 
     /**
      * Updates the opacitiy value for this model element based on the current amplitude. Any non-zero current amplitude
-     * results in a constant opacity. When current amplitude goes to zero, a the node will gradually fade out to be
+     * results in a constant opacity. When current amplitude goes to zero, the node will gradually fade out to be
      * fully transparent, making it effectively invisible.
      *
      * @param {number} current
@@ -74,7 +74,6 @@ define( function( require ) {
       }
       // no current flowing, but wait for delay dimer to hit zero.
       else if ( this.delayTime > 0 ) {
-        //debugger;
         this.delayTime -= dt;
       }
       // gradually fade out when current and delay timer are both zero.
@@ -95,3 +94,4 @@ define( function( require ) {
     }
   } );
 } );
+
