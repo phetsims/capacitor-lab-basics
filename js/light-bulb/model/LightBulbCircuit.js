@@ -34,7 +34,7 @@ define( function( require ) {
 
   // During exponential voltage drop, circuit voltage crosses this threshold,
   // below which we no longer call discharge() for efficiency.
-  var MIN_VOLTAGE = 1e-4; // Volts
+  var MIN_VOLTAGE = 1e-3; // Volts. Minimum readable value on voltmeter.
 
   /**
    * Constructor for the Single Capacitor Circuit.
@@ -88,17 +88,27 @@ define( function( require ) {
 
     step: function( dt ) {
 
-      // step through common circuit components
+      // Step through common circuit components
       ParallelCircuit.prototype.step.call( this, dt );
 
-      // step light bulb current indicators
+      // Enforce consistency between I and V/R
+      this.currentAmplitudeProperty.set( this.capacitor.platesVoltage / this.lightBulb.resistance );
+
+      // Step light bulb current indicators
       this.bulbTopCurrentIndicator.step( dt );
       this.bulbBottomCurrentIndicator.step( dt );
 
-      // discharge the capacitor when it is in parallel with the light bulb.
-      if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED &&
-        Math.abs( this.capacitor.platesVoltage ) > MIN_VOLTAGE ) {
-        this.capacitor.discharge( this.lightBulb.resistance, dt );
+      // Discharge the capacitor when it is in parallel with the light bulb,
+      // but don't allow the voltage to taper to zero forever.
+      // This is both for performance, and for better timing control.
+      // The current arrows should start fading when the voltmeter reading drops
+      // below MIN_VOLTAGE.
+      if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        if ( Math.abs( this.capacitor.platesVoltage ) > MIN_VOLTAGE ) {
+          this.capacitor.discharge( this.lightBulb.resistance, dt );
+        } else {
+          this.capacitor.platesVoltage = 0;
+        }
       }
 
     },
@@ -112,8 +122,7 @@ define( function( require ) {
         if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           // if the battery is connected, the voltage is equal to the battery voltage
           this.capacitor.platesVoltage = this.battery.voltage;
-        }
-        else {
+        } else {
           // otherwise, the voltage can be found by V=Q/C
           this.capacitor.platesVoltage = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance();
         }
