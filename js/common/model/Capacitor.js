@@ -59,6 +59,10 @@ define( function( require ) {
       dielectricMaterial: dielectricMaterial,
       dielectricOffset: dielectricOffset // in meters, default is totally outside of capacitor plates.
     } );
+
+    // @private - track the previous capacitance to adjust the inital voltage when discharging, see
+    // updateDischargeParameters() below.
+    this.previousCapacitance = this.getTotalCapacitance();
   }
 
   capacitorLabBasics.register( 'Capacitor', Capacitor );
@@ -382,9 +386,40 @@ define( function( require ) {
      */
     discharge: function( R, dt ) {
       var C = this.getTotalCapacitance();
+
       this.transientTime += dt; // step time since switch was closed
       var exp = Math.exp( -this.transientTime / ( R * C ) );
       this.platesVoltage = this.voltageAtSwitchClose * exp;
+
+      this.previousCapacitance = C;
+    },
+
+    /**
+     * It is possible to change the capacitance while the capacitor is discharging.  The parameters
+     * for the solution
+     * 
+     * Vc = Vo*exp( -t / ( R * C ) )
+     *
+     * need to change.
+     * 
+     * Suppose that the capacitor has capacitance C1 with charge Q1 and voltage V1.  The capacitance
+     * is instantaneously increased to C2.  The charge will remain Q1, but the voltage will decrease proportionally
+     * from V1 to V2, like V2 = V1 / ( C2 / C1 ).  The RC time constant also needs to change
+     * since C has been updated.  This assumes that the capacitance changes instantaneously.
+     *
+     * Therefore, the solution needs to change to 
+     * Vc = V2 * exp( -t / ( R * C2 ) )
+     */
+    updateDischargeParameters: function() {
+
+      // in the discharge function, C is recalculated every time step, so we only need to adjust Vo.
+      var capacitanceRatio = this.getTotalCapacitance() / this.previousCapacitance;
+
+      // update the initial voltage Vo
+      this.voltageAtSwitchClose = this.platesVoltage / capacitanceRatio;
+
+      // reset transient time
+      this.transientTime = 0;
     }
 
   } );

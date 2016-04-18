@@ -122,9 +122,15 @@ define( function( require ) {
         if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           // if the battery is connected, the voltage is equal to the battery voltage
           this.capacitor.platesVoltage = this.battery.voltage;
-        } else {
+        }
+        else if( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ){
           // otherwise, the voltage can be found by V=Q/C
           this.capacitor.platesVoltage = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance();
+        }
+        else if( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+          // the capacitor is discharging, but plate geometry is changing at the same time so we need
+          // to update the parameters of the transient discharge equation parameters
+          this.capacitor.updateDischargeParameters();
         }
       }
     },
