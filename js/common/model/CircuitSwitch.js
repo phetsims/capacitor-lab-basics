@@ -145,10 +145,11 @@ define( function( require ) {
      * 
      * @param {Vector3} hingePoint
      * @param {CLModelViewTransform3D} modelViewTransform
+     * @param {Array<string>} possibleConnections - possible connection types from CircuitConnectionEnum entries 
      * @param {Property<string>} circuitConnectionProperty
      */
-    CircuitTopSwitch: function( hingePoint, modelViewTransform, circuitConnectionProperty ) {
-      return new CircuitTopSwitch( hingePoint, modelViewTransform, circuitConnectionProperty );
+    CircuitTopSwitch: function( hingePoint, modelViewTransform, possibleConnections, circuitConnectionProperty ) {
+      return new CircuitTopSwitch( hingePoint, modelViewTransform, possibleConnections, circuitConnectionProperty );
     },
 
     /**
@@ -156,10 +157,11 @@ define( function( require ) {
      * 
      * @param {Vector3} hingePoint
      * @param {CLModelViewTransform3D} modelViewTransform
+     * @param {Array<string>} possibleConnections possible connection types from CircuitConnectionEnum entries
      * @param {Property<string>} circuitConnectionProperty
      */
-    CircuitBottomSwitch: function( hingePoint, modelViewTransform, circuitConnectionProperty ) {
-      return new CircuitBottomSwitch( hingePoint, modelViewTransform, circuitConnectionProperty );
+    CircuitBottomSwitch: function( hingePoint, modelViewTransform, possibleConnections, circuitConnectionProperty ) {
+      return new CircuitBottomSwitch( hingePoint, modelViewTransform, possibleConnections, circuitConnectionProperty );
     }
   } );
 
@@ -172,7 +174,7 @@ define( function( require ) {
    * @param {Property<string>} circuitConnectionProperty
    * @constructor
    */
-  function CircuitTopSwitch( hingePoint, modelViewTransform, circuitConnectionProperty ) {
+  function CircuitTopSwitch( hingePoint, modelViewTransform, circuitSwitchConnections, circuitConnectionProperty ) {
 
       // calculate the locations of the connection points for this circuit
       var topPoint = hingePoint.toVector2().minusXY( 0, CLConstants.SWITCH_WIRE_LENGTH );
@@ -185,21 +187,31 @@ define( function( require ) {
         CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
       );
 
-      // create the possible connections, collecting location and connection type
-      var connections = [
-        {
-          location: topPoint.toVector3(),
-          connectionType: CircuitConnectionEnum.OPEN_CIRCUIT
-        },
-        {
-          location: leftPoint.toVector3(),
-          connectionType: CircuitConnectionEnum.BATTERY_CONNECTED
-        },
-        {
-          location: rightPoint.toVector3(),
-          connectionType: CircuitConnectionEnum.LIGHT_BULB_CONNECTED
+      // collect location and connection type for each of the possible circuit switch connections
+      var connections = [];
+      circuitSwitchConnections.forEach( function( circuitSwitchConnection ) {
+        if( circuitSwitchConnection ===  CircuitConnectionEnum.OPEN_CIRCUIT ) {
+          connections.push( {
+            location: topPoint.toVector3(),
+            connectionType: circuitSwitchConnection
+          } );
         }
-      ];
+        else if( circuitSwitchConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+          connections.push( {
+            location: leftPoint.toVector3(),
+            connectionType: circuitSwitchConnection
+          } );
+        }
+        else if( circuitSwitchConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+          connections.push( {
+            location: rightPoint.toVector3(),
+            connectionType: circuitSwitchConnection
+          } );
+        }
+        else{
+          assert && assert( 'attempting to create switch conection which is not supported' );
+        }
+      } );
 
       CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP );
     }
@@ -216,7 +228,7 @@ define( function( require ) {
      * @param {Property<string>} circuitConnectionProperty
      * @constructor
      */
-    function CircuitBottomSwitch( hingePoint, modelViewTransform, circuitConnectionProperty ) {
+    function CircuitBottomSwitch( hingePoint, modelViewTransform, circuitSwitchConnections, circuitConnectionProperty ) {
 
       // determine the locations of each connection point
       var topPoint = hingePoint.toVector2().plusXY( 0, CLConstants.SWITCH_WIRE_LENGTH );
@@ -229,21 +241,31 @@ define( function( require ) {
         CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
       );
 
-      // collect the locations into objects, mapping the connection type
-      var connections = [
-        {
-          location: topPoint.toVector3(),
-          connectionType: CircuitConnectionEnum.OPEN_CIRCUIT
-        },
-        {
-          location: leftPoint.toVector3(),
-          connectionType: CircuitConnectionEnum.BATTERY_CONNECTED
-        },
-        {
-          location: rightPoint.toVector3(),
-          connectionType: CircuitConnectionEnum.LIGHT_BULB_CONNECTED
+      // collect location and connection type for each of the possible circuit switch connections
+      var connections = [];
+      circuitSwitchConnections.forEach( function( circuitSwitchConnection ) {
+        if( circuitSwitchConnection ===  CircuitConnectionEnum.OPEN_CIRCUIT ) {
+          connections.push( {
+            location: topPoint.toVector3(),
+            connectionType: circuitSwitchConnection
+          } );
         }
-      ];
+        else if( circuitSwitchConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+          connections.push( {
+            location: leftPoint.toVector3(),
+            connectionType: circuitSwitchConnection
+          } );
+        }
+        else if( circuitSwitchConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+          connections.push( {
+            location: rightPoint.toVector3(),
+            connectionType: circuitSwitchConnection
+          } );
+        }
+        else{
+          assert && assert( 'attempting to create switch conection which is not supported' );
+        }
+      } );
 
       CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM );
     }

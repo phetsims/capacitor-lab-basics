@@ -159,12 +159,19 @@ define( function( require ) {
 
     var circuitSwitches = [];
 
+    // possible connections for switches that connect a capacitor to two other components
+    var circuitSwitchConnections = [ 
+      CircuitConnectionEnum.BATTERY_CONNECTED,
+      CircuitConnectionEnum.OPEN_CIRCUIT,
+      CircuitConnectionEnum.LIGHT_BULB_CONNECTED
+    ];
+
     // create the top circuit switches.
     for ( var i = 0; i < numComponentsWithSwitches; i++ ) {
       var topStartPoint = new Vector3( x, topY, z );
       var bottomStartPoint = new Vector3( x, bottomY, z );
-      var topCircuitSwitch = CircuitSwitch.CircuitTopSwitch( topStartPoint, config.modelViewTransform, circuitConnectionProperty );
-      var bottomCircuitSwitch = CircuitSwitch.CircuitBottomSwitch( bottomStartPoint, config.modelViewTransform, circuitConnectionProperty );
+      var topCircuitSwitch = CircuitSwitch.CircuitTopSwitch( topStartPoint, config.modelViewTransform, circuitSwitchConnections, circuitConnectionProperty );
+      var bottomCircuitSwitch = CircuitSwitch.CircuitBottomSwitch( bottomStartPoint, config.modelViewTransform, circuitSwitchConnections, circuitConnectionProperty );
 
       // link the top and bottom circuit switches together so that they rotate together
       topCircuitSwitch.angleProperty.link( function( angle ) {

@@ -22,7 +22,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
-  var CapacitanceCircuitSwitch = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitanceCircuitSwitch' );
+  var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
   var Vector3 = require( 'DOT/Vector3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -41,8 +41,12 @@ define( function( require ) {
     // create the circuit switches
     var topStartPoint = new Vector3( x, topY, z );
     var bottomStartPoint = new Vector3( x, bottomY, z );
-    var topCircuitSwitch = CapacitanceCircuitSwitch.CapacitanceCircuitTopSwitch( topStartPoint, config.modelViewTransform, circuitConnectionProperty );
-    var bottomCircuitSwitch = CapacitanceCircuitSwitch.CapacitanceCircuitBottomSwitch( bottomStartPoint, config.modelViewTransform, circuitConnectionProperty );
+
+    // possible circuit connection types for the Capacitance Circuit 
+    var capacitanceConnections = [ CircuitConnectionEnum.BATTERY_CONNECTED, CircuitConnectionEnum.OPEN_CIRCUIT ];
+
+    var topCircuitSwitch = CircuitSwitch.CircuitTopSwitch( topStartPoint, config.modelViewTransform, capacitanceConnections, circuitConnectionProperty );
+    var bottomCircuitSwitch = CircuitSwitch.CircuitBottomSwitch( bottomStartPoint, config.modelViewTransform, capacitanceConnections, circuitConnectionProperty );
 
     // link the top and bottom circuit switches together so that they rotate together
     topCircuitSwitch.angleProperty.link( function( angle ) {
