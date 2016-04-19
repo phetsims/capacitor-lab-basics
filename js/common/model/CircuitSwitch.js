@@ -26,7 +26,7 @@ define( function( require ) {
    * Constructor for a CircuitSwitch.
    *
    * @param {Vector3} hingePoint
-   * @param {Object} connections
+   * @param {Array<Object>} connections - array of objects that look like { location: Vector3, connectionType: string }
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {Property} circuitConnectionProperty,
    * @param {string} connectionLocation
