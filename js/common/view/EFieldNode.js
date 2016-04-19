@@ -44,7 +44,7 @@ define( function( require ) {
     // make sure that the arrow path is centered along the field line.
     // dividing by 4 aligns better than dividing by 2 for the narrow line width.
     var xOffset = LINE_WIDTH / 4;
-    var arrowCenter = position.x + xOffset;
+    var arrowCenter = ( direction === CLConstants.DIRECTION.UP ) ? position.x - xOffset : position.x + xOffset; 
 
     // path for the UP arrow
     if ( direction === CLConstants.DIRECTION.UP ) {
