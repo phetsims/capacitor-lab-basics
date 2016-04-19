@@ -1,8 +1,9 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Circuit switch.  The circuit switch has a start point and an end point.  The start point acts as a hinge, and the end
- * point can switch to new connection points.
+ * Circuit switch.  The circuit switch has a start point and an end point.  The start point acts as a hinge, and 
+ * the end point can switch to new connection points.  It is assumed that the circuit switch is connected to
+ * a capacitor in this simulation.
  *
  * @author Jesse Greenberg
  */
@@ -19,7 +20,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
-  var SWITCH_ANGLE = Math.PI / 4;
+  var SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point
 
   /**
    * Constructor for a CircuitSwitch.
@@ -33,7 +34,7 @@ define( function( require ) {
   function CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty, connectionLocation ) {
 
     // @private
-    this.initialAngle = 0; // with respect to the horizontal ( open switch )
+    this.initialAngle = 0; // with respect to the vertical ( open switch )
     this.modelViewTransform = modelViewTransform;
     this.connections = connections;
 
@@ -62,13 +63,13 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'CircuitSwitch', CircuitSwitch );
 
-  return inherit( PropertySet, CircuitSwitch, {
+  inherit( PropertySet, CircuitSwitch, {
 
     /**
      * Get the desired connection from the connection type.
      *
      * @param connectionType
-     * @returns {object}
+     * @returns {object} returnConnection - object of the format { location: Vector3, connectionType: string }
      */
     getConnection: function( connectionType ) {
       var returnConnection;
@@ -102,29 +103,78 @@ define( function( require ) {
       return returnConnectionPoint.toVector2();
     },
 
+    /**
+     * Get the location of the endpoint for the circuit switch segment.
+     * 
+     * @return {Vector2} [description]
+     */
     getSwitchEndPoint: function() {
       return this.switchSegment.endPoint.toVector2();
     },
 
+    /**
+     * Get the connection point that will be nearest the connecting capacitor.
+     * 
+     * @return {Vector2}
+     */
     getCapacitorConnectionPoint: function() {
       return this.hingePoint.toVector2();
     },
 
+    /**
+     * Get the limiting angle of the circuit switch to the right.
+     * 
+     * @return {number}
+     */
     getRightLimitAngle: function() {
       return this.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED ).minus( this.hingePoint.toVector2() ).angle();
     },
 
+    /**
+     * Get the limiting angle of the circuit switch to the left.
+     * @return {[type]} [description]
+     */
     getLeftLimitAngle: function() {
       return this.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED ).minus( this.hingePoint.toVector2() ).angle();
-    },
-
-    getOpenAngle: function() {
-      return this.getConnectionPoint( CircuitConnectionEnum.OPEN_CIRCUIT ).minus( this.hingePoint.toVector2() ).angle();
     }
   }, {
 
+    // Create specific types for the circuit switches
+    /**
+     * Create a circuit switch for the top of a capacitor.
+     * 
+     * @param {Vector3} hingePoint
+     * @param {CLModelViewTransform3D} modelViewTransform
+     * @param {Property<string>} circuitConnectionProperty
+     */
     CircuitTopSwitch: function( hingePoint, modelViewTransform, circuitConnectionProperty ) {
+      return new CircuitTopSwitch( hingePoint, modelViewTransform, circuitConnectionProperty );
+    },
 
+    /**
+     * Create a circuit switch for the bottom of a capacitor.
+     * 
+     * @param {Vector3} hingePoint
+     * @param {CLModelViewTransform3D} modelViewTransform
+     * @param {Property<string>} circuitConnectionProperty
+     */
+    CircuitBottomSwitch: function( hingePoint, modelViewTransform, circuitConnectionProperty ) {
+      return new CircuitBottomSwitch( hingePoint, modelViewTransform, circuitConnectionProperty );
+    }
+  } );
+
+
+  /**
+   * Constructor for a switch connected to the top of a capacitor.
+   * 
+   * @param {Vector3} hingePoint
+   * @param {CLModelViewTransform3} modelViewTransform
+   * @param {Property<string>} circuitConnectionProperty
+   * @constructor
+   */
+  function CircuitTopSwitch( hingePoint, modelViewTransform, circuitConnectionProperty ) {
+
+      // calculate the locations of the connection points for this circuit
       var topPoint = hingePoint.toVector2().minusXY( 0, CLConstants.SWITCH_WIRE_LENGTH );
       var leftPoint = hingePoint.toVector2().minusXY(
         CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
@@ -134,6 +184,8 @@ define( function( require ) {
         -CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
         CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
       );
+
+      // create the possible connections, collecting location and connection type
       var connections = [
         {
           location: topPoint.toVector3(),
@@ -149,11 +201,24 @@ define( function( require ) {
         }
       ];
 
-      return new CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP );
-    },
+      CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP );
+    }
 
-    CircuitBottomSwitch: function( hingePoint, modelViewTransform, circuitConnectionProperty ) {
+    capacitorLabBasics.register( 'CircuitTopSwitch', CircuitTopSwitch );
 
+    inherit( CircuitSwitch, CircuitTopSwitch );
+
+    /**
+     * Constructor for a switch connected to the bottom of a capacitor.
+     * 
+     * @param {Vector3} hingePoint
+     * @param {CLModelViewTransform3} modelViewTransform
+     * @param {Property<string>} circuitConnectionProperty
+     * @constructor
+     */
+    function CircuitBottomSwitch( hingePoint, modelViewTransform, circuitConnectionProperty ) {
+
+      // determine the locations of each connection point
       var topPoint = hingePoint.toVector2().plusXY( 0, CLConstants.SWITCH_WIRE_LENGTH );
       var rightPoint = hingePoint.toVector2().plusXY(
         CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
@@ -163,6 +228,8 @@ define( function( require ) {
         -CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
         CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
       );
+
+      // collect the locations into objects, mapping the connection type
       var connections = [
         {
           location: topPoint.toVector3(),
@@ -178,7 +245,12 @@ define( function( require ) {
         }
       ];
 
-      return new CircuitSwitch( hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM );
+      CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM );
     }
-  } );
+
+    capacitorLabBasics.register( 'CircuitBottomSwitch', CircuitBottomSwitch );
+
+    inherit( CircuitSwitch, CircuitBottomSwitch );
+
+    return CircuitSwitch;
 } );
