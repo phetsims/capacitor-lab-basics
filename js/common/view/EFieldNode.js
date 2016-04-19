@@ -34,8 +34,8 @@ define( function( require ) {
   function drawEFieldLine( position, length, direction, context ) {
 
     // line, origin at center
-    context.moveTo( position.x, position.y - length / 2 );
-    context.lineTo( position.x, position.y + length / 2 );
+    context.moveTo( position.x, position.y - length / 2 - 3 );
+    context.lineTo( position.x, position.y + length / 2 - 3 );
 
     // pull out for readability
     var w = ARROW_SIZE.width;
