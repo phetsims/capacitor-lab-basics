@@ -118,7 +118,7 @@ define( function( require ) {
     MIN_PLATE_CHARGE: 0.01E-12, // absolute minimum plate charge in coulombs
 
     // E-field
-    NUMBER_OF_EFIELD_LINES: new Range( 4, 900 ), // number of lines on smallest plate
+    NUMBER_OF_EFIELD_LINES: new Range( 1, 900 ), // number of lines on smallest plate
     EFIELD_VISIBLE: false,
     DIRECTION: {
       UP: 'UP',
