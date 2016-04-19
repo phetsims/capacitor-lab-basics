@@ -19,7 +19,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
-  var ARROW_SIZE = new Dimension2( 10, 15 );
+  var ARROW_SIZE = new Dimension2( 8, 10 );
   var LINE_WIDTH = 2;
   var ARROW_COLOR = 'black';
 
