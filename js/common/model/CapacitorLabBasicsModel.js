@@ -38,18 +38,5 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'CapacitorLabBasicsModel', CapacitorLabBasicsModel );
 
-  return inherit( PropertySet, CapacitorLabBasicsModel, {
-
-    /**
-     * Step function for this sim.
-     *
-     * @param {number} dt
-     */
-    step: function( dt ) {
-      if ( this.playing ) {
-        // TODO: Something should maybe be here?
-      }
-    }
-
-  } );
+  return inherit( PropertySet, CapacitorLabBasicsModel );
 } );
