@@ -32,7 +32,7 @@ define( function( require ) {
    * @param {CapacitorLabBasicsLightBulbModel} model
    * @constructor
    */
-  function CapacitorLabBasicsLightBulbScreenView( model ) {
+  function CLBLightBulbScreenView( model ) {
 
     ScreenView.call( this );
 
@@ -87,8 +87,8 @@ define( function( require ) {
 
   }
 
-  capacitorLabBasics.register( 'CapacitorLabBasicsLightBulbScreenView', CapacitorLabBasicsLightBulbScreenView );
+  capacitorLabBasics.register( 'CLBLightBulbScreenView', CLBLightBulbScreenView );
 
-  return inherit( ScreenView, CapacitorLabBasicsLightBulbScreenView );
+  return inherit( ScreenView, CLBLightBulbScreenView );
 } );
 

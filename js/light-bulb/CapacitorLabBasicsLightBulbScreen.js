@@ -10,7 +10,7 @@ define( function( require ) {
 
   // modules
   var CapacitorLabBasicsLightBulbModel = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/CapacitorLabBasicsLightBulbModel' );
-  var CapacitorLabBasicsLightBulbScreenView = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/CapacitorLabBasicsLightBulbScreenView' );
+  var CLBLightBulbScreenView = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/CLBLightBulbScreenView' );
   var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -30,13 +30,13 @@ define( function( require ) {
 
     Screen.call( this, lightBulbTitleString, icon,
       function() { return new CapacitorLabBasicsLightBulbModel( new CLModelViewTransform3D() ); },
-      function( model ) { return new CapacitorLabBasicsLightBulbScreenView( model ); },
+      function( model ) { return new CLBLightBulbScreenView( model ); },
       { backgroundColor: 'rgb( 194, 227, 255 )' }
     );
 
   }
 
   capacitorLabBasics.register( 'CapacitorLabBasicsLightBulbScreen', CapacitorLabBasicsLightBulbScreen );
-  
+
   return inherit( Screen, CapacitorLabBasicsLightBulbScreen );
 } );
