@@ -10,11 +10,12 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
-  var Dimension2 = require( 'DOT/Dimension2' );
+  var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
@@ -32,15 +33,24 @@ define( function( require ) {
    * @param {boolean} visible
    * @constructor
    */
-  function Voltmeter( circuit, dragBounds, modelViewTransform, bodyLocation, positiveProbeLocation, negativeProbeLocation, visible ) {
+  function Voltmeter( circuit, dragBounds, modelViewTransform, options ) {
+
+    var defaultOptions = {
+      bodyLocation: new Vector3( 0.071, 0.026, 0 ),
+      positiveProbeLocation: new Vector3( 0.0669, 0.0298, 0 ),
+      negativeProbeLocation: new Vector3( 0.0707, 0.0329, 0 ),
+      visible: false
+    };
+
+    options = _.extend( {}, defaultOptions, options ); // don't modify defaultOptions!
 
     // @public
     PropertySet.call( this, {
-      visible: visible,
+      visible: options.visible,
       inUserControl: false,
-      bodyLocation: bodyLocation,
-      positiveProbeLocation: positiveProbeLocation,
-      negativeProbeLocation: negativeProbeLocation,
+      bodyLocation: options.bodyLocation,
+      positiveProbeLocation: options.positiveProbeLocation,
+      negativeProbeLocation: options.negativeProbeLocation,
       value: 0 // Wil be properly initialized by updateValue
     } );
     var thisMeter = this;
@@ -55,8 +65,7 @@ define( function( require ) {
     var updateValue = function() {
       if ( thisMeter.probesAreTouching() ) {
         thisMeter.value = 0;
-      }
-      else {
+      } else {
         var positiveProbeShape = thisMeter.shapeCreator.getPositiveProbeTipShape();
         var negativeProbeShape = thisMeter.shapeCreator.getNegativeProbeTipShape();
         thisMeter.value = thisMeter.circuit.getVoltageBetween( positiveProbeShape, negativeProbeShape );

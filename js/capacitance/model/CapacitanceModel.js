@@ -26,14 +26,6 @@ define( function( require ) {
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
-  // constants
-
-  // Voltmeter
-  var VOLTMETER_BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
-  var VOLTMETER_POSITIVE_PROBE_LOCATION = new Vector3( 0.0669, 0.0298, 0 );
-  var VOLTMETER_NEGATIVE_PROBE_LOCATION = new Vector3( 0.0707, 0.0329, 0 );
-  var VOLTMETER_VISIBLE = false;
-
   /**
    * Constructor for the CapacitanceModel.
    *
@@ -56,9 +48,7 @@ define( function( require ) {
     this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty );
 
     // @public
-    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform,
-      VOLTMETER_BODY_LOCATION, VOLTMETER_POSITIVE_PROBE_LOCATION, VOLTMETER_NEGATIVE_PROBE_LOCATION,
-      VOLTMETER_VISIBLE );
+    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, {} );
 
   }
 

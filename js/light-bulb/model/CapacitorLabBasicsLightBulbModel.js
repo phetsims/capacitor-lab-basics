@@ -36,12 +36,6 @@ define( function( require ) {
   var WIRE_THICKNESS = CLConstants.WIRE_THICKNESS;
   var WIRE_EXTENT = 0.017; // how far the wire extends above or below the capacitor (meters)
 
-  // Voltmeter, positions in meters
-  var VOLTMETER_BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
-  var VOLTMETER_POSITIVE_PROBE_LOCATION = new Vector3( 0.0669, 0.0298, 0 );
-  var VOLTMETER_NEGATIVE_PROBE_LOCATION = new Vector3( 0.0707, 0.0329, 0 );
-  var VOLTMETER_VISIBLE = false;
-
   /**
    * Constructor for the Dielectric Model.
    *
@@ -75,14 +69,12 @@ define( function( require ) {
     this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty );
     this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.plateChargeMeterVisibleProperty );
     this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.storedEnergyMeterVisibleProperty );
-    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform,
-      VOLTMETER_BODY_LOCATION, VOLTMETER_POSITIVE_PROBE_LOCATION, VOLTMETER_NEGATIVE_PROBE_LOCATION,
-      VOLTMETER_VISIBLE );
+    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, {} );
 
   }
 
   capacitorLabBasics.register( 'CapacitorLabBasicsLightBulbModel', CapacitorLabBasicsLightBulbModel );
-  
+
   return inherit( CapacitorLabBasicsModel, CapacitorLabBasicsLightBulbModel, {
 
     /**
