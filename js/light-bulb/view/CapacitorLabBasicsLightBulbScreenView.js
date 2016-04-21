@@ -12,16 +12,22 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/BarMeterPanel' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var ScreenView = require( 'JOIST/ScreenView' );
   var LightBulbCircuitNode = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/LightBulbCircuitNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  var ScreenView = require( 'JOIST/ScreenView' );
+  var Vector2 = require( 'DOT/Vector2' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
-  var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/BarMeterPanel' );
   var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
-  var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-    
+
+  // Panel offsets (wrt various references) in model coordinates.
+  var VIEW_PANEL_OFFSET = new Vector2( -20, 20 );
+  var BAR_METER_PANEL_OFFSET = new Vector2( 0, 30 );
+  var VOLTMETER_PANEL_OFFSET = new Vector2( 0, 20 );
+
   /**
    * @param {CapacitorLabBasicsLightBulbModel} model
    * @constructor
@@ -37,7 +43,7 @@ define( function( require ) {
     var maxPlateCharge = model.getMaxPlateCharge();
     var maxEffectiveEField = model.getMaxEffectiveEField();
 
-    // circuit
+    // Circuit
     var lightBulbCircuitNode = new LightBulbCircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisibleProperty,
       model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
@@ -47,21 +53,23 @@ define( function( require ) {
     var voltmeterToolbox = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform,
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty );
 
-    // control
-    // TODO: Layout calculations are messy, come back soon to clean up.
-    var capacitorLabBasicsLightBulbViewControl = new CapacitorLabBasicsViewControl( model );
-    capacitorLabBasicsLightBulbViewControl.translation = this.layoutBounds.rightTop.minusXY( capacitorLabBasicsLightBulbViewControl.width + 15, -20 );
+    // View control panel and voltmeter panel
+    var viewControlPanel = new CapacitorLabBasicsViewControl( model );
+    viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( VIEW_PANEL_OFFSET );
+    voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( VOLTMETER_PANEL_OFFSET );
 
-    barMeterPanel.leftBottom = lightBulbCircuitNode.topWireNode.leftTop.minusXY( 0, 30 );
-    voltmeterToolbox.rightTop = capacitorLabBasicsLightBulbViewControl.rightBottom.plusXY( 0, 20 );
+    // Circuit bar meter panel
+    barMeterPanel.leftBottom = lightBulbCircuitNode.topWireNode.leftTop.minus( BAR_METER_PANEL_OFFSET );
 
     var resetAllButton = new ResetAllButton( {
-      listener: function() { model.reset(); },
+      listener: function() {
+        model.reset();
+      },
       bottom: this.layoutBounds.bottom - 20,
       right: this.layoutBounds.right - 30,
       radius: 25
     } );
-    
+
     // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide.
     model.voltmeter.inUserControlProperty.link( function( inUserControl ) {
       if ( !inUserControl && voltmeterToolbox.bounds.intersectsBounds( voltmeterNode.bodyNode.bounds.eroded( 40 ) ) ) {
@@ -72,7 +80,7 @@ define( function( require ) {
     // rendering order
     this.addChild( lightBulbCircuitNode );
     this.addChild( barMeterPanel );
-    this.addChild( capacitorLabBasicsLightBulbViewControl );
+    this.addChild( viewControlPanel );
     this.addChild( voltmeterToolbox );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
@@ -80,6 +88,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'CapacitorLabBasicsLightBulbScreenView', CapacitorLabBasicsLightBulbScreenView );
-  
+
   return inherit( ScreenView, CapacitorLabBasicsLightBulbScreenView );
 } );
+
