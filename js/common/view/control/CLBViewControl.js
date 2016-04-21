@@ -39,7 +39,7 @@ define( function( require ) {
    * @param {CapacitorLabBasicsModel} model
    * @constructor
    */
-  function CapacitorLabBasicsViewControl( model ) {
+  function CLBViewControl( model ) {
     var viewAssets = [
       {
         string: plateChargesString,
@@ -107,7 +107,7 @@ define( function( require ) {
     } );
   }
 
-  capacitorLabBasics.register( 'CapacitorLabBasicsViewControl', CapacitorLabBasicsViewControl );
-  
-  return inherit( Panel, CapacitorLabBasicsViewControl );
+  capacitorLabBasics.register( 'CLBViewControl', CLBViewControl );
+
+  return inherit( Panel, CLBViewControl );
 } );

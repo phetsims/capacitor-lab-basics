@@ -14,7 +14,7 @@ define( function( require ) {
   // modules
   var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/BarMeterPanel' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CapacitorLabBasicsViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CapacitorLabBasicsViewControl' );
+  var CLBViewControl = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControl' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbCircuitNode = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/LightBulbCircuitNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
@@ -54,7 +54,7 @@ define( function( require ) {
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty );
 
     // View control panel and voltmeter panel
-    var viewControlPanel = new CapacitorLabBasicsViewControl( model );
+    var viewControlPanel = new CLBViewControl( model );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( VIEW_PANEL_OFFSET );
     voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( VOLTMETER_PANEL_OFFSET );
 
