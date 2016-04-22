@@ -120,6 +120,16 @@ define( function( require ) {
       return this.modelToViewTransform2D.transformShape( modelShape );
     },
 
+    /**
+     * Bounds are all in the 2D xy plane, and have no depth.
+     * 
+     * @param  {Bounds2} modelBounds
+     * @return {Bounds2}
+     */
+    modelToViewBounds: function( modelBounds ) {
+      return this.modelToViewTransform2D.transformBounds2( modelBounds );
+    },
+
     //----------------------------------------------------------------------------
     // View-to-model transforms
     //----------------------------------------------------------------------------
@@ -167,6 +177,16 @@ define( function( require ) {
      */
     viewToModelDeltaXY: function( xDelta, yDelta ) {
       return this.viewToModelDelta( new Vector2( xDelta, yDelta ) );
+    },
+
+    /**
+     * Transforms 2D view bounds to 2D model bounds since bounds have no depth.
+     *
+     * @param {Bounds2} viewBounds
+     * @return {Bounds2}
+     */
+    viewToModelBounds: function( viewBounds ) {
+      return this.viewToModelTransform2D.transformBounds2( viewBounds );
     }
 
   } );
