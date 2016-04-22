@@ -18,7 +18,7 @@ define( function( require ) {
   var Line = require( 'SCENERY/nodes/Line' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -176,7 +176,7 @@ define( function( require ) {
      * @constructor
      */
     CapacitanceBarMeterNode: function( meter ) {
-      return new BarMeterNode( meter, CLConstants.CAPACITANCE_COLOR, CLConstants.CAPACITANCE_METER_VALUE_EXPONENT, unitsPicoFaradsString, capacitanceString );
+      return new BarMeterNode( meter, CLBConstants.CAPACITANCE_COLOR, CLBConstants.CAPACITANCE_METER_VALUE_EXPONENT, unitsPicoFaradsString, capacitanceString );
     },
     /**
      * Factory constructor for a CapacitanceMeterNode.
@@ -194,7 +194,7 @@ define( function( require ) {
      * @constructor
      */
     StoredEnergyBarMeterNode: function( meter ) {
-      return new BarMeterNode( meter, CLConstants.STORED_ENERGY_COLOR, CLConstants.STORED_ENERGY_METER_VALUE_EXPONENT, unitsPicoJoulesString, storedEnergyString );
+      return new BarMeterNode( meter, CLBConstants.STORED_ENERGY_COLOR, CLBConstants.STORED_ENERGY_METER_VALUE_EXPONENT, unitsPicoJoulesString, storedEnergyString );
     }
   } );
 
@@ -250,7 +250,7 @@ define( function( require ) {
    * @constructor
    */
   function PlateChargeBarMeterNode( meter ) {
-    BarMeterNode.call( this, meter, CLConstants.POSITIVE_CHARGE_COLOR, CLConstants.PLATE_CHARGE_METER_VALUE_EXPONENT, unitsPicoCoulombsString, plateChargeString );
+    BarMeterNode.call( this, meter, CLBConstants.POSITIVE_CHARGE_COLOR, CLBConstants.PLATE_CHARGE_METER_VALUE_EXPONENT, unitsPicoCoulombsString, plateChargeString );
   }
 
   capacitorLabBasics.register( 'PlateChargeBarMeterNode', PlateChargeBarMeterNode );
@@ -260,7 +260,7 @@ define( function( require ) {
     // This meter displays absolute value, and changes color to indicate positive or negative charge.
     setValue: function( value ) {
       BarMeterNode.prototype.setValue.call( this, Math.abs( value ) );
-      this.setBarColor( ( value >= 0 ) ? CLConstants.POSITIVE_CHARGE_COLOR : CLConstants.NEGATIVE_CHARGE_COLOR );
+      this.setBarColor( ( value >= 0 ) ? CLBConstants.POSITIVE_CHARGE_COLOR : CLBConstants.NEGATIVE_CHARGE_COLOR );
     }
   } );
 

@@ -17,7 +17,7 @@ define( function( require ) {
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var Vector2 = require( 'DOT/Vector2' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Node = require( 'SCENERY/nodes/Node' );
 
@@ -92,7 +92,7 @@ define( function( require ) {
     var toolboxPanel = new Panel( voltmeterIconNode, {
       xMargin: 15,
       yMargin: 15,
-      fill: CLConstants.METER_PANEL_FILL
+      fill: CLBConstants.METER_PANEL_FILL
     } );
     this.addChild( toolboxPanel );
 

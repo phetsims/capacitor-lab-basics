@@ -15,7 +15,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector2 = require( 'DOT/Vector2' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var UnitsUtils = require( 'CAPACITOR_LAB_BASICS/common/model/util/UnitsUtils' );
   var DragHandleArrowNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleArrowNode' );
   var PlateAreaDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandler' );
@@ -26,7 +26,7 @@ define( function( require ) {
   // constants
   // endpoints for a vertical double-headed arrow, this will be rotated to point along the plate's pseudo-3D diagonal
   var ARROW_TIP_LOCATION = new Vector2( 0, 0 );
-  var ARROW_TAIL_LOCATION = new Vector2( 0, CLConstants.DRAG_HANDLE_ARROW_LENGTH );
+  var ARROW_TAIL_LOCATION = new Vector2( 0, CLBConstants.DRAG_HANDLE_ARROW_LENGTH );
 
   // strings
   var plateAreaString = require( 'string!CAPACITOR_LAB_BASICS/plateArea' );

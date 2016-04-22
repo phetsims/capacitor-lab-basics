@@ -23,7 +23,7 @@ define( function( require ) {
   var Transform3 = require( 'DOT/Transform3' );
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
@@ -35,9 +35,9 @@ define( function( require ) {
   function CLBModelViewTransform3D( options ) {
 
     options = _.extend( {
-      scale: CLConstants.MVT_SCALE, // scale for mapping from model to view (x and y scale are identical)
-      pitch: CLConstants.MVT_PITCH, // rotation about the horizontal (x) axis, sign determined using the right-hand rule (radians)
-      yaw: CLConstants.MVT_YAW // rotation about the vertical (y) axis, sign determined using the right-hand rule (radians)
+      scale: CLBConstants.MVT_SCALE, // scale for mapping from model to view (x and y scale are identical)
+      pitch: CLBConstants.MVT_PITCH, // rotation about the horizontal (x) axis, sign determined using the right-hand rule (radians)
+      yaw: CLBConstants.MVT_YAW // rotation about the vertical (y) axis, sign determined using the right-hand rule (radians)
     }, options );
 
     // @private

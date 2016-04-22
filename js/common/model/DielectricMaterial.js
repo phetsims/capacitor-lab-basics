@@ -15,7 +15,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   function DielectricMaterial( name, dielectricConstant, color ) {
@@ -31,8 +31,8 @@ define( function( require ) {
   
   return inherit( Object, DielectricMaterial, {}, {
 
-    Air: function() { return new DielectricMaterial( 'air', CLConstants.EPSILON_AIR, CLConstants.AIR_COLOR ); },
-    CustomDielectricMaterial: function( dielectricConstant ) { return new DielectricMaterial( 'Custom', dielectricConstant, CLConstants.CUSTOM_DIELECTRIC_COLOR ); }
+    Air: function() { return new DielectricMaterial( 'air', CLBConstants.EPSILON_AIR, CLBConstants.AIR_COLOR ); },
+    CustomDielectricMaterial: function( dielectricConstant ) { return new DielectricMaterial( 'Custom', dielectricConstant, CLBConstants.CUSTOM_DIELECTRIC_COLOR ); }
 
   } );
 } );

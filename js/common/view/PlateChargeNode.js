@@ -17,7 +17,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var IGridSizeStrategy = require( 'CAPACITOR_LAB_BASICS/common/view/IGridSizeStrategy' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var Util = require( 'DOT/Util' );
@@ -39,8 +39,8 @@ define( function( require ) {
    * @param {CanvasRenderingContext2D} context - context for the canvas methods
    */
   function addPositiveCharge( location, context ) {
-    var chargeWidth = CLConstants.NEGATIVE_CHARGE_SIZE.width;
-    var chargeHeight = CLConstants.NEGATIVE_CHARGE_SIZE.height;
+    var chargeWidth = CLBConstants.NEGATIVE_CHARGE_SIZE.width;
+    var chargeHeight = CLBConstants.NEGATIVE_CHARGE_SIZE.height;
 
     context.fillStyle = POSITIVE_CHARGE_COLOR;
     context.fillRect( location.x - chargeWidth / 2, location.y - chargeHeight / 2, chargeWidth, chargeHeight );
@@ -55,8 +55,8 @@ define( function( require ) {
    * @param {CanvasRenderingContext2D} context
    */
   function addNegativeCharge( location, context ) {
-    var chargeWidth = CLConstants.NEGATIVE_CHARGE_SIZE.width;
-    var chargeHeight = CLConstants.NEGATIVE_CHARGE_SIZE.height;
+    var chargeWidth = CLBConstants.NEGATIVE_CHARGE_SIZE.width;
+    var chargeHeight = CLBConstants.NEGATIVE_CHARGE_SIZE.height;
 
     context.fillStyle = NEGATIVE_CHARGE_COLOR;
     context.fillRect( location.x - chargeWidth / 2, location.y - chargeHeight, chargeWidth, chargeHeight );
@@ -124,7 +124,7 @@ define( function( require ) {
     },
 
     isPositivelyCharged: function() {
-      return ( this.getPlateCharge() >= 0 && this.polarity === CLConstants.POLARITY.POSITIVE ) || ( this.getPlateCharge() < 0 && this.polarity === CLConstants.POLARITY.NEGATIVE );
+      return ( this.getPlateCharge() >= 0 && this.polarity === CLBConstants.POLARITY.POSITIVE ) || ( this.getPlateCharge() < 0 && this.polarity === CLBConstants.POLARITY.NEGATIVE );
     },
 
     /**
@@ -151,7 +151,7 @@ define( function( require ) {
 
       if ( numberOfCharges > 0 ) {
 
-        var zMargin = this.modelViewTransform.viewToModelDeltaXY( CLConstants.NEGATIVE_CHARGE_SIZE.width, 0 ).x;
+        var zMargin = this.modelViewTransform.viewToModelDeltaXY( CLBConstants.NEGATIVE_CHARGE_SIZE.width, 0 ).x;
 
         var gridWidth = this.getContactWidth(); // contact between plate and dielectric
         var gridDepth = this.capacitor.plateSize.depth - ( 2 * zMargin );
@@ -206,9 +206,9 @@ define( function( require ) {
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
       var absCharge = Math.abs( plateCharge );
       //console.log( absCharge );
-      var numberOfCharges = Util.toFixedNumber( CLConstants.NUMBER_OF_PLATE_CHARGES.max * ( absCharge / maxPlateCharge ), 0 );
-      if( absCharge > 0 && numberOfCharges < CLConstants.NUMBER_OF_PLATE_CHARGES.min ) {
-        numberOfCharges = CLConstants.NUMBER_OF_PLATE_CHARGES.min;
+      var numberOfCharges = Util.toFixedNumber( CLBConstants.NUMBER_OF_PLATE_CHARGES.max * ( absCharge / maxPlateCharge ), 0 );
+      if( absCharge > 0 && numberOfCharges < CLBConstants.NUMBER_OF_PLATE_CHARGES.min ) {
+        numberOfCharges = CLBConstants.NUMBER_OF_PLATE_CHARGES.min;
       }
       return numberOfCharges;
     }

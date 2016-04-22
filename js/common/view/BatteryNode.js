@@ -15,7 +15,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Image = require( 'SCENERY/nodes/Image' );
   var HSlider = require( 'SUN/HSlider' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -56,7 +56,7 @@ define( function( require ) {
       thumbSize: new Dimension2( 20, 35 ),
       majorTickLength: 18,
       endDrag: function() {
-        if ( Math.abs( battery.voltage ) < CLConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {
+        if ( Math.abs( battery.voltage ) < CLBConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {
           battery.voltage = 0;
         }
       }
@@ -87,7 +87,7 @@ define( function( require ) {
 
     // when battery polarity changes, change the battery image
     battery.polarityProperty.link( function( polarity ) {
-      if ( polarity === CLConstants.POLARITY.POSITIVE ) {
+      if ( polarity === CLBConstants.POLARITY.POSITIVE ) {
         imageNode.image = batteryUpImage;
         minTick.fill = 'white';
         maxTick.fill = 'black';

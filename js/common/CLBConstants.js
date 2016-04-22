@@ -18,7 +18,7 @@ define( function( require ) {
   // constants
   var PLATE_WIDTH_RANGE = new Range( 0.01, 0.02, 0.01 ); // meters
 
-  var CLConstants = {
+  var CLBConstants = {
 
     //----------------------------------------------------------------------------
     // Model
@@ -142,7 +142,7 @@ define( function( require ) {
 
   };
 
-  capacitorLabBasics.register( 'CLConstants', CLConstants );
+  capacitorLabBasics.register( 'CLBConstants', CLBConstants );
 
-  return CLConstants;
+  return CLBConstants;
 } );

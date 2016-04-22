@@ -14,7 +14,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Panel = require( 'SUN/Panel' );
@@ -91,7 +91,7 @@ define( function( require ) {
     storedEnergyMeterNode.axisLine.translation = new Vector2( x, y );
 
     Panel.call( this, parentNode, {
-      fill: CLConstants.METER_PANEL_FILL,
+      fill: CLBConstants.METER_PANEL_FILL,
       minWidth: minWidth,
       align: 'left',
       xMargin: 10,

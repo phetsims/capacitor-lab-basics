@@ -15,7 +15,7 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var BatteryShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BatteryShapeCreator' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
@@ -52,7 +52,7 @@ define( function( require ) {
     // @public
     PropertySet.call( this, {
       voltage: voltage,
-      polarity: CLConstants.POLARITY.POSITIVE
+      polarity: CLBConstants.POLARITY.POSITIVE
     } );
 
     var thisBattery = this;
@@ -78,7 +78,7 @@ define( function( require ) {
      * @private
      */
     getPolarity: function( voltage ) {
-      return ( voltage >= 0 ) ? CLConstants.POLARITY.POSITIVE : CLConstants.POLARITY.NEGATIVE;
+      return ( voltage >= 0 ) ? CLBConstants.POLARITY.POSITIVE : CLBConstants.POLARITY.NEGATIVE;
     },
 
     /**
@@ -114,7 +114,7 @@ define( function( require ) {
      * This offset depends on the polarity.
      */
     getTopTerminalYOffset: function() {
-      if ( this.polarity === CLConstants.POLARITY.POSITIVE ) {
+      if ( this.polarity === CLBConstants.POLARITY.POSITIVE ) {
         return POSITIVE_TERMINAL_Y_OFFSET;
       }
       else {

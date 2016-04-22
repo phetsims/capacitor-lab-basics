@@ -13,7 +13,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
@@ -25,8 +25,8 @@ define( function( require ) {
 
     // public
     PropertySet.call( this, {
-      plateChargesVisible: CLConstants.PLATE_CHARGES_VISIBLE,
-      eFieldVisible: CLConstants.EFIELD_VISIBLE,
+      plateChargesVisible: CLBConstants.PLATE_CHARGES_VISIBLE,
+      eFieldVisible: CLBConstants.EFIELD_VISIBLE,
       capacitanceMeterVisible: true,
       plateChargeMeterVisible: false,
       storedEnergyMeterVisible: false,

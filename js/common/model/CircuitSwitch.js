@@ -14,7 +14,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var PropertySet = require( 'AXON/PropertySet' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -51,7 +51,7 @@ define( function( require ) {
 
     // add the switch wire that spans two connection points. Default connection is to the battery.
     this.switchSegment = WireSegment.SwitchSegment( hingePoint, this.activeConnection );
-    this.switchWire = new Wire( modelViewTransform, CLConstants.WIRE_THICKNESS, [ this.switchSegment ], connectionLocation );
+    this.switchWire = new Wire( modelViewTransform, CLBConstants.WIRE_THICKNESS, [ this.switchSegment ], connectionLocation );
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
@@ -177,14 +177,14 @@ define( function( require ) {
   function CircuitTopSwitch( hingePoint, modelViewTransform, circuitSwitchConnections, circuitConnectionProperty ) {
 
       // calculate the locations of the connection points for this circuit
-      var topPoint = hingePoint.toVector2().minusXY( 0, CLConstants.SWITCH_WIRE_LENGTH );
+      var topPoint = hingePoint.toVector2().minusXY( 0, CLBConstants.SWITCH_WIRE_LENGTH );
       var leftPoint = hingePoint.toVector2().minusXY(
-        CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
-        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
+        CLBConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
+        CLBConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
       );
       var rightPoint = hingePoint.toVector2().minusXY(
-        -CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
-        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
+        -CLBConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
+        CLBConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
       );
 
       // collect location and connection type for each of the possible circuit switch connections
@@ -213,7 +213,7 @@ define( function( require ) {
         }
       } );
 
-      CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP );
+      CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP );
     }
 
     capacitorLabBasics.register( 'CircuitTopSwitch', CircuitTopSwitch );
@@ -231,14 +231,14 @@ define( function( require ) {
     function CircuitBottomSwitch( hingePoint, modelViewTransform, circuitSwitchConnections, circuitConnectionProperty ) {
 
       // determine the locations of each connection point
-      var topPoint = hingePoint.toVector2().plusXY( 0, CLConstants.SWITCH_WIRE_LENGTH );
+      var topPoint = hingePoint.toVector2().plusXY( 0, CLBConstants.SWITCH_WIRE_LENGTH );
       var rightPoint = hingePoint.toVector2().plusXY(
-        CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
-        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
+        CLBConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
+        CLBConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
       );
       var leftPoint = hingePoint.toVector2().plusXY(
-        -CLConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
-        CLConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
+        -CLBConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
+        CLBConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
       );
 
       // collect location and connection type for each of the possible circuit switch connections
@@ -267,7 +267,7 @@ define( function( require ) {
         }
       } );
 
-      CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM );
+      CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM );
     }
 
     capacitorLabBasics.register( 'CircuitBottomSwitch', CircuitBottomSwitch );

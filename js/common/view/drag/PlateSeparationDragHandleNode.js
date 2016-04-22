@@ -14,7 +14,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector2 = require( 'DOT/Vector2' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var UnitsUtils = require( 'CAPACITOR_LAB_BASICS/common/model/util/UnitsUtils' );
   var DragHandleArrowNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleArrowNode' );
   var PlateSeparationDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandler' );
@@ -25,7 +25,7 @@ define( function( require ) {
   // constants
   // endpoints for vertical double-headed arrow
   var ARROW_START_LOCATION = new Vector2( 0, 0 );
-  var ARROW_END_LOCATION = new Vector2( 0, -CLConstants.DRAG_HANDLE_ARROW_LENGTH );
+  var ARROW_END_LOCATION = new Vector2( 0, -CLBConstants.DRAG_HANDLE_ARROW_LENGTH );
 
   // endpoints for vertical line
   var LINE_LENGTH = 60;

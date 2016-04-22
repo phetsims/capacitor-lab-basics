@@ -25,7 +25,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Vector3 = require( 'DOT/Vector3' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CapacitorShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/CapacitorShapeCreator' );
   var Bounds3 = require( 'DOT/Bounds3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -53,7 +53,7 @@ define( function( require ) {
 
     // @public
     PropertySet.call( this, {
-      plateSize: new Bounds3( 0, 0, 0, plateWidth, CLConstants.PLATE_HEIGHT, plateWidth ), // Square plates.
+      plateSize: new Bounds3( 0, 0, 0, plateWidth, CLBConstants.PLATE_HEIGHT, plateWidth ), // Square plates.
       plateSeparation: plateSeparation,
       platesVoltage: 0, // zero until it's connected into a circuit
       dielectricMaterial: dielectricMaterial,
@@ -163,7 +163,7 @@ define( function( require ) {
      * @returns {number}
      */
     getPlateSeparation: function( dielectricConstant, plateWidth, capacitance ) {
-      return dielectricConstant * CLConstants.EPSILON_0 * plateWidth * plateWidth / capacitance;
+      return dielectricConstant * CLBConstants.EPSILON_0 * plateWidth * plateWidth / capacitance;
     },
 
     /**
@@ -175,7 +175,7 @@ define( function( require ) {
      * @return {number} capacitance, in Farads
      */
     getCapacitance: function( epsilon, area, plateSeparation ) {
-      return epsilon * CLConstants.EPSILON_0 * area / plateSeparation;
+      return epsilon * CLBConstants.EPSILON_0 * area / plateSeparation;
     },
 
     /**
@@ -185,7 +185,7 @@ define( function( require ) {
      * @return {number} capacitance, in Farads
      */
     getAirCapacitance: function() {
-      return this.getCapacitance( CLConstants.EPSILON_AIR, this.getAirContactArea(), this.plateSeparation );
+      return this.getCapacitance( CLBConstants.EPSILON_AIR, this.getAirContactArea(), this.plateSeparation );
     },
 
     /**
@@ -252,7 +252,7 @@ define( function( require ) {
      */
     getAirPlateCharge: function() {
       var airPlateCharge = this.getAirCapacitance() * this.platesVoltage;
-      if ( Math.abs( airPlateCharge ) < CLConstants.MIN_PLATE_CHARGE ) {
+      if ( Math.abs( airPlateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
       } else {
         return airPlateCharge;
@@ -267,7 +267,7 @@ define( function( require ) {
      */
     getDielectricPlateCharge: function() {
       var dielectricCharge = this.getDielectricCapacitance() * this.platesVoltage;
-      if ( Math.abs( dielectricCharge ) < CLConstants.MIN_PLATE_CHARGE ) {
+      if ( Math.abs( dielectricCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
       } else {
         return dielectricCharge;
@@ -301,7 +301,7 @@ define( function( require ) {
      * @return {number} excess charge, in Coulombs
      */
     getExcessAirPlateCharge: function() {
-      return this.getExcessPlateCharge( CLConstants.EPSILON_AIR, this.getAirCapacitance(), this.platesVoltage );
+      return this.getExcessPlateCharge( CLBConstants.EPSILON_AIR, this.getAirCapacitance(), this.platesVoltage );
     },
 
     /**
@@ -316,7 +316,7 @@ define( function( require ) {
       if ( epsilon_r <= 0 ) {
         console.error( 'Model requires epsilon_r > 0 : ' + epsilon_r );
       }
-      return ( ( epsilon_r - CLConstants.EPSILON_VACUUM ) / epsilon_r ) * C * V_plates; // Coulombs (1C = 1F * 1V)
+      return ( ( epsilon_r - CLBConstants.EPSILON_VACUUM ) / epsilon_r ) * C * V_plates; // Coulombs (1C = 1F * 1V)
     },
 
     /**
@@ -329,7 +329,7 @@ define( function( require ) {
      */
     getEffectiveEField: function() {
       var totalPlateCharge = this.getTotalPlateCharge();
-      if ( Math.abs( totalPlateCharge ) < CLConstants.MIN_PLATE_CHARGE ) {
+      if ( Math.abs( totalPlateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
       } else {
         return this.platesVoltage / this.plateSeparation;
@@ -343,7 +343,7 @@ define( function( require ) {
      * @return E-field, in Volts/meter
      */
     getPlatesAirEField: function() {
-      return this.getPlatesEField( CLConstants.EPSILON_AIR, this.platesVoltage, this.plateSeparation );
+      return this.getPlatesEField( CLBConstants.EPSILON_AIR, this.platesVoltage, this.plateSeparation );
     },
 
     /**

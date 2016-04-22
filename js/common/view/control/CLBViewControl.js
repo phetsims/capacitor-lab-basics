@@ -18,7 +18,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
   var VStrut = require( 'SCENERY/nodes/VStrut' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
@@ -67,7 +67,7 @@ define( function( require ) {
       xMargin: 10,
       yMargin: 10,
       align: 'left',
-      fill: CLConstants.METER_PANEL_FILL
+      fill: CLBConstants.METER_PANEL_FILL
     } );
   }
 

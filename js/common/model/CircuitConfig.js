@@ -12,7 +12,7 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -23,10 +23,10 @@ define( function( require ) {
   var CAPACITOR_X_SPACING = 0.024; // meters
   var CAPACITOR_Y_SPACING = 0; // meters
   var LIGHT_BULB_X_SPACING = 0.023; // meters
-  var PLATE_WIDTH = CLConstants.PLATE_WIDTH_RANGE.defaultValue;
-  var PLATE_SEPARATION = CLConstants.PLATE_SEPARATION_RANGE.defaultValue;
+  var PLATE_WIDTH = CLBConstants.PLATE_WIDTH_RANGE.defaultValue;
+  var PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
   var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
-  var WIRE_THICKNESS = CLConstants.WIRE_THICKNESS;
+  var WIRE_THICKNESS = CLBConstants.WIRE_THICKNESS;
   var DIELECTRIC_OFFSET = 0.02; // meters
   var LIGHT_BULB_RESISTANCE = 5e12; // Ohms. Artificially large to stretch discharge time
 

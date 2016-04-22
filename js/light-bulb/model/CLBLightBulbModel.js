@@ -12,7 +12,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Vector3 = require( 'DOT/Vector3' );
   var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
   var LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
@@ -31,9 +31,9 @@ define( function( require ) {
   var CAPACITOR_X_SPACING = 0.0180; // meters
   var LIGHT_BULB_X_SPACING = 0.023; // meters
   var CAPACITOR_Y_SPACING = 0.0010; // meters
-  var PLATE_WIDTH = CLConstants.PLATE_WIDTH_RANGE.defaultValue;
-  var PLATE_SEPARATION = CLConstants.PLATE_SEPARATION_RANGE.defaultValue;
-  var WIRE_THICKNESS = CLConstants.WIRE_THICKNESS;
+  var PLATE_WIDTH = CLBConstants.PLATE_WIDTH_RANGE.defaultValue;
+  var PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
+  var WIRE_THICKNESS = CLBConstants.WIRE_THICKNESS;
   var WIRE_EXTENT = 0.017; // how far the wire extends above or below the capacitor (meters)
 
   /**
@@ -63,7 +63,7 @@ define( function( require ) {
     this.dielectricMaterial = DielectricMaterial.Air(); // @public (read-only)
 
     this.circuit = new LightBulbCircuit( circuitConfig ); // @public
-    this.worldBounds = CLConstants.CANVAS_RENDERING_SIZE.toBounds(); // private
+    this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // private
 
     // @public
     this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty );
@@ -118,12 +118,12 @@ define( function( require ) {
     getCapacitorWithMaxCharge: function() {
       var modelViewTransform = new CLBModelViewTransform3D();
       var capacitor = new Capacitor( new Vector3( 0, 0, 0 ),
-        CLConstants.PLATE_WIDTH_RANGE.max,
-        CLConstants.PLATE_SEPARATION_RANGE.min,
-        DielectricMaterial.CustomDielectricMaterial( CLConstants.DIELECTRIC_CONSTANT_RANGE.max ),
-        CLConstants.DIELECTRIC_OFFSET_RANGE.min,
+        CLBConstants.PLATE_WIDTH_RANGE.max,
+        CLBConstants.PLATE_SEPARATION_RANGE.min,
+        DielectricMaterial.CustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.max ),
+        CLBConstants.DIELECTRIC_OFFSET_RANGE.min,
         modelViewTransform );
-      capacitor.platesVoltage = CLConstants.BATTERY_VOLTAGE_RANGE.max;
+      capacitor.platesVoltage = CLBConstants.BATTERY_VOLTAGE_RANGE.max;
       return capacitor;
     },
 
@@ -139,12 +139,12 @@ define( function( require ) {
       var circuitConfig = new CircuitConfig( {
         capacitorXSpacing: CAPACITOR_X_SPACING,
         capacitorYSpacing: CAPACITOR_Y_SPACING,
-        plateWidth: CLConstants.PLATE_WIDTH_RANGE.min,
-        plateSeparation: CLConstants.PLATE_SEPARATION_RANGE.min,
-        wireThickness: CLConstants.WIRE_THICKNESS,
+        plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
+        plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
+        wireThickness: CLBConstants.WIRE_THICKNESS,
         wireExtent: WIRE_EXTENT,
-        dielectricMaterial: DielectricMaterial.CustomDielectricMaterial( CLConstants.DIELECTRIC_CONSTANT_RANGE.min ),
-        dielectricOffset: CLConstants.DIELECTRIC_OFFSET_RANGE.min
+        dielectricMaterial: DielectricMaterial.CustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.min ),
+        dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min
       } );
 
       var circuit = new LightBulbCircuit( circuitConfig );
@@ -164,10 +164,10 @@ define( function( require ) {
      */
     getEFieldReferenceMagnitude: function() {
       var capacitor = new Capacitor( {
-        plateWidth: CLConstants.PLATE_WIDTH_RANGE.defaultValue,
-        plateSeparation: CLConstants.PLATE_SEPARATION_RANGE.defaultValue
+        plateWidth: CLBConstants.PLATE_WIDTH_RANGE.defaultValue,
+        plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.defaultValue
       } );
-      capacitor.platesVoltage = CLConstants.BATTERY_VOLTAGE_RANGE.max;
+      capacitor.platesVoltage = CLBConstants.BATTERY_VOLTAGE_RANGE.max;
       return capacitor.getEffectiveEField();
     }
 

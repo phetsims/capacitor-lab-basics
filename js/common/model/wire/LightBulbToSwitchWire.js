@@ -13,7 +13,7 @@ define( function( require ) {
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
@@ -33,7 +33,7 @@ define( function( require ) {
     var horizontalY = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED ).y;
 
     // Get x coordinate of the connection point
-    var isTop = connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP;
+    var isTop = connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP;
     var connectionPointX = isTop ? lightBulb.getTopConnectionPoint().x : lightBulb.getBottomConnectionPoint().x;
 
     var rightCorner = new Vector2( connectionPointX, horizontalY );
@@ -63,11 +63,11 @@ define( function( require ) {
      * Factory functions for public access to specific constructors.
      */
     LightBulbToSwitchWireBottom: function( modelViewTransform, thickness, lightBulb, circuitSwitch ) {
-      return new LightBulbToSwitchWire( CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM, modelViewTransform, thickness, lightBulb, circuitSwitch );
+      return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM, modelViewTransform, thickness, lightBulb, circuitSwitch );
     },
 
     LightBulbToSwitchWireTop: function( modelViewTransform, thickness, lightBulb, circuitSwitch ) {
-      return new LightBulbToSwitchWire( CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP, modelViewTransform, thickness, lightBulb, circuitSwitch );
+      return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP, modelViewTransform, thickness, lightBulb, circuitSwitch );
     }
 
   } );

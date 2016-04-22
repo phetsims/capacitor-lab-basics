@@ -23,7 +23,7 @@ define( function( require ) {
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Vector3 = require( 'DOT/Vector3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -32,8 +32,8 @@ define( function( require ) {
 
     // switch location
     var x = config.batteryLocation.x + config.capacitorXSpacing;
-    var topY = config.batteryLocation.y - CLConstants.PLATE_SEPARATION_RANGE.max - CLConstants.SWITCH_Y_SPACING;
-    var bottomY = config.batteryLocation.y + CLConstants.PLATE_SEPARATION_RANGE.max + CLConstants.SWITCH_Y_SPACING;
+    var topY = config.batteryLocation.y - CLBConstants.PLATE_SEPARATION_RANGE.max - CLBConstants.SWITCH_Y_SPACING;
+    var bottomY = config.batteryLocation.y + CLBConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
     var z = config.batteryLocation.z;
 
     var circuitSwitches = []; // wrapped for format of AbstractCircuit

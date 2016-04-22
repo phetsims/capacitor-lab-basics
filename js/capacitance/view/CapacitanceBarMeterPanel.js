@@ -14,7 +14,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Panel = require( 'SUN/Panel' );
@@ -63,7 +63,7 @@ define( function( require ) {
     Panel.call( this, parentNode, {
       minWidth: minWidth,
       align: 'left',
-      fill: CLConstants.METER_PANEL_FILL,
+      fill: CLBConstants.METER_PANEL_FILL,
       xMargin: 15,
       yMargin: 15
     } );

@@ -15,7 +15,7 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -42,7 +42,7 @@ define( function( require ) {
   function ConnectionAreaNode( connection, hingePoint, connectionPointNode, modelViewTransform, circuitConnectionProperty ) {
 
     Node.call( this );
-    var connectionVector = connection.location.toVector2().minus( hingePoint ).withMagnitude( CLConstants.SWITCH_WIRE_LENGTH * 3 / 2 );
+    var connectionVector = connection.location.toVector2().minus( hingePoint ).withMagnitude( CLBConstants.SWITCH_WIRE_LENGTH * 3 / 2 );
     var triangleShape = new Shape().moveToPoint( hingePoint );
     triangleShape.lineToPoint( hingePoint.plus( connectionVector.rotated( BOUNDING_ANGLE ) ) );
     triangleShape.lineToPoint( hingePoint.plus( connectionVector.rotated( -BOUNDING_ANGLE ) ) );

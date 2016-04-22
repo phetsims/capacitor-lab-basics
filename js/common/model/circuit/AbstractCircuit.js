@@ -14,7 +14,7 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
   var Battery = require( 'CAPACITOR_LAB_BASICS/common/model/Battery' );
   var CurrentIndicator = require( 'CAPACITOR_LAB_BASICS/common/model/CurrentIndicator' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -41,7 +41,7 @@ define( function( require ) {
 
     // create basic circuit components
     // @public
-    this.battery = new Battery( config.batteryLocation, CLConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform );
+    this.battery = new Battery( config.batteryLocation, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform );
     this.circuitComponents = createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs );
     this.circuitSwitches = createCircuitSwitches( config, numberOfCapacitors, this.circuitConnectionProperty );
 
@@ -214,7 +214,7 @@ define( function( require ) {
     getTopBatteryWires: function() {
       var topBatteryWires = [];
       this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
+        if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
           topBatteryWires.push( wire );
         }
       } );
@@ -227,7 +227,7 @@ define( function( require ) {
     getBottomBatteryWires: function() {
       var bottomBatteryWires = [];
       this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM ) {
+        if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM ) {
           bottomBatteryWires.push( wire );
         }
       } );
@@ -240,7 +240,7 @@ define( function( require ) {
     getTopLightBulbWires: function() {
       var topLightBulbWires = [];
       this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
+        if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
           topLightBulbWires.push( wire );
         }
       } );
@@ -253,7 +253,7 @@ define( function( require ) {
     getBottomLightBulbWires: function() {
       var bottomLightBulbWires = [];
       this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM ) {
+        if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM ) {
           bottomLightBulbWires.push( wire );
         }
       } );
@@ -267,7 +267,7 @@ define( function( require ) {
       var topCircuitSwitchWires = [];
       this.circuitSwitches.forEach( function( circuitSwitch ) {
         var switchWire = circuitSwitch.switchWire;
-        if ( switchWire.connectionPoint === CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP ) {
+        if ( switchWire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP ) {
           topCircuitSwitchWires.push( switchWire );
         }
       } );
@@ -283,7 +283,7 @@ define( function( require ) {
       var bottomCircuitSwitchWires = [];
       this.circuitSwitches.forEach( function( circuitSwitch ) {
         var switchWire = circuitSwitch.switchWire;
-        if ( switchWire.connectionPoint === CLConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM ) {
+        if ( switchWire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM ) {
           bottomCircuitSwitchWires.push( switchWire );
         }
       } );
@@ -298,7 +298,7 @@ define( function( require ) {
     getTopCapacitorWires: function() {
       var topCapacitorWires = [];
       this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
+        if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
           topCapacitorWires.push( wire );
         }
       } );
@@ -313,7 +313,7 @@ define( function( require ) {
     getBottomCapacitorWires: function() {
       var bottomCapacitorWires = [];
       this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM ) {
+        if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM ) {
           bottomCapacitorWires.push( wire );
         }
       } );

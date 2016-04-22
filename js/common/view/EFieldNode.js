@@ -13,7 +13,7 @@ define( function( require ) {
   //modules
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -44,17 +44,17 @@ define( function( require ) {
     // make sure that the arrow path is centered along the field line.
     // dividing by 4 aligns better than dividing by 2 for the narrow line width.
     var xOffset = LINE_WIDTH / 4;
-    var arrowCenter = ( direction === CLConstants.DIRECTION.UP ) ? position.x - xOffset : position.x + xOffset; 
+    var arrowCenter = ( direction === CLBConstants.DIRECTION.UP ) ? position.x - xOffset : position.x + xOffset; 
 
     // path for the UP arrow
-    if ( direction === CLConstants.DIRECTION.UP ) {
+    if ( direction === CLBConstants.DIRECTION.UP ) {
       context.moveTo( arrowCenter, position.y - h / 2 );
       context.lineTo( arrowCenter + w / 2, position.y + h / 2 );
       context.lineTo( arrowCenter - w / 2, position.y + h / 2 );
     }
 
     // path for the DOWN arrow
-    else if ( direction === CLConstants.DIRECTION.DOWN ) {
+    else if ( direction === CLBConstants.DIRECTION.DOWN ) {
       context.moveTo( arrowCenter, position.y + h / 2 );
       context.lineTo( arrowCenter - w / 2, position.y - h / 2 );
       context.lineTo( arrowCenter + w / 2, position.y - h / 2 );
@@ -124,7 +124,7 @@ define( function( require ) {
          * E_effective changes.
          */
         var length = this.modelViewTransform.modelToViewDeltaXYZ( 0, plateSeparation, 0 ).y;
-        var direction = ( effectiveEField >= 0 ) ? CLConstants.DIRECTION.DOWN : CLConstants.DIRECTION.UP;
+        var direction = ( effectiveEField >= 0 ) ? CLBConstants.DIRECTION.DOWN : CLBConstants.DIRECTION.UP;
         var x = lineSpacing / 2;
         while ( x <= plateWidth / 2 ) {
           var z = lineSpacing / 2;
@@ -169,7 +169,7 @@ define( function( require ) {
       }
       else {
         var numberOfLines = this.getNumberOfLines( effectiveEField );
-        return CLConstants.PLATE_WIDTH_RANGE.min / Math.sqrt( numberOfLines ); // assumes a square plate!;
+        return CLBConstants.PLATE_WIDTH_RANGE.min / Math.sqrt( numberOfLines ); // assumes a square plate!;
       }
     },
 
@@ -178,9 +178,9 @@ define( function( require ) {
      */
     getNumberOfLines: function( effectiveEField ) {
       var absEField = Math.abs( effectiveEField );
-      var numberOfLines = Math.floor( CLConstants.NUMBER_OF_EFIELD_LINES.max * absEField / this.maxEffectiveEField );
-      if ( absEField > 0 && numberOfLines < CLConstants.NUMBER_OF_EFIELD_LINES.min ) {
-        numberOfLines = CLConstants.NUMBER_OF_EFIELD_LINES.min;
+      var numberOfLines = Math.floor( CLBConstants.NUMBER_OF_EFIELD_LINES.max * absEField / this.maxEffectiveEField );
+      if ( absEField > 0 && numberOfLines < CLBConstants.NUMBER_OF_EFIELD_LINES.min ) {
+        numberOfLines = CLBConstants.NUMBER_OF_EFIELD_LINES.min;
       }
       return numberOfLines;
     }

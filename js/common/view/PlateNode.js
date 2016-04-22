@@ -15,7 +15,7 @@ define( function( require ) {
   var Color = require( 'SCENERY/util/Color' );
   var BoxNode = require( 'CAPACITOR_LAB_BASICS/common/view/BoxNode' );
   var PlateChargeNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateChargeNode' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Bounds3 = require( 'DOT/Bounds3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -61,7 +61,7 @@ define( function( require ) {
       var maxWidthBoxNode = new BoxNode(
         this.modelViewTransform,
         PLATE_COLOR,
-        new Bounds3( 0, 0, 0, CLConstants.PLATE_WIDTH_RANGE.max, CLConstants.PLATE_HEIGHT, CLConstants.PLATE_WIDTH_RANGE.max )
+        new Bounds3( 0, 0, 0, CLBConstants.PLATE_WIDTH_RANGE.max, CLBConstants.PLATE_HEIGHT, CLBConstants.PLATE_WIDTH_RANGE.max )
       );
       return maxWidthBoxNode.bounds;
     }
@@ -78,7 +78,7 @@ define( function( require ) {
      */
     TopPlateNode: function( capacitor, modelViewTransform, maxPlateCharge ) {
       // TODO: TEST THE OPACITY VALUE, IT MAY BE WRONG.
-      return new PlateNode( capacitor, modelViewTransform, CLConstants.POLARITY.POSITIVE, maxPlateCharge, 0 /* dielectricPlateChargeOpacity */ );
+      return new PlateNode( capacitor, modelViewTransform, CLBConstants.POLARITY.POSITIVE, maxPlateCharge, 0 /* dielectricPlateChargeOpacity */ );
     },
 
     /**
@@ -91,7 +91,7 @@ define( function( require ) {
      */
     BottomPlateNode: function( capacitor, modelViewTransform, maxPlateCharge ) {
       // TODO: TEST THE OPACITY VALUE, IT MAY BE WRONG.
-      return new PlateNode( capacitor, modelViewTransform, CLConstants.POLARITY.NEGATIVE, maxPlateCharge, 0.75 /* dielectricPlateChargeOpacity */ );
+      return new PlateNode( capacitor, modelViewTransform, CLBConstants.POLARITY.NEGATIVE, maxPlateCharge, 0.75 /* dielectricPlateChargeOpacity */ );
     }
   } );
 } );

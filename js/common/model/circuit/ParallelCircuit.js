@@ -27,7 +27,7 @@ define( function( require ) {
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
   var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var BatteryToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/BatteryToSwitchWire' );
   var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
   var CapacitorToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/CapacitorToSwitchWire' );
@@ -153,8 +153,8 @@ define( function( require ) {
     var numComponentsWithSwitches = numberOfCapacitors;
 
     var x = config.batteryLocation.x + config.capacitorXSpacing;
-    var topY = config.batteryLocation.y - CLConstants.PLATE_SEPARATION_RANGE.max - CLConstants.SWITCH_Y_SPACING;
-    var bottomY = config.batteryLocation.y + CLConstants.PLATE_SEPARATION_RANGE.max + CLConstants.SWITCH_Y_SPACING;
+    var topY = config.batteryLocation.y - CLBConstants.PLATE_SEPARATION_RANGE.max - CLBConstants.SWITCH_Y_SPACING;
+    var bottomY = config.batteryLocation.y + CLBConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
     var z = config.batteryLocation.z;
 
     var circuitSwitches = [];

@@ -14,7 +14,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Shape = require( 'KITE/Shape' );
   var Rectangle = require( 'DOT/Rectangle' );
-  var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
@@ -51,7 +51,7 @@ define( function( require ) {
      * polarity.
      */
     createTopTerminalShape: function() {
-      if ( this.battery.polarity === CLConstants.POLARITY.POSITIVE ) {
+      if ( this.battery.polarity === CLBConstants.POLARITY.POSITIVE ) {
         return this.createPositiveTerminalShapeBody( this.battery.location );
       }
       else {
