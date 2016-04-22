@@ -23,7 +23,7 @@ define( function( require ) {
   /**
    * @constructor
    */
-  function CapacitorLabBasicsLightBulbScreen() {
+  function CLBLightBulbScreen() {
 
     // TODO: Icons need to be created for this sim.
     var icon = new Rectangle( 0, 0, 548, 373, { fill: 'blue' } );
@@ -36,7 +36,7 @@ define( function( require ) {
 
   }
 
-  capacitorLabBasics.register( 'CapacitorLabBasicsLightBulbScreen', CapacitorLabBasicsLightBulbScreen );
+  capacitorLabBasics.register( 'CLBLightBulbScreen', CLBLightBulbScreen );
 
-  return inherit( Screen, CapacitorLabBasicsLightBulbScreen );
+  return inherit( Screen, CLBLightBulbScreen );
 } );

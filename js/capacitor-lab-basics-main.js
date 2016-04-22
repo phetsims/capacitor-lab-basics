@@ -10,7 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var CapacitorLabBasicsLightBulbScreen = require( 'CAPACITOR_LAB_BASICS/light-bulb/CapacitorLabBasicsLightBulbScreen' );
+  var CLBLightBulbScreen = require( 'CAPACITOR_LAB_BASICS/light-bulb/CLBLightBulbScreen' );
   var CapacitanceScreen = require( 'CAPACITOR_LAB_BASICS/capacitance/CapacitanceScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
@@ -40,7 +40,7 @@ define( function( require ) {
   SimLauncher.launch( function() {
     var screens = [
       new CapacitanceScreen(),
-      new CapacitorLabBasicsLightBulbScreen()
+      new CLBLightBulbScreen()
     ];
     var sim = new Sim( capacitorLabBasicsTitleString, screens, simOptions );
     sim.start();
