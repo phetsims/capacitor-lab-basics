@@ -17,11 +17,11 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
-   * Constructor for the CapacitorLabBasicsModel.
+   * Constructor for the CLBModel.
    *
    * @constructor
    */
-  function CapacitorLabBasicsModel() {
+  function CLBModel() {
 
     // public
     PropertySet.call( this, {
@@ -36,7 +36,7 @@ define( function( require ) {
     } );
   }
 
-  capacitorLabBasics.register( 'CapacitorLabBasicsModel', CapacitorLabBasicsModel );
+  capacitorLabBasics.register( 'CLBModel', CLBModel );
 
-  return inherit( PropertySet, CapacitorLabBasicsModel );
+  return inherit( PropertySet, CLBModel );
 } );

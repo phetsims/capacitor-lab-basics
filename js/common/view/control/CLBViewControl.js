@@ -36,7 +36,7 @@ define( function( require ) {
   /**
    * Constructor.
    *
-   * @param {CapacitorLabBasicsModel} model
+   * @param {CLBModel} model
    * @constructor
    */
   function CLBViewControl( model ) {

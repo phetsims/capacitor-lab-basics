@@ -21,7 +21,7 @@ define( function( require ) {
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
   var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
-  var CapacitorLabBasicsModel = require( 'CAPACITOR_LAB_BASICS/common/model/CapacitorLabBasicsModel' );
+  var CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -33,7 +33,7 @@ define( function( require ) {
    */
   function CapacitanceModel( modelViewTransform ) {
 
-    CapacitorLabBasicsModel.call( this );
+    CLBModel.call( this );
 
     this.modelViewTransform = modelViewTransform; // @ public (read-only)
 
@@ -54,20 +54,20 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'CapacitanceModel', CapacitanceModel );
 
-  return inherit( CapacitorLabBasicsModel, CapacitanceModel, {
+  return inherit( CLBModel, CapacitanceModel, {
 
     /**
      * Reset function for this model.
      */
     reset: function() {
-      CapacitorLabBasicsModel.prototype.reset.call( this );
+      CLBModel.prototype.reset.call( this );
       this.capacitanceMeter.reset();
       this.voltmeter.reset();
       this.circuit.reset();
     },
 
     /**
-     * Step function for the CapacitorLabBasicsModel.
+     * Step function for the CLBModel.
      *
      * @param {number} dt
      */

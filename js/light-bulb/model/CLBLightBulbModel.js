@@ -21,7 +21,7 @@ define( function( require ) {
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
   var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
-  var CapacitorLabBasicsModel = require( 'CAPACITOR_LAB_BASICS/common/model/CapacitorLabBasicsModel' );
+  var CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -43,7 +43,7 @@ define( function( require ) {
    */
   function CLBLightBulbModel( modelViewTransform ) {
 
-    CapacitorLabBasicsModel.call( this );
+    CLBModel.call( this );
 
     this.modelViewTransform = modelViewTransform; // @private
 
@@ -75,13 +75,13 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'CLBLightBulbModel', CLBLightBulbModel );
 
-  return inherit( CapacitorLabBasicsModel, CLBLightBulbModel, {
+  return inherit( CLBModel, CLBLightBulbModel, {
 
     /**
      * Reset function for this model.
      */
     reset: function() {
-      CapacitorLabBasicsModel.prototype.reset.call( this );
+      CLBModel.prototype.reset.call( this );
       this.capacitanceMeter.reset();
       this.plateChargeMeter.reset();
       this.storedEnergyMeter.reset();
@@ -90,7 +90,7 @@ define( function( require ) {
     },
 
     /**
-     * Step function for the CapacitorLabBasicsModel.
+     * Step function for the CLBModel.
      *
      * @param {number} dt
      */

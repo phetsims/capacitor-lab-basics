@@ -27,7 +27,7 @@ define( function( require ) {
   var DEBUG_SHAPES = false;
 
   /**
-   * @param {CapacitorLabBasicsModel} model
+   * @param {CLBModel} model
    * @constructor
    */
   function CapacitanceScreenView( model ) {
