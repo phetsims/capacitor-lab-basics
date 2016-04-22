@@ -171,7 +171,7 @@ define( function( require ) {
         return 0;
       }
       else {
-        var spacing = SPACING_CONSTANT / Math.sqrt( effectiveEField ); // sqrt looks best for a square plate
+        var spacing = SPACING_CONSTANT / Math.sqrt( Math.abs( effectiveEField ) ); // sqrt looks best for a square plate
         return spacing;
       }
     },
