@@ -29,7 +29,7 @@ define( function( require ) {
   var VOLTMETER_PANEL_OFFSET = new Vector2( 0, 20 );
 
   /**
-   * @param {CapacitorLabBasicsLightBulbModel} model
+   * @param {CLBLightBulbModel} model
    * @constructor
    */
   function CLBLightBulbScreenView( model ) {

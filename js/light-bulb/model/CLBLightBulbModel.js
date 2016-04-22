@@ -41,7 +41,7 @@ define( function( require ) {
    *
    * @param {CLModelViewTransform3D} modelViewTransform
    */
-  function CapacitorLabBasicsLightBulbModel( modelViewTransform ) {
+  function CLBLightBulbModel( modelViewTransform ) {
 
     CapacitorLabBasicsModel.call( this );
 
@@ -73,9 +73,9 @@ define( function( require ) {
 
   }
 
-  capacitorLabBasics.register( 'CapacitorLabBasicsLightBulbModel', CapacitorLabBasicsLightBulbModel );
+  capacitorLabBasics.register( 'CLBLightBulbModel', CLBLightBulbModel );
 
-  return inherit( CapacitorLabBasicsModel, CapacitorLabBasicsLightBulbModel, {
+  return inherit( CapacitorLabBasicsModel, CLBLightBulbModel, {
 
     /**
      * Reset function for this model.

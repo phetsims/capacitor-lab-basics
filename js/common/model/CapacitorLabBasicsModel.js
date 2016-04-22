@@ -1,7 +1,7 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Base model for Capacitor Lab: Basics.  This gets extended by CapacitorLabBasicsLightBulbModel and CapacitanceModel.
+ * Base model for Capacitor Lab: Basics.  This gets extended by CLBLightBulbModel and CapacitanceModel.
  * This base model holds high level view properties that are shared by both screens.
  *
  * @author Chris Malley
