@@ -80,6 +80,18 @@ define( function( require ) {
     // update the value when the probes move
     this.multilink( [ 'negativeProbeLocation', 'positiveProbeLocation' ], updateValue );
 
+    // update all segments and the plate voltages when capacitor plate geometry changes.  Lazy link because there is
+    // no guarantee that capacitors have been constructed.
+    circuit.capacitors.forEach( function( capacitor ) {
+      capacitor.plateSeparationProperty.lazyLink( updateValue );
+    } );
+
+    // update the plate voltages when the capacitor plate size changes.  Lazy link because there is no guarantee that
+    // capacators have been constructed.
+    circuit.capacitors.forEach( function( capacitor ) {
+      capacitor.plateSizeProperty.lazyLink( updateValue );
+    } );
+
     // update the value when the circuit connection property changes
     circuit.circuitConnectionProperty.link( updateValue );
 
