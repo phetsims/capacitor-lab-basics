@@ -21,7 +21,7 @@ define( function( require ) {
    * Constructor for a CapacitorNode.
    *
    * @param {Capacitor} capacitor
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
    * @param {number} maxPlateCharge

@@ -50,7 +50,7 @@ define( function( require ) {
    * Constructor.
    *
    * @param {Voltmeter} voltmeter - the voltmeter model
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    */
   function VoltmeterNode( voltmeter, modelViewTransform, voltmeterVisibleProperty ) {
 

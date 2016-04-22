@@ -29,7 +29,7 @@ define( function( require ) {
    * Constructor for a CircuitNode.
    *
    * @param {CapacitanceCircuit} circuit
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
    * @param {Property.<boolean>} currentIndicatorsVisibleProeprty

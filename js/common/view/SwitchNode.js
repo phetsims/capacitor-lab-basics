@@ -24,7 +24,7 @@ define( function( require ) {
    * Constructor for a SwitchNode.
    *
    * @param {CircuitSwitch} circuitSwitch
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @constructor
    */
   function SwitchNode( circuitSwitch, modelViewTransform ) {

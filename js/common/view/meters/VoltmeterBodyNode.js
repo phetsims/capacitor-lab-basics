@@ -43,7 +43,7 @@ define( function( require ) {
    * Constructor
    *
    * @param {Voltmeter} voltmeter - the voltmeter model
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property.<boolean>} inUserControlProperty
    */
   function VoltmeterBodyNode( voltmeter, modelViewTransform, inUserControlProperty ) {

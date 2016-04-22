@@ -27,7 +27,7 @@ define( function( require ) {
    *
    * @param {Vector3} hingePoint
    * @param {Array<Object>} connections - array of objects that look like { location: Vector3, connectionType: string }
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property} circuitConnectionProperty,
    * @param {string} connectionLocation
    */
@@ -144,7 +144,7 @@ define( function( require ) {
      * Create a circuit switch for the top of a capacitor.
      * 
      * @param {Vector3} hingePoint
-     * @param {CLModelViewTransform3D} modelViewTransform
+     * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {Array<string>} possibleConnections - possible connection types from CircuitConnectionEnum entries 
      * @param {Property<string>} circuitConnectionProperty
      */
@@ -156,7 +156,7 @@ define( function( require ) {
      * Create a circuit switch for the bottom of a capacitor.
      * 
      * @param {Vector3} hingePoint
-     * @param {CLModelViewTransform3D} modelViewTransform
+     * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {Array<string>} possibleConnections possible connection types from CircuitConnectionEnum entries
      * @param {Property<string>} circuitConnectionProperty
      */

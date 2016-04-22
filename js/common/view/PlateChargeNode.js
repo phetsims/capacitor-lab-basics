@@ -66,7 +66,7 @@ define( function( require ) {
    * Constructor for a PlateChargeNode.
    *
    * @param {Capacitor} capacitor
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {string} polarity
    * @param {number} maxPlateCharge
    * @param {number} transparency
@@ -227,7 +227,7 @@ define( function( require ) {
    * Charges appear on the portion of the plate that is in contact with air (not in contact with the dielectric.)
    *
    * @param {Capacitor} capacitor
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {string} polarity
    * @param {number} maxPlateCharge,
    * @param {Bounds2} canvasBounds

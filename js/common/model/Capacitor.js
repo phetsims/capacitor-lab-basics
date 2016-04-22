@@ -37,7 +37,7 @@ define( function( require ) {
    * @param {number} plateSeparation
    * @param {DielectricMaterial} dielectricMaterial
    * @param {number} dielectricOffset
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @constructor
    */
   function Capacitor( location, plateWidth, plateSeparation, dielectricMaterial, dielectricOffset, modelViewTransform ) {

@@ -19,7 +19,7 @@ define( function( require ) {
   var BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
-  var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
+  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
@@ -39,7 +39,7 @@ define( function( require ) {
   /**
    * Constructor for the Dielectric Model.
    *
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    */
   function CLBLightBulbModel( modelViewTransform ) {
 
@@ -116,7 +116,7 @@ define( function( require ) {
 
     // Gets a capacitor with maximum charge.
     getCapacitorWithMaxCharge: function() {
-      var modelViewTransform = new CLModelViewTransform3D();
+      var modelViewTransform = new CLBModelViewTransform3D();
       var capacitor = new Capacitor( new Vector3( 0, 0, 0 ),
         CLConstants.PLATE_WIDTH_RANGE.max,
         CLConstants.PLATE_SEPARATION_RANGE.min,

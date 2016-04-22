@@ -27,12 +27,12 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
-   * Constructor for the CLModelViewTransform3D.
+   * Constructor for the CLBModelViewTransform3D.
    *
    * @param {Object} [options]
    * @constructor
    */
-  function CLModelViewTransform3D( options ) {
+  function CLBModelViewTransform3D( options ) {
 
     options = _.extend( {
       scale: CLConstants.MVT_SCALE, // scale for mapping from model to view (x and y scale are identical)
@@ -50,9 +50,9 @@ define( function( require ) {
 
   }
 
-  capacitorLabBasics.register( 'CLModelViewTransform3D', CLModelViewTransform3D );
+  capacitorLabBasics.register( 'CLBModelViewTransform3D', CLBModelViewTransform3D );
 
-  return inherit( Object, CLModelViewTransform3D, {
+  return inherit( Object, CLBModelViewTransform3D, {
 
     //----------------------------------------------------------------------------
     // Model-to-view transforms

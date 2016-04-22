@@ -13,7 +13,7 @@ define( function( require ) {
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLConstants = require( 'CAPACITOR_LAB_BASICS/common/CLConstants' );
-  var CLModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLModelViewTransform3D' );
+  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector3 = require( 'DOT/Vector3' );
@@ -34,7 +34,7 @@ define( function( require ) {
   function CircuitConfig( options ) {
 
     options = _.extend( {
-      modelViewTransform: new CLModelViewTransform3D(),
+      modelViewTransform: new CLBModelViewTransform3D(),
       batteryLocation: BATTERY_LOCATION,
       capacitorXSpacing: CAPACITOR_X_SPACING,
       capacitorYSpacing: CAPACITOR_Y_SPACING,

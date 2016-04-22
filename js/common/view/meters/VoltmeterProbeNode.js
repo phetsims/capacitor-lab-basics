@@ -25,7 +25,7 @@ define( function( require ) {
    *
    * @param {Image} image image of the probe
    * @param {Property} locationProperty property to observer for the probe's location
-   * @param {CLModelViewTransform3D} modelViewTransform model-view transform
+   * @param {CLBModelViewTransform3D} modelViewTransform model-view transform
    */
   function VoltmeterProbeNode( image, locationProperty, modelViewTransform ) {
 
@@ -81,7 +81,7 @@ define( function( require ) {
      * Constructor for a positive probe
      * 
      * @param {Voltmeter} voltmeter
-     * @param {CLModelViewTransform3D} modelViewTransform - 
+     * @param {CLBModelViewTransform3D} modelViewTransform - 
      */
     PositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform ) {
       return new VoltmeterProbeNode( redVoltmeterProbeImage, voltmeter.positiveProbeLocationProperty, modelViewTransform );

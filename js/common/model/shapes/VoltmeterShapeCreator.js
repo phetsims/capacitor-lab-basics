@@ -20,7 +20,7 @@ define( function( require ) {
    * Constructor for a VoltmeterShapeCreator.
    *
    * @param {Voltmeter} voltmeter
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @constructor
    */
   function VoltmeterShapeCreator( voltmeter, modelViewTransform ) {

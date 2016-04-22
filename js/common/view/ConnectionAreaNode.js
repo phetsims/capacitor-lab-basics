@@ -35,7 +35,7 @@ define( function( require ) {
    * @param {Object} connection
    * @param {Vector2} hingePoint
    * @param {ConnectionPointNode} connectionPointNode
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property} circuitConnectionProperty
    * @constructor
    */

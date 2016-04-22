@@ -22,7 +22,7 @@ define( function( require ) {
   /**
    * Constructor for a Wire.
    *
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {number} thickness
    * @param {Array.<WireSegment>} segments
    * @param {string} connectionPoint

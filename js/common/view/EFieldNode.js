@@ -68,7 +68,7 @@ define( function( require ) {
    * Constructor for the EFieldNode.
    *
    * @param {Capacitor} capacitor
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {number} maxEffectiveEField
    * @param {Bounds2} canvasBounds
    * @constructor

@@ -44,7 +44,7 @@ define( function( require ) {
    *
    * @param {Vector3} location
    * @param {number} voltage
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @constructor
    */
   function Battery( location, voltage, modelViewTransform ) {

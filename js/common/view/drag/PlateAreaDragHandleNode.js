@@ -41,7 +41,7 @@ define( function( require ) {
    * Constructor.
    *
    * @param {Capacitor} capacitor
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Range} valueRange
    * @constructor
    */

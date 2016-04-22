@@ -72,7 +72,7 @@ define( function( require ) {
      * Factory function for a TopPlateNode.
      *
      * @param {Capacitor} capacitor
-     * @param {CLModelViewTransform3D} modelViewTransform
+     * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {number} maxPlateCharge
      * @constructor
      */
@@ -85,7 +85,7 @@ define( function( require ) {
      * Factory function for a BottomPlateNode.
      *
      * @param {Capacitor} capacitor
-     * @param {CLModelViewTransform3D} modelViewTransform
+     * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {number} maxPlateCharge
      * @constructor
      */

@@ -40,7 +40,7 @@ define( function( require ) {
    * Constructor for the PlateSeparationDragHandlerNode.
    *
    * @param {Capacitor} capacitor
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Range} valueRange
    * @constructor
    */
