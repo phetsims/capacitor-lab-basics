@@ -23,6 +23,9 @@ define( function( require ) {
   var LINE_WIDTH = 2;
   var ARROW_COLOR = 'black';
 
+  // determines spacing of electric field lines, chosen by inspection to match spacing from Java
+  var SPACING_CONSTANT = 0.0258;
+
   /**
    * Draw an EField line using with canvas.
    *
@@ -168,8 +171,8 @@ define( function( require ) {
         return 0;
       }
       else {
-        var numberOfLines = this.getNumberOfLines( effectiveEField );
-        return CLBConstants.PLATE_WIDTH_RANGE.min / Math.sqrt( numberOfLines ); // assumes a square plate!;
+        var spacing = SPACING_CONSTANT / Math.sqrt( Math.abs( effectiveEField ) ); // sqrt looks best for a square plate
+        return spacing;
       }
     },
 
