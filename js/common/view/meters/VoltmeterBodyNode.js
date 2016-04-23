@@ -113,7 +113,6 @@ define( function( require ) {
         // to a Vector2.  In this case, we need to make sure that the location is a vector3.
         if ( voltmeter.bodyLocationProperty.value.constructor.name === 'Vector2' ) {
           voltmeter.bodyLocationProperty.set( voltmeter.bodyLocationProperty.value.toVector3() );
-          console.log( voltmeter.bodyLocationProperty.value );
         }
       },
       endDrag: function() {
