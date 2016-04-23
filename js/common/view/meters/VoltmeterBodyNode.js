@@ -97,8 +97,11 @@ define( function( require ) {
       thisNode.translation = modelViewTransform.modelToViewPosition( bodyLocation );
     } );
 
-    // voltmeter is restricted by bounds in model coordinates for MovableDraghandler
-    var bodyDragBounds = modelViewTransform.viewToModelBounds( voltmeter.dragBounds );
+    // voltmeter is restricted by bounds in model coordinates for MovableDraghandler, adjusted by dimensions 
+    // of the voltmeter body
+    var adjustedViewBounds = voltmeter.dragBounds.withMaxY( voltmeter.dragBounds.maxY - imageNode.height );
+    adjustedViewBounds = adjustedViewBounds.withMaxX( adjustedViewBounds.maxX - imageNode.width );
+    var bodyDragBounds = modelViewTransform.viewToModelBounds( adjustedViewBounds );
 
     this.movableDragHandler = new MovableDragHandler( voltmeter.bodyLocationProperty, {
       dragBounds: bodyDragBounds,
@@ -119,6 +122,7 @@ define( function( require ) {
       }
     } );
     thisNode.addInputListener( this.movableDragHandler );
+
   }
 
   capacitorLabBasics.register( 'VoltmeterBodyNode', VoltmeterBodyNode );
