@@ -99,8 +99,7 @@ define( function( require ) {
 
     // voltmeter is restricted by bounds in model coordinates for MovableDraghandler, adjusted by dimensions 
     // of the voltmeter body
-    var adjustedViewBounds = voltmeter.dragBounds.withMaxY( voltmeter.dragBounds.maxY - imageNode.height );
-    adjustedViewBounds = adjustedViewBounds.withMaxX( adjustedViewBounds.maxX - imageNode.width );
+    var adjustedViewBounds = new Bounds2( 0, 0, voltmeter.dragBounds.maxX - imageNode.width, voltmeter.dragBounds.maxY - imageNode.height );
     var bodyDragBounds = modelViewTransform.viewToModelBounds( adjustedViewBounds );
 
     this.movableDragHandler = new MovableDragHandler( voltmeter.bodyLocationProperty, {
