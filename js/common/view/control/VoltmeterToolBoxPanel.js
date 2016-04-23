@@ -68,6 +68,14 @@ define( function( require ) {
       voltmeterIconNode.visible = !voltmeterVisible;
     } );
 
+    // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide
+    // panel exists for lifetime of sim, no need for dispose
+    inUserControlProperty.link( function( inUserControl ) {
+      if ( !inUserControl && thisToolBoxPanel.bounds.intersectsBounds( voltmeterNode.bodyNode.bounds.eroded( 40 ) ) ) {
+        voltmeterVisibleProperty.set( false );
+      }
+    } );
+
   }
 
   capacitorLabBasics.register( 'VoltmeterToolBoxPanel', VoltmeterToolBoxPanel );

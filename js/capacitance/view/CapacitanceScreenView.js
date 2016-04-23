@@ -69,13 +69,6 @@ define( function( require ) {
       radius: 25
     } );
 
-    // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide.
-    model.voltmeter.inUserControlProperty.link( function( inUserControl ) {
-      if ( !inUserControl && voltmeterToolBoxPanel.bounds.intersectsBounds( voltmeterNode.bounds.eroded( 40 ) ) ) {
-        model.voltmeterVisibleProperty.set( false );
-      }
-    } );
-
     // rendering order
     this.addChild( capacitanceCircuitNode );
     this.addChild( capacitanceBarMeterPanel );

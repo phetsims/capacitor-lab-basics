@@ -70,13 +70,6 @@ define( function( require ) {
       radius: 25
     } );
 
-    // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide.
-    model.voltmeter.inUserControlProperty.link( function( inUserControl ) {
-      if ( !inUserControl && voltmeterToolbox.bounds.intersectsBounds( voltmeterNode.bodyNode.bounds.eroded( 40 ) ) ) {
-        model.voltmeterVisibleProperty.set( false );
-      }
-    } );
-
     // rendering order
     this.addChild( lightBulbCircuitNode );
     this.addChild( barMeterPanel );
