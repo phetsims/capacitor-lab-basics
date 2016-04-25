@@ -168,7 +168,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'VoltmeterIconNode', VoltmeterIconNode );
-  
+
   inherit( Node, VoltmeterIconNode );
 
   return VoltmeterNode;
