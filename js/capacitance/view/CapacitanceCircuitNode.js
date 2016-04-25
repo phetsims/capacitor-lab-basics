@@ -33,7 +33,16 @@ define( function( require ) {
 
     // this circuit
     CLBCircuitNode.call( this, circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField );
+    var thisNode = this;
 
+    // current indicator observers
+    circuit.circuitConnectionProperty.link( function( circuitConnection ) {
+      thisNode.updateCurrentVisibility( circuitConnection, currentIndicatorsVisibleProperty.value );
+    } );
+
+    currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
+      thisNode.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
+    } );
   }
 
   capacitorLabBasics.register( 'CapacitanceCircuitNode', CapacitanceCircuitNode );

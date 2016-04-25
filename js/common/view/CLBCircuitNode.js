@@ -109,20 +109,10 @@ define( function( require ) {
     this.topWireNode.translation = new Vector2( 0, 0 );
     this.bottomWireNode.translation = new Vector2( 0, 0 );
 
-    // observers
+    // observer for visibility of the current indicators
     currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
       thisNode.batteryTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
       thisNode.batteryBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
-    } );
-
-    // TODO: updateCurrentVisibility is private here, maybe move here from inherit.
-    // (or consider extension from base CLBCircuitNode)
-    circuit.circuitConnectionProperty.link( function( circuitConnection ) {
-      thisNode.updateCurrentVisibility( circuitConnection, currentIndicatorsVisibleProperty.value );
-    } );
-
-    currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
-      thisNode.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
 
   }
@@ -137,6 +127,7 @@ define( function( require ) {
      * 
      * @param  {object} circuitConnection
      * @param  {Property<boolean>} currentIndicatorsVisible
+     * @public
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
       console.error( 'updateCurrentVisibility should be implemented in descendant types' );

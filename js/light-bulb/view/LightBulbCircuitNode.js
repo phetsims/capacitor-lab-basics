@@ -11,20 +11,12 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var BatteryNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryNode' );
-  var CapacitorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CapacitorNode' );
-  var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
   var CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
-  var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
-  var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
-  var SwitchNode = require( 'CAPACITOR_LAB_BASICS/common/view/SwitchNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBCircuitNode = require( 'CAPACITOR_LAB_BASICS/common/view/CLBCircuitNode' );
     
   /**
    * Constructor for a CircuitNode.
@@ -41,81 +33,30 @@ define( function( require ) {
   function LightBulbCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
                                  currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField ) {
 
-    Node.call( this ); // supertype constructor
+    CLBCircuitNode.call( this, circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField ); // supertype constructor
 
     var thisNode = this;
     this.circuit = circuit; // @private
 
     // circuit components
-    this.batteryNode = new BatteryNode( circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE );
-
-    var capacitorNode = new CapacitorNode( circuit.capacitor, modelViewTransform, plateChargeVisibleProperty,
-      eFieldVisibleProperty, maxPlateCharge, maxEffectiveEField );
-
-    this.topWireNode = new Node(); // @public (read-only)
-    this.bottomWireNode = new Node(); // @private
-    this.circuit.getTopWires().forEach( function( topWire ) {
-      thisNode.topWireNode.addChild( new WireNode( topWire ) );
-    } );
-    this.circuit.getBottomWires().forEach( function( bottomWire ) {
-      thisNode.bottomWireNode.addChild( new WireNode( bottomWire ) );
-    } );
-
     var lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.platesVoltageProperty, circuit.circuitConnectionProperty, modelViewTransform );
 
-    // switches
-    this.circuitSwitchNodes = []; // @private
-    circuit.circuitSwitches.forEach( function( circuitSwitch ) {
-      thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, modelViewTransform ) );
-    } );
-
-    // drag handles
-    var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLBConstants.PLATE_SEPARATION_RANGE );
-    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLBConstants.PLATE_WIDTH_RANGE );
-
     // @private current indicators
-    this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, 0 );
-    this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, Math.PI );
-
     this.bulbTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, 0 );
     this.bulbBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, Math.PI );
 
     // rendering order
-    this.addChild( this.bottomWireNode );
-    this.addChild( this.batteryNode );
-    this.addChild( capacitorNode );
-    this.addChild( this.topWireNode );
     this.addChild( lightBulbNode );
-    this.addChild( this.circuitSwitchNodes[ 0 ] );
-    this.addChild( this.batteryTopCurrentIndicatorNode );
-    this.addChild( this.batteryBottomCurrentIndicatorNode );
     this.addChild( this.bulbTopCurrentIndicatorNode );
     this.addChild( this.bulbBottomCurrentIndicatorNode );
-    this.addChild( plateSeparationDragHandleNode );
-    this.addChild( plateAreaDragHandleNode );
     this.addChild( this.circuitSwitchNodes[ 1 ] );
 
     // layout TODO: Much of the layout will need to be fixed or tidied.  Many design decisions to be made.
     var x = 0;
     var y = 0;
 
-    // battery
-    this.batteryNode.center = modelViewTransform.modelToViewPosition( circuit.battery.location );
-
-    // capacitor
-    capacitorNode.center = modelViewTransform.modelToViewPosition( circuit.capacitor.location );
-
     // LightBulb - translate so that center is the center of the base.
     lightBulbNode.center = modelViewTransform.modelToViewPosition( circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
-
-    // top left current indicator
-    x = this.batteryNode.right + ( this.circuitSwitchNodes[ 0 ].left - this.batteryNode.right ) / 2;
-    y = this.topWireNode.bounds.minY + ( 7 / 2 ); // TODO clean up after discussion of feature.
-    this.batteryTopCurrentIndicatorNode.translate( x, y );
-
-    // bottom left current indicator
-    y = this.bottomWireNode.bounds.getMaxY() - ( 7 / 2 );
-    this.batteryBottomCurrentIndicatorNode.translate( x, y );
 
     // top right current indicator
     x = this.circuitSwitchNodes[ 0 ].right + ( lightBulbNode.left - this.circuitSwitchNodes[ 0 ].right ) / 2;
@@ -126,16 +67,11 @@ define( function( require ) {
     y = this.bottomWireNode.bounds.maxY - ( 7 / 2 );
     this.bulbBottomCurrentIndicatorNode.translate( x, y );
 
-    // wires shapes are in model coordinate frame, so the nodes live at (0,0) the following does nothing
-    this.topWireNode.translation = new Vector2( 0, 0 );
-    this.bottomWireNode.translation = new Vector2( 0, 0 );
-
-    // observers
+    // current indicator observers
     circuit.circuitConnectionProperty.link( function( circuitConnection ) {
       thisNode.updateCurrentVisibility( circuitConnection, currentIndicatorsVisibleProperty.value );
     } );
 
-    // link current indicator visibility to the view control value
     currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
       thisNode.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
@@ -144,7 +80,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'LightBulbCircuitNode', LightBulbCircuitNode );
   
-  return inherit( Node, LightBulbCircuitNode, {
+  return inherit( CLBCircuitNode, LightBulbCircuitNode, {
 
     // Updates the circuit components and controls to match the state of the battery connection.
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
