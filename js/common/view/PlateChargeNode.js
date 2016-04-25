@@ -59,7 +59,7 @@ define( function( require ) {
     var chargeHeight = CLBConstants.NEGATIVE_CHARGE_SIZE.height;
 
     context.fillStyle = NEGATIVE_CHARGE_COLOR;
-    context.fillRect( location.x - chargeWidth / 2, location.y - chargeHeight, chargeWidth, chargeHeight );
+    context.fillRect( location.x - chargeWidth / 2, location.y, chargeWidth, chargeHeight );
   }
 
   /**
