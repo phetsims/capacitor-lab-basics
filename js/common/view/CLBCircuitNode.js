@@ -127,7 +127,6 @@ define( function( require ) {
      * 
      * @param  {object} circuitConnection
      * @param  {Property<boolean>} currentIndicatorsVisible
-     * @public
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
       console.error( 'updateCurrentVisibility should be implemented in descendant types' );

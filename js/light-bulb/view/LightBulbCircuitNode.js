@@ -33,10 +33,10 @@ define( function( require ) {
   function LightBulbCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
                                  currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField ) {
 
-    CLBCircuitNode.call( this, circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField ); // supertype constructor
+    CLBCircuitNode.call( this, circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
+                         currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField );
 
     var thisNode = this;
-    this.circuit = circuit; // @private
 
     // circuit components
     var lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.platesVoltageProperty, circuit.circuitConnectionProperty, modelViewTransform );
@@ -49,7 +49,6 @@ define( function( require ) {
     this.addChild( lightBulbNode );
     this.addChild( this.bulbTopCurrentIndicatorNode );
     this.addChild( this.bulbBottomCurrentIndicatorNode );
-    this.addChild( this.circuitSwitchNodes[ 1 ] );
 
     // layout TODO: Much of the layout will need to be fixed or tidied.  Many design decisions to be made.
     var x = 0;
@@ -67,7 +66,7 @@ define( function( require ) {
     y = this.bottomWireNode.bounds.maxY - ( 7 / 2 );
     this.bulbBottomCurrentIndicatorNode.translate( x, y );
 
-    // current indicator observers
+    // current indicator observers, no need for disposal since they persist for the lifetime of the sim
     circuit.circuitConnectionProperty.link( function( circuitConnection ) {
       thisNode.updateCurrentVisibility( circuitConnection, currentIndicatorsVisibleProperty.value );
     } );
@@ -82,10 +81,13 @@ define( function( require ) {
   
   return inherit( CLBCircuitNode, LightBulbCircuitNode, {
 
-    // Updates the circuit components and controls to match the state of the battery connection.
+    /**
+     * Updates the visibility of the current indicators.
+     * 
+     * @param  {string} circuitConnection - LIGHT_BULB_CONNECTED || OPEN_CIRCUIT || BATTERY_CONNECTED
+     * @param  {boolean} currentIndicatorsVisible
+     */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
-
-      // As long as the circuit is not open, the circuit is considered connected.
       var isBatteryConnected = ( circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED );
       var isLightBulbConnected = ( circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
 

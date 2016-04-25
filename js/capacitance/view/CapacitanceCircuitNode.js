@@ -49,7 +49,12 @@ define( function( require ) {
   
   return inherit( CLBCircuitNode, CapacitanceCircuitNode, {
 
-    // Updates the circuit components and controls to match the state of the battery connection.
+    /**
+     * Updates the visibility of the current indicators.
+     * 
+     * @param  {string} circuitConnection - OPEN_CIRCUIT || BATTERY_CONNECTED
+     * @param  {boolean} currentIndicatorsVisible
+     */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
 
       var isBatteryConnected = ( circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED );
