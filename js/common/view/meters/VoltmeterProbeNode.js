@@ -55,7 +55,7 @@ define( function( require ) {
       thisNode.translation = modelViewTransform.modelToViewPosition( location );
     } );
 
-    var adjustedViewBounds = new Bounds2( 0, 0, dragBounds.maxX - imageNode.width, dragBounds.maxY - imageNode.height );
+    var adjustedViewBounds = new Bounds2( 0, 0, dragBounds.maxX - imageNode.width, dragBounds.maxY - imageNode.height / 2 );
 
     // Drag handler accounting for boundaries
     this.movableDragHandler = new MovableDragHandler( locationProperty, {
