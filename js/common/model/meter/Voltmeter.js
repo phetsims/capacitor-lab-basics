@@ -26,7 +26,7 @@ define( function( require ) {
    *
    * @param {AbstractCircuit} circuit
    * @param {Bounds2} dragBounds
-   * @param {ModelViewTransform2} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Vector3} bodyLocation
    * @param {Vector3} positiveProbeLocation
    * @param {Vector3} negativeProbeLocation
