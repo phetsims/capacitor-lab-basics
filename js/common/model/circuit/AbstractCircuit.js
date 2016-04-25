@@ -169,6 +169,7 @@ define( function( require ) {
       this.capacitors.forEach( function( capacitor ) {
         capacitor.reset();
       } );
+      this.circuitConnectionProperty.reset();
     },
 
     /**

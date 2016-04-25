@@ -87,9 +87,11 @@ define( function( require ) {
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
         if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+          // if the battery is connected, the voltage is equal to the battery voltage
           this.capacitor.platesVoltage = this.battery.voltage;
         }
         else {
+          // otherwise, the voltage can be found by V=Q/C
           this.capacitor.platesVoltage = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance();
         }
       }
@@ -97,18 +99,6 @@ define( function( require ) {
 
     getCapacitorPlateVoltage: function() {
       return this.capacitor.platesVoltage;
-    },
-
-    /**
-     * Normally the total voltage is equivalent to the battery voltage. But disconnecting the battery changes how we
-     * compute total voltage, so override this method.
-     *
-     * @return {number}
-     */
-    getTotalVoltage: function() {
-      //if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
-      return ParallelCircuit.prototype.getTotalVoltage.call( this );
-      //}
     },
 
     /**

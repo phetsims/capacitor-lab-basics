@@ -28,7 +28,6 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
-  var CurrentIndicator = require( 'CAPACITOR_LAB_BASICS/common/model/CurrentIndicator' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -50,11 +49,6 @@ define( function( require ) {
     // @public
     this.capacitor = this.capacitors[ 0 ];
     this.lightBulb = this.lightBulbs[ 0 ];
-
-    // create the light bulb current indicators
-    // @public
-    this.bulbTopCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, Math.PI /* initial rotation*/ );
-    this.bulbBottomCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, 0 /* initial rotation*/ );
 
     // Make sure that the charges are correct when the battery is reconnected to the circuit.
     this.circuitConnectionProperty.link( function( circuitConnection ) {
@@ -80,20 +74,10 @@ define( function( require ) {
 
   return inherit( ParallelCircuit, LightBulbCircuit, {
 
-    reset: function() {
-      //super.reset()
-      ParallelCircuit.prototype.reset.call( this ); // TODO: Make sure this is correct and goes all the way to AbstractCircuit.
-      this.circuitConnectionProperty.reset();
-    },
-
     step: function( dt ) {
 
       // Step through common circuit components
       ParallelCircuit.prototype.step.call( this, dt );
-
-      // Step light bulb current indicators
-      this.bulbTopCurrentIndicator.step( dt );
-      this.bulbBottomCurrentIndicator.step( dt );
 
       // Discharge the capacitor when it is in parallel with the light bulb,
       // but don't allow the voltage to taper to zero forever.
@@ -130,21 +114,6 @@ define( function( require ) {
           this.capacitor.updateDischargeParameters();
         }
       }
-    },
-
-    /**
-     * Normally the total voltage is equivalent to the battery voltage. But disconnecting the battery changes how we
-     * compute total voltage, so override this method.
-     *
-     * @return {number}
-     */
-    getTotalVoltage: function() {
-      //if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
-      return ParallelCircuit.prototype.getTotalVoltage.call( this );
-      //}
-      //else {
-      //  return this.capacitor.platesVoltage;
-      //}
     },
 
     getCapacitorPlateVoltage: function() {
@@ -235,8 +204,6 @@ define( function( require ) {
         this.disconnectedPlateCharge = disconnectedPlateCharge;
         if ( this.circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
           this.updatePlateVoltages();
-          //this.trigger( 'circuitChanged' );
-          //this.fireCircuitChanged(); TODO
         }
       }
     },
