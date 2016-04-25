@@ -47,7 +47,7 @@ define( function( require ) {
     this.circuit = circuit; // @private
 
     // circuit components
-    this.batteryNode = new BatteryNode( circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE, 'lightBulb' );
+    this.batteryNode = new BatteryNode( circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE );
 
     var capacitorNode = new CapacitorNode( circuit.capacitor, modelViewTransform, plateChargeVisibleProperty,
       eFieldVisibleProperty, maxPlateCharge, maxEffectiveEField );
@@ -60,8 +60,6 @@ define( function( require ) {
     this.circuit.getBottomWires().forEach( function( bottomWire ) {
       thisNode.bottomWireNode.addChild( new WireNode( bottomWire ) );
     } );
-    //this.topWireNode = new WireNode( circuit.getTopWire() ); // @private
-    //this.bottomWireNode = new WireNode( circuit.getBottomWire() ); // @private
 
     var lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.platesVoltageProperty, circuit.circuitConnectionProperty, modelViewTransform );
 
