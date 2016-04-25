@@ -123,11 +123,23 @@ define( function( require ) {
 
     /**
      * Get the limiting angle of the circuit switch to the right.
+     * The limiting angle is dependent on wheter a light bulb is connected to the circuit.
      * 
      * @return {number}
      */
     getRightLimitAngle: function() {
-      return this.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED ).minus( this.hingePoint.toVector2() ).angle();
+
+      var thisSwitch = this;
+      
+      var rightConnectionPoint = thisSwitch.getConnectionPoint( CircuitConnectionEnum.OPEN_CIRCUIT );
+
+      this.connections.forEach( function( connection ) {
+        if( connection.connectionType === 'LIGHT_BULB_CONNECTED' ) {
+          rightConnectionPoint = thisSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
+        }
+      } );
+
+      return rightConnectionPoint.minus( thisSwitch.hingePoint.toVector2() ).angle();
     },
 
     /**
