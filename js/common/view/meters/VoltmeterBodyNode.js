@@ -97,7 +97,7 @@ define( function( require ) {
       thisNode.translation = modelViewTransform.modelToViewPosition( bodyLocation );
     } );
 
-    // voltmeter is restricted by bounds in model coordinates for MovableDraghandler, adjusted by dimensions 
+    // voltmeter is restricted by bounds in model coordinates for MovableDraghandler, adjusted by dimensions
     // of the voltmeter body
     var adjustedViewBounds = new Bounds2( 0, 0, voltmeter.dragBounds.maxX - imageNode.width, voltmeter.dragBounds.maxY - imageNode.height );
     var bodyDragBounds = modelViewTransform.viewToModelBounds( adjustedViewBounds );
@@ -111,7 +111,7 @@ define( function( require ) {
       onDrag: function() {
         // if the user tried to drag the voltmeter out of bounds, MovableDragHandler converted location
         // to a Vector2.  In this case, we need to make sure that the location is a vector3.
-        if ( voltmeter.bodyLocationProperty.value.constructor.name === 'Vector2' ) {
+        if ( !voltmeter.bodyLocation.isVector3 ) {
           voltmeter.bodyLocationProperty.set( voltmeter.bodyLocationProperty.value.toVector3() );
         }
       },
@@ -124,7 +124,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'VoltmeterBodyNode', VoltmeterBodyNode );
-  
+
   return inherit( Node, VoltmeterBodyNode, {
 
     /**
