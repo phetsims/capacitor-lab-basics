@@ -28,7 +28,9 @@ define( function( require ) {
   var DISPLAY_FONT = new PhetFont( 18 );
 
   // title display
-  var TITLE_FONT = new PhetFont( { size: 20 } );
+  var TITLE_FONT = new PhetFont( {
+    size: 20
+  } );
 
   // strings
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
@@ -54,16 +56,22 @@ define( function( require ) {
     this.bodyLocationProperty = voltmeter.bodyLocationProperty; // @public
 
     // body of the meter
-    var imageNode = new Image( voltmeterBodyImage, { scale: 0.336 } );
+    var imageNode = new Image( voltmeterBodyImage, {
+      scale: 0.336
+    } );
     this.addChild( imageNode );
 
     // text label
-    var labelText = new Text( voltageString, { font: TITLE_FONT } );
+    var labelText = new Text( voltageString, {
+      font: TITLE_FONT
+    } );
     labelText.center = new Vector2( imageNode.width / 2, imageNode.height / 3 );
     this.addChild( labelText );
 
     var valueString = StringUtils.format( pattern0Value1UnitsString, voltmeter.value, unitsVoltsString );
-    var valueText = new Text( valueString, { font: DISPLAY_FONT } );
+    var valueText = new Text( valueString, {
+      font: DISPLAY_FONT
+    } );
 
     // add the display to the
     // display area for the value
@@ -83,8 +91,8 @@ define( function( require ) {
     // offsets for connection points of wires that attach probes to body, determined by visual inspection.  If the
     // voltmeter body images ever changes, these will have to be changed as well.
     var imageBounds = imageNode.bounds;
-    this.positiveConnectionOffset = new Vector2( 3 * imageBounds.width / 7, imageBounds.maxY * 7 / 8 ); // @public bottom left
-    this.negativeConnectionOffset = new Vector2( 4 * imageBounds.width / 7, imageBounds.maxY * 7 / 8 ); // @public bottom right
+    this.positiveConnectionOffset = new Vector2( 0.455 * imageBounds.width, 0.875 * imageBounds.maxY ); // @public bottom left
+    this.negativeConnectionOffset = new Vector2( 0.565 * imageBounds.width, 0.875 * imageBounds.maxY ); // @public bottom right
 
     // update value
     voltmeter.valueProperty.link( function( value ) {
@@ -136,11 +144,11 @@ define( function( require ) {
     setValueText: function( valueText, value ) {
       if ( isNaN( value ) ) {
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, voltsUnknownString, unitsVoltsString ) );
-      }
-      else {
+      } else {
         var fixedValue = Util.toFixed( value, 3 );
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, fixedValue, unitsVoltsString ) );
       }
     }
   } );
 } );
+
