@@ -17,6 +17,7 @@ define( function( require ) {
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector3 = require( 'DOT/Vector3' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
   // Constants
   var BATTERY_LOCATION = new Vector3( 0.0065, 0.030, 0 ); // meters
@@ -45,7 +46,12 @@ define( function( require ) {
       lightBulbXSpacing: LIGHT_BULB_X_SPACING,
       dielectricMaterial: DielectricMaterial.Air(),
       dielectricOffset: DIELECTRIC_OFFSET,
-      lightBulbResistance: LIGHT_BULB_RESISTANCE
+      lightBulbResistance: LIGHT_BULB_RESISTANCE,
+      circuitConnections: [ 
+        CircuitConnectionEnum.BATTERY_CONNECTED,
+        CircuitConnectionEnum.OPEN_CIRCUIT,
+        CircuitConnectionEnum.LIGHT_BULB_CONNECTED
+      ]
     }, options );
 
     // @public
@@ -61,6 +67,7 @@ define( function( require ) {
     this.dielectricMaterial = options.dielectricMaterial;
     this.dielectricOffset = options.dielectricOffset;
     this.lightBulbResistance = options.lightBulbResistance;
+    this.circuitConnections = options.circuitConnections;
 
   }
 

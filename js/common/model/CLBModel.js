@@ -14,6 +14,10 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
+  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
+  var Vector3 = require( 'DOT/Vector3' );
+  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
@@ -38,5 +42,27 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'CLBModel', CLBModel );
 
-  return inherit( PropertySet, CLBModel );
+  return inherit( PropertySet, CLBModel, {
+
+    // Gets a capacitor with maximum charge.
+    /**
+     * Return a capacitor with the maximum amount of charge allowed by the model/
+     * 
+     * @return {Capacitor}
+     */
+    getCapacitorWithMaxCharge: function() {
+      // arbitrary model view transform
+      var modelViewTransform = new CLBModelViewTransform3D();
+
+      var capacitor = new Capacitor( new Vector3( 0, 0, 0 ), modelViewTransform, {
+        plateWidth: CLBConstants.PLATE_WIDTH_RANGE.max,
+        plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
+        dielectricMaterial: DielectricMaterial.CustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.max ),
+        dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.max
+      } );
+
+      capacitor.platesVoltage = CLBConstants.BATTERY_VOLTAGE_RANGE.max;
+      return capacitor;
+    }
+  } );
 } );

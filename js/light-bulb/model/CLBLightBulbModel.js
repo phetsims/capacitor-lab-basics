@@ -18,15 +18,12 @@ define( function( require ) {
   var LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
   var BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
-  var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
-  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
-  // Circuit
   var BATTERY_LOCATION = new Vector3( 0.0065, 0.030, 0 ); // meters
   var CAPACITOR_X_SPACING = 0.0180; // meters
   var LIGHT_BULB_X_SPACING = 0.023; // meters
@@ -114,19 +111,6 @@ define( function( require ) {
       return this.getCapacitorWithMaxCharge().getExcessDielectricPlateCharge();
     },
 
-    // Gets a capacitor with maximum charge.
-    getCapacitorWithMaxCharge: function() {
-      var modelViewTransform = new CLBModelViewTransform3D();
-      var capacitor = new Capacitor( new Vector3( 0, 0, 0 ),
-        CLBConstants.PLATE_WIDTH_RANGE.max,
-        CLBConstants.PLATE_SEPARATION_RANGE.min,
-        DielectricMaterial.CustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.max ),
-        CLBConstants.DIELECTRIC_OFFSET_RANGE.min,
-        modelViewTransform );
-      capacitor.platesVoltage = CLBConstants.BATTERY_VOLTAGE_RANGE.max;
-      return capacitor;
-    },
-
     /**
      * Gets the maximum effective E-field between the plates (E_effective).
      * The maximum occurs when the battery is disconnected, the Plate Charge control is set to its maximum,
@@ -154,21 +138,6 @@ define( function( require ) {
       circuit.setDisconnectedPlateCharge( this.getMaxPlateCharge() );
 
       return circuit.capacitor.getEffectiveEField();
-    },
-
-    /**
-     * Gets the E-field reference magnitude, used to determine the initial scale of the E-Field Detector.
-     * This is based on the default capacitor configuration, with maximum battery voltage.
-     *
-     * @return {number}
-     */
-    getEFieldReferenceMagnitude: function() {
-      var capacitor = new Capacitor( {
-        plateWidth: CLBConstants.PLATE_WIDTH_RANGE.defaultValue,
-        plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.defaultValue
-      } );
-      capacitor.platesVoltage = CLBConstants.BATTERY_VOLTAGE_RANGE.max;
-      return capacitor.getEffectiveEField();
     }
 
   } );

@@ -27,6 +27,7 @@ define( function( require ) {
   var Vector3 = require( 'DOT/Vector3' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CapacitorShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/CapacitorShapeCreator' );
+  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var Bounds3 = require( 'DOT/Bounds3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -40,7 +41,15 @@ define( function( require ) {
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @constructor
    */
-  function Capacitor( location, plateWidth, plateSeparation, dielectricMaterial, dielectricOffset, modelViewTransform ) {
+  function Capacitor( location, modelViewTransform, options ) {
+
+    // options that populate the capacitor with various geometric properties
+    options = _.extend( {
+      plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
+      plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.max,
+      dielectricMaterial: DielectricMaterial.Air(),
+      dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.max
+    }, options );
 
     // @public
     this.transientTime = 0; // model time updated when the switch is closed and while the capacitor is discharging
@@ -53,11 +62,11 @@ define( function( require ) {
 
     // @public
     PropertySet.call( this, {
-      plateSize: new Bounds3( 0, 0, 0, plateWidth, CLBConstants.PLATE_HEIGHT, plateWidth ), // Square plates.
-      plateSeparation: plateSeparation,
+      plateSize: new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth ), // Square plates.
+      plateSeparation: options.plateSeparation,
       platesVoltage: 0, // zero until it's connected into a circuit
-      dielectricMaterial: dielectricMaterial,
-      dielectricOffset: dielectricOffset // in meters, default is totally outside of capacitor plates.
+      dielectricMaterial: options.dielectricMaterial,
+      dielectricOffset: options.dielectricOffset // in meters, default is totally outside of capacitor plates.
     } );
 
     // @private - track the previous capacitance to adjust the inital voltage when discharging, see

@@ -22,44 +22,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
-  var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var Vector3 = require( 'DOT/Vector3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-
-  // Create the single circuit switch for single circuit
-  function createCircuitSwitch( config, numberOfCapacitors, circuitConnectionProperty ) {
-
-    // switch location
-    var x = config.batteryLocation.x + config.capacitorXSpacing;
-    var topY = config.batteryLocation.y - CLBConstants.PLATE_SEPARATION_RANGE.max - CLBConstants.SWITCH_Y_SPACING;
-    var bottomY = config.batteryLocation.y + CLBConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
-    var z = config.batteryLocation.z;
-
-    var circuitSwitches = []; // wrapped for format of AbstractCircuit
-
-    // create the circuit switches
-    var topStartPoint = new Vector3( x, topY, z );
-    var bottomStartPoint = new Vector3( x, bottomY, z );
-
-    // possible circuit connection types for the Capacitance Circuit 
-    var capacitanceConnections = [ CircuitConnectionEnum.BATTERY_CONNECTED, CircuitConnectionEnum.OPEN_CIRCUIT ];
-
-    var topCircuitSwitch = CircuitSwitch.CircuitTopSwitch( topStartPoint, config.modelViewTransform, capacitanceConnections, circuitConnectionProperty );
-    var bottomCircuitSwitch = CircuitSwitch.CircuitBottomSwitch( bottomStartPoint, config.modelViewTransform, capacitanceConnections, circuitConnectionProperty );
-
-    // link the top and bottom circuit switches together so that they rotate together
-    topCircuitSwitch.angleProperty.link( function( angle ) {
-      bottomCircuitSwitch.angle = -angle;
-    } );
-    bottomCircuitSwitch.angleProperty.link( function( angle ) {
-      topCircuitSwitch.angle = -angle;
-    } );
-
-    circuitSwitches.push( topCircuitSwitch, bottomCircuitSwitch );
-
-    return circuitSwitches;
-  }
 
   /**
    * Constructor for the Single Capacitor Circuit.
@@ -69,9 +32,7 @@ define( function( require ) {
    */
   function CapacitanceCircuit( config ) {
 
-    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 0 /* numberOfLightBulbs */, {
-      circuitSwitchFactory: createCircuitSwitch
-    } );
+    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 0 /* numberOfLightBulbs */ );
 
     this.capacitor = this.capacitors[ 0 ]; // @public
   }

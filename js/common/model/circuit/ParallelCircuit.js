@@ -2,7 +2,8 @@
 
 /**
  * Model of a circuit with a battery (B) and N circuitComponents (Z1...Zn) in parallel.  Switches exist between
- * circuit connections so that elements can be added or removed from the circuit as desired.
+ * circuit connections so that elements.  The layout of the circuit assumes that the battery is on the left
+ * hand side of the circuit, while the circuit components are to the right
  *
  *  |-----|------|------|
  *  |      /      /      /
@@ -24,169 +25,13 @@ define( function( require ) {
   var Vector3 = require( 'DOT/Vector3' );
   var inherit = require( 'PHET_CORE/inherit' );
   var AbstractCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/AbstractCircuit' );
-  var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
   var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
-  var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var BatteryToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/BatteryToSwitchWire' );
   var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
   var CapacitorToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/CapacitorToSwitchWire' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-
-  /**
-   * Function which creates circuit components for the parallel circuit.  The function is constructed so that
-   * capacitors are before light bulbs in left to right order.  If order of circuit components matters, this is the
-   * function to change.
-   *
-   * @param {CircuitConfig} config - object defining the circuit
-   * @param {number} numberOfCapacitors
-   * @param {number} numberOfLightBulbs
-   * @returns {Array} circuitComponents
-   */
-  function createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs ) {
-
-    var x = config.batteryLocation.x + config.capacitorXSpacing;
-    var y = config.batteryLocation.y + config.capacitorYSpacing;
-    var z = config.batteryLocation.z;
-
-    var circuitComponents = [];
-
-    // create the capacitors
-    var location;
-    for ( var i = 0; i < numberOfCapacitors; i++ ) {
-      location = new Vector3( x, y, z );
-      var capacitor = new Capacitor(
-        location, config.plateWidth,
-        config.plateSeparation,
-        config.dielectricMaterial,
-        config.dielectricOffset,
-        config.modelViewTransform
-      );
-
-      circuitComponents.push( capacitor );
-      x += config.lightBulbXSpacing;
-    }
-
-    // create the light bulbs
-    for ( i = 0; i < numberOfLightBulbs; i++ ) {
-      location = new Vector3( x, y, z );
-      var lightBulb = new LightBulb( location, config.lightBulbResistance );
-      circuitComponents.push( lightBulb );
-      x += config.lightBulbXSpacing;
-    }
-
-    return circuitComponents;
-  }
-
-  /**
-   * Function that creates all wires of the circuit.  Right now, the function only works for a circuit with 2 switches,
-   * one above and one below the circuit.  If more switches or circuit components are required, this is the function
-   * that needs to be fixed.
-   *
-   * @param config
-   * @param battery
-   * @param lightBulb
-   * @param capacitor
-   * @param circuitSwitches
-   * @param circuitConnectionProperty
-   * @returns {Array}
-   */
-  function createWires( config, battery, lightBulb, capacitor, circuitSwitches, circuitConnectionProperty ) {
-    var wires = [];
-    // wire battery to switch
-    wires.push( BatteryToSwitchWire.BatteryToSwitchWireTop(
-      config.modelViewTransform,
-      config.wireThickness,
-      battery,
-      circuitSwitches[ 0 ], // TODO: get the single switch.
-      circuitConnectionProperty
-    ) );
-    wires.push( BatteryToSwitchWire.BatteryToSwitchWireBottom(
-      config.modelViewTransform,
-      config.wireThickness,
-      battery,
-      circuitSwitches[ 1 ], // TODO: get the single switch.
-      circuitConnectionProperty
-    ) );
-
-    // wire capacitor to the switches
-    wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireTop(
-      config.modelViewTransform,
-      config.wireThickness,
-      capacitor,
-      circuitSwitches[ 0 ], // TODO: get the single switch.
-      circuitConnectionProperty
-    ) );
-    wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireBottom(
-      config.modelViewTransform,
-      config.wireThickness,
-      capacitor,
-      circuitSwitches[ 1 ], // TODO: get the single switch.
-      circuitConnectionProperty
-    ) );
-
-    if ( lightBulb !== undefined ) {
-      //  // wire light bulb to switch
-      wires.push( LightBulbToSwitchWire.LightBulbToSwitchWireTop(
-        config.modelViewTransform,
-        config.wireThickness,
-        lightBulb,
-        circuitSwitches[ 0 ], // TODO: get the single switch.
-        circuitConnectionProperty
-      ) );
-      wires.push( new LightBulbToSwitchWire.LightBulbToSwitchWireBottom(
-        config.modelViewTransform,
-        config.wireThickness,
-        lightBulb,
-        circuitSwitches[ 1 ], // TODO: get the single switch.
-        circuitConnectionProperty
-      ) );
-    }
-    return wires;
-  }
-
-  // function for creating circuit switches.
-  function createCircuitSwitches( config, numberOfCapacitors, circuitConnectionProperty ) {
-
-    // a switch exists for every capacitor.
-    var numComponentsWithSwitches = numberOfCapacitors;
-
-    var x = config.batteryLocation.x + config.capacitorXSpacing;
-    var topY = config.batteryLocation.y - CLBConstants.PLATE_SEPARATION_RANGE.max - CLBConstants.SWITCH_Y_SPACING;
-    var bottomY = config.batteryLocation.y + CLBConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
-    var z = config.batteryLocation.z;
-
-    var circuitSwitches = [];
-
-    // possible connections for switches that connect a capacitor to two other components
-    var circuitSwitchConnections = [ 
-      CircuitConnectionEnum.BATTERY_CONNECTED,
-      CircuitConnectionEnum.OPEN_CIRCUIT,
-      CircuitConnectionEnum.LIGHT_BULB_CONNECTED
-    ];
-
-    // create the top circuit switches.
-    for ( var i = 0; i < numComponentsWithSwitches; i++ ) {
-      var topStartPoint = new Vector3( x, topY, z );
-      var bottomStartPoint = new Vector3( x, bottomY, z );
-      var topCircuitSwitch = CircuitSwitch.CircuitTopSwitch( topStartPoint, config.modelViewTransform, circuitSwitchConnections, circuitConnectionProperty );
-      var bottomCircuitSwitch = CircuitSwitch.CircuitBottomSwitch( bottomStartPoint, config.modelViewTransform, circuitSwitchConnections, circuitConnectionProperty );
-
-      // link the top and bottom circuit switches together so that they rotate together
-      topCircuitSwitch.angleProperty.link( function( angle ) {
-        bottomCircuitSwitch.angle = -angle;
-      } );
-      bottomCircuitSwitch.angleProperty.link( function( angle ) {
-        topCircuitSwitch.angle = -angle;
-      } );
-
-
-      circuitSwitches.push( topCircuitSwitch, bottomCircuitSwitch );
-      x += config.capacitorXSpacing;
-    }
-    return circuitSwitches;
-  }
+  var SwitchedCapacitor = require( 'CAPACITOR_LAB_BASICS/common/model/SwitchedCapacitor' );
 
   /**
    * Constructor for a Parallel Circuit.
@@ -197,18 +42,12 @@ define( function( require ) {
    * @param {Object} options
    */
   function ParallelCircuit( config, numberOfCapacitors, numberOfLightBulbs, options ) {
-
-    options = _.extend( {
-      circuitSwitchFactory: createCircuitSwitches
-    }, options );
-
-    AbstractCircuit.call( this, config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires, options.circuitSwitchFactory );
-
+    AbstractCircuit.call( this, config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires );
   }
 
   capacitorLabBasics.register( 'ParallelCircuit', ParallelCircuit );
 
-  return inherit( AbstractCircuit, ParallelCircuit, {
+  inherit( AbstractCircuit, ParallelCircuit, {
 
     /**
      * Get the total capacitance of all parallel capacitors in this circuit using C_total = C1 + C2 + ... + Cn
@@ -401,4 +240,130 @@ define( function( require ) {
       return intersects;
     }
   } );
+
+  /**
+   * Function which creates circuit components for the parallel circuit.  The function is constructed so that
+   * capacitors are before light bulbs in left to right order.  If order of circuit components matters, this is the
+   * function to change.
+   *
+   * @param {CircuitConfig} config - object defining the circuit
+   * @param {number} numberOfCapacitors
+   * @param {number} numberOfLightBulbs
+   * @returns {Array} circuitComponents
+   */
+  var createCircuitComponents = function( config, numberOfCapacitors, numberOfLightBulbs, circuitConnectionProperty ) {
+
+    var x = config.batteryLocation.x + config.capacitorXSpacing;
+    var y = config.batteryLocation.y + config.capacitorYSpacing;
+    var z = config.batteryLocation.z;
+
+    var circuitComponents = [];
+
+    // create the capacitors
+    var location;
+    for ( var i = 0; i < numberOfCapacitors; i++ ) {
+      location = new Vector3( x, y, z );
+      var capacitor = new SwitchedCapacitor( location, config, config.circuitConnections, circuitConnectionProperty, {
+        plateWidth: config.plateWidth,
+        plateSeparation: config.plateSeparation,
+        dielectricMaterial: config.dielectricMaterial,
+        dielectricOffset: config.dielectricOffset
+      } );
+
+      circuitComponents.push( capacitor );
+      x += config.lightBulbXSpacing;
+    }
+
+    // create the light bulbs
+    for ( i = 0; i < numberOfLightBulbs; i++ ) {
+      location = new Vector3( x, y, z );
+      var lightBulb = new LightBulb( location, config.lightBulbResistance );
+      circuitComponents.push( lightBulb );
+      x += config.lightBulbXSpacing;
+    }
+
+    return circuitComponents;
+  };
+
+  /**
+   * Function that creates all wires of the circuit.  Function assumes that capacitors are to the left of the 
+   * lightbulb.
+   *
+   * @param config
+   * @param battery
+   * @param lightBulb
+   * @param capacitor
+   * @param circuitSwitches
+   * @param circuitConnectionProperty
+   * @returns {Array}
+   */
+  var createWires = function( config, battery, lightBulbs, capacitors, circuitSwitches, circuitConnectionProperty ) {
+
+    var wires = [];
+
+    // wire battery to first capacitor, there must be at least one capacitor in the circuit
+    assert && assert( capacitors.length > 0, 'There must be at least one capacitor in the circuit' );
+    wires.push( BatteryToSwitchWire.BatteryToSwitchWireTop(
+      config.modelViewTransform,
+      config.wireThickness,
+      battery,
+      capacitors[ 0 ].topCircuitSwitch,
+      circuitConnectionProperty
+    ) );
+    wires.push( BatteryToSwitchWire.BatteryToSwitchWireBottom(
+      config.modelViewTransform,
+      config.wireThickness,
+      battery,
+      capacitors[ 0 ].bottomCircuitSwitch,
+      circuitConnectionProperty
+    ) );
+
+    // wire capacitors to the switches
+    capacitors.forEach( function( capacitor ) {
+        wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireTop(
+        config.modelViewTransform,
+        config.wireThickness,
+        capacitor,
+        capacitor.topCircuitSwitch,
+        circuitConnectionProperty
+      ) );
+      wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireBottom(
+        config.modelViewTransform,
+        config.wireThickness,
+        capacitor,
+        capacitor.bottomCircuitSwitch,
+        circuitConnectionProperty
+      ) );
+    } );
+
+    // if there are any light bulbs in the circuit, add them here
+    if ( lightBulbs.length > 0 ) {
+      // the first light bulb must be connected to the last capacitor switch
+      wires.push( LightBulbToSwitchWire.LightBulbToSwitchWireTop(
+        config.modelViewTransform,
+        config.wireThickness,
+        lightBulbs[ 0 ],
+        capacitors[ capacitors.length - 1 ].topCircuitSwitch,
+        circuitConnectionProperty
+      ) );
+      wires.push( LightBulbToSwitchWire.LightBulbToSwitchWireBottom(
+        config.modelViewTransform,
+        config.wireThickness,
+        lightBulbs[ 0 ],
+        capacitors[ capacitors.length - 1 ].bottomCircuitSwitch,
+        circuitConnectionProperty
+      ) );
+
+      // now connect the rest of the light bulbs in the circuit
+      for( var i = 1; i < lightBulbs.length; i++ ) {
+        // NOTE: This is not needed in the Basics version of the sim, but is left here to jump start
+        // multiple light bulbs if needed by Capacitor Lab.
+        assert && assert( 'There should only be one light bulb in Capacitor Lab: Basics' );
+      }
+    }
+    return wires;
+  };
+
+  return ParallelCircuit;
+
 } );

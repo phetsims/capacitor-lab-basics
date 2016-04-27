@@ -41,18 +41,21 @@ define( function( require ) {
     // create basic circuit components
     // @public
     this.battery = new Battery( config.batteryLocation, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform );
-    this.circuitComponents = createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs );
-    this.circuitSwitches = createCircuitSwitches( config, numberOfCapacitors, this.circuitConnectionProperty );
+    this.circuitComponents = createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs, this.circuitConnectionProperty );
+    // this.circuitSwitches = createCircuitSwitches( config, numberOfCapacitors, this.circuitConnectionProperty );
 
     // capture the circuit components into individual arrays.  Note that using slice assumes order of capacitors and
     // then lightbulbs. If new order is important, new method is necessary.
     // @public
     this.capacitors = this.circuitComponents.slice( 0, numberOfCapacitors );
     this.lightBulbs = this.circuitComponents.slice( numberOfCapacitors, numberOfLightBulbs + 1 );
+    this.circuitSwitches = [];
+    this.capacitors.forEach( function( capacitor ) {
+      thisCircuit.circuitSwitches.push( capacitor.topCircuitSwitch );
+      thisCircuit.circuitSwitches.push( capacitor.bottomCircuitSwitch );
+    } );
 
-    // TODO: Replace this.lightBulbs[0] with the single lightBulb.
-    // TODO: Replace this.capacitors[0] with the single capacitor.
-    this.wires = createWires( config, this.battery, this.lightBulbs[ 0 ], this.capacitors[ 0 ], this.circuitSwitches, this.circuitConnectionProperty );
+    this.wires = createWires( config, this.battery, this.lightBulbs, this.capacitors, this.circuitSwitches, this.circuitConnectionProperty );
 
     // Make sure all is well with circuit components.  Circuit must include at least one circuit component and two wires.
     assert && assert( this.circuitComponents.length >= 1 );

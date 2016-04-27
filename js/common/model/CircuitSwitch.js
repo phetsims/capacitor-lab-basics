@@ -91,16 +91,20 @@ define( function( require ) {
      * @param {string} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
      */
     getConnectionPoint: function( connectionType ) {
-      var returnConnectionPoint;
-      this.connections.forEach( function( connection ) {
-        if ( connection.connectionType === connectionType ) {
-          returnConnectionPoint = connection.location;
-        }
-      } );
-      if ( returnConnectionPoint === 'undefined' ) {
-        console.error( 'Requested connection type that does not exist for this circuit.' );
-      }
-      return returnConnectionPoint.toVector2();
+
+      var connection = this.getConnection( connectionType );
+      return connection.location.toVector2();
+      
+      // var returnConnectionPoint;
+      // this.connections.forEach( function( connection ) {
+      //   if ( connection.connectionType === connectionType ) {
+      //     returnConnectionPoint = connection.location;
+      //   }
+      // } );
+      // if ( returnConnectionPoint === 'undefined' ) {
+      //   console.error( 'Requested connection type that does not exist for this circuit.' );
+      // }
+      // return returnConnectionPoint.toVector2();
     },
 
     /**

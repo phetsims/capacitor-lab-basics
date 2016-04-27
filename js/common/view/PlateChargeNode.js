@@ -205,7 +205,6 @@ define( function( require ) {
      */
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
       var absCharge = Math.abs( plateCharge );
-      //console.log( absCharge );
       var numberOfCharges = Util.toFixedNumber( CLBConstants.NUMBER_OF_PLATE_CHARGES.max * ( absCharge / maxPlateCharge ), 0 );
       if( absCharge > 0 && numberOfCharges < CLBConstants.NUMBER_OF_PLATE_CHARGES.min ) {
         numberOfCharges = CLBConstants.NUMBER_OF_PLATE_CHARGES.min;
