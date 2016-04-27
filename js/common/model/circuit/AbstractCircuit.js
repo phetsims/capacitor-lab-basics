@@ -13,7 +13,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Battery = require( 'CAPACITOR_LAB_BASICS/common/model/Battery' );
-  var CurrentIndicator = require( 'CAPACITOR_LAB_BASICS/common/model/CurrentIndicator' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -54,11 +53,6 @@ define( function( require ) {
     // TODO: Replace this.lightBulbs[0] with the single lightBulb.
     // TODO: Replace this.capacitors[0] with the single capacitor.
     this.wires = createWires( config, this.battery, this.lightBulbs[ 0 ], this.capacitors[ 0 ], this.circuitSwitches, this.circuitConnectionProperty );
-
-    // create the current indicators
-    // @public
-    this.batteryTopCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, 0 /* initial rotation*/ );
-    this.batteryBottomCurrentIndicator = new CurrentIndicator( this.currentAmplitudeProperty, Math.PI /* initial rotation*/ );
 
     // Make sure all is well with circuit components.  Circuit must include at least one circuit component and two wires.
     assert && assert( this.circuitComponents.length >= 1 );
@@ -179,8 +173,6 @@ define( function( require ) {
      */
     step: function( dt ) {
       this.updateCurrentAmplitude( dt );
-      this.batteryTopCurrentIndicator.step( dt );
-      this.batteryBottomCurrentIndicator.step( dt );
     },
 
     /**
