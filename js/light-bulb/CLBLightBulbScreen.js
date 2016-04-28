@@ -23,15 +23,17 @@ define( function( require ) {
   /**
    * @constructor
    */
-  function CLBLightBulbScreen() {
+  function CLBLightBulbScreen( tandem ) {
 
     // TODO: Icons need to be created for this sim.
     var icon = new Rectangle( 0, 0, 548, 373, { fill: 'blue' } );
 
     Screen.call( this, lightBulbTitleString, icon,
       function() { return new CLBLightBulbModel( new CLBModelViewTransform3D() ); },
-      function( model ) { return new CLBLightBulbScreenView( model ); },
-      { backgroundColor: 'rgb( 194, 227, 255 )' }
+      function( model ) { return new CLBLightBulbScreenView( model ); }, {
+        backgroundColor: 'rgb( 194, 227, 255 )',
+        tandem: tandem
+      }
     );
 
   }

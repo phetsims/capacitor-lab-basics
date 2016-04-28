@@ -23,15 +23,17 @@ define( function( require ) {
   /**
    * @constructor
    */
-  function CapacitanceScreen() {
+  function CapacitanceScreen( tandem ) {
 
     // TODO: Icons need to be created for this sim.
     var icon = new Rectangle( 0, 0, 548, 373, { fill: 'red' } );
 
     Screen.call( this, capacitanceTitleString, icon,
       function() { return new CapacitanceModel( new CLBModelViewTransform3D() ); },
-      function( model ) { return new CapacitanceScreenView( model ); },
-      { backgroundColor: 'rgb( 194, 227, 255 )' }
+      function( model ) { return new CapacitanceScreenView( model ); }, {
+        backgroundColor: 'rgb( 194, 227, 255 )',
+        tandem: tandem
+      }
     );
 
   }

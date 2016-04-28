@@ -14,9 +14,13 @@ define( function( require ) {
   var CapacitanceScreen = require( 'CAPACITOR_LAB_BASICS/capacitance/CapacitanceScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
+  var Tandem = require( 'TANDEM/Tandem' );
 
   // strings
   var capacitorLabBasicsTitleString = require( 'string!CAPACITOR_LAB_BASICS/capacitor-lab-basics.title' );
+
+  // constants
+  var tandem = Tandem.createRootTandem();
 
   var simOptions = {
     credits: {
@@ -27,7 +31,8 @@ define( function( require ) {
       qualityAssurance: '',
       graphicArts: '',
       thanks: ''
-    }
+    },
+    tandem: tandem
   };
 
   // Appending '?dev' to the URL will enable developer-only features.
@@ -39,8 +44,8 @@ define( function( require ) {
 
   SimLauncher.launch( function() {
     var screens = [
-      new CapacitanceScreen(),
-      new CLBLightBulbScreen()
+      new CapacitanceScreen( tandem.createTandem( 'capacitanceScreen' ) ),
+      new CLBLightBulbScreen( tandem.createTandem( 'lightBulbScreen' ) )
     ];
     var sim = new Sim( capacitorLabBasicsTitleString, screens, simOptions );
     sim.start();
