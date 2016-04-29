@@ -54,9 +54,9 @@ define( function( require ) {
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
-    var capacitanceViewControl = new CLBViewControl( model, 0 );
-    capacitanceViewControl.translation = this.layoutBounds.rightTop.minusXY( capacitanceViewControl.width + 10, -10 );
-    voltmeterToolBoxPanel.rightTop = capacitanceViewControl.rightBottom.plusXY( 0, 20 );
+    var viewControlPanel = new CLBViewControl( model, tandem.createTandem( 'viewControlPanel' ) );
+    viewControlPanel.translation = this.layoutBounds.rightTop.minusXY( viewControlPanel.width + 10, -10 );
+    voltmeterToolBoxPanel.rightTop = viewControlPanel.rightBottom.plusXY( 0, 20 );
 
     var capacitanceBarMeterPanel = new CapacitanceBarMeterPanel( model, capacitanceCircuitNode.width );
     capacitanceBarMeterPanel.leftBottom = capacitanceCircuitNode.topWireNode.leftTop.minusXY( 0, 60 );
@@ -74,7 +74,7 @@ define( function( require ) {
     // rendering order
     this.addChild( capacitanceCircuitNode );
     this.addChild( capacitanceBarMeterPanel );
-    this.addChild( capacitanceViewControl );
+    this.addChild( viewControlPanel );
     this.addChild( voltmeterToolBoxPanel );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );

@@ -37,9 +37,10 @@ define( function( require ) {
    * Constructor.
    *
    * @param {CLBModel} model
+   * @param {Tandem} tandem
    * @constructor
    */
-  function CLBViewControl( model ) {
+  function CLBViewControl( model, tandem ) {
     var viewAssets = [
       {
         string: plateChargesString,
@@ -60,8 +61,10 @@ define( function( require ) {
     ];
 
     var viewCheckBoxItems = createCheckBoxItems( viewAssets );
-    var viewVerticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems );
-    var viewVisibilityControlBox = createControlBox( viewString, viewVerticalCheckBoxGroup );
+    var verticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems, {
+      tandem: tandem.createTandem( 'verticalCheckBoxGroup' )
+    } );
+    var viewVisibilityControlBox = createControlBox( viewString, verticalCheckBoxGroup );
 
     Panel.call( this, viewVisibilityControlBox, {
       xMargin: 10,

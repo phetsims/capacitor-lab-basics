@@ -55,7 +55,7 @@ define( function( require ) {
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty );
 
     // View control panel and voltmeter panel
-    var viewControlPanel = new CLBViewControl( model );
+    var viewControlPanel = new CLBViewControl( model, tandem.createTandem( 'viewControlPanel' ) );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( VIEW_PANEL_OFFSET );
     voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( VOLTMETER_PANEL_OFFSET );
 
