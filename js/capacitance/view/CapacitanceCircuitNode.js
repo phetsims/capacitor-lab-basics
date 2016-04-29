@@ -26,13 +26,15 @@ define( function( require ) {
    * @param {Property.<boolean>} currentIndicatorsVisibleProeprty
    * @param {number} maxPlateCharge
    * @param {number} maxEffectiveEField
+   * @param {Tandem} tandem
    * @constructor
    */
   function CapacitanceCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                                   currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField ) {
+                                   currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem ) {
 
     // this circuit
-    CLBCircuitNode.call( this, circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField );
+    CLBCircuitNode.call( this, circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
+      currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem );
     var thisNode = this;
 
     // current indicator observers
@@ -46,12 +48,12 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'CapacitanceCircuitNode', CapacitanceCircuitNode );
-  
+
   return inherit( CLBCircuitNode, CapacitanceCircuitNode, {
 
     /**
      * Updates the visibility of the current indicators.
-     * 
+     *
      * @param  {string} circuitConnection - OPEN_CIRCUIT || BATTERY_CONNECTED
      * @param  {boolean} currentIndicatorsVisible
      */

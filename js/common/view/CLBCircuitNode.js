@@ -36,7 +36,7 @@ define( function( require ) {
    * @constructor
    */
   function CLBCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                                   currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField ) {
+                                   currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem ) {
 
     Node.call( this );
     var thisNode = this;
@@ -44,7 +44,7 @@ define( function( require ) {
     this.circuit = circuit; // @public
 
     // circuit components
-    this.batteryNode = new BatteryNode( circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE );
+    this.batteryNode = new BatteryNode( circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE, tandem );
 
     var capacitorNode = new CapacitorNode( circuit.capacitor, modelViewTransform, plateChargeVisibleProperty,
       eFieldVisibleProperty, maxPlateCharge, maxEffectiveEField );
@@ -118,13 +118,13 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'CLBCircuitNode', CLBCircuitNode );
-  
+
   return inherit( Node, CLBCircuitNode, {
 
     /**
      * Update the visibility of the current indicator nodes, implemented in
      * each of the circuit sub types.
-     * 
+     *
      * @param  {object} circuitConnection
      * @param  {Property<boolean>} currentIndicatorsVisible
      */

@@ -30,9 +30,10 @@ define( function( require ) {
 
   /**
    * @param {CLBLightBulbModel} model
+   * @param {Tandem} tandem
    * @constructor
    */
-  function CLBLightBulbScreenView( model ) {
+  function CLBLightBulbScreenView( model, tandem ) {
 
     ScreenView.call( this );
 
@@ -45,7 +46,7 @@ define( function( require ) {
 
     // Circuit
     var lightBulbCircuitNode = new LightBulbCircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisibleProperty,
-      model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField );
+      model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem );
 
     // meters
     var barMeterPanel = new BarMeterPanel( model, lightBulbCircuitNode.topWireNode.width );

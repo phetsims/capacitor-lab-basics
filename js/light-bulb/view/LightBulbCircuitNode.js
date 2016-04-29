@@ -17,7 +17,7 @@ define( function( require ) {
   var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBCircuitNode = require( 'CAPACITOR_LAB_BASICS/common/view/CLBCircuitNode' );
-    
+
   /**
    * Constructor for a CircuitNode.
    *
@@ -28,13 +28,14 @@ define( function( require ) {
    * @param {Property.<boolean>} currentIndicatorsVisibleProperty
    * @param {number} maxPlateCharge
    * @param {number} maxEffectiveEField
+   * @param {Tandem} tandem
    * @constructor
    */
   function LightBulbCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                                 currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField ) {
+                                 currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem ) {
 
     CLBCircuitNode.call( this, circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                         currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField );
+                         currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem );
 
     var thisNode = this;
 
@@ -74,16 +75,16 @@ define( function( require ) {
     currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
       thisNode.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
-    
+
   }
 
   capacitorLabBasics.register( 'LightBulbCircuitNode', LightBulbCircuitNode );
-  
+
   return inherit( CLBCircuitNode, LightBulbCircuitNode, {
 
     /**
      * Updates the visibility of the current indicators.
-     * 
+     *
      * @param  {string} circuitConnection - LIGHT_BULB_CONNECTED || OPEN_CIRCUIT || BATTERY_CONNECTED
      * @param  {boolean} currentIndicatorsVisible
      */

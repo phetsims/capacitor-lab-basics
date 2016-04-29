@@ -39,14 +39,17 @@ define( function( require ) {
    *
    * @param {Battery} battery
    * @param {Range} voltageRange
+   * @param {Tandem} tandem
    * @constructor
    */
-  function BatteryNode( battery, voltageRange ) {
+  function BatteryNode( battery, voltageRange, tandem ) {
 
     Node.call( this );
 
     // battery image, scaled to match model dimensions
-    var imageNode = new Image( batteryUpImage, { scale: 0.30 } );
+    var imageNode = new Image( batteryUpImage, {
+      scale: 0.30
+    } );
     this.addChild( imageNode );
 
     // voltage slider
@@ -59,7 +62,8 @@ define( function( require ) {
         if ( Math.abs( battery.voltage ) < CLBConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {
           battery.voltage = 0;
         }
-      }
+      },
+      tandem: tandem.createTandem( 'sliderNode' )
     } );
 
     // function to create the tick mark labels using a string pattern.
@@ -91,8 +95,7 @@ define( function( require ) {
         imageNode.image = batteryUpImage;
         minTick.fill = 'white';
         maxTick.fill = 'black';
-      }
-      else {
+      } else {
         imageNode.image = batteryDownImage;
         minTick.fill = 'black';
         maxTick.fill = 'white';
@@ -105,3 +108,4 @@ define( function( require ) {
   return inherit( Node, BatteryNode, {} );
 
 } );
+

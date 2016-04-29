@@ -30,7 +30,7 @@ define( function( require ) {
 
     Screen.call( this, lightBulbTitleString, icon,
       function() { return new CLBLightBulbModel( new CLBModelViewTransform3D() ); },
-      function( model ) { return new CLBLightBulbScreenView( model ); }, {
+      function( model ) { return new CLBLightBulbScreenView( model, tandem.createTandem( 'view' ) ); }, {
         backgroundColor: 'rgb( 194, 227, 255 )',
         tandem: tandem
       }
