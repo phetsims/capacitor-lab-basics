@@ -43,9 +43,10 @@ define( function( require ) {
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Range} valueRange
+   * @param {Tandem} tandem
    * @constructor
    */
-  function PlateAreaDragHandleNode( capacitor, modelViewTransform, valueRange ) {
+  function PlateAreaDragHandleNode( capacitor, modelViewTransform, valueRange, tandem ) {
 
     Node.call( this );
     var thisNode = this;
@@ -56,7 +57,8 @@ define( function( require ) {
 
     // arrow
     var arrowNode = new DragHandleArrowNode( ARROW_TIP_LOCATION, ARROW_TAIL_LOCATION );
-    arrowNode.addInputListener( new PlateAreaDragHandler( arrowNode, capacitor, modelViewTransform, valueRange ) );
+    arrowNode.addInputListener( new PlateAreaDragHandler( arrowNode, capacitor, modelViewTransform, valueRange,
+      tandem.createTandem( 'inputListener' ) ) );
 
     this.touchArea = arrowNode.bounds;
     this.cursor = 'pointer';
@@ -77,7 +79,7 @@ define( function( require ) {
     // layout: arrow below line, rotate into alignment with top plate's pseudo-3D diagonal
     var x = 0;
     var y = 0;
-    var angle = ( - Math.PI / 2 ) + ( modelViewTransform.yaw / 2 ); // aligned with diagonal of plate surface
+    var angle = ( -Math.PI / 2 ) + ( modelViewTransform.yaw / 2 ); // aligned with diagonal of plate surface
     var lineArrowSpacing = 2;
     lineNode.translation = new Vector2( x, y );
     lineNode.rotation = angle;
@@ -86,7 +88,7 @@ define( function( require ) {
     y = lineNode.bounds.minY - lineArrowSpacing;
     arrowNode.translation = new Vector2( x, y );
     arrowNode.rotation = angle;
-    
+
     x = lineNode.bounds.maxX + this.valueNode.bounds.width / 3;
     y = lineNode.bounds.minY - this.valueNode.bounds.height - 14;
     this.valueNode.translation = new Vector2( x, y );
@@ -104,7 +106,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'PlateAreaDragHandleNode', PlateAreaDragHandleNode );
-  
+
   return inherit( Node, PlateAreaDragHandleNode, {
 
     // synchronizes the value display with the model
