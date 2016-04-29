@@ -28,17 +28,18 @@ define( function( require ) {
    * Constructor for the Single Capacitor Circuit.
    *
    * @param {CircuitConfig} config
+   * @param {Tandem} tandem
    * @constructor
    */
-  function CapacitanceCircuit( config ) {
+  function CapacitanceCircuit( config, tandem ) {
 
-    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 0 /* numberOfLightBulbs */ );
+    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 0 /* numberOfLightBulbs */, tandem, {} );
 
     this.capacitor = this.capacitors[ 0 ]; // @public
   }
 
   capacitorLabBasics.register( 'CapacitanceCircuit', CapacitanceCircuit );
-  
+
   return inherit( ParallelCircuit, CapacitanceCircuit, {
 
     /**

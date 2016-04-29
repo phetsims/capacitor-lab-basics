@@ -27,8 +27,9 @@ define( function( require ) {
    * Constructor for the CapacitanceModel.
    *
    * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {Tandem} tandem
    */
-  function CapacitanceModel( modelViewTransform ) {
+  function CapacitanceModel( modelViewTransform, tandem ) {
 
     CLBModel.call( this );
 
@@ -36,12 +37,12 @@ define( function( require ) {
 
     // configuration info for the circuit
     var circuitConfig = new CircuitConfig( {
-      circuitConnections: [ CircuitConnectionEnum.BATTERY_CONNECTED, CircuitConnectionEnum.OPEN_CIRCUIT ] 
+      circuitConnections: [ CircuitConnectionEnum.BATTERY_CONNECTED, CircuitConnectionEnum.OPEN_CIRCUIT ]
     } );
 
     this.dielectricMaterial = DielectricMaterial.Air(); // @public (read-only)
 
-    this.circuit = new CapacitanceCircuit( circuitConfig ); // @public
+    this.circuit = new CapacitanceCircuit( circuitConfig, tandem ); // @public
     this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
 
     this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty );
@@ -107,7 +108,8 @@ define( function( require ) {
         dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min
       } );
 
-      var circuit = new CapacitanceCircuit( circuitConfig );
+      // Don't want to pass in tandem here. This is a temporary circuit used to calculate the return value.
+      var circuit = new CapacitanceCircuit( circuitConfig, null );
 
       // disconnect the battery and set the max plate charge
       circuit.circuitConnection = CircuitConnectionEnum.OPEN_CIRCUIT;

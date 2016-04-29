@@ -26,8 +26,9 @@ define( function( require ) {
    * @param {function} createCircuitComponents   function for creating cirucit components
    * @param {function} createWires function for creating wires
    * @param {function} createCircuitSwitches function for creating wires
+   * @param {Tandem} tandem
    */
-  function AbstractCircuit( config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires, createCircuitSwitches ) {
+  function AbstractCircuit( config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires, tandem ) {
 
     PropertySet.call( this, {
       currentAmplitude: 0,
@@ -40,9 +41,8 @@ define( function( require ) {
 
     // create basic circuit components
     // @public
-    this.battery = new Battery( config.batteryLocation, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform );
+    this.battery = new Battery( config.batteryLocation, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform, tandem );
     this.circuitComponents = createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs, this.circuitConnectionProperty );
-    // this.circuitSwitches = createCircuitSwitches( config, numberOfCapacitors, this.circuitConnectionProperty );
 
     // capture the circuit components into individual arrays.  Note that using slice assumes order of capacitors and
     // then lightbulbs. If new order is important, new method is necessary.

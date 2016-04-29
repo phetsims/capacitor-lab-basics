@@ -45,14 +45,19 @@ define( function( require ) {
    * @param {Vector3} location
    * @param {number} voltage
    * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {Tandem} tandem
    * @constructor
    */
-  function Battery( location, voltage, modelViewTransform ) {
+  function Battery( location, voltage, modelViewTransform, tandem ) {
 
     // @public
     PropertySet.call( this, {
       voltage: voltage,
       polarity: CLBConstants.POLARITY.POSITIVE
+    }, {
+      tandemSet: tandem ?  {
+        voltage: tandem.createTandem( 'voltageProperty' )
+      }:{}
     } );
 
     var thisBattery = this;
@@ -67,7 +72,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'Battery', Battery );
-  
+
   return inherit( PropertySet, Battery, {
 
     /**
@@ -116,8 +121,7 @@ define( function( require ) {
     getTopTerminalYOffset: function() {
       if ( this.polarity === CLBConstants.POLARITY.POSITIVE ) {
         return POSITIVE_TERMINAL_Y_OFFSET;
-      }
-      else {
+      } else {
         return NEGATIVE_TERMINAL_Y_OFFSET;
       }
     },
@@ -135,3 +139,4 @@ define( function( require ) {
     }
   } );
 } );
+

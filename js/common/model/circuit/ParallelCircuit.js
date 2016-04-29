@@ -40,9 +40,10 @@ define( function( require ) {
    * @param {number} numberOfCapacitors
    * @param {number} numberOfLightBulbs
    * @param {Object} options
+   * @param {Tandem} tandem
    */
-  function ParallelCircuit( config, numberOfCapacitors, numberOfLightBulbs, options ) {
-    AbstractCircuit.call( this, config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires );
+  function ParallelCircuit( config, numberOfCapacitors, numberOfLightBulbs, tandem, options ) {
+    AbstractCircuit.call( this, config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires, tandem );
   }
 
   capacitorLabBasics.register( 'ParallelCircuit', ParallelCircuit );
@@ -286,7 +287,7 @@ define( function( require ) {
   };
 
   /**
-   * Function that creates all wires of the circuit.  Function assumes that capacitors are to the left of the 
+   * Function that creates all wires of the circuit.  Function assumes that capacitors are to the left of the
    * lightbulb.
    *
    * @param config

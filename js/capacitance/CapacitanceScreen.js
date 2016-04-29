@@ -29,7 +29,7 @@ define( function( require ) {
     var icon = new Rectangle( 0, 0, 548, 373, { fill: 'red' } );
 
     Screen.call( this, capacitanceTitleString, icon,
-      function() { return new CapacitanceModel( new CLBModelViewTransform3D() ); },
+      function() { return new CapacitanceModel( new CLBModelViewTransform3D(), tandem.createTandem( 'model' ) ); },
       function( model ) { return new CapacitanceScreenView( model, tandem.createTandem( 'view' ) ); }, {
         backgroundColor: 'rgb( 194, 227, 255 )',
         tandem: tandem
