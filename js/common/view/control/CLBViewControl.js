@@ -44,19 +44,23 @@ define( function( require ) {
     var viewAssets = [
       {
         string: plateChargesString,
-        property: model.plateChargesVisibleProperty
+        property: model.plateChargesVisibleProperty,
+        tandemName: 'plateChargesCheckBox'
       },
       {
         string: barGraphsString,
-        property: model.barGraphsPanelVisibleProperty
+        property: model.barGraphsPanelVisibleProperty,
+        tandemName: 'barGraphsCheckBox'
       },
       {
         string: eFieldString,
-        property: model.eFieldVisibleProperty
+        property: model.eFieldVisibleProperty,
+        tandemName: 'electricFieldCheckBox'
       },
       {
         string: currentString,
-        property: model.currentIndicatorsVisibleProperty
+        property: model.currentIndicatorsVisibleProperty,
+        tandemName: 'currentCheckBox'
       }
     ];
 
@@ -87,7 +91,8 @@ define( function( require ) {
       items.push( {
         content: new Text( asset.string, { font: CHECK_BOX_FONT } ),
         property: asset.property,
-        label: asset.string
+        label: asset.string,
+        tandemName: asset.tandemName
       } );
     } );
     return items;
