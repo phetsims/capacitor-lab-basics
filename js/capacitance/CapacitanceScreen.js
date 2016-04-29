@@ -21,6 +21,7 @@ define( function( require ) {
   var capacitanceTitleString = require( 'string!CAPACITOR_LAB_BASICS/capacitance.title' );
 
   /**
+   * @param {Tandem} tandem
    * @constructor
    */
   function CapacitanceScreen( tandem ) {

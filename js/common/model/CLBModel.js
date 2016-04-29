@@ -22,10 +22,11 @@ define( function( require ) {
 
   /**
    * Constructor for the CLBModel.
+   * @param {Tandem} tandem
    *
    * @constructor
    */
-  function CLBModel() {
+  function CLBModel( tandem ) {
 
     // public
     PropertySet.call( this, {
@@ -37,6 +38,17 @@ define( function( require ) {
       barGraphsPanelVisible: true,
       voltmeterVisible: false,
       currentIndicatorsVisible: true
+    }, {
+      tandemSet: {
+        plateChargesVisible: tandem.createTandem( 'plateChargesVisibleProperty' ),
+        eFieldVisible: tandem.createTandem( 'eFieldVisibleProperty' ),
+        capacitanceMeterVisible: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
+        plateChargeMeterVisible: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
+        storedEnergyMeterVisible: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
+        barGraphsPanelVisible: tandem.createTandem( 'barGraphsPanelVisibleProperty' ),
+        voltmeterVisible: tandem.createTandem( 'voltmeterVisibleProperty' ),
+        currentIndicatorsVisible: tandem.createTandem( 'currentIndicatorsVisibleProperty' )
+      }
     } );
   }
 
@@ -47,7 +59,7 @@ define( function( require ) {
     // Gets a capacitor with maximum charge.
     /**
      * Return a capacitor with the maximum amount of charge allowed by the model/
-     * 
+     *
      * @return {Capacitor}
      */
     getCapacitorWithMaxCharge: function() {

@@ -29,7 +29,7 @@ define( function( require ) {
     var icon = new Rectangle( 0, 0, 548, 373, { fill: 'blue' } );
 
     Screen.call( this, lightBulbTitleString, icon,
-      function() { return new CLBLightBulbModel( new CLBModelViewTransform3D() ); },
+      function() { return new CLBLightBulbModel( new CLBModelViewTransform3D(), tandem.createTandem( 'model' ) ); },
       function( model ) { return new CLBLightBulbScreenView( model, tandem.createTandem( 'view' ) ); }, {
         backgroundColor: 'rgb( 194, 227, 255 )',
         tandem: tandem

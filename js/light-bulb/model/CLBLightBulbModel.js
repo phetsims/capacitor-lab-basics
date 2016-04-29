@@ -37,10 +37,11 @@ define( function( require ) {
    * Constructor for the Dielectric Model.
    *
    * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {Tandem} tandem
    */
-  function CLBLightBulbModel( modelViewTransform ) {
+  function CLBLightBulbModel( modelViewTransform, tandem ) {
 
-    CLBModel.call( this );
+    CLBModel.call( this, tandem );
 
     this.modelViewTransform = modelViewTransform; // @private
 

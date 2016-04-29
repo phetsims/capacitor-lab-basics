@@ -31,7 +31,7 @@ define( function( require ) {
    */
   function CapacitanceModel( modelViewTransform, tandem ) {
 
-    CLBModel.call( this );
+    CLBModel.call( this, tandem );
 
     this.modelViewTransform = modelViewTransform; // @ public (read-only)
 
