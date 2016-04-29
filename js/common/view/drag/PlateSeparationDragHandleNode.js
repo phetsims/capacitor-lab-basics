@@ -42,9 +42,10 @@ define( function( require ) {
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Range} valueRange
+   * @param {Tandem} tandem
    * @constructor
    */
-  function PlateSeparationDragHandleNode( capacitor, modelViewTransform, valueRange ) {
+  function PlateSeparationDragHandleNode( capacitor, modelViewTransform, valueRange, tandem ) {
 
     Node.call( this, PlateSeparationDragHandleNode );
     var thisNode = this;
@@ -55,11 +56,11 @@ define( function( require ) {
 
     // arrow
     var arrowNode = new DragHandleArrowNode( ARROW_START_LOCATION, ARROW_END_LOCATION );
-    this.addInputListener( new PlateSeparationDragHandler( arrowNode, capacitor, modelViewTransform, valueRange ) );
+    this.addInputListener( new PlateSeparationDragHandler( arrowNode, capacitor, modelViewTransform, valueRange,
+      tandem.createTandem( 'inputListener' ) ) );
 
     this.touchArea = arrowNode.bounds;
     this.cursor = 'pointer';
-
 
     // line
     var lineNode = new DragHandleLineNode( LINE_START_LOCATION, LINE_END_LOCATION );
@@ -81,7 +82,7 @@ define( function( require ) {
     x = 0;
     y = lineNode.bounds.minY - 2;
     arrowNode.translation = new Vector2( x, y );
-    
+
     x = arrowNode.bounds.maxX;
     y = arrowNode.bounds.minY - this.valueNode.bounds.height / 2;
     this.valueNode.translation = new Vector2( x, y );
@@ -99,7 +100,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'PlateSeparationDragHandleNode', PlateSeparationDragHandleNode );
-  
+
   return inherit( Node, PlateSeparationDragHandleNode, {
 
     /**
@@ -121,3 +122,4 @@ define( function( require ) {
     }
   } );
 } );
+

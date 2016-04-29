@@ -36,7 +36,7 @@ define( function( require ) {
    * @constructor
    */
   function CLBCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                           currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem ) {
+    currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem ) {
 
     Node.call( this );
     var thisNode = this;
@@ -65,9 +65,10 @@ define( function( require ) {
     } );
 
     // drag handles
-    var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform, CLBConstants.PLATE_SEPARATION_RANGE );
-    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform, CLBConstants.PLATE_WIDTH_RANGE,
-      tandem.createTandem( 'plateAreaDragHandleNode' ) );
+    var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform,
+      CLBConstants.PLATE_SEPARATION_RANGE, tandem.createTandem( 'plateSeparationDragHandleNode' ) );
+    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform,
+      CLBConstants.PLATE_WIDTH_RANGE, tandem.createTandem( 'plateAreaDragHandleNode' ) );
 
     // current indicators
     this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, 0 );
@@ -135,3 +136,4 @@ define( function( require ) {
 
   } );
 } );
+
