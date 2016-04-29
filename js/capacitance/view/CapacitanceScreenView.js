@@ -28,9 +28,10 @@ define( function( require ) {
 
   /**
    * @param {CLBModel} model
+   * @param {Tandem} tandem
    * @constructor
    */
-  function CapacitanceScreenView( model ) {
+  function CapacitanceScreenView( model, tandem ) {
 
     ScreenView.call( this );
 
@@ -66,7 +67,8 @@ define( function( require ) {
       },
       bottom: this.layoutBounds.bottom - 20,
       right: this.layoutBounds.right - 30,
-      radius: 25
+      radius: 25,
+      tandem: tandem.createTandem( 'resetAllButton' )
     } );
 
     // rendering order

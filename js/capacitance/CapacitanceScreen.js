@@ -30,7 +30,7 @@ define( function( require ) {
 
     Screen.call( this, capacitanceTitleString, icon,
       function() { return new CapacitanceModel( new CLBModelViewTransform3D() ); },
-      function( model ) { return new CapacitanceScreenView( model ); }, {
+      function( model ) { return new CapacitanceScreenView( model, tandem.createTandem( 'view' ) ); }, {
         backgroundColor: 'rgb( 194, 227, 255 )',
         tandem: tandem
       }
