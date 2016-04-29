@@ -34,14 +34,11 @@ define( function( require ) {
   /**
    * Constructor for the Capacitor.
    * @param {Vector3} location
-   * @param {number} plateWidth
-   * @param {number} plateSeparation
-   * @param {DielectricMaterial} dielectricMaterial
-   * @param {number} dielectricOffset
    * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {Tandem} tandem
    * @constructor
    */
-  function Capacitor( location, modelViewTransform, options ) {
+  function Capacitor( location, modelViewTransform, tandem, options ) {
 
     // options that populate the capacitor with various geometric properties
     options = _.extend( {
@@ -67,6 +64,11 @@ define( function( require ) {
       platesVoltage: 0, // zero until it's connected into a circuit
       dielectricMaterial: options.dielectricMaterial,
       dielectricOffset: options.dielectricOffset // in meters, default is totally outside of capacitor plates.
+    }, {
+      tandemSet: tandem ? {
+        plateWidth: tandem.createTandem( 'plateWidthProperty' ),
+        plateSeparation: tandem.createTandem( 'plateSeparationProperty' )
+      } : {}
     } );
 
     // @private - track the previous capacitance to adjust the inital voltage when discharging, see
@@ -406,17 +408,17 @@ define( function( require ) {
     /**
      * It is possible to change the capacitance while the capacitor is discharging.  The parameters
      * for the solution
-     * 
+     *
      * Vc = Vo*exp( -t / ( R * C ) )
      *
      * need to change.
-     * 
+     *
      * Suppose that the capacitor has capacitance C1 with charge Q1 and voltage V1.  The capacitance
      * is instantaneously increased to C2.  The charge will remain Q1, but the voltage will decrease proportionally
      * from V1 to V2, like V2 = V1 / ( C2 / C1 ).  The RC time constant also needs to change
      * since C has been updated.  This assumes that the capacitance changes instantaneously.
      *
-     * Therefore, the solution needs to change to 
+     * Therefore, the solution needs to change to
      * Vc = V2 * exp( -t / ( R * C2 ) )
      */
     updateDischargeParameters: function() {
@@ -433,3 +435,4 @@ define( function( require ) {
 
   } );
 } );
+

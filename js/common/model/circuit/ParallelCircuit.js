@@ -43,7 +43,8 @@ define( function( require ) {
    * @param {Tandem} tandem
    */
   function ParallelCircuit( config, numberOfCapacitors, numberOfLightBulbs, tandem, options ) {
-    AbstractCircuit.call( this, config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires, tandem );
+    AbstractCircuit.call( this, config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires,
+      tandem );
   }
 
   capacitorLabBasics.register( 'ParallelCircuit', ParallelCircuit );
@@ -74,16 +75,13 @@ define( function( require ) {
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
         if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
-        }
-        else if ( this.connectedToBatteryBottom( shape ) ) {
+        } else if ( this.connectedToBatteryBottom( shape ) ) {
           voltage = 0;
         }
-      }
-      else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+      } else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
           voltage = this.getCapacitorPlateVoltage();
-        }
-        else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
+        } else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
           voltage = 0;
         }
       }
@@ -250,9 +248,11 @@ define( function( require ) {
    * @param {CircuitConfig} config - object defining the circuit
    * @param {number} numberOfCapacitors
    * @param {number} numberOfLightBulbs
+   * @param {Tandem} tandem
    * @returns {Array} circuitComponents
    */
-  var createCircuitComponents = function( config, numberOfCapacitors, numberOfLightBulbs, circuitConnectionProperty ) {
+  var createCircuitComponents = function( config, numberOfCapacitors, numberOfLightBulbs, circuitConnectionProperty,
+    tandem ) {
 
     var x = config.batteryLocation.x + config.capacitorXSpacing;
     var y = config.batteryLocation.y + config.capacitorYSpacing;
@@ -264,12 +264,13 @@ define( function( require ) {
     var location;
     for ( var i = 0; i < numberOfCapacitors; i++ ) {
       location = new Vector3( x, y, z );
-      var capacitor = new SwitchedCapacitor( location, config, config.circuitConnections, circuitConnectionProperty, {
-        plateWidth: config.plateWidth,
-        plateSeparation: config.plateSeparation,
-        dielectricMaterial: config.dielectricMaterial,
-        dielectricOffset: config.dielectricOffset
-      } );
+      var capacitor = new SwitchedCapacitor( location, config, config.circuitConnections, circuitConnectionProperty,
+        tandem, {
+          plateWidth: config.plateWidth,
+          plateSeparation: config.plateSeparation,
+          dielectricMaterial: config.dielectricMaterial,
+          dielectricOffset: config.dielectricOffset
+        } );
 
       circuitComponents.push( capacitor );
       x += config.lightBulbXSpacing;
@@ -321,7 +322,7 @@ define( function( require ) {
 
     // wire capacitors to the switches
     capacitors.forEach( function( capacitor ) {
-        wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireTop(
+      wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireTop(
         config.modelViewTransform,
         config.wireThickness,
         capacitor,
@@ -356,7 +357,7 @@ define( function( require ) {
       ) );
 
       // now connect the rest of the light bulbs in the circuit
-      for( var i = 1; i < lightBulbs.length; i++ ) {
+      for ( var i = 1; i < lightBulbs.length; i++ ) {
         // NOTE: This is not needed in the Basics version of the sim, but is left here to jump start
         // multiple light bulbs if needed by Capacitor Lab.
         assert && assert( 'There should only be one light bulb in Capacitor Lab: Basics' );
@@ -368,3 +369,4 @@ define( function( require ) {
   return ParallelCircuit;
 
 } );
+

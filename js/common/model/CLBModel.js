@@ -66,7 +66,9 @@ define( function( require ) {
       // arbitrary model view transform
       var modelViewTransform = new CLBModelViewTransform3D();
 
-      var capacitor = new Capacitor( new Vector3( 0, 0, 0 ), modelViewTransform, {
+      // Construct Capacitor without a Tandem instance (null), since this is an intermediate object
+      // used only in calculations.
+      var capacitor = new Capacitor( new Vector3( 0, 0, 0 ), modelViewTransform, null, {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.max,
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
         dielectricMaterial: DielectricMaterial.CustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.max ),

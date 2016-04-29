@@ -17,16 +17,17 @@ define( function( require ) {
 
   /**
    * Constructor.
-   * 
+   *
    * @param {Vector3} location
    * @param {number} plateWidth
    * @param {number} plateSeparation
    * @param {DielectricMaterial} dielectricMaterial
    * @param {number} dielectricOffset
    * @param {CLModelViewTransform3D} modelViewTransform
-   * @param {Object} options 
+   * @param {Tandem} tandem
+   * @param {Object} options
    */
-  function SwitchedCapacitor( location, config, switchConnections, circuitConnectionProperty, options ) {
+  function SwitchedCapacitor( location, config, switchConnections, circuitConnectionProperty, tandem, options ) {
 
     // options that populate the capacitor with various geometric and dielectric properties
     options = _.extend( {
@@ -37,7 +38,7 @@ define( function( require ) {
     }, options );
 
     // create the capacitor
-    Capacitor.call( this, location, config.modelViewTransform, options );
+    Capacitor.call( this, location, config.modelViewTransform, tandem, options );
 
     // create the circuit switches that connect the capacitor to the circuit
     var x = config.batteryLocation.x + config.capacitorXSpacing;
