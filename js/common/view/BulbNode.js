@@ -3,12 +3,9 @@
 /**
  * Bulb node for 'Faradays Law' simulation
  *
- * TODO: DRAWING CODE IS TAKEN DIRECTLY FROM FARADAY'S LAW.
- * TODO: THIS CODE IS TEMPORARY.  WE NEED TO MAKE DESIGN DECISIONS ABOUT WHAT THE DESIRED BULB SHAPE AND BEHAVIOR IS ( AND WHY ).
+ * NOTE: This code is borrowed directly from Faraday's Law.  LightBulbNode is still being generalized, see
+ * https://github.com/phetsims/scenery-phet/issues/170.
  *
- * TODO: THIS CODE WILL BE REMOVED AND APPROPRIATE CHANGES WILL BE MADE TO LightBulbNode of scenery-phet IF NECESSARY IN THE NEAR FUTURE.
- *
- * TODO: NOT PULLING FROM FARADAY'S LAW AT THE TIME BEING BECAUSE MANY CHANGES ARE NEEDED IN THE WIRING OF THAT NODE.
  * @author Vasily Shakhov (MLearner)
  * @author John Blanco
  * @author Jesse Greenberg
