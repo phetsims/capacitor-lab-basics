@@ -39,13 +39,9 @@ define( function( require ) {
     this.modelViewTransform = model.modelViewTransform;
     this.model = model;
 
-    // Maxima, for calibrating various view representations.
-    var maxPlateCharge = model.getMaxPlateCharge();
-    var maxEffectiveEField = model.getMaxEffectiveEField();
-
     // circuit
     var capacitanceCircuitNode = new CapacitanceCircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisibleProperty,
-      model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem );
+      model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, tandem );
 
     // meters
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty );

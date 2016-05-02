@@ -39,6 +39,10 @@ define( function( require ) {
 
     this.config = config;
 
+    // Overwrite in concrete instances
+    this.maxPlateCharge = Infinity;
+    this.maxEffectiveEField = Infinity;
+
     // create basic circuit components
     // @public
     this.battery = new Battery( config.batteryLocation, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform, tandem );

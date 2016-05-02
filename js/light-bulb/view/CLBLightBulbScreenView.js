@@ -40,13 +40,9 @@ define( function( require ) {
     this.modelViewTransform = model.modelViewTransform; // @private
     this.model = model; // @private
 
-    // Maximums, for calibrating various view representations.
-    var maxPlateCharge = model.getMaxPlateCharge();
-    var maxEffectiveEField = model.getMaxEffectiveEField();
-
     // Circuit
     var lightBulbCircuitNode = new LightBulbCircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisibleProperty,
-      model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem );
+      model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, tandem );
 
     // meters
     var barMeterPanel = new BarMeterPanel( model, lightBulbCircuitNode.topWireNode.width );

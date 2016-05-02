@@ -24,17 +24,14 @@ define( function( require ) {
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
    * @param {Property.<boolean>} currentIndicatorsVisibleProeprty
-   * @param {number} maxPlateCharge
-   * @param {number} maxEffectiveEField
    * @param {Tandem} tandem
    * @constructor
    */
   function CapacitanceCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                                   currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem ) {
-
+                                   currentIndicatorsVisibleProperty, tandem ) {
     // this circuit
     CLBCircuitNode.call( this, circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-      currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem );
+      currentIndicatorsVisibleProperty, tandem );
     var thisNode = this;
 
     // current indicator observers

@@ -31,12 +31,8 @@ define( function( require ) {
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
    * @param {Property.<boolean>} currentIndicatorsVisibleProeprty
-   * @param {number} maxPlateCharge
-   * @param {number} maxEffectiveEField
    * @constructor
    */
-  // function CLBCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-  //   currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem ) {
 
   function CLBCircuitNode(
     circuit,
@@ -44,8 +40,6 @@ define( function( require ) {
     plateChargeVisibleProperty,
     eFieldVisibleProperty,
     currentIndicatorsVisibleProperty,
-    maxPlateCharge,
-    maxEffectiveEField,
     tandem ) {
 
     Node.call( this );
@@ -57,7 +51,7 @@ define( function( require ) {
     this.batteryNode = new BatteryNode( circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE, tandem );
 
     var capacitorNode = new CapacitorNode( circuit.capacitor, modelViewTransform, plateChargeVisibleProperty,
-      eFieldVisibleProperty, maxPlateCharge, maxEffectiveEField );
+      eFieldVisibleProperty, circuit.maxPlateCharge, circuit.maxEffectiveEField );
 
     this.topWireNode = new Node();
     this.bottomWireNode = new Node();

@@ -16,7 +16,7 @@ define( function( require ) {
   var EFieldNode = require( 'CAPACITOR_LAB_BASICS/common/view/EFieldNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  
+
   /**
    * Constructor for a CapacitorNode.
    *
@@ -64,7 +64,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'CapacitorNode', CapacitorNode );
-  
+
   return inherit( Node, CapacitorNode, {
 
     /**

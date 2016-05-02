@@ -51,6 +51,8 @@ define( function( require ) {
     // @public
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, {} );
 
+    this.circuit.maxPlateCharge = this.getMaxPlateCharge();
+    this.circuit.maxEffectiveEField = this.getMaxEffectiveEField();
   }
 
   capacitorLabBasics.register( 'CapacitanceModel', CapacitanceModel );

@@ -26,16 +26,14 @@ define( function( require ) {
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
    * @param {Property.<boolean>} currentIndicatorsVisibleProperty
-   * @param {number} maxPlateCharge
-   * @param {number} maxEffectiveEField
    * @param {Tandem} tandem
    * @constructor
    */
   function LightBulbCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                                 currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem ) {
+                                 currentIndicatorsVisibleProperty, tandem ) {
 
     CLBCircuitNode.call( this, circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                         currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem );
+                         currentIndicatorsVisibleProperty, tandem );
 
     var thisNode = this;
 

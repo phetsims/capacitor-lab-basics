@@ -71,6 +71,8 @@ define( function( require ) {
     this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.storedEnergyMeterVisibleProperty );
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, {} );
 
+    this.circuit.maxPlateCharge = this.getMaxPlateCharge();
+    this.circuit.maxEffectiveEField = this.getMaxEffectiveEField();
   }
 
   capacitorLabBasics.register( 'CLBLightBulbModel', CLBLightBulbModel );
