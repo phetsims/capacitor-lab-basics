@@ -1,7 +1,7 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Circuit switch.  The circuit switch has a start point and an end point.  The start point acts as a hinge, and 
+ * Circuit switch.  The circuit switch has a start point and an end point.  The start point acts as a hinge, and
  * the end point can switch to new connection points.  It is assumed that the circuit switch is connected to
  * a capacitor in this simulation.
  *
@@ -94,7 +94,7 @@ define( function( require ) {
 
       var connection = this.getConnection( connectionType );
       return connection.location.toVector2();
-      
+
       // var returnConnectionPoint;
       // this.connections.forEach( function( connection ) {
       //   if ( connection.connectionType === connectionType ) {
@@ -109,7 +109,7 @@ define( function( require ) {
 
     /**
      * Get the location of the endpoint for the circuit switch segment.
-     * 
+     *
      * @return {Vector2} [description]
      */
     getSwitchEndPoint: function() {
@@ -118,7 +118,7 @@ define( function( require ) {
 
     /**
      * Get the connection point that will be nearest the connecting capacitor.
-     * 
+     *
      * @return {Vector2}
      */
     getCapacitorConnectionPoint: function() {
@@ -128,17 +128,17 @@ define( function( require ) {
     /**
      * Get the limiting angle of the circuit switch to the right.
      * The limiting angle is dependent on wheter a light bulb is connected to the circuit.
-     * 
+     *
      * @return {number}
      */
     getRightLimitAngle: function() {
 
       var thisSwitch = this;
-      
+
       var rightConnectionPoint = thisSwitch.getConnectionPoint( CircuitConnectionEnum.OPEN_CIRCUIT );
 
       this.connections.forEach( function( connection ) {
-        if( connection.connectionType === 'LIGHT_BULB_CONNECTED' ) {
+        if ( connection.connectionType === 'LIGHT_BULB_CONNECTED' ) {
           rightConnectionPoint = thisSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
         }
       } );
@@ -158,10 +158,10 @@ define( function( require ) {
     // Create specific types for the circuit switches
     /**
      * Create a circuit switch for the top of a capacitor.
-     * 
+     *
      * @param {Vector3} hingePoint
      * @param {CLBModelViewTransform3D} modelViewTransform
-     * @param {Array<string>} possibleConnections - possible connection types from CircuitConnectionEnum entries 
+     * @param {Array<string>} possibleConnections - possible connection types from CircuitConnectionEnum entries
      * @param {Property<string>} circuitConnectionProperty
      */
     CircuitTopSwitch: function( hingePoint, modelViewTransform, possibleConnections, circuitConnectionProperty ) {
@@ -170,7 +170,7 @@ define( function( require ) {
 
     /**
      * Create a circuit switch for the bottom of a capacitor.
-     * 
+     *
      * @param {Vector3} hingePoint
      * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {Array<string>} possibleConnections possible connection types from CircuitConnectionEnum entries
@@ -184,7 +184,7 @@ define( function( require ) {
 
   /**
    * Constructor for a switch connected to the top of a capacitor.
-   * 
+   *
    * @param {Vector3} hingePoint
    * @param {CLModelViewTransform3} modelViewTransform
    * @param {Property<string>} circuitConnectionProperty
@@ -192,103 +192,96 @@ define( function( require ) {
    */
   function CircuitTopSwitch( hingePoint, modelViewTransform, circuitSwitchConnections, circuitConnectionProperty ) {
 
-      // calculate the locations of the connection points for this circuit
-      var topPoint = hingePoint.toVector2().minusXY( 0, CLBConstants.SWITCH_WIRE_LENGTH );
-      var leftPoint = hingePoint.toVector2().minusXY(
-        CLBConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
-        CLBConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
-      );
-      var rightPoint = hingePoint.toVector2().minusXY(
-        -CLBConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
-        CLBConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
-      );
+    // calculate the locations of the connection points for this circuit
+    var topPoint = hingePoint.toVector2().minusXY( 0, CLBConstants.SWITCH_WIRE_LENGTH );
+    var leftPoint = hingePoint.toVector2().minusXY(
+      CLBConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
+      CLBConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
+    );
+    var rightPoint = hingePoint.toVector2().minusXY( -CLBConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
+      CLBConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
+    );
 
-      // collect location and connection type for each of the possible circuit switch connections
-      var connections = [];
-      circuitSwitchConnections.forEach( function( circuitSwitchConnection ) {
-        if( circuitSwitchConnection ===  CircuitConnectionEnum.OPEN_CIRCUIT ) {
-          connections.push( {
-            location: topPoint.toVector3(),
-            connectionType: circuitSwitchConnection
-          } );
-        }
-        else if( circuitSwitchConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
-          connections.push( {
-            location: leftPoint.toVector3(),
-            connectionType: circuitSwitchConnection
-          } );
-        }
-        else if( circuitSwitchConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-          connections.push( {
-            location: rightPoint.toVector3(),
-            connectionType: circuitSwitchConnection
-          } );
-        }
-        else{
-          assert && assert( 'attempting to create switch conection which is not supported' );
-        }
-      } );
+    // collect location and connection type for each of the possible circuit switch connections
+    var connections = [];
+    circuitSwitchConnections.forEach( function( circuitSwitchConnection ) {
+      if ( circuitSwitchConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        connections.push( {
+          location: topPoint.toVector3(),
+          connectionType: circuitSwitchConnection
+        } );
+      } else if ( circuitSwitchConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        connections.push( {
+          location: leftPoint.toVector3(),
+          connectionType: circuitSwitchConnection
+        } );
+      } else if ( circuitSwitchConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        connections.push( {
+          location: rightPoint.toVector3(),
+          connectionType: circuitSwitchConnection
+        } );
+      } else {
+        assert && assert( 'attempting to create switch conection which is not supported' );
+      }
+    } );
 
-      CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP );
-    }
+    CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP );
+  }
 
-    capacitorLabBasics.register( 'CircuitTopSwitch', CircuitTopSwitch );
+  capacitorLabBasics.register( 'CircuitTopSwitch', CircuitTopSwitch );
 
-    inherit( CircuitSwitch, CircuitTopSwitch );
+  inherit( CircuitSwitch, CircuitTopSwitch );
 
-    /**
-     * Constructor for a switch connected to the bottom of a capacitor.
-     * 
-     * @param {Vector3} hingePoint
-     * @param {CLModelViewTransform3} modelViewTransform
-     * @param {Property<string>} circuitConnectionProperty
-     * @constructor
-     */
-    function CircuitBottomSwitch( hingePoint, modelViewTransform, circuitSwitchConnections, circuitConnectionProperty ) {
+  /**
+   * Constructor for a switch connected to the bottom of a capacitor.
+   *
+   * @param {Vector3} hingePoint
+   * @param {CLModelViewTransform3} modelViewTransform
+   * @param {Property<string>} circuitConnectionProperty
+   * @constructor
+   */
+  function CircuitBottomSwitch( hingePoint, modelViewTransform, circuitSwitchConnections, circuitConnectionProperty ) {
 
-      // determine the locations of each connection point
-      var topPoint = hingePoint.toVector2().plusXY( 0, CLBConstants.SWITCH_WIRE_LENGTH );
-      var rightPoint = hingePoint.toVector2().plusXY(
-        CLBConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
-        CLBConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
-      );
-      var leftPoint = hingePoint.toVector2().plusXY(
-        -CLBConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
-        CLBConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
-      );
+    // determine the locations of each connection point
+    var topPoint = hingePoint.toVector2().plusXY( 0, CLBConstants.SWITCH_WIRE_LENGTH );
+    var rightPoint = hingePoint.toVector2().plusXY(
+      CLBConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
+      CLBConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
+    );
+    var leftPoint = hingePoint.toVector2().plusXY( -CLBConstants.SWITCH_WIRE_LENGTH * Math.sin( SWITCH_ANGLE ),
+      CLBConstants.SWITCH_WIRE_LENGTH * Math.cos( SWITCH_ANGLE )
+    );
 
-      // collect location and connection type for each of the possible circuit switch connections
-      var connections = [];
-      circuitSwitchConnections.forEach( function( circuitSwitchConnection ) {
-        if( circuitSwitchConnection ===  CircuitConnectionEnum.OPEN_CIRCUIT ) {
-          connections.push( {
-            location: topPoint.toVector3(),
-            connectionType: circuitSwitchConnection
-          } );
-        }
-        else if( circuitSwitchConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
-          connections.push( {
-            location: leftPoint.toVector3(),
-            connectionType: circuitSwitchConnection
-          } );
-        }
-        else if( circuitSwitchConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-          connections.push( {
-            location: rightPoint.toVector3(),
-            connectionType: circuitSwitchConnection
-          } );
-        }
-        else{
-          assert && assert( 'attempting to create switch conection which is not supported' );
-        }
-      } );
+    // collect location and connection type for each of the possible circuit switch connections
+    var connections = [];
+    circuitSwitchConnections.forEach( function( circuitSwitchConnection ) {
+      if ( circuitSwitchConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        connections.push( {
+          location: topPoint.toVector3(),
+          connectionType: circuitSwitchConnection
+        } );
+      } else if ( circuitSwitchConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        connections.push( {
+          location: leftPoint.toVector3(),
+          connectionType: circuitSwitchConnection
+        } );
+      } else if ( circuitSwitchConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        connections.push( {
+          location: rightPoint.toVector3(),
+          connectionType: circuitSwitchConnection
+        } );
+      } else {
+        assert && assert( 'attempting to create switch conection which is not supported' );
+      }
+    } );
 
-      CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM );
-    }
+    CircuitSwitch.call( this, hingePoint, connections, modelViewTransform, circuitConnectionProperty, CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM );
+  }
 
-    capacitorLabBasics.register( 'CircuitBottomSwitch', CircuitBottomSwitch );
+  capacitorLabBasics.register( 'CircuitBottomSwitch', CircuitBottomSwitch );
 
-    inherit( CircuitSwitch, CircuitBottomSwitch );
+  inherit( CircuitSwitch, CircuitBottomSwitch );
 
-    return CircuitSwitch;
+  return CircuitSwitch;
 } );
+
