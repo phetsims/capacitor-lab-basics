@@ -36,7 +36,9 @@ define( function( require ) {
   var PROBE_CONTROL_POINT_OFFSET = new Vector2( -80, 100 );
 
   // title display
-  var TITLE_FONT = new PhetFont( { size: 7 } );
+  var TITLE_FONT = new PhetFont( {
+    size: 7
+  } );
 
   var POSITIVE_WIRE_COLOR = PhetColorScheme.RED_COLORBLIND;
   var NEGATIVE_WIRE_COLOR = 'black';
@@ -61,10 +63,24 @@ define( function( require ) {
     this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty ); // @public
     this.positiveProbeNode = VoltmeterProbeNode.PositiveVoltmeterProbeNode( voltmeter, modelViewTransform );
     this.negativeProbeNode = VoltmeterProbeNode.NegativeVoltmeterProbeNode( voltmeter, modelViewTransform );
-    var positiveWireNode = new ProbeWireNode( this.bodyNode, this.positiveProbeNode, BODY_CONTROL_POINT_OFFSET, PROBE_CONTROL_POINT_OFFSET,
-      this.bodyNode.positiveConnectionOffset, this.positiveProbeNode.connectionOffset, POSITIVE_WIRE_COLOR );
-    var negativeWireNode = new ProbeWireNode( this.bodyNode, this.negativeProbeNode, BODY_CONTROL_POINT_OFFSET, PROBE_CONTROL_POINT_OFFSET,
-      this.bodyNode.negativeConnectionOffset, this.negativeProbeNode.connectionOffset, NEGATIVE_WIRE_COLOR );
+    var positiveWireNode = new ProbeWireNode( {
+      bodyNode: this.bodyNode,
+      probeNode: this.positiveProbeNode,
+      bodyControlPointOffset: BODY_CONTROL_POINT_OFFSET,
+      probeControlPointOffset: PROBE_CONTROL_POINT_OFFSET,
+      bodyConnectionOffset: this.bodyNode.positiveConnectionOffset,
+      probeConnectionOffset: this.positiveProbeNode.connectionOffset,
+      color: POSITIVE_WIRE_COLOR
+    } );
+    var negativeWireNode = new ProbeWireNode( {
+      bodyNode: this.bodyNode,
+      probeNode: this.negativeProbeNode,
+      bodyControlPointOffset: BODY_CONTROL_POINT_OFFSET,
+      probeControlPointOffset: PROBE_CONTROL_POINT_OFFSET,
+      bodyConnectionOffset: this.bodyNode.negativeConnectionOffset,
+      probeConnectionOffset: this.negativeProbeNode.connectionOffset,
+      color: NEGATIVE_WIRE_COLOR
+    } );
 
     // rendering order
     this.addChild( this.bodyNode );
@@ -103,8 +119,12 @@ define( function( require ) {
     Node.call( this );
 
     // body of the voltmeter icon
-    var voltmeterImageNode = new Image( voltmeterBodyImage, { scale: 0.17 } );
-    var labelText = new Text( voltageString, { font: TITLE_FONT } );
+    var voltmeterImageNode = new Image( voltmeterBodyImage, {
+      scale: 0.17
+    } );
+    var labelText = new Text( voltageString, {
+      font: TITLE_FONT
+    } );
     labelText.center = new Vector2( voltmeterImageNode.width / 2, voltmeterImageNode.height / 3 );
     var readoutRectangle = new Rectangle( 0, 0, voltmeterImageNode.width / 2, labelText.height + 8, 2, 2, {
       lineWidth: 0.75,
@@ -117,8 +137,12 @@ define( function( require ) {
     var negativeConnectionOffset = new Vector2( 4 * imageBounds.width / 7, imageBounds.maxY * 7 / 8 );
 
     // probes for the voltmeter icon, not rotated for perspective
-    var redProbeImage = new Image( redVoltmeterProbeImage, { scale: 0.10 } );
-    var blackProbeImage = new Image( blackVoltmeterProbeImage, { scale: 0.10 } );
+    var redProbeImage = new Image( redVoltmeterProbeImage, {
+      scale: 0.10
+    } );
+    var blackProbeImage = new Image( blackVoltmeterProbeImage, {
+      scale: 0.10
+    } );
 
     // layout - must be done before wire bezier calculations
     readoutRectangle.center = voltmeterImageNode.center;
@@ -173,3 +197,4 @@ define( function( require ) {
 
   return VoltmeterNode;
 } );
+

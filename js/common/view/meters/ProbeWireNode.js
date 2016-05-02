@@ -19,47 +19,39 @@ define( function( require ) {
 
   /**
    * Constructor.
-   *
-   * @param bodyNode
-   * @param probeNode
-   * @param bodyControlPointOffset  cubic control point for the end of the wire that connects to the body
-   * @param probeControlPointOffset cubic control point for the end of the wire that connects to the probe
-   * @param bodyConnectionOffset    wire connection point on the body, relative to the body's origin
-   * @param probeConnectionOffset   wire connection point on the probe, relative to the probe's origin
-   * @param color                   wire color
+   * @param {Object} [args]
    */
-  function ProbeWireNode( bodyNode, probeNode, bodyControlPointOffset, probeControlPointOffset, bodyConnectionOffset, probeConnectionOffset, color ) {
+  function ProbeWireNode( args ) {
 
     var thisNode = this;
 
     // @private
-    this.bodyNode = bodyNode;
-    this.probeNode = probeNode;
-    this.bodyControlPointOffset = bodyControlPointOffset;
-    this.probeControlPointOffset = probeControlPointOffset;
-    this.bodyConnectionOffset = bodyConnectionOffset;
-    this.probeConnectionOffset = probeConnectionOffset;
-
+    this.bodyNode = args.bodyNode;
+    this.probeNode = args.probeNode;
+    this.bodyControlPointOffset = args.bodyControlPointOffset;
+    this.probeControlPointOffset = args.probeControlPointOffset;
+    this.bodyConnectionOffset = args.bodyConnectionOffset;
+    this.probeConnectionOffset = args.probeConnectionOffset;
 
     // supertype constructor with lazily passed wire shape.
     Path.call( this, null, {
-      stroke: color,
+      stroke: args.color,
       lineWidth: 3
     } );
 
     // update wire when body or probe moves
-    probeNode.locationProperty.link( function( location ) {
+    args.probeNode.locationProperty.link( function( location ) {
       thisNode.update();
     } );
 
-    bodyNode.bodyLocationProperty.link( function( location ) {
+    args.bodyNode.bodyLocationProperty.link( function( location ) {
       thisNode.update();
     } );
 
   }
 
   capacitorLabBasics.register( 'ProbeWireNode', ProbeWireNode );
-  
+
   return inherit( Path, ProbeWireNode, {
 
     /**
