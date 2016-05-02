@@ -45,16 +45,17 @@ define( function( require ) {
    *
    * @param {Voltmeter} voltmeter - the voltmeter model
    * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {Tandem} tandem
    */
-  function VoltmeterNode( voltmeter, modelViewTransform, voltmeterVisibleProperty ) {
+  function VoltmeterNode( voltmeter, modelViewTransform, voltmeterVisibleProperty, tandem ) {
 
     Node.call( this );
     var thisNode = this;
 
     // construct all parts of the probe
     this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty ); // @public
-    this.positiveProbeNode = VoltmeterProbeNode.PositiveVoltmeterProbeNode( voltmeter, modelViewTransform );
-    this.negativeProbeNode = VoltmeterProbeNode.NegativeVoltmeterProbeNode( voltmeter, modelViewTransform );
+    this.positiveProbeNode = VoltmeterProbeNode.PositiveVoltmeterProbeNode( voltmeter, modelViewTransform, tandem );
+    this.negativeProbeNode = VoltmeterProbeNode.NegativeVoltmeterProbeNode( voltmeter, modelViewTransform, tandem );
 
     var positiveWireNode = new ProbeWireNode(this.bodyNode, this.positiveProbeNode, true);
     var negativeWireNode = new ProbeWireNode(this.bodyNode, this.negativeProbeNode, false);

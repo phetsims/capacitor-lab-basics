@@ -28,8 +28,9 @@ define( function( require ) {
    * @param {Property} locationProperty property to observer for the probe's location
    * @param {CLBModelViewTransform3D} modelViewTransform model-view transform
    * @param {Bounds2} dragBounds Node bounds in model coordinates
+   * @param {Tandem} tandem
    */
-  function VoltmeterProbeNode( image, locationProperty, modelViewTransform, dragBounds ) {
+  function VoltmeterProbeNode( image, locationProperty, modelViewTransform, dragBounds, tandem ) {
 
     Node.call( this );
     var thisNode = this;
@@ -97,16 +98,17 @@ define( function( require ) {
      * Constructor for a positive probe
      *
      * @param {Voltmeter} voltmeter
-     * @param {CLBModelViewTransform3D} modelViewTransform -
+     * @param {CLBModelViewTransform3D} modelViewTransform
+     * @param {Tandem} tandem
      */
-    PositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform ) {
+    PositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
       return new VoltmeterProbeNode( redVoltmeterProbeImage,
-        voltmeter.positiveProbeLocationProperty, modelViewTransform, voltmeter.dragBounds );
+        voltmeter.positiveProbeLocationProperty, modelViewTransform, voltmeter.dragBounds, tandem );
     },
 
-    NegativeVoltmeterProbeNode: function( voltmeter, modelViewTransform ) {
+    NegativeVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
       return new VoltmeterProbeNode( blackVoltmeterProbeImage,
-        voltmeter.negativeProbeLocationProperty, modelViewTransform, voltmeter.dragBounds );
+        voltmeter.negativeProbeLocationProperty, modelViewTransform, voltmeter.dragBounds, tandem );
     }
 
   } );
