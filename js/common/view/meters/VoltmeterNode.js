@@ -30,18 +30,10 @@ define( function( require ) {
   // strings
   var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
 
-  // constants
-  // wire is a cubic curve, these are the control point offsets
-  var BODY_CONTROL_POINT_OFFSET = new Vector2( 0, 100 );
-  var PROBE_CONTROL_POINT_OFFSET = new Vector2( -80, 100 );
-
   // title display
   var TITLE_FONT = new PhetFont( {
     size: 7
   } );
-
-  var POSITIVE_WIRE_COLOR = PhetColorScheme.RED_COLORBLIND;
-  var NEGATIVE_WIRE_COLOR = 'black';
 
   // images
   var voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
@@ -63,24 +55,9 @@ define( function( require ) {
     this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty ); // @public
     this.positiveProbeNode = VoltmeterProbeNode.PositiveVoltmeterProbeNode( voltmeter, modelViewTransform );
     this.negativeProbeNode = VoltmeterProbeNode.NegativeVoltmeterProbeNode( voltmeter, modelViewTransform );
-    var positiveWireNode = new ProbeWireNode( {
-      bodyNode: this.bodyNode,
-      probeNode: this.positiveProbeNode,
-      bodyControlPointOffset: BODY_CONTROL_POINT_OFFSET,
-      probeControlPointOffset: PROBE_CONTROL_POINT_OFFSET,
-      bodyConnectionOffset: this.bodyNode.positiveConnectionOffset,
-      probeConnectionOffset: this.positiveProbeNode.connectionOffset,
-      color: POSITIVE_WIRE_COLOR
-    } );
-    var negativeWireNode = new ProbeWireNode( {
-      bodyNode: this.bodyNode,
-      probeNode: this.negativeProbeNode,
-      bodyControlPointOffset: BODY_CONTROL_POINT_OFFSET,
-      probeControlPointOffset: PROBE_CONTROL_POINT_OFFSET,
-      bodyConnectionOffset: this.bodyNode.negativeConnectionOffset,
-      probeConnectionOffset: this.negativeProbeNode.connectionOffset,
-      color: NEGATIVE_WIRE_COLOR
-    } );
+
+    var positiveWireNode = new ProbeWireNode(this.bodyNode, this.positiveProbeNode, true);
+    var negativeWireNode = new ProbeWireNode(this.bodyNode, this.negativeProbeNode, false);
 
     // rendering order
     this.addChild( this.bodyNode );

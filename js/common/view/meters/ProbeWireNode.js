@@ -11,40 +11,51 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Path = require( 'SCENERY/nodes/Path' );
+  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var Shape = require( 'KITE/Shape' );
   var Vector2 = require( 'DOT/Vector2' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+
+  // constants
+  // wire is a cubic curve, these are the control point offsets
+  var BODY_CONTROL_POINT_OFFSET = new Vector2( 0, 100 );
+  var PROBE_CONTROL_POINT_OFFSET = new Vector2( -80, 100 );
+  var POSITIVE_WIRE_COLOR = PhetColorScheme.RED_COLORBLIND;
+  var NEGATIVE_WIRE_COLOR = 'black';
 
   /**
-   * Constructor.
-   * @param {Object} [args]
+   * @param {VoltmeterBodyNode} bodyNode
+   * @param {VoltmeterProbeNode} probeNode
+   * @constructor
    */
-  function ProbeWireNode( args ) {
+  function ProbeWireNode( bodyNode, probeNode, isPositive ) {
 
     var thisNode = this;
 
     // @private
-    this.bodyNode = args.bodyNode;
-    this.probeNode = args.probeNode;
-    this.bodyControlPointOffset = args.bodyControlPointOffset;
-    this.probeControlPointOffset = args.probeControlPointOffset;
-    this.bodyConnectionOffset = args.bodyConnectionOffset;
-    this.probeConnectionOffset = args.probeConnectionOffset;
+    this.bodyNode = bodyNode;
+    this.probeNode = probeNode;
+
+    this.bodyControlPointOffset = BODY_CONTROL_POINT_OFFSET;
+    this.probeControlPointOffset = PROBE_CONTROL_POINT_OFFSET;
+
+    this.bodyConnectionOffset = isPositive ? bodyNode.positiveConnectionOffset : bodyNode.negativeConnectionOffset;
+    this.probeConnectionOffset = probeNode.connectionOffset;
 
     // supertype constructor with lazily passed wire shape.
     Path.call( this, null, {
-      stroke: args.color,
+      stroke: isPositive ? POSITIVE_WIRE_COLOR : NEGATIVE_WIRE_COLOR,
       lineWidth: 3
     } );
 
     // update wire when body or probe moves
-    args.probeNode.locationProperty.link( function( location ) {
+    probeNode.locationProperty.link( function( location ) {
       thisNode.update();
     } );
 
-    args.bodyNode.bodyLocationProperty.link( function( location ) {
+    bodyNode.bodyLocationProperty.link( function( location ) {
       thisNode.update();
     } );
 
