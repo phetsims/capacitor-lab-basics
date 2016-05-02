@@ -60,11 +60,10 @@ define( function( require ) {
      * @param {number} theta - rotation of modelViewTransform for 3D perspective
      * @returns {shape}
      */
-    // Gets the shape of a probe tip relative to some specified origin.
     getProbeTipShape: function( origin, theta ) {
       var width = this.voltmeter.getProbeTipSizeReference().width;
       var height = this.voltmeter.getProbeTipSizeReference().height;
-      var x = origin.x + width / 2; // TODO: adding the width justifies the shape.  Probably some white space in the images.
+      var x = origin.x;
       var y = origin.y;
       var r = Shape.rectangle( x, y, width, height );
       var t = Matrix3.rotationAround( theta, origin.x, origin.y );
