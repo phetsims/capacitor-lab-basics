@@ -35,7 +35,8 @@ define( function( require ) {
 
     this.modelViewTransform = modelViewTransform; // @ public (read-only)
 
-    // configuration info for the circuit
+    // Configuration info for the circuit.
+    // Default number of capacitors (lightbulbs) is 1 (0).
     var circuitConfig = new CircuitConfig( {
       circuitConnections: [ CircuitConnectionEnum.BATTERY_CONNECTED, CircuitConnectionEnum.OPEN_CIRCUIT ]
     } );

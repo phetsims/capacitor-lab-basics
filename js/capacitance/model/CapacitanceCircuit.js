@@ -33,7 +33,12 @@ define( function( require ) {
    */
   function CapacitanceCircuit( config, tandem ) {
 
-    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */, 0 /* numberOfLightBulbs */, tandem, {} );
+    assert && assert( config.numberOfCapacitors === 1,
+      'LightBulbCircuit should have 1 Capacitor in CL:B. config.numberOfCapacitors: ' + config.numberOfCapacitors );
+    assert && assert( config.numberOfLightBulbs === 0,
+      'LightBulbCircuit should have 0 LightBulbs in CL:B. config.numberOfLightBulbs: ' + config.numberOfLightBulbs );
+
+    ParallelCircuit.call( this, config, tandem, {} );
 
     this.capacitor = this.capacitors[ 0 ]; // @public
   }

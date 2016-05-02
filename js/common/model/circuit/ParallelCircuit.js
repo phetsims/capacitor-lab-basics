@@ -37,14 +37,12 @@ define( function( require ) {
    * Constructor for a Parallel Circuit.
    *
    * @param {CircuitConfig} config
-   * @param {number} numberOfCapacitors
-   * @param {number} numberOfLightBulbs
-   * @param {Object} options
    * @param {Tandem} tandem
+   * @param {Object} options
+   * @constructor
    */
-  function ParallelCircuit( config, numberOfCapacitors, numberOfLightBulbs, tandem, options ) {
-    AbstractCircuit.call( this, config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires,
-      tandem );
+  function ParallelCircuit( config, tandem, options ) {
+    AbstractCircuit.call( this, config, createCircuitComponents, createWires, tandem );
   }
 
   capacitorLabBasics.register( 'ParallelCircuit', ParallelCircuit );
@@ -246,13 +244,10 @@ define( function( require ) {
    * function to change.
    *
    * @param {CircuitConfig} config - object defining the circuit
-   * @param {number} numberOfCapacitors
-   * @param {number} numberOfLightBulbs
    * @param {Tandem} tandem
    * @returns {Array} circuitComponents
    */
-  var createCircuitComponents = function( config, numberOfCapacitors, numberOfLightBulbs, circuitConnectionProperty,
-    tandem ) {
+  var createCircuitComponents = function( config, circuitConnectionProperty, tandem ) {
 
     var x = config.batteryLocation.x + config.capacitorXSpacing;
     var y = config.batteryLocation.y + config.capacitorYSpacing;
@@ -262,7 +257,7 @@ define( function( require ) {
 
     // create the capacitors
     var location;
-    for ( var i = 0; i < numberOfCapacitors; i++ ) {
+    for ( var i = 0; i < config.numberOfCapacitors; i++ ) {
       location = new Vector3( x, y, z );
       var capacitor = new SwitchedCapacitor( location, config, config.circuitConnections, circuitConnectionProperty,
         tandem, {
@@ -277,7 +272,7 @@ define( function( require ) {
     }
 
     // create the light bulbs
-    for ( i = 0; i < numberOfLightBulbs; i++ ) {
+    for ( i = 0; i < config.numberOfLightBulbs; i++ ) {
       location = new Vector3( x, y, z );
       var lightBulb = new LightBulb( location, config.lightBulbResistance );
       circuitComponents.push( lightBulb );
@@ -291,12 +286,12 @@ define( function( require ) {
    * Function that creates all wires of the circuit.  Function assumes that capacitors are to the left of the
    * lightbulb.
    *
-   * @param config
-   * @param battery
-   * @param lightBulb
-   * @param capacitor
-   * @param circuitSwitches
-   * @param circuitConnectionProperty
+   * @param {CircuitConfig} config
+   * @param {Battery} battery
+   * @param {Array<LightBulb>} lightBulb
+   * @param {Array<Capacitor>} capacitor
+   * @param {Array<CircuitSwitch>} circuitSwitches
+   * @param {Property.<Enum>} circuitConnectionProperty
    * @returns {Array}
    */
   var createWires = function( config, battery, lightBulbs, capacitors, circuitSwitches, circuitConnectionProperty ) {

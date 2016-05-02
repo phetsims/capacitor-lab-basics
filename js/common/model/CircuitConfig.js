@@ -19,7 +19,7 @@ define( function( require ) {
   var Vector3 = require( 'DOT/Vector3' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
-  // Constants
+  // Constants with default assignments
   var BATTERY_LOCATION = new Vector3( 0.0065, 0.030, 0 ); // meters
   var CAPACITOR_X_SPACING = 0.024; // meters
   var CAPACITOR_Y_SPACING = 0; // meters
@@ -30,6 +30,8 @@ define( function( require ) {
   var WIRE_THICKNESS = CLBConstants.WIRE_THICKNESS;
   var DIELECTRIC_OFFSET = 0.02; // meters
   var LIGHT_BULB_RESISTANCE = 5e12; // Ohms. Artificially large to stretch discharge time
+  var NUMBER_OF_CAPACITORS = 1;
+  var NUMBER_OF_LIGHTBULBS = 0;
 
   // constructor
   function CircuitConfig( options ) {
@@ -47,11 +49,13 @@ define( function( require ) {
       dielectricMaterial: DielectricMaterial.Air(),
       dielectricOffset: DIELECTRIC_OFFSET,
       lightBulbResistance: LIGHT_BULB_RESISTANCE,
-      circuitConnections: [ 
+      circuitConnections: [
         CircuitConnectionEnum.BATTERY_CONNECTED,
         CircuitConnectionEnum.OPEN_CIRCUIT,
         CircuitConnectionEnum.LIGHT_BULB_CONNECTED
-      ]
+      ],
+      numberOfCapacitors: NUMBER_OF_CAPACITORS,
+      numberOfLightBulbs: NUMBER_OF_LIGHTBULBS
     }, options );
 
     // @public
@@ -68,7 +72,8 @@ define( function( require ) {
     this.dielectricOffset = options.dielectricOffset;
     this.lightBulbResistance = options.lightBulbResistance;
     this.circuitConnections = options.circuitConnections;
-
+    this.numberOfCapacitors = options.numberOfCapacitors;
+    this.numberOfLightBulbs = options.numberOfLightBulbs;
   }
 
   capacitorLabBasics.register( 'CircuitConfig', CircuitConfig );

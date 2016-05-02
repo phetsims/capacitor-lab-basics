@@ -55,7 +55,9 @@ define( function( require ) {
       plateWidth: PLATE_WIDTH,
       plateSeparation: PLATE_SEPARATION,
       wireExtent: WIRE_EXTENT,
-      wireThickness: WIRE_THICKNESS
+      wireThickness: WIRE_THICKNESS,
+      numberOfCapacitors: 1,
+      numberOfLightBulbs: 1
     } );
 
     this.dielectricMaterial = DielectricMaterial.Air(); // @public (read-only)
@@ -129,7 +131,9 @@ define( function( require ) {
         wireThickness: CLBConstants.WIRE_THICKNESS,
         wireExtent: WIRE_EXTENT,
         dielectricMaterial: DielectricMaterial.CustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.min ),
-        dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min
+        dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min,
+        numberOfCapacitors: 1,
+        numberOfLightBulbs: 1
       } );
 
       var circuit = new LightBulbCircuit( circuitConfig );

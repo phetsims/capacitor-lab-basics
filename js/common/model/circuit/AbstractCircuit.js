@@ -21,14 +21,12 @@ define( function( require ) {
    * Constructor for the AbstractCircuit.
    *
    * @param {CircuitConfig} config circuit configuration values
-   * @param {number} numberOfCapacitors number of capacitors in the circuit
-   * @param {number} numberOfLightBulbs number of lightBulbs in the circuit
    * @param {function} createCircuitComponents   function for creating cirucit components
    * @param {function} createWires function for creating wires
    * @param {function} createCircuitSwitches function for creating wires
    * @param {Tandem} tandem
    */
-  function AbstractCircuit( config, numberOfCapacitors, numberOfLightBulbs, createCircuitComponents, createWires, tandem ) {
+  function AbstractCircuit( config, createCircuitComponents, createWires, tandem ) {
 
     PropertySet.call( this, {
       currentAmplitude: 0,
@@ -39,16 +37,18 @@ define( function( require ) {
 
     this.previousTotalCharge = -1; // no value, @private
 
+    this.config = config;
+
     // create basic circuit components
     // @public
     this.battery = new Battery( config.batteryLocation, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform, tandem );
-    this.circuitComponents = createCircuitComponents( config, numberOfCapacitors, numberOfLightBulbs, this.circuitConnectionProperty );
+    this.circuitComponents = createCircuitComponents( config, this.circuitConnectionProperty );
 
     // capture the circuit components into individual arrays.  Note that using slice assumes order of capacitors and
     // then lightbulbs. If new order is important, new method is necessary.
     // @public
-    this.capacitors = this.circuitComponents.slice( 0, numberOfCapacitors );
-    this.lightBulbs = this.circuitComponents.slice( numberOfCapacitors, numberOfLightBulbs + 1 );
+    this.capacitors = this.circuitComponents.slice( 0, config.numberOfCapacitors );
+    this.lightBulbs = this.circuitComponents.slice( config.numberOfCapacitors, config.numberOfLightBulbs + 1 );
     this.circuitSwitches = [];
     this.capacitors.forEach( function( capacitor ) {
       thisCircuit.circuitSwitches.push( capacitor.topCircuitSwitch );
@@ -437,3 +437,4 @@ define( function( require ) {
     }
   } );
 } );
+

@@ -43,7 +43,12 @@ define( function( require ) {
    */
   function LightBulbCircuit( config ) {
 
-    ParallelCircuit.call( this, config, 1 /* numberOfCapacitors */ , 1 /* numberOfLightBulbs */ );
+    assert && assert( config.numberOfCapacitors === 1,
+      'LightBulbCircuit should have 1 Capacitor in CL:B. config.numberOfCapacitors: ' + config.numberOfCapacitors );
+    assert && assert( config.numberOfLightBulbs === 1,
+      'LightBulbCircuit should have 1 LightBulb in CL:B. config.numberOfLightBulbs: ' + config.numberOfLightBulbs );
+
+    ParallelCircuit.call( this, config );
     var thisCircuit = this;
 
     // @public
@@ -103,12 +108,10 @@ define( function( require ) {
         if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           // if the battery is connected, the voltage is equal to the battery voltage
           this.capacitor.platesVoltage = this.battery.voltage;
-        }
-        else if( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ){
+        } else if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
           // otherwise, the voltage can be found by V=Q/C
           this.capacitor.platesVoltage = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance();
-        }
-        else if( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        } else if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
           // the capacitor is discharging, but plate geometry is changing at the same time so we need
           // to update the parameters of the transient discharge equation parameters
           this.capacitor.updateDischargeParameters();
@@ -229,16 +232,15 @@ define( function( require ) {
     /**
      * Update the current amplitude depending on the circuit connection.  If the capacitor is connected to the light
      * bulb, find the current by I = V / R.  Otherwise, current is found by dQ/dT.
-     * 
+     *
      * @param  {number} dt
      */
     updateCurrentAmplitude: function( dt ) {
 
       // if the circuit is connected to the light bulb, I = V / R
-      if( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
         this.currentAmplitudeProperty.set( this.capacitor.platesVoltage / this.lightBulb.resistance );
-      }
-      else{ 
+      } else {
         // otherise, I = dQ/dT
         ParallelCircuit.prototype.updateCurrentAmplitude.call( this, dt );
       }

@@ -35,8 +35,18 @@ define( function( require ) {
    * @param {number} maxEffectiveEField
    * @constructor
    */
-  function CLBCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-    currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem ) {
+  // function CLBCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
+  //   currentIndicatorsVisibleProperty, maxPlateCharge, maxEffectiveEField, tandem ) {
+
+  function CLBCircuitNode(
+    circuit,
+    modelViewTransform,
+    plateChargeVisibleProperty,
+    eFieldVisibleProperty,
+    currentIndicatorsVisibleProperty,
+    maxPlateCharge,
+    maxEffectiveEField,
+    tandem ) {
 
     Node.call( this );
     var thisNode = this;
