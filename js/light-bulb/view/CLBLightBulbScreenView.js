@@ -41,8 +41,7 @@ define( function( require ) {
     this.model = model; // @private
 
     // Circuit
-    var lightBulbCircuitNode = new LightBulbCircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisibleProperty,
-      model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, tandem );
+    var lightBulbCircuitNode = new LightBulbCircuitNode( model, tandem );
 
     // meters
     var barMeterPanel = new BarMeterPanel( model, lightBulbCircuitNode.topWireNode.width );

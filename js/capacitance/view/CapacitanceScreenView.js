@@ -40,8 +40,7 @@ define( function( require ) {
     this.model = model;
 
     // circuit
-    var capacitanceCircuitNode = new CapacitanceCircuitNode( model.circuit, this.modelViewTransform, model.plateChargesVisibleProperty,
-      model.eFieldVisibleProperty, model.currentIndicatorsVisibleProperty, tandem );
+    var capacitanceCircuitNode = new CapacitanceCircuitNode( model, tandem );
 
     // meters
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty );

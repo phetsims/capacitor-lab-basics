@@ -21,24 +21,20 @@ define( function( require ) {
   /**
    * Constructor for a CircuitNode.
    *
-   * @param {LightBulbCircuit} circuit
-   * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Property} plateChargeVisibleProperty
-   * @param {Property} eFieldVisibleProperty
-   * @param {Property.<boolean>} currentIndicatorsVisibleProperty
+   * @param {CLBLightBulbModel} model
    * @param {Tandem} tandem
    * @constructor
    */
-  function LightBulbCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                                 currentIndicatorsVisibleProperty, tandem ) {
+  function LightBulbCircuitNode( model, tandem ) {
 
-    CLBCircuitNode.call( this, circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                         currentIndicatorsVisibleProperty, tandem );
+    CLBCircuitNode.call( this, model, tandem );
 
     var thisNode = this;
 
+    var circuit = model.circuit;
+
     // circuit components
-    var lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.platesVoltageProperty, circuit.circuitConnectionProperty, modelViewTransform );
+    var lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.platesVoltageProperty, circuit.circuitConnectionProperty, model.modelViewTransform );
 
     // @private current indicators
     this.bulbTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, 0 );
@@ -54,7 +50,8 @@ define( function( require ) {
     var y = 0;
 
     // LightBulb - translate so that center is the center of the base.
-    lightBulbNode.center = modelViewTransform.modelToViewPosition( circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
+    lightBulbNode.center = model.modelViewTransform.modelToViewPosition(
+      circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
 
     // top right current indicator
     x = this.circuitSwitchNodes[ 0 ].right + ( lightBulbNode.left - this.circuitSwitchNodes[ 0 ].right ) / 2;
@@ -67,10 +64,10 @@ define( function( require ) {
 
     // current indicator observers, no need for disposal since they persist for the lifetime of the sim
     circuit.circuitConnectionProperty.link( function( circuitConnection ) {
-      thisNode.updateCurrentVisibility( circuitConnection, currentIndicatorsVisibleProperty.value );
+      thisNode.updateCurrentVisibility( circuitConnection, model.currentIndicatorsVisibleProperty.value );
     } );
 
-    currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
+    model.currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
       thisNode.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
 
@@ -99,3 +96,4 @@ define( function( require ) {
   } );
 
 } );
+

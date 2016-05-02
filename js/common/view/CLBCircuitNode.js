@@ -26,32 +26,22 @@ define( function( require ) {
   /**
    * Constructor for a CLBCircuitNode.
    *
-   * @param {CapacitanceCircuit} circuit
-   * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Property} plateChargeVisibleProperty
-   * @param {Property} eFieldVisibleProperty
-   * @param {Property.<boolean>} currentIndicatorsVisibleProeprty
+   * @param {CLBModel} model
+   * @param {Tandem} tandem
    * @constructor
    */
 
-  function CLBCircuitNode(
-    circuit,
-    modelViewTransform,
-    plateChargeVisibleProperty,
-    eFieldVisibleProperty,
-    currentIndicatorsVisibleProperty,
-    tandem ) {
+  function CLBCircuitNode( model, tandem ) {
 
     Node.call( this );
     var thisNode = this;
 
-    this.circuit = circuit; // @public
+    this.circuit = model.circuit; // @public
 
     // circuit components
-    this.batteryNode = new BatteryNode( circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE, tandem );
-
-    var capacitorNode = new CapacitorNode( circuit.capacitor, modelViewTransform, plateChargeVisibleProperty,
-      eFieldVisibleProperty, circuit.maxPlateCharge, circuit.maxEffectiveEField );
+    this.batteryNode = new BatteryNode( this.circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE, tandem );
+    var capacitorNode = new CapacitorNode( this.circuit.capacitor, model.modelViewTransform, model.plateChargesVisibleProperty,
+      model.eFieldVisibleProperty, this.circuit.maxPlateCharge, this.circuit.maxEffectiveEField );
 
     this.topWireNode = new Node();
     this.bottomWireNode = new Node();
@@ -64,19 +54,19 @@ define( function( require ) {
 
     // switches
     this.circuitSwitchNodes = [];
-    circuit.circuitSwitches.forEach( function( circuitSwitch ) {
-      thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, modelViewTransform ) );
+    this.circuit.circuitSwitches.forEach( function( circuitSwitch ) {
+      thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, model.modelViewTransform ) );
     } );
 
     // drag handles
-    var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( circuit.capacitor, modelViewTransform,
+    var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( this.circuit.capacitor, model.modelViewTransform,
       CLBConstants.PLATE_SEPARATION_RANGE, tandem.createTandem( 'plateSeparationDragHandleNode' ) );
-    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( circuit.capacitor, modelViewTransform,
+    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( this.circuit.capacitor, model.modelViewTransform,
       CLBConstants.PLATE_WIDTH_RANGE, tandem.createTandem( 'plateAreaDragHandleNode' ) );
 
     // current indicators
-    this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, 0 );
-    this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, Math.PI );
+    this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( this.circuit.currentAmplitudeProperty, 0 );
+    this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode( this.circuit.currentAmplitudeProperty, Math.PI );
 
     // rendering order
     this.addChild( this.bottomWireNode );
@@ -96,10 +86,10 @@ define( function( require ) {
     var y = 0;
 
     // battery
-    this.batteryNode.center = modelViewTransform.modelToViewPosition( circuit.battery.location );
+    this.batteryNode.center = model.modelViewTransform.modelToViewPosition( this.circuit.battery.location );
 
     // capacitor
-    capacitorNode.center = modelViewTransform.modelToViewPosition( circuit.capacitor.location );
+    capacitorNode.center = model.modelViewTransform.modelToViewPosition( this.circuit.capacitor.location );
 
     // top current indicator
     x = this.batteryNode.right + ( this.circuitSwitchNodes[ 0 ].left - this.batteryNode.right ) / 2;
@@ -116,7 +106,7 @@ define( function( require ) {
     this.bottomWireNode.translation = new Vector2( 0, 0 );
 
     // observer for visibility of the current indicators
-    currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
+    model.currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
       thisNode.batteryTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
       thisNode.batteryBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
     } );

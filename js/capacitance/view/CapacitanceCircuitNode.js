@@ -19,28 +19,22 @@ define( function( require ) {
   /**
    * Constructor for a CircuitNode.
    *
-   * @param {CapacitanceCircuit} circuit
-   * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Property} plateChargeVisibleProperty
-   * @param {Property} eFieldVisibleProperty
-   * @param {Property.<boolean>} currentIndicatorsVisibleProeprty
+   * @param {CapacitanceModel} model
    * @param {Tandem} tandem
    * @constructor
    */
-  function CapacitanceCircuitNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                                   currentIndicatorsVisibleProperty, tandem ) {
-    // this circuit
-    CLBCircuitNode.call( this, circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-      currentIndicatorsVisibleProperty, tandem );
+  function CapacitanceCircuitNode( model, tandem ) {
+
+    CLBCircuitNode.call( this, model, tandem );
     var thisNode = this;
 
     // current indicator observers
-    circuit.circuitConnectionProperty.link( function( circuitConnection ) {
-      thisNode.updateCurrentVisibility( circuitConnection, currentIndicatorsVisibleProperty.value );
+    model.circuit.circuitConnectionProperty.link( function( circuitConnection ) {
+      thisNode.updateCurrentVisibility( circuitConnection, model.currentIndicatorsVisibleProperty.value );
     } );
 
-    currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
-      thisNode.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
+    model.currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
+      thisNode.updateCurrentVisibility( model.circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
   }
 
@@ -64,3 +58,4 @@ define( function( require ) {
 
   } );
 } );
+
