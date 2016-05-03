@@ -70,10 +70,7 @@ define( function( require ) {
    *
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {string} polarity
-   * @param {number} maxPlateCharge
-   * @param {number} opacity
-   * @param {Bounds2} canvasBounds
+   * @param {Object} options
    * @constructor
    */
   function PlateChargeNode( capacitor, modelViewTransform, options ) {
