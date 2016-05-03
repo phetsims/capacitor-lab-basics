@@ -18,7 +18,7 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
-  function DielectricMaterial( name, dielectricConstant, color ) {
+  function DielectricMaterial( name, dielectricConstant, color, tandem ) {
 
     // @public (read-only)
     this.name = name;
@@ -28,11 +28,15 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'DielectricMaterial', DielectricMaterial );
-  
+
   return inherit( Object, DielectricMaterial, {}, {
 
-    Air: function() { return new DielectricMaterial( 'air', CLBConstants.EPSILON_AIR, CLBConstants.AIR_COLOR ); },
-    CustomDielectricMaterial: function( dielectricConstant ) { return new DielectricMaterial( 'Custom', dielectricConstant, CLBConstants.CUSTOM_DIELECTRIC_COLOR ); }
+    Air: new DielectricMaterial( 'air', CLBConstants.EPSILON_AIR, CLBConstants.AIR_COLOR ),
+
+    CustomDielectricMaterial: function( dielectricConstant ) {
+      return new DielectricMaterial( 'Custom', dielectricConstant, CLBConstants.CUSTOM_DIELECTRIC_COLOR );
+    }
 
   } );
 } );
+

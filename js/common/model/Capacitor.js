@@ -44,7 +44,7 @@ define( function( require ) {
     options = _.extend( {
       plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
       plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.max,
-      dielectricMaterial: DielectricMaterial.Air(),
+      dielectricMaterial: DielectricMaterial.Air,
       dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.max
     }, options );
 

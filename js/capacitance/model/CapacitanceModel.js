@@ -41,7 +41,7 @@ define( function( require ) {
       circuitConnections: [ CircuitConnectionEnum.BATTERY_CONNECTED, CircuitConnectionEnum.OPEN_CIRCUIT ]
     } );
 
-    this.dielectricMaterial = DielectricMaterial.Air(); // @public (read-only)
+    this.dielectricMaterial = DielectricMaterial.Air; // @public (read-only)
 
     this.circuit = new CapacitanceCircuit( circuitConfig, tandem ); // @public
     this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
