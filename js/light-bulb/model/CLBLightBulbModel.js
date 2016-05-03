@@ -69,7 +69,7 @@ define( function( require ) {
     this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty );
     this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.plateChargeMeterVisibleProperty );
     this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.storedEnergyMeterVisibleProperty );
-    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform );
+    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
 
     this.circuit.maxPlateCharge = this.getMaxPlateCharge();
     this.circuit.maxEffectiveEField = this.getMaxEffectiveEField();

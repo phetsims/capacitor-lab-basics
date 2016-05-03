@@ -30,9 +30,10 @@ define( function( require ) {
    * @param {AbstractCircuit} circuit
    * @param {Bounds2} dragBounds
    * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {Tandem} tandem
    * @constructor
    */
-  function Voltmeter( circuit, dragBounds, modelViewTransform ) {
+  function Voltmeter( circuit, dragBounds, modelViewTransform, tandem ) {
 
     // @public
     PropertySet.call( this, {
@@ -41,7 +42,16 @@ define( function( require ) {
       bodyLocation: BODY_LOCATION,
       positiveProbeLocation: POSITIVE_PROBE_LOCATION,
       negativeProbeLocation: NEGATIVE_PROBE_LOCATION,
-      value: 0 // Wil be properly initialized by updateValue
+      value: null // This is a number. Will be properly initialized by updateValue
+    }, {
+      tandemSet: {
+        visible: tandem.createTandem( 'visibleProperty' ),
+        inUserControl: tandem.createTandem( 'inUserControlProperty' ),
+        bodyLocation: tandem.createTandem( 'bodyLocationProperty' ),
+        positiveProbeLocation: tandem.createTandem( 'positiveProbeLocationProperty' ),
+        negativeProbeLocation: tandem.createTandem( 'negativeProbeLocationProperty' ),
+        value: tandem.createTandem( 'valueProperty' )
+      }
     } );
     var thisMeter = this;
 
