@@ -40,7 +40,7 @@ define( function( require ) {
    * @param {Tandem} tandem
    * @constructor
    */
-  function CLBViewControl( model, tandem ) {
+  function CLBViewControlPanel( model, tandem ) {
     var viewAssets = [
       {
         string: plateChargesString,
@@ -115,7 +115,7 @@ define( function( require ) {
     } );
   }
 
-  capacitorLabBasics.register( 'CLBViewControl', CLBViewControl );
+  capacitorLabBasics.register( 'CLBViewControlPanel', CLBViewControlPanel );
 
-  return inherit( Panel, CLBViewControl );
+  return inherit( Panel, CLBViewControlPanel );
 } );
