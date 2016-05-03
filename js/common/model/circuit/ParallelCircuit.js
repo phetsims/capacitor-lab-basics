@@ -41,7 +41,9 @@ define( function( require ) {
    * @param {Object} options
    * @constructor
    */
-  function ParallelCircuit( config, tandem, options ) {
+  function ParallelCircuit( config, tandem, options
+
+ ) {
     AbstractCircuit.call( this, config, createCircuitComponents, createWires, tandem );
   }
 
@@ -70,19 +72,32 @@ define( function( require ) {
      */
     getVoltageAt: function( shape ) {
       var voltage = Number.NaN;
+
+      // Closed circuit
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
         if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
         } else if ( this.connectedToBatteryBottom( shape ) ) {
           voltage = 0;
         }
-      } else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        return voltage;
+      }
+
+      // Open Circuit
+      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
           voltage = this.getCapacitorPlateVoltage();
         } else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
           voltage = 0;
+        } else if ( this.connectedToBatteryTop( shape ) ) {
+          voltage = this.getTotalVoltage();
+        } else if ( this.connectedToBatteryBottom( shape ) ) {
+          voltage = 0;
         }
+        return voltage;
       }
+
+      // Fall through to initialized value
       return voltage;
     },
 
