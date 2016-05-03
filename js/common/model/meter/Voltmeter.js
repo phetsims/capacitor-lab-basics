@@ -95,6 +95,9 @@ define( function( require ) {
     // update the value when the circuit connection property changes
     circuit.circuitConnectionProperty.link( updateValue );
 
+    // Update when battery voltage changes
+    circuit.battery.voltageProperty.link( updateValue );
+
   }
 
   capacitorLabBasics.register( 'Voltmeter', Voltmeter );
