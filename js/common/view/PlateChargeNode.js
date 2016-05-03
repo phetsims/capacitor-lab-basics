@@ -35,8 +35,6 @@ define( function( require ) {
    * Draw a positive charge with canvas.  'Plus' sign is painted with two
    * overlapping rectangles around a center location.
    *
-   * TODO: THIS COULD BE COLLAPSED WITH addNegativeCharge INTO A SINGLE FUNCTION.  COULD BE A CLEANER SOLUTION.
-   *
    * @param {Vector2} location - center location of the charge in view space
    * @param {CanvasRenderingContext2D} context - context for the canvas methods
    */
