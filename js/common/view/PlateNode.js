@@ -15,7 +15,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Color = require( 'SCENERY/util/Color' );
   var BoxNode = require( 'CAPACITOR_LAB_BASICS/common/view/BoxNode' );
-  var PlateChargeNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateChargeNode' );
+  var AirPlateChargeNode = require( 'CAPACITOR_LAB_BASICS/common/view/AirPlateChargeNode' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Bounds3 = require( 'DOT/Bounds3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -34,7 +34,7 @@ define( function( require ) {
     var canvasBounds = this.getMaxBoxNodeBounds();
 
     // @private
-    this.airPlateChargeNode = PlateChargeNode.AirPlateChargeNode( capacitor, modelViewTransform, {
+    this.airPlateChargeNode = new AirPlateChargeNode( capacitor, modelViewTransform, {
       polarity: polarity,
       maxPlateCharge: maxPlateCharge,
       canvasBounds: canvasBounds

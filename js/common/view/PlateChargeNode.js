@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Base class for representation of plate charge.  Plate charge is represented
@@ -80,7 +80,7 @@ define( function( require ) {
       canvasBounds: null // Bounds2
     };
 
-    options = _.extend({}, defaultOptions, options);
+    options = _.extend( {}, defaultOptions, options );
 
     CanvasNode.call( this, {
       canvasBounds: options.canvasBounds
@@ -107,7 +107,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'PlateChargeNode', PlateChargeNode );
 
-  inherit( CanvasNode, PlateChargeNode, {
+  return inherit( CanvasNode, PlateChargeNode, {
 
     /**
      * Charge on the portion of the plate that this node handles.
@@ -222,56 +222,7 @@ define( function( require ) {
       }
       return numberOfCharges;
     }
-  }, {
 
-    /**
-     * Factory function for an AirPlateChargeNode.
-     */
-    AirPlateChargeNode: function( capacitor, modelViewTransform, options ) {
-      return new AirPlateChargeNode( capacitor, modelViewTransform, options );
-    }
   } );
-
-  /**
-   * Portion of the plate charge due to the air.
-   * Charges appear on the portion of the plate that is in contact with air (not in contact with the dielectric.)
-   *
-   * @param {Capacitor} capacitor
-   * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Object} options See options for PlateChargeNode
-   * @constructor
-   */
-  function AirPlateChargeNode( capacitor, modelViewTransform, options ) {
-    PlateChargeNode.call( this, capacitor, modelViewTransform, options );
-  }
-
-  capacitorLabBasics.register( 'AirPlateChargeNode', AirPlateChargeNode );
-
-  inherit( PlateChargeNode, AirPlateChargeNode, {
-
-    // Gets the portion of the plate charge due to air.
-    getPlateCharge: function() {
-      return this.capacitor.getTotalPlateCharge();
-    },
-
-    // Gets the x offset (relative to the plate origin) of the portion of the plate that is in contact with air.
-    getContactXOrigin: function() {
-      return -this.capacitor.plateSize.width / 2;
-    },
-
-    /**
-     * Gets the width of the portion of the plate that is in contact with air.
-     * NOTE: This should always return the width of the capacitor plates since dielectrics have not been introduced
-     * yet.
-     *
-     * @returns {number}
-     */
-    getContactWidth: function() {
-      return this.capacitor.plateSize.width;
-    }
-  } );
-
-  return PlateChargeNode;
-
 } );
 
