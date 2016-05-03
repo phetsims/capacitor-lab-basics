@@ -38,12 +38,9 @@ define( function( require ) {
    *
    * @param {CircuitConfig} config
    * @param {Tandem} tandem
-   * @param {Object} options
    * @constructor
    */
-  function ParallelCircuit( config, tandem, options
-
- ) {
+  function ParallelCircuit( config, tandem) {
     AbstractCircuit.call( this, config, createCircuitComponents, createWires, tandem );
   }
 

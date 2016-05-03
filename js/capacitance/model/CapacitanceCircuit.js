@@ -38,7 +38,7 @@ define( function( require ) {
     assert && assert( config.numberOfLightBulbs === 0,
       'LightBulbCircuit should have 0 LightBulbs in CL:B. config.numberOfLightBulbs: ' + config.numberOfLightBulbs );
 
-    ParallelCircuit.call( this, config, tandem, {} );
+    ParallelCircuit.call( this, config, tandem);
 
     this.capacitor = this.capacitors[ 0 ]; // @public
   }
