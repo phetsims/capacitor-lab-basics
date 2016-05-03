@@ -49,7 +49,7 @@ define( function( require ) {
     this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty );
 
     // @public
-    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, {} );
+    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform );
 
     this.circuit.maxPlateCharge = this.getMaxPlateCharge();
     this.circuit.maxEffectiveEField = this.getMaxEffectiveEField();

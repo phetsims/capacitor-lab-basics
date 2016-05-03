@@ -20,6 +20,9 @@ define( function( require ) {
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
   var PROBE_TIP_SIZE = new Dimension2( 0.001, 0.0018 ); // meters
+  var BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
+  var POSITIVE_PROBE_LOCATION = new Vector3( 0.0669, 0.0298, 0 );
+  var NEGATIVE_PROBE_LOCATION = new Vector3( 0.0707, 0.0329, 0 );
 
   /**
    * Constructor for a Voltmeter.
@@ -27,30 +30,17 @@ define( function( require ) {
    * @param {AbstractCircuit} circuit
    * @param {Bounds2} dragBounds
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Vector3} bodyLocation
-   * @param {Vector3} positiveProbeLocation
-   * @param {Vector3} negativeProbeLocation
-   * @param {boolean} visible
    * @constructor
    */
-  function Voltmeter( circuit, dragBounds, modelViewTransform, options ) {
-
-    var defaultOptions = {
-      bodyLocation: new Vector3( 0.071, 0.026, 0 ),
-      positiveProbeLocation: new Vector3( 0.0669, 0.0298, 0 ),
-      negativeProbeLocation: new Vector3( 0.0707, 0.0329, 0 ),
-      visible: false
-    };
-
-    options = _.extend( {}, defaultOptions, options ); // don't modify defaultOptions!
+  function Voltmeter( circuit, dragBounds, modelViewTransform ) {
 
     // @public
     PropertySet.call( this, {
-      visible: options.visible,
+      visible: false,
       inUserControl: false,
-      bodyLocation: options.bodyLocation,
-      positiveProbeLocation: options.positiveProbeLocation,
-      negativeProbeLocation: options.negativeProbeLocation,
+      bodyLocation: BODY_LOCATION,
+      positiveProbeLocation: POSITIVE_PROBE_LOCATION,
+      negativeProbeLocation: NEGATIVE_PROBE_LOCATION,
       value: 0 // Wil be properly initialized by updateValue
     } );
     var thisMeter = this;
