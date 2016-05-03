@@ -66,6 +66,7 @@ define( function( require ) {
       dielectricOffset: options.dielectricOffset // in meters, default is totally outside of capacitor plates.
     }, {
       tandemSet: tandem ? {
+        plateSize: tandem.createTandem( 'plateSizeProperty' ),
         plateSeparation: tandem.createTandem( 'plateSeparationProperty' )
       } : {}
     } );
@@ -264,7 +265,8 @@ define( function( require ) {
       var airPlateCharge = this.getAirCapacitance() * this.platesVoltage;
       if ( Math.abs( airPlateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
-      } else {
+      }
+      else {
         return airPlateCharge;
       }
     },
@@ -279,7 +281,8 @@ define( function( require ) {
       var dielectricCharge = this.getDielectricCapacitance() * this.platesVoltage;
       if ( Math.abs( dielectricCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
-      } else {
+      }
+      else {
         return dielectricCharge;
       }
     },
@@ -341,7 +344,8 @@ define( function( require ) {
       var totalPlateCharge = this.getTotalPlateCharge();
       if ( Math.abs( totalPlateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
-      } else {
+      }
+      else {
         return this.platesVoltage / this.plateSeparation;
       }
     },
