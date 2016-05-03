@@ -46,7 +46,7 @@ define( function( require ) {
     // create basic circuit components
     // @public
     this.battery = new Battery( config.batteryLocation, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue, config.modelViewTransform, tandem );
-    this.circuitComponents = createCircuitComponents( config, this.circuitConnectionProperty );
+    this.circuitComponents = createCircuitComponents( config, this.circuitConnectionProperty, tandem );
 
     // capture the circuit components into individual arrays.  Note that using slice assumes order of capacitors and
     // then lightbulbs. If new order is important, new method is necessary.

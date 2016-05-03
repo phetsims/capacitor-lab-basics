@@ -244,11 +244,11 @@ define( function( require ) {
    * function to change.
    *
    * @param {CircuitConfig} config - object defining the circuit
+   * @param {Property.<string>} circuitConnectionProperty -
    * @param {Tandem} tandem
    * @returns {Array} circuitComponents
    */
   var createCircuitComponents = function( config, circuitConnectionProperty, tandem ) {
-
     var x = config.batteryLocation.x + config.capacitorXSpacing;
     var y = config.batteryLocation.y + config.capacitorYSpacing;
     var z = config.batteryLocation.z;

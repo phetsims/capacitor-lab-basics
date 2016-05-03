@@ -66,7 +66,6 @@ define( function( require ) {
       dielectricOffset: options.dielectricOffset // in meters, default is totally outside of capacitor plates.
     }, {
       tandemSet: tandem ? {
-        plateWidth: tandem.createTandem( 'plateWidthProperty' ),
         plateSeparation: tandem.createTandem( 'plateSeparationProperty' )
       } : {}
     } );
