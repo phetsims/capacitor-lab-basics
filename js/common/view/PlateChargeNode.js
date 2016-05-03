@@ -72,24 +72,33 @@ define( function( require ) {
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {string} polarity
    * @param {number} maxPlateCharge
-   * @param {number} transparency
+   * @param {number} opacity
    * @param {Bounds2} canvasBounds
    * @constructor
    */
-  function PlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge, transparency, canvasBounds ) {
+  function PlateChargeNode( capacitor, modelViewTransform, options ) {
+
+    var defaultOptions = {
+      polarity: CLBConstants.POLARITY.POSITIVE,
+      maxPlateCharge: Infinity,
+      opacity: 1.0,
+      canvasBounds: null // Bounds2
+    };
+
+    options = _.extend({}, defaultOptions, options);
 
     CanvasNode.call( this, {
-      canvasBounds: canvasBounds
+      canvasBounds: options.canvasBounds
     } );
     var thisNode = this; // extend scope for nested callbacks
 
     // @private
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
-    this.polarity = polarity;
-    this.maxPlateCharge = maxPlateCharge;
+    this.polarity = options.polarity;
+    this.maxPlateCharge = options.maxPlateCharge;
     this.gridSizeStrategy = IGridSizeStrategy.createStrategy();
-    this.transparency = transparency;
+    this.opacity = options.opacity;
 
     this.parentNode = new Node(); // @private parent node for charges
     this.addChild( this.parentNode );
@@ -223,8 +232,8 @@ define( function( require ) {
     /**
      * Factory function for an AirPlateChargeNode.
      */
-    AirPlateChargeNode: function( capacitor, modelViewTransform, polarity, maxPlateCharge, canvasBounds ) {
-      return new AirPlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge, canvasBounds );
+    AirPlateChargeNode: function( capacitor, modelViewTransform, options ) {
+      return new AirPlateChargeNode( capacitor, modelViewTransform, options );
     }
   } );
 
@@ -234,15 +243,11 @@ define( function( require ) {
    *
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {string} polarity
-   * @param {number} maxPlateCharge,
-   * @param {Bounds2} canvasBounds
+   * @param {Object} options See options for PlateChargeNode
    * @constructor
    */
-  function AirPlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge, canvasBounds ) {
-
-    PlateChargeNode.call( this, capacitor, modelViewTransform, polarity, maxPlateCharge, 1, canvasBounds );
-
+  function AirPlateChargeNode( capacitor, modelViewTransform, options ) {
+    PlateChargeNode.call( this, capacitor, modelViewTransform, options );
   }
 
   capacitorLabBasics.register( 'AirPlateChargeNode', AirPlateChargeNode );

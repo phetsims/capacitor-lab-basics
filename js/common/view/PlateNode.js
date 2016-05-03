@@ -34,7 +34,11 @@ define( function( require ) {
     var canvasBounds = this.getMaxBoxNodeBounds();
 
     // @private
-    this.airPlateChargeNode = PlateChargeNode.AirPlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge, canvasBounds );
+    this.airPlateChargeNode = PlateChargeNode.AirPlateChargeNode( capacitor, modelViewTransform, {
+      polarity: polarity,
+      maxPlateCharge: maxPlateCharge,
+      canvasBounds: canvasBounds
+    } );
     this.addChild( this.airPlateChargeNode );
 
   }
@@ -77,8 +81,7 @@ define( function( require ) {
      * @constructor
      */
     TopPlateNode: function( capacitor, modelViewTransform, maxPlateCharge ) {
-      // TODO: TEST THE OPACITY VALUE, IT MAY BE WRONG.
-      return new PlateNode( capacitor, modelViewTransform, CLBConstants.POLARITY.POSITIVE, maxPlateCharge, 0 /* dielectricPlateChargeOpacity */ );
+      return new PlateNode( capacitor, modelViewTransform, CLBConstants.POLARITY.POSITIVE, maxPlateCharge );
     },
 
     /**
@@ -90,8 +93,8 @@ define( function( require ) {
      * @constructor
      */
     BottomPlateNode: function( capacitor, modelViewTransform, maxPlateCharge ) {
-      // TODO: TEST THE OPACITY VALUE, IT MAY BE WRONG.
-      return new PlateNode( capacitor, modelViewTransform, CLBConstants.POLARITY.NEGATIVE, maxPlateCharge, 0.75 /* dielectricPlateChargeOpacity */ );
+      return new PlateNode( capacitor, modelViewTransform, CLBConstants.POLARITY.NEGATIVE, maxPlateCharge );
     }
   } );
 } );
+
