@@ -1,12 +1,14 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Base class for representation of plate charge.  Plate charge is represented as an integer number of '+' or '-'
- * symbols. These symbols are distributed across some portion of the plate's top face.
+ * Base class for representation of plate charge.  Plate charge is represented
+ * as an integer number of '+' or '-' symbols. These symbols are distributed
+ * across some portion of the plate's top face.
  *
  * All model coordinates are relative to the capacitor's local coordinate frame.
  *
- * NOTE: Skipping the port of DielectricPlateChargeNode for now.  Without dielectrics this should not be needed.
+ * NOTE: Skipping the port of DielectricPlateChargeNode for now.  Without
+ * dielectrics this should not be needed.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
@@ -30,8 +32,8 @@ define( function( require ) {
   var NEGATIVE_CHARGE_COLOR = 'blue';
 
   /**
-   * Draw a positive charge with canvas.  'Plus' sign is painted with two overlapping rectangles around a center
-   * location.
+   * Draw a positive charge with canvas.  'Plus' sign is painted with two
+   * overlapping rectangles around a center location.
    *
    * TODO: THIS COULD BE COLLAPSED WITH addNegativeCharge INTO A SINGLE FUNCTION.  COULD BE A CLEANER SOLUTION.
    *
@@ -49,7 +51,8 @@ define( function( require ) {
   }
 
   /**
-   * Draw a negative charge with canvas.  'Minus' sign is painted with a single rectangle around a center location.
+   * Draw a negative charge with canvas.  'Minus' sign is painted with a single
+   * rectangle around a center location.
    *
    * @param {Vector2} location
    * @param {CanvasRenderingContext2D} context
@@ -75,7 +78,9 @@ define( function( require ) {
    */
   function PlateChargeNode( capacitor, modelViewTransform, polarity, maxPlateCharge, transparency, canvasBounds ) {
 
-    CanvasNode.call( this, { canvasBounds: canvasBounds } );
+    CanvasNode.call( this, {
+      canvasBounds: canvasBounds
+    } );
     var thisNode = this; // extend scope for nested callbacks
 
     // @private
@@ -97,7 +102,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'PlateChargeNode', PlateChargeNode );
-  
+
   inherit( CanvasNode, PlateChargeNode, {
 
     /**
@@ -124,7 +129,8 @@ define( function( require ) {
     },
 
     isPositivelyCharged: function() {
-      return ( this.getPlateCharge() >= 0 && this.polarity === CLBConstants.POLARITY.POSITIVE ) || ( this.getPlateCharge() < 0 && this.polarity === CLBConstants.POLARITY.NEGATIVE );
+      return ( this.getPlateCharge() >= 0 && this.polarity === CLBConstants.POLARITY.POSITIVE ) ||
+        ( this.getPlateCharge() < 0 && this.polarity === CLBConstants.POLARITY.NEGATIVE );
     },
 
     /**
@@ -183,7 +189,8 @@ define( function( require ) {
             var centerPosition = this.modelViewTransform.modelToViewXYZ( x, y, z );
 
             // add the signed charge to the grid
-            this.isPositivelyCharged() ? addPositiveCharge( centerPosition, context ) : addNegativeCharge( centerPosition, context );
+            this.isPositivelyCharged() ?
+              addPositiveCharge( centerPosition, context ) : addNegativeCharge( centerPosition, context );
 
           }
         }
@@ -206,7 +213,7 @@ define( function( require ) {
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
       var absCharge = Math.abs( plateCharge );
       var numberOfCharges = Util.toFixedNumber( CLBConstants.NUMBER_OF_PLATE_CHARGES.max * ( absCharge / maxPlateCharge ), 0 );
-      if( absCharge > 0 && numberOfCharges < CLBConstants.NUMBER_OF_PLATE_CHARGES.min ) {
+      if ( absCharge > 0 && numberOfCharges < CLBConstants.NUMBER_OF_PLATE_CHARGES.min ) {
         numberOfCharges = CLBConstants.NUMBER_OF_PLATE_CHARGES.min;
       }
       return numberOfCharges;
@@ -267,3 +274,4 @@ define( function( require ) {
   return PlateChargeNode;
 
 } );
+

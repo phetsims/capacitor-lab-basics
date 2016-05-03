@@ -40,8 +40,8 @@ define( function( require ) {
 
     // circuit components
     this.batteryNode = new BatteryNode( this.circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE, tandem );
-    var capacitorNode = new CapacitorNode( this.circuit.capacitor, model.modelViewTransform, model.plateChargesVisibleProperty,
-      model.eFieldVisibleProperty, this.circuit.maxPlateCharge, this.circuit.maxEffectiveEField );
+    var capacitorNode = new CapacitorNode( this.circuit, model.modelViewTransform, model.plateChargesVisibleProperty,
+      model.eFieldVisibleProperty );
 
     this.topWireNode = new Node();
     this.bottomWireNode = new Node();

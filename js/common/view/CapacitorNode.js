@@ -20,27 +20,24 @@ define( function( require ) {
   /**
    * Constructor for a CapacitorNode.
    *
-   * @param {Capacitor} capacitor
+   * @param {AbstractCircuit} circuit
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
-   * @param {number} maxPlateCharge
-   * @param {number} maxEffectiveEField
    * @constructor
    */
-  function CapacitorNode( capacitor, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty,
-                          maxPlateCharge, maxEffectiveEField ) {
+  function CapacitorNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty ) {
 
     Node.call( this );
     var thisNode = this; // extend scope for nested callbacks
 
     // @private
-    this.capacitor = capacitor;
+    this.capacitor = circuit.capacitor;
     this.modelViewTransform = modelViewTransform;
-    this.topPlateNode = PlateNode.TopPlateNode( capacitor, modelViewTransform, maxPlateCharge );
-    this.bottomPlateNode = PlateNode.BottomPlateNode( capacitor, modelViewTransform, maxPlateCharge );
+    this.topPlateNode = PlateNode.TopPlateNode( this.capacitor, modelViewTransform, circuit.maxPlateCharge );
+    this.bottomPlateNode = PlateNode.BottomPlateNode( this.capacitor, modelViewTransform, circuit.maxPlateCharge );
 
-    var eFieldNode = new EFieldNode( capacitor, modelViewTransform, maxEffectiveEField, this.getPlatesBounds() );
+    var eFieldNode = new EFieldNode( this.capacitor, modelViewTransform, circuit.maxEffectiveEField, this.getPlatesBounds() );
 
     // rendering order
     this.addChild( this.bottomPlateNode );
@@ -48,7 +45,7 @@ define( function( require ) {
     this.addChild( this.topPlateNode );
 
     // observers
-    capacitor.multilink( [ 'plateSize', 'plateSeparation' ], function() {
+    this.capacitor.multilink( [ 'plateSize', 'plateSeparation' ], function() {
       thisNode.updateGeometry();
     } );
 
