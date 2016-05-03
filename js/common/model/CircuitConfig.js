@@ -46,7 +46,7 @@ define( function( require ) {
       wireExtent: WIRE_EXTENT,
       wireThickness: WIRE_THICKNESS,
       lightBulbXSpacing: LIGHT_BULB_X_SPACING,
-      dielectricMaterial: DielectricMaterial.Air,
+      dielectricMaterial: DielectricMaterial.AIR,
       dielectricOffset: DIELECTRIC_OFFSET,
       lightBulbResistance: LIGHT_BULB_RESISTANCE,
       circuitConnections: [

@@ -36,7 +36,7 @@ define( function( require ) {
 
   return inherit( Object, DielectricMaterial, {}, {
 
-    Air: new DielectricMaterial( 'air', CLBConstants.EPSILON_AIR, CLBConstants.AIR_COLOR, tandem.createTandem( 'air' ) ),
+    AIR: new DielectricMaterial( 'air', CLBConstants.EPSILON_AIR, CLBConstants.AIR_COLOR, tandem.createTandem( 'air' ) ),
 
     CustomDielectricMaterial: function( dielectricConstant ) {
       return new DielectricMaterial( 'Custom', dielectricConstant,

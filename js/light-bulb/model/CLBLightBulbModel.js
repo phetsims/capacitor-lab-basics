@@ -60,7 +60,7 @@ define( function( require ) {
       numberOfLightBulbs: 1
     } );
 
-    this.dielectricMaterial = DielectricMaterial.Air; // @public (read-only)
+    this.dielectricMaterial = DielectricMaterial.AIR; // @public (read-only)
 
     this.circuit = new LightBulbCircuit( circuitConfig ); // @public
     this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // private
