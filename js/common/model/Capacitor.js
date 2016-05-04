@@ -67,7 +67,10 @@ define( function( require ) {
     }, {
       tandemSet: tandem ? {
         plateSize: tandem.createTandem( 'plateSizeProperty' ),
-        plateSeparation: tandem.createTandem( 'plateSeparationProperty' )
+        plateSeparation: tandem.createTandem( 'plateSeparationProperty' ),
+        platesVoltage: tandem.createTandem( 'platesVoltageProperty' ),
+        dielectricMaterial: tandem.createTandem( 'dielectricMaterialProperty' ),
+        dielectricOffset: tandem.createTandem( 'dielectricOffsetProperty' )
       } : {}
     } );
 
