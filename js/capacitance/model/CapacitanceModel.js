@@ -43,7 +43,7 @@ define( function( require ) {
 
     this.dielectricMaterial = DielectricMaterial.AIR; // @public (read-only)
 
-    this.circuit = new CapacitanceCircuit( circuitConfig, tandem ); // @public
+    this.circuit = new CapacitanceCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
     this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
 
     this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty );

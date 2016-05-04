@@ -62,7 +62,7 @@ define( function( require ) {
 
     this.dielectricMaterial = DielectricMaterial.AIR; // @public (read-only)
 
-    this.circuit = new LightBulbCircuit( circuitConfig ); // @public
+    this.circuit = new LightBulbCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
     this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // private
 
     // @public

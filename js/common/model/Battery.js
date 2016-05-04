@@ -55,9 +55,14 @@ define( function( require ) {
       voltage: voltage,
       polarity: CLBConstants.POLARITY.POSITIVE
     }, {
-      tandemSet: tandem ?  {
-        voltage: tandem.createTandem( 'voltageProperty' )
-      }:{}
+
+      // Sometimes Battery is used as part of a temporary circuit for a calculation.
+      // In those cases, a null tandem is passed to the constructor. So allow either
+      // tandem or null here.
+      tandemSet: tandem ? {
+        voltage: tandem.createTandem( 'voltageProperty' ),
+        polarity: tandem.createTandem( 'polarityProperty' )
+      } : {}
     } );
 
     var thisBattery = this;

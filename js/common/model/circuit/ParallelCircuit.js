@@ -40,7 +40,7 @@ define( function( require ) {
    * @param {Tandem} tandem
    * @constructor
    */
-  function ParallelCircuit( config, tandem) {
+  function ParallelCircuit( config, tandem ) {
     AbstractCircuit.call( this, config, createCircuitComponents, createWires, tandem );
   }
 
@@ -77,11 +77,10 @@ define( function( require ) {
         } else if ( this.connectedToBatteryBottom( shape ) ) {
           voltage = 0;
         }
-        return voltage;
       }
 
       // Open Circuit
-      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+      else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
           voltage = this.getCapacitorPlateVoltage();
         } else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
@@ -91,9 +90,20 @@ define( function( require ) {
         } else if ( this.connectedToBatteryBottom( shape ) ) {
           voltage = 0;
         }
-        return voltage;
       }
 
+      // Light bulb connected
+      else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        if ( this.connectedToBatteryTop( shape ) ) {
+          voltage = this.getTotalVoltage();
+        } else if ( this.connectedToBatteryBottom( shape ) ) {
+          voltage = 0;
+        }
+      } else {
+        assert && assert( false,
+          'Unsupported circuit connection property value: ' + this.circuitConnectionProperty.get() );
+      }
+      // console.log(voltage);
       // Fall through to initialized value
       return voltage;
     },

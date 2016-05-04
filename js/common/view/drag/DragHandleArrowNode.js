@@ -37,6 +37,7 @@ define( function( require ) {
     var length = Math.abs( pStart.distance( pEnd ) );
 
     // location property of the node in 'model space'.
+    // TODO: This should be moved to a model component and instrumented with tandem
     this.locationProperty = new Property( new Vector2( 0, 0 ) ); // @public
 
     ArrowNode.call( this, pStart.x, pStart.y, pEnd.x, pEnd.y, {

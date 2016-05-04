@@ -39,16 +39,17 @@ define( function( require ) {
    * Constructor for the Single Capacitor Circuit.
    *
    * @param {CircuitConfig} config
+   * @param {Tandem} tandem
    * @constructor
    */
-  function LightBulbCircuit( config ) {
+  function LightBulbCircuit( config, tandem ) {
 
     assert && assert( config.numberOfCapacitors === 1,
       'LightBulbCircuit should have 1 Capacitor in CL:B. config.numberOfCapacitors: ' + config.numberOfCapacitors );
     assert && assert( config.numberOfLightBulbs === 1,
       'LightBulbCircuit should have 1 LightBulb in CL:B. config.numberOfLightBulbs: ' + config.numberOfLightBulbs );
 
-    ParallelCircuit.call( this, config );
+    ParallelCircuit.call( this, config, tandem );
     var thisCircuit = this;
 
     // @public
