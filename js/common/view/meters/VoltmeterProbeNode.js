@@ -101,7 +101,7 @@ define( function( require ) {
      * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {Tandem} tandem
      */
-    PositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
+    PositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) { // TODO: Why is this method needed?
       return new VoltmeterProbeNode( redVoltmeterProbeImage,
         voltmeter.positiveProbeLocationProperty, modelViewTransform, voltmeter.dragBounds, tandem );
     },

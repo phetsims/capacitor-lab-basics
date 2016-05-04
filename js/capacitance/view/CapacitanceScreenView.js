@@ -40,10 +40,10 @@ define( function( require ) {
     this.model = model;
 
     // circuit
-    var capacitanceCircuitNode = new CapacitanceCircuitNode( model, tandem );
+    var capacitanceCircuitNode = new CapacitanceCircuitNode( model, tandem.createTandem( 'circuitNode' ) );
 
     // meters
-    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty );
+    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
     var voltmeterToolBoxPanel = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform,
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty );
 

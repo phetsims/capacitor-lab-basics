@@ -39,7 +39,7 @@ define( function( require ) {
     this.circuit = model.circuit; // @public
 
     // circuit components
-    this.batteryNode = new BatteryNode( this.circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE, tandem );
+    this.batteryNode = new BatteryNode( this.circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE, tandem.createTandem( 'batteryNode' ) );
     var capacitorNode = new CapacitorNode( this.circuit, model.modelViewTransform, model.plateChargesVisibleProperty,
       model.eFieldVisibleProperty );
 
