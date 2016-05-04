@@ -36,6 +36,7 @@ define( function( require ) {
    * @param {Vector3} location
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
+   * @param {Object} [options]
    * @constructor
    */
   function Capacitor( location, modelViewTransform, tandem, options ) {

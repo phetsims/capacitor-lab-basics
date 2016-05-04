@@ -274,26 +274,20 @@ define( function( require ) {
     var x = config.batteryLocation.x + config.capacitorXSpacing;
     var y = config.batteryLocation.y + config.capacitorYSpacing;
     var z = config.batteryLocation.z;
+    var location = new Vector3( x, y, z );
 
     var circuitComponents = [];
 
-    // create the capacitors
-    var location;
-    for ( var i = 0; i < config.numberOfCapacitors; i++ ) {
-      location = new Vector3( x, y, z );
-      var capacitor = new SwitchedCapacitor( location, config, config.circuitConnections, circuitConnectionProperty,
-        tandem, {
-          plateWidth: config.plateWidth,
-          plateSeparation: config.plateSeparation,
-          dielectricMaterial: config.dielectricMaterial,
-          dielectricOffset: config.dielectricOffset
-        } );
+    assert && assert( config.numberOfCapacitors === 1,
+      'Capacitor Lab: Basics is designed to use exactly one capacitor' );
 
-      circuitComponents.push( capacitor );
-      x += config.lightBulbXSpacing;
-    }
+    var capacitor = new SwitchedCapacitor( config, circuitConnectionProperty,
+      tandem ? tandem.createTandem( 'switchedCapacitor' ) : null );
+
+    circuitComponents.push( capacitor );
 
     // create the light bulbs
+    var i;
     for ( i = 0; i < config.numberOfLightBulbs; i++ ) {
       location = new Vector3( x, y, z );
       var lightBulb = new LightBulb( location, config.lightBulbResistance );
