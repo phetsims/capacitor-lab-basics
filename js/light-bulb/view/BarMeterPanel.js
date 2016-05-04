@@ -34,9 +34,7 @@ define( function( require ) {
   var plateChargeString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge' );
 
   /**
-   * Constructor.
-   *
-   * @param {array.<BarMeter>} model
+   * @param {Array<BarMeter>} model
    * @param {Property.<boolean>} minWidth
    * @constructor
    */
@@ -106,7 +104,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'BarMeterPanel', BarMeterPanel );
-  
+
   return inherit( Panel, BarMeterPanel );
 
 } );

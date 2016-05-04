@@ -194,7 +194,7 @@ define( function( require ) {
     /**
      * Gets the wires connected to the top of circuit components.
      *
-     * @return {array.<Wire>} topWires
+     * @return {Array<Wire>} topWires
      */
     getTopWires: function() {
       var topBatteryWires = this.getTopBatteryWires();
@@ -277,7 +277,7 @@ define( function( require ) {
     /**
      * Get all the bottom wires that connect the circuit switch.
      *
-     * @returns {array.<Wire>}
+     * @returns {Array<Wire>}
      */
     getBottomSwitchWires: function() {
       var bottomCircuitSwitchWires = [];
@@ -293,7 +293,7 @@ define( function( require ) {
     /**
      * Get all the top wires that are connected to the capacitor.
      *
-     * @returns {array.<Wire>}
+     * @returns {Array<Wire>}
      */
     getTopCapacitorWires: function() {
       var topCapacitorWires = [];
@@ -308,7 +308,7 @@ define( function( require ) {
     /**
      * Get all the bottom wires that are connected to the capacitor.
      *
-     * @returns {array.<Wire>}
+     * @returns {Array<Wire>}
      */
     getBottomCapacitorWires: function() {
       var bottomCapacitorWires = [];
@@ -323,7 +323,7 @@ define( function( require ) {
     /**
      * Gets the wire connected to the battery's bottom terminal.
      *
-     * @return {array.<Wire>} bottomWires
+     * @return {Array<Wire>} bottomWires
      */
     getBottomWires: function() {
       var bottomBatteryWires = this.getBottomBatteryWires();

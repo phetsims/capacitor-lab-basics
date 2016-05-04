@@ -122,7 +122,7 @@ define( function( require ) {
      * each of the circuit sub types.
      *
      * @param  {object} circuitConnection
-     * @param  {Property<boolean>} currentIndicatorsVisible
+     * @param  {Property.<boolean>} currentIndicatorsVisible
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
       console.error( 'updateCurrentVisibility should be implemented in descendant types' );

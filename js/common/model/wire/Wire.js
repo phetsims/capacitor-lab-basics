@@ -24,7 +24,7 @@ define( function( require ) {
    *
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {number} thickness
-   * @param {Array.<WireSegment>} segments
+   * @param {Array<WireSegment>} segments
    * @param {string} connectionPoint
    */
   function Wire( modelViewTransform, thickness, segments, connectionPoint ) {
@@ -52,7 +52,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'Wire', Wire );
-  
+
   return inherit( PropertySet, Wire, {
 
     /**

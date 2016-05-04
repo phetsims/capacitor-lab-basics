@@ -162,7 +162,7 @@ define( function( require ) {
      * @param {Vector3} hingePoint
      * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {Array<string>} possibleConnections - possible connection types from CircuitConnectionEnum entries
-     * @param {Property<string>} circuitConnectionProperty
+     * @param {Property.<string>} circuitConnectionProperty
      */
     CircuitTopSwitch: function( hingePoint, modelViewTransform, possibleConnections, circuitConnectionProperty ) {
       return new CircuitTopSwitch( hingePoint, modelViewTransform, possibleConnections, circuitConnectionProperty );
@@ -174,7 +174,7 @@ define( function( require ) {
      * @param {Vector3} hingePoint
      * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {Array<string>} possibleConnections possible connection types from CircuitConnectionEnum entries
-     * @param {Property<string>} circuitConnectionProperty
+     * @param {Property.<string>} circuitConnectionProperty
      */
     CircuitBottomSwitch: function( hingePoint, modelViewTransform, possibleConnections, circuitConnectionProperty ) {
       return new CircuitBottomSwitch( hingePoint, modelViewTransform, possibleConnections, circuitConnectionProperty );
@@ -187,7 +187,7 @@ define( function( require ) {
    *
    * @param {Vector3} hingePoint
    * @param {CLModelViewTransform3} modelViewTransform
-   * @param {Property<string>} circuitConnectionProperty
+   * @param {Property.<string>} circuitConnectionProperty
    * @constructor
    */
   function CircuitTopSwitch( hingePoint, modelViewTransform, circuitSwitchConnections, circuitConnectionProperty ) {
@@ -237,7 +237,7 @@ define( function( require ) {
    *
    * @param {Vector3} hingePoint
    * @param {CLModelViewTransform3} modelViewTransform
-   * @param {Property<string>} circuitConnectionProperty
+   * @param {Property.<string>} circuitConnectionProperty
    * @constructor
    */
   function CircuitBottomSwitch( hingePoint, modelViewTransform, circuitSwitchConnections, circuitConnectionProperty ) {

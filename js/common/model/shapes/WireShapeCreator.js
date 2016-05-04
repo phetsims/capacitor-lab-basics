@@ -28,7 +28,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'WireShapeCreator', WireShapeCreator );
-  
+
   return inherit( Object, WireShapeCreator, {
 
     /**
@@ -38,7 +38,7 @@ define( function( require ) {
      * of each line and return an array of line shapes.  WireNode will then construct the Path for each segment
      * in the array of lines.
      *
-     * @return {Array.<Shape>} lineShapes
+     * @return {Array<Shape>} lineShapes
      */
     createWireShapes: function() {
       // TODO: This should be tested.

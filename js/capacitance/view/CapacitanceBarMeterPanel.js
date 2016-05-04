@@ -32,7 +32,7 @@ define( function( require ) {
   /**
    * Constructor.
    *
-   * @param {array.<BarMeter>} model
+   * @param {Array<BarMeter>} model
    * @param {Property.<boolean>} minWidth
    * @constructor
    */
