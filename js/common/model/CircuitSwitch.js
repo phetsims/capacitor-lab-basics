@@ -50,7 +50,7 @@ define( function( require ) {
     // @private
     this.initialAngle = 0; // with respect to the vertical ( open switch )
     this.modelViewTransform = config.modelViewTransform;
-    this.connections = this.getSwitchConnections(positionLabel, this.hingePoint.toVector2(), config);
+    this.connections = this.getSwitchConnections(positionLabel, this.hingePoint.toVector2(), config.circuitConnections);
     this.activeConnection = this.getConnection( circuitConnectionProperty.value );
     var thisSwitch = this;
 
@@ -126,7 +126,7 @@ define( function( require ) {
      * @return {Array<Object>} - Array of Objects containing connection points and types
      * @private
      */
-    getSwitchConnections: function( positionLabel, hingeXY, config ) {
+    getSwitchConnections: function( positionLabel, hingeXY, circuitConnections ) {
 
       // Projection of switch wire vector to its components (angle is from a vertical wire)
       var l = CLBConstants.SWITCH_WIRE_LENGTH;
@@ -151,29 +151,8 @@ define( function( require ) {
         rightPoint = hingeXY.plusXY( dx, dy );
       }
 
-      var connections = this.getConnectionLocationsAndTypes( config.circuitConnections,
-        topPoint, leftPoint, rightPoint );
-
-      return connections;
-    },
-
-    /**
-     * Return array of objects containing location (Vector3) and type (CircuitConnectionEnum value)
-     * for each connection in circuitSwitchConnections.
-     *
-     * @param {Array<Object>} connections - array of { location: Vector3, connectionType: string }
-     * @param  {Vector2} topPoint
-     * @param  {Vector2} leftPoint
-     * @param  {Vector2} rightPoint
-     *
-     * @return {Array<Object>} - array of { location: Vector3, connectionType: string }
-     * @private
-     */
-    getConnectionLocationsAndTypes: function( circuitSwitchConnections, topPoint, leftPoint, rightPoint ) {
-
-      // collect location and connection type for each of the possible circuit switch connections
       var connections = [];
-      circuitSwitchConnections.forEach( function( circuitSwitchConnection ) {
+      circuitConnections.forEach( function( circuitSwitchConnection ) {
         if ( circuitSwitchConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
           connections.push( {
             location: topPoint.toVector3(),
@@ -193,6 +172,7 @@ define( function( require ) {
           assert && assert( 'attempting to create switch conection which is not supported' );
         }
       } );
+
       return connections;
     },
 
