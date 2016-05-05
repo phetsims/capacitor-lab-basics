@@ -16,14 +16,13 @@ define( function( require ) {
   /**
    * Constructor.
    *
-   * @param {string} connectionPoint one of 'TOP' or 'BOTTOM'
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {number} thickness
+   * @param {string} connectionPoint
+   * @param {CircuitConfig} config
    * @param {Capacitor} capacitor
    * @param {CircuitSwitch} circuitSwitch
    * @constructor
    */
-  function CapacitorToSwitchWire( connectionPoint, modelViewTransform, thickness, capacitor, circuitSwitch ) {
+  function CapacitorToSwitchWire( connectionPoint, config, capacitor, circuitSwitch ) {
     var segments = [];
 
     // add the vertical segment.
@@ -36,7 +35,7 @@ define( function( require ) {
     }
     segments.push( segment );
 
-    Wire.call( this, modelViewTransform, thickness, segments, connectionPoint );
+    Wire.call( this, config.modelViewTransform, config.wireThickness, segments, connectionPoint );
   }
 
   capacitorLabBasics.register( 'CapacitorToSwitchWire', CapacitorToSwitchWire );
@@ -46,12 +45,12 @@ define( function( require ) {
     /**
      * Factory functions for public access to specific constructors.
      */
-    CapacitorToSwitchWireTop: function( modelViewTransform, thickness, capacitor, circuitSwitch ) {
-      return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP, modelViewTransform, thickness, capacitor, circuitSwitch );
+    CapacitorToSwitchWireTop: function( config, capacitor, circuitSwitch ) {
+      return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP, config, capacitor, circuitSwitch );
     },
 
-    CapacitorToSwitchWireBottom: function( modelViewTransform, thickness, capacitor, circuitSwitch ) {
-      return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM, modelViewTransform, thickness, capacitor, circuitSwitch );
+    CapacitorToSwitchWireBottom: function( config, capacitor, circuitSwitch ) {
+      return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM, config, capacitor, circuitSwitch );
     }
 
   } );

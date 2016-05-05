@@ -19,14 +19,12 @@ define( function( require ) {
    * Constructor.
    *
    * @param {string} connectionPoint - string indicating object which is connected to the capacitor
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {number} thickness
+   * @param {CircuitConfig} config
    * @param {Battery} battery
    * @param {CircuitSwitch} circuitSwitch
-   * @param {Property.<string>} circuitConnectionProperty
    * @constructor
    */
-  function BatteryToSwitchWire( connectionPoint, modelViewTransform, thickness, battery, circuitSwitch ) {
+  function BatteryToSwitchWire( connectionPoint, config, battery, circuitSwitch ) {
 
     var segments = [];
 
@@ -57,7 +55,7 @@ define( function( require ) {
     }
 
     segments.push( switchSegment );
-    Wire.call( this, modelViewTransform, thickness, segments, connectionPoint );
+    Wire.call( this, config.modelViewTransform, config.wireThickness, segments, connectionPoint );
   }
 
   capacitorLabBasics.register( 'BatteryToSwitchWire', BatteryToSwitchWire );
@@ -67,12 +65,12 @@ define( function( require ) {
     /**
      * Factory functions for public access to specific constructors.
      */
-    BatteryToSwitchWireBottom: function( modelViewTransform, thickness, battery, circuitSwitch ) {
-      return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM, modelViewTransform, thickness, battery, circuitSwitch );
+    BatteryToSwitchWireBottom: function( config, battery, circuitSwitch ) {
+      return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM, config, battery, circuitSwitch );
     },
 
-    BatteryToSwitchWireTop: function( modelViewTransform, thickness, battery, circuitSwitch ) {
-      return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP, modelViewTransform, thickness, battery, circuitSwitch );
+    BatteryToSwitchWireTop: function( config, battery, circuitSwitch ) {
+      return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP, config, battery, circuitSwitch );
     }
 
   } );

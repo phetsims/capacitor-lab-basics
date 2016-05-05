@@ -17,16 +17,13 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
-   * Constructor.
-   *
    * @param {string} connectionPoint one of 'TOP' or 'BOTTOM'
-   * @param {ModelViewTransform2} modelViewTransform
-   * @param {number} thickness
+   * @param {CircuitConfig} config
    * @param {LightBulb} lightBulb
    * @param {CircuitSwitch} circuitSwitch
    * @constructor
    */
-  function LightBulbToSwitchWire( connectionPoint, modelViewTransform, thickness, lightBulb, circuitSwitch ) {
+  function LightBulbToSwitchWire( connectionPoint, config, lightBulb, circuitSwitch ) {
     var segments = [];
 
     // Get y coordinate of the horizontal wire
@@ -51,7 +48,7 @@ define( function( require ) {
     var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
     segments.push( new WireSegment( rightCorner, switchConnectionPoint ) );
 
-    Wire.call( this, modelViewTransform, thickness, segments, connectionPoint );
+    Wire.call( this, config.modelViewTransform, config.wireThickness, segments, connectionPoint );
 
   }
 
@@ -62,12 +59,12 @@ define( function( require ) {
     /**
      * Factory functions for public access to specific constructors.
      */
-    LightBulbToSwitchWireBottom: function( modelViewTransform, thickness, lightBulb, circuitSwitch ) {
-      return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM, modelViewTransform, thickness, lightBulb, circuitSwitch );
+    LightBulbToSwitchWireBottom: function( config, lightBulb, circuitSwitch ) {
+      return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch );
     },
 
-    LightBulbToSwitchWireTop: function( modelViewTransform, thickness, lightBulb, circuitSwitch ) {
-      return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP, modelViewTransform, thickness, lightBulb, circuitSwitch );
+    LightBulbToSwitchWireTop: function( config, lightBulb, circuitSwitch ) {
+      return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch );
     }
 
   } );

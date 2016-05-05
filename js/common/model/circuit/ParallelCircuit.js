@@ -318,35 +318,27 @@ define( function( require ) {
     // wire battery to first capacitor, there must be at least one capacitor in the circuit
     assert && assert( capacitors.length > 0, 'There must be at least one capacitor in the circuit' );
     wires.push( BatteryToSwitchWire.BatteryToSwitchWireTop(
-      config.modelViewTransform,
-      config.wireThickness,
+      config,
       battery,
-      capacitors[ 0 ].topCircuitSwitch,
-      circuitConnectionProperty
+      capacitors[ 0 ].topCircuitSwitch
     ) );
     wires.push( BatteryToSwitchWire.BatteryToSwitchWireBottom(
-      config.modelViewTransform,
-      config.wireThickness,
+      config,
       battery,
-      capacitors[ 0 ].bottomCircuitSwitch,
-      circuitConnectionProperty
+      capacitors[ 0 ].bottomCircuitSwitch
     ) );
 
     // wire capacitors to the switches
     capacitors.forEach( function( capacitor ) {
       wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireTop(
-        config.modelViewTransform,
-        config.wireThickness,
+        config,
         capacitor,
-        capacitor.topCircuitSwitch,
-        circuitConnectionProperty
+        capacitor.topCircuitSwitch
       ) );
       wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireBottom(
-        config.modelViewTransform,
-        config.wireThickness,
+        config,
         capacitor,
-        capacitor.bottomCircuitSwitch,
-        circuitConnectionProperty
+        capacitor.bottomCircuitSwitch
       ) );
     } );
 
@@ -354,18 +346,14 @@ define( function( require ) {
     if ( lightBulbs.length > 0 ) {
       // the first light bulb must be connected to the last capacitor switch
       wires.push( LightBulbToSwitchWire.LightBulbToSwitchWireTop(
-        config.modelViewTransform,
-        config.wireThickness,
+        config,
         lightBulbs[ 0 ],
-        capacitors[ capacitors.length - 1 ].topCircuitSwitch,
-        circuitConnectionProperty
+        capacitors[ capacitors.length - 1 ].topCircuitSwitch
       ) );
       wires.push( LightBulbToSwitchWire.LightBulbToSwitchWireBottom(
-        config.modelViewTransform,
-        config.wireThickness,
+        config,
         lightBulbs[ 0 ],
-        capacitors[ capacitors.length - 1 ].bottomCircuitSwitch,
-        circuitConnectionProperty
+        capacitors[ capacitors.length - 1 ].bottomCircuitSwitch
       ) );
 
       // now connect the rest of the light bulbs in the circuit
