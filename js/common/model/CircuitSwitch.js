@@ -34,9 +34,6 @@ define( function( require ) {
    * @param {Property} circuitConnectionProperty,
    * @param {string} connectionLocation
    */
-  // function CircuitSwitch( hingePoint, connections, modelViewTransform,
-  //   circuitConnectionProperty, connectionLocation, tandem ) {
-
   function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem ) {
 
     // Validate positionLabel string
