@@ -288,6 +288,7 @@ define( function( require ) {
 
     // create the light bulbs
     var i;
+    x += config.capacitorXSpacing;
     for ( i = 0; i < config.numberOfLightBulbs; i++ ) {
       location = new Vector3( x, y, z );
       var lightBulb = new LightBulb( location, config.lightBulbResistance );
