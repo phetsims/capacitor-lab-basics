@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Circuit connection types for Capacitor Lab. Circuit connection names correspond to what element is connected to the
@@ -20,6 +20,6 @@ define( function( require ) {
   if ( assert ) { Object.freeze( CircuitConnectionEnum ); }
 
   capacitorLabBasics.register( 'CircuitConnectionEnum', CircuitConnectionEnum );
-  
+
   return CircuitConnectionEnum;
 } );

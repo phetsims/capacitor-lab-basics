@@ -130,20 +130,25 @@ define( function( require ) {
      *
      * @param {Shape} shape
      * @return {number}
+     * @override
      */
     getVoltageAt: function( shape ) {
       var voltage = Number.NaN;
 
-      // find voltage in parallel circuit cases
+      // Light bulb not connected: delegate to ParallelCircuit method
       if ( this.circuitConnectionProperty.value !== CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
         voltage = ParallelCircuit.prototype.getVoltageAt.call( this, shape );
       }
 
-      // if a light bulb is connected, set voltage to the voltage of the disharging capacitor
+      // Light bulb connected: return either plate or battery voltage, depending on probe shape location.
       else {
         if ( this.connectedToLightBulbTop( shape ) ) {
           voltage = this.getCapacitorPlateVoltage();
         } else if ( this.connectedToLightBulbBottom( shape ) ) {
+          voltage = 0;
+        } else if ( this.connectedToBatteryTop( shape ) ) {
+          voltage = this.getTotalVoltage();
+        } else if ( this.connectedToBatteryBottom( shape ) ) {
           voltage = 0;
         }
       }

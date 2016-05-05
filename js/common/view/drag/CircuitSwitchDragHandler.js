@@ -118,7 +118,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'CircuitSwitchDragHandler', CircuitSwitchDragHandler );
-  
+
   return inherit( SimpleDragHandler, CircuitSwitchDragHandler );
 
 } );

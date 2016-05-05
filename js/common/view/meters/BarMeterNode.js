@@ -1,4 +1,4 @@
-// Copyright 2014-2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Abstract base class for all bar meter nodes.  Factory functions allow for creating all specific meter subclasses.
@@ -110,7 +110,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'BarMeterNode', BarMeterNode );
-  
+
   inherit( Node, BarMeterNode, {
 
     /**

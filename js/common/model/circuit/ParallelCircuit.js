@@ -66,6 +66,7 @@ define( function( require ) {
      * circuit.
      *
      * @return {number} voltage
+     * @override
      */
     getVoltageAt: function( shape ) {
       var voltage = Number.NaN;
@@ -94,16 +95,19 @@ define( function( require ) {
 
       // Light bulb connected
       else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        console.log( voltage );
         if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
         } else if ( this.connectedToBatteryBottom( shape ) ) {
           voltage = 0;
         }
-      } else {
+      }
+
+      // Error case
+      else {
         assert && assert( false,
           'Unsupported circuit connection property value: ' + this.circuitConnectionProperty.get() );
       }
-      // console.log(voltage);
       // Fall through to initialized value
       return voltage;
     },
