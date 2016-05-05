@@ -32,7 +32,14 @@ define( function( require ) {
       currentAmplitude: 0,
       circuitConnection: CircuitConnectionEnum.BATTERY_CONNECTED,
       disconnectedPlateCharge: 0
+    }, {
+      tandemSet: tandem ? {
+        currentAmplitude: tandem.createTandem('currentAmplitudeProperty'),
+        circuitConnection: tandem.createTandem('circuitConnectionProperty'),
+        disconnectedPlateCharge: tandem.createTandem('disconnectedPlateChargeProperty')
+      } : {}
     } );
+
     var thisCircuit = this;
 
     this.previousTotalCharge = -1; // no value, @private
