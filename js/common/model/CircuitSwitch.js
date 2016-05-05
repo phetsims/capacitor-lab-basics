@@ -6,18 +6,24 @@
  * a capacitor in this simulation.
  *
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
 
   // modules
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var PropertySet = require( 'AXON/PropertySet' );
+  var Vector2 = require( 'DOT/Vector2' );
+  var Vector3 = require( 'DOT/Vector3' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
-  var PropertySet = require( 'AXON/PropertySet' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+
+  // constants
+  var SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point
 
   /**
    * Constructor for a CircuitSwitch.
@@ -28,18 +34,23 @@ define( function( require ) {
    * @param {Property} circuitConnectionProperty,
    * @param {string} connectionLocation
    */
-  function CircuitSwitch( hingePoint, connections, modelViewTransform,
-    circuitConnectionProperty, connectionLocation, tandem ) {
+  // function CircuitSwitch( hingePoint, connections, modelViewTransform,
+  //   circuitConnectionProperty, connectionLocation, tandem ) {
+
+  function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem ) {
+
+    // Validate positionLabel string
+    assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
+      'Unsupported positionLabel: ' + positionLabel );
+
+    // @public
+    this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
+    this.circuitConnectionProperty = circuitConnectionProperty;
 
     // @private
     this.initialAngle = 0; // with respect to the vertical ( open switch )
-    this.modelViewTransform = modelViewTransform;
-    this.connections = connections;
-
-    // @public
-    this.hingePoint = hingePoint;
-    this.circuitConnectionProperty = circuitConnectionProperty;
-
+    this.modelViewTransform = config.modelViewTransform;
+    this.connections = this.getSwitchConnections(positionLabel, this.hingePoint.toVector2(), config);
     this.activeConnection = this.getConnection( circuitConnectionProperty.value );
     var thisSwitch = this;
 
@@ -51,9 +62,15 @@ define( function( require ) {
       }
     } );
 
+    // Assign string identifying connection point
+    var connectionName = ( positionLabel === 'top' ) ?
+      CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP :
+      CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
+
     // add the switch wire that spans two connection points. Default connection is to the battery.
-    this.switchSegment = WireSegment.SwitchSegment( hingePoint, this.activeConnection );
-    this.switchWire = new Wire( modelViewTransform, CLBConstants.WIRE_THICKNESS, [ this.switchSegment ], connectionLocation );
+    this.switchSegment = WireSegment.SwitchSegment( this.hingePoint, this.activeConnection );
+    this.switchWire = new Wire( this.modelViewTransform, CLBConstants.WIRE_THICKNESS, [ this.switchSegment ],
+      connectionName );
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
@@ -66,6 +83,118 @@ define( function( require ) {
   capacitorLabBasics.register( 'CircuitSwitch', CircuitSwitch );
 
   return inherit( PropertySet, CircuitSwitch, {
+
+    /**
+     * Get (x,y,z) position of switch pivot point
+     *
+     * @param  {string} positionLabel - 'top' or 'bottom'
+     * @param  {CircuitConfig} config - Class containing circuit geometry and properties
+     *
+     * @return {Vector3}
+     * @private
+     */
+    getSwitchHingePoint: function( positionLabel, config ) {
+
+      // Validate positionLabel string
+      assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
+        'Unsupported positionLabel: ' + positionLabel );
+
+      // create the circuit switches that connect the capacitor to the circuit
+      var x = config.batteryLocation.x + config.capacitorXSpacing;
+      var z = config.batteryLocation.z;
+
+      var yOffset = CLBConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
+      var y = config.batteryLocation.y;
+
+      if ( positionLabel === 'top' ) {
+        y -= yOffset;
+      } else if ( positionLabel === 'bottom' ) {
+        y += yOffset;
+      }
+
+      return new Vector3( x, y, z );
+    },
+
+    /**
+     * Get an array of objects containing locations (as Vector3) and connection types (as strings)
+     * of the bottom switch connection points
+     *
+     * @param  {string} positionLabel - 'top' or 'bottom'
+     * @param  {Vector2} hingeXY - Location of switch hinge
+     * @param  {CircuitConfig} config - Class containing circuit geometry and properties
+     *
+     * @return {Array<Object>} - Array of Objects containing connection points and types
+     * @private
+     */
+    getSwitchConnections: function( positionLabel, hingeXY, config ) {
+
+      // Projection of switch wire vector to its components (angle is from a vertical wire)
+      var l = CLBConstants.SWITCH_WIRE_LENGTH;
+      var dx = l * Math.sin( SWITCH_ANGLE );
+      var dy = l * Math.cos( SWITCH_ANGLE );
+
+      // Top point of hinge from pivot point
+      var topOffset = new Vector2( 0, l );
+
+      // Compute 2D switch contact points
+      var topPoint;
+      var leftPoint;
+      var rightPoint;
+
+      if ( positionLabel === 'top' ) {
+        topPoint = hingeXY.minus( topOffset );
+        leftPoint = hingeXY.minusXY( dx, dy );
+        rightPoint = hingeXY.minusXY( -dx, dy );
+      } else {
+        topPoint = hingeXY.plus( topOffset );
+        leftPoint = hingeXY.plusXY( -dx, dy );
+        rightPoint = hingeXY.plusXY( dx, dy );
+      }
+
+      var connections = this.getConnectionLocationsAndTypes( config.circuitConnections,
+        topPoint, leftPoint, rightPoint );
+
+      return connections;
+    },
+
+    /**
+     * Return array of objects containing location (Vector3) and type (CircuitConnectionEnum value)
+     * for each connection in circuitSwitchConnections.
+     *
+     * @param {Array<Object>} connections - array of { location: Vector3, connectionType: string }
+     * @param  {Vector2} topPoint
+     * @param  {Vector2} leftPoint
+     * @param  {Vector2} rightPoint
+     *
+     * @return {Array<Object>} - array of { location: Vector3, connectionType: string }
+     * @private
+     */
+    getConnectionLocationsAndTypes: function( circuitSwitchConnections, topPoint, leftPoint, rightPoint ) {
+
+      // collect location and connection type for each of the possible circuit switch connections
+      var connections = [];
+      circuitSwitchConnections.forEach( function( circuitSwitchConnection ) {
+        if ( circuitSwitchConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+          connections.push( {
+            location: topPoint.toVector3(),
+            connectionType: circuitSwitchConnection
+          } );
+        } else if ( circuitSwitchConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+          connections.push( {
+            location: leftPoint.toVector3(),
+            connectionType: circuitSwitchConnection
+          } );
+        } else if ( circuitSwitchConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+          connections.push( {
+            location: rightPoint.toVector3(),
+            connectionType: circuitSwitchConnection
+          } );
+        } else {
+          assert && assert( 'attempting to create switch conection which is not supported' );
+        }
+      } );
+      return connections;
+    },
 
     /**
      * Get the desired connection from the connection type.
