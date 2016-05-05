@@ -108,7 +108,7 @@ define( function( require ) {
         assert && assert( false,
           'Unsupported circuit connection property value: ' + this.circuitConnectionProperty.get() );
       }
-      // Fall through to initialized value
+
       return voltage;
     },
 
