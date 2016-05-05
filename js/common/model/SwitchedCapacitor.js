@@ -30,7 +30,6 @@ define( function( require ) {
       config.batteryLocation.y + config.capacitorYSpacing,
       config.batteryLocation.z );
 
-    // TODO: Remove options from Capacitor constructor and just use config
     var options = {
       plateWidth: config.plateWidth,
       plateSeparation: config.plateSeparation,
