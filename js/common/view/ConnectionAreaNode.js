@@ -33,13 +33,14 @@ define( function( require ) {
    * Constructor for the ConnectionAreaNode.
    *
    * @param {Object} connection
-   * @param {Vector2} hingePoint
+   * @param {CircuitSwitch} circuitSwitch
    * @param {ConnectionPointNode} connectionPointNode
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Property} circuitConnectionProperty
    * @constructor
    */
-  function ConnectionAreaNode( connection, hingePoint, connectionPointNode, modelViewTransform, circuitConnectionProperty ) {
+  function ConnectionAreaNode( connection, circuitSwitch, connectionPointNode, modelViewTransform ) {
+
+    var hingePoint = circuitSwitch.hingePoint.toVector2();
 
     Node.call( this );
     var connectionVector = connection.location.toVector2().minus( hingePoint ).withMagnitude( CLBConstants.SWITCH_WIRE_LENGTH * 3 / 2 );
@@ -61,7 +62,7 @@ define( function( require ) {
     }
 
     var connectionType = connection.connectionType; // for readability
-    circuitConnectionProperty.link( function( circuitConnection ) {
+    circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
       resetPinColors();
     } );
 
@@ -74,7 +75,7 @@ define( function( require ) {
         resetPinColors();
       },
       down: function( event ) {
-        circuitConnectionProperty.set( connectionType );
+        circuitSwitch.circuitConnectionProperty.set( connectionType );
       }
     } ) );
 
@@ -83,7 +84,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'ConnectionAreaNode', ConnectionAreaNode );
-  
+
   return inherit( Node, ConnectionAreaNode );
 
 } );

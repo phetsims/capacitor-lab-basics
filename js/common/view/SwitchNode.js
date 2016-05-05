@@ -56,8 +56,8 @@ define( function( require ) {
       connectionPointNode.translation = modelViewTransform.modelToViewPosition( connection.location );
 
       // add the clickable area for the connection point
-      var connectionAreaNode = new ConnectionAreaNode( connection, circuitSwitch.hingePoint.toVector2(),
-        connectionPointNode, modelViewTransform, circuitSwitch.circuitConnectionProperty );
+      var connectionAreaNode = new ConnectionAreaNode( connection, circuitSwitch,
+        connectionPointNode, modelViewTransform );
 
       thisNode.connectionPointNodes.push( connectionPointNode );
       connectionListeners.push( connectionAreaNode );
