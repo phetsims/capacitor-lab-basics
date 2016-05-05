@@ -22,9 +22,10 @@ define( function( require ) {
    * @param {CircuitConfig} config
    * @param {Battery} battery
    * @param {CircuitSwitch} circuitSwitch
+   * @param {Tandem} tandem
    * @constructor
    */
-  function BatteryToSwitchWire( connectionPoint, config, battery, circuitSwitch ) {
+  function BatteryToSwitchWire( connectionPoint, config, battery, circuitSwitch, tandem ) {
 
     var segments = [];
 
@@ -35,9 +36,9 @@ define( function( require ) {
     // add the vertical segment.
     var verticalSegment;
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-      verticalSegment = WireSegment.BatteryTopWireSegment( battery, leftCorner );
+      verticalSegment = WireSegment.BatteryTopWireSegment( battery, leftCorner, tandem );
     } else {
-      verticalSegment = WireSegment.BatteryBottomWireSegment( battery, leftCorner );
+      verticalSegment = WireSegment.BatteryBottomWireSegment( battery, leftCorner, tandem );
     }
 
     segments.push( verticalSegment );
@@ -48,10 +49,10 @@ define( function( require ) {
 
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-      switchSegment = WireSegment.BatteryTopToSwitchSegment( leftCorner, switchConnectionPoint );
+      switchSegment = WireSegment.BatteryTopToSwitchSegment( leftCorner, switchConnectionPoint, tandem );
     } else {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-      switchSegment = WireSegment.BatteryBottomToSwitchSegment( leftCorner, switchConnectionPoint );
+      switchSegment = WireSegment.BatteryBottomToSwitchSegment( leftCorner, switchConnectionPoint, tandem );
     }
 
     segments.push( switchSegment );

@@ -20,18 +20,19 @@ define( function( require ) {
    * @param {CircuitConfig} config
    * @param {Capacitor} capacitor
    * @param {CircuitSwitch} circuitSwitch
+   * @param {Tandem} tandem
    * @constructor
    */
-  function CapacitorToSwitchWire( connectionPoint, config, capacitor, circuitSwitch ) {
+  function CapacitorToSwitchWire( connectionPoint, config, capacitor, circuitSwitch, tandem ) {
     var segments = [];
 
     // add the vertical segment.
     var switchConnectionPoint = circuitSwitch.getCapacitorConnectionPoint();
     var segment;
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
-      segment = WireSegment.ComponentTopWireSegment( capacitor, switchConnectionPoint );
+      segment = WireSegment.ComponentTopWireSegment( capacitor, switchConnectionPoint, tandem );
     } else {
-      segment = WireSegment.ComponentBottomWireSegment( capacitor, switchConnectionPoint );
+      segment = WireSegment.ComponentBottomWireSegment( capacitor, switchConnectionPoint, tandem );
     }
     segments.push( segment );
 
@@ -45,12 +46,12 @@ define( function( require ) {
     /**
      * Factory functions for public access to specific constructors.
      */
-    CapacitorToSwitchWireTop: function( config, capacitor, circuitSwitch ) {
-      return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP, config, capacitor, circuitSwitch );
+    CapacitorToSwitchWireTop: function( config, capacitor, circuitSwitch, tandem ) {
+      return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP, config, capacitor, circuitSwitch, tandem );
     },
 
-    CapacitorToSwitchWireBottom: function( config, capacitor, circuitSwitch ) {
-      return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM, config, capacitor, circuitSwitch );
+    CapacitorToSwitchWireBottom: function( config, capacitor, circuitSwitch, tandem ) {
+      return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM, config, capacitor, circuitSwitch, tandem );
     }
 
   } );

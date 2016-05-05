@@ -18,90 +18,106 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
-   * Constructor for a WireSegment.
+   * @param {Vector2} startPoint
+   * @param {Vector2} endPoint
+   * @param {Tandem} tandem
+   * @constructor
    */
-  function WireSegment( startPoint, endPoint ) {
+  function WireSegment( startPoint, endPoint, tandem ) {
+
     // @public
     PropertySet.call( this, {
       startPoint: startPoint,
       endPoint: endPoint
+    }, {
+      tandem: tandem ? {
+        startPoint: tandem.createTandem( 'startPointProperty' ),
+        endPoint: tandem.createTandem( 'endPointProperty' )
+      } : {}
     } );
   }
 
   capacitorLabBasics.register( 'WireSegment', WireSegment );
-  
+
   inherit( PropertySet, WireSegment, {}, {
 
     // Factory methods to construct various wire segments for the different
-    
+
     /**
      * Return a WireSegment that attaches to the top of a battery
      * @param {Battery} battery
-     * @param {Vector2} endPoint - end point for the wire segment
+     * @param {Vector2} endPoint
+     * @param {Tandem} tandem - end point for the wire segment
      * @constructor
      */
-    BatteryTopWireSegment: function( battery, endPoint ) {
-      return new BatteryTopWireSegment( battery, endPoint );
+    BatteryTopWireSegment: function( battery, endPoint, tandem ) {
+      return new BatteryTopWireSegment( battery, endPoint, tandem );
     },
 
     /**
      * Return a WireSegment that attaches to the bottom of a battery
      * @param {Battery} battery
-     * @param {Vector2} endPoint - end point for the wire segment
+     * @param {Vector2} endPoint
+     * @param {Tandem} tandem - end point for the wire segment
      * @constructor
      */
-    BatteryBottomWireSegment: function( battery, endPoint ) {
-      return new BatteryBottomWireSegment( battery, endPoint );
+    BatteryBottomWireSegment: function( battery, endPoint, tandem ) {
+      return new BatteryBottomWireSegment( battery, endPoint, tandem );
     },
 
     /**
      * Return a WireSegment that attaches to the top of a circuit component
      * @param {Capacitor || LightBulb} component
-     * @param {Vector2} endPoint - end point for the wire segment
+     * @param {Vector2} endPoint
+     * @param {Tandem} tandem - end point for the wire segment
      * @constructor
      */
-    ComponentTopWireSegment: function( component, endPoint ) {
-      return new ComponentTopWireSegment( component, endPoint );
+    ComponentTopWireSegment: function( component, endPoint, tandem ) {
+      return new ComponentTopWireSegment( component, endPoint, tandem );
     },
 
     /**
      * Return a WireSegment that attaches to the bottom of a circuit component
      * @param {Capacitor || Lightbulb} component
-     * @param {Vector2} endPoint - end point for the wire segment
+     * @param {Vector2} endPoint
+     * @param {Tandem} tandem - end point for the wire segment
      * @constructor
      */
-    ComponentBottomWireSegment: function( component, endPoint ) { 
-      return new ComponentBottomWireSegment( component, endPoint );
+    ComponentBottomWireSegment: function( component, endPoint, tandem ) {
+      return new ComponentBottomWireSegment( component, endPoint, tandem );
     },
 
     /**
      * Return a WireSegment acts as a switch between two connection points
      * @param {Vector2} startPoint - start point for the switch segment
-     * @param {Vector2} endPoint - end point for the wire segment
+     * @param {Vector2} endPoint
+     * @param {Tandem} tandem - end point for the wire segment
      * @constructor
      */
-    SwitchSegment: function( startPoint, endPoint ) {
-      return new SwitchSegment( startPoint, endPoint );
+    SwitchSegment: function( startPoint, endPoint, tandem ) {
+      return new SwitchSegment( startPoint, endPoint, tandem );
     },
 
     /**
-     * Return a WireSegment that attaches a battery top to a switch segment 
+     * Return a WireSegment that attaches a battery top to a switch segment
      * @param {Vector2} startPoint
      * @param {Vector2} endPoint
+     * @param {Tandem} tandem
      * @constructor
      */
-    BatteryTopToSwitchSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
+    BatteryTopToSwitchSegment: function( startPoint, endPoint, tandem ) {
+      return new WireSegment( startPoint, endPoint, tandem );
     },
 
     /**
      * Return a WireSegment that attaches a battery bottom to a switch segment
      * @param {Vector2} startPoint
      * @param {Vector2} endPoint
+     * @param {Tandem} tandem
      * @constructor
      */
-    BatteryBottomToSwitchSegment: function( startPoint, endPoint ) {
-      return new WireSegment( startPoint, endPoint );
+    BatteryBottomToSwitchSegment: function( startPoint, endPoint, tandem ) {
+      return new WireSegment( startPoint, endPoint, tandem );
     }
   } );
 
@@ -111,9 +127,10 @@ define( function( require ) {
    * @param {Capacitor || LightBulb} component
    * @param {Vector2} startPoint
    * @param {Vector2} endPoint
+   * @param {Tandem} tandem
    */
-  function ComponentWireSegment( component, startPoint, endPoint ) {
-    WireSegment.call( this, startPoint, endPoint );
+  function ComponentWireSegment( component, startPoint, endPoint, tandem ) {
+    WireSegment.call( this, startPoint, endPoint, tandem );
     this.component = component;
   }
 
@@ -122,14 +139,15 @@ define( function( require ) {
   inherit( WireSegment, ComponentWireSegment );
 
   /**
-   * Constructor for ComponentTopWireSegment.  This is a wire segment whose start point is connected to the top 
+   * Constructor for ComponentTopWireSegment.  This is a wire segment whose start point is connected to the top
    * connection point of a component.  Adjusts the wire geometry when the component changes geometry or orientation.
    *
    * @param {Capacitor || LightBulb} component
    * @param {Vector2} endPoint
+   * @param {Tandem} tandem
    */
-  function ComponentTopWireSegment( component, endPoint ) {
-    ComponentWireSegment.call( this, component, component.getTopConnectionPoint().toVector2(), endPoint );
+  function ComponentTopWireSegment( component, endPoint, tandem ) {
+    ComponentWireSegment.call( this, component, component.getTopConnectionPoint().toVector2(), endPoint, tandem );
   }
 
   capacitorLabBasics.register( 'ComponentTopWireSegment', ComponentWireSegment );
@@ -142,14 +160,15 @@ define( function( require ) {
   } );
 
   /**
-   * Constructor for ComponentBottomWireSegment.  Wire segment whose start point is connected to the bottom connection 
+   * Constructor for ComponentBottomWireSegment.  Wire segment whose start point is connected to the bottom connection
    * point of a component.  Adjusts the start point when the component geometry changes.
    *
    * @param {Capacitor || LightBulb} component
    * @param {Vector2} endPoint
+   * @param {Tandem} tandem
    */
-  function ComponentBottomWireSegment( component, endPoint ) {
-    ComponentWireSegment.call( this, component, component.getBottomConnectionPoint().toVector2(), endPoint );
+  function ComponentBottomWireSegment( component, endPoint, tandem ) {
+    ComponentWireSegment.call( this, component, component.getBottomConnectionPoint().toVector2(), endPoint, tandem );
   }
 
   capacitorLabBasics.register( 'ComponentBottomWireSegment', ComponentBottomWireSegment );
@@ -167,9 +186,10 @@ define( function( require ) {
    *  @param {Battery} battery
    *  @param {Vector2} startPoint
    *  @param {Vector2} endPoint
+   *  @param {Tandem} tandem
    */
-  function BatteryWireSegment( battery, startPoint, endPoint ) {
-    WireSegment.call( this, startPoint, endPoint );
+  function BatteryWireSegment( battery, startPoint, endPoint, tandem ) {
+    WireSegment.call( this, startPoint, endPoint, tandem );
     this.battery = battery;
   }
 
@@ -183,9 +203,10 @@ define( function( require ) {
    *
    * @param {Battery} battery
    * @param {Vector2} endPoint
+   * @param {Tandem} tandem
    */
-  function BatteryTopWireSegment( battery, endPoint ) {
-    BatteryWireSegment.call( this, battery, new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ), endPoint );
+  function BatteryTopWireSegment( battery, endPoint, tandem ) {
+    BatteryWireSegment.call( this, battery, new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ), endPoint, tandem );
   }
 
   capacitorLabBasics.register( 'BatteryTopWireSegment', BatteryTopWireSegment );
@@ -204,9 +225,10 @@ define( function( require ) {
    *
    * @param {Battery} battery
    * @param {Vector2} endPoint
+   * @param {Tandem} tandem
    */
-  function BatteryBottomWireSegment( battery, endPoint ) {
-    BatteryWireSegment.call( this, battery, new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() ), endPoint );
+  function BatteryBottomWireSegment( battery, endPoint, tandem ) {
+    BatteryWireSegment.call( this, battery, new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() ), endPoint, tandem );
   }
 
   capacitorLabBasics.register( 'BatteryBottomWireSegment', BatteryBottomWireSegment );
@@ -225,12 +247,13 @@ define( function( require ) {
    *
    * @param {Vector2} hingePoint
    * @param {Object} activeConnection
+   * @param {Tandem} tandem
    * @constructor
    */
-  function SwitchSegment( hingePoint, activeConnection ) {
+  function SwitchSegment( hingePoint, activeConnection, tandem ) {
     this.activeConnection = activeConnection;
     this.hingePoint = hingePoint;
-    WireSegment.call( this, hingePoint, activeConnection.location );
+    WireSegment.call( this, hingePoint, activeConnection.location, tandem );
   }
 
   capacitorLabBasics.register( 'SwitchSegment', SwitchSegment );
@@ -247,3 +270,4 @@ define( function( require ) {
   return WireSegment;
 
 } );
+

@@ -315,7 +315,8 @@ define( function( require ) {
    * @param {Property.<Enum>} circuitConnectionProperty
    * @returns {Array}
    */
-  var createWires = function( config, battery, lightBulbs, capacitors, circuitSwitches, circuitConnectionProperty ) {
+  var createWires = function( config, battery, lightBulbs, capacitors,
+                             circuitSwitches, circuitConnectionProperty, tandem ) {
 
     var wires = [];
 
@@ -324,12 +325,14 @@ define( function( require ) {
     wires.push( BatteryToSwitchWire.BatteryToSwitchWireTop(
       config,
       battery,
-      capacitors[ 0 ].topCircuitSwitch
+      capacitors[ 0 ].topCircuitSwitch,
+      tandem
     ) );
     wires.push( BatteryToSwitchWire.BatteryToSwitchWireBottom(
       config,
       battery,
-      capacitors[ 0 ].bottomCircuitSwitch
+      capacitors[ 0 ].bottomCircuitSwitch,
+      tandem
     ) );
 
     // wire capacitors to the switches
@@ -337,12 +340,14 @@ define( function( require ) {
       wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireTop(
         config,
         capacitor,
-        capacitor.topCircuitSwitch
+        capacitor.topCircuitSwitch,
+        tandem
       ) );
       wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireBottom(
         config,
         capacitor,
-        capacitor.bottomCircuitSwitch
+        capacitor.bottomCircuitSwitch,
+        tandem
       ) );
     } );
 
@@ -352,12 +357,14 @@ define( function( require ) {
       wires.push( LightBulbToSwitchWire.LightBulbToSwitchWireTop(
         config,
         lightBulbs[ 0 ],
-        capacitors[ capacitors.length - 1 ].topCircuitSwitch
+        capacitors[ capacitors.length - 1 ].topCircuitSwitch,
+        tandem
       ) );
       wires.push( LightBulbToSwitchWire.LightBulbToSwitchWireBottom(
         config,
         lightBulbs[ 0 ],
-        capacitors[ capacitors.length - 1 ].bottomCircuitSwitch
+        capacitors[ capacitors.length - 1 ].bottomCircuitSwitch,
+        tandem
       ) );
 
       // now connect the rest of the light bulbs in the circuit

@@ -21,9 +21,10 @@ define( function( require ) {
    * @param {CircuitConfig} config
    * @param {LightBulb} lightBulb
    * @param {CircuitSwitch} circuitSwitch
+   * @param {Tandem} tandem
    * @constructor
    */
-  function LightBulbToSwitchWire( connectionPoint, config, lightBulb, circuitSwitch ) {
+  function LightBulbToSwitchWire( connectionPoint, config, lightBulb, circuitSwitch, tandem ) {
     var segments = [];
 
     // Get y coordinate of the horizontal wire
@@ -38,9 +39,9 @@ define( function( require ) {
     // add the vertical segment.
     var verticalSegment;
     if ( isTop ) {
-      verticalSegment = WireSegment.ComponentTopWireSegment( lightBulb, rightCorner );
+      verticalSegment = WireSegment.ComponentTopWireSegment( lightBulb, rightCorner, tandem );
     } else {
-      verticalSegment = WireSegment.ComponentBottomWireSegment( lightBulb, rightCorner );
+      verticalSegment = WireSegment.ComponentBottomWireSegment( lightBulb, rightCorner, tandem );
     }
     segments.push( verticalSegment );
 
@@ -59,12 +60,12 @@ define( function( require ) {
     /**
      * Factory functions for public access to specific constructors.
      */
-    LightBulbToSwitchWireBottom: function( config, lightBulb, circuitSwitch ) {
-      return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch );
+    LightBulbToSwitchWireBottom: function( config, lightBulb, circuitSwitch, tandem ) {
+      return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch, tandem );
     },
 
-    LightBulbToSwitchWireTop: function( config, lightBulb, circuitSwitch ) {
-      return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch );
+    LightBulbToSwitchWireTop: function( config, lightBulb, circuitSwitch, tandem ) {
+      return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch, tandem );
     }
 
   } );

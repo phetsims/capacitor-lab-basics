@@ -65,7 +65,7 @@ define( function( require ) {
       CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
 
     // add the switch wire that spans two connection points. Default connection is to the battery.
-    this.switchSegment = WireSegment.SwitchSegment( this.hingePoint, this.activeConnection );
+    this.switchSegment = WireSegment.SwitchSegment( this.hingePoint, this.activeConnection, tandem );
     this.switchWire = new Wire( this.modelViewTransform, CLBConstants.WIRE_THICKNESS, [ this.switchSegment ],
       connectionName );
 
