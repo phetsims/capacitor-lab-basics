@@ -39,9 +39,11 @@ define( function( require ) {
     // add the vertical segment.
     var verticalSegment;
     if ( isTop ) {
-      verticalSegment = WireSegment.ComponentTopWireSegment( lightBulb, rightCorner, tandem );
+      verticalSegment = WireSegment.ComponentTopWireSegment( lightBulb, rightCorner,
+        tandem ? tandem.createTandem( 'lightBulbComponentTopWireSegment' ) : null );
     } else {
-      verticalSegment = WireSegment.ComponentBottomWireSegment( lightBulb, rightCorner, tandem );
+      verticalSegment = WireSegment.ComponentBottomWireSegment( lightBulb, rightCorner,
+        tandem ? tandem.createTandem( 'lightBulbComponentBottomWireSegment' ) : null );
     }
     segments.push( verticalSegment );
 

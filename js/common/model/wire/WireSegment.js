@@ -30,7 +30,7 @@ define( function( require ) {
       startPoint: startPoint,
       endPoint: endPoint
     }, {
-      tandem: tandem ? {
+      tandemSet: tandem ? {
         startPoint: tandem.createTandem( 'startPointProperty' ),
         endPoint: tandem.createTandem( 'endPointProperty' )
       } : {}
@@ -51,7 +51,8 @@ define( function( require ) {
      * @constructor
      */
     BatteryTopWireSegment: function( battery, endPoint, tandem ) {
-      return new BatteryTopWireSegment( battery, endPoint, tandem );
+      return new BatteryTopWireSegment( battery, endPoint,
+        tandem ? tandem.createTandem( 'batteryTopWireSegment' ) : null );
     },
 
     /**
@@ -62,7 +63,8 @@ define( function( require ) {
      * @constructor
      */
     BatteryBottomWireSegment: function( battery, endPoint, tandem ) {
-      return new BatteryBottomWireSegment( battery, endPoint, tandem );
+      return new BatteryBottomWireSegment( battery, endPoint,
+        tandem ? tandem.createTandem( 'batteryBottomWireSegment' ) : null );
     },
 
     /**
@@ -95,7 +97,8 @@ define( function( require ) {
      * @constructor
      */
     SwitchSegment: function( startPoint, endPoint, tandem ) {
-      return new SwitchSegment( startPoint, endPoint, tandem );
+      return new SwitchSegment( startPoint, endPoint,
+        tandem ? tandem.createTandem( 'switchSegment' ) : null );
     },
 
     /**
@@ -106,7 +109,8 @@ define( function( require ) {
      * @constructor
      */
     BatteryTopToSwitchSegment: function( startPoint, endPoint, tandem ) {
-      return new WireSegment( startPoint, endPoint, tandem );
+      return new WireSegment( startPoint, endPoint,
+        tandem ? tandem.createTandem( 'batteryTopToSwitchSegment' ) : null );
     },
 
     /**
@@ -117,7 +121,8 @@ define( function( require ) {
      * @constructor
      */
     BatteryBottomToSwitchSegment: function( startPoint, endPoint, tandem ) {
-      return new WireSegment( startPoint, endPoint, tandem );
+      return new WireSegment( startPoint, endPoint,
+        tandem ? tandem.createTandem( 'batteryBottomToSwitchSegment' ) : null );
     }
   } );
 

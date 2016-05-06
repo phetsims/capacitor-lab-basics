@@ -66,12 +66,14 @@ define( function( require ) {
     /**
      * Factory functions for public access to specific constructors.
      */
-    BatteryToSwitchWireBottom: function( config, battery, circuitSwitch ) {
-      return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM, config, battery, circuitSwitch );
+    BatteryToSwitchWireBottom: function( config, battery, circuitSwitch, tandem ) {
+      return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM, config, battery, circuitSwitch,
+      tandem ? tandem.createTandem('batteryToSwitchWireBottom') : null );
     },
 
-    BatteryToSwitchWireTop: function( config, battery, circuitSwitch ) {
-      return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP, config, battery, circuitSwitch );
+    BatteryToSwitchWireTop: function( config, battery, circuitSwitch, tandem ) {
+      return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP, config, battery, circuitSwitch,
+      tandem ? tandem.createTandem('batteryToSwitchWireTop') : null );
     }
 
   } );

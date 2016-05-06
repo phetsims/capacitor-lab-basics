@@ -34,9 +34,9 @@ define( function( require ) {
       disconnectedPlateCharge: 0
     }, {
       tandemSet: tandem ? {
-        currentAmplitude: tandem.createTandem('currentAmplitudeProperty'),
-        circuitConnection: tandem.createTandem('circuitConnectionProperty'),
-        disconnectedPlateCharge: tandem.createTandem('disconnectedPlateChargeProperty')
+        currentAmplitude: tandem.createTandem( 'currentAmplitudeProperty' ),
+        circuitConnection: tandem.createTandem( 'circuitConnectionProperty' ),
+        disconnectedPlateCharge: tandem.createTandem( 'disconnectedPlateChargeProperty' )
       } : {}
     } );
 
@@ -67,7 +67,14 @@ define( function( require ) {
       thisCircuit.circuitSwitches.push( capacitor.bottomCircuitSwitch );
     } );
 
-    this.wires = createWires( config, this.battery, this.lightBulbs, this.capacitors, this.circuitSwitches, this.circuitConnectionProperty );
+    this.wires = createWires(
+      config,
+      this.battery,
+      this.lightBulbs,
+      this.capacitors,
+      this.circuitSwitches,
+      this.circuitConnectionProperty,
+      tandem );
 
     // Make sure all is well with circuit components.  Circuit must include at least one circuit component and two wires.
     assert && assert( this.circuitComponents.length >= 1 );
