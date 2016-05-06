@@ -51,8 +51,7 @@ define( function( require ) {
      * @constructor
      */
     BatteryTopWireSegment: function( battery, endPoint, tandem ) {
-      return new BatteryTopWireSegment( battery, endPoint,
-        tandem ? tandem.createTandem( 'batteryTopWireSegment' ) : null );
+      return new BatteryTopWireSegment( battery, endPoint, tandem );
     },
 
     /**
@@ -63,8 +62,7 @@ define( function( require ) {
      * @constructor
      */
     BatteryBottomWireSegment: function( battery, endPoint, tandem ) {
-      return new BatteryBottomWireSegment( battery, endPoint,
-        tandem ? tandem.createTandem( 'batteryBottomWireSegment' ) : null );
+      return new BatteryBottomWireSegment( battery, endPoint, tandem );
     },
 
     /**
@@ -97,8 +95,7 @@ define( function( require ) {
      * @constructor
      */
     SwitchSegment: function( startPoint, endPoint, tandem ) {
-      return new SwitchSegment( startPoint, endPoint,
-        tandem ? tandem.createTandem( 'switchSegment' ) : null );
+      return new SwitchSegment( startPoint, endPoint, tandem );
     },
 
     /**
@@ -109,8 +106,7 @@ define( function( require ) {
      * @constructor
      */
     BatteryTopToSwitchSegment: function( startPoint, endPoint, tandem ) {
-      return new WireSegment( startPoint, endPoint,
-        tandem ? tandem.createTandem( 'batteryTopToSwitchSegment' ) : null );
+      return new WireSegment( startPoint, endPoint, tandem );
     },
 
     /**
@@ -121,8 +117,7 @@ define( function( require ) {
      * @constructor
      */
     BatteryBottomToSwitchSegment: function( startPoint, endPoint, tandem ) {
-      return new WireSegment( startPoint, endPoint,
-        tandem ? tandem.createTandem( 'batteryBottomToSwitchSegment' ) : null );
+      return new WireSegment( startPoint, endPoint, tandem );
     }
   } );
 

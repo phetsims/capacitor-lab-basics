@@ -47,7 +47,7 @@ define( function( require ) {
     // @private
     this.initialAngle = 0; // with respect to the vertical ( open switch )
     this.modelViewTransform = config.modelViewTransform;
-    this.connections = this.getSwitchConnections(positionLabel, this.hingePoint.toVector2(), config.circuitConnections);
+    this.connections = this.getSwitchConnections( positionLabel, this.hingePoint.toVector2(), config.circuitConnections );
     this.activeConnection = this.getConnection( circuitConnectionProperty.value );
     var thisSwitch = this;
 
@@ -65,7 +65,9 @@ define( function( require ) {
       CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
 
     // add the switch wire that spans two connection points. Default connection is to the battery.
-    this.switchSegment = WireSegment.SwitchSegment( this.hingePoint, this.activeConnection, tandem );
+    this.switchSegment = WireSegment.SwitchSegment( this.hingePoint, this.activeConnection,
+      tandem ? tandem.createTandem( 'switchSegment' ) : null );
+
     this.switchWire = new Wire( this.modelViewTransform, CLBConstants.WIRE_THICKNESS, [ this.switchSegment ],
       connectionName );
 

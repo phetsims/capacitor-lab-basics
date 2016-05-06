@@ -36,9 +36,11 @@ define( function( require ) {
     // add the vertical segment.
     var verticalSegment;
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-      verticalSegment = WireSegment.BatteryTopWireSegment( battery, leftCorner, tandem );
+      verticalSegment = WireSegment.BatteryTopWireSegment( battery, leftCorner,
+        tandem ? tandem.createTandem( 'batteryTopWireSegment' ) : null );
     } else {
-      verticalSegment = WireSegment.BatteryBottomWireSegment( battery, leftCorner, tandem );
+      verticalSegment = WireSegment.BatteryBottomWireSegment( battery, leftCorner,
+        tandem ? tandem.createTandem( 'batteryBottomWireSegment' ) : null );
     }
 
     segments.push( verticalSegment );
@@ -49,10 +51,12 @@ define( function( require ) {
 
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-      switchSegment = WireSegment.BatteryTopToSwitchSegment( leftCorner, switchConnectionPoint, tandem );
+      switchSegment = WireSegment.BatteryTopToSwitchSegment( leftCorner, switchConnectionPoint,
+        tandem ? tandem.createTandem( 'batteryTopToSwitchSegment' ) : null );
     } else {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-      switchSegment = WireSegment.BatteryBottomToSwitchSegment( leftCorner, switchConnectionPoint, tandem );
+      switchSegment = WireSegment.BatteryBottomToSwitchSegment( leftCorner, switchConnectionPoint,
+        tandem ? tandem.createTandem( 'batteryBottomToSwitchSegment' ) : null );
     }
 
     segments.push( switchSegment );
@@ -68,12 +72,12 @@ define( function( require ) {
      */
     BatteryToSwitchWireBottom: function( config, battery, circuitSwitch, tandem ) {
       return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM, config, battery, circuitSwitch,
-      tandem ? tandem.createTandem('batteryToSwitchWireBottom') : null );
+        tandem ? tandem.createTandem( 'batteryToSwitchWireBottom' ) : null );
     },
 
     BatteryToSwitchWireTop: function( config, battery, circuitSwitch, tandem ) {
       return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP, config, battery, circuitSwitch,
-      tandem ? tandem.createTandem('batteryToSwitchWireTop') : null );
+        tandem ? tandem.createTandem( 'batteryToSwitchWireTop' ) : null );
     }
 
   } );
