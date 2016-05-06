@@ -14,8 +14,9 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  // var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var TandemDragHandler = require( 'TANDEM/scenery/input/TandemDragHandler' );
 
   // constants
   var BATTERY_CONNECTED_MIN_ANGLE = 3 * Math.PI / 4 - Math.PI / 8;
@@ -33,9 +34,10 @@ define( function( require ) {
   /**
    * Constructor for the CircuitSwitchDragHandler.
    * @param {SwitchNode} switchNode
+   * @param {Tandem} tandem
    * @constructor
    */
-  function CircuitSwitchDragHandler( switchNode ) {
+  function CircuitSwitchDragHandler( switchNode, tandem ) {
 
     var circuitSwitch = switchNode.circuitSwitch; // for readability
 
@@ -45,7 +47,8 @@ define( function( require ) {
     var angleOffset = 0;
     var angle = 0;
 
-    SimpleDragHandler.call( this, {
+    TandemDragHandler.call( this, {
+      tandem: tandem,
       allowTouchSnag: true,
 
       start: function( event ) {
@@ -84,8 +87,7 @@ define( function( require ) {
         // make sure that the switch does not snap to connection points if the user drags beyond limiting angles
         if ( Math.abs( distanceBetweenAngles( currentAngle, lastAngle ) ) >= Math.PI / 4 ) {
           // noop
-        }
-        else {
+        } else {
           circuitSwitch.angle = angle - angleOffset;
           lastAngle = currentAngle;
         }
@@ -99,14 +101,11 @@ define( function( require ) {
         angleOffset = 0;
         if ( absAngle > BATTERY_CONNECTED_MIN_ANGLE ) {
           circuitSwitch.circuitConnectionProperty.set( 'BATTERY_CONNECTED' );
-        }
-        else if ( absAngle < OPEN_CIRCUIT_MAX_ANGLE && absAngle > OPEN_CIRCUIT_MIN_ANGLE ) {
+        } else if ( absAngle < OPEN_CIRCUIT_MAX_ANGLE && absAngle > OPEN_CIRCUIT_MIN_ANGLE ) {
           circuitSwitch.circuitConnectionProperty.set( 'OPEN_CIRCUIT' );
-        }
-        else if ( absAngle < LIGHT_BULB_CONNECTED_MAX_ANGLE && absAngle > LIGHT_BULB_CONNECTED_MIN_ANGLE ) {
+        } else if ( absAngle < LIGHT_BULB_CONNECTED_MAX_ANGLE && absAngle > LIGHT_BULB_CONNECTED_MIN_ANGLE ) {
           circuitSwitch.circuitConnectionProperty.set( 'LIGHT_BULB_CONNECTED' );
-        }
-        else {
+        } else {
           console.log( ' TODO: Please restrict dragging to the correct bounds.' );
         }
 
@@ -119,6 +118,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'CircuitSwitchDragHandler', CircuitSwitchDragHandler );
 
-  return inherit( SimpleDragHandler, CircuitSwitchDragHandler );
+  return inherit( TandemDragHandler, CircuitSwitchDragHandler );
 
 } );
+

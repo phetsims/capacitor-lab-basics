@@ -39,7 +39,8 @@ define( function( require ) {
     this.circuit = model.circuit; // @public
 
     // circuit components
-    this.batteryNode = new BatteryNode( this.circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE, tandem.createTandem( 'batteryNode' ) );
+    this.batteryNode = new BatteryNode( this.circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE,
+      tandem.createTandem( 'batteryNode' ) );
     var capacitorNode = new CapacitorNode( this.circuit, model.modelViewTransform, model.plateChargesVisibleProperty,
       model.eFieldVisibleProperty );
 
@@ -54,8 +55,11 @@ define( function( require ) {
 
     // switches
     this.circuitSwitchNodes = [];
+    var switchNodeIndex = 0;
     this.circuit.circuitSwitches.forEach( function( circuitSwitch ) {
-      thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, model.modelViewTransform ) );
+      thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, model.modelViewTransform,
+        tandem.createTandem( 'switchNode' + switchNodeIndex ) ) );
+      switchNodeIndex++;
     } );
 
     // drag handles

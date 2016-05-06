@@ -25,9 +25,10 @@ define( function( require ) {
    *
    * @param {CircuitSwitch} circuitSwitch
    * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {Tandem} tandem
    * @constructor
    */
-  function SwitchNode( circuitSwitch, modelViewTransform ) {
+  function SwitchNode( circuitSwitch, modelViewTransform, tandem ) {
 
     Node.call( this );
     var thisNode = this;
@@ -64,7 +65,8 @@ define( function( require ) {
     } );
 
     // add the drag handler
-    this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( thisNode ) );
+    this.wireSwitchNode.addInputListener(
+      new CircuitSwitchDragHandler( thisNode, tandem.createTandem( 'inputListener' ) ) );
 
     // changes visual position as the user drags the switch.
     circuitSwitch.angleProperty.link( function( angle ) {
@@ -95,3 +97,4 @@ define( function( require ) {
   return inherit( Node, SwitchNode );
 
 } );
+
