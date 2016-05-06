@@ -138,7 +138,8 @@ define( function( require ) {
         numberOfLightBulbs: 1
       } );
 
-      var circuit = new LightBulbCircuit( circuitConfig );
+      // No tandem here - this is for internal implementation.
+      var circuit = new LightBulbCircuit( circuitConfig, null );
 
       // disconnect the battery and set the max plate charge
       circuit.circuitConnection = CircuitConnectionEnum.OPEN_CIRCUIT;
