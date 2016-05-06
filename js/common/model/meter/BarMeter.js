@@ -22,11 +22,15 @@ define( function( require ) {
    * @param {Function} valueFunction
    * @constructor
    */
-  function BarMeter( circuit, visibleProperty, valueFunction ) {
+  function BarMeter( circuit, visibleProperty, valueFunction, tandem ) {
 
     // @public
     PropertySet.call( this, {
       value: valueFunction( circuit )
+    }, {
+      tandemSet: tandem ? {
+        value: tandem.createTandem( 'valueProperty' )
+      } : {}
     } );
     this.visibleProperty = visibleProperty;
     var thisMeter = this;
@@ -51,26 +55,30 @@ define( function( require ) {
     /**
      * Factory functions create specific meters.
      */
-    CapacitanceMeter: function( circuit, visibleProperty ) {
+    CapacitanceMeter: function( circuit, visibleProperty, tandem ) {
       return new BarMeter( circuit, visibleProperty,
         function() {
           return circuit.getTotalCapacitance();
-        } );
+        },
+        tandem ? tandem.createTandem( 'capacitanceMeter' ) : null );
     },
 
-    PlateChargeMeter: function( circuit, visibleProperty ) {
+    PlateChargeMeter: function( circuit, visibleProperty, tandem ) {
       return new BarMeter( circuit, visibleProperty,
         function() {
           return circuit.getTotalCharge();
-        } );
+        },
+        tandem ? tandem.createTandem( 'plateChargeMeter' ) : null );
     },
 
-    StoredEnergyMeter: function( circuit, visibleProperty) {
+    StoredEnergyMeter: function( circuit, visibleProperty, tandem ) {
       return new BarMeter( circuit, visibleProperty,
         function() {
           return circuit.getStoredEnergy();
-        } );
+        },
+        tandem ? tandem.createTandem( 'storedEnergyMeter' ) : null );
     }
 
   } );
 } );
+
