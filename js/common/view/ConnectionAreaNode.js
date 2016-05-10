@@ -13,7 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Shape = require( 'KITE/Shape' );
   var Path = require( 'SCENERY/nodes/Path' );
-  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
+  var TandemButtonListener = require( 'TANDEM/scenery/input/TandemButtonListener' );
   var Node = require( 'SCENERY/nodes/Node' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
@@ -67,9 +67,9 @@ define( function( require ) {
     } );
 
     // Add input listener to set circuit state.
-    this.addInputListener( new ButtonListener( {
+    this.addInputListener( new TandemButtonListener( {
 
-      tandem: tandem.createTandem( 'inputListener' ),
+      tandem: tandem.createTandem( 'buttonListener' ),
 
       over: function( event ) {
         connectionPointNode.fill = CONNECTION_POINT_HIGHLIGHTED;

@@ -51,15 +51,17 @@ define( function( require ) {
     // create connection points and clickable areas
     this.connectionPointNodes = [];
     var connectionListeners = [];
-    circuitSwitch.connections.forEach( function( connection ) {
+
+    // TODO: Mark these tandems with more human-readable names
+    circuitSwitch.connections.forEach( function( connection, index ) {
       // add the connection point node
       var connectionPointNode = new ConnectionPointNode( connection.connectionType,
-        circuitSwitch.circuitConnectionProperty, tandem.createTandem( 'connectionPointNode' ) );
+        circuitSwitch.circuitConnectionProperty, tandem.createTandem( 'connectionPointNode' + index ) );
       connectionPointNode.translation = modelViewTransform.modelToViewPosition( connection.location );
 
       // add the clickable area for the connection point
       var connectionAreaNode = new ConnectionAreaNode( connection, circuitSwitch,
-        connectionPointNode, modelViewTransform, tandem.createTandem( 'connectionAreaNode' ) );
+        connectionPointNode, modelViewTransform, tandem.createTandem( 'connectionAreaNode' + index ) );
 
       thisNode.connectionPointNodes.push( connectionPointNode );
       connectionListeners.push( connectionAreaNode );
