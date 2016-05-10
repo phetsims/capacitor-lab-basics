@@ -18,15 +18,25 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Tandem = require( 'TANDEM/Tandem' );
+  var Color = require( 'SCENERY/util/Color' );
 
   // A new tandem instance is required here since the solutes are created statically.
   var tandem = Tandem.createStaticTandem( 'dielectrics' );
 
+  // TODO
+  /**
+   * @constructor
+   *
+   * @param {[type]} name [description]
+   * @param {[type]} dielectricConstant [description]
+   * @param {[type]} color [description]
+   * @param {[type]} tandem [description]
+   */
   function DielectricMaterial( name, dielectricConstant, color, tandem ) {
 
     // @public (read-only)
     this.name = name;
-    this.color = color;
+    this.color = new Color( color );
     this.dielectricConstant = dielectricConstant;
 
     tandem && tandem.addInstance( this );
