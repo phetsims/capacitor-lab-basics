@@ -56,9 +56,10 @@ define( function( require ) {
     // switches
     this.circuitSwitchNodes = [];
     var switchNodeIndex = 0;
+    var switchNodeLabels = [ 'top', 'bottom' ];
     this.circuit.circuitSwitches.forEach( function( circuitSwitch ) {
       thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, model.modelViewTransform,
-        tandem.createTandem( 'switchNode' + switchNodeIndex ) ) );
+        tandem.createTandem( switchNodeLabels[ switchNodeIndex ] + 'SwitchNode' ) ) );
       switchNodeIndex++;
     } );
 

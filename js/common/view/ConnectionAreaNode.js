@@ -20,7 +20,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
-  var DEBUG = false; // shows the rectangular bounding area
+  var DEBUG = false; // shows the triangular bounding areas
 
   var BOUNDING_ANGLE = Math.PI / 8;
   var AREA_FILL = DEBUG ? 'rgba( 1, 1, 1, 0.65 )' : null;

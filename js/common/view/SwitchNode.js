@@ -52,16 +52,16 @@ define( function( require ) {
     this.connectionPointNodes = [];
     var connectionListeners = [];
 
-    // TODO: Mark these tandems with more human-readable names
+    var connectionLabels = [ 'battery', 'open', 'lightBulb' ];
     circuitSwitch.connections.forEach( function( connection, index ) {
       // add the connection point node
       var connectionPointNode = new ConnectionPointNode( connection.connectionType,
-        circuitSwitch.circuitConnectionProperty, tandem.createTandem( 'connectionPointNode' + index ) );
+        circuitSwitch.circuitConnectionProperty, tandem.createTandem( connectionLabels[ index ] + 'ConnectionPointNode' ) );
       connectionPointNode.translation = modelViewTransform.modelToViewPosition( connection.location );
 
       // add the clickable area for the connection point
       var connectionAreaNode = new ConnectionAreaNode( connection, circuitSwitch,
-        connectionPointNode, modelViewTransform, tandem.createTandem( 'connectionAreaNode' + index ) );
+        connectionPointNode, modelViewTransform, tandem.createTandem( connectionLabels[ index ] + 'ConnectionAreaNode' ) );
 
       thisNode.connectionPointNodes.push( connectionPointNode );
       connectionListeners.push( connectionAreaNode );
