@@ -47,8 +47,9 @@ define( function( require ) {
    * @param {Voltmeter} voltmeter - the voltmeter model
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property.<boolean>} inUserControlProperty
+   * @param {Tandem} tandem
    */
-  function VoltmeterBodyNode( voltmeter, modelViewTransform, inUserControlProperty ) {
+  function VoltmeterBodyNode( voltmeter, modelViewTransform, inUserControlProperty, tandem ) {
 
     Node.call( this );
     var thisNode = this;
@@ -105,7 +106,7 @@ define( function( require ) {
       thisNode.translation = modelViewTransform.modelToViewPosition( bodyLocation );
     } );
 
-    // voltmeter is restricted by bounds in model coordinates for MovableDraghandler, adjusted by dimensions
+    // voltmeter is restricted by bounds in model coordinates for `handler, adjusted by dimensions
     // of the voltmeter body
     var adjustedViewBounds = new Bounds2( 0, 0, voltmeter.dragBounds.maxX - imageNode.width, voltmeter.dragBounds.maxY - imageNode.height );
     var bodyDragBounds = modelViewTransform.viewToModelBounds( adjustedViewBounds );

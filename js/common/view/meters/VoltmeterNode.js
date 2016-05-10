@@ -53,7 +53,7 @@ define( function( require ) {
     var thisNode = this;
 
     // construct all parts of the probe
-    this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty ); // @public
+    this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty, tandem.createTandem( 'voltmeterBodyNode' ) ); // @public
     this.positiveProbeNode = VoltmeterProbeNode.PositiveVoltmeterProbeNode( voltmeter, modelViewTransform, tandem.createTandem( 'positiveProbeNode' ) );
     this.negativeProbeNode = VoltmeterProbeNode.NegativeVoltmeterProbeNode( voltmeter, modelViewTransform, tandem.createTandem( 'negativeProbeNode' ) );
 
