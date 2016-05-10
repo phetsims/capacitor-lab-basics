@@ -58,7 +58,7 @@ define( function( require ) {
 
       // add the clickable area for the connection point
       var connectionAreaNode = new ConnectionAreaNode( connection, circuitSwitch,
-        connectionPointNode, modelViewTransform );
+        connectionPointNode, modelViewTransform, tandem.createTandem( 'connectionAreaNode' ) );
 
       thisNode.connectionPointNodes.push( connectionPointNode );
       connectionListeners.push( connectionAreaNode );

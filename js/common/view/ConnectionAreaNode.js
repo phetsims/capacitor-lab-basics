@@ -36,10 +36,10 @@ define( function( require ) {
    * @param {CircuitSwitch} circuitSwitch
    * @param {ConnectionPointNode} connectionPointNode
    * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {Tandem} tandem
    * @constructor
    */
-  function ConnectionAreaNode( connection, circuitSwitch, connectionPointNode, modelViewTransform ) {
-
+  function ConnectionAreaNode( connection, circuitSwitch, connectionPointNode, modelViewTransform, tandem ) {
     var hingePoint = circuitSwitch.hingePoint.toVector2();
 
     Node.call( this );
@@ -68,6 +68,9 @@ define( function( require ) {
 
     // Add input listener to set circuit state.
     this.addInputListener( new ButtonListener( {
+
+      tandem: tandem.createTandem( 'inputListener' ),
+
       over: function( event ) {
         connectionPointNode.fill = CONNECTION_POINT_HIGHLIGHTED;
       },
@@ -88,3 +91,4 @@ define( function( require ) {
   return inherit( Node, ConnectionAreaNode );
 
 } );
+
