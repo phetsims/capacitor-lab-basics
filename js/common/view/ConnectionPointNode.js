@@ -29,10 +29,11 @@ define( function( require ) {
    *
    * @param {string} connectionType
    * @param {Property} circuitConnectionProperty
+   * @param {Tandem} tandem
    * @param {Object} options
    * @constructor
    */
-  function ConnectionPointNode( connectionType, circuitConnectionProperty, options ) {
+  function ConnectionPointNode( connectionType, circuitConnectionProperty, tandem, options ) {
 
     options = _.extend( {
       fill: DISCONNECTED_POINT_COLOR,
@@ -57,6 +58,9 @@ define( function( require ) {
 
     // Add input listener to set circuit state.
     this.addInputListener( new ButtonListener( {
+
+      tandem: tandem.createTandem( 'inputListener' ),
+
       over: function( event ) {
         thisNode.fill = CONNECTION_POINT_HIGHLIGHTED;
       },
@@ -70,7 +74,8 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'ConnectionPointNode', ConnectionPointNode );
-  
+
   return inherit( Circle, ConnectionPointNode, {} );
 
 } );
+

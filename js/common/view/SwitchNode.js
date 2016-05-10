@@ -53,7 +53,8 @@ define( function( require ) {
     var connectionListeners = [];
     circuitSwitch.connections.forEach( function( connection ) {
       // add the connection point node
-      var connectionPointNode = new ConnectionPointNode( connection.connectionType, circuitSwitch.circuitConnectionProperty );
+      var connectionPointNode = new ConnectionPointNode( connection.connectionType,
+        circuitSwitch.circuitConnectionProperty, tandem.createTandem( 'connectionPointNode' ) );
       connectionPointNode.translation = modelViewTransform.modelToViewPosition( connection.location );
 
       // add the clickable area for the connection point
