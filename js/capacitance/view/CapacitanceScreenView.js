@@ -40,7 +40,7 @@ define( function( require ) {
     this.model = model;
 
     // circuit
-    var capacitanceCircuitNode = new CapacitanceCircuitNode( model, tandem.createTandem( 'circuitNode' ) );
+    var capacitanceCircuitNode = new CapacitanceCircuitNode( model, tandem.createTandem( 'capacitanceCircuitNode' ) );
 
     // meters
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
