@@ -53,12 +53,15 @@ define( function( require ) {
     var thisNode = this;
 
     // construct all parts of the probe
-    this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty, tandem.createTandem( 'voltmeterBodyNode' ) ); // @public
-    this.positiveProbeNode = VoltmeterProbeNode.PositiveVoltmeterProbeNode( voltmeter, modelViewTransform, tandem.createTandem( 'positiveProbeNode' ) );
-    this.negativeProbeNode = VoltmeterProbeNode.NegativeVoltmeterProbeNode( voltmeter, modelViewTransform, tandem.createTandem( 'negativeProbeNode' ) );
+    this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty,
+      tandem.createTandem( 'voltmeterBodyNode' ) ); // @public
+    this.positiveProbeNode = VoltmeterProbeNode.PositiveVoltmeterProbeNode( voltmeter, modelViewTransform,
+      tandem.createTandem( 'positiveProbeNode' ) );
+    this.negativeProbeNode = VoltmeterProbeNode.NegativeVoltmeterProbeNode( voltmeter, modelViewTransform,
+      tandem.createTandem( 'negativeProbeNode' ) );
 
-    var positiveWireNode = new ProbeWireNode(this.bodyNode, this.positiveProbeNode, true);
-    var negativeWireNode = new ProbeWireNode(this.bodyNode, this.negativeProbeNode, false);
+    var positiveWireNode = new ProbeWireNode( this.bodyNode, this.positiveProbeNode, true );
+    var negativeWireNode = new ProbeWireNode( this.bodyNode, this.negativeProbeNode, false );
 
     // rendering order
     this.addChild( this.bodyNode );
@@ -165,7 +168,9 @@ define( function( require ) {
 
 
     // rendering order for the icon
-    this.children = [ voltmeterImageNode, labelText, readoutRectangle, blackProbeImage, redProbeImage, redWirePath, blackWirePath ];
+    this.children = [ voltmeterImageNode, labelText, readoutRectangle, blackProbeImage, redProbeImage, redWirePath,
+      blackWirePath
+    ];
 
   }
 
