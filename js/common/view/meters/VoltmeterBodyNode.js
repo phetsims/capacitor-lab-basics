@@ -112,6 +112,7 @@ define( function( require ) {
     var bodyDragBounds = modelViewTransform.viewToModelBounds( adjustedViewBounds );
 
     this.movableDragHandler = new MovableDragHandler( voltmeter.bodyLocationProperty, {
+      tandem: tandem.createTandem( 'inputListener' ),
       dragBounds: bodyDragBounds,
       modelViewTransform: modelViewTransform,
       startDrag: function() {
