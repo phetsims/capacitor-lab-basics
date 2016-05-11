@@ -30,7 +30,7 @@ define( function( require ) {
    *
    * @param {string} positionLabel - 'top' or 'bottom'
    * @param {CircuitConfig} config
-   * @param {Property.<string>} circuitConnectionProperty,
+   * @param {Property.<string>} circuitConnectionProperty
    * @param {Tandem} tandem
    */
   function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem ) {
