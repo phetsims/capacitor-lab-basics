@@ -44,8 +44,10 @@ define( function( require ) {
     var lightBulbCircuitNode = new LightBulbCircuitNode( model, tandem.createTandem( 'lightBulbCircuitNode' ) );
 
     // meters
-    var barMeterPanel = new BarMeterPanel( model, lightBulbCircuitNode.topWireNode.width );
-    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
+    var barMeterPanel = new BarMeterPanel( model, lightBulbCircuitNode.topWireNode.width,
+      tandem.createTandem( 'barMeterPanel' ) );
+    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty,
+      tandem.createTandem( 'voltmeterNode' ) );
     var voltmeterToolbox = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform,
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty );
 

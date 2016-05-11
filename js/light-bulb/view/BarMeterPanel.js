@@ -36,9 +36,10 @@ define( function( require ) {
   /**
    * @param {Array<BarMeter>} model
    * @param {Property.<boolean>} minWidth
+   * @param {Tandem} tandem
    * @constructor
    */
-  function BarMeterPanel( model, minWidth ) {
+  function BarMeterPanel( model, minWidth, tandem ) {
 
     var thisPanel = this;
 
@@ -56,13 +57,16 @@ define( function( require ) {
     var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR };
 
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
-    var capacitanceCheckBox = new CheckBox( capacitanceTitle, model.capacitanceMeterVisibleProperty );
+    var capacitanceCheckBox = new CheckBox( capacitanceTitle, model.capacitanceMeterVisibleProperty,
+      tandem.createTandem( 'capacitanceMeterCheckBox' ) );
 
     var plateChargeTitle = new Text( plateChargeString, fontOptions );
-    var plateChargeCheckBox = new CheckBox( plateChargeTitle, model.plateChargeMeterVisibleProperty );
+    var plateChargeCheckBox = new CheckBox( plateChargeTitle, model.plateChargeMeterVisibleProperty,
+      tandem.createTandem( 'plateChargeMeterCheckBox' ) );
 
     var storedEnergyTitle = new Text( storedEnergyString, fontOptions );
-    var storedEnergyCheckBox = new CheckBox( storedEnergyTitle, model.storedEnergyMeterVisibleProperty );
+    var storedEnergyCheckBox = new CheckBox( storedEnergyTitle, model.storedEnergyMeterVisibleProperty,
+      tandem.createTandem( 'storedEnergyMeterCheckBox' ) );
 
     checkBoxNodes.children = [ capacitanceCheckBox, plateChargeCheckBox, storedEnergyCheckBox ];
 
@@ -101,6 +105,7 @@ define( function( require ) {
       thisPanel.visible = barGraphsPanelVisible;
     } );
 
+    tandem.addInstance( this );
   }
 
   capacitorLabBasics.register( 'BarMeterPanel', BarMeterPanel );
@@ -108,3 +113,4 @@ define( function( require ) {
   return inherit( Panel, BarMeterPanel );
 
 } );
+
