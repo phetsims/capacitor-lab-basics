@@ -76,6 +76,10 @@ define( function( require ) {
       align: 'left',
       fill: CLBConstants.METER_PANEL_FILL
     } );
+
+    // Register with tandem.  No need to handle dispose/removeInstance since the CLBViewControlPanel exists for the
+    // lifetime of the simulation.
+    tandem.addInstance( this );
   }
 
   // convenience functions for constructing panels and layout boxes
