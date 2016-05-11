@@ -65,10 +65,29 @@ define( function( require ) {
     this.circuit = new LightBulbCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
     this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // private
 
+    var circuit = this.circuit;
+
     // @public
-    this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty, tandem );
-    this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.plateChargeMeterVisibleProperty, tandem );
-    this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.storedEnergyMeterVisibleProperty, tandem );
+    this.capacitanceMeter = new BarMeter( this.circuit, this.capacitanceMeterVisibleProperty,
+      function() {
+        return circuit.getTotalCapacitance();
+      },
+      tandem ? tandem.createTandem( 'capacitanceMeter' ) : null );
+    this.plateChargeMeter = new BarMeter( this.circuit, this.plateChargeMeterVisibleProperty,
+      function() {
+        return circuit.getTotalCharge();
+      },
+      tandem ? tandem.createTandem( 'plateChargeMeter' ) : null );
+    this.storedEnergyMeter = new BarMeter( this.circuit, this.storedEnergyMeterVisibleProperty,
+      function() {
+        return circuit.getStoredEnergy();
+      },
+      tandem ? tandem.createTandem( 'storedEnergyMeter' ) : null );
+
+    // this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty, tandem );
+    // this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.plateChargeMeterVisibleProperty, tandem );
+    // this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.storedEnergyMeterVisibleProperty, tandem );
+
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
 
     this.circuit.maxPlateCharge = this.getMaxPlateCharge();

@@ -46,7 +46,12 @@ define( function( require ) {
     this.circuit = new CapacitanceCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
     this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
 
-    this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty, tandem );
+    var circuit = this.circuit;
+    this.capacitanceMeter = new BarMeter( this.circuit, this.capacitanceMeterVisibleProperty,
+      function() {
+        return circuit.getTotalCapacitance();
+      },
+      tandem ? tandem.createTandem( 'capacitanceMeter' ) : null );
 
     // @public
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );

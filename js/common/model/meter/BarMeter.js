@@ -50,36 +50,6 @@ define( function( require ) {
     updateValue: function() {
       this.value = this.valueFunction( this.circuit );
     }
-
-  }, {
-
-    /**
-     * Factory functions create specific meters.
-     */
-    CapacitanceMeter: function( circuit, visibleProperty, tandem ) {
-      return new BarMeter( circuit, visibleProperty,
-        function() {
-          return circuit.getTotalCapacitance();
-        },
-        tandem ? tandem.createTandem( 'capacitanceMeter' ) : null );
-    },
-
-    PlateChargeMeter: function( circuit, visibleProperty, tandem ) {
-      return new BarMeter( circuit, visibleProperty,
-        function() {
-          return circuit.getTotalCharge();
-        },
-        tandem ? tandem.createTandem( 'plateChargeMeter' ) : null );
-    },
-
-    StoredEnergyMeter: function( circuit, visibleProperty, tandem ) {
-      return new BarMeter( circuit, visibleProperty,
-        function() {
-          return circuit.getStoredEnergy();
-        },
-        tandem ? tandem.createTandem( 'storedEnergyMeter' ) : null );
-    }
-
   } );
 } );
 
