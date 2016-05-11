@@ -57,16 +57,19 @@ define( function( require ) {
     var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR };
 
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
-    var capacitanceCheckBox = new CheckBox( capacitanceTitle, model.capacitanceMeterVisibleProperty,
-      tandem.createTandem( 'capacitanceMeterCheckBox' ) );
+    var capacitanceCheckBox = new CheckBox( capacitanceTitle, model.capacitanceMeterVisibleProperty, {
+      tandem: tandem.createTandem( 'capacitanceMeterCheckBox' )
+    } );
 
     var plateChargeTitle = new Text( plateChargeString, fontOptions );
-    var plateChargeCheckBox = new CheckBox( plateChargeTitle, model.plateChargeMeterVisibleProperty,
-      tandem.createTandem( 'plateChargeMeterCheckBox' ) );
+    var plateChargeCheckBox = new CheckBox( plateChargeTitle, model.plateChargeMeterVisibleProperty, {
+      tandem: tandem.createTandem( 'plateChargeMeterCheckBox' )
+    } );
 
     var storedEnergyTitle = new Text( storedEnergyString, fontOptions );
-    var storedEnergyCheckBox = new CheckBox( storedEnergyTitle, model.storedEnergyMeterVisibleProperty,
-      tandem.createTandem( 'storedEnergyMeterCheckBox' ) );
+    var storedEnergyCheckBox = new CheckBox( storedEnergyTitle, model.storedEnergyMeterVisibleProperty, {
+      tandem: tandem.createTandem( 'storedEnergyMeterCheckBox' )
+    } );
 
     checkBoxNodes.children = [ capacitanceCheckBox, plateChargeCheckBox, storedEnergyCheckBox ];
 
