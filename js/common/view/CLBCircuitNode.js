@@ -54,14 +54,14 @@ define( function( require ) {
     } );
 
     // switches
+    assert && assert( this.circuit.circuitSwitches.length === 2,
+      'This circuit should have two switches: top and bottom.' );
+
     this.circuitSwitchNodes = [];
-    var switchNodeIndex = 0;
-    var switchNodeLabels = [ 'top', 'bottom' ];
-    this.circuit.circuitSwitches.forEach( function( circuitSwitch ) {
-      thisNode.circuitSwitchNodes.push( new SwitchNode( circuitSwitch, model.modelViewTransform,
-        tandem.createTandem( switchNodeLabels[ switchNodeIndex ] + 'SwitchNode' ) ) );
-      switchNodeIndex++;
-    } );
+    thisNode.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 0 ], model.modelViewTransform,
+      tandem.createTandem( 'topSwitchNode' ) ) );
+    thisNode.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 1 ], model.modelViewTransform,
+      tandem.createTandem( 'bottomSwitchNode' ) ) );
 
     // drag handles
     var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( this.circuit.capacitor, model.modelViewTransform,
