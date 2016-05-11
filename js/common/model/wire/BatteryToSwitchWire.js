@@ -72,12 +72,12 @@ define( function( require ) {
      */
     BatteryToSwitchWireBottom: function( config, battery, circuitSwitch, tandem ) {
       return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM, config, battery, circuitSwitch,
-        tandem ? tandem.createTandem( 'batteryToSwitchWireBottom' ) : null );
+        tandem );
     },
 
     BatteryToSwitchWireTop: function( config, battery, circuitSwitch, tandem ) {
       return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP, config, battery, circuitSwitch,
-        tandem ? tandem.createTandem( 'batteryToSwitchWireTop' ) : null );
+        tandem );
     }
 
   } );

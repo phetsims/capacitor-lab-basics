@@ -22,16 +22,17 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Vector3 = require( 'DOT/Vector3' );
-  var inherit = require( 'PHET_CORE/inherit' );
   var AbstractCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/AbstractCircuit' );
-  var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
   var BatteryToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/BatteryToSwitchWire' );
-  var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CapacitorToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/CapacitorToSwitchWire' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
+  var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
   var SwitchedCapacitor = require( 'CAPACITOR_LAB_BASICS/common/model/SwitchedCapacitor' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   /**
    * Constructor for a Parallel Circuit.
@@ -312,28 +313,27 @@ define( function( require ) {
    * @param {Array<LightBulb>} lightBulbs
    * @param {Array<Capacitor>} capacitors
    * @param {Array<CircuitSwitch>} circuitSwitches
-   * @param {Property.<Enum>} circuitConnectionProperty
+   * @param {Property.<string>} circuitConnectionProperty
    * @returns {Array}
    */
   var createWires = function( config, battery, lightBulbs, capacitors,
-                             circuitSwitches, circuitConnectionProperty, tandem ) {
+    circuitSwitches, circuitConnectionProperty, tandem ) {
 
     var wires = [];
 
     // wire battery to first capacitor, there must be at least one capacitor in the circuit
     assert && assert( capacitors.length > 0, 'There must be at least one capacitor in the circuit' );
+
     wires.push( BatteryToSwitchWire.BatteryToSwitchWireTop(
       config,
       battery,
       capacitors[ 0 ].topCircuitSwitch,
-      tandem
-    ) );
+      tandem ? tandem.createTandem( 'batteryToSwitchWireBottom' ) : null ) );
     wires.push( BatteryToSwitchWire.BatteryToSwitchWireBottom(
       config,
       battery,
       capacitors[ 0 ].bottomCircuitSwitch,
-      tandem
-    ) );
+      tandem ? tandem.createTandem( 'batteryToSwitchWireTop' ) : null ) );
 
     // wire capacitors to the switches
     capacitors.forEach( function( capacitor ) {
@@ -374,6 +374,7 @@ define( function( require ) {
         assert && assert( 'There should only be one light bulb in Capacitor Lab: Basics' );
       }
     }
+
     return wires;
   };
 
