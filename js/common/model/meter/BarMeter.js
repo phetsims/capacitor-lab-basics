@@ -20,6 +20,7 @@ define( function( require ) {
    * @param {AbstractCircuit} circuit
    * @param {Property.<boolean>} visibleProperty - model property that determines if the entire meter is visible.
    * @param {Function} valueFunction
+   * @param {Tandem} tandem
    * @constructor
    */
   function BarMeter( circuit, visibleProperty, valueFunction, tandem ) {

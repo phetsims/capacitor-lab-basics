@@ -21,6 +21,7 @@ define( function( require ) {
   var lightBulbTitleString = require( 'string!CAPACITOR_LAB_BASICS/lightBulb.title' );
 
   /**
+   * @param {Tandem} tandem
    * @constructor
    */
   function CLBLightBulbScreen( tandem ) {

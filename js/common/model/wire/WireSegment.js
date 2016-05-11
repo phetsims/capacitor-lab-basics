@@ -78,9 +78,9 @@ define( function( require ) {
 
     /**
      * Return a WireSegment that attaches to the bottom of a circuit component
-     * @param {Capacitor || Lightbulb} component
-     * @param {Vector2} endPoint
-     * @param {Tandem} tandem - end point for the wire segment
+     * @param {Capacitor | LightBulb} component
+     * @param {Vector2} endPoint - end point for the wire segment
+     * @param {Tandem} tandem
      * @constructor
      */
     ComponentBottomWireSegment: function( component, endPoint, tandem ) {
@@ -90,8 +90,8 @@ define( function( require ) {
     /**
      * Return a WireSegment acts as a switch between two connection points
      * @param {Vector2} startPoint - start point for the switch segment
-     * @param {Vector2} endPoint
-     * @param {Tandem} tandem - end point for the wire segment
+     * @param {Vector2} endPoint - end point for the wire segment
+     * @param {Tandem} tandem 
      * @constructor
      */
     SwitchSegment: function( startPoint, endPoint, tandem ) {

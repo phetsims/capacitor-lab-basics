@@ -34,10 +34,10 @@ define( function( require ) {
   var WIRE_EXTENT = 0.017; // how far the wire extends above or below the capacitor (meters)
 
   /**
-   * Constructor for the Dielectric Model.
    *
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
+   * @constructor
    */
   function CLBLightBulbModel( modelViewTransform, tandem ) {
 

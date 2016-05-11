@@ -22,6 +22,16 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var TandemDragHandler = require( 'TANDEM/scenery/input/TandemDragHandler' );
 
+  /**
+   *
+   * // TODO: Add JSDOC types
+   * @param dragNode
+   * @param capacitor
+   * @param modelViewTransform
+   * @param valueRange
+   * @param {Tandem} tandem
+   * @constructor
+   */
   function PlateAreaDragHandler( dragNode, capacitor, modelViewTransform, valueRange, tandem ) {
 
     var thisHandler = this;
