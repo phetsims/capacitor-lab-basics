@@ -28,11 +28,10 @@ define( function( require ) {
   /**
    * Constructor for a CircuitSwitch.
    *
-   * @param {Vector3} hingePoint
-   * @param {Array<Object>} connections - array of objects that look like { location: Vector3, connectionType: string }
-   * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Property} circuitConnectionProperty,
-   * @param {string} connectionLocation
+   * @param {string} positionLabel - 'top' or 'bottom'
+   * @param {CircuitConfig} config
+   * @param {Property.<string>} circuitConnectionProperty,
+   * @param {Tandem} tandem
    */
   function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem ) {
 
@@ -69,7 +68,7 @@ define( function( require ) {
       tandem ? tandem.createTandem( 'switchSegment' ) : null );
 
     this.switchWire = new Wire( this.modelViewTransform, CLBConstants.WIRE_THICKNESS, [ this.switchSegment ],
-      connectionName );
+      connectionName /*, tandem.createTandem( 'switchWire' )*/ );
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
