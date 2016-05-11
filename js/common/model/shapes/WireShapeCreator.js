@@ -14,6 +14,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var LineStyles = require( 'KITE/util/LineStyles' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   /**
    * Constructor for WireShapeCreator.
@@ -60,13 +61,17 @@ define( function( require ) {
       } );
       var wireShape = new Shape();
 
-      // move to the start point of the first wire segment
-      wireShape.moveToPoint( this.wire.segments[ 0 ].startPoint ).lineToPoint( this.wire.segments[ 0 ].endPoint );
+      // Move to the start point of the first wire segment.
+      // Guarantee a Vector2 input type for use with Shape methods.
+      var segment = this.wire.segments[ 0 ];
+      var startPoint = new Vector2( segment.startPoint.x, segment.startPoint.y );
+      var endPoint = new Vector2( segment.endPoint.x, segment.endPoint.y );
+      wireShape.moveToPoint( startPoint ).lineToPoint( endPoint );
 
       // go through the points 'tip to tail', assuming they are in the desired order
       for ( var i = 1; i < this.wire.segments.length; i++ ) {
         var currentSegment = this.wire.segments[ i ];
-        wireShape.lineToPoint( currentSegment.endPoint );
+        wireShape.lineToPoint( new Vector2( currentSegment.endPoint.x, currentSegment.endPoint.y ) );
       }
 
       // return a transformed shape defined by the stroke styles.
@@ -107,3 +112,4 @@ define( function( require ) {
     }
   } );
 } );
+
