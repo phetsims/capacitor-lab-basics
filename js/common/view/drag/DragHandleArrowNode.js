@@ -11,10 +11,8 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var Vector2 = require( 'DOT/Vector2' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
-  var Property = require( 'AXON/Property' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
@@ -35,10 +33,6 @@ define( function( require ) {
 
     // calculate the parameter for head and tail width and height.
     var length = Math.abs( pStart.distance( pEnd ) );
-
-    // location property of the node in 'model space'.
-    // TODO: This should be moved to a model component and instrumented with tandem
-    this.locationProperty = new Property( new Vector2( 0, 0 ) ); // @public
 
     ArrowNode.call( this, pStart.x, pStart.y, pEnd.x, pEnd.y, {
       fill: NORMAL_COLOR,
