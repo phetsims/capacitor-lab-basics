@@ -327,12 +327,13 @@ define( function( require ) {
       config,
       battery,
       capacitors[ 0 ].topCircuitSwitch,
-      tandem ? tandem.createTandem( 'batteryToSwitchWireBottom' ) : null ) );
+      tandem ? tandem.createTandem( 'batteryToSwitchWireTop' ) : null ) );
+
     wires.push( BatteryToSwitchWire.BatteryToSwitchWireBottom(
       config,
       battery,
       capacitors[ 0 ].bottomCircuitSwitch,
-      tandem ? tandem.createTandem( 'batteryToSwitchWireTop' ) : null ) );
+      tandem ? tandem.createTandem( 'batteryToSwitchWireBottom' ) : null ) );
 
     // wire capacitors to the switches
     capacitors.forEach( function( capacitor ) {
