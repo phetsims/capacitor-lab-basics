@@ -97,7 +97,7 @@ define( function( require ) {
     } );
 
     // link visibility to the model property
-    model.barGraphsPanelVisibleProperty.link( function( barGraphsPanelVisible ) {
+    model.barGraphsVisibleProperty.link( function( barGraphsPanelVisible ) {
       thisPanel.visible = barGraphsPanelVisible;
     } );
 

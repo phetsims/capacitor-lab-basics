@@ -69,7 +69,7 @@ define( function( require ) {
     } );
 
     // link visibility of this panel to the checkbox
-    model.barGraphsPanelVisibleProperty.link( function( barGraphsPanelVisible ) {
+    model.barGraphsVisibleProperty.link( function( barGraphsPanelVisible ) {
       thisPanel.visible = barGraphsPanelVisible;
     } );
 

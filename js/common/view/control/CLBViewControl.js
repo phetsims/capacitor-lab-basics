@@ -49,7 +49,7 @@ define( function( require ) {
       },
       {
         string: barGraphsString,
-        property: model.barGraphsPanelVisibleProperty,
+        property: model.barGraphsVisibleProperty,
         tandemName: 'barGraphsCheckBox'
       },
       {

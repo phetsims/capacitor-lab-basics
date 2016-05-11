@@ -35,7 +35,7 @@ define( function( require ) {
       capacitanceMeterVisible: true,
       plateChargeMeterVisible: false,
       storedEnergyMeterVisible: false,
-      barGraphsPanelVisible: true,
+      barGraphsVisible: true,
       voltmeterVisible: false,
       currentIndicatorsVisible: true
     }, {
@@ -45,7 +45,7 @@ define( function( require ) {
         capacitanceMeterVisible: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
         plateChargeMeterVisible: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
         storedEnergyMeterVisible: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
-        barGraphsPanelVisible: tandem.createTandem( 'barGraphsPanelVisibleProperty' ),
+        barGraphsVisible: tandem.createTandem( 'barGraphsVisibleProperty' ),
         voltmeterVisible: tandem.createTandem( 'voltmeterVisibleProperty' ),
         currentIndicatorsVisible: tandem.createTandem( 'currentIndicatorsVisibleProperty' )
       }
