@@ -55,11 +55,11 @@ define( function( require ) {
       {
         string: eFieldString,
         property: model.eFieldVisibleProperty,
-        tandemName: 'electricFieldCheckBox'
+        tandemName: 'eFieldCheckBox'
       },
       {
         string: currentString,
-        property: model.currentIndicatorsVisibleProperty,
+        property: model.currentVisibleProperty,
         tandemName: 'currentCheckBox'
       }
     ];

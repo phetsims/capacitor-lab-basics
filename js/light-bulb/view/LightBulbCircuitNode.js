@@ -64,10 +64,10 @@ define( function( require ) {
 
     // current indicator observers, no need for disposal since they persist for the lifetime of the sim
     circuit.circuitConnectionProperty.link( function( circuitConnection ) {
-      thisNode.updateCurrentVisibility( circuitConnection, model.currentIndicatorsVisibleProperty.value );
+      thisNode.updateCurrentVisibility( circuitConnection, model.currentVisibleProperty.value );
     } );
 
-    model.currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
+    model.currentVisibleProperty.link( function( currentIndicatorsVisible ) {
       thisNode.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
 

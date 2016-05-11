@@ -30,10 +30,10 @@ define( function( require ) {
 
     // current indicator observers
     model.circuit.circuitConnectionProperty.link( function( circuitConnection ) {
-      thisNode.updateCurrentVisibility( circuitConnection, model.currentIndicatorsVisibleProperty.value );
+      thisNode.updateCurrentVisibility( circuitConnection, model.currentVisibleProperty.value );
     } );
 
-    model.currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
+    model.currentVisibleProperty.link( function( currentIndicatorsVisible ) {
       thisNode.updateCurrentVisibility( model.circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
   }

@@ -111,7 +111,7 @@ define( function( require ) {
     this.bottomWireNode.translation = new Vector2( 0, 0 );
 
     // observer for visibility of the current indicators
-    model.currentIndicatorsVisibleProperty.link( function( currentIndicatorsVisible ) {
+    model.currentVisibleProperty.link( function( currentIndicatorsVisible ) {
       thisNode.batteryTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
       thisNode.batteryBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
     } );

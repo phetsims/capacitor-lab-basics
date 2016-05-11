@@ -37,7 +37,7 @@ define( function( require ) {
       storedEnergyMeterVisible: false,
       barGraphsVisible: true,
       voltmeterVisible: false,
-      currentIndicatorsVisible: true
+      currentVisible: true
     }, {
       tandemSet: {
         plateChargesVisible: tandem.createTandem( 'plateChargesVisibleProperty' ),
@@ -47,7 +47,7 @@ define( function( require ) {
         storedEnergyMeterVisible: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
         barGraphsVisible: tandem.createTandem( 'barGraphsVisibleProperty' ),
         voltmeterVisible: tandem.createTandem( 'voltmeterVisibleProperty' ),
-        currentIndicatorsVisible: tandem.createTandem( 'currentIndicatorsVisibleProperty' )
+        currentVisible: tandem.createTandem( 'currentVisibleProperty' )
       }
     } );
   }
