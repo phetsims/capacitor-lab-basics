@@ -74,6 +74,9 @@ define( function( require ) {
       thisNode.visible = voltmeterVisible;
     } );
 
+    // Register with tandem.  No need to handle dispose/removeInstance since the
+    // CLBViewControlPanel exists for the lifetime of the simulation.
+    tandem.addInstance( this );
   }
 
   capacitorLabBasics.register( 'VoltmeterNode', VoltmeterNode );

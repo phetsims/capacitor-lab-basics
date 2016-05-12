@@ -36,7 +36,7 @@ define( function( require ) {
     this.modelViewTransform = modelViewTransform;
 
     // add the switch as a wire node
-    this.wireSwitchNode = new WireNode( circuitSwitch.switchWire );
+    this.wireSwitchNode = new WireNode( circuitSwitch.switchWire, tandem.createTandem( 'wireSwitchNode' ) );
     this.wireSwitchNode.cursor = 'pointer';
 
     // add a shaded sphere to the end of the wire node to represent a connection point at the end of the switch.
