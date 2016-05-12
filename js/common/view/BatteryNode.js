@@ -101,6 +101,10 @@ define( function( require ) {
         maxTick.fill = 'white';
       }
     } );
+
+    // Register with tandem.  No need to handle dispose/removeInstance since the
+    // CLBViewControlPanel exists for the lifetime of the simulation.
+    tandem.addInstance( this );
   }
 
   capacitorLabBasics.register( 'BatteryNode', BatteryNode );
