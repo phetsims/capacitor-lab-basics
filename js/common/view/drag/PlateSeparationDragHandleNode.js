@@ -97,6 +97,7 @@ define( function( require ) {
       thisNode.updateOffset();
     } );
 
+    tandem.addInstance( this );
   }
 
   capacitorLabBasics.register( 'PlateSeparationDragHandleNode', PlateSeparationDragHandleNode );
