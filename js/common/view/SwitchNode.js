@@ -97,6 +97,9 @@ define( function( require ) {
     this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );
 
+    // Register with tandem.  No need to handle dispose/removeInstance since this
+    // exists for the lifetime of the simulation.
+    tandem.addInstance( this );
   }
 
   capacitorLabBasics.register( 'SwitchNode', SwitchNode );
