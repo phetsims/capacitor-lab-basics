@@ -52,17 +52,9 @@ define( function( require ) {
     this.circuit.getBottomWires().forEach( function( bottomWire ) {
       thisNode.bottomWireNode.addChild( new WireNode( bottomWire ) );
     } );
-    // var index = 0;
-    // this.circuit.getTopWires().forEach( function( topWire ) {
-    //   thisNode.topWireNode.addChild( new WireNode( topWire, tandem.createTandem( 'topWireNode' + index ) ) );
-    //   index++;
-    // } );
 
-    // index = 0;
-    // this.circuit.getBottomWires().forEach( function( bottomWire ) {
-    //   thisNode.bottomWireNode.addChild( new WireNode( bottomWire, tandem.createTandem( 'bottomWireNode' + index ) ) );
-    //   index++;
-    // } );
+    tandem.createTandem( 'topWireNode' ).addInstance( this.topWireNode );
+    tandem.createTandem( 'bottomWireNode' ).addInstance( this.bottomWireNode );
 
     // switches
     assert && assert( this.circuit.circuitSwitches.length === 2,
