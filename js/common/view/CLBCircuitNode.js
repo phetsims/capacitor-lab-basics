@@ -33,6 +33,10 @@ define( function( require ) {
 
   function CLBCircuitNode( model, tandem ) {
 
+    // Validate number of switches in model
+    assert && assert( model.circuit.circuitSwitches.length === 2,
+      'This circuit should have two switches: top and bottom.' );
+
     Node.call( this );
     var thisNode = this;
 
@@ -55,10 +59,6 @@ define( function( require ) {
 
     tandem.createTandem( 'topWireNode' ).addInstance( this.topWireNode );
     tandem.createTandem( 'bottomWireNode' ).addInstance( this.bottomWireNode );
-
-    // switches
-    assert && assert( this.circuit.circuitSwitches.length === 2,
-      'This circuit should have two switches: top and bottom.' );
 
     this.circuitSwitchNodes = [];
     thisNode.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 0 ], model.modelViewTransform,

@@ -30,6 +30,9 @@ define( function( require ) {
    */
   function SwitchNode( circuitSwitch, modelViewTransform, tandem ) {
 
+    assert && assert( circuitSwitch.connections.length === 2 || circuitSwitch.connections.length === 3,
+      'circuitSwitch should have 2 or three connections only' );
+
     Node.call( this );
     var thisNode = this;
     this.circuitSwitch = circuitSwitch;
@@ -53,9 +56,6 @@ define( function( require ) {
     var connectionListeners = [];
 
     var connectionLabels = [ 'battery', 'open', 'lightBulb' ];
-
-    assert && assert( circuitSwitch.connections.length === 2 || circuitSwitch.connections.length === 3,
-      'circuitSwitch should have 2 or three connections only' );
 
     circuitSwitch.connections.forEach( function( connection, index ) {
       // add the connection point node

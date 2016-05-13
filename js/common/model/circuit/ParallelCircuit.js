@@ -275,15 +275,16 @@ define( function( require ) {
    * @returns {Array} circuitComponents
    */
   var createCircuitComponents = function( config, circuitConnectionProperty, tandem ) {
+
+    assert && assert( config.numberOfCapacitors === 1,
+      'Capacitor Lab: Basics is designed to use exactly one capacitor' );
+
     var x = config.batteryLocation.x + config.capacitorXSpacing;
     var y = config.batteryLocation.y + config.capacitorYSpacing;
     var z = config.batteryLocation.z;
     var location = new Vector3( x, y, z );
 
     var circuitComponents = [];
-
-    assert && assert( config.numberOfCapacitors === 1,
-      'Capacitor Lab: Basics is designed to use exactly one capacitor' );
 
     var capacitor = new SwitchedCapacitor( config, circuitConnectionProperty,
       tandem ? tandem.createTandem( 'switchedCapacitor' ) : null );
@@ -318,10 +319,10 @@ define( function( require ) {
   var createWires = function( config, battery, lightBulbs, capacitors,
     circuitSwitches, circuitConnectionProperty, tandem ) {
 
-    var wires = [];
-
     // wire battery to first capacitor, there must be at least one capacitor in the circuit
     assert && assert( capacitors.length > 0, 'There must be at least one capacitor in the circuit' );
+
+    var wires = [];
 
     wires.push( BatteryToSwitchWire.BatteryToSwitchWireTop(
       config,
