@@ -28,7 +28,7 @@ define( function( require ) {
 
   // images
   var bulbBaseImage = require( 'image!CAPACITOR_LAB_BASICS/light-bulb-base.png' );
-  
+
   // constants
   var BULB_HEIGHT = 130;
   var BULB_WIDTH = 65;
@@ -53,9 +53,10 @@ define( function( require ) {
     var bulbBodyHeight = BULB_HEIGHT - bulbBase.bounds.width;
     var controlPointYValue = BULB_WIDTH * 0.7;
     var bulbShape = new Shape().
-      moveTo( 0, -bulbNeckWidth / 2 ).
-      cubicCurveTo( -bulbBodyHeight * 0.33, -controlPointYValue, -bulbBodyHeight * 0.95, -controlPointYValue, -bulbBodyHeight, 0 ).
-      cubicCurveTo( -bulbBodyHeight * 0.95, controlPointYValue, -bulbBodyHeight * 0.33, controlPointYValue, 0, bulbNeckWidth / 2 );
+    moveTo( 0, -bulbNeckWidth / 2 ).
+    cubicCurveTo( -bulbBodyHeight * 0.33, -controlPointYValue, -bulbBodyHeight * 0.95, -controlPointYValue, -bulbBodyHeight, 0 ).
+    cubicCurveTo( -bulbBodyHeight * 0.95, controlPointYValue, -bulbBodyHeight * 0.33,
+      controlPointYValue, 0, bulbNeckWidth / 2 );
     var bulbBodyOutline = new Path( bulbShape, {
       stroke: 'black',
       lineCap: 'round'
@@ -79,12 +80,11 @@ define( function( require ) {
     // Create the filament, which is a zig-zag shape.
     var filamentShape = new Shape().moveToPoint( filamentTopPoint );
     for ( var i = 0; i < NUM_FILAMENT_ZIG_ZAGS - 1; i++ ) {
-      var yPos = filamentTopPoint.y + ( filamentBottomPoint.y - filamentTopPoint.y ) / NUM_FILAMENT_ZIG_ZAGS * (i + 1);
+      var yPos = filamentTopPoint.y + ( filamentBottomPoint.y - filamentTopPoint.y ) / NUM_FILAMENT_ZIG_ZAGS * ( i + 1 );
       if ( i % 2 === 0 ) {
         // zig
         filamentShape.lineTo( filamentTopPoint.x + FILAMENT_ZIG_ZAG_SPAN, yPos );
-      }
-      else {
+      } else {
         // zag
         filamentShape.lineTo( filamentTopPoint.x, yPos );
       }
@@ -130,10 +130,11 @@ define( function( require ) {
    * @param {LightBulb} lightBulb
    * @param voltageProperty - voltage across the terminals of the lightbulb, determines brightness
    * @param {Property.<string>} circuitConnectionProperty
+   * @param {Tandem} tandem
    * @param {Object} [options]
    * @constructor
    */
-  function BulbNode( lightBulb, voltageProperty, circuitConnectionProperty, options ) {
+  function BulbNode( lightBulb, voltageProperty, circuitConnectionProperty, tandem, options ) {
 
     Node.call( this );
     var thisNode = this;
@@ -150,8 +151,7 @@ define( function( require ) {
         var targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
         if ( targetScaleFactor < 0.1 ) {
           thisNode.bulb.haloNode.visible = false;
-        }
-        else {
+        } else {
           thisNode.bulb.haloNode.visible = true;
           var scale = targetScaleFactor / thisNode.bulb.haloNode.transform.matrix.scaleVector.x;
           thisNode.bulb.haloNode.scale( scale );
@@ -174,10 +174,12 @@ define( function( require ) {
     circuitConnectionProperty.link( function( circuitConnection ) {
       updateBrightnessScale( voltageProperty.value );
     } );
+
+    tandem.addInstance( this );
   }
 
   capacitorLabBasics.register( 'BulbNode', BulbNode );
-  
+
   return inherit( Node, BulbNode, {}, {
 
     /** Factory function to create a BulbNode.  This creates a node that is not linked to any model properties.
@@ -190,3 +192,4 @@ define( function( require ) {
     }
   } );
 } );
+

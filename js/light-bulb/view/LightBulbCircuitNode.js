@@ -34,7 +34,10 @@ define( function( require ) {
     var circuit = model.circuit;
 
     // circuit components
-    var lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.platesVoltageProperty, circuit.circuitConnectionProperty, model.modelViewTransform );
+    var lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.platesVoltageProperty,
+      circuit.circuitConnectionProperty, tandem.createTandem( 'lightBulbNode' ), {} );
+
+    // , model.modelViewTransform );
 
     // @private current indicators
     this.bulbTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, 0 );
