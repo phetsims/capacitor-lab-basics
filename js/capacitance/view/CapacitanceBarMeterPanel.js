@@ -34,9 +34,10 @@ define( function( require ) {
    *
    * @param {Array<BarMeter>} model
    * @param {Property.<boolean>} minWidth
+   * @param {Tandem} tandem
    * @constructor
    */
-  function CapacitanceBarMeterPanel( model, minWidth ) {
+  function CapacitanceBarMeterPanel( model, minWidth, tandem ) {
 
     var thisPanel = this;
     var parentNode = new Node();
@@ -73,6 +74,7 @@ define( function( require ) {
       thisPanel.visible = barGraphsPanelVisible;
     } );
 
+    tandem.addInstance( this );
   }
 
   capacitorLabBasics.register( 'CapacitanceBarMeterPanel', CapacitanceBarMeterPanel );
@@ -80,3 +82,4 @@ define( function( require ) {
   return inherit( Panel, CapacitanceBarMeterPanel );
 
 } );
+
