@@ -24,9 +24,10 @@ define( function( require ) {
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
+   * @param {Tandem} tandem
    * @constructor
    */
-  function CapacitorNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty ) {
+  function CapacitorNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, tandem ) {
 
     Node.call( this );
     var thisNode = this; // extend scope for nested callbacks
@@ -58,6 +59,9 @@ define( function( require ) {
       eFieldNode.setVisible( visible );
     } );
 
+    // Register with tandem.  No need to handle dispose/removeInstance since the
+    // CLBViewControlPanel exists for the lifetime of the simulation.
+    tandem.addInstance( this );
   }
 
   capacitorLabBasics.register( 'CapacitorNode', CapacitorNode );
@@ -103,3 +107,4 @@ define( function( require ) {
     }
   } );
 } );
+

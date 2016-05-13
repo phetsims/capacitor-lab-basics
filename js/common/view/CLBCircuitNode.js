@@ -42,7 +42,7 @@ define( function( require ) {
     this.batteryNode = new BatteryNode( this.circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE,
       tandem.createTandem( 'batteryNode' ) );
     var capacitorNode = new CapacitorNode( this.circuit, model.modelViewTransform, model.plateChargesVisibleProperty,
-      model.eFieldVisibleProperty );
+      model.eFieldVisibleProperty, tandem.createTandem( 'capacitorNode' ) );
 
     this.topWireNode = new Node();
     this.bottomWireNode = new Node();
