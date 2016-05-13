@@ -25,9 +25,11 @@ define( function( require ) {
    * @param {CLModelViewTransform} modelViewTransform
    * @param {Property.<boolean>} inUserControlProperty
    * @param {Property.<boolean>} voltmeterVisibleProperty
+   * @param {Tandem} tandem
    * @constructor
    */
-  function VoltmeterToolBoxPanel( voltmeterNode, modelViewTransform, inUserControlProperty, voltmeterVisibleProperty ) {
+  function VoltmeterToolBoxPanel( voltmeterNode, modelViewTransform, inUserControlProperty, voltmeterVisibleProperty,
+    tandem ) {
 
     var thisToolBoxPanel = this;
     this.voltmeterNode = voltmeterNode; // @private
@@ -76,9 +78,13 @@ define( function( require ) {
       }
     } );
 
+    // Register with tandem.  No need to handle dispose/removeInstance since the
+    // CLBViewControlPanel exists for the lifetime of the simulation.
+    tandem.addInstance( this );
   }
 
   capacitorLabBasics.register( 'VoltmeterToolBoxPanel', VoltmeterToolBoxPanel );
 
   return inherit( Node, VoltmeterToolBoxPanel );
 } );
+

@@ -45,7 +45,7 @@ define( function( require ) {
     // meters
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
     var voltmeterToolBoxPanel = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform,
-      model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty );
+      model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
 
     // control
     // TODO: Layout calculations are messy, come back soon to clean up.
