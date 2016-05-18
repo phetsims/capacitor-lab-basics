@@ -1,11 +1,11 @@
 {
-  "comment": "# capacitor-lab-basics 1.0.0-dev.18 Tue Apr 19 2016 17:22:10 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# capacitor-lab-basics 1.0.0-dev.20 Wed May 18 2016 08:09:11 GMT-0600 (MDT)",
   "assert": {
     "sha": "7d27130a4d27da15aa7f8a21bbfb9245288c1b44",
     "branch": "master"
   },
   "axon": {
-    "sha": "5e33541f53066f495d1b42efe7344a3c4cb3e3d2",
+    "sha": "9bf8f88c0496820bccff4a7fe5da00fdeeb851a4",
     "branch": "master"
   },
   "brand": {
@@ -13,23 +13,23 @@
     "branch": "master"
   },
   "capacitor-lab-basics": {
-    "sha": "762cb0ca73ca35ba5c70882f89c1148f0fc137fe",
+    "sha": "f44dab4388ebad4bbe37da473fb170b722d3bc30",
     "branch": "master"
   },
   "chipper": {
-    "sha": "5495fa9e25504c21d4658c828281d7f02eff7f41",
+    "sha": "2413d31037a2f6cf72b019e770ca91a2205c1dc1",
     "branch": "master"
   },
   "dot": {
-    "sha": "833eef12a0c06039634802ebb2b50acd347a0a09",
+    "sha": "04efe0bcba227b3a0a75a734313fc0d92469aa8d",
     "branch": "master"
   },
   "joist": {
-    "sha": "97fac8d0fb6a596f5fa1373bd5b774cb128f53a6",
+    "sha": "3931eb7696b29a1697219826728325b403ac72f6",
     "branch": "master"
   },
   "kite": {
-    "sha": "24ad131a77aee78e266436ef6b618c8353953f28",
+    "sha": "dce9765e6fcb535970ef17c1a1bcb8db95599b08",
     "branch": "master"
   },
   "phet-core": {
@@ -41,23 +41,23 @@
     "branch": "master"
   },
   "scenery": {
-    "sha": "917a2a39bf709b46df14442a9570e8b6fed0f147",
+    "sha": "204093556dd415cb4a2796e1374dccdd04b4bcaa",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "8812b62c59ca2b5d06e10691a079861d738a705d",
+    "sha": "b77dc7e1d530bccd543541766f01534d87683d70",
     "branch": "master"
   },
   "sherpa": {
-    "sha": "b74418c01f7b018cfc2ad130becdc0ad428b71c2",
+    "sha": "e1b3c84b4f51328893008890fc462c32b8ec9278",
     "branch": "master"
   },
   "sun": {
-    "sha": "d2d44960a73e9797cdfd5f6d6d63965c14cb967d",
+    "sha": "6f66368fd9cee088af7e481377ed91dbf2ba82dc",
     "branch": "master"
   },
   "tandem": {
-    "sha": "0ad35fb75928d18ecc1a429587bed4c605878e89",
+    "sha": "29f642332a94dbabc1802cdbee2dbb6481a7614f",
     "branch": "master"
   },
   "twixt": {
