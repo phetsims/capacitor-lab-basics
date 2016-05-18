@@ -20,11 +20,6 @@
     ],
     "phetLibs": [
       "twixt"
-    ],
-    "phet-io": {
-      "preload": [
-        "../phet-io/js/api/capacitor-lab-basics-api.js"
-      ]
-    }
+    ]
   }
 }
