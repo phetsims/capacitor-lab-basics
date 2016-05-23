@@ -72,7 +72,7 @@ define( function( require ) {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.max,
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
         dielectricMaterial: DielectricMaterial.CustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.max ),
-        dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.max
+        dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min
       } );
 
       capacitor.platesVoltage = CLBConstants.BATTERY_VOLTAGE_RANGE.max;
