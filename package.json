@@ -1,6 +1,6 @@
 {
   "name": "capacitor-lab-basics",
-  "version": "1.0.0-dev.20-io",
+  "version": "1.0.0-dev.21",
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
@@ -20,11 +20,6 @@
     ],
     "phetLibs": [
       "twixt"
-    ],
-    "phet-io": {
-      "preload": [
-        "../phet-io/js/api/capacitor-lab-basics-api.js"
-      ]
-    }
+    ]
   }
 }
