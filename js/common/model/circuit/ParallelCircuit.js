@@ -293,12 +293,11 @@ define( function( require ) {
 
     // create the light bulbs
     var i;
-    x += config.capacitorXSpacing;
     for ( i = 0; i < config.numberOfLightBulbs; i++ ) {
+      x += config.lightBulbXSpacing;
       location = new Vector3( x, y, z );
       var lightBulb = new LightBulb( location, config.lightBulbResistance );
       circuitComponents.push( lightBulb );
-      x += config.lightBulbXSpacing;
     }
 
     return circuitComponents;
