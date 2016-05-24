@@ -24,7 +24,7 @@ define( function( require ) {
   var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
 
   // Panel offsets (wrt various references) in model coordinates.
-  var VIEW_PANEL_OFFSET = new Vector2( -20, 20 );
+  var VIEW_PANEL_OFFSET = new Vector2( -10, 10 );
   var BAR_METER_PANEL_OFFSET = new Vector2( 0, 30 );
   var VOLTMETER_PANEL_OFFSET = new Vector2( 0, 20 );
 
@@ -52,7 +52,9 @@ define( function( require ) {
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
 
     // View control panel and voltmeter panel
-    var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ) );
+    var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
+      numberOfBarGraphs: 3
+    } );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( VIEW_PANEL_OFFSET );
     voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( VOLTMETER_PANEL_OFFSET );
 

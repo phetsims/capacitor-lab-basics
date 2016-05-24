@@ -5,6 +5,9 @@
   "current": {
     "value": "Current"
   },
+  "barGraph": {
+    "value": "Bar Graph"
+  },
   "barGraphs": {
     "value": "Bar Graphs"
   },

@@ -31,6 +31,7 @@ define( function( require ) {
   var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
   var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
   var currentString = require( 'string!CAPACITOR_LAB_BASICS/current' );
+  var barGraphString = require( 'string!CAPACITOR_LAB_BASICS/barGraph' );
   var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
 
   /**
@@ -38,9 +39,17 @@ define( function( require ) {
    *
    * @param {CLBModel} model
    * @param {Tandem} tandem
+   * @param {Object} options
    * @constructor
    */
-  function CLBViewControlPanel( model, tandem ) {
+  function CLBViewControlPanel( model, tandem, options ) {
+
+    var defaultOptions = {
+      numberOfBarGraphs: 1
+    };
+
+    options = _.extend( {}, defaultOptions, options );
+
     var viewAssets = [
       {
         string: plateChargesString,
@@ -48,7 +57,7 @@ define( function( require ) {
         tandemName: 'plateChargesCheckBox'
       },
       {
-        string: barGraphsString,
+        string: options.numberOfBarGraphs > 1 ? barGraphsString : barGraphString,
         property: model.barGraphsVisibleProperty,
         tandemName: 'barGraphsCheckBox'
       },
@@ -63,6 +72,7 @@ define( function( require ) {
         tandemName: 'currentCheckBox'
       }
     ];
+
 
     var viewCheckBoxItems = createCheckBoxItems( viewAssets );
     var verticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems, {
