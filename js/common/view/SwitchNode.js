@@ -5,20 +5,30 @@
  * connection points.
  *
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
 
-  // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
+  // Modules
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
+  var ConnectionAreaNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaNode' );
   var ConnectionPointNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionPointNode' );
   var HingePointNode = require( 'CAPACITOR_LAB_BASICS/common/view/HingePointNode' );
-  var ConnectionAreaNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaNode' );
+  var Image = require( 'SCENERY/nodes/Image' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
-  var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Vector2 = require( 'DOT/Vector2' );
+  var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
+
+  // Images
+  var switchCueArrowImage = require( 'image!CAPACITOR_LAB_BASICS/switch_cue_arrow.png' );
+
+  // Constants
+  var SWITCH_CUE_ARROW_WIDTH = 25;
+  var SWITCH_CUE_ARROW_OFFSET = new Vector2( -80, -250 ); // View coords
 
   /**
    * Constructor for a SwitchNode.
@@ -86,6 +96,19 @@ define( function( require ) {
     circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
       shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
     } );
+
+    // Add arrow for a visual cue
+    var switchCueArrow = new Image( switchCueArrowImage );
+    switchCueArrow.scale( SWITCH_CUE_ARROW_WIDTH / switchCueArrow.bounds.height );
+    switchCueArrow.leftTop = this.wireSwitchNode.center;
+
+    // Reflect bottom arrow about the horizontal axis.
+    var segment = circuitSwitch.switchSegment;
+    if ( segment.endPoint.y > segment.hingePoint.y ) {
+      switchCueArrow.scale( 1, -1 );
+    }
+    switchCueArrow.translate( SWITCH_CUE_ARROW_OFFSET );
+    this.addChild( switchCueArrow );
 
     // rendering order, important for behavior of click areas and drag handlers
     _.each( connectionListeners, function( connectionListener ) {
