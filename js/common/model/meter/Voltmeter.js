@@ -59,6 +59,13 @@ define( function( require ) {
     this.circuit = circuit; // @private
     this.dragBounds = dragBounds; // @public (read-only)
 
+    // @private
+    function touchingFreePlate( probeShape ) {
+      var t = thisMeter.circuit.connectedToDisconnectedCapacitorTop( probeShape );
+      var b = thisMeter.circuit.connectedToDisconnectedCapacitorBottom( probeShape );
+      return ( t || b );
+    }
+
     /**
      * Update the value of the meter, called when many different properties change
      */
@@ -68,7 +75,17 @@ define( function( require ) {
       } else {
         var positiveProbeShape = thisMeter.shapeCreator.getPositiveProbeTipShape();
         var negativeProbeShape = thisMeter.shapeCreator.getNegativeProbeTipShape();
-        thisMeter.value = thisMeter.circuit.getVoltageBetween( positiveProbeShape, negativeProbeShape );
+
+        // Ensure that voltage is NaN when one (and only one) probe is on a disconnected plate.
+        if ( ( touchingFreePlate( positiveProbeShape ) && !touchingFreePlate( negativeProbeShape ) ) ||
+          ( !touchingFreePlate( positiveProbeShape ) && touchingFreePlate( negativeProbeShape ) ) ) {
+          thisMeter.value = NaN;
+        }
+
+        // Branch out to handle all other cases
+        else {
+          thisMeter.value = thisMeter.circuit.getVoltageBetween( positiveProbeShape, negativeProbeShape );
+        }
       }
     };
 
