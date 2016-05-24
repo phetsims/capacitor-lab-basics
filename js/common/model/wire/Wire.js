@@ -24,7 +24,7 @@ define( function( require ) {
    *
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {number} thickness
-   * @param {Array<WireSegment>} segments
+   * @param {WireSegment[]} segments
    * @param {string} connectionPoint
    */
   function Wire( modelViewTransform, thickness, segments, connectionPoint ) {

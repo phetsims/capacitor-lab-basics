@@ -39,7 +39,7 @@ define( function( require ) {
      * of each line and return an array of line shapes.  WireNode will then construct the Path for each segment
      * in the array of lines.
      *
-     * @return {Array<Shape>} lineShapes
+     * @return {Shape[]} lineShapes
      */
     createWireShapes: function() {
       // TODO: This should be tested.

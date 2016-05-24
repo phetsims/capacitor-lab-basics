@@ -309,9 +309,9 @@ define( function( require ) {
    *
    * @param {CircuitConfig} config
    * @param {Battery} battery
-   * @param {Array<LightBulb>} lightBulbs
-   * @param {Array<Capacitor>} capacitors
-   * @param {Array<CircuitSwitch>} circuitSwitches
+   * @param {LightBulb[]} lightBulbs
+   * @param {Capacitor[]} capacitors
+   * @param {CircuitSwitch[]} circuitSwitches
    * @param {Property.<string>} circuitConnectionProperty
    * @returns {Array}
    */

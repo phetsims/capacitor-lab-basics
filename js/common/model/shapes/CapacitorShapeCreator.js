@@ -40,7 +40,7 @@ define( function( require ) {
     /**
      * Top plate, unoccluded.
      *
-     * @return {Array<Shape>}
+     * @return {Shape[]}
      */
     createTopPlateShape: function() {
       return this.createBoxShape( this.capacitor.location.x, this.capacitor.getTopConnectionPoint().y, this.capacitor.location.z, this.capacitor.plateSize );
@@ -49,7 +49,7 @@ define( function( require ) {
     /**
      * Bottom plate, unoccluded.
      *
-     * @return {Array<Shape>}
+     * @return {Shape[]}
      */
     createBottomPlateShape: function() {
       return this.createBoxShape( this.capacitor.location.x, this.capacitor.location.y + ( this.capacitor.plateSeparation / 2 ), this.capacitor.location.z, this.capacitor.plateSize );
@@ -73,7 +73,7 @@ define( function( require ) {
     /**
      * Visible portion of the top plate. Nothing occludes the top plate.
      *
-     * @return {Array<Shape>}
+     * @return {Shape[]}
      */
     createTopPlateShapeOccluded: function() {
       return this.createTopPlateShape();
@@ -82,7 +82,7 @@ define( function( require ) {
     /**
      * Visible portion of the bottom plate. May be partially occluded by the top plate.
      *
-     * @return {Array<Shape>}
+     * @return {Shape[]}
      */
     createBottomPlateShapeOccluded: function() {
       return this.createBottomPlateShape();
@@ -118,7 +118,7 @@ define( function( require ) {
      * @param z
      * @param size
      *
-     * @returns {Array<Shape>}
+     * @returns {Shape[]}
      */
     createBoxShape: function( x, y, z, size ) {
       return this.boxShapeCreator.createBoxShape( x, y, z, size.width, size.height, size.depth );

@@ -34,7 +34,7 @@ define( function( require ) {
   var plateChargeString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge' );
 
   /**
-   * @param {Array<BarMeter>} model
+   * @param {BarMeter[]} model
    * @param {Property.<boolean>} minWidth
    * @param {Tandem} tandem
    * @constructor

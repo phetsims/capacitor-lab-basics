@@ -121,7 +121,7 @@ define( function( require ) {
      * @param  {Vector2} hingeXY - Location of switch hinge
      * @param  {CircuitConfig} config - Class containing circuit geometry and properties
      *
-     * @return {Array<Object>} - Array of Objects containing connection points and types
+     * @return {Object[]} - Array of Objects containing connection points and types
      * @private
      */
     getSwitchConnections: function( positionLabel, hingeXY, circuitConnections ) {
