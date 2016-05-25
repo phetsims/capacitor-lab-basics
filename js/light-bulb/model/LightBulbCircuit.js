@@ -245,7 +245,11 @@ define( function( require ) {
 
       // if the circuit is connected to the light bulb, I = V / R
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-        this.currentAmplitudeProperty.set( this.capacitor.platesVoltage / this.lightBulb.resistance );
+        var current = this.capacitor.platesVoltage / this.lightBulb.resistance;
+        if ( Math.abs( current ) < 2 * MIN_VOLTAGE / this.lightBulb.resistance ) {
+          current = 0;
+        }
+        this.currentAmplitudeProperty.set( current );
       } else {
         // otherise, I = dQ/dT
         ParallelCircuit.prototype.updateCurrentAmplitude.call( this, dt );
