@@ -61,6 +61,7 @@ define( function( require ) {
       thumbFillEnabled: 'rgb(255,237,53)',
       thumbFillHighlighted: 'rgb(71,207,255)', // same as default
       thumbStroke: 'rgb(191,191,191)',
+      thumbLineWidth: 2,
       thumbCenterLineStroke: 'black',
       endDrag: function() {
         if ( Math.abs( battery.voltage ) < CLBConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {
