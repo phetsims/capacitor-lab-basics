@@ -58,6 +58,10 @@ define( function( require ) {
       trackSize: new Dimension2( trackLength, 8 ),
       thumbSize: new Dimension2( 20, 35 ),
       majorTickLength: 18,
+      thumbFillEnabled: 'rgb(255,237,53)',
+      thumbFillHighlighted: 'rgb(71,207,255)', // same as default
+      thumbStroke: 'rgb(191,191,191)',
+      thumbCenterLineStroke: 'black',
       endDrag: function() {
         if ( Math.abs( battery.voltage ) < CLBConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {
           battery.voltage = 0;
