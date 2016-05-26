@@ -263,7 +263,7 @@ define( function( require ) {
     },
 
     /**
-     * Get all top wires that are connected to the light bulb.
+     * Get all bottom wires that are connected to the light bulb.
      */
     getBottomLightBulbWires: function() {
       var bottomLightBulbWires = [];

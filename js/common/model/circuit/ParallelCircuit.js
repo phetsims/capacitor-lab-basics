@@ -65,17 +65,22 @@ define( function( require ) {
      * Gets the voltage at a shape, with respect to ground. Returns Double.NaN if the Shape is not connected to the
      * circuit.
      *
+     * @param {Shape} shape - object whose bounds are checked for contact/intersection with the thing being measured
      * @return {number} voltage
      * @override
      */
     getVoltageAt: function( shape ) {
       var voltage = Number.NaN;
 
-      // Closed circuit
+      // Closed circuit (battery to capacitor)
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
         if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
         } else if ( this.connectedToBatteryBottom( shape ) ) {
+          voltage = 0;
+        } else if (
+          this.shapeTouchesWireGroup( shape, this.getTopLightBulbWires() ) ||
+          this.shapeTouchesWireGroup( shape, this.getBottomLightBulbWires() ) ) {
           voltage = 0;
         }
       }
@@ -89,6 +94,10 @@ define( function( require ) {
         } else if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
         } else if ( this.connectedToBatteryBottom( shape ) ) {
+          voltage = 0;
+        } else if (
+          this.shapeTouchesWireGroup( shape, this.getTopLightBulbWires() ) ||
+          this.shapeTouchesWireGroup( shape, this.getBottomLightBulbWires() ) ) {
           voltage = 0;
         }
       }
@@ -110,6 +119,19 @@ define( function( require ) {
       }
 
       return voltage;
+    },
+
+    shapeTouchesWireGroup: function( shape, wires ) {
+
+      var intersectsWires = false;
+
+      wires.forEach( function( wire ) {
+        if ( wire.shape.intersectsBounds( shape.bounds ) ) {
+          intersectsWires = true;
+        }
+      } );
+
+      return intersectsWires;
     },
 
     connectedToDisconnectedCapacitorBottom: function( shape ) {
@@ -147,7 +169,7 @@ define( function( require ) {
     },
 
     /**
-     * Check to see if shape connects any wires that are connected to the battery top when the batteyr is disconnected.
+     * Check to see if shape connects any wires that are connected to the battery top when the battery is disconnected.
      * @param shape
      * @returns {*|boolean}
      */
