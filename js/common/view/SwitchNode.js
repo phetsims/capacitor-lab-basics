@@ -107,7 +107,14 @@ define( function( require ) {
     if ( segment.endPoint.y > segment.hingePoint.y ) {
       switchCueArrow.scale( 1, -1 );
     }
+
+    // Since the y-coordinate for the bottom switch is now inverted, a single translation
+    // offset conveniently moves the top arrow up and the bottom arrow down.
     switchCueArrow.translate( SWITCH_CUE_ARROW_OFFSET );
+
+    this.switchCueArrow = switchCueArrow;
+    this.switchCueArrowExists = true;
+
     this.addChild( switchCueArrow );
 
     // rendering order, important for behavior of click areas and drag handlers

@@ -66,6 +66,18 @@ define( function( require ) {
     thisNode.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 1 ], model.modelViewTransform,
       tandem.createTandem( 'bottomSwitchNode' ) ) );
 
+    // Make the switch "hint" arrow permanently disappear after first use of the switch.
+    this.circuitSwitchNodes.forEach( function( switchNode ) {
+
+      switchNode.circuitSwitch.circuitConnectionProperty.lazyLink( function( connection ) {
+
+        if ( switchNode.switchCueArrowExists ) {
+          switchNode.removeChild( switchNode.switchCueArrow );
+          switchNode.switchCueArrowExists = false;
+        }
+      } );
+    } );
+
     // drag handles
     var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( this.circuit.capacitor, model.modelViewTransform,
       CLBConstants.PLATE_SEPARATION_RANGE, tandem.createTandem( 'plateSeparationDragHandleNode' ) );
