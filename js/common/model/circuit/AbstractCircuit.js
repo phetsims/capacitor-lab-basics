@@ -371,19 +371,23 @@ define( function( require ) {
     },
 
     /**
-     * Gets the voltage between 2 Shapes. The shapes are in world coordinates. Returns Double.NaN if the 2 Shapes are
-     * not both connected to the circuit
+     * Gets the voltage between 2 Shapes. The shapes are in world coordinates.
+     * Returns null if the 2 Shapes are not both connected to the circuit.
      *
      * @param {Shape} positiveShape
      * @param {Shape} negativeShape
      * return {number}
      */
     getVoltageBetween: function( positiveShape, negativeShape ) {
-      return this.getVoltageAt( positiveShape ) - this.getVoltageAt( negativeShape );
+      var vPlus = this.getVoltageAt( positiveShape );
+      var vMinus = this.getVoltageAt( negativeShape );
+
+      return ( vPlus === null || vMinus === null ) ? null : vPlus - vMinus;
     },
 
     /**
-     * Gets the voltage at a shape, with respect to ground. Returns NaN if the Shape is not connected to the circuit.
+     * Gets the voltage at a shape, with respect to ground. Returns null if the
+     * Shape is not connected to the circuit.
      *
      * @param {Shape} shape
      * @return {number}

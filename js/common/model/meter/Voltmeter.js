@@ -76,10 +76,10 @@ define( function( require ) {
         var positiveProbeShape = thisMeter.shapeCreator.getPositiveProbeTipShape();
         var negativeProbeShape = thisMeter.shapeCreator.getNegativeProbeTipShape();
 
-        // Ensure that voltage is NaN when one (and only one) probe is on a disconnected plate.
+        // Ensure that voltage is null when one (and only one) probe is on a disconnected plate.
         if ( ( touchingFreePlate( positiveProbeShape ) && !touchingFreePlate( negativeProbeShape ) ) ||
           ( !touchingFreePlate( positiveProbeShape ) && touchingFreePlate( negativeProbeShape ) ) ) {
-          thisMeter.value = NaN;
+          thisMeter.value = null;
         }
 
         // Branch out to handle all other cases

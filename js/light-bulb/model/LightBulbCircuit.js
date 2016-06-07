@@ -125,15 +125,15 @@ define( function( require ) {
     },
 
     /**
-     * Gets the voltage at a shape, with respect to ground. Returns Number.NaN if the Shape is not connected to the
-     * circuit.
+     * Gets the voltage at a shape, with respect to ground. Returns null if the
+     * Shape is not connected to the circuit.
      *
      * @param {Shape} shape
      * @return {number}
      * @override
      */
     getVoltageAt: function( shape ) {
-      var voltage = Number.NaN;
+      var voltage = null;
 
       // Light bulb not connected: delegate to ParallelCircuit method
       if ( this.circuitConnectionProperty.value !== CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {

@@ -144,7 +144,7 @@ define( function( require ) {
      * @param {Number} value
      */
     setValueText: function( valueText, value ) {
-      if ( isNaN( value ) ) {
+      if (  value === null ) {
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, voltsUnknownString, unitsVoltsString ) );
       } else {
         var fixedValue = Util.toFixed( value, 3 );

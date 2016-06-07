@@ -62,15 +62,15 @@ define( function( require ) {
     },
 
     /**
-     * Gets the voltage at a shape, with respect to ground. Returns Double.NaN if the Shape is not connected to the
-     * circuit.
+     * Gets the voltage at a shape, with respect to ground. Returns null if the
+     * Shape is not connected to the circuit.
      *
      * @param {Shape} shape - object whose bounds are checked for contact/intersection with the thing being measured
      * @return {number} voltage
      * @override
      */
     getVoltageAt: function( shape ) {
-      var voltage = Number.NaN;
+      var voltage = null;
 
       // Closed circuit (battery to capacitor)
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
