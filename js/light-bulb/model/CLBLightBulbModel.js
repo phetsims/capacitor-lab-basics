@@ -34,15 +34,16 @@ define( function( require ) {
   var WIRE_EXTENT = 0.017; // how far the wire extends above or below the capacitor (meters)
 
   /**
-   *
+   * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
    * @constructor
    */
-  function CLBLightBulbModel( modelViewTransform, tandem ) {
+  function CLBLightBulbModel( switchUsedProperty, modelViewTransform, tandem ) {
 
     CLBModel.call( this, tandem );
 
+    this.switchUsedProperty = switchUsedProperty; // @public
     this.modelViewTransform = modelViewTransform; // @private
 
     // configuration info for the circuit
@@ -108,6 +109,7 @@ define( function( require ) {
       this.storedEnergyMeter.reset();
       this.voltmeter.reset();
       this.circuit.reset();
+      this.switchUsedProperty.reset();
     },
 
     /**

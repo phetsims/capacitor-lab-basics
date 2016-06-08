@@ -24,16 +24,17 @@ define( function( require ) {
   var capacitorIconImage = require( 'image!CAPACITOR_LAB_BASICS/capacitor-icon.png' );
 
   /**
+   * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
    * @param {Tandem} tandem
    * @constructor
    */
-  function CapacitanceScreen( tandem ) {
+  function CapacitanceScreen( switchUsedProperty, tandem ) {
 
     var icon = new Image( capacitorIconImage );
     icon.scale( 1.4, 1.0 );
 
     Screen.call( this, capacitanceTitleString, icon,
-      function() { return new CapacitanceModel( new CLBModelViewTransform3D(), tandem.createTandem( 'model' ) ); },
+      function() { return new CapacitanceModel( switchUsedProperty, new CLBModelViewTransform3D(), tandem.createTandem( 'model' ) ); },
       function( model ) { return new CapacitanceScreenView( model, tandem.createTandem( 'view' ) ); }, {
         backgroundColor: 'rgb( 194, 227, 255 )',
         tandem: tandem

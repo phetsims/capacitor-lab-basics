@@ -113,7 +113,6 @@ define( function( require ) {
     switchCueArrow.translate( SWITCH_CUE_ARROW_OFFSET );
 
     this.switchCueArrow = switchCueArrow;
-    this.switchCueArrowExists = true;
 
     this.addChild( switchCueArrow );
 

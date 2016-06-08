@@ -25,15 +25,16 @@ define( function( require ) {
 
   /**
    * Constructor for the CapacitanceModel.
-   *
+   * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
    */
-  function CapacitanceModel( modelViewTransform, tandem ) {
+  function CapacitanceModel(switchUsedProperty, modelViewTransform, tandem ) {
 
     CLBModel.call( this, tandem );
 
-    this.modelViewTransform = modelViewTransform; // @ public (read-only)
+    this.switchUsedProperty = switchUsedProperty; // @public
+    this.modelViewTransform = modelViewTransform; // @public (read-only)
 
     // Configuration info for the circuit.
     // Default number of capacitors (lightbulbs) is 1 (0).
@@ -72,6 +73,7 @@ define( function( require ) {
       this.capacitanceMeter.reset();
       this.voltmeter.reset();
       this.circuit.reset();
+      this.switchUsedProperty.reset();
     },
 
     /**

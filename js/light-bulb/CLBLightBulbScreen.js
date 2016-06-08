@@ -25,17 +25,18 @@ define( function( require ) {
 
 
   /**
+   * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
    * @param {Tandem} tandem
    * @constructor
    */
-  function CLBLightBulbScreen( tandem ) {
+  function CLBLightBulbScreen( switchUsedProperty, tandem ) {
 
     var icon = new Image( lightBulbIconImage );
     icon.scale( 1.196, 1.0 );
 
     Screen.call( this, lightBulbTitleString, icon,
       function() {
-        return new CLBLightBulbModel( new CLBModelViewTransform3D(), tandem.createTandem( 'model' ) ); },
+        return new CLBLightBulbModel( switchUsedProperty, new CLBModelViewTransform3D(), tandem.createTandem( 'model' ) ); },
       function( model ) {
         return new CLBLightBulbScreenView( model, tandem.createTandem( 'view' ) ); }, {
         backgroundColor: 'rgb( 194, 227, 255 )',

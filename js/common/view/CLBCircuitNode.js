@@ -66,15 +66,18 @@ define( function( require ) {
     thisNode.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 1 ], model.modelViewTransform,
       tandem.createTandem( 'bottomSwitchNode' ) ) );
 
-    // Make the switch "hint" arrow permanently disappear after first use of the switch.
+    // Once the circuit has been built, if the circuit connection has changed, the switch has been used.
     this.circuitSwitchNodes.forEach( function( switchNode ) {
-
       switchNode.circuitSwitch.circuitConnectionProperty.lazyLink( function( connection ) {
+        model.switchUsedProperty.set( true );
+      } );
+    } );
 
-        if ( switchNode.switchCueArrowExists ) {
-          switchNode.removeChild( switchNode.switchCueArrow );
-          switchNode.switchCueArrowExists = false;
-        }
+    // Make the switch "hint" arrows disappear after first use of the switch (#94). This affects both screens
+    // because a common reference to the switchUsedProperty is shared between the models.
+    model.switchUsedProperty.link( function( switchUsed ) {
+      thisNode.circuitSwitchNodes.forEach( function( switchNode ) {
+        switchNode.switchCueArrow.setVisible( !switchUsed );
       } );
     } );
 
