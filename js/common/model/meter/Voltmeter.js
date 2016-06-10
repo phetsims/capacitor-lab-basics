@@ -72,6 +72,12 @@ define( function( require ) {
       return ( t || b );
     };
 
+    var touchingFreeBattery = function( probeShape ) {
+      var t = thisMeter.circuit.connectedToDisconnectedBatteryTop( probeShape );
+      var b = thisMeter.circuit.connectedToDisconnectedBatteryBottom( probeShape );
+      return ( t || b );
+    };
+
     /**
      * Update the value of the meter, called when many different properties change
      */
@@ -83,9 +89,15 @@ define( function( require ) {
         var negativeProbeShape = thisMeter.shapeCreator.getNegativeProbeTipShape();
 
         // Ensure that the voltage is null when one (and only one) probe is on a disconnected lightbulb
+        // or battery
         if ( thisMeter.circuit.lightBulb ) {
           if ( ( touchingFreeLightBulb( positiveProbeShape ) && !touchingFreeLightBulb( negativeProbeShape ) ) ||
             ( !touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) ) {
+            thisMeter.value = null;
+            return;
+          }
+          else if ( ( touchingFreeBattery( positiveProbeShape ) && !touchingFreeBattery( negativeProbeShape ) ) ||
+            ( !touchingFreeBattery( positiveProbeShape ) && touchingFreeBattery( negativeProbeShape ) ) ) {
             thisMeter.value = null;
             return;
           }
