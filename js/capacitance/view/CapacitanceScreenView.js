@@ -90,14 +90,6 @@ define( function( require ) {
         fill: 'rgba( 1, 0, 0, 0.5 )'
       } ) );
     }
-
-    var lightBulbNode = new BulbNode.createBulb();
-    lightBulbNode.rotate( -Math.PI / 2 );
-
-    lightBulbNode.x = capacitanceCircuitNode.right + 50;
-    lightBulbNode.y = resetAllButton.y - 150;
-
-    this.addChild( lightBulbNode );
   }
 
   capacitorLabBasics.register( 'CapacitanceScreenView', CapacitanceScreenView );
