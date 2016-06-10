@@ -38,6 +38,15 @@ define( function( require ) {
       tandem ? tandem.createTandem( 'topCircuitSwitch' ) : null );
     this.bottomCircuitSwitch = new CircuitSwitch( 'bottom', config, circuitConnectionProperty,
       tandem ? tandem.createTandem( 'bottomCircuitSwitch' ) : null );
+
+    // link the top and bottom circuit switches together so that they rotate together
+    var self = this;
+    this.topCircuitSwitch.angleProperty.link( function( angle ) {
+      self.bottomCircuitSwitch.angle = -angle;
+    } );
+    this.bottomCircuitSwitch.angleProperty.link( function( angle ) {
+      self.topCircuitSwitch.angle = -angle;
+    } );
   }
 
   capacitorLabBasics.register( 'SwitchedCapacitor', SwitchedCapacitor );
