@@ -168,8 +168,8 @@ define( function( require ) {
       topWires = topWires.concat( topCapacitorWires );
       topWires = topWires.concat( topSwitchWires );
 
-      topWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+      topWires.forEach( function( topWire ) {
+        if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
           intersectsTopWires = true;
         }
       } );
@@ -177,6 +177,48 @@ define( function( require ) {
       var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
       return intersectsTopWires || intersectsSomeTopPlate;
 
+    },
+
+    /**
+     * Determine if the shape is connected to the top of the lightbulb when it
+     * is disconnected from the circuit.
+     * @param  {Shape} shape - shape of the element connected to the light bulb
+     * @return {boolean}
+     */
+    connectedToDisconnectedLightBulbTop: function( shape ) {
+
+      var intersectsTopWires = false;
+      var topLightBulbWires = this.getTopLightBulbWires();
+
+      topLightBulbWires.forEach( function( bottomWire ) {
+        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+          intersectsTopWires = true;
+        }
+      } );
+
+      var disconnected = !( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
+      return intersectsTopWires && disconnected;
+    },
+
+    /**
+     * Determine if the shape is connected to the bottom of the lightbulb when it
+     * is disconnected from the circuit.
+     * @param  {Shape} shape - shape of the element connected to the light bulb
+     * @return {boolean}
+     */
+    connectedToDisconnectedLightBulbBottom: function( shape ) {
+
+      var intersectsBottomWires = false;
+      var bottomLightBulbWires = this.getBottomLightBulbWires();
+
+      bottomLightBulbWires.forEach( function( bottomWire ) {
+        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+          intersectsBottomWires = true;
+        }
+      } );
+
+      var disconnected = !( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
+      return intersectsBottomWires && disconnected;
     },
 
     connectedToLightBulbBottom: function( shape ) {

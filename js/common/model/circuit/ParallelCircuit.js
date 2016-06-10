@@ -104,7 +104,6 @@ define( function( require ) {
 
       // Light bulb connected
       else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-        console.log( voltage );
         if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
         } else if ( this.connectedToBatteryBottom( shape ) ) {
@@ -148,7 +147,8 @@ define( function( require ) {
       } );
 
       var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
-      return intersectsBottomWires || intersectsSomeBottomPlate;
+      var disconnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT;
+      return ( intersectsBottomWires || intersectsSomeBottomPlate ) && disconnected;
     },
 
     connectedToDisconnectedCapacitorTop: function( shape ) {
@@ -165,7 +165,8 @@ define( function( require ) {
       } );
 
       var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
-      return intersectsTopWire || intersectsSomeTopPlate;
+      var disconnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT;
+      return ( intersectsTopWire || intersectsSomeTopPlate ) && disconnected;
     },
 
     /**
@@ -185,7 +186,8 @@ define( function( require ) {
         }
       } );
 
-      return intersectsTopTerminal || intersectsTopWire;
+      var disconnected = !( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED );
+      return ( intersectsTopTerminal || intersectsTopWire ) && disconnected;
     },
 
     /**
@@ -206,7 +208,8 @@ define( function( require ) {
         }
       } );
 
-      return intersectsBottomTerminal || intersectsBottomWires;
+      var disconnected = !( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED );
+      return ( intersectsBottomTerminal || intersectsBottomWires ) && disconnected;
     },
 
     /**
