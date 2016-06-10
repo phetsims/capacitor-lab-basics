@@ -18,6 +18,7 @@ define( function( require ) {
   var CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
   var Path = require( 'SCENERY/nodes/Path' );
   var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
   var CapacitanceBarMeterPanel = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceBarMeterPanel' );
@@ -90,6 +91,13 @@ define( function( require ) {
       } ) );
     }
 
+    var lightBulbNode = new BulbNode.createBulb();
+    lightBulbNode.rotate( -Math.PI / 2 );
+
+    lightBulbNode.x = capacitanceCircuitNode.right + 50;
+    lightBulbNode.y = resetAllButton.y - 150;
+
+    this.addChild( lightBulbNode );
   }
 
   capacitorLabBasics.register( 'CapacitanceScreenView', CapacitanceScreenView );

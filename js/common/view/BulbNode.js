@@ -118,6 +118,7 @@ define( function( require ) {
     bulbBase.centerY = 0;
     bulbBase.left = 0;
     bulbNode.haloNode.center = filament.center;
+    bulbNode.haloNode.visible = false;
 
     bulbNode.rotate( Math.PI );
 
@@ -173,6 +174,7 @@ define( function( require ) {
     // make sure that the light bulb turns off instantly when disconnected from capacitor.
     circuitConnectionProperty.link( function( circuitConnection ) {
       updateBrightnessScale( voltageProperty.value );
+
     } );
 
     tandem.addInstance( this );

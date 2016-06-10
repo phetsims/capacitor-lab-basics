@@ -13,6 +13,7 @@ define( function( require ) {
   var CapacitanceScreenView = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceScreenView' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Image = require('SCENERY/nodes/Image');
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
@@ -36,7 +37,7 @@ define( function( require ) {
     Screen.call( this, capacitanceTitleString, icon,
       function() { return new CapacitanceModel( switchUsedProperty, new CLBModelViewTransform3D(), tandem.createTandem( 'model' ) ); },
       function( model ) { return new CapacitanceScreenView( model, tandem.createTandem( 'view' ) ); }, {
-        backgroundColor: 'rgb( 194, 227, 255 )',
+        backgroundColor: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR,
         tandem: tandem
       }
     );
