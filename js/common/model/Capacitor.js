@@ -214,7 +214,8 @@ define( function( require ) {
     },
 
     /**
-     * Does a Shape intersect the top plate shape?
+     * Does a Shape intersect the top plate shape?  Assumes that a shape is much smaller than the
+     * top plate.  This is sufficient in the case of probes.
      *
      * @param {Shape} shape
      * @return {boolean}
@@ -222,7 +223,12 @@ define( function( require ) {
     intersectsTopPlate: function( shape ) {
       var intersectsTopPlate = false;
       this.shapeCreator.createTopPlateShapeOccluded().forEach( function( topPlateShape ) {
-        if ( shape.intersectsBounds( topPlateShape.bounds ) ) {
+
+        // kite does not support finding the intersection between two shapes and checking for
+        // intersection of shape bounds is too inacurate in this case because of the 3d perspective.
+        // Determining if center of shape bounds is most accurate assuming the shape is small relative
+        // to the plate
+        if ( topPlateShape.containsPoint( shape.bounds.center ) ) {
           intersectsTopPlate = true;
         }
       } );
@@ -230,7 +236,8 @@ define( function( require ) {
     },
 
     /**
-     * Does a shape intersect the bottom plate shape?
+     * Does a shape intersect the bottom plate shape?  Assumes that the shape is small relative
+     * to the plate shape.
      *
      * @param {Shape} shape
      * @return {boolean}
@@ -238,7 +245,7 @@ define( function( require ) {
     intersectsBottomPlate: function( shape ) {
       var intersectsBottomPlate = false;
       this.shapeCreator.createBottomPlateShapeOccluded().forEach( function( bottomPlateShape ) {
-        if ( shape.intersectsBounds( bottomPlateShape.bounds ) ) {
+        if ( bottomPlateShape.containsPoint( shape.bounds.center ) ) {
           intersectsBottomPlate = true;
         }
       } );
