@@ -18,7 +18,7 @@ define( function( require ) {
   var Tandem = require( 'TANDEM/Tandem' );
 
   // If running as phet-io, load the API
-  require( 'ifphetio!PHET_IO/api/capacitor-lab-basics-api' );
+  require( 'ifphetio!PHET_IO/simulations/capacitor-lab-basics/capacitor-lab-basics-api' );
 
   // strings
   var capacitorLabBasicsTitleString = require( 'string!CAPACITOR_LAB_BASICS/capacitor-lab-basics.title' );
