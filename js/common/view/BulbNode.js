@@ -27,7 +27,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // images
-  var bulbBaseImage = require( 'image!CAPACITOR_LAB_BASICS/light-bulb-base.png' );
+  var bulbBaseImage = require( 'mipmap!CAPACITOR_LAB_BASICS/light-bulb-base.png' );
 
   // constants
   var BULB_HEIGHT = 130;
