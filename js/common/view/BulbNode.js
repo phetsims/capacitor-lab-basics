@@ -143,8 +143,7 @@ define( function( require ) {
     this.bulb = createBulb( options );
     this.addChild( this.bulb );
 
-    // TODO: Still testing this mapping funciton.  Not spending a lot of time on it because we do not have input from
-    // the design team about what this behavior should be like.
+    // NOTE: this map deviates from the the bulb in faradays-law
     var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 300, true );
 
     var updateBrightnessScale = function( voltage ) {

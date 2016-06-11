@@ -142,7 +142,7 @@ define( function( require ) {
     /**
      * A complete box, relative to a specific origin.
      *
-     * TODO: Previously, this was built up using constructional area geometry.  For now, I will return an array that
+     * Previously, this was built up using constructional area geometry.  For the port, we return an array that
      * can be added to the scene in parts.
      *
      * @param {number} x

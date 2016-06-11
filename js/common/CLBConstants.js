@@ -56,7 +56,7 @@ define( function( require ) {
     CAPACITANCE_RANGE: new Range( 1E-13, 3E-13 ), // Farads
 
     // switch
-    SWITCH_WIRE_LENGTH: 0.0064, // in meters TODO: Calculate this for accuracy.
+    SWITCH_WIRE_LENGTH: 0.0064, // in meters
     SWITCH_Y_SPACING: 0.0025, // spacing between circuit components and the switch
 
     // dielectric
@@ -139,6 +139,8 @@ define( function( require ) {
 
     // other common colors
     METER_PANEL_FILL: 'rgb( 255, 245, 237)',
+    CONNECTION_POINT_COLOR: 'black',
+    PIN_COLOR: 'lightgray',
     SCREEN_VIEW_BACKGROUND_COLOR: 'rgb( 194, 227, 255 )'
 
   };

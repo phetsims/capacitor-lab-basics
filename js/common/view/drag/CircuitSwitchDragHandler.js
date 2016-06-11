@@ -4,8 +4,8 @@
  * Drag handler for the switch node.  The circuit switch can be dragged between connection points, and is also limited
  * to the region in between the possible connection points.
  *
- * TODO: This is one of two possible drag styles.  With this style, the user can drag the switch anywhere within the
- * limiting bounds of the circuit switch.  On drag end, the switch snaps to the cloest connection point.
+ * The user can drag the switch anywhere within the limiting bounds of the circuit switch.
+ * On drag end, the switch snaps to the cloest connection point.
  *
  * @author Jesse Greenberg
  */
@@ -105,10 +105,8 @@ define( function( require ) {
           circuitSwitch.circuitConnectionProperty.set( 'OPEN_CIRCUIT' );
         } else if ( absAngle < LIGHT_BULB_CONNECTED_MAX_ANGLE && absAngle > LIGHT_BULB_CONNECTED_MIN_ANGLE ) {
           circuitSwitch.circuitConnectionProperty.set( 'LIGHT_BULB_CONNECTED' );
-        } else {
-          console.log( ' TODO: Please restrict dragging to the correct bounds.' );
         }
-
+        
         circuitSwitch.angle = angle;
         switchNode.dragging = false;
 

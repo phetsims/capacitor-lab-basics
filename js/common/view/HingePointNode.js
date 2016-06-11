@@ -13,14 +13,11 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Circle = require( 'SCENERY/nodes/Circle' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
 
   // constants
   var HINGE_POINT_RADIUS = 8;
   var PIN_RADIUS = 5;
-
-  // TODO: Move to constants.
-  var CONNECTION_POINT_COLOR = 'black';
-  var PIN_COLOR = 'lightgray';
 
   /**
    * Constructor for the ConnectionPointNode.
@@ -31,11 +28,11 @@ define( function( require ) {
   function HingePointNode( options ) {
 
     options = _.extend( {
-      fill: CONNECTION_POINT_COLOR,
+      fill: CLBConstants.CONNECTION_POINT_COLOR,
       lineWidth: 3,
-      stroke: CONNECTION_POINT_COLOR,
+      stroke: CLBConstants.CONNECTION_POINT_COLOR,
       innerPinRadius: PIN_RADIUS,
-      pinFillColor: PIN_COLOR
+      pinFillColor: CLBConstants.PIN_COLOR
     } );
     Circle.call( this, HINGE_POINT_RADIUS, options );
 

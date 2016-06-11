@@ -54,7 +54,7 @@ define( function( require ) {
    */
   function CurrentIndicatorNode( currentAmplitudeProperty, positiveOrientation ) {
 
-    Node.call( this, { opacity: 0 } ); // TODO: Perhaps extend ArrowNode?
+    Node.call( this, { opacity: 0 } );
     var thisNode = this;
     this.positiveOrientation = positiveOrientation; // @private
 

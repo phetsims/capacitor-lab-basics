@@ -6,7 +6,7 @@
  * Only one of these strategies is used. The others are kept for historical purposes, so that we know what we tried,
  * why it didn't work, and how we arrived at the final solution.
  *
- * TODO: I am not porting any of the other solutions for now.  They are still here in original Java for documentation
+ * Note: I am not porting any of the other solutions for now.  They are still here in original Java for documentation
  * and we can port them later if desired.
  *
  * See TestPlateChargeLayout for a test application. NOTE: THIS IS NOT BEING PORTED AT THIS TIME.
@@ -23,7 +23,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
-  function IGridSizeStrategy() {} // TODO: remove this interface?
+  function IGridSizeStrategy() {}
 
   capacitorLabBasics.register( 'IGridSizeStrategy', IGridSizeStrategy );
   
@@ -39,7 +39,7 @@ define( function( require ) {
      * @return
      */
     getGridSize: function( numberOfObjects, width, height ) {
-      console.log( 'getGridSize should be overridden by descendant classes.' );
+      console.error( 'getGridSize should be overridden by descendant classes.' );
     }
   }, {
     /**
@@ -65,6 +65,12 @@ define( function( require ) {
   capacitorLabBasics.register( 'CCKStrategyWithRounding', CCKStrategyWithRounding );
 
   inherit( Object, CCKStrategyWithRounding, {
+    /**
+     * @param  {number} numberOfObjects [description]
+     * @param  {number}} width
+     * @param  {number} height
+     * @return {Dimension2}
+     */
     getGridSize: function( numberOfObjects, width, height ) {
       var columns = 0;
       var rows = 0;

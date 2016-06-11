@@ -23,14 +23,13 @@ define( function( require ) {
   // A new tandem instance is required here since the solutes are created statically.
   var tandem = Tandem.createStaticTandem( 'dielectrics' );
 
-  // TODO
   /**
    * @constructor
    *
-   * @param {[type]} name [description]
-   * @param {[type]} dielectricConstant [description]
-   * @param {[type]} color [description]
-   * @param {[type]} tandem [description]
+   * @param {string} name - the type of dielectric
+   * @param {number} dielectricConstant
+   * @param {string|color} color
+   * @param {Tandem} tandem
    */
   function DielectricMaterial( name, dielectricConstant, color, tandem ) {
 

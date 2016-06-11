@@ -36,7 +36,6 @@ define( function( require ) {
     var thisNode = this;
     this.locationProperty = locationProperty; // @public
 
-    // TODO: A mipmap will likely be necessary at this size.
     var imageNode = new Image( image, {
       scale: 0.25
     } );
@@ -94,7 +93,6 @@ define( function( require ) {
     }
   }, {
 
-    // Factory functions to create both Positive and negative probes.
     /**
      * Constructor for a positive probe
      *
@@ -102,7 +100,7 @@ define( function( require ) {
      * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {Tandem} tandem
      */
-    PositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) { // TODO: Why is this method needed?
+    PositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
       return new VoltmeterProbeNode( redVoltmeterProbeImage,
         voltmeter.positiveProbeLocationProperty, modelViewTransform, voltmeter.dragBounds, tandem );
     },

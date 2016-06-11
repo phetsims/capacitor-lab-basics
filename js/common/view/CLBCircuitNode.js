@@ -104,7 +104,6 @@ define( function( require ) {
     this.addChild( this.circuitSwitchNodes[ 1 ] );
 
     // layout
-    // TODO: There are still layout design descisions to be made by the designers, revisit this
     var x = 0;
     var y = 0;
 
@@ -116,11 +115,14 @@ define( function( require ) {
 
     // top current indicator
     x = this.batteryNode.right + ( this.circuitSwitchNodes[ 0 ].left - this.batteryNode.right ) / 2;
-    y = this.topWireNode.bounds.minY + ( 7 / 2 ); // TODO clean up after discussion of feature.
+
+    // current indicator offset
+    var indicatorOffset = 7 / 2;
+    y = this.topWireNode.bounds.minY + indicatorOffset;
     this.batteryTopCurrentIndicatorNode.translate( x, y );
 
     // bottom current indicator
-    y = this.bottomWireNode.bounds.getMaxY() - ( 7 / 2 );
+    y = this.bottomWireNode.bounds.getMaxY() - indicatorOffset;
     this.batteryBottomCurrentIndicatorNode.translate( x, y );
 
     // wires shapes are in model coordinate frame, so the nodes live at (0,0) the following does nothing but it

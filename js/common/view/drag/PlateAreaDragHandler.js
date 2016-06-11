@@ -23,14 +23,12 @@ define( function( require ) {
   var TandemDragHandler = require( 'TANDEM/scenery/input/TandemDragHandler' );
 
   /**
-   *
-   * // TODO: Add JSDOC types
-   * @param dragNode
-   * @param capacitor
-   * @param modelViewTransform
-   * @param valueRange
+   * Constructor.
+   * @param {DragHandleArrowNode} dragNode
+   * @param {Capacitor} capacitor
+   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {Range} valueRange
    * @param {Tandem} tandem
-   * @constructor
    */
   function PlateAreaDragHandler( dragNode, capacitor, modelViewTransform, valueRange, tandem ) {
 

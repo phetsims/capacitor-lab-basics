@@ -94,7 +94,7 @@ define( function( require ) {
      * @return
      */
     createDielectricBetweenPlatesShapeOccluded: function() {
-      console.log( 'Dielectrics have not been ported yet!' );
+      console.error( 'Dielectrics have not been ported yet!' );
     },
 
     /**
@@ -103,9 +103,8 @@ define( function( require ) {
      * @return {shape}
      */
     createAirBetweenPlatesShapeOccluded: function() {
-      // TODO: Without dielectrics, createAirBetweenPlateShape will produce nothing.  This function should never be called.
-      console.log( 'Dielectrics have not been ported yet, this function should not be in use.' );
-      //return ShapeUtils.subtract( createAirBetweenPlateShape(), createTopPlateShape() );
+      // NOTE: Without dielectrics, createAirBetweenPlateShape will produce nothing.  This function should never be called.
+      console.error( 'Dielectrics have not been ported yet, this function should not be in use.' );
     },
 
     //----------------------------------------------------------------------------------------

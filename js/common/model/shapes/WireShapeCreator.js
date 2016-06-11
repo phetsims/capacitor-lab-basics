@@ -33,24 +33,11 @@ define( function( require ) {
   return inherit( Object, WireShapeCreator, {
 
     /**
-     * Create a wire shape by adding the shapes of each wire segment.
-     *
-     * We cannot use constructional area geometry here, so a new solution is necessary.  This will construct the shape
-     * of each line and return an array of line shapes.  WireNode will then construct the Path for each segment
-     * in the array of lines.
-     *
-     * @return {Shape[]} lineShapes
+     * Create a wire shape.  Shape is generated from the stroked shape of the line
+     * segments which are added together totp to tail.  This assumes that segments
+     * are added pieced together in the correct order.
+     * @return {Shape}
      */
-    createWireShapes: function() {
-      // TODO: This should be tested.
-      var thisShapeCreator = this; // extend scope for nested callbacks.
-      var lineShapes = [];
-      this.wire.segments.forEach( function( segment ) {
-        lineShapes.push( thisShapeCreator.createWireSegmentShape( segment ) );
-      } );
-      return lineShapes;
-    },
-
     createWireShape: function() {
 
       // stroke styles for the wire shapes.
@@ -78,37 +65,6 @@ define( function( require ) {
       wireShape = this.modelViewTransform.modelToViewShape( wireShape );
       wireShape = wireShape.getStrokedShape( strokeStyles );
       return wireShape;
-    },
-
-    /**
-     * Create the shape for one wire segment.
-     *
-     * @param {WireSegment} segment
-     * @returns {Shape}
-     */
-    createWireSegmentShape: function( segment /* thickness */ ) {
-      var line = Shape.lineSegment( segment.startPoint.x, segment.startPoint.y, segment.endPoint.x, segment.endPoint.y );
-      return this.modelViewTransform.modelToViewShape( line );
-    },
-
-    /**
-     * Offset required to make 2 segments join seamlessly at a corner.  This is specific to strokeStyles of the wire
-     * shape.
-     *
-     * @returns {number}
-     */
-    getCornerOffset: function() {
-      return 0;
-    },
-
-    /**
-     * Offset required to make a wire align properly with some endpoint (eg, a battery terminal).
-     * This is specific to strokeStyles of the wire shape.
-     *
-     * @returns {number}
-     */
-    getEndOffset: function() {
-      return this.wire.thickness / 2;
     }
   } );
 } );
