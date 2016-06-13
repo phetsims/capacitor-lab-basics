@@ -42,10 +42,10 @@ define( function( require ) {
 
     this.units = units; // @private
 
-    var labelNode = new Text( label, { font: LABEL_FONT } );
+    var labelNode = new Text( label, { font: LABEL_FONT, maxWidth: 100 } );
     this.addChild( labelNode );
 
-    this.valueNode = new SubSupText( '', { font: VALUE_FONT } ); // @private
+    this.valueNode = new SubSupText( '', { font: VALUE_FONT, maxWidth: 80 } ); // @private
     this.addChild( this.valueNode );
 
     // layout: value below label, left-justified

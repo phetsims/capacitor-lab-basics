@@ -46,7 +46,7 @@ define( function( require ) {
     var capacitanceMeterNode = BarMeterNode.CapacitanceBarMeterNode( model.capacitanceMeter, '0' );
 
     // title for capacitance meter
-    var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR };
+    var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR, maxWidth: 100 };
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
 
     parentNode.children = [ capacitanceMeterNode, capacitanceTitle ];
@@ -61,11 +61,14 @@ define( function( require ) {
     y = capacitanceTitle.centerY + 1;
     capacitanceMeterNode.translation = new Vector2( x, y );
 
+    var xMargin = 15;
+    var maxWidth = capacitanceMeterNode.getMaxWidth() + capacitanceTitle.width + xMargin;
+
     Panel.call( this, parentNode, {
-      minWidth: minWidth,
+      minWidth: maxWidth,
       align: 'left',
       fill: CLBConstants.METER_PANEL_FILL,
-      xMargin: 15,
+      xMargin: xMargin,
       yMargin: 15
     } );
 

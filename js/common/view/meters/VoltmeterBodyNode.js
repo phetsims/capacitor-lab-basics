@@ -64,14 +64,16 @@ define( function( require ) {
 
     // text label
     var labelText = new Text( voltageString, {
-      font: TITLE_FONT
+      font: TITLE_FONT,
+      maxWidth: 80
     } );
     labelText.center = new Vector2( imageNode.width / 2, imageNode.height / 3 );
     this.addChild( labelText );
 
     var valueString = StringUtils.format( pattern0Value1UnitsString, voltmeter.value, unitsVoltsString );
     var valueText = new Text( valueString, {
-      font: DISPLAY_FONT
+      font: DISPLAY_FONT,
+      maxWidth: 60
     } );
 
     // add the display to the

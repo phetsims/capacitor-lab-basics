@@ -107,7 +107,8 @@ define( function( require ) {
       scale: 0.17
     } );
     var labelText = new Text( voltageString, {
-      font: TITLE_FONT
+      font: TITLE_FONT,
+      maxWidth: 40
     } );
     labelText.center = new Vector2( voltmeterImageNode.width / 2, voltmeterImageNode.height / 3 );
     var readoutRectangle = new Rectangle( 0, 0, voltmeterImageNode.width / 2, labelText.height + 8, 2, 2, {

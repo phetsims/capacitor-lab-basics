@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+  // Copyright 2015, University of Colorado Boulder
 
 /**
  * Control panel for view elements in Capacitor Lab: Basics.  Controls the visibility of plate charges, current
@@ -103,7 +103,7 @@ define( function( require ) {
     var items = [];
     assets.forEach( function( asset ) {
       items.push( {
-        content: new Text( asset.string, { font: CHECK_BOX_FONT } ),
+        content: new Text( asset.string, { font: CHECK_BOX_FONT, maxWidth: 250 } ),
         property: asset.property,
         label: asset.string,
         tandemName: asset.tandemName
@@ -121,7 +121,7 @@ define( function( require ) {
   function createControlBox( titleString, checkBoxGroup ) {
     return new LayoutBox( {
       children: [
-        new Text( titleString, { font: PANEL_TITLE_FONT } ),
+        new Text( titleString, { font: PANEL_TITLE_FONT, maxWidth: 300 } ),
         new VStrut( TITLE_VERTICAL_SPACE ),
         checkBoxGroup
       ],

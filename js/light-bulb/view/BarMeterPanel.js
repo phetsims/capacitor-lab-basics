@@ -54,7 +54,7 @@ define( function( require ) {
 
     // create checkboxes for each meter node
     var checkBoxNodes = new Node();
-    var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR };
+    var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR, maxWidth: 95 };
 
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
     var capacitanceCheckBox = new CheckBox( capacitanceTitle, model.capacitanceMeterVisibleProperty, {
@@ -84,7 +84,7 @@ define( function( require ) {
     plateChargeCheckBox.translation = new Vector2( 0, CHECKBOX_VERTICAL_SPACING );
     storedEnergyCheckBox.translation = new Vector2( 0, 2 * CHECKBOX_VERTICAL_SPACING );
 
-    x = capacitanceCheckBox.right + capacitanceMeterNode.valueNode.width + 40;
+    x = capacitanceCheckBox.right + capacitanceMeterNode.valueNode.width + 37;
     y = capacitanceCheckBox.centerY + 2;
     capacitanceMeterNode.axisLine.translation = new Vector2( x, y );
 
@@ -100,7 +100,8 @@ define( function( require ) {
       minWidth: minWidth,
       align: 'left',
       xMargin: 10,
-      yMargin: 10
+      yMargin: 10,
+      resize: false
     } );
 
     // link visibility to the model property

@@ -75,7 +75,8 @@ define( function( require ) {
     var createTickLabels = function( value, textFill ) {
       var labelText = new Text( StringUtils.format( pattern0Value1UnitsString, value, unitsVoltsString ), {
         font: LABEL_FONT,
-        fill: textFill
+        fill: textFill,
+        maxWidth: 50
       } );
       labelText.rotate( Math.PI / 2 ); // rotate label to match rotation of the slider.
       return labelText;

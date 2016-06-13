@@ -79,7 +79,8 @@ define( function( require ) {
     // @public value with hundredths precision and units, set in setValue()
     this.valueNode = new Text( '', {
       font: VALUE_FONT,
-      fill: VALUE_COLOR
+      fill: VALUE_COLOR,
+      maxWidth: 45
     } );
 
     // @public arrow node used to indicate when the value has gone beyond the scale of this meter
@@ -165,7 +166,19 @@ define( function( require ) {
       // layout
       this.barNode.leftCenter = this.axisLine.leftCenter;
       this.valueNode.rightCenter = this.axisLine.leftCenter.minusXY( VALUE_METER_SPACING, 0 );
-    }
+    },
+
+    getMaxWidth: function() {
+
+      // var percent = Math.min( 1, Math.abs( this.value ) / this.maxValue );
+      // var x = ( 1 - percent ) * BAR_SIZE.width;
+      // var width = BAR_SIZE.width - x;
+      // this.setRect( 0, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, width, BAR_SIZE.height );
+
+      // var maxRectangle = new Rectangle( 0, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, width, BAR_SIZE.height );
+
+      return BAR_SIZE.width + BASE_LINE_LENGTH * 2 + BASE_LINE_OFFSET + VALUE_METER_SPACING;
+    } 
   }, {
 
     // factory functions to construct different tpes of MeterNodes
