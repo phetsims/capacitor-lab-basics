@@ -1,32 +1,32 @@
 {
-  "comment": "# capacitor-lab-basics 1.0.0-dev.21 Wed May 18 2016 12:50:45 GMT-0600 (MDT)",
+  "comment": "# capacitor-lab-basics 1.0.0-dev.22 Mon Jun 13 2016 11:02:57 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "7d27130a4d27da15aa7f8a21bbfb9245288c1b44",
     "branch": "master"
   },
   "axon": {
-    "sha": "9bf8f88c0496820bccff4a7fe5da00fdeeb851a4",
+    "sha": "b71cc337f6748ee080e97b50497f05972b498de0",
     "branch": "master"
   },
   "brand": {
-    "sha": "bb1cfcc63c3d007d800ede089994d8705db6d47b",
+    "sha": "f0b1f7da85f87b9626562bea7fe69197fa81f05f",
     "branch": "master"
   },
   "capacitor-lab-basics": {
-    "sha": "a04b97299478a1a86cfd4ae1ac7c4888a071edd8",
-    "branch": "phetio-require-2"
+    "sha": "bb58674c339cf9116c02afef19e4b66fc850f283",
+    "branch": "master"
   },
   "chipper": {
-    "sha": "947bc315bee3763ee785315892601811a9708cfe",
-    "branch": "phet-io-require-2"
+    "sha": "1586048b377e990902b405d0e0016e7cc5149dd8",
+    "branch": "master"
   },
   "dot": {
-    "sha": "04efe0bcba227b3a0a75a734313fc0d92469aa8d",
+    "sha": "9b554e82b9ec7b5173859acd32e70a35024a6aaf",
     "branch": "master"
   },
   "joist": {
-    "sha": "ad3b2559783ba35096be4a86eeff24d829670feb",
-    "branch": "phet-io-require-2"
+    "sha": "83de2b95ca56685f3134a6360a8a684d5bec5b02",
+    "branch": "master"
   },
   "kite": {
     "sha": "dce9765e6fcb535970ef17c1a1bcb8db95599b08",
@@ -37,15 +37,15 @@
     "branch": "master"
   },
   "phetcommon": {
-    "sha": "eab7fb7f41ae9bd31935d2ee95f84e7546a9253f",
+    "sha": "35ef94ad2852b567a056b5f3b8c1e3906b8da7c1",
     "branch": "master"
   },
   "scenery": {
-    "sha": "204093556dd415cb4a2796e1374dccdd04b4bcaa",
+    "sha": "00bd89f45956aa5202d0647bd0026d7edf9d8d8d",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "b77dc7e1d530bccd543541766f01534d87683d70",
+    "sha": "cc33f674b3425419b506f03b40fabd06a442aca0",
     "branch": "master"
   },
   "sherpa": {
@@ -53,12 +53,12 @@
     "branch": "master"
   },
   "sun": {
-    "sha": "6f66368fd9cee088af7e481377ed91dbf2ba82dc",
+    "sha": "f2631eeacc795a415cc2ebf5eb297c4691c51721",
     "branch": "master"
   },
   "tandem": {
-    "sha": "0e40c775bba846e5c9f5003d79c0a5d095671759",
-    "branch": "phet-io-require-2"
+    "sha": "b3c68afaf8511b008b264a5829a40711c753b629",
+    "branch": "master"
   },
   "twixt": {
     "sha": "53b31872ff34d68a49dd4d30ea934bdcd362556e",
