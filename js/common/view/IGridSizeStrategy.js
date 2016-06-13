@@ -9,8 +9,6 @@
  * Note: I am not porting any of the other solutions for now.  They are still here in original Java for documentation
  * and we can port them later if desired.
  *
- * See TestPlateChargeLayout for a test application. NOTE: THIS IS NOT BEING PORTED AT THIS TIME.
- *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
  * @author Sam Reid

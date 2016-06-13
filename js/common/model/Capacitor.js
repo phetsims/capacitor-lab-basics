@@ -1,12 +1,13 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Model of a capacitor, used in the Introduction and Dielectric tabs, where we have a single capacitor whose geometry
- * can be directly manipulated by the user.
+ * Model of a capacitor whose geometry can be directly manipulated by the user.
  *
  * A capacitor consists of 2 parallel, square plates, with a dielectric material between the plates. When the
  * dielectric can be partially inserted, the capacitor must be modeled as 2 parallel capacitors, one of which has the
  * dielectric between its plates, and the other of which has air between its plates.
+ *
+ * NOTE: Dielectrics have not been ported and are not used in Capacitor Lab: Basics.
  *
  * A capacitor's capacitance (C) is solely dependent on its geometry and the dielectric material. Charge (Q) on the
  * plates is a function of capacitance and voltage (V) across the plates: Q = CV

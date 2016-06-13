@@ -2,6 +2,8 @@
 
 /**
  * Creates a wire that connects a battery to a circuit switch.
+ *
+ * @author Jesse Greenberg
  */
 define( function( require ) {
   'use strict';

@@ -64,6 +64,11 @@ define( function( require ) {
       }
     },
 
+    /**
+     * Get the voltage accross the capacitor plates.
+     * 
+     * @return {number}
+     */
     getCapacitorPlateVoltage: function() {
       return this.capacitor.platesVoltage;
     },

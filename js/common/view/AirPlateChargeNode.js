@@ -1,5 +1,12 @@
 // Copyright 2016, University of Colorado Boulder
 
+/**
+ * Portion of the plate charge area in contact with air.  Charges appear on this node which 
+ * is in contact with aire (not in contact with the dielectric.)
+ * 
+ * @author Jesse Greenberg
+ */
+
 define( function( require ) {
   'use strict';
 
@@ -8,10 +15,7 @@ define( function( require ) {
   var PlateChargeNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateChargeNode' );
 
   /**
-   * Portion of the plate charge due to the air.
-   * Charges appear on the portion of the plate that is in contact with air (not
-   * in contact with the dielectric.)
-   *
+   * Constructor.
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Object} options - See options for PlateChargeNode

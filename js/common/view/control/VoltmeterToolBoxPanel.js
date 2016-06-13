@@ -1,9 +1,8 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Control panel for view elements in Capacitor Lab: Basics.  Controls the visibility of plate charges, current
- * indicators, electric field and values.  This set of controls is used in both the 'light-bulb' anc 'capacitance'
- * screens.
+ * Tool box that contains a voltmeter.  The user can drag the voltmeter out of the toolbox for 
+ * use.
  *
  * @author Jesse Greenberg
  */

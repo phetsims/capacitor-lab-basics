@@ -2,6 +2,8 @@
 
 /**
  * Creates a wire that connects a capacitor to a circuit switch.
+ *
+ * @author  Jesse Greenberg
  */
 define( function( require ) {
   'use strict';

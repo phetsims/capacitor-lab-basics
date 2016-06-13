@@ -1,6 +1,8 @@
 // Copyright 2016, University of Colorado Boulder
 
 /**
+ * A capacitor with one switch attached to each plate.  The capacitor is connected to the circuit with
+ * these switches, and can be disconnected from the circuit with them as well.
  * @author Jesse Greenberg
  * @author Andrew Adare
  */
@@ -40,6 +42,7 @@ define( function( require ) {
       tandem ? tandem.createTandem( 'bottomCircuitSwitch' ) : null );
 
     // link the top and bottom circuit switches together so that they rotate together
+    // as the user drags
     var self = this;
     this.topCircuitSwitch.angleProperty.link( function( angle ) {
       self.bottomCircuitSwitch.angle = -angle;

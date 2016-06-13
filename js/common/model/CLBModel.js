@@ -56,9 +56,8 @@ define( function( require ) {
 
   return inherit( PropertySet, CLBModel, {
 
-    // Gets a capacitor with maximum charge.
     /**
-     * Return a capacitor with the maximum amount of charge allowed by the model/
+     * Return a capacitor with the maximum amount of charge allowed by the model.
      *
      * @return {Capacitor}
      */

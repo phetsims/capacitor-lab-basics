@@ -9,7 +9,7 @@
 define( function( require ) {
   'use strict';
 
-  // modules  var Circle = require( 'SCENERY/nodes/Circle' );
+  // modules
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );

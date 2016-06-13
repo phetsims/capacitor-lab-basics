@@ -28,6 +28,7 @@ define( function( require ) {
   /**
    * @param {VoltmeterBodyNode} bodyNode
    * @param {VoltmeterProbeNode} probeNode
+   * @param {boolean} isPositive
    * @constructor
    */
   function ProbeWireNode( bodyNode, probeNode, isPositive ) {

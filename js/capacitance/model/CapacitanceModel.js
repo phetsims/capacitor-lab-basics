@@ -1,7 +1,7 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * The "Intro" model for Capacitor Lab: Basics.  The intro model has a battery connected in parallel to a capacitor, and
+ * Capacitance model for Capacitor Lab: Basics.  This model has a battery connected in parallel to a capacitor, and
  * allows the user to modify capacitor plate geometry to illustrate relationships with capacitance.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
@@ -37,7 +37,7 @@ define( function( require ) {
     this.modelViewTransform = modelViewTransform; // @public (read-only)
 
     // Configuration info for the circuit.
-    // Default number of capacitors (lightbulbs) is 1 (0).
+    // Default number of capacitors is 1, default number of lightbulbs is 0.
     var circuitConfig = new CircuitConfig( {
       circuitConnections: [ CircuitConnectionEnum.BATTERY_CONNECTED, CircuitConnectionEnum.OPEN_CIRCUIT ]
     } );

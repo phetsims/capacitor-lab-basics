@@ -1,8 +1,7 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Circuit for the for the "Dielectric" module.  Contains the circuit components and controls for manipulating the
- * circuit.
+ * Node for the capacitance circuit.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg

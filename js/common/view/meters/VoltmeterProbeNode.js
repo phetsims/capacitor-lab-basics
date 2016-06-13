@@ -1,7 +1,8 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Base class for voltmeter probes.
+ * Base class for voltmeter probes.  Static functions create each of the positive and negative
+ * nodes.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg

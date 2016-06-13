@@ -19,13 +19,14 @@ define( function( require ) {
   var TandemDragHandler = require( 'TANDEM/scenery/input/TandemDragHandler' );
 
   // constants
-  var BATTERY_CONNECTED_MIN_ANGLE = 3 * Math.PI / 4 - Math.PI / 8;
-  var OPEN_CIRCUIT_MIN_ANGLE = Math.PI / 2 - Math.PI / 8;
-  var OPEN_CIRCUIT_MAX_ANGLE = 3 * Math.PI / 4 - Math.PI / 8;
-  var LIGHT_BULB_CONNECTED_MIN_ANGLE = 0;
-  var LIGHT_BULB_CONNECTED_MAX_ANGLE = Math.PI / 2 - Math.PI / 8;
+  var LEFT_ELEMENT_MIN_ANGLE = 3 * Math.PI / 4 - Math.PI / 8;
+  var DISCONNECTED_MIN_ANGLE = Math.PI / 2 - Math.PI / 8;
+  var DISCONNECTED_MAX_ANGLE = 3 * Math.PI / 4 - Math.PI / 8;
+  var RIGHT_ELEMENT_MIN_ANGLE = 0;
+  var RIGHT_ELEMENT_MAX_ANGLE = Math.PI / 2 - Math.PI / 8;
 
-  //Compute the distance (in radians) between angles a and b, using an inlined dot product (inlined to remove allocations)
+  // Compute the distance (in radians) between angles a and b, using an inlined dot product
+  // (inlined to remove allocations)
   var distanceBetweenAngles = function( a, b ) {
     var dotProduct = Math.cos( a ) * Math.cos( b ) + Math.sin( a ) * Math.sin( b );
     return Math.acos( dotProduct );
@@ -99,11 +100,11 @@ define( function( require ) {
         var absAngle = Math.abs( circuitSwitch.angle + angleOffset );
         angle = 0;
         angleOffset = 0;
-        if ( absAngle > BATTERY_CONNECTED_MIN_ANGLE ) {
+        if ( absAngle > LEFT_ELEMENT_MIN_ANGLE ) {
           circuitSwitch.circuitConnectionProperty.set( 'BATTERY_CONNECTED' );
-        } else if ( absAngle < OPEN_CIRCUIT_MAX_ANGLE && absAngle > OPEN_CIRCUIT_MIN_ANGLE ) {
+        } else if ( absAngle < DISCONNECTED_MAX_ANGLE && absAngle > DISCONNECTED_MIN_ANGLE ) {
           circuitSwitch.circuitConnectionProperty.set( 'OPEN_CIRCUIT' );
-        } else if ( absAngle < LIGHT_BULB_CONNECTED_MAX_ANGLE && absAngle > LIGHT_BULB_CONNECTED_MIN_ANGLE ) {
+        } else if ( absAngle < RIGHT_ELEMENT_MAX_ANGLE && absAngle > RIGHT_ELEMENT_MIN_ANGLE ) {
           circuitSwitch.circuitConnectionProperty.set( 'LIGHT_BULB_CONNECTED' );
         }
         

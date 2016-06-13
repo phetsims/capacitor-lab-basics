@@ -1,7 +1,7 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Intro screen for the Capacitor Lab Basics sim.
+ * Capacitance screen for the Capacitor Lab Basics sim.
  *
  * @author Jesse Greenberg
  */

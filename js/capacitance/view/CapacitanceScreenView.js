@@ -1,9 +1,8 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * "Intro" ScreenView for Capacitor Lab Basics.
- *
- * This this extension of ScreenView is a direct port of DielectricCanvas of Capacitor Lab without dielectrics.
+ * "Capacitance" ScreenView for Capacitor Lab Basics.  Assembles the view from a CapacitanceCircuit and
+ * panels.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg

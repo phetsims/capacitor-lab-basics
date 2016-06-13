@@ -1,8 +1,10 @@
 // Copyright 2016, University of Colorado Boulder
 
 /**
- * Circuit connection types for Capacitor Lab. Circuit connection names correspond to what element is connected to the
- * the capacitor.  'OPEN_CIRCUIT' means that the capacitor is disconnected from all circuit components.
+ * Circuit connection types for Capacitor Lab: Basics. Circuit connection names correspond to what element is
+ * connected to the the capacitor.  'OPEN_CIRCUIT' means that the capacitor is disconnected from all
+ * circuit components.
+ * 
  * @author Jesse Greenberg
  */
 define( function( require ) {

@@ -1,7 +1,7 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Model of a circuit with a battery (B) and N circuitComponents (Z1...Zn) in parallel.  Switches exist between
+ * Model of a circuit with a battery (B) and N circuit components (Z1...Zn) in parallel.  Switches exist between
  * circuit connections so that elements.  The layout of the circuit assumes that the battery is on the left
  * hand side of the circuit, while the circuit components are to the right
  *

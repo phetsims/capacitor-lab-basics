@@ -1,7 +1,8 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Bulb node for 'Faradays Law' simulation
+ * Bulb Node.  Bulb is composed of a image at the base, and the bulb and filament are drawn.
+ * Bulb brightness is a function of the current running through the bulb.
  *
  * NOTE: This code is borrowed directly from Faraday's Law.  LightBulbNode is still being generalized, see
  * https://github.com/phetsims/scenery-phet/issues/170.
