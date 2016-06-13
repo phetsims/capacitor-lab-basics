@@ -159,7 +159,7 @@ define( function( require ) {
       this.arrowNode.left = this.barNode.right + VALUE_METER_SPACING;
 
       // update visibility
-      this.arrowNode.visible = this.meter.value > this.maxValue;
+      this.arrowNode.visible = Math.abs( this.meter.value ) > this.maxValue;
     },
 
     updateLayout: function() {
