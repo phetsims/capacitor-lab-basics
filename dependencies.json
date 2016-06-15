@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.0.0-dev.22 Mon Jun 13 2016 11:02:57 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# capacitor-lab-basics 1.0.0-dev.24 Wed Jun 15 2016 11:59:08 GMT-0600 (MDT)",
   "assert": {
     "sha": "7d27130a4d27da15aa7f8a21bbfb9245288c1b44",
     "branch": "master"
@@ -13,19 +13,19 @@
     "branch": "master"
   },
   "capacitor-lab-basics": {
-    "sha": "bb58674c339cf9116c02afef19e4b66fc850f283",
+    "sha": "399351105bcbc9ac47bf8d19c7d753c635cbec79",
     "branch": "master"
   },
   "chipper": {
-    "sha": "1586048b377e990902b405d0e0016e7cc5149dd8",
+    "sha": "4c679115b7041b1514679091d3a1fa1e410845df",
     "branch": "master"
   },
   "dot": {
-    "sha": "9b554e82b9ec7b5173859acd32e70a35024a6aaf",
+    "sha": "455447cedc0b42bc5c1bbb38b37b7c92cc7e9e8c",
     "branch": "master"
   },
   "joist": {
-    "sha": "83de2b95ca56685f3134a6360a8a684d5bec5b02",
+    "sha": "ddf0d9125ad1f86670e05d45084e1f3cce396896",
     "branch": "master"
   },
   "kite": {
@@ -41,11 +41,11 @@
     "branch": "master"
   },
   "scenery": {
-    "sha": "00bd89f45956aa5202d0647bd0026d7edf9d8d8d",
+    "sha": "d2791b0f130c4015a9eada724d38faa072b4bda3",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "cc33f674b3425419b506f03b40fabd06a442aca0",
+    "sha": "822e3d6d3b6087052a8591632fd274401cb8a740",
     "branch": "master"
   },
   "sherpa": {
