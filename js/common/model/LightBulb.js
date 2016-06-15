@@ -35,7 +35,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'LightBulb', LightBulb );
-  
+
   return inherit( Object, LightBulb, {
 
     /**
