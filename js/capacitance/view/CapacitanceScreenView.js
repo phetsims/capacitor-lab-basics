@@ -47,7 +47,9 @@ define( function( require ) {
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
 
     // control
-    var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ) );
+    var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
+      maxTextWidth: this.layoutBounds.width - capacitanceCircuitNode.right
+    } );
     viewControlPanel.translation = this.layoutBounds.rightTop.minusXY( viewControlPanel.width + 10, -10 );
     voltmeterToolBoxPanel.rightTop = viewControlPanel.rightBottom.plusXY( 0, 20 );
 

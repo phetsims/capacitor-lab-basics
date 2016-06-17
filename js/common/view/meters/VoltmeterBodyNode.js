@@ -65,7 +65,7 @@ define( function( require ) {
     // text label
     var labelText = new Text( voltageString, {
       font: TITLE_FONT,
-      maxWidth: 80
+      maxWidth: imageNode.width / 2
     } );
     labelText.center = new Vector2( imageNode.width / 2, imageNode.height / 3 );
     this.addChild( labelText );
@@ -73,7 +73,7 @@ define( function( require ) {
     var valueString = StringUtils.format( pattern0Value1UnitsString, voltmeter.value, unitsVoltsString );
     var valueText = new Text( valueString, {
       font: DISPLAY_FONT,
-      maxWidth: 60
+      maxWidth: imageNode.width * 0.4
     } );
 
     // add the display to the

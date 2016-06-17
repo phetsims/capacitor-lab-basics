@@ -33,6 +33,7 @@ define( function( require ) {
   var BAR_STROKE_COLOR = 'black';
   var BAR_LINE_WIDTH = 1;
   var VALUE_METER_SPACING = 7;
+  var VALUE_MAX_WIDTH = 45; // max width for i18n
 
   // value display
   var VALUE_FONT = new PhetFont( 12 );
@@ -80,7 +81,7 @@ define( function( require ) {
     this.valueNode = new Text( '', {
       font: VALUE_FONT,
       fill: VALUE_COLOR,
-      maxWidth: 45
+      maxWidth: VALUE_MAX_WIDTH
     } );
 
     // @public arrow node used to indicate when the value has gone beyond the scale of this meter

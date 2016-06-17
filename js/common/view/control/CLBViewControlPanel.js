@@ -45,7 +45,8 @@ define( function( require ) {
   function CLBViewControlPanel( model, tandem, options ) {
 
     var defaultOptions = {
-      numberOfBarGraphs: 1
+      numberOfBarGraphs: 1,
+      maxTextWidth: 250
     };
 
     options = _.extend( {}, defaultOptions, options );
@@ -74,7 +75,7 @@ define( function( require ) {
     ];
 
 
-    var viewCheckBoxItems = createCheckBoxItems( viewAssets );
+    var viewCheckBoxItems = createCheckBoxItems( viewAssets, options.maxTextWidth );
     var verticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems, {
       tandem: tandem.createTandem( 'verticalCheckBoxGroup' )
     } );
@@ -99,11 +100,11 @@ define( function( require ) {
    * @param {array} assets
    * @returns {Array}
    */
-  function createCheckBoxItems( assets ) {
+  function createCheckBoxItems( assets, maxTextWidth ) {
     var items = [];
     assets.forEach( function( asset ) {
       items.push( {
-        content: new Text( asset.string, { font: CHECK_BOX_FONT, maxWidth: 250 } ),
+        content: new Text( asset.string, { font: CHECK_BOX_FONT, maxWidth: maxTextWidth } ),
         property: asset.property,
         label: asset.string,
         tandemName: asset.tandemName

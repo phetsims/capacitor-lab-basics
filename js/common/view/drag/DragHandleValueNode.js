@@ -25,6 +25,10 @@ define( function( require ) {
   var LABEL_FONT = new PhetFont( { weight: 'bold', size: 12 } );
   var VALUE_FONT = new PhetFont( { size: 12 } );
 
+  // max width of text for the label and value, determined empirically
+  var LABEL_MAX_WIDTH = 100;
+  var VALUE_MAX_WIDTH = 80;
+
   // strings
   var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
 
@@ -42,10 +46,11 @@ define( function( require ) {
 
     this.units = units; // @private
 
-    var labelNode = new Text( label, { font: LABEL_FONT, maxWidth: 100 } );
+    // 
+    var labelNode = new Text( label, { font: LABEL_FONT, maxWidth: LABEL_MAX_WIDTH } );
     this.addChild( labelNode );
 
-    this.valueNode = new SubSupText( '', { font: VALUE_FONT, maxWidth: 80 } ); // @private
+    this.valueNode = new SubSupText( '', { font: VALUE_FONT, maxWidth: VALUE_MAX_WIDTH } ); // @private
     this.addChild( this.valueNode );
 
     // layout: value below label, left-justified

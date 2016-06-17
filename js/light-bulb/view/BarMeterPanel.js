@@ -54,7 +54,7 @@ define( function( require ) {
 
     // create checkboxes for each meter node
     var checkBoxNodes = new Node();
-    var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR, maxWidth: 95 };
+    var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR, maxWidth: minWidth * 0.19 };
 
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
     var capacitanceCheckBox = new CheckBox( capacitanceTitle, model.capacitanceMeterVisibleProperty, {

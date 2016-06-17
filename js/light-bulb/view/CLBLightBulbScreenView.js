@@ -53,7 +53,8 @@ define( function( require ) {
 
     // View control panel and voltmeter panel
     var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
-      numberOfBarGraphs: 3
+      numberOfBarGraphs: 3,
+      maxTextWidth: this.layoutBounds.width - lightBulbCircuitNode.right
     } );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( VIEW_PANEL_OFFSET );
     voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( VOLTMETER_PANEL_OFFSET );
