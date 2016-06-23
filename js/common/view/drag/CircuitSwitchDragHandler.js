@@ -17,6 +17,7 @@ define( function( require ) {
   // var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var TandemDragHandler = require( 'TANDEM/scenery/input/TandemDragHandler' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
 
   // constants
   var LEFT_ELEMENT_MIN_ANGLE = 3 * Math.PI / 4 - Math.PI / 8;
@@ -59,6 +60,8 @@ define( function( require ) {
         angleOffset = initialEndPoint.minus( hingePoint ).angle(); // angle of switch segment with the horizontal
         lastAngle = angleOffset;
         switchNode.dragging = true;
+
+        circuitSwitch.circuitConnectionProperty.set( CircuitConnectionEnum.IN_TRANSIT );
 
       },
       drag: function( event ) {

@@ -72,6 +72,10 @@ define( function( require ) {
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
+      // if the switch is being dragged, it is in transit and there is no active connection yet
+      if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
+        return;
+      }
       thisSwitch.activeConnection = thisSwitch.getConnection( circuitConnection );
       thisSwitch.switchSegment.update( thisSwitch.activeConnection );
     } );
