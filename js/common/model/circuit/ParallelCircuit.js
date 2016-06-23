@@ -111,6 +111,10 @@ define( function( require ) {
         }
       }
 
+      // No-op, keep as null
+      else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT ) {
+      }
+
       // Error case
       else {
         assert && assert( false,
