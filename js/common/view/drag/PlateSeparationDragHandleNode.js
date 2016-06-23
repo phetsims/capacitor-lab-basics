@@ -59,7 +59,6 @@ define( function( require ) {
     this.addInputListener( new PlateSeparationDragHandler( arrowNode, capacitor, modelViewTransform, valueRange,
       tandem.createTandem( 'inputListener' ) ) );
 
-    this.touchArea = arrowNode.bounds;
     this.cursor = 'pointer';
 
     // line

@@ -44,6 +44,9 @@ define( function( require ) {
       tailWidth: length / 5
     } );
 
+    // make the arrow slightly easier to drag
+    this.touchArea = this.bounds.dilated( 10 );
+
     // highlight the arrow on pointer over
     this.addInputListener( new ButtonListener( {
       over: function( event ) {

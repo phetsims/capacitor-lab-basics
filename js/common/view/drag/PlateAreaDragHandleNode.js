@@ -60,7 +60,7 @@ define( function( require ) {
     arrowNode.addInputListener( new PlateAreaDragHandler( arrowNode, capacitor, modelViewTransform, valueRange,
       tandem.createTandem( 'inputListener' ) ) );
 
-    this.touchArea = arrowNode.bounds;
+    // this.touchArea = arrowNode.bounds;
     this.cursor = 'pointer';
 
     // line
