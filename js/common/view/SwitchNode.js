@@ -55,11 +55,11 @@ define( function( require ) {
     // add a shaded sphere to the end of the wire node to represent a connection point at the end of the switch.
     var shadedSphereNode = new ShadedSphereNode( 16 );
 
-    // dialte the mouse and touch areas so that it is easier to drag
-    var boundsDilation = 10;
+    // Dilate the mouse and touch areas so that it is easier to drag
+    var boundsDilation = 15;
     shadedSphereNode.mouseArea = shadedSphereNode.bounds.dilated( boundsDilation );
     shadedSphereNode.touchArea = shadedSphereNode.bounds.dilated( boundsDilation );
-    
+
     shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
     this.wireSwitchNode.addChild( shadedSphereNode );
 
