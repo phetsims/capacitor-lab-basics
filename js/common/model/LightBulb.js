@@ -21,7 +21,7 @@ define( function( require ) {
   var BULB_BASE_SIZE = new Dimension2( 0.0050, 0.0035 );
 
   /**
-   * Constructor for the Capacitor.
+   * Constructor for the light bulb.
    *
    * @param {Vector3} location
    * @param {number} resistance - internal resistance of the bulb
