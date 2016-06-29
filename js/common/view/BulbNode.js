@@ -24,6 +24,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var Vector2 = require( 'DOT/Vector2' );
   var LinearFunction = require( 'DOT/LinearFunction' );
+  // var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -36,6 +37,8 @@ define( function( require ) {
   var BULB_BASE_WIDTH = 42;
   var NUM_FILAMENT_ZIG_ZAGS = 8;
   var FILAMENT_ZIG_ZAG_SPAN = 8;
+
+  var DEBUG_SHAPES = true;
 
   function createBulb( options ) {
 
@@ -177,6 +180,12 @@ define( function( require ) {
 
     } );
 
+    if ( DEBUG_SHAPES ) {
+      // for debugging, visualize the shape of the base
+      var bulbShape = new Path( lightBulb.shapeCreator.createBaseShape(), { stroke: 'red', lineWidth: 2 } );
+      this.addChild( bulbShape );
+    }
+
     tandem.addInstance( this );
   }
 
@@ -194,4 +203,3 @@ define( function( require ) {
     }
   } );
 } );
-

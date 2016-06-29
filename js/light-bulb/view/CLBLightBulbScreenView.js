@@ -86,4 +86,3 @@ define( function( require ) {
 
   return inherit( ScreenView, CLBLightBulbScreenView );
 } );
-

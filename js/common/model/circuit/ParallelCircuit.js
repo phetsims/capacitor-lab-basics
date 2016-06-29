@@ -325,7 +325,7 @@ define( function( require ) {
     for ( i = 0; i < config.numberOfLightBulbs; i++ ) {
       x += config.lightBulbXSpacing;
       location = new Vector3( x, y, z );
-      var lightBulb = new LightBulb( location, config.lightBulbResistance );
+      var lightBulb = new LightBulb( location, config.lightBulbResistance, config.modelViewTransform );
       circuitComponents.push( lightBulb );
     }
 
@@ -410,4 +410,3 @@ define( function( require ) {
   return ParallelCircuit;
 
 } );
-

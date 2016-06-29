@@ -29,22 +29,8 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'BatteryShapeCreator', BatteryShapeCreator );
-  
-  return inherit( Object, BatteryShapeCreator, {
 
-    /**
-     * Gets the shape of the battery's body in the world coordinate frame. Origin at the center.
-     *
-     * @return {Shape}
-     */
-    createBodyShape: function() {
-      var width = this.battery.BODY_SIZE.width;
-      var height = this.battery.BODY_SIZE.height;
-      var x = this.battery.location.x - ( width / 2 );
-      var y = this.battery.location.y - ( height / 2 );
-      var s = new Rectangle( x, y, width, height );
-      return this.modelViewTransform.modelToViewBounds( s );
-    },
+  return inherit( Object, BatteryShapeCreator, {
 
     /**
      * Creates the shape of the top terminal in the world coordinate frame. Which terminal is on top depends on the
