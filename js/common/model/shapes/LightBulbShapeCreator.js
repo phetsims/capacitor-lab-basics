@@ -16,7 +16,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   /**
-   * Constructor for a BatteryShapeCreator.
+   * Constructor.
    *
    * @param {LightBulb} lightBulb
    * @param {CLModelViewTransform3D} modelViewTransform
