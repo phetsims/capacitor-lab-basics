@@ -38,7 +38,7 @@ define( function( require ) {
   var NUM_FILAMENT_ZIG_ZAGS = 8;
   var FILAMENT_ZIG_ZAG_SPAN = 8;
 
-  var DEBUG_SHAPES = true;
+  var DEBUG_SHAPES = false;
 
   function createBulb( options ) {
 

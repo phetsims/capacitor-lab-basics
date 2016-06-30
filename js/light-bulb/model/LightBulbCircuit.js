@@ -135,22 +135,14 @@ define( function( require ) {
     getVoltageAt: function( shape ) {
       var voltage = null;
 
-      // Light bulb not connected: delegate to ParallelCircuit method
-      if ( this.circuitConnectionProperty.value !== CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-        voltage = ParallelCircuit.prototype.getVoltageAt.call( this, shape );
-      }
-
-      // Light bulb connected: return either plate or battery voltage, depending on probe shape location.
-      else {
-        if ( this.connectedToLightBulbTop( shape ) ) {
-          voltage = this.getCapacitorPlateVoltage();
-        } else if ( this.connectedToLightBulbBottom( shape ) ) {
-          voltage = 0;
-        } else if ( this.connectedToBatteryTop( shape ) ) {
-          voltage = this.getTotalVoltage();
-        } else if ( this.connectedToBatteryBottom( shape ) ) {
-          voltage = 0;
-        }
+      if ( this.connectedToLightBulbTop( shape ) ) {
+        voltage = this.getCapacitorPlateVoltage();
+      } else if ( this.connectedToLightBulbBottom( shape ) ) {
+        voltage = 0;
+      } else if ( this.connectedToBatteryTop( shape ) ) {
+        voltage = this.getTotalVoltage();
+      } else if ( this.connectedToBatteryBottom( shape ) ) {
+        voltage = 0;
       }
 
       return voltage;
@@ -174,8 +166,13 @@ define( function( require ) {
         }
       } );
 
+      // does the shape intersect a top plate?
       var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
-      return intersectsTopWires || intersectsSomeTopPlate;
+
+      // does the shape intersect the light bulb base?
+      var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
+
+      return intersectsBulbBase || intersectsSomeTopPlate || intersectsTopWires;
 
     },
 
@@ -190,6 +187,8 @@ define( function( require ) {
       var intersectsTopWires = false;
       var topLightBulbWires = this.getTopLightBulbWires();
 
+      var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
+
       topLightBulbWires.forEach( function( bottomWire ) {
         if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
           intersectsTopWires = true;
@@ -197,7 +196,7 @@ define( function( require ) {
       } );
 
       var disconnected = !( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-      return intersectsTopWires && disconnected;
+      return ( intersectsBulbBase || intersectsTopWires  ) && disconnected;
     },
 
     /**
@@ -233,6 +232,9 @@ define( function( require ) {
       bottomWires = bottomWires.concat( bottomCapacitorWires );
       bottomWires = bottomWires.concat( bottomSwitchWires );
 
+      // does the shape intersect the light bulb base?
+      var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
+
       bottomWires.forEach( function( bottomWire ) {
         if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
@@ -240,7 +242,8 @@ define( function( require ) {
       } );
 
       var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
-      return intersectsBottomWires || intersectsSomeBottomPlate;
+
+      return intersectsBottomWires || intersectsSomeBottomPlate || intersectsBulbBase;
 
     },
 
@@ -301,4 +304,3 @@ define( function( require ) {
   } );
 
 } );
-

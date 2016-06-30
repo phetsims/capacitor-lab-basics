@@ -14,6 +14,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Vector2 = require( 'DOT/Vector2' );
+  var Matrix3 = require( 'DOT/Matrix3' );
 
   /**
    * Constructor.
@@ -65,6 +66,12 @@ define( function( require ) {
       baseShape.lineTo( -topConductorWidth, height / 2 );
       baseShape.lineTo( 0, height / 2 );
       baseShape.close();
+
+      // transform to the location of the bulb
+      baseShape = baseShape.transformed( new Matrix3.translation(
+        this.lightBulb.location.x + topConductorWidth / 2,
+        this.lightBulb.location.y
+      ) );
 
       return this.modelViewTransform.modelToViewShape( baseShape );
 

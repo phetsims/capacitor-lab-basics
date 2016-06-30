@@ -42,13 +42,13 @@ define( function( require ) {
   return inherit( Object, LightBulb, {
 
     /**
-     * Does the point intersect the shape of the bulb base?
+     * Does the base shape intersect the shape of the bulb base?
      *
      * @param  {Vector3} point
      * @return {boolean}
      */
-    initersectsBulbBase: function( point ) {
-      return this.baseShape.containsPoint( point );
+    intersectsBulbBase: function( shape ) {
+      return this.shapeCreator.createBaseShape().bounds.intersectsBounds( shape.bounds );
     },
 
     /**

@@ -102,15 +102,6 @@ define( function( require ) {
         }
       }
 
-      // Light bulb connected
-      else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-        if ( this.connectedToBatteryTop( shape ) ) {
-          voltage = this.getTotalVoltage();
-        } else if ( this.connectedToBatteryBottom( shape ) ) {
-          voltage = 0;
-        }
-      }
-
       // No-op, keep as null
       else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT ) {
       }
