@@ -10,13 +10,13 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Range = require( 'DOT/Range' );
+  var RangeWithValue = require( 'DOT/RangeWithValue' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
-  var PLATE_WIDTH_RANGE = new Range( 0.01, 0.02, 0.01 ); // meters
+  var PLATE_WIDTH_RANGE = new RangeWithValue( 0.01, 0.02, 0.01 ); // meters
 
   var CLBConstants = {
 
@@ -42,7 +42,7 @@ define( function( require ) {
     },
 
     // battery
-    BATTERY_VOLTAGE_RANGE: new Range( -1.5, 1.5, 0 ), // Volts
+    BATTERY_VOLTAGE_RANGE: new RangeWithValue( -1.5, 1.5, 0 ), // Volts
     BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD: 0.1, // Volts
     POLARITY: {
       POSITIVE: 'POSITIVE',
@@ -50,18 +50,18 @@ define( function( require ) {
     },
 
     // capacitor
-    PLATE_WIDTH_RANGE: new Range( 0.01, 0.02, 0.01 ), // meters
+    PLATE_WIDTH_RANGE: new RangeWithValue( 0.01, 0.02, 0.01 ), // meters
     PLATE_HEIGHT: 0.0005, // meters
-    PLATE_SEPARATION_RANGE: new Range( 0.005, 0.01, 0.01 ), // meters
-    CAPACITANCE_RANGE: new Range( 1E-13, 3E-13 ), // Farads
+    PLATE_SEPARATION_RANGE: new RangeWithValue( 0.005, 0.01, 0.01 ), // meters
+    CAPACITANCE_RANGE: new RangeWithValue( 1E-13, 3E-13 ), // Farads
 
     // switch
     SWITCH_WIRE_LENGTH: 0.0064, // in meters
     SWITCH_Y_SPACING: 0.0025, // spacing between circuit components and the switch
 
     // dielectric
-    DIELECTRIC_CONSTANT_RANGE: new Range( 1, 5, 5 ), // dimensionless
-    DIELECTRIC_OFFSET_RANGE: new Range( 0, PLATE_WIDTH_RANGE.max, PLATE_WIDTH_RANGE.defaultValue ), // meters
+    DIELECTRIC_CONSTANT_RANGE: new RangeWithValue( 1, 5, 5 ), // dimensionless
+    DIELECTRIC_OFFSET_RANGE: new RangeWithValue( 0, PLATE_WIDTH_RANGE.max, PLATE_WIDTH_RANGE.defaultValue ), // meters
 
     // dielectric constants (dimensionless)
     EPSILON_VACUUM: 1,
@@ -111,14 +111,14 @@ define( function( require ) {
     STORED_ENERGY_METER_VALUE_EXPONENT: -12,
 
     // plate charges
-    NUMBER_OF_PLATE_CHARGES: new Range( 1, 625 ),
+    NUMBER_OF_PLATE_CHARGES: new RangeWithValue( 1, 625 ),
     NEGATIVE_CHARGE_SIZE: new Dimension2( 7, 2 ),
     PLATE_CHARGES_VISIBLE: true,
     ELECTRON_CHARGE: 1.60218E-19,
     MIN_PLATE_CHARGE: 0.01E-12, // absolute minimum plate charge in coulombs
 
     // E-field
-    NUMBER_OF_EFIELD_LINES: new Range( 1, 900 ), // number of lines on smallest plate
+    NUMBER_OF_EFIELD_LINES: new RangeWithValue( 1, 900 ), // number of lines on smallest plate
     EFIELD_VISIBLE: false,
     DIRECTION: {
       UP: 'UP',
