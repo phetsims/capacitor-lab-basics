@@ -15,10 +15,11 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var Tandem = require( 'TANDEM/Tandem' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Color = require( 'SCENERY/util/Color' );
+  var Tandem = require( 'TANDEM/Tandem' );
+  var TDielectricMaterial = require('ifphetio!PHET_IO/simulations/capacitor-lab-basics/types/TDielectricMaterial');
 
   // A new tandem instance is required here since the solutes are created statically.
   var tandem = Tandem.createStaticTandem( 'dielectrics' );
@@ -38,7 +39,7 @@ define( function( require ) {
     this.color = new Color( color );
     this.dielectricConstant = dielectricConstant;
 
-    tandem && tandem.addInstance( this );
+    tandem && tandem.addInstance( this, TDielectricMaterial );
   }
 
   capacitorLabBasics.register( 'DielectricMaterial', DielectricMaterial );
