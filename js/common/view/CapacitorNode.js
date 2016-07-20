@@ -16,6 +16,7 @@ define( function( require ) {
   var EFieldNode = require( 'CAPACITOR_LAB_BASICS/common/view/EFieldNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
 
   /**
    * Constructor for a CapacitorNode.
@@ -61,7 +62,7 @@ define( function( require ) {
 
     // Register with tandem.  No need to handle dispose/removeInstance since this
     // exists for the lifetime of the simulation.
-    tandem.addInstance( this );
+    tandem.addInstance( this, TNode );
   }
 
   capacitorLabBasics.register( 'CapacitorNode', CapacitorNode );
