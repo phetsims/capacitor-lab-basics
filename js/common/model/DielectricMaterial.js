@@ -43,15 +43,16 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'DielectricMaterial', DielectricMaterial );
 
-  return inherit( Object, DielectricMaterial, {}, {
-
-    AIR: new DielectricMaterial( 'air', CLBConstants.EPSILON_AIR, CLBConstants.AIR_COLOR, tandem.createTandem( 'air' ) ),
+  inherit( Object, DielectricMaterial, {}, {
 
     CustomDielectricMaterial: function( dielectricConstant ) {
       return new DielectricMaterial( 'Custom', dielectricConstant,
         CLBConstants.CUSTOM_DIELECTRIC_COLOR, null ); // TODO: tandem
     }
-
   } );
-} );
 
+  // Instantiate statics after inherit, so that instanceof will work properly
+  DielectricMaterial.AIR = new DielectricMaterial( 'air', CLBConstants.EPSILON_AIR, CLBConstants.AIR_COLOR, tandem.createTandem( 'air' ) );
+
+  return DielectricMaterial;
+} );
