@@ -179,35 +179,35 @@ define( function( require ) {
       // var maxRectangle = new Rectangle( 0, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, width, BAR_SIZE.height );
 
       return BAR_SIZE.width + BASE_LINE_LENGTH * 2 + BASE_LINE_OFFSET + VALUE_METER_SPACING;
-    } 
+    }
   }, {
 
     // factory functions to construct different tpes of MeterNodes
     /**
-     * Factory constructor for a CapacitanceMeterNode.
+     * Factory constructor for a BarMeterNode.
      *
      * @param {CapacitanceMeter} meter
      * @constructor
      */
-    CapacitanceBarMeterNode: function( meter ) {
+    createCapacitanceBarMeterNode: function( meter ) {
       return new BarMeterNode( meter, CLBConstants.CAPACITANCE_COLOR, CLBConstants.CAPACITANCE_METER_VALUE_EXPONENT, unitsPicoFaradsString, capacitanceString );
     },
     /**
-     * Factory constructor for a CapacitanceMeterNode.
+     * Factory constructor for a PlateChargeBarMeterNode.
      *
      * @param {CapacitanceMeter} meter
      * @constructor
      */
-    PlateChargeBarMeterNode: function( meter ) {
+    createPlateChargeBarMeterNode: function( meter ) {
       return new PlateChargeBarMeterNode( meter );
     },
     /**
-     * Factory constructor for a CapacitanceMeterNode.
+     * Factory constructor for a BarMeterNode.
      *
      * @param {CapacitanceMeter} meter
      * @constructor
      */
-    StoredEnergyBarMeterNode: function( meter ) {
+    createStoredEnergyBarMeterNode: function( meter ) {
       return new BarMeterNode( meter, CLBConstants.STORED_ENERGY_COLOR, CLBConstants.STORED_ENERGY_METER_VALUE_EXPONENT, unitsPicoJoulesString, storedEnergyString );
     }
   } );

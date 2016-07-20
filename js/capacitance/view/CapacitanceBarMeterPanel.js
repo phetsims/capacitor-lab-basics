@@ -43,7 +43,7 @@ define( function( require ) {
     var parentNode = new Node();
 
     // create the bar meter nodes with their textual values
-    var capacitanceMeterNode = BarMeterNode.CapacitanceBarMeterNode( model.capacitanceMeter, '0' );
+    var capacitanceMeterNode = BarMeterNode.createCapacitanceBarMeterNode( model.capacitanceMeter, '0' );
 
     // title for capacitance meter
     var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR, maxWidth: 100 };

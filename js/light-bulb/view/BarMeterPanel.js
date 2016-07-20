@@ -47,9 +47,9 @@ define( function( require ) {
 
     // create the bar meter nodes with their text values.
     var meterNodes = new Node();
-    var capacitanceMeterNode = BarMeterNode.CapacitanceBarMeterNode( model.capacitanceMeter );
-    var plateChargeMeterNode = BarMeterNode.PlateChargeBarMeterNode( model.plateChargeMeter );
-    var storedEnergyMeterNode = BarMeterNode.StoredEnergyBarMeterNode( model.storedEnergyMeter );
+    var capacitanceMeterNode = BarMeterNode.createCapacitanceBarMeterNode( model.capacitanceMeter );
+    var plateChargeMeterNode = BarMeterNode.createPlateChargeBarMeterNode( model.plateChargeMeter );
+    var storedEnergyMeterNode = BarMeterNode.createStoredEnergyBarMeterNode( model.storedEnergyMeter );
     meterNodes.children = [ capacitanceMeterNode, plateChargeMeterNode, storedEnergyMeterNode ];
 
     // create checkboxes for each meter node
