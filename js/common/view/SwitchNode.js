@@ -20,6 +20,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
+  var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
   var Vector2 = require( 'DOT/Vector2' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
 
@@ -134,7 +135,7 @@ define( function( require ) {
 
     // Register with tandem.  No need to handle dispose/removeInstance since this
     // exists for the lifetime of the simulation.
-    tandem.addInstance( this );
+    tandem.addInstance( this, TNode );
   }
 
   capacitorLabBasics.register( 'SwitchNode', SwitchNode );
