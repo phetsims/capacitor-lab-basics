@@ -44,79 +44,72 @@ define( function( require ) {
     // Factory methods to construct various wire segments for the different
 
     /**
-     * Return a WireSegment that attaches to the top of a battery
+     * Factory for a WireSegment that attaches to the top of a battery
      * @param {Battery} battery
      * @param {Vector2} endPoint
      * @param {Tandem} tandem - end point for the wire segment
-     * @constructor
      */
-    BatteryTopWireSegment: function( battery, endPoint, tandem ) {
+    createBatteryTopWireSegment: function( battery, endPoint, tandem ) {
       return new BatteryTopWireSegment( battery, endPoint, tandem );
     },
 
     /**
-     * Return a WireSegment that attaches to the bottom of a battery
+     * Factory for a WireSegment that attaches to the bottom of a battery
      * @param {Battery} battery
      * @param {Vector2} endPoint
      * @param {Tandem} tandem - end point for the wire segment
-     * @constructor
      */
-    BatteryBottomWireSegment: function( battery, endPoint, tandem ) {
+    createBatteryBottomWireSegment: function( battery, endPoint, tandem ) {
       return new BatteryBottomWireSegment( battery, endPoint, tandem );
     },
 
     /**
-     * Return a WireSegment that attaches to the top of a circuit component
+     * Factory for a ComponentWireSegment that attaches to the top of a circuit component
      * @param {Capacitor || LightBulb} component
      * @param {Vector2} endPoint
      * @param {Tandem} tandem - end point for the wire segment
-     * @constructor
      */
-    ComponentTopWireSegment: function( component, endPoint, tandem ) {
+    createComponentTopWireSegment: function( component, endPoint, tandem ) {
       return new ComponentTopWireSegment( component, endPoint, tandem );
     },
 
     /**
-     * Return a WireSegment that attaches to the bottom of a circuit component
+     * Factory for a ComponentWireSegment that attaches to the bottom of a circuit component
      * @param {Capacitor | LightBulb} component
      * @param {Vector2} endPoint - end point for the wire segment
      * @param {Tandem} tandem
-     * @constructor
      */
-    ComponentBottomWireSegment: function( component, endPoint, tandem ) {
+    createComponentBottomWireSegment: function( component, endPoint, tandem ) {
       return new ComponentBottomWireSegment( component, endPoint, tandem );
     },
 
     /**
-     * Return a WireSegment acts as a switch between two connection points
+     * Factory for a SwitchSegment that acts as a switch between two connection points
      * @param {Vector2} startPoint - start point for the switch segment
      * @param {Vector2} endPoint - end point for the wire segment
-     * @param {Tandem} tandem 
-     * @constructor
+     * @param {Tandem} tandem
      */
-    SwitchSegment: function( startPoint, endPoint, tandem ) {
+    createSwitchSegment: function( startPoint, endPoint, tandem ) {
       return new SwitchSegment( startPoint, endPoint, tandem );
     },
 
     /**
-     * Return a WireSegment that attaches a battery top to a switch segment
+     * Factory for a WireSegment that attaches a battery top to a switch segment
      * @param {Vector2} startPoint
      * @param {Vector2} endPoint
      * @param {Tandem} tandem
-     * @constructor
      */
-    BatteryTopToSwitchSegment: function( startPoint, endPoint, tandem ) {
+    createBatteryTopToSwitchSegment: function( startPoint, endPoint, tandem ) {
       return new WireSegment( startPoint, endPoint, tandem );
     },
 
     /**
-     * Return a WireSegment that attaches a battery bottom to a switch segment
+     * Factory for a WireSegment that attaches a battery bottom to a switch segment
      * @param {Vector2} startPoint
      * @param {Vector2} endPoint
      * @param {Tandem} tandem
-     * @constructor
      */
-    BatteryBottomToSwitchSegment: function( startPoint, endPoint, tandem ) {
+    createBatteryBottomToSwitchSegment: function( startPoint, endPoint, tandem ) {
       return new WireSegment( startPoint, endPoint, tandem );
     }
   } );

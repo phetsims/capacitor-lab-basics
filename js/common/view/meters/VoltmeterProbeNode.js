@@ -95,18 +95,18 @@ define( function( require ) {
   }, {
 
     /**
-     * Constructor for a positive probe
+     * Factories for a positive or negative VoltmeterProbeNode
      *
      * @param {Voltmeter} voltmeter
      * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {Tandem} tandem
      */
-    PositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
+    createPositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
       return new VoltmeterProbeNode( redVoltmeterProbeImage,
         voltmeter.positiveProbeLocationProperty, modelViewTransform, voltmeter.dragBounds, tandem );
     },
 
-    NegativeVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
+    createNegativeVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
       return new VoltmeterProbeNode( blackVoltmeterProbeImage,
         voltmeter.negativeProbeLocationProperty, modelViewTransform, voltmeter.dragBounds, tandem );
     }

@@ -1,7 +1,7 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Tool box that contains a voltmeter.  The user can drag the voltmeter out of the toolbox for 
+ * Tool box that contains a voltmeter.  The user can drag the voltmeter out of the toolbox for
  * use.
  *
  * @author Jesse Greenberg
@@ -34,7 +34,7 @@ define( function( require ) {
     this.voltmeterNode = voltmeterNode; // @private
 
     // create the icon for the toolbox.
-    var voltmeterIconNode = VoltmeterNode.VoltmeterIconNode();
+    var voltmeterIconNode = VoltmeterNode.createVoltmeterIconNode();
 
 
     voltmeterIconNode.addInputListener( {

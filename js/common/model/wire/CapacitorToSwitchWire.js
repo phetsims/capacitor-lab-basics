@@ -32,10 +32,10 @@ define( function( require ) {
     var switchConnectionPoint = circuitSwitch.getCapacitorConnectionPoint();
     var segment;
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
-      segment = WireSegment.ComponentTopWireSegment( capacitor, switchConnectionPoint,
+      segment = WireSegment.createComponentTopWireSegment( capacitor, switchConnectionPoint,
         tandem ? tandem.createTandem( 'capacitorComponentTopWireSegment' ) : null );
     } else {
-      segment = WireSegment.ComponentBottomWireSegment( capacitor, switchConnectionPoint,
+      segment = WireSegment.createComponentBottomWireSegment( capacitor, switchConnectionPoint,
         tandem ? tandem.createTandem( 'capacitorComponentBottomWireSegment' ) : null );
     }
     segments.push( segment );
@@ -47,14 +47,19 @@ define( function( require ) {
 
   return inherit( Wire, CapacitorToSwitchWire, {}, {
 
-    /**
-     * Factory functions for public access to specific constructors.
-     */
-    CapacitorToSwitchWireTop: function( config, capacitor, circuitSwitch, tandem ) {
+  /**
+   * Factory methods for top and bottom CapacitorToSwitchWire instances
+   *
+   * @param {CircuitConfig} config
+   * @param {Capacitor} capacitor
+   * @param {CircuitSwitch} circuitSwitch
+   * @param {Tandem} tandem
+   */
+    createCapacitorToSwitchWireTop: function( config, capacitor, circuitSwitch, tandem ) {
       return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP, config, capacitor, circuitSwitch, tandem );
     },
 
-    CapacitorToSwitchWireBottom: function( config, capacitor, circuitSwitch, tandem ) {
+    createCapacitorToSwitchWireBottom: function( config, capacitor, circuitSwitch, tandem ) {
       return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM, config, capacitor, circuitSwitch, tandem );
     }
 
