@@ -22,6 +22,7 @@ define( function( require ) {
   var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
 
   /**
    * Constructor for a CLBCircuitNode.
@@ -57,8 +58,8 @@ define( function( require ) {
       thisNode.bottomWireNode.addChild( new WireNode( bottomWire ) );
     } );
 
-    tandem.createTandem( 'topWireNode' ).addInstance( this.topWireNode );
-    tandem.createTandem( 'bottomWireNode' ).addInstance( this.bottomWireNode );
+    TNode && tandem.createTandem( 'topWireNode' ).addInstance( this.topWireNode, TNode );
+    TNode && tandem.createTandem( 'bottomWireNode' ).addInstance( this.bottomWireNode, TNode );
 
     this.circuitSwitchNodes = [];
     thisNode.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 0 ], model.modelViewTransform,

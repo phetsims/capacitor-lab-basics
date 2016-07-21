@@ -20,6 +20,7 @@ define( function( require ) {
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
   var Vector2 = require( 'DOT/Vector2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -110,7 +111,7 @@ define( function( require ) {
 
     // Register with tandem.  No need to handle dispose/removeInstance since this
     // exists for the lifetime of the simulation.
-    tandem.addInstance( this );
+    TNode && tandem.addInstance( this, TNode );
   }
 
   capacitorLabBasics.register( 'BatteryNode', BatteryNode );

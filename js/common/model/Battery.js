@@ -17,6 +17,8 @@ define( function( require ) {
   var BatteryShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BatteryShapeCreator' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
+  var TString = require( 'ifphetio!PHET_IO/types/TString' );
 
   // constants
   // size of the associated image file, determined by visual inspection
@@ -62,7 +64,12 @@ define( function( require ) {
       tandemSet: tandem ? {
         voltage: tandem.createTandem( 'voltageProperty' ),
         polarity: tandem.createTandem( 'polarityProperty' )
-      } : {}
+      } : {},
+
+        typeSet: {
+        voltage: TNumber && TNumber('volts'),
+        polarity: TString
+      }
     } );
 
     var thisBattery = this;

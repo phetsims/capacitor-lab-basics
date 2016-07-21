@@ -21,6 +21,8 @@ define( function( require ) {
   var DragHandleValueNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleValueNode' );
   var DragHandleLineNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleLineNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
+  var TTandemDragHandler = require( 'ifphetio!PHET_IO/types/tandem/scenery/input/TTandemDragHandler' );
 
   // constants
   // endpoints for vertical double-headed arrow
@@ -96,7 +98,7 @@ define( function( require ) {
       thisNode.updateOffset();
     } );
 
-    tandem.addInstance( this );
+    TNode && tandem.addInstance( this, TNode );
   }
 
   capacitorLabBasics.register( 'PlateSeparationDragHandleNode', PlateSeparationDragHandleNode );
