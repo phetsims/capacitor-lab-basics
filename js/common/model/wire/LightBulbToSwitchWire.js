@@ -62,13 +62,18 @@ define( function( require ) {
   return inherit( Wire, LightBulbToSwitchWire, {}, {
 
     /**
-     * Factory functions for public access to specific constructors.
+     * Factory methods for top and bottom LightBulbToSwitchWire instances
+     *
+     * @param {CircuitConfig} config
+     * @param {LightBulb} lightBulb
+     * @param {CircuitSwitch} circuitSwitch
+     * @param {Tandem} tandem
      */
-    LightBulbToSwitchWireBottom: function( config, lightBulb, circuitSwitch, tandem ) {
+    createLightBulbToSwitchWireBottom: function( config, lightBulb, circuitSwitch, tandem ) {
       return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch, tandem );
     },
 
-    LightBulbToSwitchWireTop: function( config, lightBulb, circuitSwitch, tandem ) {
+    createLightBulbToSwitchWireTop: function( config, lightBulb, circuitSwitch, tandem ) {
       return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch, tandem );
     }
 

@@ -70,14 +70,25 @@ define( function( require ) {
   return inherit( Wire, BatteryToSwitchWire, {}, {
 
     /**
-     * Factory functions for public access to specific constructors.
+     * Factory function for BatteryToSwitchWire (bottom side)
+     * @param {CircuitConfig} config
+     * @param {Battery} battery
+     * @param {CircuitSwitch} circuitSwitch
+     * @param {Tandem} tandem
      */
-    BatteryToSwitchWireBottom: function( config, battery, circuitSwitch, tandem ) {
+    createBatteryToSwitchWireBottom: function( config, battery, circuitSwitch, tandem ) {
       return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM, config, battery, circuitSwitch,
         tandem );
     },
 
-    BatteryToSwitchWireTop: function( config, battery, circuitSwitch, tandem ) {
+    /**
+     * Factory function for BatteryToSwitchWire (top side)
+     * @param {CircuitConfig} config
+     * @param {Battery} battery
+     * @param {CircuitSwitch} circuitSwitch
+     * @param {Tandem} tandem
+     */
+    createBatteryToSwitchWireTop: function( config, battery, circuitSwitch, tandem ) {
       return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP, config, battery, circuitSwitch,
         tandem );
     }

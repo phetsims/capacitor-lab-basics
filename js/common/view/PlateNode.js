@@ -73,26 +73,17 @@ define( function( require ) {
   }, {
 
     /**
-     * Factory function for a TopPlateNode.
+     * Factory methods to create top and bottom PlateNode instances.
      *
      * @param {Capacitor} capacitor
      * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {number} maxPlateCharge
      * @constructor
      */
-    TopPlateNode: function( capacitor, modelViewTransform, maxPlateCharge ) {
+    createTopPlateNode: function( capacitor, modelViewTransform, maxPlateCharge ) {
       return new PlateNode( capacitor, modelViewTransform, CLBConstants.POLARITY.POSITIVE, maxPlateCharge );
     },
-
-    /**
-     * Factory function for a BottomPlateNode.
-     *
-     * @param {Capacitor} capacitor
-     * @param {CLBModelViewTransform3D} modelViewTransform
-     * @param {number} maxPlateCharge
-     * @constructor
-     */
-    BottomPlateNode: function( capacitor, modelViewTransform, maxPlateCharge ) {
+    createBottomPlateNode: function( capacitor, modelViewTransform, maxPlateCharge ) {
       return new PlateNode( capacitor, modelViewTransform, CLBConstants.POLARITY.NEGATIVE, maxPlateCharge );
     }
   } );

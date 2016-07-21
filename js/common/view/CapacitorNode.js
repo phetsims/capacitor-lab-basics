@@ -35,8 +35,8 @@ define( function( require ) {
     // @private
     this.capacitor = circuit.capacitor;
     this.modelViewTransform = modelViewTransform;
-    this.topPlateNode = PlateNode.TopPlateNode( this.capacitor, modelViewTransform, circuit.maxPlateCharge );
-    this.bottomPlateNode = PlateNode.BottomPlateNode( this.capacitor, modelViewTransform, circuit.maxPlateCharge );
+    this.topPlateNode = PlateNode.createTopPlateNode( this.capacitor, modelViewTransform, circuit.maxPlateCharge );
+    this.bottomPlateNode = PlateNode.createBottomPlateNode( this.capacitor, modelViewTransform, circuit.maxPlateCharge );
 
     var eFieldNode = new EFieldNode( this.capacitor, modelViewTransform, circuit.maxEffectiveEField, this.getPlatesBounds() );
 

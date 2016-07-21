@@ -343,13 +343,13 @@ define( function( require ) {
 
     var wires = [];
 
-    wires.push( BatteryToSwitchWire.BatteryToSwitchWireTop(
+    wires.push( BatteryToSwitchWire.createBatteryToSwitchWireTop(
       config,
       battery,
       capacitors[ 0 ].topCircuitSwitch,
       tandem ? tandem.createTandem( 'batteryToSwitchWireTop' ) : null ) );
 
-    wires.push( BatteryToSwitchWire.BatteryToSwitchWireBottom(
+    wires.push( BatteryToSwitchWire.createBatteryToSwitchWireBottom(
       config,
       battery,
       capacitors[ 0 ].bottomCircuitSwitch,
@@ -357,13 +357,13 @@ define( function( require ) {
 
     // wire capacitors to the switches
     capacitors.forEach( function( capacitor ) {
-      wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireTop(
+      wires.push( CapacitorToSwitchWire.createCapacitorToSwitchWireTop(
         config,
         capacitor,
         capacitor.topCircuitSwitch,
         tandem
       ) );
-      wires.push( CapacitorToSwitchWire.CapacitorToSwitchWireBottom(
+      wires.push( CapacitorToSwitchWire.createCapacitorToSwitchWireBottom(
         config,
         capacitor,
         capacitor.bottomCircuitSwitch,
@@ -374,13 +374,13 @@ define( function( require ) {
     // if there are any light bulbs in the circuit, add them here
     if ( lightBulbs.length > 0 ) {
       // the first light bulb must be connected to the last capacitor switch
-      wires.push( LightBulbToSwitchWire.LightBulbToSwitchWireTop(
+      wires.push( LightBulbToSwitchWire.createLightBulbToSwitchWireTop(
         config,
         lightBulbs[ 0 ],
         capacitors[ capacitors.length - 1 ].topCircuitSwitch,
         tandem
       ) );
-      wires.push( LightBulbToSwitchWire.LightBulbToSwitchWireBottom(
+      wires.push( LightBulbToSwitchWire.createLightBulbToSwitchWireBottom(
         config,
         lightBulbs[ 0 ],
         capacitors[ capacitors.length - 1 ].bottomCircuitSwitch,
