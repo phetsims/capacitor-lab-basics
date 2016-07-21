@@ -62,7 +62,7 @@ define( function( require ) {
 
     // Register with tandem.  No need to handle dispose/removeInstance since this
     // exists for the lifetime of the simulation.
-    tandem.addInstance( this, TNode );
+    TNode && tandem.addInstance( this, TNode );
   }
 
   capacitorLabBasics.register( 'CapacitorNode', CapacitorNode );
