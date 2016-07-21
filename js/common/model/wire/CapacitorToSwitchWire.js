@@ -32,10 +32,10 @@ define( function( require ) {
     var switchConnectionPoint = circuitSwitch.getCapacitorConnectionPoint();
     var segment;
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
-      segment = WireSegment.ComponentTopWireSegment( capacitor, switchConnectionPoint,
+      segment = WireSegment.createComponentTopWireSegment( capacitor, switchConnectionPoint,
         tandem ? tandem.createTandem( 'capacitorComponentTopWireSegment' ) : null );
     } else {
-      segment = WireSegment.ComponentBottomWireSegment( capacitor, switchConnectionPoint,
+      segment = WireSegment.createComponentBottomWireSegment( capacitor, switchConnectionPoint,
         tandem ? tandem.createTandem( 'capacitorComponentBottomWireSegment' ) : null );
     }
     segments.push( segment );

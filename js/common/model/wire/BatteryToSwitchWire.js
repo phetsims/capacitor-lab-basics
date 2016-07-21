@@ -38,10 +38,10 @@ define( function( require ) {
     // add the vertical segment.
     var verticalSegment;
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-      verticalSegment = WireSegment.BatteryTopWireSegment( battery, leftCorner,
+      verticalSegment = WireSegment.createBatteryTopWireSegment( battery, leftCorner,
         tandem ? tandem.createTandem( 'batteryTopWireSegment' ) : null );
     } else {
-      verticalSegment = WireSegment.BatteryBottomWireSegment( battery, leftCorner,
+      verticalSegment = WireSegment.createBatteryBottomWireSegment( battery, leftCorner,
         tandem ? tandem.createTandem( 'batteryBottomWireSegment' ) : null );
     }
 
@@ -53,11 +53,11 @@ define( function( require ) {
 
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-      switchSegment = WireSegment.BatteryTopToSwitchSegment( leftCorner, switchConnectionPoint,
+      switchSegment = WireSegment.createBatteryTopToSwitchSegment( leftCorner, switchConnectionPoint,
         tandem ? tandem.createTandem( 'batteryTopToSwitchSegment' ) : null );
     } else {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-      switchSegment = WireSegment.BatteryBottomToSwitchSegment( leftCorner, switchConnectionPoint,
+      switchSegment = WireSegment.createBatteryBottomToSwitchSegment( leftCorner, switchConnectionPoint,
         tandem ? tandem.createTandem( 'batteryBottomToSwitchSegment' ) : null );
     }
 
