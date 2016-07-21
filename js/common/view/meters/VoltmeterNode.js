@@ -55,9 +55,9 @@ define( function( require ) {
     // construct all parts of the probe
     this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty,
       tandem.createTandem( 'voltmeterBodyNode' ) ); // @public
-    this.positiveProbeNode = VoltmeterProbeNode.PositiveVoltmeterProbeNode( voltmeter, modelViewTransform,
+    this.positiveProbeNode = VoltmeterProbeNode.createPositiveVoltmeterProbeNode( voltmeter, modelViewTransform,
       tandem.createTandem( 'positiveProbeNode' ) );
-    this.negativeProbeNode = VoltmeterProbeNode.NegativeVoltmeterProbeNode( voltmeter, modelViewTransform,
+    this.negativeProbeNode = VoltmeterProbeNode.createNegativeVoltmeterProbeNode( voltmeter, modelViewTransform,
       tandem.createTandem( 'negativeProbeNode' ) );
 
     var positiveWireNode = new ProbeWireNode( this.bodyNode, this.positiveProbeNode, true );
@@ -84,7 +84,7 @@ define( function( require ) {
   inherit( Node, VoltmeterNode, {}, {
 
     // Create an icon of the voltmeter, to be used in the toolbox panel.
-    VoltmeterIconNode: function() {
+    createVoltmeterIconNode: function() {
       return new VoltmeterIconNode();
     },
 
