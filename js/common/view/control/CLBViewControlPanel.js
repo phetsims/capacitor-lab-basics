@@ -20,6 +20,7 @@ define( function( require ) {
   var VStrut = require( 'SCENERY/nodes/VStrut' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var TPanel = require( 'PHET_IO/types/sun/TPanel' );
 
   // constants
   var PANEL_TITLE_FONT = new PhetFont( { weight: 'bold', size: 18 } );
@@ -90,7 +91,7 @@ define( function( require ) {
 
     // Register with tandem.  No need to handle dispose/removeInstance since the CLBViewControlPanel exists for the
     // lifetime of the simulation.
-    tandem.addInstance( this );
+    tandem.addInstance( this, TPanel );
   }
 
   // convenience functions for constructing panels and layout boxes

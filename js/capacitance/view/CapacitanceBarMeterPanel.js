@@ -19,6 +19,7 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Panel = require( 'SUN/Panel' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
+  var TPanel = require( 'PHET_IO/types/sun/TPanel' );
   var Vector2 = require( 'DOT/Vector2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -77,7 +78,7 @@ define( function( require ) {
       thisPanel.visible = barGraphsPanelVisible;
     } );
 
-    tandem.addInstance( this );
+    tandem.addInstance( this, TPanel );
   }
 
   capacitorLabBasics.register( 'CapacitanceBarMeterPanel', CapacitanceBarMeterPanel );

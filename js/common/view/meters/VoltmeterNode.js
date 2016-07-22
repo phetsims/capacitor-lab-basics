@@ -25,6 +25,7 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // strings
@@ -76,7 +77,7 @@ define( function( require ) {
 
     // Register with tandem.  No need to handle dispose/removeInstance since this
     // exists for the lifetime of the simulation.
-    tandem.addInstance( this );
+    tandem.addInstance( this, TNode );
   }
 
   capacitorLabBasics.register( 'VoltmeterNode', VoltmeterNode );
