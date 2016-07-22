@@ -17,6 +17,8 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
+  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
+  var TProperty = require( 'ifphetio!PHET_IO/types/axon/TProperty' );
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
@@ -55,6 +57,9 @@ define( function( require ) {
     }, {
       tandemSet: {
         angle: tandem ? tandem.createTandem( 'angleProperty' ) : null
+      },
+      typeSet: {
+        angle: TProperty( TNumber( 'radians' ) )
       }
     } );
 
