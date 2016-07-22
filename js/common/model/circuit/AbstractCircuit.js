@@ -10,12 +10,15 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var Battery = require( 'CAPACITOR_LAB_BASICS/common/model/Battery' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
-  var Battery = require( 'CAPACITOR_LAB_BASICS/common/model/Battery' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
+  var TProperty = require( 'ifphetio!PHET_IO/types/axon/TProperty' );
+  var TString = require( 'ifphetio!PHET_IO/types/TString' );
 
   /**
    * Constructor for the AbstractCircuit.
@@ -37,7 +40,12 @@ define( function( require ) {
         currentAmplitude: tandem.createTandem( 'currentAmplitudeProperty' ),
         circuitConnection: tandem.createTandem( 'circuitConnectionProperty' ),
         disconnectedPlateCharge: tandem.createTandem( 'disconnectedPlateChargeProperty' )
-      } : {}
+      } : {},
+      typeSet: {
+        currentAmplitude: TProperty( TNumber( 'amperes' ) ),
+        circuitConnection: TProperty( TString ),
+        disconnectedPlateCharge: TProperty( TNumber( 'coulombs' ) )
+      }
     } );
 
     var thisCircuit = this;
