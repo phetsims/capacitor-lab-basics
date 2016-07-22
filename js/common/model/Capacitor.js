@@ -33,7 +33,6 @@ define( function( require ) {
   var TBounds3 = require( 'ifphetio!PHET_IO/types/dot/TBounds3' );
   var TDielectricMaterial = require( 'ifphetio!PHET_IO/simulations/capacitor-lab-basics/types/TDielectricMaterial' );
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
-  var TProperty = require( 'ifphetio!PHET_IO/types/axon/TProperty' );
   var Vector3 = require( 'DOT/Vector3' );
 
   /**
@@ -71,19 +70,19 @@ define( function( require ) {
       dielectricMaterial: options.dielectricMaterial,
       dielectricOffset: options.dielectricOffset // in meters, default is totally outside of capacitor plates.
     }, {
-      tandemSet: tandem ? {
+      tandemSet: tandem && {
         plateSize: tandem.createTandem( 'plateSizeProperty' ),
         plateSeparation: tandem.createTandem( 'plateSeparationProperty' ),
         platesVoltage: tandem.createTandem( 'platesVoltageProperty' ),
         dielectricMaterial: tandem.createTandem( 'dielectricMaterialProperty' ),
         dielectricOffset: tandem.createTandem( 'dielectricOffsetProperty' )
-      } : {},
-      typeSet: {
-        plateSize: TProperty( TBounds3 ),
-        plateSeparation: TProperty( TNumber( 'meters', { range: CLBConstants.PLATE_SEPARATION_RANGE } ) ),
-        platesVoltage: TProperty( TNumber( 'volts' ) ),
-        dielectricMaterial: TProperty( TDielectricMaterial ),
-        dielectricOffset: TProperty( TNumber( 'meters' ) )
+      },
+      typeSet: TNumber && {
+        plateSize: TBounds3,
+        plateSeparation: TNumber( 'meters', { range: CLBConstants.PLATE_SEPARATION_RANGE } ),
+        platesVoltage: TNumber( 'volts' ),
+        dielectricMaterial: TDielectricMaterial,
+        dielectricOffset: TNumber( 'meters' )
       }
     } );
 

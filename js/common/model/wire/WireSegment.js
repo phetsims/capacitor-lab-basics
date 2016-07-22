@@ -15,7 +15,6 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
-  var TProperty = require( 'ifphetio!PHET_IO/types/axon/TProperty' );
   var TVector2 = require( 'ifphetio!PHET_IO/types/dot/TVector2' );
   var Vector2 = require( 'DOT/Vector2' );
 
@@ -32,13 +31,13 @@ define( function( require ) {
       startPoint: startPoint,
       endPoint: endPoint
     }, {
-      tandemSet: tandem ? {
+      tandemSet: tandem && {
         startPoint: tandem.createTandem( 'startPointProperty' ),
         endPoint: tandem.createTandem( 'endPointProperty' )
-      } : {},
-      typeSet: {
-        startPoint: TProperty( TVector2 ),
-        endPoint: TProperty( TVector2 )
+      },
+      typeSet: TVector2 && {
+        startPoint: TVector2,
+        endPoint: TVector2
       }
     } );
   }

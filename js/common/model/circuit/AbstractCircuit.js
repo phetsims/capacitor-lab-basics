@@ -17,7 +17,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
-  var TProperty = require( 'ifphetio!PHET_IO/types/axon/TProperty' );
   var TString = require( 'ifphetio!PHET_IO/types/TString' );
 
   /**
@@ -36,15 +35,15 @@ define( function( require ) {
       circuitConnection: CircuitConnectionEnum.BATTERY_CONNECTED,
       disconnectedPlateCharge: 0
     }, {
-      tandemSet: tandem ? {
+      tandemSet: tandem && {
         currentAmplitude: tandem.createTandem( 'currentAmplitudeProperty' ),
         circuitConnection: tandem.createTandem( 'circuitConnectionProperty' ),
         disconnectedPlateCharge: tandem.createTandem( 'disconnectedPlateChargeProperty' )
-      } : {},
-      typeSet: {
-        currentAmplitude: TProperty( TNumber( 'amperes' ) ),
-        circuitConnection: TProperty( TString ),
-        disconnectedPlateCharge: TProperty( TNumber( 'coulombs' ) )
+      },
+      typeSet: TNumber && {
+        currentAmplitude: TNumber( 'amperes' ),
+        circuitConnection: TString,
+        disconnectedPlateCharge: TNumber( 'coulombs' )
       }
     } );
 

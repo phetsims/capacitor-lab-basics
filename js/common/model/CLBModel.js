@@ -19,7 +19,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var TBoolean = require( 'PHET_IO/types/TBoolean' );
-  var TProperty = require( 'ifphetio!PHET_IO/types/axon/TProperty' );
   var Vector3 = require( 'DOT/Vector3' );
 
   /**
@@ -41,7 +40,7 @@ define( function( require ) {
       voltmeterVisible: false,
       currentVisible: true
     }, {
-      tandemSet: {
+      tandemSet: tandem && {
         plateChargesVisible: tandem.createTandem( 'plateChargesVisibleProperty' ),
         eFieldVisible: tandem.createTandem( 'eFieldVisibleProperty' ),
         capacitanceMeterVisible: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
@@ -51,15 +50,15 @@ define( function( require ) {
         voltmeterVisible: tandem.createTandem( 'voltmeterVisibleProperty' ),
         currentVisible: tandem.createTandem( 'currentVisibleProperty' )
       },
-      typeSet: {
-        plateChargesVisible: TProperty( TBoolean ),
-        eFieldVisible: TProperty( TBoolean ),
-        capacitanceMeterVisible: TProperty( TBoolean ),
-        plateChargeMeterVisible: TProperty( TBoolean ),
-        storedEnergyMeterVisible: TProperty( TBoolean ),
-        barGraphsVisible: TProperty( TBoolean ),
-        voltmeterVisible: TProperty( TBoolean ),
-        currentVisible: TProperty( TBoolean )
+      typeSet: TBoolean && {
+        plateChargesVisible: TBoolean,
+        eFieldVisible: TBoolean,
+        capacitanceMeterVisible: TBoolean,
+        plateChargeMeterVisible: TBoolean,
+        storedEnergyMeterVisible: TBoolean,
+        barGraphsVisible: TBoolean,
+        voltmeterVisible: TBoolean,
+        currentVisible: TBoolean
       }
     } );
   }
