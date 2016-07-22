@@ -10,9 +10,10 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
 
   /**
    * Constructor for a BarMeter.
@@ -29,9 +30,12 @@ define( function( require ) {
     PropertySet.call( this, {
       value: valueFunction( circuit )
     }, {
-      tandemSet: tandem ? {
+      tandemSet: tandem && {
         value: tandem.createTandem( 'valueProperty' )
-      } : {}
+      },
+      typeSet: TNumber && {
+        value: TNumber( 'unitless' ) // Should be overridden by descendants
+      }
     } );
     this.visibleProperty = visibleProperty;
     var thisMeter = this;

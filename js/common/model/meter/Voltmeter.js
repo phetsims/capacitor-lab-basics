@@ -16,6 +16,9 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
   var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
+  var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
+  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
+  var TVector3 = require( 'ifphetio!PHET_IO/types/dot/TVector3' );
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
@@ -44,13 +47,21 @@ define( function( require ) {
       negativeProbeLocation: NEGATIVE_PROBE_LOCATION,
       value: null // This is a number. Will be properly initialized by updateValue
     }, {
-      tandemSet: {
+      tandemSet: tandem && {
         visible: tandem.createTandem( 'visibleProperty' ),
         inUserControl: tandem.createTandem( 'inUserControlProperty' ),
         bodyLocation: tandem.createTandem( 'bodyLocationProperty' ),
         positiveProbeLocation: tandem.createTandem( 'positiveProbeLocationProperty' ),
         negativeProbeLocation: tandem.createTandem( 'negativeProbeLocationProperty' ),
         value: tandem.createTandem( 'valueProperty' )
+      },
+      typeSet: TBoolean && {
+        visible: TBoolean,
+        inUserControl: TBoolean,
+        bodyLocation: TVector3,
+        positiveProbeLocation: TVector3,
+        negativeProbeLocation: TVector3,
+        value: TNumber( 'volts' )
       }
     } );
     var thisMeter = this;
@@ -109,7 +120,7 @@ define( function( require ) {
           thisMeter.value = null;
           return;
         }
-        
+
         // Handle all other cases
         thisMeter.value = thisMeter.circuit.getVoltageBetween( positiveProbeShape, negativeProbeShape );
       }
