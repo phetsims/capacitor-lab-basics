@@ -30,12 +30,8 @@ define( function( require ) {
    */
   function AbstractCircuit( config, createCircuitComponents, createWires, tandem ) {
 
-    PropertySet.call( this, {
-      currentAmplitude: 0,
-      circuitConnection: CircuitConnectionEnum.BATTERY_CONNECTED,
-      disconnectedPlateCharge: 0
-    }, {
-      tandemSet: tandem && {
+    var propertySetOptions = tandem ? {
+      tandemSet: {
         currentAmplitude: tandem.createTandem( 'currentAmplitudeProperty' ),
         circuitConnection: tandem.createTandem( 'circuitConnectionProperty' ),
         disconnectedPlateCharge: tandem.createTandem( 'disconnectedPlateChargeProperty' )
@@ -45,7 +41,13 @@ define( function( require ) {
         circuitConnection: TString,
         disconnectedPlateCharge: TNumber( 'coulombs' )
       }
-    } );
+    } : {};
+
+    PropertySet.call( this, {
+      currentAmplitude: 0,
+      circuitConnection: CircuitConnectionEnum.BATTERY_CONNECTED,
+      disconnectedPlateCharge: 0
+    }, propertySetOptions );
 
     var thisCircuit = this;
 

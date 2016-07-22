@@ -26,12 +26,8 @@ define( function( require ) {
    */
   function WireSegment( startPoint, endPoint, tandem ) {
 
-    // @public
-    PropertySet.call( this, {
-      startPoint: startPoint,
-      endPoint: endPoint
-    }, {
-      tandemSet: tandem && {
+    var propertySetOptions = tandem ? {
+      tandemSet: {
         startPoint: tandem.createTandem( 'startPointProperty' ),
         endPoint: tandem.createTandem( 'endPointProperty' )
       },
@@ -39,7 +35,13 @@ define( function( require ) {
         startPoint: TVector2,
         endPoint: TVector2
       }
-    } );
+    } : {};
+
+    // @public
+    PropertySet.call( this, {
+      startPoint: startPoint,
+      endPoint: endPoint
+    }, propertySetOptions );
   }
 
   capacitorLabBasics.register( 'WireSegment', WireSegment );
