@@ -11,14 +11,16 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
+  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
-  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
+  var TBoolean = require( 'PHET_IO/types/TBoolean' );
+  var TProperty = require( 'ifphetio!PHET_IO/types/axon/TProperty' );
   var Vector3 = require( 'DOT/Vector3' );
-  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
    * Constructor for the CLBModel.
@@ -48,6 +50,16 @@ define( function( require ) {
         barGraphsVisible: tandem.createTandem( 'barGraphsVisibleProperty' ),
         voltmeterVisible: tandem.createTandem( 'voltmeterVisibleProperty' ),
         currentVisible: tandem.createTandem( 'currentVisibleProperty' )
+      },
+      typeSet: {
+        plateChargesVisible: TProperty( TBoolean ),
+        eFieldVisible: TProperty( TBoolean ),
+        capacitanceMeterVisible: TProperty( TBoolean ),
+        plateChargeMeterVisible: TProperty( TBoolean ),
+        storedEnergyMeterVisible: TProperty( TBoolean ),
+        barGraphsVisible: TProperty( TBoolean ),
+        voltmeterVisible: TProperty( TBoolean ),
+        currentVisible: TProperty( TBoolean )
       }
     } );
   }
