@@ -23,14 +23,18 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
-  var Vector3 = require( 'DOT/Vector3' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var CapacitorShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/CapacitorShapeCreator' );
-  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var Bounds3 = require( 'DOT/Bounds3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CapacitorShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/CapacitorShapeCreator' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var PropertySet = require( 'AXON/PropertySet' );
+  var TBounds3 = require( 'ifphetio!PHET_IO/types/dot/TBounds3' );
+  var TDielectricMaterial = require( 'ifphetio!PHET_IO/simulations/capacitor-lab-basics/types/TDielectricMaterial' );
+  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
+  var TProperty = require( 'ifphetio!PHET_IO/types/axon/TProperty' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   /**
    * Constructor for the Capacitor.
@@ -73,7 +77,14 @@ define( function( require ) {
         platesVoltage: tandem.createTandem( 'platesVoltageProperty' ),
         dielectricMaterial: tandem.createTandem( 'dielectricMaterialProperty' ),
         dielectricOffset: tandem.createTandem( 'dielectricOffsetProperty' )
-      } : {}
+      } : {},
+      typeSet: {
+        plateSize: TProperty( TBounds3 ),
+        plateSeparation: TProperty( TNumber( 'meters', { range: CLBConstants.PLATE_SEPARATION_RANGE } ) ),
+        platesVoltage: TProperty( TNumber( 'volts' ) ),
+        dielectricMaterial: TProperty( TDielectricMaterial ),
+        dielectricOffset: TProperty( TNumber( 'meters' ) )
+      }
     } );
 
     // @private - track the previous capacitance to adjust the inital voltage when discharging, see
