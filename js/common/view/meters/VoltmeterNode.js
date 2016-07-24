@@ -25,8 +25,10 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+
+  // phet-io modules
+  var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
 
   // strings
   var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );

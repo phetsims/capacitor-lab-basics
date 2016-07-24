@@ -13,6 +13,8 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
+
+  // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
 
   /**

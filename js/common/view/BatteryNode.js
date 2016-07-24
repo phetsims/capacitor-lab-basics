@@ -20,9 +20,11 @@ define( function( require ) {
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
   var Vector2 = require( 'DOT/Vector2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+
+  // phet-io modules
+  var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
 
   // constants
   var LABEL_FONT = new PhetFont( 12 );

@@ -16,6 +16,8 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
+
+  // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
   var TString = require( 'ifphetio!PHET_IO/types/TString' );
 

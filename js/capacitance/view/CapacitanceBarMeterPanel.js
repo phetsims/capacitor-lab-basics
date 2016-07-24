@@ -19,9 +19,11 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Panel = require( 'SUN/Panel' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
-  var TPanel = require( 'ifphetio!PHET_IO/types/sun/TPanel' );
   var Vector2 = require( 'DOT/Vector2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+
+  // phet-io modules
+  var TPanel = require( 'ifphetio!PHET_IO/types/sun/TPanel' );
 
   // constants
   var VALUE_FONT = new PhetFont( 15 );

@@ -30,10 +30,12 @@ define( function( require ) {
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
+  var Vector3 = require( 'DOT/Vector3' );
+
+  // phet-io modules
   var TBounds3 = require( 'ifphetio!PHET_IO/types/dot/TBounds3' );
   var TDielectricMaterial = require( 'ifphetio!PHET_IO/simulations/capacitor-lab-basics/types/TDielectricMaterial' );
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
-  var Vector3 = require( 'DOT/Vector3' );
 
   /**
    * Constructor for the Capacitor.

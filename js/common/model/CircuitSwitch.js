@@ -17,11 +17,13 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
-  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
+
+  // phet-io modules
+  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
 
   // constants
   var SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point

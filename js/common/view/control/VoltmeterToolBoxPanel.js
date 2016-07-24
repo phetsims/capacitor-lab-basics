@@ -17,6 +17,8 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Node = require( 'SCENERY/nodes/Node' );
+
+  // phet-io modules
   var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
 
   /**

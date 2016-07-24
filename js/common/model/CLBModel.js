@@ -18,8 +18,10 @@ define( function( require ) {
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
-  var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
   var Vector3 = require( 'DOT/Vector3' );
+
+  // phet-io modules
+  var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
 
   /**
    * Constructor for the CLBModel.

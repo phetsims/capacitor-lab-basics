@@ -19,6 +19,8 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Color = require( 'SCENERY/util/Color' );
   var Tandem = require( 'TANDEM/Tandem' );
+
+  // phet-io modules
   var TDielectricMaterial = require('ifphetio!PHET_IO/simulations/capacitor-lab-basics/types/TDielectricMaterial');
 
   // A new tandem instance is required here since the solutes are created statically.

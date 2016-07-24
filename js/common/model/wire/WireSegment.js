@@ -15,8 +15,10 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
-  var TVector2 = require( 'ifphetio!PHET_IO/types/dot/TVector2' );
   var Vector2 = require( 'DOT/Vector2' );
+
+  // phet-io modules
+  var TVector2 = require( 'ifphetio!PHET_IO/types/dot/TVector2' );
 
   /**
    * @param {Vector2} startPoint

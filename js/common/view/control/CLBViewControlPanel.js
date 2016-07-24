@@ -20,6 +20,8 @@ define( function( require ) {
   var VStrut = require( 'SCENERY/nodes/VStrut' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+
+  // phet-io modules
   var TPanel = require( 'ifphetio!PHET_IO/types/sun/TPanel' );
 
   // constants

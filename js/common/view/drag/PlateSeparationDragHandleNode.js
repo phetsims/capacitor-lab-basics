@@ -21,8 +21,10 @@ define( function( require ) {
   var DragHandleValueNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleValueNode' );
   var DragHandleLineNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleLineNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
   var TTandemDragHandler = require( 'ifphetio!PHET_IO/types/tandem/scenery/input/TTandemDragHandler' );
+
+  // phet-io modules
+  var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
 
   // constants
   // endpoints for vertical double-headed arrow
