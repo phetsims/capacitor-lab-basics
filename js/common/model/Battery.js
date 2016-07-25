@@ -49,7 +49,7 @@ define( function( require ) {
    * @param {Vector3} location
    * @param {number} voltage
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Tandem} tandem
+   * @param {Tandem} [tandem]
    * @constructor
    */
   function Battery( location, voltage, modelViewTransform, tandem ) {
@@ -67,9 +67,8 @@ define( function( require ) {
         voltage: tandem.createTandem( 'voltageProperty' ),
         polarity: tandem.createTandem( 'polarityProperty' )
       } : {},
-
-        typeSet: {
-        voltage: TNumber && TNumber('volts'),
+      typeSet: {
+        voltage: TNumber && TNumber( 'volts' ),
         polarity: TString
       }
     } );
