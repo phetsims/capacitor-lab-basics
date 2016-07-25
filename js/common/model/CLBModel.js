@@ -31,6 +31,29 @@ define( function( require ) {
    */
   function CLBModel( tandem ) {
 
+    var propertySetOptions = tandem && TBoolean ? {
+      tandemSet: {
+        plateChargesVisible: tandem.createTandem( 'plateChargesVisibleProperty' ),
+        eFieldVisible: tandem.createTandem( 'eFieldVisibleProperty' ),
+        capacitanceMeterVisible: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
+        plateChargeMeterVisible: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
+        storedEnergyMeterVisible: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
+        barGraphsVisible: tandem.createTandem( 'barGraphsVisibleProperty' ),
+        voltmeterVisible: tandem.createTandem( 'voltmeterVisibleProperty' ),
+        currentVisible: tandem.createTandem( 'currentVisibleProperty' )
+      },
+      typeSet: {
+        plateChargesVisible: TBoolean,
+        eFieldVisible: TBoolean,
+        capacitanceMeterVisible: TBoolean,
+        plateChargeMeterVisible: TBoolean,
+        storedEnergyMeterVisible: TBoolean,
+        barGraphsVisible: TBoolean,
+        voltmeterVisible: TBoolean,
+        currentVisible: TBoolean
+      }
+    } : {};
+
     // public
     PropertySet.call( this, {
       plateChargesVisible: CLBConstants.PLATE_CHARGES_VISIBLE,
@@ -41,28 +64,7 @@ define( function( require ) {
       barGraphsVisible: true,
       voltmeterVisible: false,
       currentVisible: true
-    }, {
-      tandemSet: tandem && {
-        plateChargesVisible: tandem.createTandem( 'plateChargesVisibleProperty' ),
-        eFieldVisible: tandem.createTandem( 'eFieldVisibleProperty' ),
-        capacitanceMeterVisible: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
-        plateChargeMeterVisible: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
-        storedEnergyMeterVisible: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
-        barGraphsVisible: tandem.createTandem( 'barGraphsVisibleProperty' ),
-        voltmeterVisible: tandem.createTandem( 'voltmeterVisibleProperty' ),
-        currentVisible: tandem.createTandem( 'currentVisibleProperty' )
-      },
-      typeSet: TBoolean && {
-        plateChargesVisible: TBoolean,
-        eFieldVisible: TBoolean,
-        capacitanceMeterVisible: TBoolean,
-        plateChargeMeterVisible: TBoolean,
-        storedEnergyMeterVisible: TBoolean,
-        barGraphsVisible: TBoolean,
-        voltmeterVisible: TBoolean,
-        currentVisible: TBoolean
-      }
-    } );
+    }, propertySetOptions );
   }
 
   capacitorLabBasics.register( 'CLBModel', CLBModel );

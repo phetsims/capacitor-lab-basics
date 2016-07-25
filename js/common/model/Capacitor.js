@@ -64,7 +64,7 @@ define( function( require ) {
     // @private
     this.shapeCreator = new CapacitorShapeCreator( this, modelViewTransform );
 
-    var propertySetOptions = tandem ? {
+    var propertySetOptions = tandem && TNumber ? {
       tandemSet: {
         plateSize: tandem.createTandem( 'plateSizeProperty' ),
         plateSeparation: tandem.createTandem( 'plateSeparationProperty' ),
@@ -72,7 +72,7 @@ define( function( require ) {
         dielectricMaterial: tandem.createTandem( 'dielectricMaterialProperty' ),
         dielectricOffset: tandem.createTandem( 'dielectricOffsetProperty' )
       },
-      typeSet: TNumber && {
+      typeSet: {
         plateSize: TBounds3,
         plateSeparation: TNumber( 'meters', { range: CLBConstants.PLATE_SEPARATION_RANGE } ),
         platesVoltage: TNumber( 'volts' ),

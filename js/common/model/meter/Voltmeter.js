@@ -48,8 +48,8 @@ define( function( require ) {
       positiveProbeLocation: POSITIVE_PROBE_LOCATION,
       negativeProbeLocation: NEGATIVE_PROBE_LOCATION,
       value: null // This is a number. Will be properly initialized by updateValue
-    }, {
-      tandemSet: tandem && {
+    }, tandem && TBoolean ? {
+      tandemSet: {
         visible: tandem.createTandem( 'visibleProperty' ),
         inUserControl: tandem.createTandem( 'inUserControlProperty' ),
         bodyLocation: tandem.createTandem( 'bodyLocationProperty' ),
@@ -57,7 +57,7 @@ define( function( require ) {
         negativeProbeLocation: tandem.createTandem( 'negativeProbeLocationProperty' ),
         value: tandem.createTandem( 'valueProperty' )
       },
-      typeSet: TBoolean && {
+      typeSet: {
         visible: TBoolean,
         inUserControl: TBoolean,
         bodyLocation: TVector3,
@@ -65,7 +65,7 @@ define( function( require ) {
         negativeProbeLocation: TVector3,
         value: TNumber( 'volts' )
       }
-    } );
+    } : {} );
     var thisMeter = this;
 
     this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform ); // @public (read-only)

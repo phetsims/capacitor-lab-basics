@@ -31,14 +31,14 @@ define( function( require ) {
     // @public
     PropertySet.call( this, {
       value: valueFunction( circuit )
-    }, {
-      tandemSet: tandem && {
+    }, tandem && TNumber ? {
+      tandemSet: {
         value: tandem.createTandem( 'valueProperty' )
       },
-      typeSet: TNumber && {
+      typeSet: {
         value: TNumber( 'unitless' ) // Should be overridden by descendants
       }
-    } );
+    } : {} );
     this.visibleProperty = visibleProperty;
     var thisMeter = this;
 
