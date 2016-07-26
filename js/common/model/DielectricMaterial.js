@@ -21,7 +21,7 @@ define( function( require ) {
   var Tandem = require( 'TANDEM/Tandem' );
 
   // phet-io modules
-  var TDielectricMaterial = require('ifphetio!PHET_IO/simulations/capacitor-lab-basics/types/TDielectricMaterial');
+  var TDielectricMaterial = require('ifphetio!PHET_IO/simulations/capacitor-lab-basics/TDielectricMaterial');
 
   // A new tandem instance is required here since the solutes are created statically.
   var tandem = Tandem.createStaticTandem( 'dielectrics' );

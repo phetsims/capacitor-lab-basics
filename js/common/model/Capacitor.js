@@ -34,7 +34,7 @@ define( function( require ) {
 
   // phet-io modules
   var TBounds3 = require( 'ifphetio!PHET_IO/types/dot/TBounds3' );
-  var TDielectricMaterial = require( 'ifphetio!PHET_IO/simulations/capacitor-lab-basics/types/TDielectricMaterial' );
+  var TDielectricMaterial = require( 'ifphetio!PHET_IO/simulations/capacitor-lab-basics/TDielectricMaterial' );
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
 
   /**
