@@ -28,7 +28,7 @@ define( function( require ) {
    */
   function WireSegment( startPoint, endPoint, tandem ) {
 
-    var propertySetOptions = tandem && TVector2 ? {
+    var propertySetOptions = tandem ? {
       tandemSet: {
         startPoint: tandem.createTandem( 'startPointProperty' ),
         endPoint: tandem.createTandem( 'endPointProperty' )

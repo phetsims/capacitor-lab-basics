@@ -31,7 +31,7 @@ define( function( require ) {
    */
   function CLBModel( tandem ) {
 
-    var propertySetOptions = tandem && TBoolean ? {
+    var propertySetOptions = tandem ? {
       tandemSet: {
         plateChargesVisible: tandem.createTandem( 'plateChargesVisibleProperty' ),
         eFieldVisible: tandem.createTandem( 'eFieldVisibleProperty' ),

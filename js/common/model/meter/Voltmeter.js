@@ -48,7 +48,7 @@ define( function( require ) {
       positiveProbeLocation: POSITIVE_PROBE_LOCATION,
       negativeProbeLocation: NEGATIVE_PROBE_LOCATION,
       value: null // This is a number. Will be properly initialized by updateValue
-    }, tandem && TBoolean ? {
+    }, tandem ? {
       tandemSet: {
         visible: tandem.createTandem( 'visibleProperty' ),
         inUserControl: tandem.createTandem( 'inUserControlProperty' ),

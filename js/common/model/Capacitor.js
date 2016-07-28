@@ -64,7 +64,7 @@ define( function( require ) {
     // @private
     this.shapeCreator = new CapacitorShapeCreator( this, modelViewTransform );
 
-    var propertySetOptions = tandem && TNumber ? {
+    var propertySetOptions = tandem ? {
       tandemSet: {
         plateSize: tandem.createTandem( 'plateSizeProperty' ),
         plateSeparation: tandem.createTandem( 'plateSeparationProperty' ),

@@ -32,7 +32,7 @@ define( function( require ) {
    */
   function AbstractCircuit( config, createCircuitComponents, createWires, tandem ) {
 
-    var propertySetOptions = tandem && TNumber ? {
+    var propertySetOptions = tandem ? {
       tandemSet: {
         currentAmplitude: tandem.createTandem( 'currentAmplitudeProperty' ),
         circuitConnection: tandem.createTandem( 'circuitConnectionProperty' ),

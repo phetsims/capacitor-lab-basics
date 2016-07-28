@@ -31,7 +31,7 @@ define( function( require ) {
     // @public
     PropertySet.call( this, {
       value: valueFunction( circuit )
-    }, tandem && TNumber ? {
+    }, tandem ? {
       tandemSet: {
         value: tandem.createTandem( 'valueProperty' )
       },

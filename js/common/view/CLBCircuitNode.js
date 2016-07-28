@@ -60,8 +60,8 @@ define( function( require ) {
       thisNode.bottomWireNode.addChild( new WireNode( bottomWire ) );
     } );
 
-    TNode && tandem.createTandem( 'topWireNode' ).addInstance( this.topWireNode, TNode );
-    TNode && tandem.createTandem( 'bottomWireNode' ).addInstance( this.bottomWireNode, TNode );
+    tandem.createTandem( 'topWireNode' ).addInstance( this.topWireNode, TNode );
+    tandem.createTandem( 'bottomWireNode' ).addInstance( this.bottomWireNode, TNode );
 
     this.circuitSwitchNodes = [];
     thisNode.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 0 ], model.modelViewTransform,
