@@ -68,7 +68,7 @@ define( function( require ) {
         polarity: tandem.createTandem( 'polarityProperty' )
       } : {},
       typeSet: {
-        voltage: TNumber && TNumber( 'volts' ),
+        voltage: TNumber( 'volts' ),
         polarity: TString
       }
     } );

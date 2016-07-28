@@ -60,7 +60,7 @@ define( function( require ) {
         angle: tandem && tandem.createTandem( 'angleProperty' )
       },
       typeSet: {
-        angle: TNumber && TNumber( 'radians' )
+        angle: TNumber( 'radians' )
       }
     } );
 
