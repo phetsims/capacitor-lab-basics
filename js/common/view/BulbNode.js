@@ -19,6 +19,7 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var TandemNode = require( 'TANDEM/scenery/nodes/TandemNode' );
   var Path = require( 'SCENERY/nodes/Path' );
   var RadialGradient = require( 'SCENERY/util/RadialGradient' );
   var Shape = require( 'KITE/Shape' );
@@ -53,7 +54,9 @@ define( function( require ) {
    */
   function BulbNode( lightBulb, voltageProperty, circuitConnectionProperty, tandem, options ) {
 
-    Node.call( this );
+    TandemNode.call( this, {
+      tandem: tandem
+    } );
     var thisNode = this;
 
     this.bulb = drawBulbNode( options );
@@ -67,7 +70,8 @@ define( function( require ) {
         var targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
         if ( targetScaleFactor < 0.1 ) {
           thisNode.bulb.haloNode.visible = false;
-        } else {
+        }
+        else {
           thisNode.bulb.haloNode.visible = true;
           var scale = targetScaleFactor / thisNode.bulb.haloNode.transform.matrix.scaleVector.x;
           thisNode.bulb.haloNode.scale( scale );
@@ -95,13 +99,11 @@ define( function( require ) {
       var bulbShape = new Path( lightBulb.shapeCreator.createBaseShape(), { stroke: 'red', lineWidth: 2 } );
       this.addChild( bulbShape );
     }
-
-    tandem.addInstance( this );
   }
 
   capacitorLabBasics.register( 'BulbNode', BulbNode );
 
-  inherit( Node, BulbNode, {}, {
+  inherit( TandemNode, BulbNode, {}, {
 
     /**
      * Create a bulb node icon.  This creates a node that is not linked to any model properties.
@@ -138,10 +140,7 @@ define( function( require ) {
     var bulbNeckWidth = BULB_BASE_WIDTH * 0.85;
     var bulbBodyHeight = BULB_HEIGHT - bulbBase.bounds.width;
     var controlPointYValue = BULB_WIDTH * 0.7;
-    var bulbShape = new Shape().
-    moveTo( 0, -bulbNeckWidth / 2 ).
-    cubicCurveTo( -bulbBodyHeight * 0.33, -controlPointYValue, -bulbBodyHeight * 0.95, -controlPointYValue, -bulbBodyHeight, 0 ).
-    cubicCurveTo( -bulbBodyHeight * 0.95, controlPointYValue, -bulbBodyHeight * 0.33,
+    var bulbShape = new Shape().moveTo( 0, -bulbNeckWidth / 2 ).cubicCurveTo( -bulbBodyHeight * 0.33, -controlPointYValue, -bulbBodyHeight * 0.95, -controlPointYValue, -bulbBodyHeight, 0 ).cubicCurveTo( -bulbBodyHeight * 0.95, controlPointYValue, -bulbBodyHeight * 0.33,
       controlPointYValue, 0, bulbNeckWidth / 2 );
     var bulbBodyOutline = new Path( bulbShape, {
       stroke: 'black',
@@ -170,7 +169,8 @@ define( function( require ) {
       if ( i % 2 === 0 ) {
         // zig
         filamentShape.lineTo( filamentTopPoint.x + FILAMENT_ZIG_ZAG_SPAN, yPos );
-      } else {
+      }
+      else {
         // zag
         filamentShape.lineTo( filamentTopPoint.x, yPos );
       }
