@@ -48,9 +48,14 @@ define( function( require ) {
 
   inherit( Object, DielectricMaterial, {}, {
 
-    CustomDielectricMaterial: function( dielectricConstant ) {
-      return new DielectricMaterial( 'Custom', dielectricConstant,
-        CLBConstants.CUSTOM_DIELECTRIC_COLOR, null ); // TODO: tandem
+    /**
+     * Create a custom dielectric material with the provided dielectric constant
+     *
+     * @param  {number}
+     * @return {DielectricMaterial}
+     */
+    createCustomDielectricMaterial: function( dielectricConstant ) {
+      return new DielectricMaterial( 'Custom', dielectricConstant, CLBConstants.CUSTOM_DIELECTRIC_COLOR, null ); // TODO: tandem
     }
   } );
 

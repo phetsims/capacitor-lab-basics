@@ -114,7 +114,7 @@ define( function( require ) {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
         wireThickness: CLBConstants.WIRE_THICKNESS,
-        dielectricMaterial: DielectricMaterial.CustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.min ),
+        dielectricMaterial: DielectricMaterial.createCustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.min ),
         dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min
       } );
 
@@ -130,4 +130,3 @@ define( function( require ) {
 
   } );
 } );
-
