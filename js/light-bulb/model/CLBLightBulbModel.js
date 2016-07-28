@@ -153,7 +153,7 @@ define( function( require ) {
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
         wireThickness: CLBConstants.WIRE_THICKNESS,
         wireExtent: WIRE_EXTENT,
-        dielectricMaterial: DielectricMaterial.CustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.min ),
+        dielectricMaterial: DielectricMaterial.createCustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.min ),
         dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min,
         numberOfCapacitors: 1,
         numberOfLightBulbs: 1
@@ -171,4 +171,3 @@ define( function( require ) {
 
   } );
 } );
-
