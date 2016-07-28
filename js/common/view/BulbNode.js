@@ -38,11 +38,93 @@ define( function( require ) {
   var NUM_FILAMENT_ZIG_ZAGS = 8;
   var FILAMENT_ZIG_ZAG_SPAN = 8;
 
+  // debugging
   var DEBUG_SHAPES = false;
 
-  function createBulb( options ) {
+  /**
+   * Constructor for a BulbNode.
+   *
+   * @param {LightBulb} lightBulb
+   * @param voltageProperty - voltage across the terminals of the lightbulb, determines brightness
+   * @param {Property.<string>} circuitConnectionProperty
+   * @param {Tandem} tandem
+   * @param {Object} [options]
+   * @constructor
+   */
+  function BulbNode( lightBulb, voltageProperty, circuitConnectionProperty, tandem, options ) {
 
-    var bulbNode = new Node( options );
+    Node.call( this );
+    var thisNode = this;
+
+    this.bulb = drawBulbNode( options );
+    this.addChild( this.bulb );
+
+    // NOTE: this map deviates from the the bulb in faradays-law
+    var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 300, true );
+
+    var updateBrightnessScale = function( voltage ) {
+      if ( circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        var targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
+        if ( targetScaleFactor < 0.1 ) {
+          thisNode.bulb.haloNode.visible = false;
+        } else {
+          thisNode.bulb.haloNode.visible = true;
+          var scale = targetScaleFactor / thisNode.bulb.haloNode.transform.matrix.scaleVector.x;
+          thisNode.bulb.haloNode.scale( scale );
+        }
+      }
+
+      // Light bulb is not connected to the circuit, so no current can flow through it.
+      else {
+        thisNode.bulb.haloNode.visible = false;
+      }
+    };
+
+    // Update the halo as the needle angle changes.
+    voltageProperty.link( function( voltage ) {
+      updateBrightnessScale( voltage );
+    } );
+
+    // make sure that the light bulb turns off instantly when disconnected from capacitor.
+    circuitConnectionProperty.link( function( circuitConnection ) {
+      updateBrightnessScale( voltageProperty.value );
+    } );
+
+    if ( DEBUG_SHAPES ) {
+      // for debugging, visualize the shape of the base
+      var bulbShape = new Path( lightBulb.shapeCreator.createBaseShape(), { stroke: 'red', lineWidth: 2 } );
+      this.addChild( bulbShape );
+    }
+
+    tandem.addInstance( this );
+  }
+
+  capacitorLabBasics.register( 'BulbNode', BulbNode );
+
+  inherit( Node, BulbNode, {}, {
+
+    /**
+     * Create a bulb node icon.  This creates a node that is not linked to any model properties.
+     *
+     * @param {Object} options
+     */
+    createBulbIcon: function( options ) {
+      return drawBulbNode( options );
+    }
+  } );
+
+  /**
+   * Create the visual components for a bulbNode with a base, bulb, filament and halo.
+   * The halo is made public so that the BulbNode can change its size as a representation
+   * of brightness.
+   *
+   * @param  {Object} options
+   * @return {Node}
+   * @private
+   */
+  function drawBulbNode( options ) {
+
+    var iconNode = new Node( options );
 
     // Create the base of the bulb
     var bulbBase = new Image( bulbBaseImage );
@@ -97,109 +179,38 @@ define( function( require ) {
     var filament = new Path( filamentShape, { stroke: 'black' } );
 
     // Create the 'halo' that makes the bulb look like it is shining.
-    bulbNode.haloNode = new Node();
-    bulbNode.haloNode.addChild( new Circle( 5, {
+    // @public
+    iconNode.haloNode = new Node();
+    iconNode.haloNode.addChild( new Circle( 5, {
       fill: 'white',
       opacity: 0.46
     } ) );
-    bulbNode.haloNode.addChild( new Circle( 3.75, {
+    iconNode.haloNode.addChild( new Circle( 3.75, {
       fill: 'white',
       opacity: 0.51
     } ) );
-    bulbNode.haloNode.addChild( new Circle( 2, {
+    iconNode.haloNode.addChild( new Circle( 2, {
       fill: 'white'
     } ) );
 
     // Add the children in the order needed to get the desired layering
-    bulbNode.addChild( bulbBodyFill );
-    bulbNode.addChild( filamentSupportWires );
-    bulbNode.addChild( filament );
-    bulbNode.addChild( bulbNode.haloNode );
-    bulbNode.addChild( bulbBase );
-    bulbNode.addChild( bulbBodyOutline );
+    iconNode.addChild( bulbBodyFill );
+    iconNode.addChild( filamentSupportWires );
+    iconNode.addChild( filament );
+    iconNode.addChild( iconNode.haloNode );
+    iconNode.addChild( bulbBase );
+    iconNode.addChild( bulbBodyOutline );
 
     // Do some last layout
     bulbBase.centerY = 0;
     bulbBase.left = 0;
-    bulbNode.haloNode.center = filament.center;
-    bulbNode.haloNode.visible = false;
+    iconNode.haloNode.center = filament.center;
+    iconNode.haloNode.visible = false;
 
-    bulbNode.rotate( Math.PI );
+    iconNode.rotate( Math.PI );
 
-    return bulbNode;
+    return iconNode;
   }
 
-  /**
-   * Constructor for a BulbNode.
-   *
-   * @param {LightBulb} lightBulb
-   * @param voltageProperty - voltage across the terminals of the lightbulb, determines brightness
-   * @param {Property.<string>} circuitConnectionProperty
-   * @param {Tandem} tandem
-   * @param {Object} [options]
-   * @constructor
-   */
-  function BulbNode( lightBulb, voltageProperty, circuitConnectionProperty, tandem, options ) {
-
-    Node.call( this );
-    var thisNode = this;
-
-    this.bulb = createBulb( options );
-    this.addChild( this.bulb );
-
-    // NOTE: this map deviates from the the bulb in faradays-law
-    var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 300, true );
-
-    var updateBrightnessScale = function( voltage ) {
-      if ( circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-        var targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
-        if ( targetScaleFactor < 0.1 ) {
-          thisNode.bulb.haloNode.visible = false;
-        } else {
-          thisNode.bulb.haloNode.visible = true;
-          var scale = targetScaleFactor / thisNode.bulb.haloNode.transform.matrix.scaleVector.x;
-          thisNode.bulb.haloNode.scale( scale );
-        }
-      }
-
-      // Light bulb is not connected to the circuit, so no current can flow through it.
-      else {
-        thisNode.bulb.haloNode.visible = false;
-      }
-    };
-
-    // Update the halo as the needle angle changes.
-    voltageProperty.link( function( voltage ) {
-      updateBrightnessScale( voltage );
-    } );
-
-
-    // make sure that the light bulb turns off instantly when disconnected from capacitor.
-    circuitConnectionProperty.link( function( circuitConnection ) {
-      updateBrightnessScale( voltageProperty.value );
-
-    } );
-
-    if ( DEBUG_SHAPES ) {
-      // for debugging, visualize the shape of the base
-      var bulbShape = new Path( lightBulb.shapeCreator.createBaseShape(), { stroke: 'red', lineWidth: 2 } );
-      this.addChild( bulbShape );
-    }
-
-    tandem.addInstance( this );
-  }
-
-  capacitorLabBasics.register( 'BulbNode', BulbNode );
-
-  return inherit( Node, BulbNode, {}, {
-
-    /** Factory function to create a BulbNode.  This creates a node that is not linked to any model properties.
-     * This is useful in cases such as control panel content where the node should not respond to model changes.
-     *
-     * @param {Object} options
-     */
-    createBulb: function( options ) {
-      return createBulb( options );
-    }
-  } );
+  return BulbNode;
 } );

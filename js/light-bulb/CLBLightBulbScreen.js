@@ -29,7 +29,7 @@ define( function( require ) {
    */
   function CLBLightBulbScreen( switchUsedProperty, tandem ) {
 
-    var iconNode = new BulbNode.createBulb();
+    var iconNode = new BulbNode.createBulbIcon();
     iconNode.rotate( -Math.PI / 2 );
     var icon = new ScreenIcon( iconNode, {
       fill: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR
@@ -51,4 +51,3 @@ define( function( require ) {
 
   return inherit( Screen, CLBLightBulbScreen );
 } );
-
