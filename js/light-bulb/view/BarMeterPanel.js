@@ -23,6 +23,9 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
+  // phet-io modules
+  var TPanel = require( 'ifphetio!PHET_IO/types/sun/TPanel' );
+
   // constants
   var CHECKBOX_VERTICAL_SPACING = 28;
   var VALUE_FONT = new PhetFont( 15 );
@@ -109,7 +112,7 @@ define( function( require ) {
       thisPanel.visible = barGraphsPanelVisible;
     } );
 
-    tandem.addInstance( this );
+    tandem.addInstance( this, TPanel );
   }
 
   capacitorLabBasics.register( 'BarMeterPanel', BarMeterPanel );
