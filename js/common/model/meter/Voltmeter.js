@@ -57,7 +57,7 @@ define( function( require ) {
         negativeProbeLocation: tandem.createTandem( 'negativeProbeLocationProperty' ),
         value: tandem.createTandem( 'valueProperty' )
       },
-      typeSet: {
+      phetioValueTypeSet: {
         visible: TBoolean,
         inUserControl: TBoolean,
         bodyLocation: TVector3,

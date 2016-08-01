@@ -35,7 +35,7 @@ define( function( require ) {
       tandemSet: {
         value: tandem.createTandem( 'valueProperty' )
       },
-      typeSet: {
+      phetioValueTypeSet: {
         value: TNumber( 'unitless' ) // Should be overridden by descendants
       }
     } : {} );

@@ -38,7 +38,7 @@ define( function( require ) {
         circuitConnection: tandem.createTandem( 'circuitConnectionProperty' ),
         disconnectedPlateCharge: tandem.createTandem( 'disconnectedPlateChargeProperty' )
       },
-      typeSet: {
+      phetioValueTypeSet: {
         currentAmplitude: TNumber( 'amperes' ),
         circuitConnection: TString,
         disconnectedPlateCharge: TNumber( 'coulombs' )

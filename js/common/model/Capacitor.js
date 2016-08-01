@@ -72,7 +72,7 @@ define( function( require ) {
         dielectricMaterial: tandem.createTandem( 'dielectricMaterialProperty' ),
         dielectricOffset: tandem.createTandem( 'dielectricOffsetProperty' )
       },
-      typeSet: {
+      phetioValueTypeSet: {
         plateSize: TBounds3,
         plateSeparation: TNumber( 'meters', { range: CLBConstants.PLATE_SEPARATION_RANGE } ),
         platesVoltage: TNumber( 'volts' ),

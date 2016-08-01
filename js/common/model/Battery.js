@@ -67,7 +67,7 @@ define( function( require ) {
         voltage: tandem.createTandem( 'voltageProperty' ),
         polarity: tandem.createTandem( 'polarityProperty' )
       } : {},
-      typeSet: {
+      phetioValueTypeSet: {
         voltage: TNumber( 'volts' ),
         polarity: TString
       }

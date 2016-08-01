@@ -42,7 +42,7 @@ define( function( require ) {
         voltmeterVisible: tandem.createTandem( 'voltmeterVisibleProperty' ),
         currentVisible: tandem.createTandem( 'currentVisibleProperty' )
       },
-      typeSet: {
+      phetioValueTypeSet: {
         plateChargesVisible: TBoolean,
         eFieldVisible: TBoolean,
         capacitanceMeterVisible: TBoolean,

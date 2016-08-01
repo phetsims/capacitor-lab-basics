@@ -33,7 +33,7 @@ define( function( require ) {
         startPoint: tandem.createTandem( 'startPointProperty' ),
         endPoint: tandem.createTandem( 'endPointProperty' )
       },
-      typeSet: {
+      phetioValueTypeSet: {
         startPoint: TVector2,
         endPoint: TVector2
       }
