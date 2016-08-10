@@ -60,14 +60,14 @@ define( function( require ) {
         angle: tandem && tandem.createTandem( 'angleProperty' )
       },
       phetioValueTypeSet: {
-        angle: TNumber( {units: 'radians'} )
+        angle: TNumber( { units: 'radians' } )
       }
     } );
 
     // Assign string identifying connection point
     var connectionName = ( positionLabel === 'top' ) ?
-      CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP :
-      CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
+                         CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP :
+                         CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
 
     // add the switch wire that spans two connection points. Default connection is to the battery.
     this.switchSegment = WireSegment.createSwitchSegment( this.hingePoint, this.activeConnection,
@@ -116,7 +116,8 @@ define( function( require ) {
 
       if ( positionLabel === 'top' ) {
         y -= yOffset;
-      } else if ( positionLabel === 'bottom' ) {
+      }
+      else if ( positionLabel === 'bottom' ) {
         y += yOffset;
       }
 
@@ -153,7 +154,8 @@ define( function( require ) {
         topPoint = hingeXY.minus( topOffset );
         leftPoint = hingeXY.minusXY( dx, dy );
         rightPoint = hingeXY.minusXY( -dx, dy );
-      } else {
+      }
+      else {
         topPoint = hingeXY.plus( topOffset );
         leftPoint = hingeXY.plusXY( -dx, dy );
         rightPoint = hingeXY.plusXY( dx, dy );
@@ -166,17 +168,20 @@ define( function( require ) {
             location: topPoint.toVector3(),
             connectionType: circuitSwitchConnection
           } );
-        } else if ( circuitSwitchConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        }
+        else if ( circuitSwitchConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           connections.push( {
             location: leftPoint.toVector3(),
             connectionType: circuitSwitchConnection
           } );
-        } else if ( circuitSwitchConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        }
+        else if ( circuitSwitchConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
           connections.push( {
             location: rightPoint.toVector3(),
             connectionType: circuitSwitchConnection
           } );
-        } else {
+        }
+        else {
           assert && assert( 'attempting to create switch conection which is not supported' );
         }
       } );

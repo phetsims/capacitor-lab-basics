@@ -68,7 +68,7 @@ define( function( require ) {
         polarity: tandem.createTandem( 'polarityProperty' )
       } : {},
       phetioValueTypeSet: {
-        voltage: TNumber( {units:'volts'} ),
+        voltage: TNumber( { units: 'volts' } ),
         polarity: TString
       }
     } );
@@ -134,7 +134,8 @@ define( function( require ) {
     getTopTerminalYOffset: function() {
       if ( this.polarity === CLBConstants.POLARITY.POSITIVE ) {
         return POSITIVE_TERMINAL_Y_OFFSET;
-      } else {
+      }
+      else {
         return NEGATIVE_TERMINAL_Y_OFFSET;
       }
     },

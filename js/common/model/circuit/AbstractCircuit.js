@@ -39,9 +39,9 @@ define( function( require ) {
         disconnectedPlateCharge: tandem.createTandem( 'disconnectedPlateChargeProperty' )
       },
       phetioValueTypeSet: {
-        currentAmplitude: TNumber( {units: 'amperes'} ),
+        currentAmplitude: TNumber( { units: 'amperes' } ),
         circuitConnection: TString,
-        disconnectedPlateCharge: TNumber( {units: 'coulombs'} )
+        disconnectedPlateCharge: TNumber( { units: 'coulombs' } )
       }
     } : {};
 

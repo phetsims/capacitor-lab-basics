@@ -63,7 +63,7 @@ define( function( require ) {
         bodyLocation: TVector3,
         positiveProbeLocation: TVector3,
         negativeProbeLocation: TVector3,
-        value: TNumber( {units: 'volts'} )
+        value: TNumber( { units: 'volts' } )
       }
     } : {} );
     var thisMeter = this;
@@ -97,7 +97,8 @@ define( function( require ) {
     var updateValue = function() {
       if ( thisMeter.probesAreTouching() ) {
         thisMeter.value = 0;
-      } else {
+      }
+      else {
         var positiveProbeShape = thisMeter.shapeCreator.getPositiveProbeTipShape();
         var negativeProbeShape = thisMeter.shapeCreator.getNegativeProbeTipShape();
 
@@ -105,12 +106,12 @@ define( function( require ) {
         // or battery
         if ( thisMeter.circuit.lightBulb ) {
           if ( ( touchingFreeLightBulb( positiveProbeShape ) && !touchingFreeLightBulb( negativeProbeShape ) ) ||
-            ( !touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) ) {
+               ( !touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) ) {
             thisMeter.value = null;
             return;
           }
           else if ( ( touchingFreeBattery( positiveProbeShape ) && !touchingFreeBattery( negativeProbeShape ) ) ||
-            ( !touchingFreeBattery( positiveProbeShape ) && touchingFreeBattery( negativeProbeShape ) ) ) {
+                    ( !touchingFreeBattery( positiveProbeShape ) && touchingFreeBattery( negativeProbeShape ) ) ) {
             thisMeter.value = null;
             return;
           }
@@ -118,7 +119,7 @@ define( function( require ) {
 
         // Ensure that voltage is null when one (and only one) probe is on a disconnected plate.
         if ( ( touchingFreePlate( positiveProbeShape ) && !touchingFreePlate( negativeProbeShape ) ) ||
-          ( !touchingFreePlate( positiveProbeShape ) && touchingFreePlate( negativeProbeShape ) ) ) {
+             ( !touchingFreePlate( positiveProbeShape ) && touchingFreePlate( negativeProbeShape ) ) ) {
           thisMeter.value = null;
           return;
         }
@@ -164,7 +165,7 @@ define( function( require ) {
      * Probes are touching if their tips intersect.
      *
      * @returns {boolean}
-        thisMeter.updateValue();
+     thisMeter.updateValue();
      */
     probesAreTouching: function() {
       return this.shapeCreator.getPositiveProbeTipShape().intersectsBounds( this.shapeCreator.getNegativeProbeTipShape() );
