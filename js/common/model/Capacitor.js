@@ -74,10 +74,10 @@ define( function( require ) {
       },
       phetioValueTypeSet: {
         plateSize: TBounds3,
-        plateSeparation: TNumber( 'meters', { range: CLBConstants.PLATE_SEPARATION_RANGE } ),
-        platesVoltage: TNumber( 'volts' ),
+        plateSeparation: TNumber( { units: 'meters', range: CLBConstants.PLATE_SEPARATION_RANGE } ),
+        platesVoltage: TNumber( { units: 'volts' } ),
         dielectricMaterial: TDielectricMaterial,
-        dielectricOffset: TNumber( 'meters' )
+        dielectricOffset: TNumber( { units: 'meters' } )
       }
     } : {};
 
@@ -291,7 +291,8 @@ define( function( require ) {
       var airPlateCharge = this.getAirCapacitance() * this.platesVoltage;
       if ( Math.abs( airPlateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
-      } else {
+      }
+      else {
         return airPlateCharge;
       }
     },
@@ -306,7 +307,8 @@ define( function( require ) {
       var dielectricCharge = this.getDielectricCapacitance() * this.platesVoltage;
       if ( Math.abs( dielectricCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
-      } else {
+      }
+      else {
         return dielectricCharge;
       }
     },
@@ -368,7 +370,8 @@ define( function( require ) {
       var totalPlateCharge = this.getTotalPlateCharge();
       if ( Math.abs( totalPlateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
-      } else {
+      }
+      else {
         return this.platesVoltage / this.plateSeparation;
       }
     },

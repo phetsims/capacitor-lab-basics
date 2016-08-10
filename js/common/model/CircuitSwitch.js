@@ -60,7 +60,7 @@ define( function( require ) {
         angle: tandem && tandem.createTandem( 'angleProperty' )
       },
       phetioValueTypeSet: {
-        angle: TNumber( 'radians' )
+        angle: TNumber( {units: 'radians'} )
       }
     } );
 

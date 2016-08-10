@@ -63,7 +63,7 @@ define( function( require ) {
         bodyLocation: TVector3,
         positiveProbeLocation: TVector3,
         negativeProbeLocation: TVector3,
-        value: TNumber( 'volts' )
+        value: TNumber( {units: 'volts'} )
       }
     } : {} );
     var thisMeter = this;

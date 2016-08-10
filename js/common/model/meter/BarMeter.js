@@ -36,7 +36,7 @@ define( function( require ) {
         value: tandem.createTandem( 'valueProperty' )
       },
       phetioValueTypeSet: {
-        value: TNumber( 'unitless' ) // Should be overridden by descendants
+        value: TNumber() // Should be overridden by descendants
       }
     } : {} );
     this.visibleProperty = visibleProperty;
