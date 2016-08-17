@@ -32,8 +32,7 @@ define( function( require ) {
       qualityAssurance: '',
       graphicArts: '',
       thanks: ''
-    },
-    tandem: tandem
+    }
   };
 
   // Appending '?dev' to the URL will enable developer-only features.
