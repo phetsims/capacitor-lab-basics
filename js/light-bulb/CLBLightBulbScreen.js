@@ -35,15 +35,21 @@ define( function( require ) {
       fill: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR
     } );
 
-    Screen.call( this, lightBulbTitleString, icon,
+    var options = {
+      name: lightBulbTitleString,
+      backgroundColor: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR,
+      homeScreenIcon: icon,
+      tandem: tandem
+    };
+
+    Screen.call( this,
       function() {
-        return new CLBLightBulbModel( switchUsedProperty, new CLBModelViewTransform3D(), tandem.createTandem( 'model' ) ); },
+        return new CLBLightBulbModel( switchUsedProperty, new CLBModelViewTransform3D(), tandem.createTandem( 'model' ) );
+      },
       function( model ) {
-        return new CLBLightBulbScreenView( model, tandem.createTandem( 'view' ) ); }, {
-        backgroundColor: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR,
-        tandem: tandem
-      }
-    );
+        return new CLBLightBulbScreenView( model, tandem.createTandem( 'view' ) );
+      },
+      options );
 
   }
 

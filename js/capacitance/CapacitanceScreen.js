@@ -14,7 +14,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var Image = require('SCENERY/nodes/Image');
+  var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
 
@@ -34,14 +34,17 @@ define( function( require ) {
     var icon = new Image( capacitorIconImage );
     icon.scale( 1.4, 1.0 );
 
-    Screen.call( this, capacitanceTitleString, icon,
-      function() { return new CapacitanceModel( switchUsedProperty, new CLBModelViewTransform3D(), tandem.createTandem( 'model' ) ); },
-      function( model ) { return new CapacitanceScreenView( model, tandem.createTandem( 'view' ) ); }, {
-        backgroundColor: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR,
-        tandem: tandem
-      }
-    );
+    var options = {
+      name: capacitanceTitleString,
+      backgroundColor: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR,
+      homeScreenIcon: icon,
+      tandem: tandem
+    };
 
+    Screen.call( this,
+      function() { return new CapacitanceModel( switchUsedProperty, new CLBModelViewTransform3D(), tandem.createTandem( 'model' ) ); },
+      function( model ) { return new CapacitanceScreenView( model, tandem.createTandem( 'view' ) ); },
+      options );
   }
 
   capacitorLabBasics.register( 'CapacitanceScreen', CapacitanceScreen );
