@@ -100,27 +100,27 @@ define( function( require ) {
     currentAmplitudeProperty.lazyLink( function( currentAmplitude ) {
 
       // only start this animation if the current indicator is visible
-      if( thisNode.isVisible() ) {
+      if ( thisNode.isVisible() ) {
         thisNode.startAnimation();
       }
 
       // update the orientation of the indicator
-      if( currentAmplitude > 0 ) {
+      if ( currentAmplitude > 0 ) {
         thisNode.rotation = positiveOrientation;
       }
-      else if( currentAmplitude < 0 ) {
+      else if ( currentAmplitude < 0 ) {
         thisNode.rotation = positiveOrientation + Math.PI;
       }
     } );
   }
 
   capacitorLabBasics.register( 'CurrentIndicatorNode', CurrentIndicatorNode );
-  
+
   return inherit( Node, CurrentIndicatorNode, {
 
     /**
      * Start the animation, canceling the animation if it is in progress
-    */
+     */
     startAnimation: function() {
 
       // stop animation if it's already running
@@ -137,7 +137,7 @@ define( function( require ) {
           thisNode.animation = null;
         }
       } );
-      this.animation.start();
+      this.animation.start( phet.joist.elapsedTime );
     },
 
     /**
