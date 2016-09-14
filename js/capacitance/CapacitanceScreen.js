@@ -32,7 +32,7 @@ define( function( require ) {
   function CapacitanceScreen( switchUsedProperty, tandem ) {
 
     var icon = new Image( capacitorIconImage );
-    icon.scale( 1.4, 1.0 );
+    icon.scale( 1.87, 1.34 ); // Temporary scaling until #135 is closed: 294x280 -> 548x373
 
     var options = {
       name: capacitanceTitleString,
