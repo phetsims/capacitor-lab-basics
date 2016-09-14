@@ -22,7 +22,7 @@ define( function( require ) {
   var capacitanceTitleString = require( 'string!CAPACITOR_LAB_BASICS/capacitance.title' );
 
   // images
-  var capacitorIconImage = require( 'image!CAPACITOR_LAB_BASICS/capacitor-icon.png' );
+  var capacitorIconImage = require( 'image!CAPACITOR_LAB_BASICS/capacitance_screen_icon.png' );
 
   /**
    * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
@@ -32,7 +32,6 @@ define( function( require ) {
   function CapacitanceScreen( switchUsedProperty, tandem ) {
 
     var icon = new Image( capacitorIconImage );
-    icon.scale( 1.87, 1.34 ); // Temporary scaling until #135 is closed: 294x280 -> 548x373
 
     var options = {
       name: capacitanceTitleString,
