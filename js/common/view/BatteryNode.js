@@ -60,6 +60,8 @@ define( function( require ) {
     var sliderNode = new HSlider( battery.voltageProperty, voltageRange, {
       trackSize: new Dimension2( trackLength, 8 ),
       thumbSize: new Dimension2( 20, 35 ),
+      thumbTouchAreaXDilation: 11,
+      thumbTouchAreaYDilation: 11,
       majorTickLength: 18,
       thumbFillEnabled: 'rgb(255,237,53)',
       thumbFillHighlighted: 'rgb(71,207,255)', // same as default
@@ -121,4 +123,3 @@ define( function( require ) {
   return inherit( Node, BatteryNode, {} );
 
 } );
-
