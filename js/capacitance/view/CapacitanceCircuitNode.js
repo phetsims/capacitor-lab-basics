@@ -25,15 +25,15 @@ define( function( require ) {
   function CapacitanceCircuitNode( model, tandem ) {
 
     CLBCircuitNode.call( this, model, tandem );
-    var thisNode = this;
+    var self = this;
 
     // current indicator observers
     model.circuit.circuitConnectionProperty.link( function( circuitConnection ) {
-      thisNode.updateCurrentVisibility( circuitConnection, model.currentVisibleProperty.value );
+      self.updateCurrentVisibility( circuitConnection, model.currentVisibleProperty.value );
     } );
 
     model.currentVisibleProperty.link( function( currentIndicatorsVisible ) {
-      thisNode.updateCurrentVisibility( model.circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
+      self.updateCurrentVisibility( model.circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
   }
 

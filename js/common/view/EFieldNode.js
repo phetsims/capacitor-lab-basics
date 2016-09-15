@@ -47,7 +47,7 @@ define( function( require ) {
     // make sure that the arrow path is centered along the field line.
     // dividing by 4 aligns better than dividing by 2 for the narrow line width.
     var xOffset = LINE_WIDTH / 4;
-    var arrowCenter = ( direction === CLBConstants.DIRECTION.UP ) ? position.x - xOffset : position.x + xOffset; 
+    var arrowCenter = ( direction === CLBConstants.DIRECTION.UP ) ? position.x - xOffset : position.x + xOffset;
 
     // path for the UP arrow
     if ( direction === CLBConstants.DIRECTION.UP ) {
@@ -79,7 +79,7 @@ define( function( require ) {
   function EFieldNode( capacitor, modelViewTransform, maxEffectiveEField, canvasBounds ) {
 
     CanvasNode.call( this, { canvasBounds: canvasBounds } );
-    var thisNode = this;
+    var self = this;
 
     // @private
     this.capacitor = capacitor;
@@ -87,8 +87,8 @@ define( function( require ) {
     this.maxEffectiveEField = maxEffectiveEField;
 
     capacitor.multilink( [ 'platesVoltage', 'plateSeparation', 'plateSize' ], function() {
-      if ( thisNode.visible ) {
-        thisNode.invalidatePaint();
+      if ( self.visible ) {
+        self.invalidatePaint();
       }
     } );
   }

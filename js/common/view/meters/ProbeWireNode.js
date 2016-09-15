@@ -33,7 +33,7 @@ define( function( require ) {
    */
   function ProbeWireNode( bodyNode, probeNode, isPositive ) {
 
-    var thisNode = this;
+    var self = this;
 
     // @private
     this.bodyNode = bodyNode;
@@ -53,11 +53,11 @@ define( function( require ) {
 
     // update wire when body or probe moves
     probeNode.locationProperty.link( function( location ) {
-      thisNode.update();
+      self.update();
     } );
 
     bodyNode.bodyLocationProperty.link( function( location ) {
-      thisNode.update();
+      self.update();
     } );
 
   }

@@ -51,7 +51,7 @@ define( function( require ) {
     this.modelViewTransform = config.modelViewTransform;
     this.connections = this.getSwitchConnections( positionLabel, this.hingePoint.toVector2(), config.circuitConnections );
     this.activeConnection = this.getConnection( circuitConnectionProperty.value );
-    var thisSwitch = this;
+    var self = this;
 
     PropertySet.call( this, {
       angle: this.initialAngle
@@ -82,8 +82,8 @@ define( function( require ) {
       if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
         return;
       }
-      thisSwitch.activeConnection = thisSwitch.getConnection( circuitConnection );
-      thisSwitch.switchSegment.update( thisSwitch.activeConnection );
+      self.activeConnection = self.getConnection( circuitConnection );
+      self.switchSegment.update( self.activeConnection );
     } );
 
   }
@@ -246,17 +246,17 @@ define( function( require ) {
      */
     getRightLimitAngle: function() {
 
-      var thisSwitch = this;
+      var self = this;
 
-      var rightConnectionPoint = thisSwitch.getConnectionPoint( CircuitConnectionEnum.OPEN_CIRCUIT );
+      var rightConnectionPoint = self.getConnectionPoint( CircuitConnectionEnum.OPEN_CIRCUIT );
 
       this.connections.forEach( function( connection ) {
         if ( connection.connectionType === 'LIGHT_BULB_CONNECTED' ) {
-          rightConnectionPoint = thisSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
+          rightConnectionPoint = self.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
         }
       } );
 
-      return rightConnectionPoint.minus( thisSwitch.hingePoint.toVector2() ).angle();
+      return rightConnectionPoint.minus( self.hingePoint.toVector2() ).angle();
     },
 
     /**

@@ -34,7 +34,7 @@ define( function( require ) {
   function VoltmeterProbeNode( image, locationProperty, modelViewTransform, dragBounds, tandem ) {
 
     Node.call( this );
-    var thisNode = this;
+    var self = this;
     this.locationProperty = locationProperty; // @public
 
     var imageNode = new Image( image, {
@@ -53,7 +53,7 @@ define( function( require ) {
 
     // update position with model
     locationProperty.link( function( location ) {
-      thisNode.translation = modelViewTransform.modelToViewPosition( location );
+      self.translation = modelViewTransform.modelToViewPosition( location );
     } );
 
     var adjustedViewBounds = new Bounds2( 0, 0, dragBounds.maxX - imageNode.width, dragBounds.maxY - 0.4 * imageNode.height );
@@ -66,8 +66,8 @@ define( function( require ) {
       onDrag: function() {
         // MovableDragHandler converts location to a Vector2 if node is dragged
         // out of bounds, so make sure that the location remains a vector3.
-        if ( !thisNode.locationProperty.get().isVector3 ) {
-          thisNode.locationProperty.set( thisNode.locationProperty.get().toVector3() );
+        if ( !self.locationProperty.get().isVector3 ) {
+          self.locationProperty.set( self.locationProperty.get().toVector3() );
         }
       }
 

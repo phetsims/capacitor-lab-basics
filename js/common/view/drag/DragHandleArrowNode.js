@@ -29,7 +29,7 @@ define( function( require ) {
    * @constructor
    */
   function DragHandleArrowNode( pStart, pEnd ) {
-    var thisArrowNode = this; // extend scope for input listener callbacks
+    var self = this; // extend scope for input listener callbacks
 
     // calculate the parameter for head and tail width and height.
     var length = Math.abs( pStart.distance( pEnd ) );
@@ -50,10 +50,10 @@ define( function( require ) {
     // highlight the arrow on pointer over
     this.addInputListener( new ButtonListener( {
       over: function( event ) {
-        thisArrowNode.fill = HIGHLIGHT_COLOR;
+        self.fill = HIGHLIGHT_COLOR;
       },
       up: function( event ) {
-        thisArrowNode.fill = NORMAL_COLOR;
+        self.fill = NORMAL_COLOR;
       }
     } ) );
   }

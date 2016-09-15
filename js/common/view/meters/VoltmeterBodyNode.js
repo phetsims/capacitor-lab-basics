@@ -52,7 +52,7 @@ define( function( require ) {
   function VoltmeterBodyNode( voltmeter, modelViewTransform, inUserControlProperty, tandem ) {
 
     Node.call( this );
-    var thisNode = this;
+    var self = this;
 
     this.bodyLocationProperty = voltmeter.bodyLocationProperty; // @public
 
@@ -99,13 +99,13 @@ define( function( require ) {
 
     // update value
     voltmeter.valueProperty.link( function( value ) {
-      thisNode.setValueText( valueText, value );
+      self.setValueText( valueText, value );
       valueText.center = backgroundRect.center;
     } );
 
     // update position with model
     voltmeter.bodyLocationProperty.link( function( bodyLocation ) {
-      thisNode.translation = modelViewTransform.modelToViewPosition( bodyLocation );
+      self.translation = modelViewTransform.modelToViewPosition( bodyLocation );
     } );
 
     // voltmeter is restricted by bounds in model coordinates for `handler, adjusted by dimensions
@@ -131,7 +131,7 @@ define( function( require ) {
         inUserControlProperty.set( false );
       }
     } );
-    thisNode.addInputListener( this.movableDragHandler );
+    self.addInputListener( this.movableDragHandler );
 
   }
 

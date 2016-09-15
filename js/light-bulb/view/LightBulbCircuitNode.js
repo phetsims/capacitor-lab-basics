@@ -29,7 +29,7 @@ define( function( require ) {
 
     CLBCircuitNode.call( this, model, tandem );
 
-    var thisNode = this;
+    var self = this;
 
     var circuit = model.circuit;
 
@@ -66,11 +66,11 @@ define( function( require ) {
 
     // current indicator observers, no need for disposal since they persist for the lifetime of the sim
     circuit.circuitConnectionProperty.link( function( circuitConnection ) {
-      thisNode.updateCurrentVisibility( circuitConnection, model.currentVisibleProperty.value );
+      self.updateCurrentVisibility( circuitConnection, model.currentVisibleProperty.value );
     } );
 
     model.currentVisibleProperty.link( function( currentIndicatorsVisible ) {
-      thisNode.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
+      self.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
 
   }

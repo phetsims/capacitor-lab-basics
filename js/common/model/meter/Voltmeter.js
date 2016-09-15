@@ -66,7 +66,7 @@ define( function( require ) {
         value: TNumber( { units: 'volts' } )
       }
     } : {} );
-    var thisMeter = this;
+    var self = this;
 
     this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform ); // @public (read-only)
     this.circuit = circuit; // @private
@@ -74,20 +74,20 @@ define( function( require ) {
 
     // @private
     var touchingFreePlate = function( probeShape ) {
-      var t = thisMeter.circuit.connectedToDisconnectedCapacitorTop( probeShape );
-      var b = thisMeter.circuit.connectedToDisconnectedCapacitorBottom( probeShape );
+      var t = self.circuit.connectedToDisconnectedCapacitorTop( probeShape );
+      var b = self.circuit.connectedToDisconnectedCapacitorBottom( probeShape );
       return ( t || b );
     };
 
     var touchingFreeLightBulb = function( probeShape ) {
-      var t = thisMeter.circuit.connectedToDisconnectedLightBulbTop( probeShape );
-      var b = thisMeter.circuit.connectedToDisconnectedLightBulbBottom( probeShape );
+      var t = self.circuit.connectedToDisconnectedLightBulbTop( probeShape );
+      var b = self.circuit.connectedToDisconnectedLightBulbBottom( probeShape );
       return ( t || b );
     };
 
     var touchingFreeBattery = function( probeShape ) {
-      var t = thisMeter.circuit.connectedToDisconnectedBatteryTop( probeShape );
-      var b = thisMeter.circuit.connectedToDisconnectedBatteryBottom( probeShape );
+      var t = self.circuit.connectedToDisconnectedBatteryTop( probeShape );
+      var b = self.circuit.connectedToDisconnectedBatteryBottom( probeShape );
       return ( t || b );
     };
 
@@ -95,24 +95,24 @@ define( function( require ) {
      * Update the value of the meter, called when many different properties change
      */
     var updateValue = function() {
-      if ( thisMeter.probesAreTouching() ) {
-        thisMeter.value = 0;
+      if ( self.probesAreTouching() ) {
+        self.value = 0;
       }
       else {
-        var positiveProbeShape = thisMeter.shapeCreator.getPositiveProbeTipShape();
-        var negativeProbeShape = thisMeter.shapeCreator.getNegativeProbeTipShape();
+        var positiveProbeShape = self.shapeCreator.getPositiveProbeTipShape();
+        var negativeProbeShape = self.shapeCreator.getNegativeProbeTipShape();
 
         // Ensure that the voltage is null when one (and only one) probe is on a disconnected lightbulb
         // or battery
-        if ( thisMeter.circuit.lightBulb ) {
+        if ( self.circuit.lightBulb ) {
           if ( ( touchingFreeLightBulb( positiveProbeShape ) && !touchingFreeLightBulb( negativeProbeShape ) ) ||
                ( !touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) ) {
-            thisMeter.value = null;
+            self.value = null;
             return;
           }
           else if ( ( touchingFreeBattery( positiveProbeShape ) && !touchingFreeBattery( negativeProbeShape ) ) ||
                     ( !touchingFreeBattery( positiveProbeShape ) && touchingFreeBattery( negativeProbeShape ) ) ) {
-            thisMeter.value = null;
+            self.value = null;
             return;
           }
         }
@@ -120,12 +120,12 @@ define( function( require ) {
         // Ensure that voltage is null when one (and only one) probe is on a disconnected plate.
         if ( ( touchingFreePlate( positiveProbeShape ) && !touchingFreePlate( negativeProbeShape ) ) ||
              ( !touchingFreePlate( positiveProbeShape ) && touchingFreePlate( negativeProbeShape ) ) ) {
-          thisMeter.value = null;
+          self.value = null;
           return;
         }
 
         // Handle all other cases
-        thisMeter.value = thisMeter.circuit.getVoltageBetween( positiveProbeShape, negativeProbeShape );
+        self.value = self.circuit.getVoltageBetween( positiveProbeShape, negativeProbeShape );
       }
     };
 
@@ -165,7 +165,7 @@ define( function( require ) {
      * Probes are touching if their tips intersect.
      *
      * @returns {boolean}
-     thisMeter.updateValue();
+     self.updateValue();
      */
     probesAreTouching: function() {
       return this.shapeCreator.getPositiveProbeTipShape().intersectsBounds( this.shapeCreator.getNegativeProbeTipShape() );

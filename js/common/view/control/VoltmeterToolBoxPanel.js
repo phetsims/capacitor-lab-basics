@@ -33,7 +33,7 @@ define( function( require ) {
   function VoltmeterToolBoxPanel( voltmeterNode, modelViewTransform, inUserControlProperty, voltmeterVisibleProperty,
     tandem ) {
 
-    var thisToolBoxPanel = this;
+    var self = this;
     this.voltmeterNode = voltmeterNode; // @private
 
     // create the icon for the toolbox.
@@ -45,7 +45,7 @@ define( function( require ) {
         voltmeterVisibleProperty.set( true );
 
         // initial position of the pointer in the screenView coordinates
-        var initialPosition = thisToolBoxPanel.globalToParentPoint( event.pointer.point );
+        var initialPosition = self.globalToParentPoint( event.pointer.point );
 
         // make sure that the center of the voltmeter body is offset by the body dimensions
         var offsetPosition = new Vector2( -voltmeterNode.bodyNode.width / 2, -voltmeterNode.bodyNode.height / 2 );
@@ -75,7 +75,7 @@ define( function( require ) {
     // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide
     // panel exists for lifetime of sim, no need for dispose
     inUserControlProperty.link( function( inUserControl ) {
-      if ( !inUserControl && thisToolBoxPanel.bounds.intersectsBounds( voltmeterNode.bodyNode.bounds.eroded( 40 ) ) ) {
+      if ( !inUserControl && self.bounds.intersectsBounds( voltmeterNode.bodyNode.bounds.eroded( 40 ) ) ) {
         voltmeterVisibleProperty.set( false );
       }
     } );

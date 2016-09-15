@@ -73,13 +73,13 @@ define( function( require ) {
       }
     } );
 
-    var thisBattery = this;
+    var self = this;
 
     this.location = location; // @public (read-only)
     this.shapeCreator = new BatteryShapeCreator( this, modelViewTransform ); // @private
 
     this.voltageProperty.link( function() {
-      thisBattery.polarity = thisBattery.getPolarity( thisBattery.voltage );
+      self.polarity = self.getPolarity( self.voltage );
     } );
 
   }

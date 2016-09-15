@@ -50,7 +50,7 @@ define( function( require ) {
       'LightBulbCircuit should have 1 LightBulb in CL:B. config.numberOfLightBulbs: ' + config.numberOfLightBulbs );
 
     ParallelCircuit.call( this, config, tandem );
-    var thisCircuit = this;
+    var self = this;
 
     // @public
     this.capacitor = this.capacitors[ 0 ];
@@ -63,14 +63,14 @@ define( function( require ) {
        * the battery connected.  Need to do this before changing the plate voltages property.
        */
       if ( circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
-        thisCircuit.setDisconnectedPlateCharge( thisCircuit.getTotalCharge() );
+        self.setDisconnectedPlateCharge( self.getTotalCharge() );
       }
-      thisCircuit.updatePlateVoltages();
+      self.updatePlateVoltages();
 
       // if light bulb connected, reset values for transient calculations
       if ( circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-        thisCircuit.capacitor.transientTime = 0;
-        thisCircuit.capacitor.voltageAtSwitchClose = thisCircuit.capacitor.platesVoltage;
+        self.capacitor.transientTime = 0;
+        self.capacitor.voltageAtSwitchClose = self.capacitor.platesVoltage;
       }
 
     } );
