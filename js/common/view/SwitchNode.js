@@ -47,7 +47,7 @@ define( function( require ) {
       'circuitSwitch should have 2 or three connections only' );
 
     Node.call( this );
-    var thisNode = this;
+    var self = this;
     this.circuitSwitch = circuitSwitch;
     this.modelViewTransform = modelViewTransform;
 
@@ -86,19 +86,19 @@ define( function( require ) {
       var connectionAreaNode = new ConnectionAreaNode( connection, circuitSwitch,
         connectionPointNode, modelViewTransform, tandem.createTandem( connectionLabels[ index ] + 'ConnectionAreaNode' ) );
 
-      thisNode.connectionPointNodes.push( connectionPointNode );
+      self.connectionPointNodes.push( connectionPointNode );
       connectionListeners.push( connectionAreaNode );
     } );
 
     // add the drag handler
     this.wireSwitchNode.addInputListener(
-      new CircuitSwitchDragHandler( thisNode, tandem.createTandem( 'inputListener' ) ) );
+      new CircuitSwitchDragHandler( self, tandem.createTandem( 'inputListener' ) ) );
 
     // changes visual position as the user drags the switch.
     circuitSwitch.angleProperty.link( function( angle ) {
-      thisNode.wireSwitchNode.resetTransform();
-      thisNode.wireSwitchNode.translate( circuitSwitch.hingePoint.x, circuitSwitch.hingePoint.y );
-      thisNode.wireSwitchNode.rotateAround( modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint ), angle );
+      self.wireSwitchNode.resetTransform();
+      self.wireSwitchNode.translate( circuitSwitch.hingePoint.x, circuitSwitch.hingePoint.y );
+      self.wireSwitchNode.rotateAround( modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint ), angle );
     } );
 
     // Make sure that the shaded sphere snaps to the correct position when connection property changes.
@@ -127,10 +127,10 @@ define( function( require ) {
 
     // rendering order, important for behavior of click areas and drag handlers
     _.each( connectionListeners, function( connectionListener ) {
-      thisNode.addChild( connectionListener );
+      self.addChild( connectionListener );
     } );
-    _.each( thisNode.connectionPointNodes, function( connectionPointNode ) {
-      thisNode.addChild( connectionPointNode );
+    _.each( self.connectionPointNodes, function( connectionPointNode ) {
+      self.addChild( connectionPointNode );
     } );
     this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );

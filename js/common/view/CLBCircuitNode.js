@@ -41,7 +41,7 @@ define( function( require ) {
       'This circuit should have two switches: top and bottom.' );
 
     Node.call( this );
-    var thisNode = this;
+    var self = this;
 
     this.circuit = model.circuit; // @public
 
@@ -54,19 +54,19 @@ define( function( require ) {
     this.topWireNode = new Node();
     this.bottomWireNode = new Node();
     this.circuit.getTopWires().forEach( function( topWire ) {
-      thisNode.topWireNode.addChild( new WireNode( topWire ) );
+      self.topWireNode.addChild( new WireNode( topWire ) );
     } );
     this.circuit.getBottomWires().forEach( function( bottomWire ) {
-      thisNode.bottomWireNode.addChild( new WireNode( bottomWire ) );
+      self.bottomWireNode.addChild( new WireNode( bottomWire ) );
     } );
 
     tandem.createTandem( 'topWireNode' ).addInstance( this.topWireNode, TNode );
     tandem.createTandem( 'bottomWireNode' ).addInstance( this.bottomWireNode, TNode );
 
     this.circuitSwitchNodes = [];
-    thisNode.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 0 ], model.modelViewTransform,
+    self.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 0 ], model.modelViewTransform,
       tandem.createTandem( 'topSwitchNode' ) ) );
-    thisNode.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 1 ], model.modelViewTransform,
+    self.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 1 ], model.modelViewTransform,
       tandem.createTandem( 'bottomSwitchNode' ) ) );
 
     // Once the circuit has been built, if the circuit connection has changed, the switch has been used.
@@ -79,7 +79,7 @@ define( function( require ) {
     // Make the switch "hint" arrows disappear after first use of the switch (#94). This affects both screens
     // because a common reference to the switchUsedProperty is shared between the models.
     model.switchUsedProperty.link( function( switchUsed ) {
-      thisNode.circuitSwitchNodes.forEach( function( switchNode ) {
+      self.circuitSwitchNodes.forEach( function( switchNode ) {
         switchNode.switchCueArrow.setVisible( !switchUsed );
       } );
     } );
@@ -135,8 +135,8 @@ define( function( require ) {
 
     // observer for visibility of the current indicators
     model.currentVisibleProperty.link( function( currentIndicatorsVisible ) {
-      thisNode.batteryTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
-      thisNode.batteryBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
+      self.batteryTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
+      self.batteryBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
     } );
 
   }

@@ -40,13 +40,13 @@ define( function( require ) {
       }
     } : {} );
     this.visibleProperty = visibleProperty;
-    var thisMeter = this;
+    var self = this;
 
     this.circuit = circuit; // @private
     this.valueFunction = valueFunction; // @private
 
     circuit.capacitor.multilink( [ 'plateSize', 'plateSeparation', 'platesVoltage' ], function() {
-      thisMeter.updateValue();
+      self.updateValue();
     } );
   }
 

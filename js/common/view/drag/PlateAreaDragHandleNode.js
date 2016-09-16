@@ -52,7 +52,7 @@ define( function( require ) {
   function PlateAreaDragHandleNode( capacitor, modelViewTransform, valueRange, tandem ) {
 
     Node.call( this );
-    var thisNode = this;
+    var self = this;
 
     // @private
     this.capacitor = capacitor;
@@ -98,12 +98,12 @@ define( function( require ) {
 
     // watch for model changes
     capacitor.plateSizeProperty.link( function() {
-      thisNode.updateDisplay();
-      thisNode.updateOffset();
+      self.updateDisplay();
+      self.updateOffset();
     } );
 
     capacitor.plateSeparationProperty.link( function() {
-      thisNode.updateOffset();
+      self.updateOffset();
     } );
 
     tandem.addInstance( this, TNode );

@@ -42,7 +42,7 @@ define( function( require ) {
    */
   function CapacitanceBarMeterPanel( model, minWidth, tandem ) {
 
-    var thisPanel = this;
+    var self = this;
     var parentNode = new Node();
 
     // create the bar meter nodes with their textual values
@@ -77,7 +77,7 @@ define( function( require ) {
 
     // link visibility of this panel to the checkbox
     model.barGraphsVisibleProperty.link( function( barGraphsPanelVisible ) {
-      thisPanel.visible = barGraphsPanelVisible;
+      self.visible = barGraphsPanelVisible;
     } );
 
     tandem.addInstance( this, TPanel );

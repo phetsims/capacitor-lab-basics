@@ -42,12 +42,12 @@ define( function( require ) {
       stroke: DISCONNECTED_POINT_STROKE
     } );
     Circle.call( this, CONNECTION_POINT_RADIUS, options );
-    var thisNode = this;
+    var self = this;
     this.cursor = 'pointer';
 
     function resetPinColors() {
-      thisNode.fill = DISCONNECTED_POINT_COLOR;
-      thisNode.stroke = DISCONNECTED_POINT_STROKE;
+      self.fill = DISCONNECTED_POINT_COLOR;
+      self.stroke = DISCONNECTED_POINT_STROKE;
     }
 
     // link pin style properties to the circuit connection. Needs to be done in addition to the button listener so that
@@ -62,7 +62,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'inputListener' ),
 
       over: function( event ) {
-        thisNode.fill = CONNECTION_POINT_HIGHLIGHTED;
+        self.fill = CONNECTION_POINT_HIGHLIGHTED;
       },
       up: function( event ) {
         resetPinColors();

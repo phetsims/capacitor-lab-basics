@@ -60,7 +60,7 @@ define( function( require ) {
    */
   function BarMeterNode( meter, barColor, exponent, unitsString, titleString ) {
 
-    var thisNode = this;
+    var self = this;
 
     this.maxValue = Math.pow( 10, exponent ); // max value for this meter
 
@@ -98,13 +98,13 @@ define( function( require ) {
 
     // observers
     meter.valueProperty.link( function( value ) {
-      thisNode.setValue( value );
-      thisNode.updateArrow();
+      self.setValue( value );
+      self.updateArrow();
     } );
 
     // visibility
     meter.visibleProperty.link( function( visible ) {
-      thisNode.visible = visible;
+      self.visible = visible;
     } );
 
     this.updateLayout();

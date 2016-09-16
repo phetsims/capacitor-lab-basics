@@ -32,7 +32,7 @@ define( function( require ) {
    */
   function PlateAreaDragHandler( dragNode, capacitor, modelViewTransform, valueRange, tandem ) {
 
-    var thisHandler = this;
+    var self = this;
 
     // @private
     this.dragNode = dragNode;
@@ -46,11 +46,11 @@ define( function( require ) {
       start: function( event ) {
         var pMouse = event.pointer.point;
         var pOrigin = modelViewTransform.modelToViewDeltaXYZ( capacitor.plateSize.width / 2, 0, capacitor.plateSize.width / 2 );
-        thisHandler.clickXOffset = pMouse.x - pOrigin.x;
+        self.clickXOffset = pMouse.x - pOrigin.x;
       },
       drag: function( event ) {
         var pMouse = event.pointer.point;
-        var plateWidth = thisHandler.getPlateWidth( pMouse );
+        var plateWidth = self.getPlateWidth( pMouse );
         capacitor.setPlateWidth( plateWidth );
       }
     } );

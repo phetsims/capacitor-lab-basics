@@ -31,7 +31,7 @@ define( function( require ) {
    */
   function PlateSeparationDragHandler( dragNode, capacitor, modelViewTransform, valueRange, tandem ) {
 
-    var thisHandler = this;
+    var self = this;
 
     // @private
     this.dragNode = dragNode;
@@ -44,13 +44,13 @@ define( function( require ) {
       tandem: tandem,
       start: function( event, trail ) {
         var pMouse = event.pointer.point;
-        var pOrigin = modelViewTransform.modelToViewXYZ( 0, -( thisHandler.capacitor.plateSeparation / 2 ), 0 );
-        thisHandler.clickYOffset = pMouse.y - pOrigin.y;
+        var pOrigin = modelViewTransform.modelToViewXYZ( 0, -( self.capacitor.plateSeparation / 2 ), 0 );
+        self.clickYOffset = pMouse.y - pOrigin.y;
       },
       drag: function( event, trail ) {
         var pMouse = event.pointer.point;
-        var yView = pMouse.y - thisHandler.clickYOffset;
-        thisHandler.capacitor.plateSeparation = Util.clamp( 2 * modelViewTransform.viewToModelDeltaXY( 0, -yView ).y,
+        var yView = pMouse.y - self.clickYOffset;
+        self.capacitor.plateSeparation = Util.clamp( 2 * modelViewTransform.viewToModelDeltaXY( 0, -yView ).y,
           valueRange.min, valueRange.max );
       }
     } );

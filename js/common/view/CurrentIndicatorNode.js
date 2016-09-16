@@ -55,7 +55,7 @@ define( function( require ) {
   function CurrentIndicatorNode( currentAmplitudeProperty, positiveOrientation ) {
 
     Node.call( this, { opacity: 0 } );
-    var thisNode = this;
+    var self = this;
     this.positiveOrientation = positiveOrientation; // @private
 
     var arrowNode = new ArrowNode( ARROW_TAIL_LOCATION.x, ARROW_TAIL_LOCATION.y, ARROW_TIP_LOCATION.x, ARROW_TIP_LOCATION.y, {
@@ -100,16 +100,16 @@ define( function( require ) {
     currentAmplitudeProperty.lazyLink( function( currentAmplitude ) {
 
       // only start this animation if the current indicator is visible
-      if ( thisNode.isVisible() ) {
-        thisNode.startAnimation();
+      if ( self.isVisible() ) {
+        self.startAnimation();
       }
 
       // update the orientation of the indicator
       if ( currentAmplitude > 0 ) {
-        thisNode.rotation = positiveOrientation;
+        self.rotation = positiveOrientation;
       }
       else if ( currentAmplitude < 0 ) {
-        thisNode.rotation = positiveOrientation + Math.PI;
+        self.rotation = positiveOrientation + Math.PI;
       }
     } );
   }
@@ -127,14 +127,14 @@ define( function( require ) {
       this.animation && this.animation.stop();
 
       // start animation, show symbol and gradually fade out by modulating opacity
-      var thisNode = this;
+      var self = this;
       this.animation = new OpacityTo( this, {
         startOpacity: 0.75,
         endOpacity: 0,
         duration: 1500, // fade out time, ms
         easing: TWEEN.Easing.Quartic.In, // most of opacity change happens at end of duration
         onComplete: function() {
-          thisNode.animation = null;
+          self.animation = null;
         }
       } );
       this.animation.start( phet.joist.elapsedTime );

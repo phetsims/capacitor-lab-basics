@@ -33,7 +33,7 @@ define( function( require ) {
   function CapacitorNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, tandem ) {
 
     Node.call( this );
-    var thisNode = this; // extend scope for nested callbacks
+    var self = this; // extend scope for nested callbacks
 
     // @private
     this.capacitor = circuit.capacitor;
@@ -50,12 +50,12 @@ define( function( require ) {
 
     // observers
     this.capacitor.multilink( [ 'plateSize', 'plateSeparation' ], function() {
-      thisNode.updateGeometry();
+      self.updateGeometry();
     } );
 
     plateChargeVisibleProperty.link( function( visible ) {
-      thisNode.topPlateNode.setChargeVisible( visible );
-      thisNode.bottomPlateNode.setChargeVisible( visible );
+      self.topPlateNode.setChargeVisible( visible );
+      self.bottomPlateNode.setChargeVisible( visible );
     } );
 
     eFieldVisibleProperty.link( function( visible ) {

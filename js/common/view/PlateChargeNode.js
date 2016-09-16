@@ -85,7 +85,7 @@ define( function( require ) {
     CanvasNode.call( this, {
       canvasBounds: options.canvasBounds
     } );
-    var thisNode = this; // extend scope for nested callbacks
+    var self = this; // extend scope for nested callbacks
 
     // @private
     this.capacitor = capacitor;
@@ -99,8 +99,8 @@ define( function( require ) {
     this.addChild( this.parentNode );
 
     capacitor.multilink( [ 'plateSize', 'plateSeparation', 'platesVoltage' ], function() {
-      if ( thisNode.isVisible() ) {
-        thisNode.invalidatePaint();
+      if ( self.isVisible() ) {
+        self.invalidatePaint();
       }
     } );
   }

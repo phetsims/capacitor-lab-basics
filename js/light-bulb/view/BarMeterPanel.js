@@ -44,7 +44,7 @@ define( function( require ) {
    */
   function BarMeterPanel( model, minWidth, tandem ) {
 
-    var thisPanel = this;
+    var self = this;
 
     var parentNode = new Node(); // node that will contain all check boxes and bar meter nodes
 
@@ -109,7 +109,7 @@ define( function( require ) {
 
     // link visibility to the model property
     model.barGraphsVisibleProperty.link( function( barGraphsPanelVisible ) {
-      thisPanel.visible = barGraphsPanelVisible;
+      self.visible = barGraphsPanelVisible;
     } );
 
     tandem.addInstance( this, TPanel );

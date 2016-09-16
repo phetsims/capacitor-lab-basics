@@ -51,7 +51,7 @@ define( function( require ) {
       disconnectedPlateCharge: 0
     }, propertySetOptions );
 
-    var thisCircuit = this;
+    var self = this;
 
     this.previousTotalCharge = -1; // no value, @private
 
@@ -74,8 +74,8 @@ define( function( require ) {
     this.lightBulbs = this.circuitComponents.slice( config.numberOfCapacitors, config.numberOfLightBulbs + 1 );
     this.circuitSwitches = [];
     this.capacitors.forEach( function( capacitor ) {
-      thisCircuit.circuitSwitches.push( capacitor.topCircuitSwitch );
-      thisCircuit.circuitSwitches.push( capacitor.bottomCircuitSwitch );
+      self.circuitSwitches.push( capacitor.topCircuitSwitch );
+      self.circuitSwitches.push( capacitor.bottomCircuitSwitch );
     } );
 
     this.wires = createWires(
@@ -93,7 +93,7 @@ define( function( require ) {
 
     function updateSegments( circuitConnection ) {
       // update start and end points of each wire segment
-      thisCircuit.wires.forEach( function( wire ) {
+      self.wires.forEach( function( wire ) {
         wire.segments.forEach( function( segment ) {
           // not all segments need to be updated
           segment.update && segment.update( circuitConnection );
@@ -110,9 +110,9 @@ define( function( require ) {
        * the battery connected.  Need to do this before changing the plate voltages property.
        */
       if ( circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
-        thisCircuit.setDisconnectedPlateCharge( thisCircuit.getTotalCharge() );
+        self.setDisconnectedPlateCharge( self.getTotalCharge() );
       }
-      thisCircuit.updatePlateVoltages();
+      self.updatePlateVoltages();
 
       updateSegments( circuitConnection );
     } );
@@ -121,8 +121,8 @@ define( function( require ) {
     // no guarantee that capacitors have been constructed.
     this.capacitors.forEach( function( capacitor ) {
       capacitor.plateSeparationProperty.lazyLink( function() {
-        updateSegments( thisCircuit.circuitConnection );
-        thisCircuit.updatePlateVoltages();
+        updateSegments( self.circuitConnection );
+        self.updatePlateVoltages();
       } );
     } );
 
@@ -130,18 +130,18 @@ define( function( require ) {
     // capacators have been constructed.
     this.capacitors.forEach( function( capacitor ) {
       capacitor.plateSizeProperty.lazyLink( function() {
-        thisCircuit.updatePlateVoltages();
+        self.updatePlateVoltages();
       } );
     } );
 
     // update all segments when battery polarity changes.
     this.battery.polarityProperty.link( function( polarity ) {
-      updateSegments( thisCircuit.circuitConnection );
+      updateSegments( self.circuitConnection );
     } );
 
     // when the disconnected plate charge property changes, set the disconnected plate voltage.
     this.disconnectedPlateChargeProperty.lazyLink( function() {
-      thisCircuit.setDisconnectedPlateVoltage();
+      self.setDisconnectedPlateVoltage();
     } );
 
     /*
@@ -151,8 +151,8 @@ define( function( require ) {
      * necessary fields in the subclass may not be initialized.
      */
     this.battery.voltageProperty.lazyLink( function() {
-      if ( thisCircuit.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
-        thisCircuit.updatePlateVoltages();
+      if ( self.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        self.updatePlateVoltages();
       }
     } );
 

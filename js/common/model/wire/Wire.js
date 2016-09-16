@@ -41,12 +41,12 @@ define( function( require ) {
     PropertySet.call( this, {
       shape: shape
     } );
-    var thisWire = this;
+    var self = this;
 
     // Whenever a segment changes, update the shape.
     this.segments.forEach( function( segment ) {
       segment.multilink( [ 'startPoint', 'endPoint' ], function() {
-        thisWire.shape = thisWire.shapeCreator.createWireShape();
+        self.shape = self.shapeCreator.createWireShape();
       } );
     } );
   }

@@ -53,7 +53,7 @@ define( function( require ) {
   function VoltmeterNode( voltmeter, modelViewTransform, voltmeterVisibleProperty, tandem ) {
 
     Node.call( this );
-    var thisNode = this;
+    var self = this;
 
     // construct all parts of the probe
     this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty,
@@ -74,7 +74,7 @@ define( function( require ) {
     this.addChild( negativeWireNode );
 
     voltmeterVisibleProperty.link( function( voltmeterVisible ) {
-      thisNode.visible = voltmeterVisible;
+      self.visible = voltmeterVisible;
     } );
 
     // Register with tandem.  No need to handle dispose/removeInstance since this

@@ -57,7 +57,7 @@ define( function( require ) {
     TandemNode.call( this, {
       tandem: tandem
     } );
-    var thisNode = this;
+    var self = this;
 
     this.bulb = drawBulbNode( options );
     this.addChild( this.bulb );
@@ -69,18 +69,18 @@ define( function( require ) {
       if ( circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
         var targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
         if ( targetScaleFactor < 0.1 ) {
-          thisNode.bulb.haloNode.visible = false;
+          self.bulb.haloNode.visible = false;
         }
         else {
-          thisNode.bulb.haloNode.visible = true;
-          var scale = targetScaleFactor / thisNode.bulb.haloNode.transform.matrix.scaleVector.x;
-          thisNode.bulb.haloNode.scale( scale );
+          self.bulb.haloNode.visible = true;
+          var scale = targetScaleFactor / self.bulb.haloNode.transform.matrix.scaleVector.x;
+          self.bulb.haloNode.scale( scale );
         }
       }
 
       // Light bulb is not connected to the circuit, so no current can flow through it.
       else {
-        thisNode.bulb.haloNode.visible = false;
+        self.bulb.haloNode.visible = false;
       }
     };
 
