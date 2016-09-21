@@ -24,7 +24,9 @@ define( function( require ) {
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
-  var PROBE_TIP_SIZE = new Dimension2( 0.001, 0.0018 ); // meters
+  var PROBE_TIP_SIZE = new Dimension2( 0.0005, 0.0015 ); // meters
+
+  // Initial locations when dragged out of toolbox
   var BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
   var POSITIVE_PROBE_LOCATION = new Vector3( 0.0669, 0.0298, 0 );
   var NEGATIVE_PROBE_LOCATION = new Vector3( 0.0707, 0.0329, 0 );
