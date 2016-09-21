@@ -15,6 +15,9 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var Matrix3 = require( 'DOT/Matrix3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Vector3 = require( 'DOT/Vector3' );
+
+  var PROBE_TIP_OFFSET = new Vector3( 0.0003, 0, 0 );
 
   /**
    * Constructor for a VoltmeterShapeCreator.
@@ -32,7 +35,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'VoltmeterShapeCreator', VoltmeterShapeCreator );
-  
+
   return inherit( Object, VoltmeterShapeCreator, {
 
     /**
@@ -41,7 +44,8 @@ define( function( require ) {
      * @return {Shape}
      */
     getPositiveProbeTipShape: function() {
-      return this.getProbeTipShape( this.voltmeter.positiveProbeLocation, -this.modelViewTransform.yaw );
+      var origin = this.voltmeter.positiveProbeLocation.plus( PROBE_TIP_OFFSET );
+      return this.getProbeTipShape( origin, -this.modelViewTransform.yaw );
     },
 
     /**
@@ -50,7 +54,8 @@ define( function( require ) {
      * @return {Shape}
      */
     getNegativeProbeTipShape: function() {
-      return this.getProbeTipShape( this.voltmeter.negativeProbeLocation, -this.modelViewTransform.yaw );
+      var origin = this.voltmeter.negativeProbeLocation.plus( PROBE_TIP_OFFSET );
+      return this.getProbeTipShape( origin, -this.modelViewTransform.yaw );
     },
 
     /**
@@ -70,6 +75,6 @@ define( function( require ) {
       var s = r.transformed( t );
       return this.modelViewTransform.modelToViewShape( s );
 
-  }
+    }
   } );
 } );
