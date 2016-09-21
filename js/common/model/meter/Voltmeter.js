@@ -97,29 +97,37 @@ define( function( require ) {
     var updateValue = function() {
       if ( self.probesAreTouching() ) {
         self.value = 0;
-      }
-      else {
+        return;
+      } else {
         var positiveProbeShape = self.shapeCreator.getPositiveProbeTipShape();
         var negativeProbeShape = self.shapeCreator.getNegativeProbeTipShape();
 
-        // Ensure that the voltage is null when one (and only one) probe is on a disconnected lightbulb
-        // or battery
         if ( self.circuit.lightBulb ) {
+
+          // Set voltage to zero when both probes are touching the disconnected lightbulb
+          if ( touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) {
+            self.value = 0;
+            return;
+          }
+
+          // Set voltage to null when one (and only one) probe is on a disconnected lightbulb
           if ( ( touchingFreeLightBulb( positiveProbeShape ) && !touchingFreeLightBulb( negativeProbeShape ) ) ||
-               ( !touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) ) {
+            ( !touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) ) {
             self.value = null;
             return;
           }
+
+          // Set voltage to null when one (and only one) probe is on a disconnected battery
           else if ( ( touchingFreeBattery( positiveProbeShape ) && !touchingFreeBattery( negativeProbeShape ) ) ||
-                    ( !touchingFreeBattery( positiveProbeShape ) && touchingFreeBattery( negativeProbeShape ) ) ) {
+            ( !touchingFreeBattery( positiveProbeShape ) && touchingFreeBattery( negativeProbeShape ) ) ) {
             self.value = null;
             return;
           }
         }
 
-        // Ensure that voltage is null when one (and only one) probe is on a disconnected plate.
+        // Set voltage to null when one (and only one) probe is on a disconnected plate.
         if ( ( touchingFreePlate( positiveProbeShape ) && !touchingFreePlate( negativeProbeShape ) ) ||
-             ( !touchingFreePlate( positiveProbeShape ) && touchingFreePlate( negativeProbeShape ) ) ) {
+          ( !touchingFreePlate( positiveProbeShape ) && touchingFreePlate( negativeProbeShape ) ) ) {
           self.value = null;
           return;
         }
@@ -165,10 +173,9 @@ define( function( require ) {
      * Probes are touching if their tips intersect.
      *
      * @returns {boolean}
-     self.updateValue();
      */
     probesAreTouching: function() {
-      return this.shapeCreator.getPositiveProbeTipShape().intersectsBounds( this.shapeCreator.getNegativeProbeTipShape() );
+      return this.shapeCreator.getPositiveProbeTipShape().intersectsBounds( this.shapeCreator.getNegativeProbeTipShape().bounds );
     },
 
     /**
@@ -181,4 +188,3 @@ define( function( require ) {
     }
   } );
 } );
-
