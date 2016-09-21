@@ -14,7 +14,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Vector2 = require( 'DOT/Vector2' );
-  var Matrix3 = require( 'DOT/Matrix3' );
+  // var Matrix3 = require( 'DOT/Matrix3' );
 
   /**
    * Constructor.
