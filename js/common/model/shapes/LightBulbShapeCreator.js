@@ -68,10 +68,10 @@ define( function( require ) {
       baseShape.close();
 
       // transform to the location of the bulb
-      baseShape = baseShape.transformed( new Matrix3.translation(
-        this.lightBulb.location.x + topConductorWidth / 2,
-        this.lightBulb.location.y
-      ) );
+      // baseShape = baseShape.transformed( new Matrix3.translation(
+      //   this.lightBulb.location.x + topConductorWidth / 2,
+      //   this.lightBulb.location.y
+      // ) );
 
       return this.modelViewTransform.modelToViewShape( baseShape );
 
