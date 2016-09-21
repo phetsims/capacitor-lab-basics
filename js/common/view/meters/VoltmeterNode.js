@@ -43,6 +43,7 @@ define( function( require ) {
   var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
   var blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_black.png' );
 
+  // For a quick check of the probe tip bounds. Doesn't follow probes if dragged
   var DEBUG_BOUNDS = false;
 
   /**
