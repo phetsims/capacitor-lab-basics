@@ -111,6 +111,9 @@ define( function( require ) {
        */
       if ( circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
         self.setDisconnectedPlateCharge( self.getTotalCharge() );
+      } else {
+        // #130 Need to also call updateCurrentAmplitude() here?
+        // self.currentAmplitude = self.getTotalCharge() - self.previousTotalCharge * 60;
       }
       self.updatePlateVoltages();
 
@@ -466,9 +469,9 @@ define( function( require ) {
       if ( this.previousTotalCharge !== -1 ) {
         var dQ = Q - this.previousTotalCharge;
         this.currentAmplitude = dQ / dt;
+        // console.log( Q, dQ );
       }
       this.previousTotalCharge = Q;
     }
   } );
 } );
-
