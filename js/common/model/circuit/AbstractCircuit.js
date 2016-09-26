@@ -109,15 +109,8 @@ define( function( require ) {
        * When disconnecting the battery, set the disconnected plate charge to whatever the total plate charge was with
        * the battery connected.  Need to do this before changing the plate voltages property.
        */
-      // if ( circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
-      if ( circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ||
-        circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
+      if ( circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
         self.setDisconnectedPlateCharge( self.getTotalCharge() );
-      }
-
-      // #130 Need to also call updateCurrentAmplitude() here?
-      else {
-        // self.currentAmplitude = self.getTotalCharge() - self.previousTotalCharge * 60;
       }
       self.updatePlateVoltages();
 
