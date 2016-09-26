@@ -93,12 +93,16 @@ define( function( require ) {
       if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
         if ( Math.abs( this.capacitor.platesVoltage ) > MIN_VOLTAGE ) {
           this.capacitor.discharge( this.lightBulb.resistance, dt );
-        } else {
-          this.capacitor.platesVoltage = 0;
+        } 
+
+        else {
+          this.capacitor.platesVoltageProperty.set( 0 );
+          this.currentAmplitudeProperty.set( 0 );
+          this.previousTotalCharge = 0; // This fixes #130
         }
       }
 
-    },
+      },
 
     /**
      * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
@@ -291,12 +295,17 @@ define( function( require ) {
       // if the circuit is connected to the light bulb, I = V / R
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
         var current = this.capacitor.platesVoltage / this.lightBulb.resistance;
+
+        // The cutoff is doubled here for #58
         if ( Math.abs( current ) < 2 * MIN_VOLTAGE / this.lightBulb.resistance ) {
           current = 0;
         }
+
         this.currentAmplitudeProperty.set( current );
-      } else {
-        // otherise, I = dQ/dT
+      }
+
+      // otherise, I = dQ/dT
+      else {
         ParallelCircuit.prototype.updateCurrentAmplitude.call( this, dt );
       }
     }
