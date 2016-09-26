@@ -60,7 +60,7 @@ define( function( require ) {
 
     // arrow
     var arrowNode = new DragHandleArrowNode( ARROW_TIP_LOCATION, ARROW_TAIL_LOCATION );
-    arrowNode.addInputListener( new PlateAreaDragHandler( arrowNode, capacitor, modelViewTransform, valueRange,
+    this.addInputListener( new PlateAreaDragHandler( arrowNode, capacitor, modelViewTransform, valueRange,
       tandem.createTandem( 'inputListener' ) ) );
 
     // this.touchArea = arrowNode.bounds;
@@ -73,6 +73,10 @@ define( function( require ) {
     var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
     // @private
     this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, unitsMillimetersString + '<sup>' + 2 + '</sup>' );
+
+    // Make text part of the draggable area
+    this.valueNode.mouseArea = this.valueNode.bounds.dilated( 0 );
+    this.valueNode.touchArea = this.valueNode.bounds.dilated( 0 );
 
     // rendering order
     this.addChild( lineNode );

@@ -71,6 +71,10 @@ define( function( require ) {
     var millimeters = UnitsUtils.metersToMillimeters( capacitor.plateSeparation );
     this.valueNode = new DragHandleValueNode( separationString, millimeters, unitsMillimetersString );
 
+    // Make text part of the draggable area
+    this.valueNode.mouseArea = this.valueNode.bounds.dilated( 0 );
+    this.valueNode.touchArea = this.valueNode.bounds.dilated( 0 );
+
     // rendering order
     this.addChild( lineNode );
     this.addChild( arrowNode );
@@ -85,8 +89,8 @@ define( function( require ) {
     y = lineNode.bounds.minY - 2;
     arrowNode.translation = new Vector2( x, y );
 
-    x = arrowNode.bounds.maxX;
-    y = arrowNode.bounds.minY - this.valueNode.bounds.height / 2;
+    x = arrowNode.bounds.maxX + 5;
+    y = arrowNode.bounds.minY - this.valueNode.bounds.height / 2 + 5;
     this.valueNode.translation = new Vector2( x, y );
 
     // update when related model properties change
