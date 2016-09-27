@@ -23,7 +23,7 @@ define( function( require ) {
    * @param {CircuitConfig} config
    * @param {LightBulb} lightBulb
    * @param {CircuitSwitch} circuitSwitch
-   * @param {Tandem} tandem
+   * @param {Tandem|null} tandem - null if this is a temporary circuit used for calculations
    * @constructor
    */
   function LightBulbToSwitchWire( connectionPoint, config, lightBulb, circuitSwitch, tandem ) {

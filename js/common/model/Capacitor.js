@@ -64,6 +64,7 @@ define( function( require ) {
     // @private
     this.shapeCreator = new CapacitorShapeCreator( this, modelViewTransform );
 
+    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     var propertySetOptions = tandem ? {
       tandemSet: {
         plateSize: tandem.createTandem( 'plateSizeProperty' ),

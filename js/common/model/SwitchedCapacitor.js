@@ -36,6 +36,7 @@ define( function( require ) {
     };
     Capacitor.call( this, location, config.modelViewTransform, tandem, options );
 
+    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     this.topCircuitSwitch = new CircuitSwitch( 'top', config, circuitConnectionProperty,
       tandem ? tandem.createTandem( 'topCircuitSwitch' ) : null );
     this.bottomCircuitSwitch = new CircuitSwitch( 'bottom', config, circuitConnectionProperty,

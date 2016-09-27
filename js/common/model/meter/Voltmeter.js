@@ -37,7 +37,7 @@ define( function( require ) {
    * @param {AbstractCircuit} circuit
    * @param {Bounds2} dragBounds
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Tandem} tandem
+   * @param {Tandem|null} tandem - null if this is a temporary component used for calculations
    * @constructor
    */
   function Voltmeter( circuit, dragBounds, modelViewTransform, tandem ) {

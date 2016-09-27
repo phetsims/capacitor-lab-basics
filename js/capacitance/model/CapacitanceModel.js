@@ -47,6 +47,7 @@ define( function( require ) {
     this.circuit = new CapacitanceCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
     this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
 
+    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     var circuit = this.circuit;
     this.capacitanceMeter = new BarMeter( this.circuit, this.capacitanceMeterVisibleProperty,
       function() {

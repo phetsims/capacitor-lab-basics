@@ -28,6 +28,7 @@ define( function( require ) {
    */
   function BarMeter( circuit, visibleProperty, valueFunction, tandem ) {
 
+    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     // @public
     PropertySet.call( this, {
       value: valueFunction( circuit )

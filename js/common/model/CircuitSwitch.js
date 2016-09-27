@@ -69,7 +69,8 @@ define( function( require ) {
                          CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP :
                          CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
 
-    // add the switch wire that spans two connection points. Default connection is to the battery.
+    // Add the switch wire that spans two connection points. Default connection is to the battery.
+    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations.
     this.switchSegment = WireSegment.createSwitchSegment( this.hingePoint, this.activeConnection,
       tandem ? tandem.createTandem( 'switchSegment' ) : null );
 

@@ -24,7 +24,7 @@ define( function( require ) {
    * @param {CircuitConfig} config
    * @param {Battery} battery
    * @param {CircuitSwitch} circuitSwitch
-   * @param {Tandem} tandem
+   * @param {Tandem|null} tandem - null if this is part of a temporary circuit used for calculations
    * @constructor
    */
   function BatteryToSwitchWire( connectionPoint, config, battery, circuitSwitch, tandem ) {

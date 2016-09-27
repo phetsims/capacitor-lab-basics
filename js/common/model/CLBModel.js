@@ -25,7 +25,7 @@ define( function( require ) {
 
   /**
    * Constructor for the CLBModel.
-   * @param {Tandem} tandem
+   * @param {Tandem|null} tandem - null if this is part of a temporary circuit used for calculations
    *
    * @constructor
    */

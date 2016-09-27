@@ -37,7 +37,8 @@ define( function( require ) {
    * Constructor for a Parallel Circuit.
    *
    * @param {CircuitConfig} config
-   * @param {Tandem} tandem
+   * @param {Tandem|null} tandem - null if this is a temporary circuit used for calculations
+
    * @constructor
    */
   function ParallelCircuit( config, tandem ) {

@@ -32,6 +32,7 @@ define( function( require ) {
    */
   function AbstractCircuit( config, createCircuitComponents, createWires, tandem ) {
 
+    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     var propertySetOptions = tandem ? {
       tandemSet: {
         currentAmplitude: tandem.createTandem( 'currentAmplitudeProperty' ),
