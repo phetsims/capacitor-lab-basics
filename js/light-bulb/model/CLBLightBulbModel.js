@@ -85,10 +85,6 @@ define( function( require ) {
       },
       tandem ? tandem.createTandem( 'storedEnergyMeter' ) : null );
 
-    // this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty, tandem );
-    // this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.plateChargeMeterVisibleProperty, tandem );
-    // this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.storedEnergyMeterVisibleProperty, tandem );
-
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
 
     this.circuit.maxPlateCharge = this.getMaxPlateCharge();
