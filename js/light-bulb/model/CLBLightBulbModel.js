@@ -46,8 +46,21 @@ define( function( require ) {
     this.switchUsedProperty = switchUsedProperty; // @public
     this.modelViewTransform = modelViewTransform; // @private
 
+    var excludeOpenState = false;
+
+    var twoState = [
+      CircuitConnectionEnum.BATTERY_CONNECTED,
+      CircuitConnectionEnum.LIGHT_BULB_CONNECTED
+    ];
+    var threeState = [
+      CircuitConnectionEnum.BATTERY_CONNECTED,
+      CircuitConnectionEnum.OPEN_CIRCUIT,
+      CircuitConnectionEnum.LIGHT_BULB_CONNECTED
+    ];
+
     // configuration info for the circuit
     var circuitConfig = new CircuitConfig( {
+      circuitConnections: excludeOpenState ? twoState : threeState,
       modelViewTransform: modelViewTransform,
       batteryLocation: BATTERY_LOCATION,
       lightBulbXSpacing: LIGHT_BULB_X_SPACING,
