@@ -51,7 +51,7 @@ define( function( require ) {
     /**
      * Create a custom dielectric material with the provided dielectric constant.
      * There is no tandem instance here because this sim does not currently support
-     * custom dielectricMaterials, so there is no useful information to be written out.
+     * custom dielectric materials, so there is no useful information to be written out.
      * See https://github.com/phetsims/capacitor-lab-basics/issues/81
      *
      * @param  {number}
