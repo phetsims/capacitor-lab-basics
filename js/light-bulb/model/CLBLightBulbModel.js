@@ -46,7 +46,14 @@ define( function( require ) {
     this.switchUsedProperty = switchUsedProperty; // @public
     this.modelViewTransform = modelViewTransform; // @private
 
-    var excludeOpenState = false;
+    // A requested PhET-iO customization is to simplify the switch into a 
+    // single-pole double-throw switch for the light-bulb circuit instead of 
+    // the default three-position version (phet-io/569). 
+    // Enable with the switch=twoState query parameter.
+    var useTwoStateSwitch = false;
+    if ( phet.chipper.getQueryParameter( 'switch' ) === 'twoState' ) {
+      useTwoStateSwitch = true;
+    }
 
     var twoState = [
       CircuitConnectionEnum.BATTERY_CONNECTED,
@@ -60,7 +67,7 @@ define( function( require ) {
 
     // configuration info for the circuit
     var circuitConfig = new CircuitConfig( {
-      circuitConnections: excludeOpenState ? twoState : threeState,
+      circuitConnections: useTwoStateSwitch ? twoState : threeState,
       modelViewTransform: modelViewTransform,
       batteryLocation: BATTERY_LOCATION,
       lightBulbXSpacing: LIGHT_BULB_X_SPACING,
