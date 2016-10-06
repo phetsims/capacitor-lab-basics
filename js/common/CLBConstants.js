@@ -88,9 +88,6 @@ define( function( require ) {
     // Wire
     WIRE_THICKNESS: 0.0005, // meters
 
-    // Plate Charge control
-    PLATE_CHARGE_CONTROL_SNAP_TO_ZERO_THRESHOLD: 1.5E-13,
-
     //----------------------------------------------------------------------------
     // View
     //----------------------------------------------------------------------------
