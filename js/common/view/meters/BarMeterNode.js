@@ -62,6 +62,7 @@ define( function( require ) {
 
     var self = this;
 
+    this.value = 0;
     this.maxValue = Math.pow( 10, exponent ); // max value for this meter
 
     this.meter = meter; // @private
@@ -75,7 +76,7 @@ define( function( require ) {
     } );
 
     // @private bar node which represents the magnitude of the meter
-    this.barNode = new BarNode( barColor, meter.value, this.maxValue );
+    this.barNode = new BarNode( barColor, meter.valueProperty.get(), this.maxValue );
 
     // @public value with hundredths precision and units, set in setValue()
     this.valueNode = new Text( '', {
@@ -132,9 +133,9 @@ define( function( require ) {
      * @param {number} value
      */
     setValue: function( value ) {
-      if ( value < 0 ) {
-        console.error( 'value must be >= 0 : ' + value );
-      }
+
+      assert && assert( value >= 0, 'value must be >= 0 : ' + value );
+
       if ( value !== this.value ) {
 
         this.value = value;
@@ -153,7 +154,7 @@ define( function( require ) {
     },
 
     /**
-     * Update the overload indicator arrow  visibility and position.
+     * Update the overload indicator arrow visibility and position.
      */
     updateArrow: function() {
       // update position
@@ -164,20 +165,11 @@ define( function( require ) {
     },
 
     updateLayout: function() {
-      // layout
       this.barNode.leftCenter = this.axisLine.leftCenter;
       this.valueNode.rightCenter = this.axisLine.leftCenter.minusXY( VALUE_METER_SPACING, 0 );
     },
 
     getMaxWidth: function() {
-
-      // var percent = Math.min( 1, Math.abs( this.value ) / this.maxValue );
-      // var x = ( 1 - percent ) * BAR_SIZE.width;
-      // var width = BAR_SIZE.width - x;
-      // this.setRect( 0, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, width, BAR_SIZE.height );
-
-      // var maxRectangle = new Rectangle( 0, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, width, BAR_SIZE.height );
-
       return BAR_SIZE.width + BASE_LINE_LENGTH * 2 + BASE_LINE_OFFSET + VALUE_METER_SPACING;
     }
   }, {
@@ -190,7 +182,12 @@ define( function( require ) {
      * @constructor
      */
     createCapacitanceBarMeterNode: function( meter ) {
-      return new BarMeterNode( meter, CLBConstants.CAPACITANCE_COLOR, CLBConstants.CAPACITANCE_METER_VALUE_EXPONENT, unitsPicoFaradsString, capacitanceString );
+      return new BarMeterNode(
+        meter,
+        CLBConstants.CAPACITANCE_COLOR,
+        CLBConstants.CAPACITANCE_METER_VALUE_EXPONENT,
+        unitsPicoFaradsString,
+        capacitanceString );
     },
     /**
      * Factory constructor for a PlateChargeBarMeterNode.
@@ -208,7 +205,12 @@ define( function( require ) {
      * @constructor
      */
     createStoredEnergyBarMeterNode: function( meter ) {
-      return new BarMeterNode( meter, CLBConstants.STORED_ENERGY_COLOR, CLBConstants.STORED_ENERGY_METER_VALUE_EXPONENT, unitsPicoJoulesString, storedEnergyString );
+      return new BarMeterNode(
+        meter,
+        CLBConstants.STORED_ENERGY_COLOR,
+        CLBConstants.STORED_ENERGY_METER_VALUE_EXPONENT,
+        unitsPicoJoulesString,
+        storedEnergyString );
     }
   } );
 
@@ -222,6 +224,8 @@ define( function( require ) {
    * @constructor
    */
   function BarNode( barColor, value, maxValue ) {
+
+    assert && assert( value >= 0, 'value must be >= 0 : ' + value );
 
     this.value = value;
     this.maxValue = maxValue;
@@ -241,6 +245,9 @@ define( function( require ) {
   inherit( Rectangle, BarNode, {
 
     setValue: function( value ) {
+
+      assert && assert( value >= 0, 'value must be >= 0 : ' + value );
+
       if ( value !== this.value ) {
         this.value = value;
         this.update();
@@ -264,7 +271,14 @@ define( function( require ) {
    * @constructor
    */
   function PlateChargeBarMeterNode( meter ) {
-    BarMeterNode.call( this, meter, CLBConstants.POSITIVE_CHARGE_COLOR, CLBConstants.PLATE_CHARGE_METER_VALUE_EXPONENT, unitsPicoCoulombsString, plateChargeString );
+    BarMeterNode.call(
+      this,
+      meter,
+      CLBConstants.POSITIVE_CHARGE_COLOR,
+      CLBConstants.PLATE_CHARGE_METER_VALUE_EXPONENT,
+      unitsPicoCoulombsString,
+      plateChargeString
+    );
   }
 
   capacitorLabBasics.register( 'PlateChargeBarMeterNode', PlateChargeBarMeterNode );
