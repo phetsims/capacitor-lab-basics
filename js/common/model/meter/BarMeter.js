@@ -30,6 +30,7 @@ define( function( require ) {
 
     var properties = {
       value: {
+        value: valueFunction( circuit ),
         tandem: tandem ? tandem.createTandem( 'valueProperty' ) : null,
         phetioValueType: TNumber()
       }
@@ -37,7 +38,7 @@ define( function( require ) {
 
     // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     // @public
-    PropertySet.call( this, { value: valueFunction( circuit ) }, properties );
+    PropertySet.call( this, null, null, properties );
     this.visibleProperty = visibleProperty;
     var self = this;
 
