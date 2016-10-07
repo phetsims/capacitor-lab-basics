@@ -44,40 +44,39 @@ define( function( require ) {
 
     var properties = {
       visible: {
+        value: false,
         tandem: tandem ? tandem.createTandem( 'visibleProperty' ) : null,
         phetioValueType: TBoolean
       },
       inUserControl: {
+        value: false,
         tandem: tandem ? tandem.createTandem( 'inUserControlProperty' ) : null,
         phetioValueType: TBoolean
       },
       bodyLocation: {
+        value: BODY_LOCATION,
         tandem: tandem ? tandem.createTandem( 'bodyLocationProperty' ) : null,
         phetioValueType: TVector3
       },
       positiveProbeLocation: {
+        value: POSITIVE_PROBE_LOCATION,
         tandem: tandem ? tandem.createTandem( 'positiveProbeLocationProperty' ) : null,
         phetioValueType: TVector3
       },
       negativeProbeLocation: {
+        value: NEGATIVE_PROBE_LOCATION,
         tandem: tandem ? tandem.createTandem( 'negativeProbeLocationProperty' ) : null,
         phetioValueType: TVector3
       },
       value: {
+        value: null, // This is a number. Will be set by updateValue
         tandem: tandem ? tandem.createTandem( 'valueProperty' ) : null,
         phetioValueType: TNumber( { units: 'volts' } )
       }
     };
 
     // @public
-    PropertySet.call( this, {
-      visible: false,
-      inUserControl: false,
-      bodyLocation: BODY_LOCATION,
-      positiveProbeLocation: POSITIVE_PROBE_LOCATION,
-      negativeProbeLocation: NEGATIVE_PROBE_LOCATION,
-      value: null // This is a number. Will be properly initialized by updateValue
-    }, properties );
+    PropertySet.call( this, null, null, properties );
 
     var self = this;
 
