@@ -55,19 +55,16 @@ define( function( require ) {
   function Battery( location, voltage, modelViewTransform, tandem ) {
 
     // @public
-    PropertySet.call( this, {
-      voltage: voltage,
-      polarity: CLBConstants.POLARITY.POSITIVE
-    }, {
-      properties: {
-        voltage: {
-          tandem: tandem ? tandem.createTandem( 'voltageProperty' ) : null,
-          phetioValueType: TNumber( { units: 'volts' } )
-        },
-        polarity: {
-          tandem: tandem ? tandem.createTandem( 'polarityProperty' ) : null,
-          phetioValueType: TString
-        }
+    PropertySet.call( this, null, null, {
+      voltage: {
+        value: voltage,
+        tandem: tandem ? tandem.createTandem( 'voltageProperty' ) : null,
+        phetioValueType: TNumber( { units: 'volts' } )
+      },
+      polarity: {
+        value: CLBConstants.POLARITY.POSITIVE,
+        tandem: tandem ? tandem.createTandem( 'polarityProperty' ) : null,
+        phetioValueType: TString
       }
     } );
 
