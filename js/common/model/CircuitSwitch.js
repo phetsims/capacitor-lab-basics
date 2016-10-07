@@ -53,16 +53,14 @@ define( function( require ) {
     this.activeConnection = this.getConnection( circuitConnectionProperty.value );
     var self = this;
 
-    PropertySet.call( this, {
-      angle: this.initialAngle
-    }, {
-      tandemSet: {
-        angle: tandem && tandem.createTandem( 'angleProperty' )
-      },
-      phetioValueTypeSet: {
-        angle: TNumber( { units: 'radians' } )
+    var properties = {
+      angle: {
+        tandem: tandem && tandem.createTandem( 'angleProperty' ),
+        phetioValueType: TNumber( { units: 'radians' } )
       }
-    } );
+    };
+
+    PropertySet.call( this, { angle: this.initialAngle }, properties );
 
     // Assign string identifying connection point
     var connectionName = ( positionLabel === 'top' ) ?
