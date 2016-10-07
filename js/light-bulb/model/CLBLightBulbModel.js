@@ -46,9 +46,9 @@ define( function( require ) {
     this.switchUsedProperty = switchUsedProperty; // @public
     this.modelViewTransform = modelViewTransform; // @private
 
-    // A requested PhET-iO customization is to simplify the switch into a 
-    // single-pole double-throw switch for the light-bulb circuit instead of 
-    // the default three-position version (phet-io/569). 
+    // A requested PhET-iO customization is to simplify the switch into a
+    // single-pole double-throw switch for the light-bulb circuit instead of
+    // the default three-position version (phet-io/569).
     // Enable with the switch=twoState query parameter.
     var useTwoStateSwitch = false;
     if ( phet.chipper.getQueryParameter( 'switch' ) === 'twoState' ) {
