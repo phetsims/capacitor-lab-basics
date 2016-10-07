@@ -67,10 +67,12 @@ define( function( require ) {
     // Allow null instead of tandem if this component is part of a temporary circuit used for calculations TODO use a better pattern
     var properties = {
       plateSize: {
+        value: new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth ), // Square plates.
         tandem: tandem ? tandem.createTandem( 'plateSizeProperty' ) : null,
         phetioValueType: TBounds3
       },
       plateSeparation: {
+        value: options.plateSeparation,
         tandem: tandem ? tandem.createTandem( 'plateSeparationProperty' ) : null,
         phetioValueType: TNumber( {
           units: 'meters',
@@ -78,16 +80,19 @@ define( function( require ) {
         } )
       },
       platesVoltage: {
+        value: 0, // zero until it's connected into a circuit
         tandem: tandem ? tandem.createTandem( 'platesVoltageProperty' ) : null,
         phetioValueType: TNumber( {
           units: 'volts'
         } )
       },
       dielectricMaterial: {
+        value: options.dielectricMaterial,
         tandem: tandem ? tandem.createTandem( 'dielectricMaterialProperty' ) : null,
         phetioValueType: TDielectricMaterial
       },
       dielectricOffset: {
+        value: options.dielectricOffset, // in meters, default is totally outside of capacitor plates.
         tandem: tandem ? tandem.createTandem( 'dielectricOffsetProperty' ) : null,
         phetioValueType: TNumber( {
           units: 'meters'
@@ -96,13 +101,7 @@ define( function( require ) {
     };
 
     // @public
-    PropertySet.call( this, {
-      plateSize: new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth ), // Square plates.
-      plateSeparation: options.plateSeparation,
-      platesVoltage: 0, // zero until it's connected into a circuit
-      dielectricMaterial: options.dielectricMaterial,
-      dielectricOffset: options.dielectricOffset // in meters, default is totally outside of capacitor plates.
-    }, properties );
+    PropertySet.call( this, null, null, properties );
 
     // @private - track the previous capacitance to adjust the inital voltage when discharging, see
     // updateDischargeParameters() below.
