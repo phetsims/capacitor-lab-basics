@@ -42,6 +42,33 @@ define( function( require ) {
    */
   function Voltmeter( circuit, dragBounds, modelViewTransform, tandem ) {
 
+    var properties = {
+      visible: {
+        tandem: tandem ? tandem.createTandem( 'visibleProperty' ) : null,
+        phetioValueType: TBoolean
+      },
+      inUserControl: {
+        tandem: tandem ? tandem.createTandem( 'inUserControlProperty' ) : null,
+        phetioValueType: TBoolean
+      },
+      bodyLocation: {
+        tandem: tandem ? tandem.createTandem( 'bodyLocationProperty' ) : null,
+        phetioValueType: TVector3
+      },
+      positiveProbeLocation: {
+        tandem: tandem ? tandem.createTandem( 'positiveProbeLocationProperty' ) : null,
+        phetioValueType: TVector3
+      },
+      negativeProbeLocation: {
+        tandem: tandem ? tandem.createTandem( 'negativeProbeLocationProperty' ) : null,
+        phetioValueType: TVector3
+      },
+      value: {
+        tandem: tandem ? tandem.createTandem( 'valueProperty' ) : null,
+        phetioValueType: TNumber( { units: 'volts' } )
+      }
+    };
+
     // @public
     PropertySet.call( this, {
       visible: false,
@@ -50,24 +77,8 @@ define( function( require ) {
       positiveProbeLocation: POSITIVE_PROBE_LOCATION,
       negativeProbeLocation: NEGATIVE_PROBE_LOCATION,
       value: null // This is a number. Will be properly initialized by updateValue
-    }, tandem ? {
-      tandemSet: {
-        visible: tandem.createTandem( 'visibleProperty' ),
-        inUserControl: tandem.createTandem( 'inUserControlProperty' ),
-        bodyLocation: tandem.createTandem( 'bodyLocationProperty' ),
-        positiveProbeLocation: tandem.createTandem( 'positiveProbeLocationProperty' ),
-        negativeProbeLocation: tandem.createTandem( 'negativeProbeLocationProperty' ),
-        value: tandem.createTandem( 'valueProperty' )
-      },
-      phetioValueTypeSet: {
-        visible: TBoolean,
-        inUserControl: TBoolean,
-        bodyLocation: TVector3,
-        positiveProbeLocation: TVector3,
-        negativeProbeLocation: TVector3,
-        value: TNumber( { units: 'volts' } )
-      }
-    } : {} );
+    }, properties );
+
     var self = this;
 
     this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform ); // @public (read-only)
