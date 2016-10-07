@@ -33,24 +33,26 @@ define( function( require ) {
   function AbstractCircuit( config, createCircuitComponents, createWires, tandem ) {
 
     // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
-    var propertySetOptions = tandem ? {
-      tandemSet: {
-        currentAmplitude: tandem.createTandem( 'currentAmplitudeProperty' ),
-        circuitConnection: tandem.createTandem( 'circuitConnectionProperty' ),
-        disconnectedPlateCharge: tandem.createTandem( 'disconnectedPlateChargeProperty' )
+    var properties = {
+      currentAmplitude: {
+        tandem: tandem ? tandem.createTandem( 'currentAmplitudeProperty' ) : null,
+        phetioValueType: TNumber( { units: 'amperes' } )
       },
-      phetioValueTypeSet: {
-        currentAmplitude: TNumber( { units: 'amperes' } ),
-        circuitConnection: TString,
-        disconnectedPlateCharge: TNumber( { units: 'coulombs' } )
+      circuitConnection: {
+        tandem: tandem ? tandem.createTandem( 'circuitConnectionProperty' ) : null,
+        phetioValueType: TString
+      },
+      disconnectedPlateCharge: {
+        tandem: tandem ? tandem.createTandem( 'disconnectedPlateChargeProperty' ) : null,
+        phetioValueType: TNumber( { units: 'coulombs' } )
       }
-    } : {};
+    };
 
     PropertySet.call( this, {
       currentAmplitude: 0,
       circuitConnection: CircuitConnectionEnum.BATTERY_CONNECTED,
       disconnectedPlateCharge: 0
-    }, propertySetOptions );
+    }, properties );
 
     var self = this;
 
