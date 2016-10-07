@@ -35,24 +35,23 @@ define( function( require ) {
     // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     var properties = {
       currentAmplitude: {
+        value: 0,
         tandem: tandem ? tandem.createTandem( 'currentAmplitudeProperty' ) : null,
         phetioValueType: TNumber( { units: 'amperes' } )
       },
       circuitConnection: {
+        value: CircuitConnectionEnum.BATTERY_CONNECTED,
         tandem: tandem ? tandem.createTandem( 'circuitConnectionProperty' ) : null,
         phetioValueType: TString
       },
       disconnectedPlateCharge: {
+        value: 0,
         tandem: tandem ? tandem.createTandem( 'disconnectedPlateChargeProperty' ) : null,
         phetioValueType: TNumber( { units: 'coulombs' } )
       }
     };
 
-    PropertySet.call( this, {
-      currentAmplitude: 0,
-      circuitConnection: CircuitConnectionEnum.BATTERY_CONNECTED,
-      disconnectedPlateCharge: 0
-    }, properties );
+    PropertySet.call( this, null, null, properties );
 
     var self = this;
 
