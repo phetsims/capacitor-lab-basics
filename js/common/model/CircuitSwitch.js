@@ -55,12 +55,13 @@ define( function( require ) {
 
     var properties = {
       angle: {
+        value: this.initialAngle,
         tandem: tandem && tandem.createTandem( 'angleProperty' ),
         phetioValueType: TNumber( { units: 'radians' } )
       }
     };
 
-    PropertySet.call( this, { angle: this.initialAngle }, properties );
+    PropertySet.call( this, null, null, properties );
 
     // Assign string identifying connection point
     var connectionName = ( positionLabel === 'top' ) ?
