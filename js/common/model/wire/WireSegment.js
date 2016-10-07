@@ -28,22 +28,22 @@ define( function( require ) {
    */
   function WireSegment( startPoint, endPoint, tandem ) {
 
-    var propertySetOptions = tandem ? {
-      tandemSet: {
-        startPoint: tandem.createTandem( 'startPointProperty' ),
-        endPoint: tandem.createTandem( 'endPointProperty' )
+    var properties = {
+      startPoint: {
+        tandem: tandem ? tandem.createTandem( 'startPointProperty' ) : null,
+        phetioValueType: TVector2,
       },
-      phetioValueTypeSet: {
-        startPoint: TVector2,
-        endPoint: TVector2
+      endPoint: {
+        tandem: tandem ? tandem.createTandem( 'endPointProperty' ) : null,
+        phetioValueType: TVector2
       }
-    } : {};
+    };
 
     // @public
     PropertySet.call( this, {
       startPoint: startPoint,
       endPoint: endPoint
-    }, propertySetOptions );
+    }, properties );
   }
 
   capacitorLabBasics.register( 'WireSegment', WireSegment );
