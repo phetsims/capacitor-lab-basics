@@ -64,23 +64,36 @@ define( function( require ) {
     // @private
     this.shapeCreator = new CapacitorShapeCreator( this, modelViewTransform );
 
-    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
-    var propertySetOptions = tandem ? {
-      tandemSet: {
-        plateSize: tandem.createTandem( 'plateSizeProperty' ),
-        plateSeparation: tandem.createTandem( 'plateSeparationProperty' ),
-        platesVoltage: tandem.createTandem( 'platesVoltageProperty' ),
-        dielectricMaterial: tandem.createTandem( 'dielectricMaterialProperty' ),
-        dielectricOffset: tandem.createTandem( 'dielectricOffsetProperty' )
+    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations TODO use a better pattern
+    var properties = {
+      plateSize: {
+        tandem: tandem ? tandem.createTandem( 'plateSizeProperty' ) : null,
+        phetioValueType: TBounds3
       },
-      phetioValueTypeSet: {
-        plateSize: TBounds3,
-        plateSeparation: TNumber( { units: 'meters', range: CLBConstants.PLATE_SEPARATION_RANGE } ),
-        platesVoltage: TNumber( { units: 'volts' } ),
-        dielectricMaterial: TDielectricMaterial,
-        dielectricOffset: TNumber( { units: 'meters' } )
+      plateSeparation: {
+        tandem: tandem ? tandem.createTandem( 'plateSeparationProperty' ) : null,
+        phetioValueType: TNumber( {
+          units: 'meters',
+          range: CLBConstants.PLATE_SEPARATION_RANGE
+        } )
+      },
+      platesVoltage: {
+        tandem: tandem ? tandem.createTandem( 'platesVoltageProperty' ) : null,
+        phetioValueType: TNumber( {
+          units: 'volts'
+        } )
+      },
+      dielectricMaterial: {
+        tandem: tandem ? tandem.createTandem( 'dielectricMaterialProperty' ) : null,
+        phetioValueType: TDielectricMaterial
+      },
+      dielectricOffset: {
+        tandem: tandem ? tandem.createTandem( 'dielectricOffsetProperty' ) : null,
+        phetioValueType: TNumber( {
+          units: 'meters'
+        } )
       }
-    } : {};
+    };
 
     // @public
     PropertySet.call( this, {
@@ -89,7 +102,7 @@ define( function( require ) {
       platesVoltage: 0, // zero until it's connected into a circuit
       dielectricMaterial: options.dielectricMaterial,
       dielectricOffset: options.dielectricOffset // in meters, default is totally outside of capacitor plates.
-    }, propertySetOptions );
+    }, properties );
 
     // @private - track the previous capacitance to adjust the inital voltage when discharging, see
     // updateDischargeParameters() below.
