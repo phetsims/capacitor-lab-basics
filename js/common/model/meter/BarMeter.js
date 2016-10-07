@@ -28,18 +28,16 @@ define( function( require ) {
    */
   function BarMeter( circuit, visibleProperty, valueFunction, tandem ) {
 
+    var properties = {
+      value: {
+        tandem: tandem ? tandem.createTandem( 'valueProperty' ) : null,
+        phetioValueType: TNumber()
+      }
+    };
+
     // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     // @public
-    PropertySet.call( this, {
-      value: valueFunction( circuit )
-    }, tandem ? {
-      tandemSet: {
-        value: tandem.createTandem( 'valueProperty' )
-      },
-      phetioValueTypeSet: {
-        value: TNumber() // Should be overridden by descendants
-      }
-    } : {} );
+    PropertySet.call( this, { value: valueFunction( circuit ) }, properties );
     this.visibleProperty = visibleProperty;
     var self = this;
 
