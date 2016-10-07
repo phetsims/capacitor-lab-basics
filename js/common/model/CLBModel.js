@@ -31,28 +31,40 @@ define( function( require ) {
    */
   function CLBModel( tandem ) {
 
-    var propertySetOptions = tandem ? {
-      tandemSet: {
-        plateChargesVisible: tandem.createTandem( 'plateChargesVisibleProperty' ),
-        eFieldVisible: tandem.createTandem( 'eFieldVisibleProperty' ),
-        capacitanceMeterVisible: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
-        plateChargeMeterVisible: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
-        storedEnergyMeterVisible: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
-        barGraphsVisible: tandem.createTandem( 'barGraphsVisibleProperty' ),
-        voltmeterVisible: tandem.createTandem( 'voltmeterVisibleProperty' ),
-        currentVisible: tandem.createTandem( 'currentVisibleProperty' )
+    var properties = {
+      plateChargesVisible: {
+        tandem: tandem ? tandem.createTandem( 'plateChargesVisibleProperty' ) : null,
+        phetioValueType: TBoolean
       },
-      phetioValueTypeSet: {
-        plateChargesVisible: TBoolean,
-        eFieldVisible: TBoolean,
-        capacitanceMeterVisible: TBoolean,
-        plateChargeMeterVisible: TBoolean,
-        storedEnergyMeterVisible: TBoolean,
-        barGraphsVisible: TBoolean,
-        voltmeterVisible: TBoolean,
-        currentVisible: TBoolean
+      eFieldVisible: {
+        tandem: tandem ? tandem.createTandem( 'eFieldVisibleProperty' ) : null,
+        phetioValueType: TBoolean
+      },
+      capacitanceMeterVisible: {
+        tandem: tandem ? tandem.createTandem( 'capacitanceMeterVisibleProperty' ) : null,
+        phetioValueType: TBoolean
+      },
+      plateChargeMeterVisible: {
+        tandem: tandem ? tandem.createTandem( 'plateChargeMeterVisibleProperty' ) : null,
+        phetioValueType: TBoolean
+      },
+      storedEnergyMeterVisible: {
+        tandem: tandem ? tandem.createTandem( 'storedEnergyMeterVisibleProperty' ) : null,
+        phetioValueType: TBoolean
+      },
+      barGraphsVisible: {
+        tandem: tandem ? tandem.createTandem( 'barGraphsVisibleProperty' ) : null,
+        phetioValueType: TBoolean
+      },
+      voltmeterVisible: {
+        tandem: tandem ? tandem.createTandem( 'voltmeterVisibleProperty' ) : null,
+        phetioValueType: TBoolean
+      },
+      currentVisible: {
+        tandem: tandem ? tandem.createTandem( 'currentVisibleProperty' ) : null,
+        phetioValueType: TBoolean
       }
-    } : {};
+    };
 
     // public
     PropertySet.call( this, {
@@ -64,7 +76,7 @@ define( function( require ) {
       barGraphsVisible: true,
       voltmeterVisible: false,
       currentVisible: true
-    }, propertySetOptions );
+    }, properties );
   }
 
   capacitorLabBasics.register( 'CLBModel', CLBModel );
