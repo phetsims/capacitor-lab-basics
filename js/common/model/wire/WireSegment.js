@@ -30,20 +30,19 @@ define( function( require ) {
 
     var properties = {
       startPoint: {
+        value: startPoint,
         tandem: tandem ? tandem.createTandem( 'startPointProperty' ) : null,
         phetioValueType: TVector2,
       },
       endPoint: {
+        value: endPoint,
         tandem: tandem ? tandem.createTandem( 'endPointProperty' ) : null,
         phetioValueType: TVector2
       }
     };
 
     // @public
-    PropertySet.call( this, {
-      startPoint: startPoint,
-      endPoint: endPoint
-    }, properties );
+    PropertySet.call( this, null, null, properties );
   }
 
   capacitorLabBasics.register( 'WireSegment', WireSegment );
