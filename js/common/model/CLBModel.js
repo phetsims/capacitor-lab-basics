@@ -33,50 +33,49 @@ define( function( require ) {
 
     var properties = {
       plateChargesVisible: {
+        value: CLBConstants.PLATE_CHARGES_VISIBLE,
         tandem: tandem ? tandem.createTandem( 'plateChargesVisibleProperty' ) : null,
         phetioValueType: TBoolean
       },
       eFieldVisible: {
+        value: CLBConstants.EFIELD_VISIBLE,
         tandem: tandem ? tandem.createTandem( 'eFieldVisibleProperty' ) : null,
         phetioValueType: TBoolean
       },
       capacitanceMeterVisible: {
+        value: true,
         tandem: tandem ? tandem.createTandem( 'capacitanceMeterVisibleProperty' ) : null,
         phetioValueType: TBoolean
       },
       plateChargeMeterVisible: {
+        value: false,
         tandem: tandem ? tandem.createTandem( 'plateChargeMeterVisibleProperty' ) : null,
         phetioValueType: TBoolean
       },
       storedEnergyMeterVisible: {
+        value: false,
         tandem: tandem ? tandem.createTandem( 'storedEnergyMeterVisibleProperty' ) : null,
         phetioValueType: TBoolean
       },
       barGraphsVisible: {
+        value: true,
         tandem: tandem ? tandem.createTandem( 'barGraphsVisibleProperty' ) : null,
         phetioValueType: TBoolean
       },
       voltmeterVisible: {
+        value: false,
         tandem: tandem ? tandem.createTandem( 'voltmeterVisibleProperty' ) : null,
         phetioValueType: TBoolean
       },
       currentVisible: {
+        value: true,
         tandem: tandem ? tandem.createTandem( 'currentVisibleProperty' ) : null,
         phetioValueType: TBoolean
       }
     };
 
     // public
-    PropertySet.call( this, {
-      plateChargesVisible: CLBConstants.PLATE_CHARGES_VISIBLE,
-      eFieldVisible: CLBConstants.EFIELD_VISIBLE,
-      capacitanceMeterVisible: true,
-      plateChargeMeterVisible: false,
-      storedEnergyMeterVisible: false,
-      barGraphsVisible: true,
-      voltmeterVisible: false,
-      currentVisible: true
-    }, properties );
+    PropertySet.call( this, null, null, properties );
   }
 
   capacitorLabBasics.register( 'CLBModel', CLBModel );
