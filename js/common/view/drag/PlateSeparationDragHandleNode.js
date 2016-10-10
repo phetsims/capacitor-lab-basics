@@ -11,16 +11,17 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Node = require( 'SCENERY/nodes/Node' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var UnitsUtils = require( 'CAPACITOR_LAB_BASICS/common/model/util/UnitsUtils' );
-  var DragHandleArrowNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleArrowNode' );
-  var PlateSeparationDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandler' );
-  var DragHandleValueNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleValueNode' );
-  var DragHandleLineNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleLineNode' );
+  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var DragHandleArrowNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleArrowNode' );
+  var DragHandleLineNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleLineNode' );
+  var DragHandleValueNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleValueNode' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var PlateSeparationDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandler' );
+  var UnitsUtils = require( 'CAPACITOR_LAB_BASICS/common/model/util/UnitsUtils' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   // phet-io modules
   var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
@@ -74,6 +75,16 @@ define( function( require ) {
     // Make text part of the draggable area
     this.valueNode.mouseArea = this.valueNode.bounds.dilated( 0 );
     this.valueNode.touchArea = this.valueNode.bounds.dilated( 0 );
+
+    // Highlight the arrow on pointer over text
+    this.valueNode.addInputListener( new ButtonListener( {
+      over: function( event ) {
+        arrowNode.fill = arrowNode.highlightColor;
+      },
+      up: function( event ) {
+        arrowNode.fill = arrowNode.normalColor;
+      }
+    } ) );
 
     // rendering order
     this.addChild( lineNode );

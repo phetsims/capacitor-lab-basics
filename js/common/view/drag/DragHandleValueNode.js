@@ -11,15 +11,15 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Node = require( 'SCENERY/nodes/Node' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Vector2 = require( 'DOT/Vector2' );
+  var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var Util = require( 'DOT/Util' );
   var SubSupText = require( 'SCENERY_PHET/SubSupText' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Util = require( 'DOT/Util' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   // constants
   var LABEL_FONT = new PhetFont( { weight: 'bold', size: 12 } );
@@ -46,7 +46,6 @@ define( function( require ) {
 
     this.units = units; // @private
 
-    // 
     var labelNode = new Text( label, { font: LABEL_FONT, maxWidth: LABEL_MAX_WIDTH } );
     this.addChild( labelNode );
 
@@ -62,7 +61,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'DragHandleValueNode', DragHandleValueNode );
-  
+
   return inherit( Node, DragHandleValueNode, {
 
     /**
