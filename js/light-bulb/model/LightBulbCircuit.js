@@ -93,7 +93,7 @@ define( function( require ) {
       if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
         if ( Math.abs( this.capacitor.platesVoltage ) > MIN_VOLTAGE ) {
           this.capacitor.discharge( this.lightBulb.resistance, dt );
-        } 
+        }
 
         else {
           this.capacitor.platesVoltageProperty.set( 0 );
@@ -177,7 +177,6 @@ define( function( require ) {
       var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
       return intersectsBulbBase || intersectsSomeTopPlate || intersectsTopWires;
-
     },
 
     /**
