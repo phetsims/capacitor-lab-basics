@@ -92,7 +92,7 @@ define( function( require ) {
         if ( Math.abs( distanceBetweenAngles( currentAngle, lastAngle ) ) >= Math.PI / 4 ) {
           // noop
         } else {
-          circuitSwitch.angle = angle - angleOffset;
+          circuitSwitch.angleProperty.set( angle - angleOffset );
           lastAngle = currentAngle;
         }
 
@@ -100,7 +100,7 @@ define( function( require ) {
       end: function( event ) {
 
         // snap the switch to the nearest connection point and set the active connection
-        var absAngle = Math.abs( circuitSwitch.angle + angleOffset );
+        var absAngle = Math.abs( circuitSwitch.angleProperty.get() + angleOffset );
         angle = 0;
         angleOffset = 0;
         if ( absAngle > LEFT_ELEMENT_MIN_ANGLE ) {
@@ -110,8 +110,8 @@ define( function( require ) {
         } else if ( absAngle < RIGHT_ELEMENT_MAX_ANGLE && absAngle > RIGHT_ELEMENT_MIN_ANGLE ) {
           circuitSwitch.circuitConnectionProperty.set( 'LIGHT_BULB_CONNECTED' );
         }
-        
-        circuitSwitch.angle = angle;
+
+        circuitSwitch.angleProperty.set( angle );
         switchNode.dragging = false;
 
       }

@@ -46,10 +46,10 @@ define( function( require ) {
     // as the user drags
     var self = this;
     this.topCircuitSwitch.angleProperty.link( function( angle ) {
-      self.bottomCircuitSwitch.angle = -angle;
+      self.bottomCircuitSwitch.angleProperty.set( -angle );
     } );
     this.bottomCircuitSwitch.angleProperty.link( function( angle ) {
-      self.topCircuitSwitch.angle = -angle;
+      self.topCircuitSwitch.angleProperty.set( -angle );
     } );
   }
 

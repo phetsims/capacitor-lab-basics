@@ -16,7 +16,7 @@ define( function( require ) {
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
@@ -53,15 +53,10 @@ define( function( require ) {
     this.activeConnection = this.getConnection( circuitConnectionProperty.value );
     var self = this;
 
-    var properties = {
-      angle: {
-        value: this.initialAngle,
-        tandem: tandem && tandem.createTandem( 'angleProperty' ),
-        phetioValueType: TNumber( { units: 'radians' } )
-      }
-    };
-
-    PropertySet.call( this, null, null, properties );
+    this.angleProperty = new Property( this.initialAngle, {
+      tandem: tandem && tandem.createTandem( 'angleProperty' ),
+      phetioValueType: TNumber( { units: 'radians' } )
+    } );
 
     // Assign string identifying connection point
     var connectionName = ( positionLabel === 'top' ) ?
@@ -90,7 +85,11 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'CircuitSwitch', CircuitSwitch );
 
-  return inherit( PropertySet, CircuitSwitch, {
+  return inherit( Object, CircuitSwitch, {
+
+    reset: function() {
+      this.angleProperty.reset();
+    },
 
     /**
      * Get (x,y,z) position of switch pivot point
