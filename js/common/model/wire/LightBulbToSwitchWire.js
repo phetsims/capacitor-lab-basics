@@ -36,6 +36,7 @@ define( function( require ) {
     var isTop = connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP;
     var connectionPointX = isTop ? lightBulb.getTopConnectionPoint().x : lightBulb.getBottomConnectionPoint().x;
 
+    // This is the (x,y) position of the upper right corner
     var rightCorner = new Vector2( connectionPointX, horizontalY );
 
     // add the vertical segment.
