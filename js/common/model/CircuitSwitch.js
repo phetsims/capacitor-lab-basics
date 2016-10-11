@@ -69,7 +69,7 @@ define( function( require ) {
       tandem ? tandem.createTandem( 'switchSegment' ) : null );
 
     this.switchWire = new Wire( this.modelViewTransform, CLBConstants.WIRE_THICKNESS, [ this.switchSegment ],
-      connectionName /*, tandem.createTandem( 'switchWire' )*/ );
+      connectionName ); // No tandem for now. In future, may add tandem.createTandem( 'switchWire' )
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
