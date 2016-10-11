@@ -12,6 +12,7 @@ define( function( require ) {
 
   // Modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Circle = require( 'SCENERY/nodes/Circle' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
   var ConnectionAreaNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaNode' );
@@ -20,6 +21,7 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
   var Vector2 = require( 'DOT/Vector2' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
@@ -59,6 +61,13 @@ define( function( require ) {
     // add a shaded sphere to the end of the wire node to represent a connection point at the end of the switch.
     var shadedSphereNode = new ShadedSphereNode( 16 );
 
+    // Dashed circle on tip of switch used as a contact indicator
+    var tipCircle = new Circle( 6 /*radius*/ , {
+      lineWidth: 2,
+      lineDash: [ 3, 3 ],
+      stroke: PhetColorScheme.RED_COLORBLIND
+    } );
+
     // Dilate the mouse and touch areas so that it is easier to drag
     var boundsDilation = 15;
     shadedSphereNode.mouseArea = shadedSphereNode.bounds.dilated( boundsDilation );
@@ -66,6 +75,9 @@ define( function( require ) {
 
     shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
     this.wireSwitchNode.addChild( shadedSphereNode );
+
+    tipCircle.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
+    this.wireSwitchNode.addChild( tipCircle );
 
     // add the the hinge
     var hingeNode = new HingePointNode();
@@ -102,9 +114,14 @@ define( function( require ) {
       self.wireSwitchNode.rotateAround( modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint ), angle );
     } );
 
-    // Make sure that the shaded sphere snaps to the correct position when connection property changes.
+    // Circuit connection change listener
     circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
+
+      // Make sure that the shaded sphere snaps to the correct position when connection property changes.
       shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
+      tipCircle.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
+
+      // Solder joint visibility
       if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ||
         circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         shadedSphereNode.setVisible( false );
@@ -112,6 +129,16 @@ define( function( require ) {
       else {
         shadedSphereNode.setVisible( true );
       }
+
+      // Connection circle color
+      if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
+        tipCircle.stroke = PhetColorScheme.RED_COLORBLIND;
+      }
+      else {
+        tipCircle.stroke = 'rgb(0,0,0)';
+      }
+
+
     } );
 
     // Add arrow for a visual cue
