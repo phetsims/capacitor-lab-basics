@@ -94,11 +94,11 @@ define( function( require ) {
     /**
      * Factory for a SwitchSegment that acts as a switch between two connection points
      * @param {Vector2} startPoint - start point for the switch segment
-     * @param {Vector2} endPoint - end point for the wire segment
+     * @param {Object} activeConnection
      * @param {Tandem} tandem
      */
-    createSwitchSegment: function( startPoint, endPoint, tandem ) {
-      return new SwitchSegment( startPoint, endPoint, tandem );
+    createSwitchSegment: function( startPoint, activeConnection, tandem ) {
+      return new SwitchSegment( startPoint, activeConnection, tandem );
     },
 
     /**
