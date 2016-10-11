@@ -125,9 +125,11 @@ define( function( require ) {
       if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ||
         circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         shadedSphereNode.setVisible( false );
+        tipCircle.radius = 6;
       }
       else {
         shadedSphereNode.setVisible( true );
+        tipCircle.radius = 8;
       }
 
       // Connection circle color
@@ -135,7 +137,7 @@ define( function( require ) {
         tipCircle.stroke = PhetColorScheme.RED_COLORBLIND;
       }
       else {
-        tipCircle.stroke = 'rgb(0,0,0)';
+        tipCircle.stroke = 'rgb(0,0,0)'; // black when not in transit
       }
 
 
