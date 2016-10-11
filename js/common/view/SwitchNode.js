@@ -12,6 +12,7 @@ define( function( require ) {
 
   // Modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
   var ConnectionAreaNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaNode' );
   var ConnectionPointNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionPointNode' );
@@ -104,6 +105,13 @@ define( function( require ) {
     // Make sure that the shaded sphere snaps to the correct position when connection property changes.
     circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
       shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
+      if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ||
+        circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        shadedSphereNode.setVisible( false );
+      }
+      else {
+        shadedSphereNode.setVisible( true );
+      }
     } );
 
     // Add arrow for a visual cue
