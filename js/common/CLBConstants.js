@@ -43,7 +43,7 @@ define( function( require ) {
 
     // battery
     BATTERY_VOLTAGE_RANGE: new RangeWithValue( -1.5, 1.5, 0 ), // Volts
-    BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD: 0.1, // Volts
+    BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD: 0.15, // Volts
     POLARITY: {
       POSITIVE: 'POSITIVE',
       NEGATIVE: 'NEGATIVE'
