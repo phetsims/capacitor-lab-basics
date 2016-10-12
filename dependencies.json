@@ -1,11 +1,11 @@
 {
-  "comment": "# capacitor-lab-basics 1.0.0-phetio.2 Wed Oct 05 2016 15:31:20 GMT-0600 (MDT)",
+  "comment": "# capacitor-lab-basics 1.0.0-dev.29 Wed Oct 12 2016 14:22:20 GMT-0600 (MDT)",
   "assert": {
     "sha": "845be6b591cb746b0b05b7023208aef2e49a8855",
     "branch": "master"
   },
   "axon": {
-    "sha": "45c4599fecc9009d08bdab709f34a5c70be9ba13",
+    "sha": "f2dce2c038b8cc92863bee0055352499cb1bef04",
     "branch": "master"
   },
   "brand": {
@@ -13,43 +13,39 @@
     "branch": "master"
   },
   "capacitor-lab-basics": {
-    "sha": "9519e396e88b8d21cb2d2c5ac6e805d1fb890369",
+    "sha": "27629d25ad98b84189c525d1fcb73c7bd81dc143",
     "branch": "master"
   },
   "chipper": {
-    "sha": "d1bd66e177b4cac79328e24635d06726c3cfef47",
+    "sha": "eb47dfd722b4babdb58631aad13d4139da46dace",
     "branch": "master"
   },
   "dot": {
-    "sha": "6df9bbf492b6110caf47457c9056dca97cd625a8",
+    "sha": "da3b5dd421d06da1f5d1050909f897ec4ad833e2",
     "branch": "master"
   },
   "joist": {
-    "sha": "1783e442a250a201555892f5991dd531b9bd9293",
+    "sha": "fec74887533efeb948c8f664e32849e2a95186d2",
     "branch": "master"
   },
   "kite": {
-    "sha": "b61bda003d6a93f4841c39c8db7904f6163df5f3",
+    "sha": "d506825f0e044f9715f94b2aac23dbd52b139a82",
     "branch": "master"
   },
   "phet-core": {
-    "sha": "ee1f025a440712ca11a42a05d6c46e9609d2e1b3",
-    "branch": "master"
-  },
-  "phet-io": {
-    "sha": "d2293c3ed7449424f87494276527d28ee010d560",
+    "sha": "4222a05a927792580846b3bf9b1b53decf154943",
     "branch": "master"
   },
   "phetcommon": {
-    "sha": "5a539ab931b94a3f65ba9c01fbe121c9c1f0774b",
+    "sha": "8df1bf7d38949062dd6bf08800a0eebdce838d98",
     "branch": "master"
   },
   "query-string-machine": {
-    "sha": "0bf0c1aac5e9de525cc9043167e4eaf366512b0e",
+    "sha": "68bd02ca40bf4fe510eb1f542ad037891ce573f2",
     "branch": "master"
   },
   "scenery": {
-    "sha": "9c434709b5140e779f6a1af238709458677ffe43",
+    "sha": "28f40b2320fbacf5f8b94adf6ccee6dc693e1ec5",
     "branch": "master"
   },
   "scenery-phet": {
@@ -61,7 +57,7 @@
     "branch": "master"
   },
   "sun": {
-    "sha": "58f6612d1ab0fbf1b322f49ca318103b86db8ef9",
+    "sha": "315997ccfc30b72039fe01f25453e63f35953d80",
     "branch": "master"
   },
   "tandem": {
