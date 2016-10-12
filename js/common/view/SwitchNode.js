@@ -15,6 +15,7 @@ define( function( require ) {
   var Circle = require( 'SCENERY/nodes/Circle' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var ConnectionAreaNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaNode' );
   var ConnectionPointNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionPointNode' );
   var HingePointNode = require( 'CAPACITOR_LAB_BASICS/common/view/HingePointNode' );
@@ -116,9 +117,13 @@ define( function( require ) {
     // Circuit connection change listener
     circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
 
+      var ep = circuitSwitch.switchSegment.endPointProperty.get();
+      var hp = circuitSwitch.switchSegment.hingePoint;
+      var v = ep.minus( hp ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
+
       // Make sure that the shaded sphere snaps to the correct position when connection property changes.
-      shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
-      tipCircle.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
+      shadedSphereNode.translation = modelViewTransform.modelToViewPosition( hp.plus(v) );
+      tipCircle.translation = modelViewTransform.modelToViewPosition( hp.plus(v) );
 
       // Solder joint visibility
       if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ||
@@ -134,6 +139,8 @@ define( function( require ) {
       // Connection circle color
       if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
         tipCircle.stroke = PhetColorScheme.RED_COLORBLIND;
+
+
       }
       else {
         tipCircle.stroke = 'rgb(0,0,0)'; // black when not in transit

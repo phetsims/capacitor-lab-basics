@@ -75,16 +75,18 @@ define( function( require ) {
     circuitConnectionProperty.link( function( circuitConnection ) {
 
       // If the switch is being dragged, it is in transit and there is no active connection.
-      // Shorten the switch wire to signify the broken connection.
       if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
-        var ep = self.switchSegment.endPointProperty.get();
-        var hp = self.switchSegment.hingePoint;
-        var v = ep.minus( hp ).timesScalar( 0.9 );
-        self.switchSegment.endPointProperty.set( hp.plus( v ) );
         return;
       }
       self.activeConnection = self.getConnection( circuitConnection );
       self.switchSegment.endPointProperty.set( self.activeConnection.location );
+
+      // Shorten the switch wire
+      var ep = self.switchSegment.endPointProperty.get();
+      var hp = self.switchSegment.hingePoint;
+      var v = ep.minus( hp );
+      v.setMagnitude( 0.9 * CLBConstants.SWITCH_WIRE_LENGTH );
+      self.switchSegment.endPointProperty.set( hp.plus( v ) );
     } );
 
   }
