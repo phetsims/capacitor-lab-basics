@@ -73,12 +73,18 @@ define( function( require ) {
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
-      // if the switch is being dragged, it is in transit and there is no active connection yet
+
+      // If the switch is being dragged, it is in transit and there is no active connection.
+      // Shorten the switch wire to signify the broken connection.
       if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
+        var ep = self.switchSegment.endPointProperty.get();
+        var hp = self.switchSegment.hingePoint;
+        var v = ep.minus( hp ).timesScalar( 0.9 );
+        self.switchSegment.endPointProperty.set( hp.plus( v ) );
         return;
       }
       self.activeConnection = self.getConnection( circuitConnection );
-      self.switchSegment.update( self.activeConnection );
+      self.switchSegment.endPointProperty.set( self.activeConnection.location );
     } );
 
   }
@@ -125,7 +131,7 @@ define( function( require ) {
 
     /**
      * Get an array of objects containing locations (as Vector3) and connection types (as strings)
-     * of the bottom switch connection points
+     * of the switch connection points
      *
      * @param  {string} positionLabel - 'top' or 'bottom'
      * @param  {Vector2} hingeXY - Location of switch hinge
