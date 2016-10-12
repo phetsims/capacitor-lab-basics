@@ -54,12 +54,6 @@ define( function( require ) {
     this.circuitSwitch = circuitSwitch;
     this.modelViewTransform = modelViewTransform;
 
-
-    // TODO: it is requested in #140 to make the switch wire shorter.
-    // Making a new node with a different length is proving tricky.
-    // var shortWire = circuitSwitch.switchWire;
-    // this.wireSwitchNode = new WireNode( shortWire, tandem.createTandem( 'wireSwitchNode' ) );
-
     // add the switch as a wire node
     this.wireSwitchNode = new WireNode( circuitSwitch.switchWire, tandem.createTandem( 'wireSwitchNode' ) );
     this.wireSwitchNode.cursor = 'pointer';
@@ -110,8 +104,7 @@ define( function( require ) {
     } );
 
     // add the drag handler
-    this.wireSwitchNode.addInputListener(
-      new CircuitSwitchDragHandler( self, tandem.createTandem( 'inputListener' ) ) );
+    this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( self, tandem.createTandem( 'inputListener' ) ) );
 
     // changes visual position as the user drags the switch.
     circuitSwitch.angleProperty.link( function( angle ) {
