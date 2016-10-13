@@ -62,7 +62,6 @@ define( function( require ) {
 
     var self = this;
 
-    this.value = 0;
     this.maxValue = Math.pow( 10, exponent ); // max value for this meter
 
     this.meter = meter; // @private
