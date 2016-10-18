@@ -63,7 +63,7 @@ define( function( require ) {
     var shadedSphereNode = new ShadedSphereNode( 16 );
 
     // Dashed circle on tip of switch used as a contact indicator
-    var tipCircle = new Circle( 6 /*radius*/ , {
+    var tipCircle = new Circle( 6 /*radius*/, {
       lineWidth: 2,
       lineDash: [ 3, 3 ],
       stroke: PhetColorScheme.RED_COLORBLIND
@@ -104,8 +104,10 @@ define( function( require ) {
       connectionListeners.push( connectionAreaNode );
     } );
 
-    // add the drag handler
-    this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( self, tandem.createTandem( 'inputListener' ) ) );
+    // add the drag handler if it is in the threeState configuration
+    if ( phet.chipper.getQueryParameter( 'switch' ) !== 'twoState' ) {
+      this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( self, tandem.createTandem( 'inputListener' ) ) );
+    }
 
     // changes visual position as the user drags the switch.
     circuitSwitch.angleProperty.link( function( angle ) {
@@ -122,12 +124,12 @@ define( function( require ) {
       var v = ep.minus( hp ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
 
       // Make sure that the shaded sphere snaps to the correct position when connection property changes.
-      shadedSphereNode.translation = modelViewTransform.modelToViewPosition( hp.plus(v) );
-      tipCircle.translation = modelViewTransform.modelToViewPosition( hp.plus(v) );
+      shadedSphereNode.translation = modelViewTransform.modelToViewPosition( hp.plus( v ) );
+      tipCircle.translation = modelViewTransform.modelToViewPosition( hp.plus( v ) );
 
       // Solder joint visibility
       if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ||
-        circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+           circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         shadedSphereNode.setVisible( false );
         tipCircle.radius = 6;
       }
