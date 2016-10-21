@@ -24,6 +24,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
+  var TandemButtonListener = require( 'TANDEM/scenery/input/TandemButtonListener' );
   var Vector2 = require( 'DOT/Vector2' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
 
@@ -36,6 +37,7 @@ define( function( require ) {
   // Constants
   var SWITCH_CUE_ARROW_WIDTH = 25;
   var SWITCH_CUE_ARROW_OFFSET = new Vector2( -80, -250 ); // View coords
+  var HIGHLIGHT_COLOR = 'yellow';
 
   /**
    * Constructor for a SwitchNode.
@@ -181,6 +183,25 @@ define( function( require ) {
     } );
     this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );
+
+    // Since the switch wire occludes the drag area, the highlight color disappears
+    // when hovering over the switch wire. To correct this, add a listener to
+    // the swittch node itself and emulate the behavior. See #145.
+    this.wireSwitchNode.addInputListener( new TandemButtonListener( {
+      tandem: tandem.createTandem( 'wireSwitchListener' ),
+      over: function( event ) {
+        tipCircle.fill = HIGHLIGHT_COLOR;
+      },
+      up: function( event ) {
+        tipCircle.fill = 'none';
+      },
+      out: function( event ) {
+        tipCircle.fill = 'none';
+      },
+      down: function( event ) {
+        tipCircle.fill = 'none';
+      }
+    } ) );
 
     // Register with tandem.  No need to handle dispose/removeInstance since this
     // exists for the lifetime of the simulation.
