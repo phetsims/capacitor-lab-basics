@@ -51,7 +51,7 @@ define( function( require ) {
 
     TandemDragHandler.call( this, {
       tandem: tandem,
-      allowTouchSnag: true,
+      allowTouchSnag: false,
 
       start: function( event ) {
 
