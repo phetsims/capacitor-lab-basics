@@ -69,10 +69,11 @@ define( function( require ) {
       stroke: PhetColorScheme.RED_COLORBLIND
     } );
 
-    // Dilate the mouse and touch areas so that it is easier to drag
-    var boundsDilation = 15;
-    shadedSphereNode.mouseArea = shadedSphereNode.bounds.dilated( boundsDilation );
-    shadedSphereNode.touchArea = shadedSphereNode.bounds.dilated( boundsDilation );
+    // Dilate the touch area so that it is easier to drag.
+    // The mouse area is only slightly dilated so the highlight cue only appears
+    // when the mouse pointer is very close to the switch end (see #144).
+    shadedSphereNode.mouseArea = shadedSphereNode.bounds.dilated( 2 );  // px
+    shadedSphereNode.touchArea = shadedSphereNode.bounds.dilated( 15 ); // px
 
     shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
     this.wireSwitchNode.addChild( shadedSphereNode );
@@ -105,6 +106,7 @@ define( function( require ) {
     } );
 
     // add the drag handler if it is in the threeState configuration
+    // TODO: According to recent conventions, custom QP's should be collected in a dedicated file
     if ( phet.chipper.getQueryParameter( 'switch' ) !== 'twoState' ) {
       this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( self, tandem.createTandem( 'inputListener' ) ) );
     }
@@ -119,6 +121,7 @@ define( function( require ) {
     // Circuit connection change listener
     circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
 
+      // Endpoint, hinge point, and a vector from hp -> ep
       var ep = circuitSwitch.switchSegment.endPointProperty.get();
       var hp = circuitSwitch.switchSegment.hingePoint;
       var v = ep.minus( hp ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
@@ -141,13 +144,10 @@ define( function( require ) {
       // Connection circle color
       if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
         tipCircle.stroke = PhetColorScheme.RED_COLORBLIND;
-
-
       }
       else {
         tipCircle.stroke = 'rgb(0,0,0)'; // black when not in transit
       }
-
 
     } );
 
@@ -170,7 +170,7 @@ define( function( require ) {
 
     this.addChild( switchCueArrow );
 
-    // rendering order, important for behavior of click areas and drag handlers
+    // rendering order important for behavior of click areas and drag handlers
     _.each( connectionListeners, function( connectionListener ) {
       self.addChild( connectionListener );
     } );
