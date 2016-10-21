@@ -68,6 +68,8 @@ define( function( require ) {
       lineDash: [ 3, 3 ],
       stroke: PhetColorScheme.RED_COLORBLIND
     } );
+    tipCircle.mouseArea = tipCircle.bounds.dilated( 2 );  // px
+    tipCircle.touchArea = tipCircle.bounds.dilated( 15 ); // px
 
     // Dilate the touch area so that it is easier to drag.
     // The mouse area is only slightly dilated so the highlight cue only appears
