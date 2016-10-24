@@ -28,7 +28,7 @@ define( function( require ) {
 
   // Compute the distance (in radians) between angles a and b, using an inlined dot product
   // (inlined to remove allocations)
-  var distanceBetweenAngles = function( a, b ) {
+  var angleDifference = function( a, b ) {
     var dotProduct = Math.cos( a ) * Math.cos( b ) + Math.sin( a ) * Math.sin( b );
     return Math.acos( dotProduct );
   };
@@ -89,7 +89,7 @@ define( function( require ) {
         currentAngle = angle;
 
         // make sure that the switch does not snap to connection points if the user drags beyond limiting angles
-        if ( Math.abs( distanceBetweenAngles( currentAngle, lastAngle ) ) >= Math.PI / 4 ) {
+        if ( Math.abs( angleDifference( currentAngle, lastAngle ) ) >= Math.PI / 4 ) {
           // noop
         } else {
           circuitSwitch.angleProperty.set( angle - angleOffset );
