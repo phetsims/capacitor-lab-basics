@@ -13,6 +13,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Path = require( 'SCENERY/nodes/Path' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
@@ -83,6 +84,7 @@ define( function( require ) {
     this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform ); // @public (read-only)
     this.circuit = circuit; // @private
     this.dragBounds = dragBounds; // @public (read-only)
+    this.modelViewTransform = modelViewTransform;
 
     // @private
     var touchingFreePlate = function( probeShape ) {
@@ -187,7 +189,19 @@ define( function( require ) {
      * @returns {boolean}
      */
     probesAreTouching: function() {
-      return this.shapeCreator.getPositiveProbeTipShape().intersectsBounds( this.shapeCreator.getNegativeProbeTipShape().bounds );
+      var touching = false;
+      var posShape = this.shapeCreator.getPositiveProbeTipShape();
+      var negShape = this.shapeCreator.getNegativeProbeTipShape();
+      posShape.subpaths.forEach( function( subpath ) {
+        subpath.points.forEach( function( point ) {
+          if ( negShape.containsPoint( point ) ) {
+            touching = true;
+            return;
+          }
+        } );
+        if ( touching ) { return; } // For efficiency
+      } );
+      return touching;
     },
 
     /**

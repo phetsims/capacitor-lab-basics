@@ -122,7 +122,7 @@ define( function( require ) {
 
     /**
      * Bounds are all in the 2D xy plane, and have no depth.
-     * 
+     *
      * @param  {Bounds2} modelBounds
      * @return {Bounds2}
      */
