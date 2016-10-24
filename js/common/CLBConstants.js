@@ -107,6 +107,8 @@ define( function( require ) {
     PLATE_CHARGE_METER_VALUE_EXPONENT: -12,
     STORED_ENERGY_METER_VALUE_EXPONENT: -12,
 
+    CONNECTION_POINT_RADIUS: 8,
+
     // plate charges
     NUMBER_OF_PLATE_CHARGES: new RangeWithValue( 1, 625 ),
     NEGATIVE_CHARGE_SIZE: new Dimension2( 7, 2 ),

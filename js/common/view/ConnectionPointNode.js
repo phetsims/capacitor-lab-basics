@@ -15,9 +15,7 @@ define( function( require ) {
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-
-  // constants
-  var CONNECTION_POINT_RADIUS = 6;
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
 
   // colors
   var DISCONNECTED_POINT_COLOR = 'rgb( 151, 208, 255 )';
@@ -41,7 +39,7 @@ define( function( require ) {
       lineDash: [ 3, 3 ],
       stroke: DISCONNECTED_POINT_STROKE
     } );
-    Circle.call( this, CONNECTION_POINT_RADIUS, options );
+    Circle.call( this, CLBConstants.CONNECTION_POINT_RADIUS, options );
     var self = this;
     this.cursor = 'pointer';
 
