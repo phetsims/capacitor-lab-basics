@@ -103,8 +103,13 @@ define( function( require ) {
         }
       }
 
-      // No-op, keep as null
+      // On switch drag, provide a voltage readout if probes are connected to the battery
       else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT ) {
+        if ( this.connectedToBatteryTop( shape ) ) {
+          voltage = this.getTotalVoltage();
+        } else if ( this.connectedToBatteryBottom( shape ) ) {
+          voltage = 0;
+        }
       }
 
       // Error case
