@@ -107,7 +107,7 @@ define( function( require ) {
     PLATE_CHARGE_METER_VALUE_EXPONENT: -12,
     STORED_ENERGY_METER_VALUE_EXPONENT: -12,
 
-    CONNECTION_POINT_RADIUS: 8,
+    CONNECTION_POINT_RADIUS: 8, // px - dashed circles at switch contacts
 
     // plate charges
     NUMBER_OF_PLATE_CHARGES: new RangeWithValue( 1, 625 ),
