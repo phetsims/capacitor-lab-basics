@@ -43,6 +43,8 @@ define( function( require ) {
 
     CLBModel.call( this, tandem );
 
+    this.tandem = tandem; // @private
+
     this.switchUsedProperty = switchUsedProperty; // @public
     this.modelViewTransform = modelViewTransform; // @private
 
@@ -50,6 +52,7 @@ define( function( require ) {
     // single-pole double-throw switch for the light-bulb circuit instead of
     // the default three-position version (phet-io/569).
     // Enable with the switch=twoState query parameter.
+    // TODO: query parameters should be collected into a dedicated file
     var useTwoStateSwitch = false;
     if ( phet.chipper.getQueryParameter( 'switch' ) === 'twoState' ) {
       useTwoStateSwitch = true;
@@ -175,8 +178,13 @@ define( function( require ) {
         numberOfLightBulbs: 1
       } );
 
-      // No tandem here - this is for internal implementation.
-      var circuit = new LightBulbCircuit( circuitConfig, null );
+      // This circuit is constructed as part of an implementation and should not be instrumented.
+      // A null value could be passed in here, but then all children would need null checks.
+      // Instead, pass in a disabled tandem instance. All children will inherit the `enabled` value
+      // unless specifically overridden.
+      // var circuit = new LightBulbCircuit( circuitConfig, null );
+      var circuit = new LightBulbCircuit( circuitConfig,
+        this.tandem.createTandem( 'tempLightBulbCircuit', { enabled: false } ) );
 
       // disconnect the battery and set the max plate charge
       circuit.circuitConnection = CircuitConnectionEnum.OPEN_CIRCUIT;
