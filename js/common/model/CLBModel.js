@@ -75,7 +75,7 @@ define( function( require ) {
     };
 
     // public
-    PropertySet.call( this, null, null, properties );
+    PropertySet.call( this, null, properties );
   }
 
   capacitorLabBasics.register( 'CLBModel', CLBModel );

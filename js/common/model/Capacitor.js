@@ -101,7 +101,7 @@ define( function( require ) {
     };
 
     // @public
-    PropertySet.call( this, null, null, properties );
+    PropertySet.call( this, null, properties );
 
     // @private - track the previous capacitance to adjust the inital voltage when discharging, see
     // updateDischargeParameters() below.

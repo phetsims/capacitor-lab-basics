@@ -55,7 +55,7 @@ define( function( require ) {
   function Battery( location, voltage, modelViewTransform, tandem ) {
 
     // @public
-    PropertySet.call( this, null, null, {
+    PropertySet.call( this, null, {
       voltage: {
         value: voltage,
         tandem: tandem ? tandem.createTandem( 'voltageProperty' ) : null,
