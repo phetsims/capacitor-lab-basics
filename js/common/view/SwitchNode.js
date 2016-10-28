@@ -111,11 +111,7 @@ define( function( require ) {
       connectionListeners.push( connectionAreaNode );
     } );
 
-    // add the drag handler if it is in the threeState configuration
-    // TODO: According to recent conventions, custom QP's should be collected in a dedicated file
-    if ( phet.chipper.getQueryParameter( 'switch' ) !== 'twoState' ) {
-      this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( self, tandem.createTandem( 'inputListener' ) ) );
-    }
+    this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( self, tandem.createTandem( 'inputListener' ) ) );
 
     // changes visual position as the user drags the switch.
     circuitSwitch.angleProperty.link( function( angle ) {

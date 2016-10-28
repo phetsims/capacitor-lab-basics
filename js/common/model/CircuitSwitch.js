@@ -42,6 +42,12 @@ define( function( require ) {
     assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
       'Unsupported positionLabel: ' + positionLabel );
 
+    // TODO move to dedicated QP file
+    this.twoStateSwitch = false;
+    if ( phet.chipper.getQueryParameter( 'switch' ) === 'twoState' ) {
+      this.twoStateSwitch = true;
+    }
+
     // @public
     this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
     this.circuitConnectionProperty = circuitConnectionProperty;
@@ -60,11 +66,10 @@ define( function( require ) {
 
     // Assign string identifying connection point
     var connectionName = ( positionLabel === 'top' ) ?
-                         CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP :
-                         CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
+      CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP :
+      CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
 
     // Add the switch wire that spans two connection points. Default connection is to the battery.
-    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations.
     this.switchSegment = WireSegment.createSwitchSegment( this.hingePoint, this.activeConnection,
       tandem ? tandem.createTandem( 'switchSegment' ) : null );
 
@@ -81,7 +86,7 @@ define( function( require ) {
       self.activeConnection = self.getConnection( circuitConnection );
       self.switchSegment.endPointProperty.set( self.activeConnection.location );
 
-      // Shorten the switch wire
+      // Shorten the switch wire (requested in #140)
       var ep = self.switchSegment.endPointProperty.get();
       var hp = self.switchSegment.hingePoint;
       var v = ep.minus( hp );
@@ -203,15 +208,15 @@ define( function( require ) {
      * @returns {object} returnConnection - object of the format { location: Vector3, connectionType: string }
      */
     getConnection: function( connectionType ) {
-      var returnConnection;
+      var returnConnection = null;
       this.connections.forEach( function( connection ) {
         if ( connection.connectionType === connectionType ) {
           returnConnection = connection;
         }
       } );
-      if ( returnConnection === 'undefined' ) {
-        console.error( 'Requested connection type that does not exist for this circuit' );
-      }
+
+      assert && assert( returnConnection, 'No connection type for this circuit named ' + connectionType );
+
       return returnConnection;
     },
 
@@ -255,7 +260,8 @@ define( function( require ) {
 
       var self = this;
 
-      var rightConnectionPoint = self.getConnectionPoint( CircuitConnectionEnum.OPEN_CIRCUIT );
+      var c = self.twoStateSwitch ? CircuitConnectionEnum.LIGHT_BULB_CONNECTED : CircuitConnectionEnum.OPEN_CIRCUIT;
+      var rightConnectionPoint = self.getConnectionPoint( c );
 
       this.connections.forEach( function( connection ) {
         if ( connection.connectionType === 'LIGHT_BULB_CONNECTED' ) {
@@ -275,4 +281,3 @@ define( function( require ) {
     }
   } );
 } );
-
