@@ -46,10 +46,15 @@ define( function( require ) {
     var parentNode = new Node();
 
     // create the bar meter nodes with their textual values
-    var capacitanceMeterNode = BarMeterNode.createCapacitanceBarMeterNode( model.capacitanceMeter, '0' );
+    var capacitanceMeterNode = BarMeterNode.createCapacitanceBarMeterNode( model.capacitanceMeter,
+      tandem.createTandem( 'capacitanceMeterNode' ) );
 
     // title for capacitance meter
-    var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR, maxWidth: 100 };
+    var fontOptions = {
+      font: VALUE_FONT,
+      fill: VALUE_COLOR,
+      maxWidth: 100
+    };
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
 
     parentNode.children = [ capacitanceMeterNode, capacitanceTitle ];
@@ -88,4 +93,3 @@ define( function( require ) {
   return inherit( Panel, CapacitanceBarMeterPanel );
 
 } );
-

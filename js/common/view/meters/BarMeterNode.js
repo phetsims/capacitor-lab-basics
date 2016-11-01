@@ -21,10 +21,14 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Text = require( 'SCENERY/nodes/Text' );
+  var TandemText = require( 'TANDEM/scenery/nodes/TandemText' );
+  // var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+
+  // phet-io modules
+  var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
 
   // constants
   var BASE_LINE_LENGTH = 25;
@@ -58,7 +62,7 @@ define( function( require ) {
    * @param {string} titleString - title string for the bar graph
    * @constructor
    */
-  function BarMeterNode( meter, barColor, exponent, unitsString, titleString ) {
+  function BarMeterNode( meter, barColor, exponent, unitsString, titleString, tandem ) {
 
     var self = this;
 
@@ -78,10 +82,11 @@ define( function( require ) {
     this.barNode = new BarNode( barColor, meter.valueProperty.get(), this.maxValue );
 
     // @public value with hundredths precision and units, set in setValue()
-    this.valueNode = new Text( '', {
+    this.valueTextNode = new TandemText( '', {
       font: VALUE_FONT,
       fill: VALUE_COLOR,
-      maxWidth: VALUE_MAX_WIDTH
+      maxWidth: VALUE_MAX_WIDTH,
+      tandem: tandem.createTandem( 'valueText' )
     } );
 
     // @public arrow node used to indicate when the value has gone beyond the scale of this meter
@@ -93,7 +98,7 @@ define( function( require ) {
     } );
 
     Node.call( this );
-    this.axisLine.children = [ this.valueNode, this.barNode, this.arrowNode ];
+    this.axisLine.children = [ this.valueTextNode, this.barNode, this.arrowNode ];
     this.addChild( this.axisLine );
 
     // observers
@@ -109,6 +114,9 @@ define( function( require ) {
 
     this.updateLayout();
 
+    // Register with tandem.  No need to handle dispose/removeInstance since this
+    // exists for the lifetime of the simulation.
+    tandem.addInstance( this, TNode );
   }
 
   capacitorLabBasics.register( 'BarMeterNode', BarMeterNode );
@@ -145,7 +153,7 @@ define( function( require ) {
         // all meters read in pico units, compensate by multiplying by 10^12
         var meterValue = Util.toFixed( Math.pow( 10, 12 ) * this.meter.value, 2 );
         var unitsFormatString = StringUtils.format( pattern0Value1UnitsString, meterValue, this.unitsString );
-        this.valueNode.setText( unitsFormatString );
+        this.valueTextNode.setText( unitsFormatString );
 
         // layout
         this.updateLayout;
@@ -165,7 +173,7 @@ define( function( require ) {
 
     updateLayout: function() {
       this.barNode.leftCenter = this.axisLine.leftCenter;
-      this.valueNode.rightCenter = this.axisLine.leftCenter.minusXY( VALUE_METER_SPACING, 0 );
+      this.valueTextNode.rightCenter = this.axisLine.leftCenter.minusXY( VALUE_METER_SPACING, 0 );
     },
 
     getMaxWidth: function() {
@@ -178,15 +186,17 @@ define( function( require ) {
      * Factory constructor for a BarMeterNode.
      *
      * @param {CapacitanceMeter} meter
+     * @param {Tandem} tandem
      * @constructor
      */
-    createCapacitanceBarMeterNode: function( meter ) {
+    createCapacitanceBarMeterNode: function( meter, tandem ) {
       return new BarMeterNode(
         meter,
         CLBConstants.CAPACITANCE_COLOR,
         CLBConstants.CAPACITANCE_METER_VALUE_EXPONENT,
         unitsPicoFaradsString,
-        capacitanceString );
+        capacitanceString,
+        tandem );
     },
     /**
      * Factory constructor for a PlateChargeBarMeterNode.
@@ -194,8 +204,8 @@ define( function( require ) {
      * @param {CapacitanceMeter} meter
      * @constructor
      */
-    createPlateChargeBarMeterNode: function( meter ) {
-      return new PlateChargeBarMeterNode( meter );
+    createPlateChargeBarMeterNode: function( meter, tandem ) {
+      return new PlateChargeBarMeterNode( meter, tandem );
     },
     /**
      * Factory constructor for a BarMeterNode.
@@ -203,13 +213,14 @@ define( function( require ) {
      * @param {CapacitanceMeter} meter
      * @constructor
      */
-    createStoredEnergyBarMeterNode: function( meter ) {
+    createStoredEnergyBarMeterNode: function( meter, tandem ) {
       return new BarMeterNode(
         meter,
         CLBConstants.STORED_ENERGY_COLOR,
         CLBConstants.STORED_ENERGY_METER_VALUE_EXPONENT,
         unitsPicoJoulesString,
-        storedEnergyString );
+        storedEnergyString,
+        tandem );
     }
   } );
 
@@ -269,14 +280,15 @@ define( function( require ) {
    * @param {PlateChargeMeter} meter
    * @constructor
    */
-  function PlateChargeBarMeterNode( meter ) {
+  function PlateChargeBarMeterNode( meter, tandem ) {
     BarMeterNode.call(
       this,
       meter,
       CLBConstants.POSITIVE_CHARGE_COLOR,
       CLBConstants.PLATE_CHARGE_METER_VALUE_EXPONENT,
       unitsPicoCoulombsString,
-      plateChargeString
+      plateChargeString,
+      tandem
     );
   }
 
