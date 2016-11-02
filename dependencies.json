@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.3.0-phetio Tue Nov 01 2016 14:23:01 GMT-0600 (MDT)",
+  "comment": "# capacitor-lab-basics 1.0.0-dev.33 Wed Nov 02 2016 10:07:20 GMT-0600 (MDT)",
   "assert": {
     "sha": "845be6b591cb746b0b05b7023208aef2e49a8855",
     "branch": "master"
@@ -13,11 +13,11 @@
     "branch": "master"
   },
   "capacitor-lab-basics": {
-    "sha": "841a6a65e6a9a1783e04970aa12858e1e2331149",
+    "sha": "ba535e63b25979bd438a9a3ca6a30bb18612242c",
     "branch": "master"
   },
   "chipper": {
-    "sha": "78b153cccea9738203e7deda4fe91c0d8d95a654",
+    "sha": "135e20644856fc923f67360d19084638be1b280d",
     "branch": "master"
   },
   "dot": {
@@ -36,14 +36,6 @@
     "sha": "4222a05a927792580846b3bf9b1b53decf154943",
     "branch": "master"
   },
-  "phet-io": {
-    "sha": "d1c721dececb9b3e589ba681bad955c1d9782ec3",
-    "branch": "master"
-  },
-  "phet-io-website": {
-    "sha": "5984ea01ad40336f62779cb9586f974811499636",
-    "branch": "master"
-  },
   "phetcommon": {
     "sha": "8df1bf7d38949062dd6bf08800a0eebdce838d98",
     "branch": "master"
@@ -53,7 +45,7 @@
     "branch": "master"
   },
   "scenery": {
-    "sha": "60ae8f182b1cee8d0eced458114c4cef04c27701",
+    "sha": "2a1b78887e5769a27093d176a1fa6e630b18ae5b",
     "branch": "master"
   },
   "scenery-phet": {
