@@ -19,8 +19,9 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
-  var ARROW_SIZE = new Dimension2( 8, 10 );
-  var LINE_WIDTH = 2;
+  // var ARROW_SIZE = new Dimension2( 8, 10 );
+  var ARROW_SIZE = new Dimension2( 6, 7 );
+  var LINE_WIDTH = 1;
   var ARROW_COLOR = 'black';
 
   // determines spacing of electric field lines, chosen by inspection to match spacing from Java
