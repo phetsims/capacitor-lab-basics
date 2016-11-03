@@ -16,6 +16,7 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
+  var Range = require( 'DOT/Range' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
@@ -33,6 +34,7 @@ define( function( require ) {
   function AbstractCircuit( config, createCircuitComponents, createWires, tandem ) {
 
     // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
+    var MAX_PLATE_CHARGE_DISCONNECTED = 1.06248e-12;
     var properties = {
       currentAmplitude: {
         value: 0,
@@ -47,7 +49,10 @@ define( function( require ) {
       disconnectedPlateCharge: {
         value: 0,
         tandem: tandem ? tandem.createTandem( 'disconnectedPlateChargeProperty' ) : null,
-        phetioValueType: TNumber( { units: 'coulombs' } )
+        phetioValueType: TNumber( {
+          units: 'coulombs',
+          range: new Range( -MAX_PLATE_CHARGE_DISCONNECTED, MAX_PLATE_CHARGE_DISCONNECTED )
+        } ) // Numbers determined empirically
       }
     };
 
