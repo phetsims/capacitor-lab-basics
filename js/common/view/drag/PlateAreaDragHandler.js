@@ -51,7 +51,10 @@ define( function( require ) {
       drag: function( event ) {
         var pMouse = event.pointer.point;
         var plateWidth = self.getPlateWidth( pMouse );
-        capacitor.setPlateWidth( plateWidth );
+
+        // Discretize the plate width to round values by scaling m -> mm, rounding, and un-scaling.
+        // Plate area drags will then snap only to perfect integer squares (in mm).
+        capacitor.setPlateWidth( Util.roundSymmetric( 1e3 * plateWidth ) / 1e3 );
       }
     } );
 

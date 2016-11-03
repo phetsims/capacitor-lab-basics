@@ -50,8 +50,12 @@ define( function( require ) {
       drag: function( event, trail ) {
         var pMouse = event.pointer.point;
         var yView = pMouse.y - self.clickYOffset;
-        self.capacitor.plateSeparation = Util.clamp( 2 * modelViewTransform.viewToModelDeltaXY( 0, -yView ).y,
+
+        var separation = Util.clamp( 2 * modelViewTransform.viewToModelDeltaXY( 0, -yView ).y,
           valueRange.min, valueRange.max );
+
+        // Discretize the plate separation to integral values by scaling m -> mm, rounding, and un-scaling.
+        self.capacitor.plateSeparation = Util.roundSymmetric( 1e3 * separation ) / 1e3;
       }
     } );
   }
