@@ -149,7 +149,7 @@ define( function( require ) {
      * Update the visibility of the current indicator nodes, implemented in
      * each of the circuit sub types.
      *
-     * @param  {object} circuitConnection
+     * @param  {Object} circuitConnection
      * @param  {Property.<boolean>} currentIndicatorsVisible
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {

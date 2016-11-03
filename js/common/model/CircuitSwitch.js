@@ -205,7 +205,7 @@ define( function( require ) {
      * Get the desired connection from the connection type.
      *
      * @param connectionType
-     * @returns {object} returnConnection - object of the format { location: Vector3, connectionType: string }
+     * @returns {Object} returnConnection - object of the format { location: Vector3, connectionType: string }
      */
     getConnection: function( connectionType ) {
       var returnConnection = null;

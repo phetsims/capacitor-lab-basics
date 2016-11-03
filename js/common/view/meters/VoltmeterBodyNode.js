@@ -143,7 +143,7 @@ define( function( require ) {
      * Set the text for the display value, formatting the units and number of decimal places.
      *
      * @param {Text} valueText
-     * @param {Number} value
+     * @param {number} value
      */
     setValueText: function( valueText, value ) {
       if (  value === null ) {
