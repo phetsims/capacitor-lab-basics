@@ -13,10 +13,10 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BarNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Line = require( 'SCENERY/nodes/Line' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
@@ -150,7 +150,7 @@ define( function( require ) {
         this.barNode.setValue( value );
 
         // all meters read in pico units, compensate by multiplying by 10^12
-        var meterValue = Util.toFixed( Math.pow( 10, 12 ) * this.meter.value, 2 );
+        var meterValue = Util.toFixed( Math.pow( 10, 12 ) * this.meter.valueProperty.get(), 2 );
         var unitsFormatString = StringUtils.format( pattern0Value1UnitsString, meterValue, this.unitsString );
         this.valueTextNode.setText( unitsFormatString );
 
@@ -167,7 +167,7 @@ define( function( require ) {
       this.arrowNode.left = this.barNode.right + VALUE_METER_SPACING;
 
       // update visibility
-      this.arrowNode.visible = Math.abs( this.meter.value ) > this.maxValue;
+      this.arrowNode.visible = Math.abs( this.meter.valueProperty.get() ) > this.maxValue;
     },
 
     updateLayout: function() {
@@ -221,55 +221,6 @@ define( function( require ) {
         storedEnergyString,
         tandem );
     }
-  } );
-
-  /**
-   * Constructor for a BarNode. The bar which indicates the magnitude of the value being read by the meter. Origin is
-   * at upper left of track.
-   *
-   * @param {string} barColor
-   * @param {number} maxValue
-   * @param {number} value
-   * @constructor
-   */
-  function BarNode( barColor, value, maxValue ) {
-
-    assert && assert( value >= 0, 'value must be >= 0 : ' + value );
-
-    this.value = value;
-    this.maxValue = maxValue;
-
-    Rectangle.call( this, 0, 0, BAR_SIZE.width, BAR_SIZE.height, {
-      fill: barColor,
-      stroke: BAR_STROKE_COLOR,
-      lineWidth: BAR_LINE_WIDTH
-    } );
-
-    this.update();
-
-  }
-
-  capacitorLabBasics.register( 'BarMeterNode.BarNode', BarNode );
-
-  inherit( Rectangle, BarNode, {
-
-    setValue: function( value ) {
-
-      assert && assert( value >= 0, 'value must be >= 0 : ' + value );
-
-      if ( value !== this.value ) {
-        this.value = value;
-        this.update();
-      }
-    },
-
-    update: function() {
-      var percent = Math.min( 1, Math.abs( this.value ) / this.maxValue );
-      var x = ( 1 - percent ) * BAR_SIZE.width;
-      var width = BAR_SIZE.width - x;
-      this.setRect( 0, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, width, BAR_SIZE.height );
-    }
-
   } );
 
   /**
