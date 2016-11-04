@@ -66,8 +66,8 @@ define( function( require ) {
 
     // Assign string identifying connection point
     var connectionName = ( positionLabel === 'top' ) ?
-      CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP :
-      CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
+                         CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP :
+                         CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
 
     // Add the switch wire that spans two connection points. Default connection is to the battery.
     this.switchSegment = WireSegment.createSwitchSegment( this.hingePoint, this.activeConnection,
@@ -238,7 +238,19 @@ define( function( require ) {
      * @return {Vector2} [description]
      */
     getSwitchEndPoint: function() {
-      return this.switchSegment.endPoint.toVector2();
+
+      // Sometimes Vector3s are getting serialized as Vector2, see https://github.com/phetsims/phet-io/issues/811
+      // So until WireSegment supports single types (whether Vector2 or Vector3), we use this hack to support both types
+      // TODO: Remove this logic after WireSegment is sorted out.
+      if ( this.switchSegment.endPoint instanceof Vector2 ) {
+        return this.switchSegment.endPoint.copy();
+      }
+      else if ( this.switchSegment.endPoint instanceof Vector3 ) {
+        return this.switchSegment.endPoint.toVector2();
+      }
+      else {
+        throw new Error( 'bad type' );
+      }
     },
 
     /**
