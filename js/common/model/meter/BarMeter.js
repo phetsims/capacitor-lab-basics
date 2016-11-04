@@ -33,9 +33,7 @@ define( function( require ) {
       phetioValueType: TNumber()
     } );
 
-    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     // @public
-    // PropertySet.call( this, null, properties );
     this.visibleProperty = visibleProperty;
     var self = this;
 
