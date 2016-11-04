@@ -22,7 +22,8 @@ define( function( require ) {
 
   /**
    * @param {Vector2} startPoint
-   * @param {Vector2} endPoint
+   * @param {Vector2|Vector3} endPoint TODO: This is sometimes Vector2 and sometimes Vector3.  Why?  It should probably
+   *                                   TODO: just be one or the other.
    * @param {Tandem} tandem
    * @constructor
    */
