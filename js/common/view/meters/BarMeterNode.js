@@ -144,7 +144,7 @@ define( function( require ) {
         this.barNode.setValue( value );
 
         // all meters read in pico units, compensate by multiplying by 10^12
-        var meterValue = Util.toFixed( Math.pow( 10, 12 ) * this.meter.valueProperty.get(), 2 );
+        var meterValue = Util.toFixed( Math.pow( 10, 12 ) * value, 2 );
         var unitsFormatString = StringUtils.format( pattern0Value1UnitsString, meterValue, this.unitsString );
         this.valueTextNode.setText( unitsFormatString );
 
