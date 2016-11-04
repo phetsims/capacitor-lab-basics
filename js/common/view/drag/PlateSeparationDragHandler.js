@@ -55,7 +55,7 @@ define( function( require ) {
           valueRange.min, valueRange.max );
 
         // Discretize the plate separation to integral values by scaling m -> mm, rounding, and un-scaling.
-        self.capacitor.plateSeparation = Util.roundSymmetric( 1e3 * separation ) / 1e3;
+        self.capacitor.plateSeparation = Util.roundSymmetric( 5e3 * separation ) / 5e3;
       }
     } );
   }
