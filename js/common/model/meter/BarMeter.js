@@ -50,7 +50,7 @@ define( function( require ) {
   return inherit( Object, BarMeter, {
 
     updateValue: function() {
-      this.value = this.valueFunction( this.circuit );
+      this.valueProperty.set( this.valueFunction( this.circuit ) );
     },
 
     reset: function() {
