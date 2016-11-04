@@ -33,7 +33,7 @@ define( function( require ) {
   var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
   var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
   var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
-  var currentString = require( 'string!CAPACITOR_LAB_BASICS/current' );
+  var currentDirectionString = require( 'string!CAPACITOR_LAB_BASICS/currentDirection' );
   var barGraphString = require( 'string!CAPACITOR_LAB_BASICS/barGraph' );
   var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
 
@@ -71,7 +71,7 @@ define( function( require ) {
         tandemName: 'eFieldCheckBox'
       },
       {
-        string: currentString,
+        string: currentDirectionString,
         property: model.currentVisibleProperty,
         tandemName: 'currentCheckBox'
       }

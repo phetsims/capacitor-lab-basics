@@ -2,8 +2,8 @@
   "capacitance": {
     "value": "Capacitance"
   },
-  "current": {
-    "value": "Current"
+  "currentDirection": {
+    "value": "Current Direction"
   },
   "barGraph": {
     "value": "Bar Graph"
