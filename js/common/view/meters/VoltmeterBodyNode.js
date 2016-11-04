@@ -70,7 +70,7 @@ define( function( require ) {
     labelText.center = new Vector2( imageNode.width / 2, imageNode.height / 3 );
     this.addChild( labelText );
 
-    var valueString = StringUtils.format( pattern0Value1UnitsString, voltmeter.value, unitsVoltsString );
+    var valueString = StringUtils.format( pattern0Value1UnitsString, voltmeter.valueProperty.get(), unitsVoltsString );
     var valueText = new Text( valueString, {
       font: DISPLAY_FONT,
       maxWidth: imageNode.width * 0.4
