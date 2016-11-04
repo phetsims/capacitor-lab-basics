@@ -131,7 +131,7 @@ define( function( require ) {
     // synchronizes the value display with the model
     updateDisplay: function() {
       var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( this.capacitor.getPlateArea() );
-      this.valueNode.setValue( millimetersSquared );
+      this.valueNode.setValue( millimetersSquared, 0 ); // Zero decimal places
     },
 
     // Attach drag handle to capacitor's top plate, at back-irght corner of top face.

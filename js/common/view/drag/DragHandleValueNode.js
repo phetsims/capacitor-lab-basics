@@ -69,8 +69,8 @@ define( function( require ) {
      *
      * @param value
      */
-    setValue: function( value ) {
-      var formattedValue = Util.toFixed( value, 1 /* one decimal place */ );
+    setValue: function( value, decimalPlaces ) {
+      var formattedValue = Util.toFixed( value, decimalPlaces /* one decimal place */ );
       this.valueNode.setText( StringUtils.format( pattern0Value1UnitsString, formattedValue, this.units ) );
     }
 

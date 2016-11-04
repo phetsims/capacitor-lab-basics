@@ -126,7 +126,7 @@ define( function( require ) {
      */
     updateValueDisplay: function() {
       var millimeters = UnitsUtils.metersToMillimeters( this.capacitor.plateSeparation );
-      this.valueNode.setValue( millimeters );
+      this.valueNode.setValue( millimeters, 1 ); // One decimal place
     },
 
     /**
