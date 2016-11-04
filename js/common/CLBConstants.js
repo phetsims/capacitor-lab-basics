@@ -103,14 +103,10 @@ define( function( require ) {
     DRAG_HANDLE_ARROW_LENGTH: 45, // pixels
 
     // Model values at which the bar meters have their maximum length in the view.
-    // Found empirically under the following conditions:
-    //  - Capacitor connected to battery at max voltage
-    //  - Min plate separation (currently 2mm)
-    //  - Max plate area (currently 400 mm^2)
-    // Above these values, an "off-limit" arrow appears.
-    CAPACITANCE_METER_MAX_VALUE: 1.78e-12,
-    PLATE_CHARGE_METER_MAX_VALUE: 2.67e-12,
-    STORED_ENERGY_METER_MAX_VALUE: 2.0e-12,
+    // They are currently set to follow a common scale.
+    CAPACITANCE_METER_MAX_VALUE: 2.7e-12,
+    PLATE_CHARGE_METER_MAX_VALUE: 2.7e-12,
+    STORED_ENERGY_METER_MAX_VALUE: 2.7e-12,
 
     CONNECTION_POINT_RADIUS: 8, // px - dashed circles at switch contacts
 
