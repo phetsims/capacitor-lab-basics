@@ -31,6 +31,7 @@ define( function( require ) {
 
   // strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
+  var unitsPicoFaradsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoFarads' );
 
   /**
    * Constructor.
@@ -45,8 +46,12 @@ define( function( require ) {
     var self = this;
     var parentNode = new Node();
 
-    // create the bar meter nodes with their textual values
-    var capacitanceMeterNode = BarMeterNode.createCapacitanceBarMeterNode( model.capacitanceMeter,
+    var capacitanceMeterNode = new BarMeterNode(
+      model.capacitanceMeter,
+      CLBConstants.CAPACITANCE_COLOR,
+      CLBConstants.CAPACITANCE_METER_VALUE_EXPONENT,
+      unitsPicoFaradsString,
+      capacitanceString,
       tandem.createTandem( 'capacitanceMeterNode' ) );
 
     // title for capacitance meter

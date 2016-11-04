@@ -1,13 +1,14 @@
 // Copyright 2016, University of Colorado Boulder
 
 /**
- * Abstract base class for all bar meter nodes.  Factory functions allow for creating all specific meter subclasses.
+ * Abstract base class for all bar meter nodes.
  * Origin is at the center-left of the vertical track at the base of the bar.
  *
  * The bar meter node is composed of a rectangular bar graph and a value node.  The composite parts are added to layout
  * boxes in the BarMeterPanel so that alignment can be perfectly set.
  *
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -18,7 +19,6 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Line = require( 'SCENERY/nodes/Line' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var TandemText = require( 'TANDEM/scenery/nodes/TandemText' );
@@ -43,12 +43,6 @@ define( function( require ) {
   var VALUE_COLOR = 'black';
 
   // strings
-  var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
-  var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
-  var plateChargeString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge' );
-  var unitsPicoFaradsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoFarads' );
-  var unitsPicoCoulombsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoCoulombs' );
-  var unitsPicoJoulesString = require( 'string!CAPACITOR_LAB_BASICS/units.picoJoules' );
   var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
 
   /**
@@ -120,7 +114,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'BarMeterNode', BarMeterNode );
 
-  inherit( Node, BarMeterNode, {
+  return inherit( Node, BarMeterNode, {
 
     /**
      * Sets the color used to fill the bar and the overload indicator arrow.
@@ -178,80 +172,5 @@ define( function( require ) {
     getMaxWidth: function() {
       return BAR_SIZE.width + BASE_LINE_LENGTH * 2 + BASE_LINE_OFFSET + VALUE_METER_SPACING;
     }
-  }, {
-
-    // factory functions to construct different tpes of MeterNodes
-    /**
-     * Factory constructor for a BarMeterNode.
-     *
-     * @param {CapacitanceMeter} meter
-     * @param {Tandem} tandem
-     * @constructor
-     */
-    createCapacitanceBarMeterNode: function( meter, tandem ) {
-      return new BarMeterNode(
-        meter,
-        CLBConstants.CAPACITANCE_COLOR,
-        CLBConstants.CAPACITANCE_METER_VALUE_EXPONENT,
-        unitsPicoFaradsString,
-        capacitanceString,
-        tandem );
-    },
-    /**
-     * Factory constructor for a PlateChargeBarMeterNode.
-     *
-     * @param {CapacitanceMeter} meter
-     * @constructor
-     */
-    createPlateChargeBarMeterNode: function( meter, tandem ) {
-      return new PlateChargeBarMeterNode( meter, tandem );
-    },
-    /**
-     * Factory constructor for a BarMeterNode.
-     *
-     * @param {CapacitanceMeter} meter
-     * @constructor
-     */
-    createStoredEnergyBarMeterNode: function( meter, tandem ) {
-      return new BarMeterNode(
-        meter,
-        CLBConstants.STORED_ENERGY_COLOR,
-        CLBConstants.STORED_ENERGY_METER_VALUE_EXPONENT,
-        unitsPicoJoulesString,
-        storedEnergyString,
-        tandem );
-    }
   } );
-
-  /**
-   * Constructor for the PlateChargeMeterNode.  This needs its own subclass because this node requires a unique
-   * setValue function.
-   *
-   * @param {PlateChargeMeter} meter
-   * @constructor
-   */
-  function PlateChargeBarMeterNode( meter, tandem ) {
-    BarMeterNode.call(
-      this,
-      meter,
-      CLBConstants.POSITIVE_CHARGE_COLOR,
-      CLBConstants.PLATE_CHARGE_METER_VALUE_EXPONENT,
-      unitsPicoCoulombsString,
-      plateChargeString,
-      tandem
-    );
-  }
-
-  capacitorLabBasics.register( 'PlateChargeBarMeterNode', PlateChargeBarMeterNode );
-
-  inherit( BarMeterNode, PlateChargeBarMeterNode, {
-
-    // This meter displays absolute value, and changes color to indicate positive or negative charge.
-    setValue: function( value ) {
-      BarMeterNode.prototype.setValue.call( this, Math.abs( value ) );
-      this.setBarColor( ( value >= 0 ) ? CLBConstants.POSITIVE_CHARGE_COLOR : CLBConstants.NEGATIVE_CHARGE_COLOR );
-    }
-  } );
-
-  return BarMeterNode;
 } );

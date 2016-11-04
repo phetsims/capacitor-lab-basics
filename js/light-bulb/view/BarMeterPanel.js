@@ -7,6 +7,7 @@
  * right while the bar meters are aligned to the left.  The checkboxes are also aligned to the left.
  *
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -20,6 +21,7 @@ define( function( require ) {
   var Panel = require( 'SUN/Panel' );
   var CheckBox = require( 'SUN/CheckBox' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
+  var PlateChargeBarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/PlateChargeBarMeterNode' );
   var Vector2 = require( 'DOT/Vector2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -33,8 +35,11 @@ define( function( require ) {
 
   // strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
-  var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
   var plateChargeString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge' );
+  var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
+  var unitsPicoCoulombsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoCoulombs' );
+  var unitsPicoFaradsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoFarads' );
+  var unitsPicoJoulesString = require( 'string!CAPACITOR_LAB_BASICS/units.picoJoules' );
 
   /**
    * @param {BarMeter[]} model
@@ -50,12 +55,31 @@ define( function( require ) {
 
     // create the bar meter nodes with their text values.
     var meterNodes = new Node();
-    var capacitanceMeterNode = BarMeterNode.createCapacitanceBarMeterNode( model.capacitanceMeter,
+
+    var capacitanceMeterNode = new BarMeterNode(
+      model.capacitanceMeter,
+      CLBConstants.CAPACITANCE_COLOR,
+      CLBConstants.CAPACITANCE_METER_VALUE_EXPONENT,
+      unitsPicoFaradsString,
+      capacitanceString,
       tandem.createTandem( 'capacitanceMeterNode' ) );
-    var plateChargeMeterNode = BarMeterNode.createPlateChargeBarMeterNode( model.plateChargeMeter,
+
+    var plateChargeMeterNode = new PlateChargeBarMeterNode(
+      model.plateChargeMeter,
+      CLBConstants.POSITIVE_CHARGE_COLOR,
+      CLBConstants.PLATE_CHARGE_METER_VALUE_EXPONENT,
+      unitsPicoCoulombsString,
+      plateChargeString,
       tandem.createTandem( 'plateChargeMeterNode' ) );
-    var storedEnergyMeterNode = BarMeterNode.createStoredEnergyBarMeterNode( model.storedEnergyMeter,
+
+    var storedEnergyMeterNode = new BarMeterNode(
+      model.storedEnergyMeter,
+      CLBConstants.STORED_ENERGY_COLOR,
+      CLBConstants.STORED_ENERGY_METER_VALUE_EXPONENT,
+      unitsPicoJoulesString,
+      storedEnergyString,
       tandem.createTandem( 'storedEnergyMeterNode' ) );
+
     meterNodes.children = [ capacitanceMeterNode, plateChargeMeterNode, storedEnergyMeterNode ];
 
     // create checkboxes for each meter node
