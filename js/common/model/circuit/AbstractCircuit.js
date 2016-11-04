@@ -34,7 +34,6 @@ define( function( require ) {
   function AbstractCircuit( config, createCircuitComponents, createWires, tandem ) {
 
     // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
-    var MAX_PLATE_CHARGE_DISCONNECTED = 1.06248e-12;
     var properties = {
       currentAmplitude: {
         value: 0,
@@ -51,8 +50,8 @@ define( function( require ) {
         tandem: tandem ? tandem.createTandem( 'disconnectedPlateChargeProperty' ) : null,
         phetioValueType: TNumber( {
           units: 'coulombs',
-          range: new Range( -MAX_PLATE_CHARGE_DISCONNECTED, MAX_PLATE_CHARGE_DISCONNECTED )
-        } ) // Numbers determined empirically
+          range: new Range( -CLBConstants.PLATE_CHARGE_METER_MAX_VALUE, CLBConstants.PLATE_CHARGE_METER_MAX_VALUE )
+        } )
       }
     };
 
