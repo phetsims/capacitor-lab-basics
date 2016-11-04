@@ -12,7 +12,7 @@ define( function( require ) {
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
@@ -28,34 +28,37 @@ define( function( require ) {
    */
   function BarMeter( circuit, visibleProperty, valueFunction, tandem ) {
 
-    var properties = {
-      value: {
-        value: valueFunction( circuit ),
-        tandem: tandem ? tandem.createTandem( 'valueProperty' ) : null,
-        phetioValueType: TNumber()
-      }
-    };
+    this.valueProperty = new Property( valueFunction( circuit ), {
+      tandem: tandem.createTandem( 'valueProperty' ),
+      phetioValueType: TNumber()
+    } );
 
     // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     // @public
-    PropertySet.call( this, null, properties );
+    // PropertySet.call( this, null, properties );
     this.visibleProperty = visibleProperty;
     var self = this;
 
     this.circuit = circuit; // @private
     this.valueFunction = valueFunction; // @private
 
+    // TODO implement disposal
     circuit.capacitor.multilink( [ 'plateSize', 'plateSeparation', 'platesVoltage' ], function() {
       self.updateValue();
     } );
   }
 
   capacitorLabBasics.register( 'BarMeter', BarMeter );
-  return inherit( PropertySet, BarMeter, {
+  return inherit( Object, BarMeter, {
 
     updateValue: function() {
       this.value = this.valueFunction( this.circuit );
+    },
+
+    reset: function() {
+      this.visibleProperty.reset();
     }
+
   } );
 } );
 
