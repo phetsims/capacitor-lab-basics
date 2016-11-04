@@ -50,16 +50,16 @@ define( function( require ) {
    *
    * @param {BarMeter} meter
    * @param {string} barColor - fill color of the BarMeter
-   * @param {number} exponent - used to set the scale for the meter graph
+   * @param {number} maxValue - model value at which the bar has max length
    * @param {string} unitsString - string representing units
    * @param {string} titleString - title string for the bar graph
    * @constructor
    */
-  function BarMeterNode( meter, barColor, exponent, unitsString, titleString, tandem ) {
+  function BarMeterNode( meter, barColor, maxValue, unitsString, titleString, tandem ) {
 
     var self = this;
 
-    this.maxValue = Math.pow( 10, exponent ); // max value for this meter
+    this.maxValue = maxValue;
 
     this.meter = meter; // @private
     this.unitsString = unitsString; // @private

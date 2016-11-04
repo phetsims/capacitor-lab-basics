@@ -59,7 +59,7 @@ define( function( require ) {
     var capacitanceMeterNode = new BarMeterNode(
       model.capacitanceMeter,
       CLBConstants.CAPACITANCE_COLOR,
-      CLBConstants.CAPACITANCE_METER_VALUE_EXPONENT,
+      CLBConstants.CAPACITANCE_METER_MAX_VALUE,
       unitsPicoFaradsString,
       capacitanceString,
       tandem.createTandem( 'capacitanceMeterNode' ) );
@@ -67,7 +67,7 @@ define( function( require ) {
     var plateChargeMeterNode = new PlateChargeBarMeterNode(
       model.plateChargeMeter,
       CLBConstants.POSITIVE_CHARGE_COLOR,
-      CLBConstants.PLATE_CHARGE_METER_VALUE_EXPONENT,
+      CLBConstants.PLATE_CHARGE_METER_MAX_VALUE,
       unitsPicoCoulombsString,
       plateChargeString,
       tandem.createTandem( 'plateChargeMeterNode' ) );
@@ -75,7 +75,7 @@ define( function( require ) {
     var storedEnergyMeterNode = new BarMeterNode(
       model.storedEnergyMeter,
       CLBConstants.STORED_ENERGY_COLOR,
-      CLBConstants.STORED_ENERGY_METER_VALUE_EXPONENT,
+      CLBConstants.STORED_ENERGY_METER_MAX_VALUE,
       unitsPicoJoulesString,
       storedEnergyString,
       tandem.createTandem( 'storedEnergyMeterNode' ) );

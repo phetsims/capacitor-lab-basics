@@ -19,21 +19,13 @@ define( function( require ) {
    *
    * @param {BarMeter} meter
    * @param {string} barColor - fill color of the BarMeter
-   * @param {number} exponent - used to set the scale for the meter graph
+   * @param {number} maxValue - model value at which the bar has max length
    * @param {string} unitsString - string representing units
    * @param {string} titleString - title string for the bar graph
    * @constructor
    */
-  function PlateChargeBarMeterNode( meter, barColor, exponent, unitsString, titleString, tandem ) {
-    BarMeterNode.call(
-      this,
-      meter,
-      barColor,
-      exponent,
-      unitsString,
-      titleString,
-      tandem
-    );
+  function PlateChargeBarMeterNode( meter, barColor, maxValue, unitsString, titleString, tandem ) {
+    BarMeterNode.call( this, meter, barColor, maxValue, unitsString, titleString, tandem );
   }
 
   capacitorLabBasics.register( 'PlateChargeBarMeterNode', PlateChargeBarMeterNode );

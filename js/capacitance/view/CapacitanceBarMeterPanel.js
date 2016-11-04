@@ -49,7 +49,7 @@ define( function( require ) {
     var capacitanceMeterNode = new BarMeterNode(
       model.capacitanceMeter,
       CLBConstants.CAPACITANCE_COLOR,
-      CLBConstants.CAPACITANCE_METER_VALUE_EXPONENT,
+      CLBConstants.CAPACITANCE_METER_MAX_VALUE,
       unitsPicoFaradsString,
       capacitanceString,
       tandem.createTandem( 'capacitanceMeterNode' ) );
