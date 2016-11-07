@@ -35,7 +35,7 @@ define( function( require ) {
   var BASE_LINE_OFFSET = ( BASE_LINE_LENGTH - BAR_SIZE.height ) / 2;
   var BAR_STROKE_COLOR = 'black';
   var BAR_LINE_WIDTH = 1;
-  var VALUE_METER_SPACING = 7;
+  var VALUE_METER_SPACING = 7; // between right side of value text and left side of bar
   var VALUE_MAX_WIDTH = 45; // max width for i18n
 
   // value display

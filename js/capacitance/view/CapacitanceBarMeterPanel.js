@@ -65,12 +65,10 @@ define( function( require ) {
     parentNode.children = [ capacitanceMeterNode, capacitanceTitle ];
 
     // layout
-    // layout
     var x = 0;
     var y = 0;
 
-    //capacitanceMeterNode.axisLine.center = new Vector2( 90, capacitanceCheckBox. );
-    x = capacitanceTitle.centerX + 120;
+    x = capacitanceTitle.centerX + 120; // Add spacing between title text and value text
     y = capacitanceTitle.centerY + 1;
     capacitanceMeterNode.translation = new Vector2( x, y );
 
