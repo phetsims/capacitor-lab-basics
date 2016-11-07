@@ -87,7 +87,7 @@ define( function( require ) {
     var fontOptions = {
       font: VALUE_FONT,
       fill: VALUE_COLOR,
-      maxWidth: 120 // minWidth * 0.19
+      maxWidth: 110 // minWidth * 0.19
     };
 
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
