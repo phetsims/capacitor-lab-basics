@@ -38,7 +38,8 @@ define( function( require ) {
       currentAmplitude: {
         value: 0,
         tandem: tandem ? tandem.createTandem( 'currentAmplitudeProperty' ) : null,
-        phetioValueType: TNumber( { units: 'amperes' } )
+        phetioValueType: TNumber( { units: 'amperes' } ),
+        documentation: 'currentAmplitudeProperty is updated by the model and should not be set by users'
       },
       circuitConnection: {
         value: CircuitConnectionEnum.BATTERY_CONNECTED,
