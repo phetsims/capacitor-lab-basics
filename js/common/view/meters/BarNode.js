@@ -42,6 +42,7 @@ define( function( require ) {
 
     this.value = value;
     this.maxValue = maxValue;
+    this.barSize = BAR_SIZE;
 
     Rectangle.call( this, 0, 0, BAR_SIZE.width, BAR_SIZE.height, {
       fill: barColor,
