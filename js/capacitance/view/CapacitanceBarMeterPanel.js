@@ -58,7 +58,7 @@ define( function( require ) {
     var fontOptions = {
       font: VALUE_FONT,
       fill: VALUE_COLOR,
-      maxWidth: 100
+      maxWidth: 120
     };
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
 
@@ -68,19 +68,18 @@ define( function( require ) {
     var x = 0;
     var y = 0;
 
-    x = capacitanceTitle.centerX + 120; // Add spacing between title text and value text
+    // x = capacitanceTitle.centerX + 120; // Add spacing between title text and value text
+    x = 0.5 * minWidth;
     y = capacitanceTitle.centerY + 1;
     capacitanceMeterNode.translation = new Vector2( x, y );
 
-    var xMargin = 15;
-    var maxWidth = capacitanceMeterNode.getMaxWidth() + capacitanceTitle.width + xMargin;
-
     Panel.call( this, parentNode, {
-      minWidth: maxWidth,
+      minWidth: minWidth,
       align: 'left',
       fill: CLBConstants.METER_PANEL_FILL,
-      xMargin: xMargin,
-      yMargin: 15
+      xMargin: 15,
+      yMargin: 15,
+      resize: false
     } );
 
     // link visibility of this panel to the checkbox

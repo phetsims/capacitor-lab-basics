@@ -33,7 +33,7 @@ define( function( require ) {
   var BAR_STROKE_COLOR = 'black';
   var BAR_LINE_WIDTH = 1;
   var VALUE_METER_SPACING = 7; // between right side of value text and left side of bar
-  var VALUE_MAX_WIDTH = 50; // max width of value string for i18n
+  var VALUE_MAX_WIDTH = 60; // max width of value string for i18n
 
   // value display
   var VALUE_FONT = new PhetFont( 14 );
@@ -164,11 +164,10 @@ define( function( require ) {
     updateLayout: function() {
       this.barNode.leftCenter = this.axisLine.leftCenter;
       this.valueTextNode.rightCenter = this.axisLine.leftCenter.minusXY( VALUE_METER_SPACING, 0 );
-    },
-
-    getMaxWidth: function() {
-      var baseLineOffset = ( BASE_LINE_LENGTH - this.barNode.barSize.height ) / 2; // Vertical positioning
-      return this.barNode.barSize.width + BASE_LINE_LENGTH * 2 + baseLineOffset + VALUE_METER_SPACING;
     }
+
+    // getMaxWidth: function() {
+    //   return this.barNode.barSize.width;
+    // }
   } );
 } );
