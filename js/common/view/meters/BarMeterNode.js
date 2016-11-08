@@ -18,7 +18,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Line = require( 'SCENERY/nodes/Line' );
-  var Dimension2 = require( 'DOT/Dimension2' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var TandemText = require( 'TANDEM/scenery/nodes/TandemText' );
@@ -30,16 +29,14 @@ define( function( require ) {
   var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
 
   // constants
-  var BASE_LINE_LENGTH = 25;
-  var BAR_SIZE = new Dimension2( 255, 18 );
-  var BASE_LINE_OFFSET = ( BASE_LINE_LENGTH - BAR_SIZE.height ) / 2;
+  var BASE_LINE_LENGTH = 25; // Length of vertical line at the origin (left end) of the bar
   var BAR_STROKE_COLOR = 'black';
   var BAR_LINE_WIDTH = 1;
   var VALUE_METER_SPACING = 7; // between right side of value text and left side of bar
-  var VALUE_MAX_WIDTH = 45; // max width for i18n
+  var VALUE_MAX_WIDTH = 50; // max width of value string for i18n
 
   // value display
-  var VALUE_FONT = new PhetFont( 12 );
+  var VALUE_FONT = new PhetFont( 14 );
   var VALUE_COLOR = 'black';
 
   // strings
@@ -83,9 +80,9 @@ define( function( require ) {
     } );
 
     // @public arrow node used to indicate when the value has gone beyond the scale of this meter
-    this.arrowNode = new ArrowNode( 0, 0, BAR_SIZE.height + 2, 0, {
+    this.arrowNode = new ArrowNode( 0, 0, this.barNode.barSize.height + 2, 0, {
       fill: barColor,
-      headWidth: BAR_SIZE.height + 5,
+      headWidth: this.barNode.barSize.height + 5,
       tailWidth: 12,
       stroke: 'black'
     } );
@@ -170,7 +167,8 @@ define( function( require ) {
     },
 
     getMaxWidth: function() {
-      return BAR_SIZE.width + BASE_LINE_LENGTH * 2 + BASE_LINE_OFFSET + VALUE_METER_SPACING;
+      var baseLineOffset = ( BASE_LINE_LENGTH - this.barNode.barSize.height ) / 2; // Vertical positioning
+      return this.barNode.barSize.width + BASE_LINE_LENGTH * 2 + baseLineOffset + VALUE_METER_SPACING;
     }
   } );
 } );
