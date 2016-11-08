@@ -68,7 +68,7 @@ define( function( require ) {
     var x = 0;
     var y = 0;
 
-    // x = capacitanceTitle.centerX + 120; // Add spacing between title text and value text
+    // Position the left edge (x) and vertical center (y) of BarMeterNode
     x = 0.5 * minWidth;
     y = capacitanceTitle.centerY + 1;
     capacitanceMeterNode.translation = new Vector2( x, y );
