@@ -25,7 +25,7 @@ define( function( require ) {
 
   // Panel offsets (wrt various references) in model coordinates.
   var VIEW_PANEL_OFFSET = new Vector2( -10, 10 );
-  var BAR_METER_PANEL_OFFSET = new Vector2( 0, 30 );
+  var BAR_METER_PANEL_OFFSET = new Vector2( 40, 30 ); // Sign of x offset is reversed
   var VOLTMETER_PANEL_OFFSET = new Vector2( 0, 20 );
 
   /**
@@ -44,17 +44,19 @@ define( function( require ) {
     var lightBulbCircuitNode = new LightBulbCircuitNode( model, tandem.createTandem( 'lightBulbCircuitNode' ) );
 
     // meters
-    var barMeterPanel = new BarMeterPanel( model, lightBulbCircuitNode.topWireNode.width,
-      tandem.createTandem( 'barMeterPanel' ) );
+    var barMeterPanelWidth = lightBulbCircuitNode.topWireNode.width + 2*BAR_METER_PANEL_OFFSET.x;
+    var barMeterPanel = new BarMeterPanel( model, barMeterPanelWidth, tandem.createTandem( 'barMeterPanel' ) );
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty,
       tandem.createTandem( 'voltmeterNode' ) );
     var voltmeterToolbox = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform,
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
 
     // View control panel and voltmeter panel
+    // var viewControlPanelWidth = this.layoutBounds.width - lightBulbCircuitNode.right;
+    var viewControlPanelWidth = 200;
     var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
       numberOfBarGraphs: 3,
-      maxTextWidth: this.layoutBounds.width - lightBulbCircuitNode.right
+      maxTextWidth: viewControlPanelWidth
     } );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( VIEW_PANEL_OFFSET );
     voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( VOLTMETER_PANEL_OFFSET );
