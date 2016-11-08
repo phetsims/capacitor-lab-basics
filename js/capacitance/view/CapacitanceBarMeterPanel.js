@@ -69,7 +69,7 @@ define( function( require ) {
     var y = 0;
 
     // Position the left edge (x) and vertical center (y) of BarMeterNode
-    x = 0.5 * minWidth;
+    x = 0.45 * minWidth;
     y = capacitanceTitle.centerY + 1;
     capacitanceMeterNode.translation = new Vector2( x, y );
 
