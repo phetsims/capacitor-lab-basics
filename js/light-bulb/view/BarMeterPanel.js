@@ -30,7 +30,7 @@ define( function( require ) {
 
   // constants
   var CHECKBOX_VERTICAL_SPACING = 28;
-  var VALUE_FONT = new PhetFont( 15 );
+  var VALUE_FONT = new PhetFont( 16 );
   var VALUE_COLOR = 'black';
 
   // strings
@@ -84,10 +84,12 @@ define( function( require ) {
 
     // create checkboxes for each meter node
     var checkBoxNodes = new Node();
+
+    // Settings for title strings
     var fontOptions = {
       font: VALUE_FONT,
       fill: VALUE_COLOR,
-      maxWidth: 120 // minWidth * 0.19
+      maxWidth: 120
     };
 
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
