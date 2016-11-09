@@ -43,10 +43,10 @@ define( function( require ) {
     var verticalSegment;
     if ( isTop ) {
       verticalSegment = WireSegment.createComponentTopWireSegment( lightBulb, rightCorner,
-        tandem ? tandem.createTandem( 'lightBulbComponentTopWireSegment' ) : null );
+        tandem.createTandem( 'lightBulbComponentTopWireSegment' ) );
     } else {
       verticalSegment = WireSegment.createComponentBottomWireSegment( lightBulb, rightCorner,
-        tandem ? tandem.createTandem( 'lightBulbComponentBottomWireSegment' ) : null );
+        tandem.createTandem( 'lightBulbComponentBottomWireSegment' ) );
     }
     segments.push( verticalSegment );
 
