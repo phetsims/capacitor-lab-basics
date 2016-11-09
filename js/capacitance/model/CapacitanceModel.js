@@ -53,7 +53,7 @@ define( function( require ) {
       function() {
         return circuit.getTotalCapacitance();
       },
-      tandem ? tandem.createTandem( 'capacitanceMeter' ) : null );
+      tandem.createTandem( 'capacitanceMeter' ) );
 
     // @public
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
