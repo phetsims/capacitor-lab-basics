@@ -34,42 +34,42 @@ define( function( require ) {
     var properties = {
       plateChargesVisible: {
         value: CLBConstants.PLATE_CHARGES_VISIBLE,
-        tandem: tandem ? tandem.createTandem( 'plateChargesVisibleProperty' ) : null,
+        tandem: tandem.createTandem( 'plateChargesVisibleProperty' ),
         phetioValueType: TBoolean
       },
       eFieldVisible: {
         value: CLBConstants.EFIELD_VISIBLE,
-        tandem: tandem ? tandem.createTandem( 'eFieldVisibleProperty' ) : null,
+        tandem: tandem.createTandem( 'eFieldVisibleProperty' ),
         phetioValueType: TBoolean
       },
       capacitanceMeterVisible: {
         value: true,
-        tandem: tandem ? tandem.createTandem( 'capacitanceMeterVisibleProperty' ) : null,
+        tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
         phetioValueType: TBoolean
       },
       plateChargeMeterVisible: {
         value: false,
-        tandem: tandem ? tandem.createTandem( 'plateChargeMeterVisibleProperty' ) : null,
+        tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
         phetioValueType: TBoolean
       },
       storedEnergyMeterVisible: {
         value: false,
-        tandem: tandem ? tandem.createTandem( 'storedEnergyMeterVisibleProperty' ) : null,
+        tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
         phetioValueType: TBoolean
       },
       barGraphsVisible: {
         value: true,
-        tandem: tandem ? tandem.createTandem( 'barGraphsVisibleProperty' ) : null,
+        tandem: tandem.createTandem( 'barGraphsVisibleProperty' ),
         phetioValueType: TBoolean
       },
       voltmeterVisible: {
         value: false,
-        tandem: tandem ? tandem.createTandem( 'voltmeterVisibleProperty' ) : null,
+        tandem: tandem.createTandem( 'voltmeterVisibleProperty' ),
         phetioValueType: TBoolean
       },
       currentVisible: {
         value: true,
-        tandem: tandem ? tandem.createTandem( 'currentVisibleProperty' ) : null,
+        tandem: tandem.createTandem( 'currentVisibleProperty' ),
         phetioValueType: TBoolean
       }
     };

@@ -93,17 +93,17 @@ define( function( require ) {
       function() {
         return circuit.getTotalCapacitance();
       },
-      tandem ? tandem.createTandem( 'capacitanceMeter' ) : null );
+      tandem.createTandem( 'capacitanceMeter' ) );
     this.plateChargeMeter = new BarMeter( this.circuit, this.plateChargeMeterVisibleProperty,
       function() {
         return circuit.getTotalCharge();
       },
-      tandem ? tandem.createTandem( 'plateChargeMeter' ) : null );
+      tandem.createTandem( 'plateChargeMeter' ) );
     this.storedEnergyMeter = new BarMeter( this.circuit, this.storedEnergyMeterVisibleProperty,
       function() {
         return circuit.getStoredEnergy();
       },
-      tandem ? tandem.createTandem( 'storedEnergyMeter' ) : null );
+      tandem.createTandem( 'storedEnergyMeter' ) );
 
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
 
@@ -181,7 +181,9 @@ define( function( require ) {
       // unless specifically overridden.
       // var circuit = new LightBulbCircuit( circuitConfig, null );
       var circuit = new LightBulbCircuit( circuitConfig,
-        this.tandem.createTandem( 'tempLightBulbCircuit', { enabled: false } ) );
+        this.tandem.createTandem( 'tempLightBulbCircuit', {
+          enabled: false
+        } ) );
 
       // disconnect the battery and set the max plate charge
       circuit.circuitConnection = CircuitConnectionEnum.OPEN_CIRCUIT;
