@@ -28,7 +28,7 @@ define( function( require ) {
    * @constructor
    */
   function WireSegment( startPoint, endPoint, tandem ) {
-
+    assert&&assert(tandem);
     var properties = {
       startPoint: {
         value: startPoint,

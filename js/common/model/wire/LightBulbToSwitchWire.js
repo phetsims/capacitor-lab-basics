@@ -18,6 +18,8 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
+  var COUNTER = 0;
+
   /**
    * @param {string} connectionPoint one of 'TOP' or 'BOTTOM'
    * @param {CircuitConfig} config
@@ -52,7 +54,11 @@ define( function( require ) {
 
     // connect lightbulb to switch connection point.
     var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-    segments.push( new WireSegment( rightCorner, switchConnectionPoint ) );
+
+    // Tandem IDs must be unique, so append a counter index
+    segments.push( new WireSegment( rightCorner, switchConnectionPoint,
+      tandem.createTandem( 'lightBulbSwitchWireSegment' + COUNTER ) ) );
+    COUNTER++;
 
     Wire.call( this, config.modelViewTransform, config.wireThickness, segments, connectionPoint );
 
