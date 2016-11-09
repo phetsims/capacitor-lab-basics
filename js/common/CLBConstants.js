@@ -92,6 +92,11 @@ define( function( require ) {
     // View
     //----------------------------------------------------------------------------
 
+    // colors used by ConnectionAreaNode and ConnectionPointNode
+    DISCONNECTED_POINT_COLOR: 'rgb( 151, 208, 255 )',
+    DISCONNECTED_POINT_STROKE: PhetColorScheme.RED_COLORBLIND,
+    CONNECTION_POINT_HIGHLIGHTED: 'yellow',
+
     // reference coordinate frame size for world nodes
     CANVAS_RENDERING_SIZE: new Dimension2( 1024, 618 ),
 
