@@ -38,7 +38,7 @@ define( function( require ) {
    *
    * @param {CircuitConfig} config
    * @param {Tandem|null} tandem - null if this is a temporary circuit used for calculations
-
+   *
    * @constructor
    */
   function ParallelCircuit( config, tandem ) {
@@ -77,9 +77,11 @@ define( function( require ) {
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
         if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
-        } else if ( this.connectedToBatteryBottom( shape ) ) {
+        }
+        else if ( this.connectedToBatteryBottom( shape ) ) {
           voltage = 0;
-        } else if (
+        }
+        else if (
           this.shapeTouchesWireGroup( shape, this.getTopLightBulbWires() ) ||
           this.shapeTouchesWireGroup( shape, this.getBottomLightBulbWires() ) ) {
           voltage = 0;
@@ -90,13 +92,17 @@ define( function( require ) {
       else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
           voltage = this.getCapacitorPlateVoltage();
-        } else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
+        }
+        else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
           voltage = 0;
-        } else if ( this.connectedToBatteryTop( shape ) ) {
+        }
+        else if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
-        } else if ( this.connectedToBatteryBottom( shape ) ) {
+        }
+        else if ( this.connectedToBatteryBottom( shape ) ) {
           voltage = 0;
-        } else if (
+        }
+        else if (
           this.shapeTouchesWireGroup( shape, this.getTopLightBulbWires() ) ||
           this.shapeTouchesWireGroup( shape, this.getBottomLightBulbWires() ) ) {
           voltage = 0;
@@ -107,7 +113,14 @@ define( function( require ) {
       else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT ) {
         if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
-        } else if ( this.connectedToBatteryBottom( shape ) ) {
+        }
+        else if ( this.connectedToBatteryBottom( shape ) ) {
+          voltage = 0;
+        }
+        else if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
+          voltage = this.getCapacitorPlateVoltage();
+        }
+        else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
           voltage = 0;
         }
       }
@@ -148,7 +161,9 @@ define( function( require ) {
       } );
 
       var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
-      var disconnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT;
+      var disconnected =
+        this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ||
+        this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT;
       return ( intersectsBottomWires || intersectsSomeBottomPlate ) && disconnected;
     },
 
@@ -166,7 +181,9 @@ define( function( require ) {
       } );
 
       var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
-      var disconnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT;
+      var disconnected =
+        this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ||
+        this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT;
       return ( intersectsTopWire || intersectsSomeTopPlate ) && disconnected;
     },
 
@@ -231,7 +248,9 @@ define( function( require ) {
         }
       } );
       var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
-      return intersectsTopTerminal || intersectsTopWire || intersectsSomeTopPlate;
+      var batteryConnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED;
+
+      return intersectsTopTerminal || intersectsTopWire || ( intersectsSomeTopPlate && batteryConnected );
     },
 
     /**
@@ -252,7 +271,9 @@ define( function( require ) {
         }
       } );
       var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
-      return intersectsBottomTerminal || intersectsBottomWires || intersectsSomeBottomPlate;
+      var batteryConnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED;
+
+      return intersectsBottomTerminal || intersectsBottomWires || ( intersectsSomeBottomPlate && batteryConnected );
     },
 
     /**
