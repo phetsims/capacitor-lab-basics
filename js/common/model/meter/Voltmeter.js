@@ -45,32 +45,32 @@ define( function( require ) {
     var properties = {
       visible: {
         value: false,
-        tandem: tandem ? tandem.createTandem( 'visibleProperty' ) : null,
+        tandem: tandem.createTandem( 'visibleProperty' ),
         phetioValueType: TBoolean
       },
       inUserControl: {
         value: false,
-        tandem: tandem ? tandem.createTandem( 'inUserControlProperty' ) : null,
+        tandem: tandem.createTandem( 'inUserControlProperty' ),
         phetioValueType: TBoolean
       },
       bodyLocation: {
         value: BODY_LOCATION,
-        tandem: tandem ? tandem.createTandem( 'bodyLocationProperty' ) : null,
+        tandem: tandem.createTandem( 'bodyLocationProperty' ),
         phetioValueType: TVector3
       },
       positiveProbeLocation: {
         value: POSITIVE_PROBE_LOCATION,
-        tandem: tandem ? tandem.createTandem( 'positiveProbeLocationProperty' ) : null,
+        tandem: tandem.createTandem( 'positiveProbeLocationProperty' ),
         phetioValueType: TVector3
       },
       negativeProbeLocation: {
         value: NEGATIVE_PROBE_LOCATION,
-        tandem: tandem ? tandem.createTandem( 'negativeProbeLocationProperty' ) : null,
+        tandem: tandem.createTandem( 'negativeProbeLocationProperty' ),
         phetioValueType: TVector3
       },
       value: {
         value: null, // This is a number. Will be set by updateValue
-        tandem: tandem ? tandem.createTandem( 'valueProperty' ) : null,
+        tandem: tandem.createTandem( 'valueProperty' ),
         phetioValueType: TNumber( { units: 'volts' } )
       }
     };

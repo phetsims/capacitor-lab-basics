@@ -68,7 +68,7 @@ define( function( require ) {
 
     // Add the switch wire that spans two connection points. Default connection is to the battery.
     this.switchSegment = WireSegment.createSwitchSegment( this.hingePoint, this.activeConnection,
-      tandem ? tandem.createTandem( 'switchSegment' ) : null );
+      tandem.createTandem( 'switchSegment' ) );
 
     this.switchWire = new Wire( this.modelViewTransform, CLBConstants.WIRE_THICKNESS, [ this.switchSegment ],
       connectionName ); // No tandem for now. In future, may add tandem.createTandem( 'switchWire' )

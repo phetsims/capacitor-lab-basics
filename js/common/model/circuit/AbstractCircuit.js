@@ -37,18 +37,18 @@ define( function( require ) {
     var properties = {
       currentAmplitude: {
         value: 0,
-        tandem: tandem ? tandem.createTandem( 'currentAmplitudeProperty' ) : null,
+        tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
         phetioValueType: TNumber( { units: 'amperes' } ),
         documentation: 'currentAmplitudeProperty is updated by the model and should not be set by users'
       },
       circuitConnection: {
         value: CircuitConnectionEnum.BATTERY_CONNECTED,
-        tandem: tandem ? tandem.createTandem( 'circuitConnectionProperty' ) : null,
+        tandem: tandem.createTandem( 'circuitConnectionProperty' ),
         phetioValueType: TString
       },
       disconnectedPlateCharge: {
         value: 0,
-        tandem: tandem ? tandem.createTandem( 'disconnectedPlateChargeProperty' ) : null,
+        tandem: tandem.createTandem( 'disconnectedPlateChargeProperty' ),
         phetioValueType: TNumber( {
           units: 'coulombs',
           range: new Range( -CLBConstants.PLATE_CHARGE_METER_MAX_VALUE, CLBConstants.PLATE_CHARGE_METER_MAX_VALUE )
