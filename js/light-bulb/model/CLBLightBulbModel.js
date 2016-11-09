@@ -13,6 +13,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var Vector3 = require( 'DOT/Vector3' );
   var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
   var LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
@@ -52,11 +53,7 @@ define( function( require ) {
     // single-pole double-throw switch for the light-bulb circuit instead of
     // the default three-position version (phet-io/569).
     // Enable with the switch=twoState query parameter.
-    // TODO: query parameters should be collected into a dedicated file
-    var useTwoStateSwitch = false;
-    if ( phet.chipper.getQueryParameter( 'switch' ) === 'twoState' ) {
-      useTwoStateSwitch = true;
-    }
+    var useTwoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
     var twoState = [
       CircuitConnectionEnum.BATTERY_CONNECTED,

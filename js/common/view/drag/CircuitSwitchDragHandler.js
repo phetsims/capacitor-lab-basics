@@ -15,6 +15,7 @@ define( function( require ) {
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Range = require( 'DOT/Range' );
   var TandemDragHandler = require( 'TANDEM/scenery/input/TandemDragHandler' );
@@ -43,11 +44,7 @@ define( function( require ) {
     var angleOffset = 0;
     var angle = 0;
 
-    // TODO move to dedicated QP file
-    this.twoStateSwitch = false;
-    if ( phet.chipper.getQueryParameter( 'switch' ) === 'twoState' ) {
-      this.twoStateSwitch = true;
-    }
+    this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
     this.snapRange = {
       right: new Range( 0, 3 * Math.PI / 8 ),

@@ -15,6 +15,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -42,11 +43,7 @@ define( function( require ) {
     assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
       'Unsupported positionLabel: ' + positionLabel );
 
-    // TODO move to dedicated QP file
-    this.twoStateSwitch = false;
-    if ( phet.chipper.getQueryParameter( 'switch' ) === 'twoState' ) {
-      this.twoStateSwitch = true;
-    }
+    this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
     // @public
     this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
