@@ -334,7 +334,7 @@ define( function( require ) {
     var circuitComponents = [];
 
     var capacitor = new SwitchedCapacitor( config, circuitConnectionProperty,
-      tandem ? tandem.createTandem( 'switchedCapacitor' ) : null );
+      tandem.createTandem( 'switchedCapacitor' ) );
 
     circuitComponents.push( capacitor );
 
@@ -374,13 +374,13 @@ define( function( require ) {
       config,
       battery,
       capacitors[ 0 ].topCircuitSwitch,
-      tandem ? tandem.createTandem( 'batteryToSwitchWireTop' ) : null ) );
+      tandem.createTandem( 'batteryToSwitchWireTop' ) ) );
 
     wires.push( BatteryToSwitchWire.createBatteryToSwitchWireBottom(
       config,
       battery,
       capacitors[ 0 ].bottomCircuitSwitch,
-      tandem ? tandem.createTandem( 'batteryToSwitchWireBottom' ) : null ) );
+      tandem.createTandem( 'batteryToSwitchWireBottom' ) ) );
 
     // wire capacitors to the switches
     capacitors.forEach( function( capacitor ) {

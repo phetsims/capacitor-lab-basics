@@ -58,12 +58,12 @@ define( function( require ) {
     PropertySet.call( this, null, {
       voltage: {
         value: voltage,
-        tandem: tandem ? tandem.createTandem( 'voltageProperty' ) : null,
+        tandem: tandem.createTandem( 'voltageProperty' ),
         phetioValueType: TNumber( { units: 'volts' } )
       },
       polarity: {
         value: CLBConstants.POLARITY.POSITIVE,
-        tandem: tandem ? tandem.createTandem( 'polarityProperty' ) : null,
+        tandem: tandem.createTandem( 'polarityProperty' ),
         phetioValueType: TString
       }
     } );

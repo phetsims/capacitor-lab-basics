@@ -71,7 +71,7 @@ define( function( require ) {
     // create basic circuit components
     // @public
     this.battery = new Battery( config.batteryLocation, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue,
-      config.modelViewTransform, tandem && tandem.createTandem( 'battery' ) );
+      config.modelViewTransform, tandem.createTandem( 'battery' ) );
     this.circuitComponents = createCircuitComponents( config, this.circuitConnectionProperty, tandem );
 
     // capture the circuit components into individual arrays.  Note that using slice assumes order of capacitors and
