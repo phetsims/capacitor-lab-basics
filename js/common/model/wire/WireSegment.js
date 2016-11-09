@@ -32,12 +32,12 @@ define( function( require ) {
     var properties = {
       startPoint: {
         value: startPoint,
-        tandem: tandem ? tandem.createTandem( 'startPointProperty' ) : null,
+        tandem: tandem.createTandem( 'startPointProperty' ),
         phetioValueType: TVector2,
       },
       endPoint: {
         value: endPoint,
-        tandem: tandem ? tandem.createTandem( 'endPointProperty' ) : null,
+        tandem: tandem.createTandem( 'endPointProperty' ),
         phetioValueType: TVector2
       }
     };
