@@ -74,6 +74,8 @@ define( function( require ) {
       }
     };
 
+    this.tandem = tandem; // @private
+
     // public
     PropertySet.call( this, null, properties );
   }
@@ -91,9 +93,14 @@ define( function( require ) {
       // arbitrary model view transform
       var modelViewTransform = new CLBModelViewTransform3D();
 
+      // This component is constructed as part of an implementation and gets a
+      // disabled tandem instance. All children will inherit the `enabled` value
+      // unless specifically overridden.
+      var disabledTandem = this.tandem.createTandem( 'tempCapacitor', { enabled: false } );
+
       // Construct Capacitor without a Tandem instance (null), since this is an intermediate object
       // used only in calculations.
-      var capacitor = new Capacitor( new Vector3( 0, 0, 0 ), modelViewTransform, null, {
+      var capacitor = new Capacitor( new Vector3( 0, 0, 0 ), modelViewTransform, disabledTandem, {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.max,
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
         dielectricMaterial: DielectricMaterial.createCustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.max ),

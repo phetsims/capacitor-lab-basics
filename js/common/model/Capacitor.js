@@ -68,12 +68,12 @@ define( function( require ) {
     var properties = {
       plateSize: {
         value: new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth ), // Square plates.
-        tandem: tandem ? tandem.createTandem( 'plateSizeProperty' ) : null,
+        tandem: tandem.createTandem( 'plateSizeProperty' ),
         phetioValueType: TBounds3
       },
       plateSeparation: {
         value: options.plateSeparation,
-        tandem: tandem ? tandem.createTandem( 'plateSeparationProperty' ) : null,
+        tandem: tandem.createTandem( 'plateSeparationProperty' ),
         phetioValueType: TNumber( {
           units: 'meters',
           range: CLBConstants.PLATE_SEPARATION_RANGE
@@ -81,19 +81,19 @@ define( function( require ) {
       },
       platesVoltage: {
         value: 0, // zero until it's connected into a circuit
-        tandem: tandem ? tandem.createTandem( 'platesVoltageProperty' ) : null,
+        tandem: tandem.createTandem( 'platesVoltageProperty' ),
         phetioValueType: TNumber( {
           units: 'volts'
         } )
       },
       dielectricMaterial: {
         value: options.dielectricMaterial,
-        tandem: tandem ? tandem.createTandem( 'dielectricMaterialProperty' ) : null,
+        tandem: tandem.createTandem( 'dielectricMaterialProperty' ),
         phetioValueType: TDielectricMaterial
       },
       dielectricOffset: {
         value: options.dielectricOffset, // in meters, default is totally outside of capacitor plates.
-        tandem: tandem ? tandem.createTandem( 'dielectricOffsetProperty' ) : null,
+        tandem: tandem.createTandem( 'dielectricOffsetProperty' ),
         phetioValueType: TNumber( {
           units: 'meters'
         } )
