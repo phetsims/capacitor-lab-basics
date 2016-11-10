@@ -12,7 +12,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var BatteryShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BatteryShapeCreator' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
@@ -54,18 +54,28 @@ define( function( require ) {
    */
   function Battery( location, voltage, modelViewTransform, tandem ) {
 
+    // PropertySet.call( this, null, {
+    //   voltage: {
+    //     value: voltage,
+    //     tandem: tandem.createTandem( 'voltageProperty' ),
+    //     phetioValueType: TNumber( { units: 'volts' } )
+    //   },
+    //   polarity: {
+    //     value: CLBConstants.POLARITY.POSITIVE,
+    //     tandem: tandem.createTandem( 'polarityProperty' ),
+    //     phetioValueType: TString
+    //   }
+    // } );
+
     // @public
-    PropertySet.call( this, null, {
-      voltage: {
-        value: voltage,
-        tandem: tandem.createTandem( 'voltageProperty' ),
-        phetioValueType: TNumber( { units: 'volts' } )
-      },
-      polarity: {
-        value: CLBConstants.POLARITY.POSITIVE,
-        tandem: tandem.createTandem( 'polarityProperty' ),
-        phetioValueType: TString
-      }
+    this.voltageProperty = new Property(voltage, {
+      tandem: tandem.createTandem( 'voltageProperty' ),
+      phetioValueType: TNumber( { units: 'volts' } )
+    } );
+
+    this.polarityProperty = new Property(CLBConstants.POLARITY.POSITIVE, {
+      tandem: tandem.createTandem( 'polarityProperty' ),
+      phetioValueType: TString
     } );
 
     var self = this;
@@ -74,14 +84,14 @@ define( function( require ) {
     this.shapeCreator = new BatteryShapeCreator( this, modelViewTransform ); // @private
 
     this.voltageProperty.link( function() {
-      self.polarity = self.getPolarity( self.voltage );
+      self.polarityProperty.set( self.getPolarity( self.voltageProperty.value ) );
     } );
 
   }
 
   capacitorLabBasics.register( 'Battery', Battery );
 
-  return inherit( PropertySet, Battery, {
+  return inherit( Property, Battery, {
 
     /**
      * Convenience function to get the polarity from the object literal based on the voltage.
@@ -127,7 +137,7 @@ define( function( require ) {
      * This offset depends on the polarity.
      */
     getTopTerminalYOffset: function() {
-      if ( this.polarity === CLBConstants.POLARITY.POSITIVE ) {
+      if ( this.polarityProperty.value === CLBConstants.POLARITY.POSITIVE ) {
         return POSITIVE_TERMINAL_Y_OFFSET;
       }
       else {

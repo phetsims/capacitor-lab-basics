@@ -69,8 +69,8 @@ define( function( require ) {
       thumbLineWidth: 2,
       thumbCenterLineStroke: 'black',
       endDrag: function() {
-        if ( Math.abs( battery.voltage ) < CLBConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {
-          battery.voltage = 0;
+        if ( Math.abs( battery.voltageProperty.value ) < CLBConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {
+          battery.voltageProperty.value = 0;
         }
       },
       tandem: tandem.createTandem( 'sliderNode' )

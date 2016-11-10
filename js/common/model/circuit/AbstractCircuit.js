@@ -385,7 +385,7 @@ define( function( require ) {
      * @returns {number}
      */
     getTotalVoltage: function() {
-      return this.battery.voltage;
+      return this.battery.voltageProperty.value;
     },
 
     /**

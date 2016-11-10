@@ -55,7 +55,7 @@ define( function( require ) {
       if ( this.circuitConnectionProperty !== undefined ) {
         if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           // if the battery is connected, the voltage is equal to the battery voltage
-          this.capacitor.platesVoltage = this.battery.voltage;
+          this.capacitor.platesVoltage = this.battery.voltageProperty.value;
         }
         else {
           // otherwise, the voltage can be found by V=Q/C
@@ -66,7 +66,7 @@ define( function( require ) {
 
     /**
      * Get the voltage accross the capacitor plates.
-     * 
+     *
      * @return {number}
      */
     getCapacitorPlateVoltage: function() {

@@ -37,7 +37,7 @@ define( function( require ) {
      * polarity.
      */
     createTopTerminalShape: function() {
-      if ( this.battery.polarity === CLBConstants.POLARITY.POSITIVE ) {
+      if ( this.battery.polarityProperty.value === CLBConstants.POLARITY.POSITIVE ) {
         return this.createPositiveTerminalShapeBody( this.battery.location );
       }
       else {
