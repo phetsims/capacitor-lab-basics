@@ -57,7 +57,7 @@ define( function( require ) {
     var self = this;
 
     this.angleProperty = new Property( this.initialAngle, {
-      tandem: tandem && tandem.createTandem( 'angleProperty' ),
+      tandem: tandem.createTandem( 'angleProperty' ),
       phetioValueType: TNumber( { units: 'radians' } )
     } );
 
