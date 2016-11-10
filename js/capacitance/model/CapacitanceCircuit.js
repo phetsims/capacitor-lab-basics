@@ -55,11 +55,11 @@ define( function( require ) {
       if ( this.circuitConnectionProperty !== undefined ) {
         if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           // if the battery is connected, the voltage is equal to the battery voltage
-          this.capacitor.platesVoltage = this.battery.voltageProperty.value;
+          this.capacitor.platesVoltageProperty.value = this.battery.voltageProperty.value;
         }
         else {
           // otherwise, the voltage can be found by V=Q/C
-          this.capacitor.platesVoltage = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance();
+          this.capacitor.platesVoltageProperty.value = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance();
         }
       }
     },
@@ -70,7 +70,7 @@ define( function( require ) {
      * @return {number}
      */
     getCapacitorPlateVoltage: function() {
-      return this.capacitor.platesVoltage;
+      return this.capacitor.platesVoltageProperty.value;
     },
 
     /**

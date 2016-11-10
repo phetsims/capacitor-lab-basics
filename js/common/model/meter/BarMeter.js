@@ -41,9 +41,14 @@ define( function( require ) {
     this.valueFunction = valueFunction; // @private
 
     // TODO implement disposal
-    circuit.capacitor.multilink( [ 'plateSize', 'plateSeparation', 'platesVoltage' ], function() {
+    Property.multilink( [
+      circuit.capacitor.plateSizeProperty,
+      circuit.capacitor.plateSeparationProperty,
+      circuit.capacitor.platesVoltageProperty
+    ], function() {
       self.updateValue();
     } );
+
   }
 
   capacitorLabBasics.register( 'BarMeter', BarMeter );
@@ -59,4 +64,3 @@ define( function( require ) {
 
   } );
 } );
-

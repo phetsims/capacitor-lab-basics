@@ -78,7 +78,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'Battery', Battery );
 
-  return inherit( Property, Battery, {
+  return inherit( Object, Battery, {
 
     /**
      * Convenience function to get the polarity from the object literal based on the voltage.
@@ -142,6 +142,11 @@ define( function( require ) {
 
     getPositiveTerminalCylinderHeight: function() {
       return POSITIVE_TERMINAL_CYLINDER_HEIGHT;
+    },
+
+    reset: function() {
+      this.voltageProperty.reset();
+      this.polarityProperty.reset();
     }
   } );
 } );

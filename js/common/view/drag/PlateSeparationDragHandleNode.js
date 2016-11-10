@@ -69,7 +69,7 @@ define( function( require ) {
     var lineNode = new DragHandleLineNode( LINE_START_LOCATION, LINE_END_LOCATION );
 
     // value
-    var millimeters = UnitsUtils.metersToMillimeters( capacitor.plateSeparation );
+    var millimeters = UnitsUtils.metersToMillimeters( capacitor.plateSeparationProperty.value );
     this.valueNode = new DragHandleValueNode( separationString, millimeters, unitsMillimetersString );
 
     // Make text part of the draggable area
@@ -125,7 +125,7 @@ define( function( require ) {
      * Synchronizes the value display with the model.
      */
     updateValueDisplay: function() {
-      var millimeters = UnitsUtils.metersToMillimeters( this.capacitor.plateSeparation );
+      var millimeters = UnitsUtils.metersToMillimeters( this.capacitor.plateSeparationProperty.value );
       this.valueNode.setValue( millimeters, 1 ); // One decimal place
     },
 
@@ -133,8 +133,10 @@ define( function( require ) {
      * Attach drag handle to top capacitor plate, in center the plate's top face.
      */
     updateOffset: function() {
-      var x = this.capacitor.location.x + ( 0.3 * this.capacitor.plateSize.width );
-      var y = this.capacitor.location.y - ( this.capacitor.plateSeparation / 2 ) - this.capacitor.plateSize.height;
+      var width = this.capacitor.plateSizeProperty.value.width;
+      var height = this.capacitor.plateSizeProperty.value.height;
+      var x = this.capacitor.location.x + ( 0.3 * width );
+      var y = this.capacitor.location.y - ( this.capacitor.plateSeparationProperty.value / 2 ) - height;
       var z = 0;
       this.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
     }

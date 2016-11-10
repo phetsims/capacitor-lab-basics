@@ -44,8 +44,9 @@ define( function( require ) {
     TandemDragHandler.call( this, {
       tandem: tandem,
       start: function( event ) {
+        var width = capacitor.plateSizeProperty.value.width;
         var pMouse = event.pointer.point;
-        var pOrigin = modelViewTransform.modelToViewDeltaXYZ( capacitor.plateSize.width / 2, 0, capacitor.plateSize.width / 2 );
+        var pOrigin = modelViewTransform.modelToViewDeltaXYZ( width / 2, 0, width / 2 );
         self.clickXOffset = pMouse.x - pOrigin.x;
       },
       drag: function( event ) {

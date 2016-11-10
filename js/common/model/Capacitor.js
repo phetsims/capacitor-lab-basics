@@ -29,7 +29,7 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
@@ -64,44 +64,42 @@ define( function( require ) {
     // @private
     this.shapeCreator = new CapacitorShapeCreator( this, modelViewTransform );
 
-    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations TODO use a better pattern
-    var properties = {
-      plateSize: {
-        value: new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth ), // Square plates.
-        tandem: tandem.createTandem( 'plateSizeProperty' ),
-        phetioValueType: TBounds3
-      },
-      plateSeparation: {
-        value: options.plateSeparation,
-        tandem: tandem.createTandem( 'plateSeparationProperty' ),
-        phetioValueType: TNumber( {
-          units: 'meters',
-          range: CLBConstants.PLATE_SEPARATION_RANGE
-        } )
-      },
-      platesVoltage: {
-        value: 0, // zero until it's connected into a circuit
-        tandem: tandem.createTandem( 'platesVoltageProperty' ),
-        phetioValueType: TNumber( {
-          units: 'volts'
-        } )
-      },
-      dielectricMaterial: {
-        value: options.dielectricMaterial,
-        tandem: tandem.createTandem( 'dielectricMaterialProperty' ),
-        phetioValueType: TDielectricMaterial
-      },
-      dielectricOffset: {
-        value: options.dielectricOffset, // in meters, default is totally outside of capacitor plates.
-        tandem: tandem.createTandem( 'dielectricOffsetProperty' ),
-        phetioValueType: TNumber( {
-          units: 'meters'
-        } )
-      }
-    };
+    // Square plates.
+    var plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth );
 
-    // @public
-    PropertySet.call( this, null, properties );
+    this.plateSizeProperty = new Property( plateBounds, {
+      tandem: tandem.createTandem( 'plateSizeProperty' ),
+      phetioValueType: TBounds3
+    } );
+
+    this.plateSeparationProperty = new Property( options.plateSeparation, {
+      tandem: tandem.createTandem( 'plateSeparationProperty' ),
+      phetioValueType: TNumber( {
+        units: 'meters',
+        range: CLBConstants.PLATE_SEPARATION_RANGE
+      } )
+    } );
+
+    // zero until it's connected into a circuit
+    this.platesVoltageProperty = new Property( 0, {
+      tandem: tandem.createTandem( 'platesVoltageProperty' ),
+      phetioValueType: TNumber( {
+        units: 'volts'
+      } )
+    } );
+
+    this.dielectricMaterialProperty = new Property( options.dielectricMaterial, {
+      tandem: tandem.createTandem( 'dielectricMaterialProperty' ),
+      phetioValueType: TDielectricMaterial
+    } );
+
+    // in meters, default is totally outside of capacitor plates.
+    this.dielectricOffsetProperty = new Property( options.dielectricOffset, {
+      tandem: tandem.createTandem( 'dielectricOffsetProperty' ),
+      phetioValueType: TNumber( {
+        units: 'meters'
+      } )
+    } );
 
     // @private - track the previous capacitance to adjust the inital voltage when discharging, see
     // updateDischargeParameters() below.
@@ -110,7 +108,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'Capacitor', Capacitor );
 
-  return inherit( PropertySet, Capacitor, {
+  return inherit( Object, Capacitor, {
 
     /**
      * Convenience method, gets the area of one plate's top (or bottom) surfaces.
@@ -119,7 +117,7 @@ define( function( require ) {
      * @return {number} area in meters^2
      */
     getPlateArea: function() {
-      return this.plateSize.width * this.plateSize.depth;
+      return this.plateSizeProperty.value.width * this.plateSizeProperty.value.depth;
     },
 
     /**
@@ -140,8 +138,8 @@ define( function( require ) {
      * @return {number} area, in meters^2
      */
     getDielectricContactArea: function() {
-      var absoluteOffset = Math.abs( this.dielectricOffset );
-      var area = ( this.plateSize.width - absoluteOffset ) * this.plateSize.depth; // front * side
+      var absoluteOffset = Math.abs( this.dielectricOffsetProperty.value );
+      var area = ( this.plateSizeProperty.value.width - absoluteOffset ) * this.plateSizeProperty.value.depth; // front * side
       if ( area < 0 ) {
         area = 0;
       }
@@ -159,7 +157,7 @@ define( function( require ) {
       if ( plateSeparation <= 0 ) {
         console.error( 'plateSeparation must be > 0: ' + plateSeparation );
       }
-      this.plateSeparation = plateSeparation;
+      this.plateSeparationProperty.value = plateSeparation;
     },
 
     /**
@@ -175,7 +173,7 @@ define( function( require ) {
       if ( plateWidth <= 0 ) {
         console.error( 'plateWidth must be > 0: ' + plateWidth );
       }
-      this.plateSize = new Bounds3( 0, 0, 0, plateWidth, this.plateSize.height, plateWidth );
+      this.plateSizeProperty.set( new Bounds3( 0, 0, 0, plateWidth, this.plateSizeProperty.value.height, plateWidth ) );
     },
 
     /**
@@ -184,7 +182,7 @@ define( function( require ) {
      * @return {Vector3}
      */
     getTopConnectionPoint: function() {
-      return new Vector3( this.location.x, this.location.y - ( this.plateSeparation / 2 ) - this.plateSize.height, this.location.z );
+      return new Vector3( this.location.x, this.location.y - ( this.plateSeparationProperty.value / 2 ) - this.plateSizeProperty.value.height, this.location.z );
     },
 
     /**
@@ -193,7 +191,7 @@ define( function( require ) {
      * @return {Vector3}
      */
     getBottomConnectionPoint: function() {
-      return new Vector3( this.location.x, this.location.y + ( this.plateSeparation / 2 ) + this.plateSize.height, this.location.z );
+      return new Vector3( this.location.x, this.location.y + ( this.plateSeparationProperty.value / 2 ) + this.plateSizeProperty.value.height, this.location.z );
     },
 
     // d =  epsilon * epsilon_0 * A / C
@@ -228,7 +226,7 @@ define( function( require ) {
      * @return {number} capacitance, in Farads
      */
     getAirCapacitance: function() {
-      return this.getCapacitance( CLBConstants.EPSILON_AIR, this.getAirContactArea(), this.plateSeparation );
+      return this.getCapacitance( CLBConstants.EPSILON_AIR, this.getAirContactArea(), this.plateSeparationProperty.value );
     },
 
     /**
@@ -238,7 +236,7 @@ define( function( require ) {
      * @return {number} capacitance, in Farads
      */
     getDielectricCapacitance: function() {
-      return this.getCapacitance( this.dielectricMaterial.dielectricConstant, this.getDielectricContactArea(), this.plateSeparation );
+      return this.getCapacitance( this.dielectricMaterialProperty.value.dielectricConstant, this.getDielectricContactArea(), this.plateSeparationProperty.value );
     },
 
     /**
@@ -301,7 +299,7 @@ define( function( require ) {
      *
      */
     getAirPlateCharge: function() {
-      var airPlateCharge = this.getAirCapacitance() * this.platesVoltage;
+      var airPlateCharge = this.getAirCapacitance() * this.platesVoltageProperty.value;
       if ( Math.abs( airPlateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
       }
@@ -317,7 +315,7 @@ define( function( require ) {
      * @return {number} charge, in Coulombs
      */
     getDielectricPlateCharge: function() {
-      var dielectricCharge = this.getDielectricCapacitance() * this.platesVoltage;
+      var dielectricCharge = this.getDielectricCapacitance() * this.platesVoltageProperty.value;
       if ( Math.abs( dielectricCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
       }
@@ -353,7 +351,7 @@ define( function( require ) {
      * @return {number} excess charge, in Coulombs
      */
     getExcessAirPlateCharge: function() {
-      return this.getExcessPlateCharge( CLBConstants.EPSILON_AIR, this.getAirCapacitance(), this.platesVoltage );
+      return this.getExcessPlateCharge( CLBConstants.EPSILON_AIR, this.getAirCapacitance(), this.platesVoltageProperty.value );
     },
 
     /**
@@ -385,7 +383,7 @@ define( function( require ) {
         return 0;
       }
       else {
-        return this.platesVoltage / this.plateSeparation;
+        return this.platesVoltageProperty.value / this.plateSeparationProperty.value;
       }
     },
 
@@ -396,7 +394,7 @@ define( function( require ) {
      * @return E-field, in Volts/meter
      */
     getPlatesAirEField: function() {
-      return this.getPlatesEField( CLBConstants.EPSILON_AIR, this.platesVoltage, this.plateSeparation );
+      return this.getPlatesEField( CLBConstants.EPSILON_AIR, this.platesVoltageProperty.value, this.plateSeparationProperty.value );
     },
 
     /**
@@ -442,7 +440,7 @@ define( function( require ) {
 
       this.transientTime += dt; // step time since switch was closed
       var exp = Math.exp( -this.transientTime / ( R * C ) );
-      this.platesVoltage = this.voltageAtSwitchClose * exp;
+      this.platesVoltageProperty.value = this.voltageAtSwitchClose * exp;
 
       this.previousCapacitance = C;
     },
@@ -469,12 +467,19 @@ define( function( require ) {
       var capacitanceRatio = this.getTotalCapacitance() / this.previousCapacitance;
 
       // update the initial voltage Vo
-      this.voltageAtSwitchClose = this.platesVoltage / capacitanceRatio;
+      this.voltageAtSwitchClose = this.platesVoltageProperty.value / capacitanceRatio;
 
       // reset transient time
       this.transientTime = 0;
+    },
+
+    reset: function() {
+      this.plateSizeProperty.reset();
+      this.plateSeparationProperty.reset();
+      this.platesVoltageProperty.reset();
+      this.dielectricMaterialProperty.reset();
+      this.dielectricOffsetProperty.reset();
     }
 
   } );
 } );
-

@@ -107,7 +107,7 @@ define( function( require ) {
         dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min
       } );
 
-      capacitor.platesVoltage = CLBConstants.BATTERY_VOLTAGE_RANGE.max;
+      capacitor.platesVoltageProperty.set( CLBConstants.BATTERY_VOLTAGE_RANGE.max );
       return capacitor;
     }
   } );

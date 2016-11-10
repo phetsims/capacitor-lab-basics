@@ -136,9 +136,10 @@ define( function( require ) {
 
     // Attach drag handle to capacitor's top plate, at back-irght corner of top face.
     updateOffset: function() {
-      var x = this.capacitor.location.x + ( this.capacitor.plateSize.width / 2 );
-      var y = this.capacitor.location.y - ( this.capacitor.plateSeparation / 2 ) - this.capacitor.plateSize.height;
-      var z = this.capacitor.location.z + ( this.capacitor.plateSize.depth / 2 );
+      var plateSize = this.capacitor.plateSizeProperty.value;
+      var x = this.capacitor.location.x + ( plateSize.width / 2 );
+      var y = this.capacitor.location.y - ( this.capacitor.plateSeparationProperty.value / 2 ) - plateSize.height;
+      var z = this.capacitor.location.z + ( plateSize.depth / 2 );
       this.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
     }
   } );

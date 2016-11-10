@@ -44,7 +44,7 @@ define( function( require ) {
       tandem: tandem,
       start: function( event, trail ) {
         var pMouse = event.pointer.point;
-        var pOrigin = modelViewTransform.modelToViewXYZ( 0, -( self.capacitor.plateSeparation / 2 ), 0 );
+        var pOrigin = modelViewTransform.modelToViewXYZ( 0, -( self.capacitor.plateSeparationProperty.value / 2 ), 0 );
         self.clickYOffset = pMouse.y - pOrigin.y;
       },
       drag: function( event, trail ) {
@@ -55,7 +55,7 @@ define( function( require ) {
           valueRange.min, valueRange.max );
 
         // Discretize the plate separation to integral values by scaling m -> mm, rounding, and un-scaling.
-        self.capacitor.plateSeparation = Util.roundSymmetric( 5e3 * separation ) / 5e3;
+        self.capacitor.plateSeparationProperty.value = Util.roundSymmetric( 5e3 * separation ) / 5e3;
       }
     } );
   }

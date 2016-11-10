@@ -25,6 +25,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   var CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Property = require( 'AXON/Property' );
 
   // constants
   var DEBUG_OUTPUT_ENABLED = false; // developer tool for debugging
@@ -98,7 +99,12 @@ define( function( require ) {
     this.parentNode = new Node(); // @private parent node for charges
     this.addChild( this.parentNode );
 
-    capacitor.multilink( [ 'plateSize', 'plateSeparation', 'platesVoltage' ], function() {
+    // TODO implement disposal
+    Property.multilink( [
+      capacitor.plateSizeProperty,
+      capacitor.plateSeparationProperty,
+      capacitor.platesVoltageProperty
+    ], function() {
       if ( self.isVisible() ) {
         self.invalidatePaint();
       }
@@ -164,7 +170,7 @@ define( function( require ) {
         var zMargin = this.modelViewTransform.viewToModelDeltaXY( CLBConstants.NEGATIVE_CHARGE_SIZE.width, 0 ).x;
 
         var gridWidth = this.getContactWidth(); // contact between plate and dielectric
-        var gridDepth = this.capacitor.plateSize.depth - ( 2 * zMargin );
+        var gridDepth = this.capacitor.plateSizeProperty.value.depth - ( 2 * zMargin );
 
         // grid dimensions
         var gridSize = this.gridSizeStrategy.getGridSize( numberOfCharges, gridWidth, gridDepth );
@@ -225,4 +231,3 @@ define( function( require ) {
 
   } );
 } );
-

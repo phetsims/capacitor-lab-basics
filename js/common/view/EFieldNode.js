@@ -17,6 +17,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var CanvasNode = require( 'SCENERY/nodes/CanvasNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Property = require( 'AXON/Property' );
 
   // constants
   // var ARROW_SIZE = new Dimension2( 8, 10 );
@@ -64,7 +65,9 @@ define( function( require ) {
       context.lineTo( arrowCenter + w / 2, position.y - h / 2 );
     }
 
-    else { console.error( 'EFieldLine must be of orientation UP or DOWN' ); }
+    else {
+      console.error( 'EFieldLine must be of orientation UP or DOWN' );
+    }
 
   }
 
@@ -79,7 +82,9 @@ define( function( require ) {
    */
   function EFieldNode( capacitor, modelViewTransform, maxEffectiveEField, canvasBounds ) {
 
-    CanvasNode.call( this, { canvasBounds: canvasBounds } );
+    CanvasNode.call( this, {
+      canvasBounds: canvasBounds
+    } );
     var self = this;
 
     // @private
@@ -87,11 +92,22 @@ define( function( require ) {
     this.modelViewTransform = modelViewTransform;
     this.maxEffectiveEField = maxEffectiveEField;
 
-    capacitor.multilink( [ 'platesVoltage', 'plateSeparation', 'plateSize' ], function() {
-      if ( self.visible ) {
+    // capacitor.multilink( [ 'platesVoltage', 'plateSeparation', 'plateSize' ], function() {
+    //   if ( self.visible ) {
+    //     self.invalidatePaint();
+    //   }
+    // } );
+
+    Property.multilink( [
+      capacitor.plateSizeProperty,
+      capacitor.plateSeparationProperty,
+      capacitor.platesVoltageProperty
+    ], function() {
+      if ( self.isVisible() ) {
         self.invalidatePaint();
       }
     } );
+
   }
 
   capacitorLabBasics.register( 'EFieldNode', EFieldNode );
@@ -119,9 +135,9 @@ define( function( require ) {
         context.beginPath();
 
         // relevant model values
-        var plateWidth = this.capacitor.plateSize.width;
+        var plateWidth = this.capacitor.plateSizeProperty.value.width;
         var plateDepth = plateWidth;
-        var plateSeparation = this.capacitor.plateSeparation;
+        var plateSeparation = this.capacitor.plateSeparationProperty.value;
 
         /*
          * Create field lines, working from the center outwards so that lines appear/disappear at edges of plate as
