@@ -15,33 +15,31 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
-  // var Vector2 = require( 'DOT/Vector2' );
-  // var Vector3 = require( 'DOT/Vector3' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
-  var TVector2 = require( 'ifphetio!PHET_IO/types/dot/TVector2' );
+  var TVector3 = require( 'ifphetio!PHET_IO/types/dot/TVector3' );
 
   /**
-   * @param {Vector2} startPoint
-   * @param {Vector2|Vector3} endPoint TODO: This is sometimes Vector2 and sometimes Vector3.  Why?  It should probably
-   *                                   TODO: just be one or the other.
+   * @param {Vector3} startPoint
+   * @param {Vector3} endPoint
    * @param {Tandem} tandem
    * @constructor
    */
 
   function WireSegment( startPoint, endPoint, tandem ) {
 
-    // assert && assert( startPoint instanceof Vector3 );
-    // assert && assert( endPoint instanceof Vector3 );
+    assert && assert( startPoint instanceof Vector3 );
+    assert && assert( endPoint instanceof Vector3 );
 
     this.startPointProperty = new Property( startPoint, {
       tandem: tandem.createTandem( 'startPointProperty' ),
-      phetioValueType: TVector2,
+      phetioValueType: TVector3,
     } );
 
     this.endPointProperty = new Property( endPoint, {
       tandem: tandem.createTandem( 'endPointProperty' ),
-      phetioValueType: TVector2
+      phetioValueType: TVector3
     } );
   }
 
@@ -97,7 +95,7 @@ define( function( require ) {
    * @param {Tandem} tandem
    */
   function ComponentTopWireSegment( component, endPoint, tandem ) {
-    WireSegment.call( this, component.getTopConnectionPoint().toVector2(), endPoint, tandem );
+    WireSegment.call( this, component.getTopConnectionPoint(), endPoint, tandem );
     this.component = component;
   }
 
@@ -106,7 +104,7 @@ define( function( require ) {
   inherit( WireSegment, ComponentTopWireSegment, {
     // update the start point of the segment, called when the component geometry changes
     update: function() {
-      this.startPointProperty.set( this.component.getTopConnectionPoint().toVector2() );
+      this.startPointProperty.set( this.component.getTopConnectionPoint() );
     }
   } );
 
@@ -119,7 +117,7 @@ define( function( require ) {
    * @param {Tandem} tandem
    */
   function ComponentBottomWireSegment( component, endPoint, tandem ) {
-    WireSegment.call( this, component.getBottomConnectionPoint().toVector2(), endPoint, tandem );
+    WireSegment.call( this, component.getBottomConnectionPoint(), endPoint, tandem );
     this.component = component;
   }
 
@@ -128,7 +126,7 @@ define( function( require ) {
   inherit( WireSegment, ComponentBottomWireSegment, {
     // update the start point of the segment, called when the component geometry changes
     update: function() {
-      this.startPointProperty.set( this.component.getBottomConnectionPoint().toVector2() );
+      this.startPointProperty.set( this.component.getBottomConnectionPoint() );
     }
   } );
 

@@ -10,13 +10,13 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Vector2 = require( 'DOT/Vector2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
-  var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Vector3 = require( 'DOT/Vector3' );
+  var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
+  var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   var COUNTER = 0;
 
@@ -39,7 +39,7 @@ define( function( require ) {
     var connectionPointX = isTop ? lightBulb.getTopConnectionPoint().x : lightBulb.getBottomConnectionPoint().x;
 
     // This is the (x,y) position of the upper right corner
-    var rightCorner = new Vector2( connectionPointX, horizontalY );
+    var rightCorner = new Vector3( connectionPointX, horizontalY, 0 );
 
     // add the vertical segment.
     var verticalSegment;

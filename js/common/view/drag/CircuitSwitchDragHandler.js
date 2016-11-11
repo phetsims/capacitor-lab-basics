@@ -68,7 +68,7 @@ define( function( require ) {
 
         var hingePoint = circuitSwitch.hingePoint.toVector2(); // in model coordinates
         initialEndPoint = circuitSwitch.getSwitchEndPoint(); // in model coordinates
-        angleOffset = initialEndPoint.minus( hingePoint ).angle(); // angle of switch segment with the horizontal
+        angleOffset = initialEndPoint.minus( hingePoint ).toVector2().angle(); // angle of switch segment with the horizontal
         lastAngle = angleOffset;
         switchNode.dragging = true;
 

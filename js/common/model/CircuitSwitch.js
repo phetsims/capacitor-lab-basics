@@ -58,7 +58,9 @@ define( function( require ) {
 
     this.angleProperty = new Property( this.initialAngle, {
       tandem: tandem.createTandem( 'angleProperty' ),
-      phetioValueType: TNumber( { units: 'radians' } )
+      phetioValueType: TNumber( {
+        units: 'radians'
+      } )
     } );
 
     // Assign string identifying connection point
@@ -226,7 +228,7 @@ define( function( require ) {
     getConnectionPoint: function( connectionType ) {
 
       var connection = this.getConnection( connectionType );
-      return connection.location.toVector2();
+      return connection.location;
     },
 
     /**
@@ -238,20 +240,9 @@ define( function( require ) {
 
       var endPoint = this.switchSegment.endPointProperty.value;
 
-      // assert && assert( endPoint instanceof Vector2 );
+      assert && assert( endPoint instanceof Vector3 );
 
-      // Sometimes Vector3s are getting serialized as Vector2, see https://github.com/phetsims/phet-io/issues/811
-      // So until WireSegment supports single types (whether Vector2 or Vector3), we use this hack to support both types
-      // TODO: Remove this logic after WireSegment is sorted out.
-      if ( endPoint instanceof Vector2 ) {
-        return endPoint.copy();
-      }
-      else if ( endPoint instanceof Vector3 ) {
-        return endPoint.toVector2();
-      }
-      else {
-        throw new Error( 'bad type' );
-      }
+      return endPoint;
     },
 
     /**
@@ -260,7 +251,7 @@ define( function( require ) {
      * @return {Vector2}
      */
     getCapacitorConnectionPoint: function() {
-      return this.hingePoint.toVector2();
+      return this.hingePoint;
     },
 
     /**
@@ -282,7 +273,7 @@ define( function( require ) {
         }
       } );
 
-      return rightConnectionPoint.minus( self.hingePoint.toVector2() ).angle();
+      return rightConnectionPoint.minus( self.hingePoint ).toVector2().angle();
     },
 
     /**
@@ -290,7 +281,13 @@ define( function( require ) {
      * @return {[type]} [description]
      */
     getLeftLimitAngle: function() {
-      return this.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED ).minus( this.hingePoint.toVector2() ).angle();
+      var a = this.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
+      var b = this.hingePoint;
+
+      assert && assert( a instanceof Vector3 && b instanceof Vector3,
+        'One of these is not a Vector3:\n' + a + '\n' + b );
+
+      return a.minus( b ).toVector2().angle();
     }
   } );
 } );
