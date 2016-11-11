@@ -49,16 +49,25 @@ define( function( require ) {
       var wireShape = new Shape();
 
       // Move to the start point of the first wire segment.
-      // Guarantee a Vector2 input type for use with Shape methods.
       var segment = this.wire.segments[ 0 ];
-      var startPoint = new Vector2( segment.startPoint.x, segment.startPoint.y );
-      var endPoint = new Vector2( segment.endPoint.x, segment.endPoint.y );
-      wireShape.moveToPoint( startPoint ).lineToPoint( endPoint );
+      var startPoint = segment.startPointProperty.value;
+      var endPoint = segment.endPointProperty.value;
+
+      // assert && assert( segment.endPointProperty.value instanceof Vector2 );
+
+      if ( segment.endPointProperty.value instanceof Vector2 ) {
+        wireShape.moveToPoint( startPoint ).lineToPoint( endPoint );
+      }
+      else {
+        wireShape.moveToPoint( startPoint ).lineToPoint( endPoint.toVector2() );
+      }
 
       // go through the points 'tip to tail', assuming they are in the desired order
       for ( var i = 1; i < this.wire.segments.length; i++ ) {
         var currentSegment = this.wire.segments[ i ];
-        wireShape.lineToPoint( new Vector2( currentSegment.endPoint.x, currentSegment.endPoint.y ) );
+        wireShape.lineToPoint( new Vector2(
+          currentSegment.endPointProperty.value.x,
+          currentSegment.endPointProperty.value.y ) );
       }
 
       // return a transformed shape defined by the stroke styles.
@@ -68,4 +77,3 @@ define( function( require ) {
     }
   } );
 } );
-

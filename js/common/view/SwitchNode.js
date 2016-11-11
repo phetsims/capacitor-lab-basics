@@ -26,6 +26,7 @@ define( function( require ) {
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
   var TandemButtonListener = require( 'TANDEM/scenery/input/TandemButtonListener' );
   var Vector2 = require( 'DOT/Vector2' );
+  var Vector3 = require( 'DOT/Vector3' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
 
   // phet-io modules
@@ -81,10 +82,10 @@ define( function( require ) {
     shadedSphereNode.mouseArea = shadedSphereNode.bounds.dilated( 2 );  // px
     shadedSphereNode.touchArea = shadedSphereNode.bounds.dilated( 15 ); // px
 
-    shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
+    shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPointProperty.value );
     this.wireSwitchNode.addChild( shadedSphereNode );
 
-    tipCircle.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
+    tipCircle.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPointProperty.value );
     this.wireSwitchNode.addChild( tipCircle );
 
     // add the the hinge
@@ -160,7 +161,7 @@ define( function( require ) {
 
     // Reflect bottom arrow about the horizontal axis.
     var segment = circuitSwitch.switchSegment;
-    if ( segment.endPoint.y > segment.hingePoint.y ) {
+    if ( segment.endPointProperty.value.y > segment.hingePoint.y ) {
       switchCueArrow.scale( 1, -1 );
     }
 

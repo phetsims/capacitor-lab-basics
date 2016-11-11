@@ -45,7 +45,7 @@ define( function( require ) {
 
     // Whenever a segment changes, update the shape.
     this.segments.forEach( function( segment ) {
-      segment.multilink( [ 'startPoint', 'endPoint' ], function() {
+      Property.multilink( [ segment.startPointProperty, segment.endPointProperty ], function() {
         self.shapeProperty.set( self.shapeCreator.createWireShape() );
       } );
     } );

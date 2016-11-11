@@ -14,7 +14,7 @@ define( function( require ) {
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
   var Vector2 = require( 'DOT/Vector2' );
 
   // phet-io modules
@@ -27,28 +27,26 @@ define( function( require ) {
    * @param {Tandem} tandem
    * @constructor
    */
-  function WireSegment( startPoint, endPoint, tandem ) {
-    assert&&assert(tandem);
-    var properties = {
-      startPoint: {
-        value: startPoint,
-        tandem: tandem.createTandem( 'startPointProperty' ),
-        phetioValueType: TVector2,
-      },
-      endPoint: {
-        value: endPoint,
-        tandem: tandem.createTandem( 'endPointProperty' ),
-        phetioValueType: TVector2
-      }
-    };
 
-    // @public
-    PropertySet.call( this, null, properties );
+  function WireSegment( startPoint, endPoint, tandem ) {
+
+    // assert && assert( startPoint instanceof Vector2 );
+    // assert && assert( endPoint instanceof Vector2 );
+
+    this.startPointProperty = new Property( startPoint, {
+      tandem: tandem.createTandem( 'startPointProperty' ),
+      phetioValueType: TVector2,
+    } );
+
+    this.endPointProperty = new Property( endPoint, {
+      tandem: tandem.createTandem( 'endPointProperty' ),
+      phetioValueType: TVector2
+    } );
   }
 
   capacitorLabBasics.register( 'WireSegment', WireSegment );
 
-  inherit( PropertySet, WireSegment, {}, {
+  inherit( Object, WireSegment, {}, {
 
     // Factory methods to construct various wire segments for the different
 
@@ -120,7 +118,13 @@ define( function( require ) {
      */
     createBatteryBottomToSwitchSegment: function( startPoint, endPoint, tandem ) {
       return new WireSegment( startPoint, endPoint, tandem );
+    },
+
+    reset: function() {
+      this.startPointProperty.reset();
+      this.endPointProperty.reset();
     }
+
   } );
 
   /**
@@ -157,7 +161,7 @@ define( function( require ) {
   inherit( ComponentWireSegment, ComponentTopWireSegment, {
     // update the start point of the segment, called when the component geometry changes
     update: function() {
-      this.startPoint = this.component.getTopConnectionPoint().toVector2();
+      this.startPointProperty.set( this.component.getTopConnectionPoint().toVector2() );
     }
   } );
 
@@ -178,7 +182,7 @@ define( function( require ) {
   inherit( ComponentWireSegment, ComponentBottomWireSegment, {
     // update the start point of the segment, called when the component geometry changes
     update: function() {
-      this.startPoint = this.component.getBottomConnectionPoint().toVector2();
+      this.startPointProperty.set( this.component.getBottomConnectionPoint().toVector2() );
     }
   } );
 
@@ -217,7 +221,7 @@ define( function( require ) {
     // update the start point of the battery top segment, called when the battery changes polarity
     update: function() {
       var battery = this.battery;
-      this.startPoint = new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() );
+      this.startPointProperty.set( new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ) );
     }
   } );
 
@@ -239,7 +243,7 @@ define( function( require ) {
     // update the start point of teh battery bottom segment, called when battery changes polarity
     update: function() {
       var battery = this.battery;
-      this.startPoint = new Vector2( this.battery.location.x, this.battery.location.y + battery.getBottomTerminalYOffset() );
+      this.startPointProperty.set( new Vector2( this.battery.location.x, this.battery.location.y + battery.getBottomTerminalYOffset() ) );
     }
   } );
 
@@ -255,7 +259,7 @@ define( function( require ) {
   function SwitchSegment( hingePoint, activeConnection, tandem ) {
     this.activeConnection = activeConnection;
     this.hingePoint = hingePoint;
-    WireSegment.call( this, hingePoint, activeConnection.location, tandem );
+    WireSegment.call( this, hingePoint, activeConnection.location.toVector2(), tandem );
   }
 
   capacitorLabBasics.register( 'SwitchSegment', SwitchSegment );
@@ -272,4 +276,3 @@ define( function( require ) {
   return WireSegment;
 
 } );
-
