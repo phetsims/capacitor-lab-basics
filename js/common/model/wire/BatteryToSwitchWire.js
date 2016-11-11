@@ -70,12 +70,12 @@ define( function( require ) {
 
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-      switchSegment = WireSegment.createBatteryTopToSwitchSegment( leftCorner, switchConnectionPoint,
+      switchSegment = new WireSegment( leftCorner, switchConnectionPoint,
         tandem.createTandem( 'batteryTopToSwitchSegment' ) );
     }
     else {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-      switchSegment = WireSegment.createBatteryBottomToSwitchSegment( leftCorner, switchConnectionPoint,
+      switchSegment = new WireSegment( leftCorner, switchConnectionPoint,
         tandem.createTandem( 'batteryBottomToSwitchSegment' ) );
     }
 

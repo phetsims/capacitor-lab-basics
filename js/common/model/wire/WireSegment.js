@@ -15,7 +15,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
-  var Vector2 = require( 'DOT/Vector2' );
+  // var Vector2 = require( 'DOT/Vector2' );
   // var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
@@ -81,26 +81,6 @@ define( function( require ) {
       return new SwitchSegment( startPoint, activeConnection, tandem );
     },
 
-    /**
-     * Factory for a WireSegment that attaches a battery top to a switch segment
-     * @param {Vector2} startPoint
-     * @param {Vector2} endPoint
-     * @param {Tandem} tandem
-     */
-    createBatteryTopToSwitchSegment: function( startPoint, endPoint, tandem ) {
-      return new WireSegment( startPoint, endPoint, tandem );
-    },
-
-    /**
-     * Factory for a WireSegment that attaches a battery bottom to a switch segment
-     * @param {Vector2} startPoint
-     * @param {Vector2} endPoint
-     * @param {Tandem} tandem
-     */
-    createBatteryBottomToSwitchSegment: function( startPoint, endPoint, tandem ) {
-      return new WireSegment( startPoint, endPoint, tandem );
-    },
-
     reset: function() {
       this.startPointProperty.reset();
       this.endPointProperty.reset();
@@ -149,54 +129,6 @@ define( function( require ) {
     // update the start point of the segment, called when the component geometry changes
     update: function() {
       this.startPointProperty.set( this.component.getBottomConnectionPoint().toVector2() );
-    }
-  } );
-
-  /**
-   * Constructor for a BatteryTopWireSegment.  This is a wire segment whose start point is connected to the top terminal
-   * of a battery.  Adjusts the start point when the battery's polarity changes.
-   *
-   * @param {Battery} battery
-   * @param {Vector2} endPoint
-   * @param {Tandem} tandem
-   */
-  function BatteryTopWireSegment( battery, endPoint, tandem ) {
-    var startPoint = new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() );
-    WireSegment.call( this, startPoint, endPoint, tandem );
-    this.battery = battery;
-  }
-
-  capacitorLabBasics.register( 'BatteryTopWireSegment', BatteryTopWireSegment );
-
-  inherit( WireSegment, BatteryTopWireSegment, {
-    // update the start point of the battery top segment, called when the battery changes polarity
-    update: function() {
-      var battery = this.battery;
-      this.startPointProperty.set( new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ) );
-    }
-  } );
-
-  /**
-   * Constructor for a BatteryBottomWireSegment.  This is a wire segment whose start point is connected to the bottom
-   * terminal of a battery.  Adjusts the start point when the battery's polarity changes.
-   *
-   * @param {Battery} battery
-   * @param {Vector2} endPoint
-   * @param {Tandem} tandem
-   */
-  function BatteryBottomWireSegment( battery, endPoint, tandem ) {
-    var startPoint = new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() );
-    WireSegment.call( this, startPoint, endPoint, tandem );
-    this.battery = battery;
-  }
-
-  capacitorLabBasics.register( 'BatteryBottomWireSegment', BatteryBottomWireSegment );
-
-  inherit( WireSegment, BatteryBottomWireSegment, {
-    // update the start point of teh battery bottom segment, called when battery changes polarity
-    update: function() {
-      var battery = this.battery;
-      this.startPointProperty.set( new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() ) );
     }
   } );
 
