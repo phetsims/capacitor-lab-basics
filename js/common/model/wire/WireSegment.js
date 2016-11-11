@@ -188,23 +188,6 @@ define( function( require ) {
   } );
 
   /**
-   *  Constructor for a BatteryWireSegment.  This includes any wire segment that is connected to a battery.
-   *
-   *  @param {Battery} battery
-   *  @param {Vector2} startPoint
-   *  @param {Vector2} endPoint
-   *  @param {Tandem} tandem
-   */
-  function BatteryWireSegment( battery, startPoint, endPoint, tandem ) {
-    WireSegment.call( this, startPoint, endPoint, tandem );
-    this.battery = battery;
-  }
-
-  capacitorLabBasics.register( 'BatteryWireSegment', BatteryWireSegment );
-
-  inherit( WireSegment, BatteryWireSegment );
-
-  /**
    * Constructor for a BatteryTopWireSegment.  This is a wire segment whose start point is connected to the top terminal
    * of a battery.  Adjusts the start point when the battery's polarity changes.
    *
@@ -213,12 +196,15 @@ define( function( require ) {
    * @param {Tandem} tandem
    */
   function BatteryTopWireSegment( battery, endPoint, tandem ) {
-    BatteryWireSegment.call( this, battery, new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ), endPoint, tandem );
+    var startPoint = new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() );
+    WireSegment.call( this, startPoint, endPoint, tandem );
+    this.battery = battery;
+    // BatteryWireSegment.call( this, battery, new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ), endPoint, tandem );
   }
 
   capacitorLabBasics.register( 'BatteryTopWireSegment', BatteryTopWireSegment );
 
-  inherit( BatteryWireSegment, BatteryTopWireSegment, {
+  inherit( WireSegment, BatteryTopWireSegment, {
     // update the start point of the battery top segment, called when the battery changes polarity
     update: function() {
       var battery = this.battery;
@@ -235,16 +221,18 @@ define( function( require ) {
    * @param {Tandem} tandem
    */
   function BatteryBottomWireSegment( battery, endPoint, tandem ) {
-    BatteryWireSegment.call( this, battery, new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() ), endPoint, tandem );
+    var startPoint = new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() );
+    WireSegment.call( this, startPoint, endPoint, tandem );
+    this.battery = battery;
   }
 
   capacitorLabBasics.register( 'BatteryBottomWireSegment', BatteryBottomWireSegment );
 
-  inherit( BatteryWireSegment, BatteryBottomWireSegment, {
+  inherit( WireSegment, BatteryBottomWireSegment, {
     // update the start point of teh battery bottom segment, called when battery changes polarity
     update: function() {
       var battery = this.battery;
-      this.startPointProperty.set( new Vector2( this.battery.location.x, this.battery.location.y + battery.getBottomTerminalYOffset() ) );
+      this.startPointProperty.set( new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() ) );
     }
   } );
 
