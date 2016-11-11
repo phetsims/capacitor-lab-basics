@@ -99,7 +99,7 @@ define( function( require ) {
       self.wires.forEach( function( wire ) {
         wire.segments.forEach( function( segment ) {
           // not all segments need to be updated
-          segment.update && segment.update( circuitConnection );
+          segment.update && segment.update();
         } );
       } );
     }
