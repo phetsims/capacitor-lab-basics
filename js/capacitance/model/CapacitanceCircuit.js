@@ -38,7 +38,7 @@ define( function( require ) {
     assert && assert( config.numberOfLightBulbs === 0,
       'LightBulbCircuit should have 0 LightBulbs in CL:B. config.numberOfLightBulbs: ' + config.numberOfLightBulbs );
 
-    ParallelCircuit.call( this, config, tandem);
+    ParallelCircuit.call( this, config, tandem );
 
     this.capacitor = this.capacitors[ 0 ]; // @public
   }
@@ -53,13 +53,14 @@ define( function( require ) {
      */
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
-        if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           // if the battery is connected, the voltage is equal to the battery voltage
           this.capacitor.platesVoltageProperty.value = this.battery.voltageProperty.value;
         }
         else {
           // otherwise, the voltage can be found by V=Q/C
-          this.capacitor.platesVoltageProperty.value = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance();
+          this.capacitor.platesVoltageProperty.value =
+            this.disconnectedPlateChargeProperty.value / this.capacitor.getTotalCapacitance();
         }
       }
     },

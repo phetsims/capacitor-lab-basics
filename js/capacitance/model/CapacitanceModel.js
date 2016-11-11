@@ -128,7 +128,7 @@ define( function( require ) {
         this.tandem.createTandem( 'tempLightBulbCircuit', { enabled: false } ) );
 
       // disconnect the battery and set the max plate charge
-      circuit.circuitConnection = CircuitConnectionEnum.OPEN_CIRCUIT;
+      circuit.circuitConnectionProperty.set( CircuitConnectionEnum.OPEN_CIRCUIT );
       circuit.setDisconnectedPlateCharge( this.getMaxPlateCharge() );
 
       return circuit.capacitor.getEffectiveEField();

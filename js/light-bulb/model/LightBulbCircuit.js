@@ -90,7 +90,7 @@ define( function( require ) {
       // This is both for performance, and for better timing control.
       // The current arrows should start fading when the voltmeter reading drops
       // below MIN_VOLTAGE.
-      if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
         if ( Math.abs( this.capacitor.platesVoltageProperty.value ) > MIN_VOLTAGE ) {
           this.capacitor.discharge( this.lightBulb.resistance, dt );
         }
@@ -102,7 +102,7 @@ define( function( require ) {
         }
       }
 
-      },
+    },
 
     /**
      * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
@@ -110,13 +110,16 @@ define( function( require ) {
      */
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
-        if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           // if the battery is connected, the voltage is equal to the battery voltage
           this.capacitor.platesVoltageProperty.value = this.battery.voltageProperty.value;
-        } else if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        }
+        else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
           // otherwise, the voltage can be found by V=Q/C
-          this.capacitor.platesVoltageProperty.value = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance();
-        } else if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+          this.capacitor.platesVoltageProperty.value =
+            this.disconnectedPlateChargeProperty.value / this.capacitor.getTotalCapacitance();
+        }
+        else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
           // the capacitor is discharging, but plate geometry is changing at the same time so we need
           // to update the parameters of the transient discharge equation parameters
           this.capacitor.updateDischargeParameters();
@@ -141,11 +144,14 @@ define( function( require ) {
 
       if ( this.connectedToLightBulbTop( shape ) ) {
         voltage = this.getCapacitorPlateVoltage();
-      } else if ( this.connectedToLightBulbBottom( shape ) ) {
+      }
+      else if ( this.connectedToLightBulbBottom( shape ) ) {
         voltage = 0;
-      } else if ( this.connectedToBatteryTop( shape ) ) {
+      }
+      else if ( this.connectedToBatteryTop( shape ) ) {
         voltage = this.getTotalVoltage();
-      } else if ( this.connectedToBatteryBottom( shape ) ) {
+      }
+      else if ( this.connectedToBatteryBottom( shape ) ) {
         voltage = 0;
       }
 
@@ -199,7 +205,7 @@ define( function( require ) {
       } );
 
       var disconnected = !( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-      return ( intersectsBulbBase || intersectsTopWires  ) && disconnected;
+      return ( intersectsBulbBase || intersectsTopWires ) && disconnected;
     },
 
     /**
@@ -257,9 +263,9 @@ define( function( require ) {
      * @param {number} disconnectedPlateCharge Coulombs
      */
     setDisconnectedPlateCharge: function( disconnectedPlateCharge ) {
-      if ( disconnectedPlateCharge !== this.disconnectedPlateCharge ) {
-        this.disconnectedPlateCharge = disconnectedPlateCharge;
-        if ( this.circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
+      if ( disconnectedPlateCharge !== this.disconnectedPlateChargeProperty.value ) {
+        this.disconnectedPlateChargeProperty.value = disconnectedPlateCharge;
+        if ( this.circuitConnectionProperty.value !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
           this.updatePlateVoltages();
         }
       }
@@ -269,7 +275,7 @@ define( function( require ) {
      * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
      */
     setDisconnectedPlateVoltage: function() {
-      if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         this.updatePlateVoltages();
       }
     },
