@@ -13,7 +13,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
@@ -42,41 +42,32 @@ define( function( require ) {
    */
   function Voltmeter( circuit, dragBounds, modelViewTransform, tandem ) {
 
-    var properties = {
-      visible: {
-        value: false,
-        tandem: tandem.createTandem( 'visibleProperty' ),
-        phetioValueType: TBoolean
-      },
-      inUserControl: {
-        value: false,
-        tandem: tandem.createTandem( 'inUserControlProperty' ),
-        phetioValueType: TBoolean
-      },
-      bodyLocation: {
-        value: BODY_LOCATION,
-        tandem: tandem.createTandem( 'bodyLocationProperty' ),
-        phetioValueType: TVector3
-      },
-      positiveProbeLocation: {
-        value: POSITIVE_PROBE_LOCATION,
-        tandem: tandem.createTandem( 'positiveProbeLocationProperty' ),
-        phetioValueType: TVector3
-      },
-      negativeProbeLocation: {
-        value: NEGATIVE_PROBE_LOCATION,
-        tandem: tandem.createTandem( 'negativeProbeLocationProperty' ),
-        phetioValueType: TVector3
-      },
-      value: {
-        value: null, // This is a number. Will be set by updateValue
-        tandem: tandem.createTandem( 'valueProperty' ),
-        phetioValueType: TNumber( { units: 'volts' } )
-      }
-    };
-
-    // @public
-    PropertySet.call( this, null, properties );
+    this.visibleProperty = new Property( false, {
+      tandem: tandem.createTandem( 'visibleProperty' ),
+      phetioValueType: TBoolean
+    } );
+    this.inUserControlProperty = new Property( false, {
+      tandem: tandem.createTandem( 'inUserControlProperty' ),
+      phetioValueType: TBoolean
+    } );
+    this.bodyLocationProperty = new Property( BODY_LOCATION, {
+      tandem: tandem.createTandem( 'bodyLocationProperty' ),
+      phetioValueType: TVector3
+    } );
+    this.positiveProbeLocationProperty = new Property( POSITIVE_PROBE_LOCATION, {
+      tandem: tandem.createTandem( 'positiveProbeLocationProperty' ),
+      phetioValueType: TVector3
+    } );
+    this.negativeProbeLocationProperty = new Property( NEGATIVE_PROBE_LOCATION, {
+      tandem: tandem.createTandem( 'negativeProbeLocationProperty' ),
+      phetioValueType: TVector3
+    } );
+    this.measuredVoltageProperty = new Property( null, {
+      tandem: tandem.createTandem( 'measuredVoltageProperty' ),
+      phetioValueType: TNumber( {
+        units: 'volts'
+      } )
+    } );
 
     var self = this;
 
@@ -109,9 +100,10 @@ define( function( require ) {
      */
     var updateValue = function() {
       if ( self.probesAreTouching() ) {
-        self.value = 0;
+        self.measuredVoltageProperty.set( 0 );
         return;
-      } else {
+      }
+      else {
         var positiveProbeShape = self.shapeCreator.getPositiveProbeTipShape();
         var negativeProbeShape = self.shapeCreator.getNegativeProbeTipShape();
 
@@ -119,21 +111,21 @@ define( function( require ) {
 
           // Set voltage to zero when both probes are touching the disconnected lightbulb
           if ( touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) {
-            self.value = 0;
+            self.measuredVoltageProperty.set( 0 );
             return;
           }
 
           // Set voltage to null when one (and only one) probe is on a disconnected lightbulb
           if ( ( touchingFreeLightBulb( positiveProbeShape ) && !touchingFreeLightBulb( negativeProbeShape ) ) ||
             ( !touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) ) {
-            self.value = null;
+            self.measuredVoltageProperty.set( null );
             return;
           }
 
           // Set voltage to null when one (and only one) probe is on a disconnected battery
           else if ( ( touchingFreeBattery( positiveProbeShape ) && !touchingFreeBattery( negativeProbeShape ) ) ||
             ( !touchingFreeBattery( positiveProbeShape ) && touchingFreeBattery( negativeProbeShape ) ) ) {
-            self.value = null;
+            self.measuredVoltageProperty.set( null );
             return;
           }
         }
@@ -141,12 +133,12 @@ define( function( require ) {
         // Set voltage to null when one (and only one) probe is on a disconnected plate.
         if ( ( touchingFreePlate( positiveProbeShape ) && !touchingFreePlate( negativeProbeShape ) ) ||
           ( !touchingFreePlate( positiveProbeShape ) && touchingFreePlate( negativeProbeShape ) ) ) {
-          self.value = null;
+          self.measuredVoltageProperty.set( null );
           return;
         }
 
         // Handle all other cases
-        self.value = self.circuit.getVoltageBetween( positiveProbeShape, negativeProbeShape );
+        self.measuredVoltageProperty.set( self.circuit.getVoltageBetween( positiveProbeShape, negativeProbeShape ) );
       }
     };
 
@@ -156,7 +148,7 @@ define( function( require ) {
     } );
 
     // update the value when the probes move
-    this.multilink( [ 'negativeProbeLocation', 'positiveProbeLocation' ], updateValue );
+    Property.multilink( [self.negativeProbeLocationProperty, self.positiveProbeLocationProperty ], updateValue );
 
     // update all segments and the plate voltages when capacitor plate geometry changes.  Lazy link because there is
     // no guarantee that capacitors have been constructed.
@@ -180,7 +172,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'Voltmeter', Voltmeter );
 
-  return inherit( PropertySet, Voltmeter, {
+  return inherit( Object, Voltmeter, {
 
     /**
      * Probes are touching if their tips intersect.
@@ -198,7 +190,9 @@ define( function( require ) {
             return;
           }
         } );
-        if ( touching ) { return; } // For efficiency
+        if ( touching ) {
+          return;
+        } // For efficiency
       } );
       return touching;
     },
@@ -210,6 +204,15 @@ define( function( require ) {
      */
     getProbeTipSizeReference: function() {
       return PROBE_TIP_SIZE;
+    },
+
+    reset: function() {
+      this.visibleProperty.reset();
+      this.inUserControlProperty.reset();
+      this.bodyLocationProperty.reset();
+      this.positiveProbeLocationProperty.reset();
+      this.negativeProbeLocationProperty.reset();
+      this.measuredVoltageProperty.reset();
     }
   } );
 } );

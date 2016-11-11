@@ -31,7 +31,6 @@ define( function( require ) {
     // @private
     this.voltmeter = voltmeter;
     this.modelViewTransform = modelViewTransform;
-
   }
 
   capacitorLabBasics.register( 'VoltmeterShapeCreator', VoltmeterShapeCreator );
@@ -44,7 +43,7 @@ define( function( require ) {
      * @return {Shape}
      */
     getPositiveProbeTipShape: function() {
-      var origin = this.voltmeter.positiveProbeLocation.plus( PROBE_TIP_OFFSET );
+      var origin = this.voltmeter.positiveProbeLocationProperty.value.plus( PROBE_TIP_OFFSET );
       return this.getProbeTipShape( origin, -this.modelViewTransform.yaw );
     },
 
@@ -54,7 +53,7 @@ define( function( require ) {
      * @return {Shape}
      */
     getNegativeProbeTipShape: function() {
-      var origin = this.voltmeter.negativeProbeLocation.plus( PROBE_TIP_OFFSET );
+      var origin = this.voltmeter.negativeProbeLocationProperty.value.plus( PROBE_TIP_OFFSET );
       return this.getProbeTipShape( origin, -this.modelViewTransform.yaw );
     },
 
@@ -70,11 +69,9 @@ define( function( require ) {
       var height = this.voltmeter.getProbeTipSizeReference().height;
       var x = origin.x;
       var y = origin.y;
-      var r = Shape.rectangle( x, y, width, height );
-      var t = Matrix3.rotationAround( theta, origin.x, origin.y );
-      var s = r.transformed( t );
-      return this.modelViewTransform.modelToViewShape( s );
-
+      var rec = Shape.rectangle( x, y, width, height );
+      var t = Matrix3.rotationAround( theta, x, y );
+      return this.modelViewTransform.modelToViewShape( rec.transformed( t ) );
     }
   } );
 } );

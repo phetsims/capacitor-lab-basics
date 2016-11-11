@@ -70,7 +70,11 @@ define( function( require ) {
     labelText.center = new Vector2( imageNode.width / 2, imageNode.height / 3 );
     this.addChild( labelText );
 
-    var valueString = StringUtils.format( pattern0Value1UnitsString, voltmeter.valueProperty.get(), unitsVoltsString );
+    var valueString = StringUtils.format(
+      pattern0Value1UnitsString,
+      voltmeter.measuredVoltageProperty.get(),
+      unitsVoltsString );
+
     var valueText = new Text( valueString, {
       font: DISPLAY_FONT,
       maxWidth: imageNode.width * 0.4
@@ -98,7 +102,7 @@ define( function( require ) {
     this.negativeConnectionOffset = new Vector2( 0.565 * imageBounds.width, 0.875 * imageBounds.maxY ); // @public bottom right
 
     // update value
-    voltmeter.valueProperty.link( function( value ) {
+    voltmeter.measuredVoltageProperty.link( function( value ) {
       self.setValueText( valueText, value );
       valueText.center = backgroundRect.center;
     } );
@@ -123,7 +127,7 @@ define( function( require ) {
       onDrag: function() {
         // if the user tried to drag the voltmeter out of bounds, MovableDragHandler converted location
         // to a Vector2.  In this case, we need to make sure that the location is a vector3.
-        if ( !voltmeter.bodyLocation.isVector3 ) {
+        if ( !voltmeter.bodyLocationProperty.value.isVector3 ) {
           voltmeter.bodyLocationProperty.set( voltmeter.bodyLocationProperty.value.toVector3() );
         }
       },
@@ -146,13 +150,13 @@ define( function( require ) {
      * @param {number} value
      */
     setValueText: function( valueText, value ) {
-      if (  value === null ) {
+      if ( value === null ) {
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, voltsUnknownString, unitsVoltsString ) );
-      } else {
+      }
+      else {
         var fixedValue = Util.toFixed( value, 3 );
         valueText.setText( StringUtils.format( pattern0Value1UnitsString, fixedValue, unitsVoltsString ) );
       }
     }
   } );
 } );
-
