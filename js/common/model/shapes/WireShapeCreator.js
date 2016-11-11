@@ -50,17 +50,12 @@ define( function( require ) {
 
       // Move to the start point of the first wire segment.
       var segment = this.wire.segments[ 0 ];
-      var startPoint = segment.startPointProperty.value;
-      var endPoint = segment.endPointProperty.value;
 
-      // assert && assert( segment.endPointProperty.value instanceof Vector2 );
+      // Model coords are 3D; view is in 2D
+      var startPoint = segment.startPointProperty.value.toVector2();
+      var endPoint = segment.endPointProperty.value.toVector2();
 
-      if ( segment.endPointProperty.value instanceof Vector2 ) {
-        wireShape.moveToPoint( startPoint ).lineToPoint( endPoint );
-      }
-      else {
-        wireShape.moveToPoint( startPoint ).lineToPoint( endPoint.toVector2() );
-      }
+      wireShape.moveToPoint( startPoint ).lineToPoint( endPoint );
 
       // go through the points 'tip to tail', assuming they are in the desired order
       for ( var i = 1; i < this.wire.segments.length; i++ ) {
