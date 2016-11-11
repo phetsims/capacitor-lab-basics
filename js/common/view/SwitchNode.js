@@ -26,7 +26,7 @@ define( function( require ) {
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
   var TandemButtonListener = require( 'TANDEM/scenery/input/TandemButtonListener' );
   var Vector2 = require( 'DOT/Vector2' );
-  var Vector3 = require( 'DOT/Vector3' );
+  // var Vector3 = require( 'DOT/Vector3' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
 
   // phet-io modules

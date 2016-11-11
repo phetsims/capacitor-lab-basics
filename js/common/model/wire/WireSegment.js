@@ -16,6 +16,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
   var Vector2 = require( 'DOT/Vector2' );
+  // var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
   var TVector2 = require( 'ifphetio!PHET_IO/types/dot/TVector2' );
@@ -30,8 +31,8 @@ define( function( require ) {
 
   function WireSegment( startPoint, endPoint, tandem ) {
 
-    // assert && assert( startPoint instanceof Vector2 );
-    // assert && assert( endPoint instanceof Vector2 );
+    // assert && assert( startPoint instanceof Vector3 );
+    // assert && assert( endPoint instanceof Vector3 );
 
     this.startPointProperty = new Property( startPoint, {
       tandem: tandem.createTandem( 'startPointProperty' ),
@@ -259,7 +260,7 @@ define( function( require ) {
   function SwitchSegment( hingePoint, activeConnection, tandem ) {
     this.activeConnection = activeConnection;
     this.hingePoint = hingePoint;
-    WireSegment.call( this, hingePoint, activeConnection.location.toVector2(), tandem );
+    WireSegment.call( this, hingePoint, activeConnection.location, tandem );
   }
 
   capacitorLabBasics.register( 'SwitchSegment', SwitchSegment );
