@@ -139,7 +139,7 @@ define( function( require ) {
       var intersectsWires = false;
 
       wires.forEach( function( wire ) {
-        if ( wire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( wire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsWires = true;
         }
       } );
@@ -155,7 +155,7 @@ define( function( require ) {
       var bottomWires = bottomCapacitorWires.concat( bottomSwitchWires );
 
       bottomWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
         }
       } );
@@ -175,7 +175,7 @@ define( function( require ) {
       var topCircuitSwitchWires = this.getTopSwitchWires();
       var topWires = topCapacitorWires.concat( topCircuitSwitchWires );
       topWires.forEach( function( topWire ) {
-        if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWire = true;
         }
       } );
@@ -199,7 +199,7 @@ define( function( require ) {
       // only the wires that are connected to the battery
       var topBatteryWires = this.getTopBatteryWires();
       topBatteryWires.forEach( function( topWire ) {
-        if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWire = true;
         }
       } );
@@ -221,7 +221,7 @@ define( function( require ) {
       var bottomBatteryWires = this.getBottomBatteryWires();
 
       bottomBatteryWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
         }
       } );
@@ -243,7 +243,7 @@ define( function( require ) {
       topBatteryWires = topBatteryWires.concat( this.getTopCapacitorWires() );
       topBatteryWires = topBatteryWires.concat( this.getTopSwitchWires() );
       topBatteryWires.forEach( function( topWire ) {
-        if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWire = true;
         }
       } );
@@ -266,7 +266,7 @@ define( function( require ) {
       bottomBatteryWires = bottomBatteryWires.concat( this.getBottomCapacitorWires() );
       bottomBatteryWires = bottomBatteryWires.concat( this.getBottomSwitchWires() );
       bottomBatteryWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
         }
       } );

@@ -171,7 +171,7 @@ define( function( require ) {
       topWires = topWires.concat( topSwitchWires );
 
       topWires.forEach( function( topWire ) {
-        if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWires = true;
         }
       } );
@@ -199,7 +199,7 @@ define( function( require ) {
       var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
       topLightBulbWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWires = true;
         }
       } );
@@ -220,7 +220,7 @@ define( function( require ) {
       var bottomLightBulbWires = this.getBottomLightBulbWires();
 
       bottomLightBulbWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
         }
       } );
@@ -245,7 +245,7 @@ define( function( require ) {
       var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
       bottomWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
         }
       } );
