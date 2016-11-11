@@ -129,23 +129,6 @@ define( function( require ) {
   } );
 
   /**
-   * Constructor for a ComponentWireSegment.  This is any wire segment that is connected to one circuit component.
-   *
-   * @param {Capacitor || LightBulb} component
-   * @param {Vector2} startPoint
-   * @param {Vector2} endPoint
-   * @param {Tandem} tandem
-   */
-  function ComponentWireSegment( component, startPoint, endPoint, tandem ) {
-    WireSegment.call( this, startPoint, endPoint, tandem );
-    this.component = component;
-  }
-
-  capacitorLabBasics.register( 'ComponentWireSegment', ComponentWireSegment );
-
-  inherit( WireSegment, ComponentWireSegment );
-
-  /**
    * Constructor for ComponentTopWireSegment.  This is a wire segment whose start point is connected to the top
    * connection point of a component.  Adjusts the wire geometry when the component changes geometry or orientation.
    *
@@ -154,12 +137,13 @@ define( function( require ) {
    * @param {Tandem} tandem
    */
   function ComponentTopWireSegment( component, endPoint, tandem ) {
-    ComponentWireSegment.call( this, component, component.getTopConnectionPoint().toVector2(), endPoint, tandem );
+    WireSegment.call( this, component.getTopConnectionPoint().toVector2(), endPoint, tandem );
+    this.component = component;
   }
 
-  capacitorLabBasics.register( 'ComponentTopWireSegment', ComponentWireSegment );
+  capacitorLabBasics.register( 'ComponentTopWireSegment', ComponentTopWireSegment );
 
-  inherit( ComponentWireSegment, ComponentTopWireSegment, {
+  inherit( WireSegment, ComponentTopWireSegment, {
     // update the start point of the segment, called when the component geometry changes
     update: function() {
       this.startPointProperty.set( this.component.getTopConnectionPoint().toVector2() );
@@ -175,12 +159,13 @@ define( function( require ) {
    * @param {Tandem} tandem
    */
   function ComponentBottomWireSegment( component, endPoint, tandem ) {
-    ComponentWireSegment.call( this, component, component.getBottomConnectionPoint().toVector2(), endPoint, tandem );
+    WireSegment.call( this, component.getBottomConnectionPoint().toVector2(), endPoint, tandem );
+    this.component = component;
   }
 
   capacitorLabBasics.register( 'ComponentBottomWireSegment', ComponentBottomWireSegment );
 
-  inherit( ComponentWireSegment, ComponentBottomWireSegment, {
+  inherit( WireSegment, ComponentBottomWireSegment, {
     // update the start point of the segment, called when the component geometry changes
     update: function() {
       this.startPointProperty.set( this.component.getBottomConnectionPoint().toVector2() );
