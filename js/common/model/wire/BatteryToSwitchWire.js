@@ -37,12 +37,29 @@ define( function( require ) {
 
     // add the vertical segment.
     var verticalSegment;
+    var startPoint;
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-      verticalSegment = WireSegment.createBatteryTopWireSegment( battery, leftCorner,
-        tandem.createTandem( 'batteryTopWireSegment' ) );
-    } else {
-      verticalSegment = WireSegment.createBatteryBottomWireSegment( battery, leftCorner,
-        tandem.createTandem( 'batteryBottomWireSegment' ) );
+
+      startPoint = new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() );
+
+      verticalSegment = new WireSegment( startPoint, leftCorner, tandem.createTandem( 'batteryTopWireSegment' ) );
+
+      verticalSegment.update = function() {
+        var point = new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() );
+        this.startPointProperty.set( point );
+      };
+
+    }
+    else {
+
+      startPoint = new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() );
+
+      verticalSegment = new WireSegment( startPoint, leftCorner, tandem.createTandem( 'batteryBottomWireSegment' ) );
+
+      verticalSegment.update = function() {
+        var point = new Vector2( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() );
+        this.startPointProperty.set( point );
+      };
     }
 
     segments.push( verticalSegment );
@@ -55,7 +72,8 @@ define( function( require ) {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
       switchSegment = WireSegment.createBatteryTopToSwitchSegment( leftCorner, switchConnectionPoint,
         tandem.createTandem( 'batteryTopToSwitchSegment' ) );
-    } else {
+    }
+    else {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
       switchSegment = WireSegment.createBatteryBottomToSwitchSegment( leftCorner, switchConnectionPoint,
         tandem.createTandem( 'batteryBottomToSwitchSegment' ) );
@@ -96,4 +114,3 @@ define( function( require ) {
   } );
 
 } );
-

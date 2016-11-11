@@ -49,27 +49,7 @@ define( function( require ) {
 
   inherit( Object, WireSegment, {}, {
 
-    // Factory methods to construct various wire segments for the different
-
-    /**
-     * Factory for a WireSegment that attaches to the top of a battery
-     * @param {Battery} battery
-     * @param {Vector2} endPoint
-     * @param {Tandem} tandem - end point for the wire segment
-     */
-    createBatteryTopWireSegment: function( battery, endPoint, tandem ) {
-      return new BatteryTopWireSegment( battery, endPoint, tandem );
-    },
-
-    /**
-     * Factory for a WireSegment that attaches to the bottom of a battery
-     * @param {Battery} battery
-     * @param {Vector2} endPoint
-     * @param {Tandem} tandem - end point for the wire segment
-     */
-    createBatteryBottomWireSegment: function( battery, endPoint, tandem ) {
-      return new BatteryBottomWireSegment( battery, endPoint, tandem );
-    },
+    // Factory methods for specific wire segments
 
     /**
      * Factory for a ComponentWireSegment that attaches to the top of a circuit component
@@ -184,7 +164,6 @@ define( function( require ) {
     var startPoint = new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() );
     WireSegment.call( this, startPoint, endPoint, tandem );
     this.battery = battery;
-    // BatteryWireSegment.call( this, battery, new Vector2( battery.location.x, battery.location.y + battery.getTopTerminalYOffset() ), endPoint, tandem );
   }
 
   capacitorLabBasics.register( 'BatteryTopWireSegment', BatteryTopWireSegment );
