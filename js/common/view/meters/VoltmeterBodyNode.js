@@ -109,7 +109,12 @@ define( function( require ) {
 
     // update position with model
     voltmeter.bodyLocationProperty.link( function( bodyLocation ) {
-      self.translation = modelViewTransform.modelToViewPosition( bodyLocation );
+      if ( bodyLocation instanceof Vector2 ) {
+        self.translation = modelViewTransform.modelToViewPosition( bodyLocation.toVector3() );
+      }
+      else {
+        self.translation = modelViewTransform.modelToViewPosition( bodyLocation );
+      }
     } );
 
     // voltmeter is restricted by bounds in model coordinates for `handler, adjusted by dimensions

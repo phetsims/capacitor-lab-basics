@@ -66,6 +66,9 @@ define( function( require ) {
      */
     modelToViewPosition: function( modelPoint ) {
 
+      assert && assert( modelPoint instanceof Vector3,
+        'modelPoint must be of type Vector3. Received ' + modelPoint );
+
       var xModel = modelPoint.x + ( modelPoint.z * Math.sin( this.pitch ) * Math.cos( this.yaw ) );
       var yModel = modelPoint.y + ( modelPoint.z * Math.sin( this.pitch ) * Math.sin( this.yaw ) );
       return this.modelToViewTransform2D.transformPosition2( new Vector2( xModel, yModel ) );
