@@ -51,7 +51,7 @@ define( function( require ) {
    */
   function PlateSeparationDragHandleNode( capacitor, modelViewTransform, valueRange, tandem ) {
 
-    Node.call( this, PlateSeparationDragHandleNode );
+    Node.call( this );
     var self = this;
 
     // @private
