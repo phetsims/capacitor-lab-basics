@@ -49,11 +49,6 @@ define( function( require ) {
     this.addChild( eFieldNode );
     this.addChild( this.topPlateNode );
 
-    // observers
-    // this.capacitor.multilink( [ 'plateSize', 'plateSeparation' ], function() {
-    //   self.updateGeometry();
-    // } );
-
     Property.multilink( [
       this.capacitor.plateSizeProperty,
       this.capacitor.plateSeparationProperty

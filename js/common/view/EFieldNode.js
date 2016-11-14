@@ -92,12 +92,6 @@ define( function( require ) {
     this.modelViewTransform = modelViewTransform;
     this.maxEffectiveEField = maxEffectiveEField;
 
-    // capacitor.multilink( [ 'platesVoltage', 'plateSeparation', 'plateSize' ], function() {
-    //   if ( self.visible ) {
-    //     self.invalidatePaint();
-    //   }
-    // } );
-
     Property.multilink( [
       capacitor.plateSizeProperty,
       capacitor.plateSeparationProperty,
