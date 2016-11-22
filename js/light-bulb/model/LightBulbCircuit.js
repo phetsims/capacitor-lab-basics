@@ -70,7 +70,7 @@ define( function( require ) {
       // if light bulb connected, reset values for transient calculations
       if ( circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
         self.capacitor.transientTime = 0;
-        self.capacitor.voltageAtSwitchClose = self.capacitor.platesVoltage;
+        self.capacitor.voltageAtSwitchClose = self.capacitor.platesVoltageProperty.value;
       }
 
     } );
@@ -90,11 +90,15 @@ define( function( require ) {
       // This is both for performance, and for better timing control.
       // The current arrows should start fading when the voltmeter reading drops
       // below MIN_VOLTAGE.
-      if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-        if ( Math.abs( this.capacitor.platesVoltage ) > MIN_VOLTAGE ) {
+      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        if ( Math.abs( this.capacitor.platesVoltageProperty.value ) > MIN_VOLTAGE ) {
           this.capacitor.discharge( this.lightBulb.resistance, dt );
-        } else {
-          this.capacitor.platesVoltage = 0;
+        }
+
+        else {
+          this.capacitor.platesVoltageProperty.set( 0 );
+          this.currentAmplitudeProperty.set( 0 );
+          this.previousTotalCharge = 0; // This fixes #130
         }
       }
 
@@ -106,13 +110,16 @@ define( function( require ) {
      */
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
-        if ( this.circuitConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           // if the battery is connected, the voltage is equal to the battery voltage
-          this.capacitor.platesVoltage = this.battery.voltage;
-        } else if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+          this.capacitor.platesVoltageProperty.value = this.battery.voltageProperty.value;
+        }
+        else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
           // otherwise, the voltage can be found by V=Q/C
-          this.capacitor.platesVoltage = this.disconnectedPlateCharge / this.capacitor.getTotalCapacitance();
-        } else if ( this.circuitConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+          this.capacitor.platesVoltageProperty.value =
+            this.disconnectedPlateChargeProperty.value / this.capacitor.getTotalCapacitance();
+        }
+        else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
           // the capacitor is discharging, but plate geometry is changing at the same time so we need
           // to update the parameters of the transient discharge equation parameters
           this.capacitor.updateDischargeParameters();
@@ -121,7 +128,7 @@ define( function( require ) {
     },
 
     getCapacitorPlateVoltage: function() {
-      return this.capacitor.platesVoltage;
+      return this.capacitor.platesVoltageProperty.value;
     },
 
     /**
@@ -137,11 +144,14 @@ define( function( require ) {
 
       if ( this.connectedToLightBulbTop( shape ) ) {
         voltage = this.getCapacitorPlateVoltage();
-      } else if ( this.connectedToLightBulbBottom( shape ) ) {
+      }
+      else if ( this.connectedToLightBulbBottom( shape ) ) {
         voltage = 0;
-      } else if ( this.connectedToBatteryTop( shape ) ) {
+      }
+      else if ( this.connectedToBatteryTop( shape ) ) {
         voltage = this.getTotalVoltage();
-      } else if ( this.connectedToBatteryBottom( shape ) ) {
+      }
+      else if ( this.connectedToBatteryBottom( shape ) ) {
         voltage = 0;
       }
 
@@ -161,7 +171,7 @@ define( function( require ) {
       topWires = topWires.concat( topSwitchWires );
 
       topWires.forEach( function( topWire ) {
-        if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWires = true;
         }
       } );
@@ -173,7 +183,6 @@ define( function( require ) {
       var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
       return intersectsBulbBase || intersectsSomeTopPlate || intersectsTopWires;
-
     },
 
     /**
@@ -190,13 +199,13 @@ define( function( require ) {
       var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
       topLightBulbWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWires = true;
         }
       } );
 
       var disconnected = !( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-      return ( intersectsBulbBase || intersectsTopWires  ) && disconnected;
+      return ( intersectsBulbBase || intersectsTopWires ) && disconnected;
     },
 
     /**
@@ -211,7 +220,7 @@ define( function( require ) {
       var bottomLightBulbWires = this.getBottomLightBulbWires();
 
       bottomLightBulbWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
         }
       } );
@@ -236,7 +245,7 @@ define( function( require ) {
       var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
       bottomWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
         }
       } );
@@ -254,9 +263,9 @@ define( function( require ) {
      * @param {number} disconnectedPlateCharge Coulombs
      */
     setDisconnectedPlateCharge: function( disconnectedPlateCharge ) {
-      if ( disconnectedPlateCharge !== this.disconnectedPlateCharge ) {
-        this.disconnectedPlateCharge = disconnectedPlateCharge;
-        if ( this.circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
+      if ( disconnectedPlateCharge !== this.disconnectedPlateChargeProperty.value ) {
+        this.disconnectedPlateChargeProperty.value = disconnectedPlateCharge;
+        if ( this.circuitConnectionProperty.value !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
           this.updatePlateVoltages();
         }
       }
@@ -266,7 +275,7 @@ define( function( require ) {
      * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
      */
     setDisconnectedPlateVoltage: function() {
-      if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         this.updatePlateVoltages();
       }
     },
@@ -290,13 +299,18 @@ define( function( require ) {
 
       // if the circuit is connected to the light bulb, I = V / R
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-        var current = this.capacitor.platesVoltage / this.lightBulb.resistance;
+        var current = this.capacitor.platesVoltageProperty.value / this.lightBulb.resistance;
+
+        // The cutoff is doubled here for #58
         if ( Math.abs( current ) < 2 * MIN_VOLTAGE / this.lightBulb.resistance ) {
           current = 0;
         }
+
         this.currentAmplitudeProperty.set( current );
-      } else {
-        // otherise, I = dQ/dT
+      }
+
+      // otherise, I = dQ/dT
+      else {
         ParallelCircuit.prototype.updateCurrentAmplitude.call( this, dt );
       }
     }

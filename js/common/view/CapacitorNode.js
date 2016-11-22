@@ -16,9 +16,10 @@ define( function( require ) {
   var EFieldNode = require( 'CAPACITOR_LAB_BASICS/common/view/EFieldNode' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Property = require( 'AXON/Property' );
 
   // phet-io modules
-  var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
+  var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
 
   /**
    * Constructor for a CapacitorNode.
@@ -48,8 +49,10 @@ define( function( require ) {
     this.addChild( eFieldNode );
     this.addChild( this.topPlateNode );
 
-    // observers
-    this.capacitor.multilink( [ 'plateSize', 'plateSeparation' ], function() {
+    Property.multilink( [
+      this.capacitor.plateSizeProperty,
+      this.capacitor.plateSeparationProperty
+    ], function() {
       self.updateGeometry();
     } );
 
@@ -76,23 +79,17 @@ define( function( require ) {
      */
     updateGeometry: function() {
       // geometry
-      this.topPlateNode.setBoxSize( this.capacitor.plateSize );
-      this.bottomPlateNode.setBoxSize( this.capacitor.plateSize );
+      this.topPlateNode.setBoxSize( this.capacitor.plateSizeProperty.value );
+      this.bottomPlateNode.setBoxSize( this.capacitor.plateSizeProperty.value );
 
       // layout nodes with zero dielectric offset
       var x = 0;
-      var y = -( this.capacitor.plateSeparation / 2 ) - this.capacitor.plateSize.height;
+      var y = -( this.capacitor.plateSeparationProperty.value / 2 ) - this.capacitor.plateSizeProperty.value.height;
       var z = 0;
       this.topPlateNode.center = this.modelViewTransform.modelToViewDeltaXYZ( x, y, z );
 
-      //y = -this.capacitor.getDielectricSize().getHeight() / 2;
-      //dielectricNode.setOffset( mvt.modelToViewDelta( x, y, z ) );
-
-      y = this.capacitor.plateSeparation / 2;
+      y = this.capacitor.plateSeparationProperty.value / 2;
       this.bottomPlateNode.center = this.modelViewTransform.modelToViewDeltaXYZ( x, y, z );
-
-      // adjust the dielectric offset
-      //updateDielectricOffset();
     },
 
     /**
@@ -110,4 +107,3 @@ define( function( require ) {
     }
   } );
 } );
-

@@ -19,7 +19,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Text = require( 'SCENERY/nodes/Text' );
+  var TandemText = require( 'TANDEM/scenery/nodes/TandemText' );
   var Vector2 = require( 'DOT/Vector2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -69,27 +69,28 @@ define( function( require ) {
       thumbLineWidth: 2,
       thumbCenterLineStroke: 'black',
       endDrag: function() {
-        if ( Math.abs( battery.voltage ) < CLBConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {
-          battery.voltage = 0;
+        if ( Math.abs( battery.voltageProperty.value ) < CLBConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {
+          battery.voltageProperty.value = 0;
         }
       },
       tandem: tandem.createTandem( 'sliderNode' )
     } );
 
     // function to create the tick mark labels using a string pattern.
-    var createTickLabels = function( value, textFill ) {
-      var labelText = new Text( StringUtils.format( pattern0Value1UnitsString, value, unitsVoltsString ), {
+    var createTickLabels = function( value, textFill, tandem ) {
+      var labelText = new TandemText( StringUtils.format( pattern0Value1UnitsString, value, unitsVoltsString ), {
         font: LABEL_FONT,
         fill: textFill,
-        maxWidth: imageNode.width * 0.5
+        maxWidth: imageNode.width * 0.5,
+        tandem: tandem
       } );
       labelText.rotate( Math.PI / 2 ); // rotate label to match rotation of the slider.
       return labelText;
     };
     // add the tick marks
-    var maxTick = createTickLabels( voltageRange.max, 'black' );
-    var defaultTick = createTickLabels( voltageRange.defaultValue, 'white' );
-    var minTick = createTickLabels( voltageRange.min, 'white' );
+    var maxTick = createTickLabels( voltageRange.max, 'black', tandem.createTandem( 'maximumTickLabel' ) );
+    var defaultTick = createTickLabels( voltageRange.defaultValue, 'white', tandem.createTandem( 'defaultTickLabel' ) );
+    var minTick = createTickLabels( voltageRange.min, 'white', tandem.createTandem( 'minimumTickLabel' ) );
     sliderNode.addMajorTick( voltageRange.max, maxTick );
     sliderNode.addMajorTick( voltageRange.defaultValue, defaultTick );
     sliderNode.addMajorTick( voltageRange.min, minTick );

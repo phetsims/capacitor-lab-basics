@@ -26,7 +26,7 @@ define( function( require ) {
 
   function PlateNode( capacitor, modelViewTransform, polarity, maxPlateCharge ) {
 
-    BoxNode.call( this, modelViewTransform, PLATE_COLOR, capacitor.plateSize );
+    BoxNode.call( this, modelViewTransform, PLATE_COLOR, capacitor.plateSizeProperty.value );
 
     this.modelViewTransform = modelViewTransform; // @private
 

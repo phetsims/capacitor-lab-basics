@@ -12,15 +12,21 @@ define( function( require ) {
 
   // Modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Circle = require( 'SCENERY/nodes/Circle' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var ConnectionAreaNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaNode' );
   var ConnectionPointNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionPointNode' );
   var HingePointNode = require( 'CAPACITOR_LAB_BASICS/common/view/HingePointNode' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
+  var TandemButtonListener = require( 'TANDEM/scenery/input/TandemButtonListener' );
   var Vector2 = require( 'DOT/Vector2' );
+  // var Vector3 = require( 'DOT/Vector3' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
 
   // phet-io modules
@@ -32,6 +38,9 @@ define( function( require ) {
   // Constants
   var SWITCH_CUE_ARROW_WIDTH = 25;
   var SWITCH_CUE_ARROW_OFFSET = new Vector2( -80, -250 ); // View coords
+  var HIGHLIGHT_COLOR = 'yellow';
+  var SWITCH_CIRCLE_SMALL_RADIUS = CLBConstants.CONNECTION_POINT_RADIUS;
+  var SWITCH_CIRCLE_LARGE_RADIUS = 1.2*SWITCH_CIRCLE_SMALL_RADIUS;
 
   /**
    * Constructor for a SwitchNode.
@@ -56,15 +65,28 @@ define( function( require ) {
     this.wireSwitchNode.cursor = 'pointer';
 
     // add a shaded sphere to the end of the wire node to represent a connection point at the end of the switch.
-    var shadedSphereNode = new ShadedSphereNode( 16 );
+    var shadedSphereNode = new ShadedSphereNode( 2*SWITCH_CIRCLE_LARGE_RADIUS ); // Diameter
 
-    // Dilate the mouse and touch areas so that it is easier to drag
-    var boundsDilation = 15;
-    shadedSphereNode.mouseArea = shadedSphereNode.bounds.dilated( boundsDilation );
-    shadedSphereNode.touchArea = shadedSphereNode.bounds.dilated( boundsDilation );
+    // Dashed circle on tip of switch used as a contact indicator
+    var tipCircle = new Circle( SWITCH_CIRCLE_LARGE_RADIUS, {
+      lineWidth: 2,
+      lineDash: [ 3, 3 ],
+      stroke: PhetColorScheme.RED_COLORBLIND
+    } );
+    tipCircle.mouseArea = tipCircle.bounds.dilated( 2 );  // px
+    tipCircle.touchArea = tipCircle.bounds.dilated( 15 ); // px
 
-    shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
+    // Dilate the touch area so that it is easier to drag.
+    // The mouse area is only slightly dilated so the highlight cue only appears
+    // when the mouse pointer is very close to the switch end (see #144).
+    shadedSphereNode.mouseArea = shadedSphereNode.bounds.dilated( 2 );  // px
+    shadedSphereNode.touchArea = shadedSphereNode.bounds.dilated( 15 ); // px
+
+    shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPointProperty.value );
     this.wireSwitchNode.addChild( shadedSphereNode );
+
+    tipCircle.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPointProperty.value );
+    this.wireSwitchNode.addChild( tipCircle );
 
     // add the the hinge
     var hingeNode = new HingePointNode();
@@ -90,9 +112,7 @@ define( function( require ) {
       connectionListeners.push( connectionAreaNode );
     } );
 
-    // add the drag handler
-    this.wireSwitchNode.addInputListener(
-      new CircuitSwitchDragHandler( self, tandem.createTandem( 'inputListener' ) ) );
+    this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( self, tandem.createTandem( 'inputListener' ) ) );
 
     // changes visual position as the user drags the switch.
     circuitSwitch.angleProperty.link( function( angle ) {
@@ -101,9 +121,37 @@ define( function( require ) {
       self.wireSwitchNode.rotateAround( modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint ), angle );
     } );
 
-    // Make sure that the shaded sphere snaps to the correct position when connection property changes.
+    // Circuit connection change listener
     circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
-      shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPoint );
+
+      // Endpoint, hinge point, and a vector from hp -> ep
+      var ep = circuitSwitch.switchSegment.endPointProperty.get();
+      var hp = circuitSwitch.switchSegment.hingePoint;
+      var v = ep.minus( hp ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
+
+      // Make sure that the shaded sphere snaps to the correct position when connection property changes.
+      shadedSphereNode.translation = modelViewTransform.modelToViewPosition( hp.plus( v ) );
+      tipCircle.translation = modelViewTransform.modelToViewPosition( hp.plus( v ) );
+
+      // Solder joint visibility
+      if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ||
+           circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        shadedSphereNode.setVisible( false );
+        tipCircle.radius = SWITCH_CIRCLE_SMALL_RADIUS;
+      }
+      else {
+        shadedSphereNode.setVisible( true );
+        tipCircle.radius = SWITCH_CIRCLE_LARGE_RADIUS;
+      }
+
+      // Connection circle color
+      if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
+        tipCircle.stroke = PhetColorScheme.RED_COLORBLIND;
+      }
+      else {
+        tipCircle.stroke = 'rgb(0,0,0)'; // black when not in transit
+      }
+
     } );
 
     // Add arrow for a visual cue
@@ -113,7 +161,7 @@ define( function( require ) {
 
     // Reflect bottom arrow about the horizontal axis.
     var segment = circuitSwitch.switchSegment;
-    if ( segment.endPoint.y > segment.hingePoint.y ) {
+    if ( segment.endPointProperty.value.y > segment.hingePoint.y ) {
       switchCueArrow.scale( 1, -1 );
     }
 
@@ -125,7 +173,7 @@ define( function( require ) {
 
     this.addChild( switchCueArrow );
 
-    // rendering order, important for behavior of click areas and drag handlers
+    // rendering order important for behavior of click areas and drag handlers
     _.each( connectionListeners, function( connectionListener ) {
       self.addChild( connectionListener );
     } );
@@ -134,6 +182,25 @@ define( function( require ) {
     } );
     this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );
+
+    // Since the switch wire occludes the drag area, the highlight color disappears
+    // when hovering over the switch wire. To correct this, add a listener to
+    // the swittch node itself and emulate the behavior. See #145.
+    this.wireSwitchNode.addInputListener( new TandemButtonListener( {
+      tandem: tandem.createTandem( 'wireSwitchListener' ),
+      over: function( event ) {
+        tipCircle.fill = HIGHLIGHT_COLOR;
+      },
+      up: function( event ) {
+        tipCircle.fill = 'none';
+      },
+      out: function( event ) {
+        tipCircle.fill = 'none';
+      },
+      down: function( event ) {
+        tipCircle.fill = 'none';
+      }
+    } ) );
 
     // Register with tandem.  No need to handle dispose/removeInstance since this
     // exists for the lifetime of the simulation.

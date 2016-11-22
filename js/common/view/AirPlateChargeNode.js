@@ -1,9 +1,9 @@
 // Copyright 2016, University of Colorado Boulder
 
 /**
- * Portion of the plate charge area in contact with air.  Charges appear on this node which 
+ * Portion of the plate charge area in contact with air.  Charges appear on this node which
  * is in contact with aire (not in contact with the dielectric.)
- * 
+ *
  * @author Jesse Greenberg
  */
 
@@ -37,7 +37,7 @@ define( function( require ) {
     // Gets the x offset (relative to the plate origin) of the portion of the
     // plate that is in contact with air.
     getContactXOrigin: function() {
-      return -this.capacitor.plateSize.width / 2;
+      return -this.capacitor.plateSizeProperty.value.width / 2;
     },
 
     /**
@@ -48,7 +48,7 @@ define( function( require ) {
      * @returns {number}
      */
     getContactWidth: function() {
-      return this.capacitor.plateSize.width;
+      return this.capacitor.plateSizeProperty.value.width;
     }
   } );
 } );

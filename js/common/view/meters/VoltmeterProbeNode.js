@@ -15,8 +15,9 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
   var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   // images
   var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
@@ -53,7 +54,12 @@ define( function( require ) {
 
     // update position with model
     locationProperty.link( function( location ) {
-      self.translation = modelViewTransform.modelToViewPosition( location );
+      if ( location instanceof Vector2 ) {
+        self.translation = modelViewTransform.modelToViewPosition( location.toVector3() );
+      }
+      else {
+        self.translation = modelViewTransform.modelToViewPosition( location );
+      }
     } );
 
     var adjustedViewBounds = new Bounds2( 0, 0, dragBounds.maxX - imageNode.width, dragBounds.maxY - 0.4 * imageNode.height );

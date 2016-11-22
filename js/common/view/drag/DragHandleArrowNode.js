@@ -44,6 +44,9 @@ define( function( require ) {
       tailWidth: length / 5
     } );
 
+    this.normalColor = NORMAL_COLOR;
+    this.highlightColor = HIGHLIGHT_COLOR;
+
     // make the arrow slightly easier to drag
     this.touchArea = this.bounds.dilated( 10 );
 

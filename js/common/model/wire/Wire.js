@@ -9,23 +9,24 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
   var WireShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/WireShapeCreator' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
-   * Constructor for a Wire.
-   *
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {number} thickness
    * @param {WireSegment[]} segments
    * @param {string} connectionPoint
+   *
+   * @constructor
    */
   function Wire( modelViewTransform, thickness, segments, connectionPoint ) {
 
@@ -35,25 +36,24 @@ define( function( require ) {
     this.connectionPoint = connectionPoint; // @public
     this.thickness = thickness; // @public
     this.shapeCreator = new WireShapeCreator( this, modelViewTransform ); // @private
-    var shape = this.shapeCreator.createWireShape();
 
-    // @public
-    PropertySet.call( this, {
-      shape: shape
+    this.shapeProperty = new Property( this.shapeCreator.createWireShape(), {
+      // Wire is not currently instrumented
     } );
+
     var self = this;
 
     // Whenever a segment changes, update the shape.
     this.segments.forEach( function( segment ) {
-      segment.multilink( [ 'startPoint', 'endPoint' ], function() {
-        self.shape = self.shapeCreator.createWireShape();
+      Property.multilink( [ segment.startPointProperty, segment.endPointProperty ], function() {
+        self.shapeProperty.set( self.shapeCreator.createWireShape() );
       } );
     } );
   }
 
   capacitorLabBasics.register( 'Wire', Wire );
 
-  return inherit( PropertySet, Wire, {
+  return inherit( Object, Wire, {
 
     /**
      * Cleanup function to avoid memory leaks.
@@ -87,7 +87,10 @@ define( function( require ) {
      */
     getEndOffset: function() {
       return this.shapeCreator.getEndOffset();
+    },
+
+    reset: function() {
+      this.shapeProperty.reset();
     }
   } );
 } );
-

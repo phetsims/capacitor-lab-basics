@@ -29,12 +29,13 @@ define( function( require ) {
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
    */
-  function CapacitanceModel(switchUsedProperty, modelViewTransform, tandem ) {
+  function CapacitanceModel( switchUsedProperty, modelViewTransform, tandem ) {
 
     CLBModel.call( this, tandem );
 
     this.switchUsedProperty = switchUsedProperty; // @public
     this.modelViewTransform = modelViewTransform; // @public (read-only)
+    this.tandem = tandem; // @private
 
     // Configuration info for the circuit.
     // Default number of capacitors is 1, default number of lightbulbs is 0.
@@ -47,12 +48,13 @@ define( function( require ) {
     this.circuit = new CapacitanceCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
     this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
 
+    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     var circuit = this.circuit;
     this.capacitanceMeter = new BarMeter( this.circuit, this.capacitanceMeterVisibleProperty,
       function() {
         return circuit.getTotalCapacitance();
       },
-      tandem ? tandem.createTandem( 'capacitanceMeter' ) : null );
+      tandem.createTandem( 'capacitanceMeter' ) );
 
     // @public
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
@@ -118,11 +120,15 @@ define( function( require ) {
         dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min
       } );
 
-      // Don't want to pass in tandem here. This is a temporary circuit used to calculate the return value.
-      var circuit = new CapacitanceCircuit( circuitConfig, null );
+      // This circuit is constructed as part of an implementation and should not be instrumented.
+      // A null value could be passed in here, but then all children would need null checks.
+      // Instead, pass in a disabled tandem instance. All children will inherit the `enabled` value
+      // unless specifically overridden.
+      var circuit = new CapacitanceCircuit( circuitConfig,
+        this.tandem.createTandem( 'tempLightBulbCircuit', { enabled: false } ) );
 
       // disconnect the battery and set the max plate charge
-      circuit.circuitConnection = CircuitConnectionEnum.OPEN_CIRCUIT;
+      circuit.circuitConnectionProperty.set( CircuitConnectionEnum.OPEN_CIRCUIT );
       circuit.setDisconnectedPlateCharge( this.getMaxPlateCharge() );
 
       return circuit.capacitor.getEffectiveEField();

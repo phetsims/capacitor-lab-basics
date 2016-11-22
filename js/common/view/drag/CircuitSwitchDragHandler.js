@@ -13,22 +13,16 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  // var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var TandemDragHandler = require( 'TANDEM/scenery/input/TandemDragHandler' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
-
-  // constants
-  var LEFT_ELEMENT_MIN_ANGLE = 3 * Math.PI / 4 - Math.PI / 8;
-  var DISCONNECTED_MIN_ANGLE = Math.PI / 2 - Math.PI / 8;
-  var DISCONNECTED_MAX_ANGLE = 3 * Math.PI / 4 - Math.PI / 8;
-  var RIGHT_ELEMENT_MIN_ANGLE = 0;
-  var RIGHT_ELEMENT_MAX_ANGLE = Math.PI / 2 - Math.PI / 8;
+  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Range = require( 'DOT/Range' );
+  var TandemDragHandler = require( 'TANDEM/scenery/input/TandemDragHandler' );
 
   // Compute the distance (in radians) between angles a and b, using an inlined dot product
   // (inlined to remove allocations)
-  var distanceBetweenAngles = function( a, b ) {
+  var angleDifference = function( a, b ) {
     var dotProduct = Math.cos( a ) * Math.cos( b ) + Math.sin( a ) * Math.sin( b );
     return Math.acos( dotProduct );
   };
@@ -43,21 +37,38 @@ define( function( require ) {
 
     var circuitSwitch = switchNode.circuitSwitch; // for readability
 
+    var self = this;
     var initialEndPoint;
     var lastAngle = 0;
     var currentAngle = 0;
     var angleOffset = 0;
     var angle = 0;
 
+    this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
+
+    this.snapRange = {
+      right: new Range( 0, 3 * Math.PI / 8 ),
+      center: new Range( 3 * Math.PI / 8, 5 * Math.PI / 8 ),
+      left: new Range( 5 * Math.PI / 8, Math.PI )
+    };
+
+    if ( this.twoStateSwitch ) {
+      this.snapRange = {
+        right: new Range( 0, Math.PI / 2 ),
+        center: new Range( Math.PI / 2, Math.PI / 2 ),
+        left: new Range( Math.PI / 2, Math.PI )
+      };
+    }
+
     TandemDragHandler.call( this, {
       tandem: tandem,
-      allowTouchSnag: true,
+      allowTouchSnag: false,
 
       start: function( event ) {
 
         var hingePoint = circuitSwitch.hingePoint.toVector2(); // in model coordinates
         initialEndPoint = circuitSwitch.getSwitchEndPoint(); // in model coordinates
-        angleOffset = initialEndPoint.minus( hingePoint ).angle(); // angle of switch segment with the horizontal
+        angleOffset = initialEndPoint.minus( hingePoint ).toVector2().angle(); // angle of switch segment with the horizontal
         lastAngle = angleOffset;
         switchNode.dragging = true;
 
@@ -89,10 +100,11 @@ define( function( require ) {
         currentAngle = angle;
 
         // make sure that the switch does not snap to connection points if the user drags beyond limiting angles
-        if ( Math.abs( distanceBetweenAngles( currentAngle, lastAngle ) ) >= Math.PI / 4 ) {
+        if ( Math.abs( angleDifference( currentAngle, lastAngle ) ) >= Math.PI / 4 ) {
           // noop
-        } else {
-          circuitSwitch.angle = angle - angleOffset;
+        }
+        else {
+          circuitSwitch.angleProperty.set( angle - angleOffset );
           lastAngle = currentAngle;
         }
 
@@ -100,18 +112,25 @@ define( function( require ) {
       end: function( event ) {
 
         // snap the switch to the nearest connection point and set the active connection
-        var absAngle = Math.abs( circuitSwitch.angle + angleOffset );
+        var absAngle = Math.abs( circuitSwitch.angleProperty.get() + angleOffset );
         angle = 0;
         angleOffset = 0;
-        if ( absAngle > LEFT_ELEMENT_MIN_ANGLE ) {
-          circuitSwitch.circuitConnectionProperty.set( 'BATTERY_CONNECTED' );
-        } else if ( absAngle < DISCONNECTED_MAX_ANGLE && absAngle > DISCONNECTED_MIN_ANGLE ) {
-          circuitSwitch.circuitConnectionProperty.set( 'OPEN_CIRCUIT' );
-        } else if ( absAngle < RIGHT_ELEMENT_MAX_ANGLE && absAngle > RIGHT_ELEMENT_MIN_ANGLE ) {
-          circuitSwitch.circuitConnectionProperty.set( 'LIGHT_BULB_CONNECTED' );
+
+        var connection = null;
+        if ( self.snapRange.right.contains( absAngle ) ) {
+          connection = CircuitConnectionEnum.LIGHT_BULB_CONNECTED;
         }
-        
-        circuitSwitch.angle = angle;
+        else if ( self.snapRange.center.contains( absAngle ) ) {
+          connection = CircuitConnectionEnum.OPEN_CIRCUIT;
+        }
+        else if ( self.snapRange.left.contains( absAngle ) ) {
+          connection = CircuitConnectionEnum.BATTERY_CONNECTED;
+        }
+        assert && assert( connection, 'No snap region found for switch angle: ' + absAngle );
+
+        circuitSwitch.circuitConnectionProperty.set( connection );
+
+        circuitSwitch.angleProperty.set( angle );
         switchNode.dragging = false;
 
       }
@@ -123,4 +142,3 @@ define( function( require ) {
   return inherit( TandemDragHandler, CircuitSwitchDragHandler );
 
 } );
-

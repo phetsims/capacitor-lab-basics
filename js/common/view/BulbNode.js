@@ -25,7 +25,6 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var Vector2 = require( 'DOT/Vector2' );
   var LinearFunction = require( 'DOT/LinearFunction' );
-  // var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 

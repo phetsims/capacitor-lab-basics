@@ -15,8 +15,9 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
@@ -42,6 +43,8 @@ define( function( require ) {
     assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
       'Unsupported positionLabel: ' + positionLabel );
 
+    this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
+
     // @public
     this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
     this.circuitConnectionProperty = circuitConnectionProperty;
@@ -53,44 +56,52 @@ define( function( require ) {
     this.activeConnection = this.getConnection( circuitConnectionProperty.value );
     var self = this;
 
-    PropertySet.call( this, {
-      angle: this.initialAngle
-    }, {
-      tandemSet: {
-        angle: tandem && tandem.createTandem( 'angleProperty' )
-      },
-      phetioValueTypeSet: {
-        angle: TNumber( { units: 'radians' } )
-      }
+    this.angleProperty = new Property( this.initialAngle, {
+      tandem: tandem.createTandem( 'angleProperty' ),
+      phetioValueType: TNumber( {
+        units: 'radians'
+      } )
     } );
 
     // Assign string identifying connection point
     var connectionName = ( positionLabel === 'top' ) ?
-                         CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP :
-                         CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
+      CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP :
+      CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
 
-    // add the switch wire that spans two connection points. Default connection is to the battery.
+    // Add the switch wire that spans two connection points. Default connection is to the battery.
     this.switchSegment = WireSegment.createSwitchSegment( this.hingePoint, this.activeConnection,
-      tandem ? tandem.createTandem( 'switchSegment' ) : null );
+      tandem.createTandem( 'switchSegment' ) );
 
     this.switchWire = new Wire( this.modelViewTransform, CLBConstants.WIRE_THICKNESS, [ this.switchSegment ],
-      connectionName /*, tandem.createTandem( 'switchWire' )*/ );
+      connectionName ); // No tandem for now. In future, may add tandem.createTandem( 'switchWire' )
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
-      // if the switch is being dragged, it is in transit and there is no active connection yet
+
+      // If the switch is being dragged, it is in transit and there is no active connection.
       if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
         return;
       }
       self.activeConnection = self.getConnection( circuitConnection );
-      self.switchSegment.update( self.activeConnection );
+      self.switchSegment.endPointProperty.set( self.activeConnection.location );
+
+      // Shorten the switch wire (requested in #140)
+      var ep = self.switchSegment.endPointProperty.get();
+      var hp = self.switchSegment.hingePoint;
+      var v = ep.minus( hp );
+      v.setMagnitude( 0.9 * CLBConstants.SWITCH_WIRE_LENGTH );
+      self.switchSegment.endPointProperty.set( hp.plus( v ) );
     } );
 
   }
 
   capacitorLabBasics.register( 'CircuitSwitch', CircuitSwitch );
 
-  return inherit( PropertySet, CircuitSwitch, {
+  return inherit( Object, CircuitSwitch, {
+
+    reset: function() {
+      this.angleProperty.reset();
+    },
 
     /**
      * Get (x,y,z) position of switch pivot point
@@ -126,7 +137,7 @@ define( function( require ) {
 
     /**
      * Get an array of objects containing locations (as Vector3) and connection types (as strings)
-     * of the bottom switch connection points
+     * of the switch connection points
      *
      * @param  {string} positionLabel - 'top' or 'bottom'
      * @param  {Vector2} hingeXY - Location of switch hinge
@@ -193,18 +204,18 @@ define( function( require ) {
      * Get the desired connection from the connection type.
      *
      * @param connectionType
-     * @returns {object} returnConnection - object of the format { location: Vector3, connectionType: string }
+     * @returns {Object} returnConnection - object of the format { location: Vector3, connectionType: string }
      */
     getConnection: function( connectionType ) {
-      var returnConnection;
+      var returnConnection = null;
       this.connections.forEach( function( connection ) {
         if ( connection.connectionType === connectionType ) {
           returnConnection = connection;
         }
       } );
-      if ( returnConnection === 'undefined' ) {
-        console.error( 'Requested connection type that does not exist for this circuit' );
-      }
+
+      assert && assert( returnConnection, 'No connection type for this circuit named ' + connectionType );
+
       return returnConnection;
     },
 
@@ -217,7 +228,7 @@ define( function( require ) {
     getConnectionPoint: function( connectionType ) {
 
       var connection = this.getConnection( connectionType );
-      return connection.location.toVector2();
+      return connection.location;
     },
 
     /**
@@ -226,7 +237,12 @@ define( function( require ) {
      * @return {Vector2} [description]
      */
     getSwitchEndPoint: function() {
-      return this.switchSegment.endPoint.toVector2();
+
+      var endPoint = this.switchSegment.endPointProperty.value;
+
+      assert && assert( endPoint instanceof Vector3 );
+
+      return endPoint;
     },
 
     /**
@@ -235,7 +251,7 @@ define( function( require ) {
      * @return {Vector2}
      */
     getCapacitorConnectionPoint: function() {
-      return this.hingePoint.toVector2();
+      return this.hingePoint;
     },
 
     /**
@@ -248,7 +264,8 @@ define( function( require ) {
 
       var self = this;
 
-      var rightConnectionPoint = self.getConnectionPoint( CircuitConnectionEnum.OPEN_CIRCUIT );
+      var c = self.twoStateSwitch ? CircuitConnectionEnum.LIGHT_BULB_CONNECTED : CircuitConnectionEnum.OPEN_CIRCUIT;
+      var rightConnectionPoint = self.getConnectionPoint( c );
 
       this.connections.forEach( function( connection ) {
         if ( connection.connectionType === 'LIGHT_BULB_CONNECTED' ) {
@@ -256,7 +273,7 @@ define( function( require ) {
         }
       } );
 
-      return rightConnectionPoint.minus( self.hingePoint.toVector2() ).angle();
+      return rightConnectionPoint.minus( self.hingePoint ).toVector2().angle();
     },
 
     /**
@@ -264,8 +281,13 @@ define( function( require ) {
      * @return {[type]} [description]
      */
     getLeftLimitAngle: function() {
-      return this.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED ).minus( this.hingePoint.toVector2() ).angle();
+      var a = this.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
+      var b = this.hingePoint;
+
+      assert && assert( a instanceof Vector3 && b instanceof Vector3,
+        'One of these is not a Vector3:\n' + a + '\n' + b );
+
+      return a.minus( b ).toVector2().angle();
     }
   } );
 } );
-

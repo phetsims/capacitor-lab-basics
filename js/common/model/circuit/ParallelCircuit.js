@@ -37,7 +37,8 @@ define( function( require ) {
    * Constructor for a Parallel Circuit.
    *
    * @param {CircuitConfig} config
-   * @param {Tandem} tandem
+   * @param {Tandem|null} tandem - null if this is a temporary circuit used for calculations
+   *
    * @constructor
    */
   function ParallelCircuit( config, tandem ) {
@@ -76,9 +77,11 @@ define( function( require ) {
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
         if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
-        } else if ( this.connectedToBatteryBottom( shape ) ) {
+        }
+        else if ( this.connectedToBatteryBottom( shape ) ) {
           voltage = 0;
-        } else if (
+        }
+        else if (
           this.shapeTouchesWireGroup( shape, this.getTopLightBulbWires() ) ||
           this.shapeTouchesWireGroup( shape, this.getBottomLightBulbWires() ) ) {
           voltage = 0;
@@ -89,21 +92,37 @@ define( function( require ) {
       else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
           voltage = this.getCapacitorPlateVoltage();
-        } else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
+        }
+        else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
           voltage = 0;
-        } else if ( this.connectedToBatteryTop( shape ) ) {
+        }
+        else if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
-        } else if ( this.connectedToBatteryBottom( shape ) ) {
+        }
+        else if ( this.connectedToBatteryBottom( shape ) ) {
           voltage = 0;
-        } else if (
+        }
+        else if (
           this.shapeTouchesWireGroup( shape, this.getTopLightBulbWires() ) ||
           this.shapeTouchesWireGroup( shape, this.getBottomLightBulbWires() ) ) {
           voltage = 0;
         }
       }
 
-      // No-op, keep as null
+      // On switch drag, provide a voltage readout if probes are connected to the battery
       else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT ) {
+        if ( this.connectedToBatteryTop( shape ) ) {
+          voltage = this.getTotalVoltage();
+        }
+        else if ( this.connectedToBatteryBottom( shape ) ) {
+          voltage = 0;
+        }
+        else if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
+          voltage = this.getCapacitorPlateVoltage();
+        }
+        else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
+          voltage = 0;
+        }
       }
 
       // Error case
@@ -120,7 +139,7 @@ define( function( require ) {
       var intersectsWires = false;
 
       wires.forEach( function( wire ) {
-        if ( wire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( wire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsWires = true;
         }
       } );
@@ -136,13 +155,15 @@ define( function( require ) {
       var bottomWires = bottomCapacitorWires.concat( bottomSwitchWires );
 
       bottomWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
         }
       } );
 
       var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
-      var disconnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT;
+      var disconnected =
+        this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ||
+        this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT;
       return ( intersectsBottomWires || intersectsSomeBottomPlate ) && disconnected;
     },
 
@@ -154,13 +175,15 @@ define( function( require ) {
       var topCircuitSwitchWires = this.getTopSwitchWires();
       var topWires = topCapacitorWires.concat( topCircuitSwitchWires );
       topWires.forEach( function( topWire ) {
-        if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWire = true;
         }
       } );
 
       var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
-      var disconnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT;
+      var disconnected =
+        this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ||
+        this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT;
       return ( intersectsTopWire || intersectsSomeTopPlate ) && disconnected;
     },
 
@@ -176,7 +199,7 @@ define( function( require ) {
       // only the wires that are connected to the battery
       var topBatteryWires = this.getTopBatteryWires();
       topBatteryWires.forEach( function( topWire ) {
-        if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWire = true;
         }
       } );
@@ -198,7 +221,7 @@ define( function( require ) {
       var bottomBatteryWires = this.getBottomBatteryWires();
 
       bottomBatteryWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
         }
       } );
@@ -220,12 +243,14 @@ define( function( require ) {
       topBatteryWires = topBatteryWires.concat( this.getTopCapacitorWires() );
       topBatteryWires = topBatteryWires.concat( this.getTopSwitchWires() );
       topBatteryWires.forEach( function( topWire ) {
-        if ( topWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWire = true;
         }
       } );
       var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
-      return intersectsTopTerminal || intersectsTopWire || intersectsSomeTopPlate;
+      var batteryConnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED;
+
+      return intersectsTopTerminal || intersectsTopWire || ( intersectsSomeTopPlate && batteryConnected );
     },
 
     /**
@@ -241,12 +266,14 @@ define( function( require ) {
       bottomBatteryWires = bottomBatteryWires.concat( this.getBottomCapacitorWires() );
       bottomBatteryWires = bottomBatteryWires.concat( this.getBottomSwitchWires() );
       bottomBatteryWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shape.intersectsBounds( shape.bounds ) ) {
+        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
         }
       } );
       var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
-      return intersectsBottomTerminal || intersectsBottomWires || intersectsSomeBottomPlate;
+      var batteryConnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED;
+
+      return intersectsBottomTerminal || intersectsBottomWires || ( intersectsSomeBottomPlate && batteryConnected );
     },
 
     /**
@@ -307,7 +334,7 @@ define( function( require ) {
     var circuitComponents = [];
 
     var capacitor = new SwitchedCapacitor( config, circuitConnectionProperty,
-      tandem ? tandem.createTandem( 'switchedCapacitor' ) : null );
+      tandem.createTandem( 'switchedCapacitor' ) );
 
     circuitComponents.push( capacitor );
 
@@ -347,13 +374,13 @@ define( function( require ) {
       config,
       battery,
       capacitors[ 0 ].topCircuitSwitch,
-      tandem ? tandem.createTandem( 'batteryToSwitchWireTop' ) : null ) );
+      tandem.createTandem( 'batteryToSwitchWireTop' ) ) );
 
     wires.push( BatteryToSwitchWire.createBatteryToSwitchWireBottom(
       config,
       battery,
       capacitors[ 0 ].bottomCircuitSwitch,
-      tandem ? tandem.createTandem( 'batteryToSwitchWireBottom' ) : null ) );
+      tandem.createTandem( 'batteryToSwitchWireBottom' ) ) );
 
     // wire capacitors to the switches
     capacitors.forEach( function( capacitor ) {

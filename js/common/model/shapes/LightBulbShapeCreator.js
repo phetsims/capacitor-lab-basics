@@ -13,7 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Shape = require( 'KITE/Shape' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var Vector2 = require( 'DOT/Vector2' );
+  // var Vector2 = require( 'DOT/Vector2' );
   var Matrix3 = require( 'DOT/Matrix3' );
 
   /**
@@ -42,30 +42,32 @@ define( function( require ) {
     createBaseShape: function() {
 
       // origin is at (0, 0) - this is the 'top' of the bulb base
-      var origin = new Vector2( 0, 0 );
+      // var origin = new Vector2( 0, 0 );
 
       // shape of the bulb base, initially at the origin
-      var baseShape = new Shape();
-      baseShape.moveToPoint( origin );
+      // var baseShape = new Shape();
+      // baseShape.moveToPoint( origin );
 
       var height = this.lightBulb.getBaseSize().height;
       var topConductorWidth = this.lightBulb.getTopBaseConductorWidth();
-      var bottomInsulatorWidth = this.lightBulb.getBottomBaseInsulatorWidth();
-      var bottomConductorHeight = this.lightBulb.getBottomBaseConductorHeight();
+      // var bottomInsulatorWidth = this.lightBulb.getBottomBaseInsulatorWidth();
+      // var bottomConductorHeight = this.lightBulb.getBottomBaseConductorHeight();
 
-      // parameters for the arc that defines the bottom of the conductor shape
-      var startAngle = 1.5 * Math.PI;
-      var endAngle = Math.PI / 2;
-      var counterClockwise = true;
+      // // parameters for the arc that defines the bottom of the conductor shape
+      // var startAngle = 1.5 * Math.PI;
+      // var endAngle = Math.PI / 2;
+      // var counterClockwise = true;
 
-      // draw the entire shape of the light bulb base
-      baseShape.lineTo( 0, -height / 2 );
-      baseShape.lineTo( -topConductorWidth, -height / 2 );
-      baseShape.lineTo( -bottomInsulatorWidth, -bottomConductorHeight );
-      baseShape.arc( -bottomInsulatorWidth, 0, bottomConductorHeight, startAngle, endAngle, counterClockwise );
-      baseShape.lineTo( -topConductorWidth, height / 2 );
-      baseShape.lineTo( 0, height / 2 );
-      baseShape.close();
+      // // draw the entire shape of the light bulb base
+      // baseShape.lineTo( 0, -height / 2 );
+      // baseShape.lineTo( -topConductorWidth, -height / 2 );
+      // baseShape.lineTo( -bottomInsulatorWidth, -bottomConductorHeight );
+      // baseShape.arc( -bottomInsulatorWidth, 0, bottomConductorHeight, startAngle, endAngle, counterClockwise );
+      // baseShape.lineTo( -topConductorWidth, height / 2 );
+      // baseShape.lineTo( 0, height / 2 );
+      // baseShape.close();
+
+      var baseShape = Shape.rect(-height/2, -topConductorWidth/2, 3*topConductorWidth/4, 3*height/4);
 
       // transform to the location of the bulb
       baseShape = baseShape.transformed( new Matrix3.translation(

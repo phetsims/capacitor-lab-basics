@@ -2,8 +2,8 @@
   "capacitance": {
     "value": "Capacitance"
   },
-  "current": {
-    "value": "Current"
+  "currentDirection": {
+    "value": "Current Direction"
   },
   "barGraph": {
     "value": "Bar Graph"
@@ -30,7 +30,7 @@
     "value": "Plate Area"
   },
   "plateCharge": {
-    "value": "Plate Charge"
+    "value": "Top Plate Charge"
   },
   "plateCharges": {
     "value": "Plate Charges"

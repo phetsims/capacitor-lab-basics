@@ -17,7 +17,7 @@ define( function( require ) {
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
@@ -25,51 +25,51 @@ define( function( require ) {
 
   /**
    * Constructor for the CLBModel.
-   * @param {Tandem} tandem
+   * @param {Tandem|null} tandem - null if this is part of a temporary circuit used for calculations
    *
    * @constructor
    */
   function CLBModel( tandem ) {
 
-    var propertySetOptions = tandem ? {
-      tandemSet: {
-        plateChargesVisible: tandem.createTandem( 'plateChargesVisibleProperty' ),
-        eFieldVisible: tandem.createTandem( 'eFieldVisibleProperty' ),
-        capacitanceMeterVisible: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
-        plateChargeMeterVisible: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
-        storedEnergyMeterVisible: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
-        barGraphsVisible: tandem.createTandem( 'barGraphsVisibleProperty' ),
-        voltmeterVisible: tandem.createTandem( 'voltmeterVisibleProperty' ),
-        currentVisible: tandem.createTandem( 'currentVisibleProperty' )
-      },
-      phetioValueTypeSet: {
-        plateChargesVisible: TBoolean,
-        eFieldVisible: TBoolean,
-        capacitanceMeterVisible: TBoolean,
-        plateChargeMeterVisible: TBoolean,
-        storedEnergyMeterVisible: TBoolean,
-        barGraphsVisible: TBoolean,
-        voltmeterVisible: TBoolean,
-        currentVisible: TBoolean
-      }
-    } : {};
+    this.plateChargesVisibleProperty = new Property( CLBConstants.PLATE_CHARGES_VISIBLE, {
+      tandem: tandem.createTandem( 'plateChargesVisibleProperty' ),
+      phetioValueType: TBoolean
+    } );
+    this.eFieldVisibleProperty = new Property( CLBConstants.EFIELD_VISIBLE, {
+      tandem: tandem.createTandem( 'eFieldVisibleProperty' ),
+      phetioValueType: TBoolean
+    } );
+    this.capacitanceMeterVisibleProperty = new Property( true, {
+      tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
+      phetioValueType: TBoolean
+    } );
+    this.plateChargeMeterVisibleProperty = new Property( false, {
+      tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
+      phetioValueType: TBoolean
+    } );
+    this.storedEnergyMeterVisibleProperty = new Property( false, {
+      tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
+      phetioValueType: TBoolean
+    } );
+    this.barGraphsVisibleProperty = new Property( true, {
+      tandem: tandem.createTandem( 'barGraphsVisibleProperty' ),
+      phetioValueType: TBoolean
+    } );
+    this.voltmeterVisibleProperty = new Property( false, {
+      tandem: tandem.createTandem( 'voltmeterVisibleProperty' ),
+      phetioValueType: TBoolean
+    } );
+    this.currentVisibleProperty = new Property( true, {
+      tandem: tandem.createTandem( 'currentVisibleProperty' ),
+      phetioValueType: TBoolean
+    } );
 
-    // public
-    PropertySet.call( this, {
-      plateChargesVisible: CLBConstants.PLATE_CHARGES_VISIBLE,
-      eFieldVisible: CLBConstants.EFIELD_VISIBLE,
-      capacitanceMeterVisible: true,
-      plateChargeMeterVisible: false,
-      storedEnergyMeterVisible: false,
-      barGraphsVisible: true,
-      voltmeterVisible: false,
-      currentVisible: true
-    }, propertySetOptions );
+    this.tandem = tandem; // @private
   }
 
   capacitorLabBasics.register( 'CLBModel', CLBModel );
 
-  return inherit( PropertySet, CLBModel, {
+  return inherit( Object, CLBModel, {
 
     /**
      * Return a capacitor with the maximum amount of charge allowed by the model.
@@ -80,17 +80,35 @@ define( function( require ) {
       // arbitrary model view transform
       var modelViewTransform = new CLBModelViewTransform3D();
 
+      // This component is constructed as part of an implementation and gets a
+      // disabled tandem instance. All children will inherit the `enabled` value
+      // unless specifically overridden.
+      var disabledTandem = this.tandem.createTandem( 'tempCapacitor', {
+        enabled: false
+      } );
+
       // Construct Capacitor without a Tandem instance (null), since this is an intermediate object
       // used only in calculations.
-      var capacitor = new Capacitor( new Vector3( 0, 0, 0 ), modelViewTransform, null, {
+      var capacitor = new Capacitor( new Vector3( 0, 0, 0 ), modelViewTransform, disabledTandem, {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.max,
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
         dielectricMaterial: DielectricMaterial.createCustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.max ),
         dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min
       } );
 
-      capacitor.platesVoltage = CLBConstants.BATTERY_VOLTAGE_RANGE.max;
+      capacitor.platesVoltageProperty.set( CLBConstants.BATTERY_VOLTAGE_RANGE.max );
       return capacitor;
+    },
+
+    reset: function() {
+      this.plateChargesVisibleProperty.reset();
+      this.eFieldVisibleProperty.reset();
+      this.capacitanceMeterVisibleProperty.reset();
+      this.plateChargeMeterVisibleProperty.reset();
+      this.storedEnergyMeterVisibleProperty.reset();
+      this.barGraphsVisibleProperty.reset();
+      this.voltmeterVisibleProperty.reset();
+      this.currentVisibleProperty.reset();
     }
   } );
 } );

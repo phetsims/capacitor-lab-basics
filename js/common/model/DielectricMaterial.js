@@ -49,13 +49,16 @@ define( function( require ) {
   inherit( Object, DielectricMaterial, {}, {
 
     /**
-     * Create a custom dielectric material with the provided dielectric constant
+     * Create a custom dielectric material with the provided dielectric constant.
+     * There is no tandem instance here because this sim does not currently support
+     * custom dielectric materials, so there is no useful information to be written out.
+     * See https://github.com/phetsims/capacitor-lab-basics/issues/81
      *
      * @param  {number}
      * @return {DielectricMaterial}
      */
     createCustomDielectricMaterial: function( dielectricConstant ) {
-      return new DielectricMaterial( 'Custom', dielectricConstant, CLBConstants.CUSTOM_DIELECTRIC_COLOR, null ); // TODO: tandem
+      return new DielectricMaterial( 'Custom', dielectricConstant, CLBConstants.CUSTOM_DIELECTRIC_COLOR, null );
     }
   } );
 

@@ -9,13 +9,13 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Vector2 = require( 'DOT/Vector2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
-  var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Vector3 = require( 'DOT/Vector3' );
+  var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
+  var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   /**
    * Constructor.
@@ -24,7 +24,7 @@ define( function( require ) {
    * @param {CircuitConfig} config
    * @param {Battery} battery
    * @param {CircuitSwitch} circuitSwitch
-   * @param {Tandem} tandem
+   * @param {Tandem|null} tandem - null if this is part of a temporary circuit used for calculations
    * @constructor
    */
   function BatteryToSwitchWire( connectionPoint, config, battery, circuitSwitch, tandem ) {
@@ -33,16 +33,33 @@ define( function( require ) {
 
     // y coordinate of the horizontal wire
     var horizontalY = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED ).y;
-    var leftCorner = new Vector2( battery.location.x, horizontalY );
+    var leftCorner = new Vector3( battery.location.x, horizontalY );
 
     // add the vertical segment.
     var verticalSegment;
+    var startPoint;
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-      verticalSegment = WireSegment.createBatteryTopWireSegment( battery, leftCorner,
-        tandem ? tandem.createTandem( 'batteryTopWireSegment' ) : null );
-    } else {
-      verticalSegment = WireSegment.createBatteryBottomWireSegment( battery, leftCorner,
-        tandem ? tandem.createTandem( 'batteryBottomWireSegment' ) : null );
+
+      startPoint = new Vector3( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), 0 );
+
+      verticalSegment = new WireSegment( startPoint, leftCorner, tandem.createTandem( 'batteryTopWireSegment' ) );
+
+      verticalSegment.update = function() {
+        var point = new Vector3( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), 0 );
+        this.startPointProperty.set( point );
+      };
+
+    }
+    else {
+
+      startPoint = new Vector3( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset(), 0 );
+
+      verticalSegment = new WireSegment( startPoint, leftCorner, tandem.createTandem( 'batteryBottomWireSegment' ) );
+
+      verticalSegment.update = function() {
+        var point = new Vector3( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset(), 0 );
+        this.startPointProperty.set( point );
+      };
     }
 
     segments.push( verticalSegment );
@@ -53,12 +70,13 @@ define( function( require ) {
 
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-      switchSegment = WireSegment.createBatteryTopToSwitchSegment( leftCorner, switchConnectionPoint,
-        tandem ? tandem.createTandem( 'batteryTopToSwitchSegment' ) : null );
-    } else {
+      switchSegment = new WireSegment( leftCorner, switchConnectionPoint,
+        tandem.createTandem( 'batteryTopToSwitchSegment' ) );
+    }
+    else {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-      switchSegment = WireSegment.createBatteryBottomToSwitchSegment( leftCorner, switchConnectionPoint,
-        tandem ? tandem.createTandem( 'batteryBottomToSwitchSegment' ) : null );
+      switchSegment = new WireSegment( leftCorner, switchConnectionPoint,
+        tandem.createTandem( 'batteryBottomToSwitchSegment' ) );
     }
 
     segments.push( switchSegment );
@@ -96,4 +114,3 @@ define( function( require ) {
   } );
 
 } );
-

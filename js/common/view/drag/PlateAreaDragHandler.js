@@ -44,14 +44,19 @@ define( function( require ) {
     TandemDragHandler.call( this, {
       tandem: tandem,
       start: function( event ) {
+        var width = capacitor.plateSizeProperty.value.width;
         var pMouse = event.pointer.point;
-        var pOrigin = modelViewTransform.modelToViewDeltaXYZ( capacitor.plateSize.width / 2, 0, capacitor.plateSize.width / 2 );
+        var pOrigin = modelViewTransform.modelToViewDeltaXYZ( width / 2, 0, width / 2 );
         self.clickXOffset = pMouse.x - pOrigin.x;
       },
       drag: function( event ) {
         var pMouse = event.pointer.point;
         var plateWidth = self.getPlateWidth( pMouse );
-        capacitor.setPlateWidth( plateWidth );
+
+        // Discretize the plate area to round values by scaling m -> mm, rounding, then scaling back.
+        // Plate area drags should then snap only in steps of 10 mm^2.
+        var plateArea = Util.roundSymmetric( 1e5 * plateWidth*plateWidth ) / 1e5;
+        capacitor.setPlateWidth( Math.sqrt( plateArea ) );
       }
     } );
 

@@ -15,6 +15,9 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var Matrix3 = require( 'DOT/Matrix3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Vector3 = require( 'DOT/Vector3' );
+
+  var PROBE_TIP_OFFSET = new Vector3( 0.0003, 0, 0 );
 
   /**
    * Constructor for a VoltmeterShapeCreator.
@@ -28,11 +31,10 @@ define( function( require ) {
     // @private
     this.voltmeter = voltmeter;
     this.modelViewTransform = modelViewTransform;
-
   }
 
   capacitorLabBasics.register( 'VoltmeterShapeCreator', VoltmeterShapeCreator );
-  
+
   return inherit( Object, VoltmeterShapeCreator, {
 
     /**
@@ -41,7 +43,8 @@ define( function( require ) {
      * @return {Shape}
      */
     getPositiveProbeTipShape: function() {
-      return this.getProbeTipShape( this.voltmeter.positiveProbeLocation, -this.modelViewTransform.yaw );
+      var origin = this.voltmeter.positiveProbeLocationProperty.value.plus( PROBE_TIP_OFFSET );
+      return this.getProbeTipShape( origin, -this.modelViewTransform.yaw );
     },
 
     /**
@@ -50,7 +53,8 @@ define( function( require ) {
      * @return {Shape}
      */
     getNegativeProbeTipShape: function() {
-      return this.getProbeTipShape( this.voltmeter.negativeProbeLocation, -this.modelViewTransform.yaw );
+      var origin = this.voltmeter.negativeProbeLocationProperty.value.plus( PROBE_TIP_OFFSET );
+      return this.getProbeTipShape( origin, -this.modelViewTransform.yaw );
     },
 
     /**
@@ -65,11 +69,9 @@ define( function( require ) {
       var height = this.voltmeter.getProbeTipSizeReference().height;
       var x = origin.x;
       var y = origin.y;
-      var r = Shape.rectangle( x, y, width, height );
-      var t = Matrix3.rotationAround( theta, origin.x, origin.y );
-      var s = r.transformed( t );
-      return this.modelViewTransform.modelToViewShape( s );
-
-  }
+      var rec = Shape.rectangle( x, y, width, height );
+      var t = Matrix3.rotationAround( theta, x, y );
+      return this.modelViewTransform.modelToViewShape( rec.transformed( t ) );
+    }
   } );
 } );

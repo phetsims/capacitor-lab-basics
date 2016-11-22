@@ -1,8 +1,8 @@
 // Copyright 2015, University of Colorado Boulder
 
 /**
- * Model of a lightBulb, used in the Capacitor Lab: Basics sim. In order for the current to decay at a rate slow enough
- * for visibility, the internal resistance of the light bulb must be extremely large.
+ * Model of a lightBulb, used in the Capacitor Lab: Basics sim. In order for the current to decay at a rate slow
+ * enough for visibility, the internal resistance of the light bulb must be extremely large.
  *
  * @author Jesse Greenberg
  */

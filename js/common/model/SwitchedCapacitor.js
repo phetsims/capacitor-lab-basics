@@ -36,19 +36,20 @@ define( function( require ) {
     };
     Capacitor.call( this, location, config.modelViewTransform, tandem, options );
 
+    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     this.topCircuitSwitch = new CircuitSwitch( 'top', config, circuitConnectionProperty,
-      tandem ? tandem.createTandem( 'topCircuitSwitch' ) : null );
+      tandem.createTandem( 'topCircuitSwitch' ) );
     this.bottomCircuitSwitch = new CircuitSwitch( 'bottom', config, circuitConnectionProperty,
-      tandem ? tandem.createTandem( 'bottomCircuitSwitch' ) : null );
+      tandem.createTandem( 'bottomCircuitSwitch' ) );
 
     // link the top and bottom circuit switches together so that they rotate together
     // as the user drags
     var self = this;
     this.topCircuitSwitch.angleProperty.link( function( angle ) {
-      self.bottomCircuitSwitch.angle = -angle;
+      self.bottomCircuitSwitch.angleProperty.set( -angle );
     } );
     this.bottomCircuitSwitch.angleProperty.link( function( angle ) {
-      self.topCircuitSwitch.angle = -angle;
+      self.topCircuitSwitch.angleProperty.set( -angle );
     } );
   }
 

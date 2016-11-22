@@ -31,6 +31,7 @@ define( function( require ) {
 
   // strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
+  var unitsPicoFaradsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoFarads' );
 
   /**
    * Constructor.
@@ -45,34 +46,40 @@ define( function( require ) {
     var self = this;
     var parentNode = new Node();
 
-    // create the bar meter nodes with their textual values
-    var capacitanceMeterNode = BarMeterNode.createCapacitanceBarMeterNode( model.capacitanceMeter, '0' );
+    var capacitanceMeterNode = new BarMeterNode(
+      model.capacitanceMeter,
+      CLBConstants.CAPACITANCE_COLOR,
+      CLBConstants.CAPACITANCE_METER_MAX_VALUE,
+      unitsPicoFaradsString,
+      capacitanceString,
+      tandem.createTandem( 'capacitanceMeterNode' ) );
 
     // title for capacitance meter
-    var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR, maxWidth: 100 };
+    var fontOptions = {
+      font: VALUE_FONT,
+      fill: VALUE_COLOR,
+      maxWidth: 120
+    };
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
 
     parentNode.children = [ capacitanceMeterNode, capacitanceTitle ];
 
     // layout
-    // layout
     var x = 0;
     var y = 0;
 
-    //capacitanceMeterNode.axisLine.center = new Vector2( 90, capacitanceCheckBox. );
-    x = capacitanceTitle.centerX + 120;
+    // Position the left edge (x) and vertical center (y) of BarMeterNode
+    x = 0.45 * minWidth;
     y = capacitanceTitle.centerY + 1;
     capacitanceMeterNode.translation = new Vector2( x, y );
 
-    var xMargin = 15;
-    var maxWidth = capacitanceMeterNode.getMaxWidth() + capacitanceTitle.width + xMargin;
-
     Panel.call( this, parentNode, {
-      minWidth: maxWidth,
+      minWidth: minWidth,
       align: 'left',
       fill: CLBConstants.METER_PANEL_FILL,
-      xMargin: xMargin,
-      yMargin: 15
+      xMargin: 15,
+      yMargin: 15,
+      resize: false
     } );
 
     // link visibility of this panel to the checkbox
@@ -88,4 +95,3 @@ define( function( require ) {
   return inherit( Panel, CapacitanceBarMeterPanel );
 
 } );
-

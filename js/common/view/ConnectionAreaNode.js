@@ -16,7 +16,6 @@ define( function( require ) {
   var TandemButtonListener = require( 'TANDEM/scenery/input/TandemButtonListener' );
   var Node = require( 'SCENERY/nodes/Node' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
@@ -24,10 +23,6 @@ define( function( require ) {
 
   var BOUNDING_ANGLE = Math.PI / 8;
   var AREA_FILL = DEBUG ? 'rgba( 1, 1, 1, 0.65 )' : null;
-
-  var DISCONNECTED_POINT_COLOR = 'rgb( 151, 208, 255 )';
-  var DISCONNECTED_POINT_STROKE = PhetColorScheme.RED_COLORBLIND;
-  var CONNECTION_POINT_HIGHLIGHTED = 'yellow';
 
   /**
    * Constructor for the ConnectionAreaNode.
@@ -57,8 +52,8 @@ define( function( require ) {
     triangleNode.cursor = 'pointer';
 
     function resetPinColors() {
-      connectionPointNode.fill = DISCONNECTED_POINT_COLOR;
-      connectionPointNode.stroke = DISCONNECTED_POINT_STROKE;
+      connectionPointNode.fill = CLBConstants.DISCONNECTED_POINT_COLOR;
+      connectionPointNode.stroke = CLBConstants.DISCONNECTED_POINT_STROKE;
     }
 
     var connectionType = connection.connectionType; // for readability
@@ -72,7 +67,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'buttonListener' ),
 
       over: function( event ) {
-        connectionPointNode.fill = CONNECTION_POINT_HIGHLIGHTED;
+        connectionPointNode.fill = CLBConstants.CONNECTION_POINT_HIGHLIGHTED;
       },
       up: function( event ) {
         resetPinColors();

@@ -43,6 +43,9 @@ define( function( require ) {
   var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
   var blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_black.png' );
 
+  // For a quick check of the probe tip bounds. Doesn't follow probes if dragged
+  var DEBUG_BOUNDS = false;
+
   /**
    * Constructor.
    *
@@ -76,6 +79,18 @@ define( function( require ) {
     voltmeterVisibleProperty.link( function( voltmeterVisible ) {
       self.visible = voltmeterVisible;
     } );
+
+    if ( DEBUG_BOUNDS ) {
+      var Path = require( 'SCENERY/nodes/Path' );
+      this.addChild( new Path( voltmeter.shapeCreator.getPositiveProbeTipShape(), {
+        stroke: 'red',
+        lineWidth: 2
+      } ) );
+      this.addChild( new Path( voltmeter.shapeCreator.getNegativeProbeTipShape(), {
+        stroke: 'black',
+        lineWidth: 2
+      } ) );
+    }
 
     // Register with tandem.  No need to handle dispose/removeInstance since this
     // exists for the lifetime of the simulation.
@@ -187,4 +202,3 @@ define( function( require ) {
 
   return VoltmeterNode;
 } );
-

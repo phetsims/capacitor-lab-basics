@@ -13,16 +13,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Circle = require( 'SCENERY/nodes/Circle' );
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
-  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-
-  // constants
-  var CONNECTION_POINT_RADIUS = 6;
-
-  // colors
-  var DISCONNECTED_POINT_COLOR = 'rgb( 151, 208, 255 )';
-  var DISCONNECTED_POINT_STROKE = PhetColorScheme.RED_COLORBLIND;
-  var CONNECTION_POINT_HIGHLIGHTED = 'yellow';
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
 
   /**
    * Constructor for the ConnectionPointNode.
@@ -36,18 +28,18 @@ define( function( require ) {
   function ConnectionPointNode( connectionType, circuitConnectionProperty, tandem, options ) {
 
     options = _.extend( {
-      fill: DISCONNECTED_POINT_COLOR,
+      fill: CLBConstants.DISCONNECTED_POINT_COLOR,
       lineWidth: 2,
       lineDash: [ 3, 3 ],
-      stroke: DISCONNECTED_POINT_STROKE
+      stroke: CLBConstants.DISCONNECTED_POINT_STROKE
     } );
-    Circle.call( this, CONNECTION_POINT_RADIUS, options );
+    Circle.call( this, CLBConstants.CONNECTION_POINT_RADIUS, options );
     var self = this;
     this.cursor = 'pointer';
 
     function resetPinColors() {
-      self.fill = DISCONNECTED_POINT_COLOR;
-      self.stroke = DISCONNECTED_POINT_STROKE;
+      self.fill = CLBConstants.DISCONNECTED_POINT_COLOR;
+      self.stroke = CLBConstants.DISCONNECTED_POINT_STROKE;
     }
 
     // link pin style properties to the circuit connection. Needs to be done in addition to the button listener so that
@@ -62,7 +54,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'inputListener' ),
 
       over: function( event ) {
-        self.fill = CONNECTION_POINT_HIGHLIGHTED;
+        self.fill = CLBConstants.CONNECTION_POINT_HIGHLIGHTED;
       },
       up: function( event ) {
         resetPinColors();

@@ -10,20 +10,22 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var Vector2 = require( 'DOT/Vector2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
-  var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Vector3 = require( 'DOT/Vector3' );
+  var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
+  var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
+
+  var COUNTER = 0;
 
   /**
    * @param {string} connectionPoint one of 'TOP' or 'BOTTOM'
    * @param {CircuitConfig} config
    * @param {LightBulb} lightBulb
    * @param {CircuitSwitch} circuitSwitch
-   * @param {Tandem} tandem
+   * @param {Tandem|null} tandem - null if this is a temporary circuit used for calculations
    * @constructor
    */
   function LightBulbToSwitchWire( connectionPoint, config, lightBulb, circuitSwitch, tandem ) {
@@ -36,22 +38,27 @@ define( function( require ) {
     var isTop = connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP;
     var connectionPointX = isTop ? lightBulb.getTopConnectionPoint().x : lightBulb.getBottomConnectionPoint().x;
 
-    var rightCorner = new Vector2( connectionPointX, horizontalY );
+    // This is the (x,y) position of the upper right corner
+    var rightCorner = new Vector3( connectionPointX, horizontalY, 0 );
 
     // add the vertical segment.
     var verticalSegment;
     if ( isTop ) {
       verticalSegment = WireSegment.createComponentTopWireSegment( lightBulb, rightCorner,
-        tandem ? tandem.createTandem( 'lightBulbComponentTopWireSegment' ) : null );
+        tandem.createTandem( 'lightBulbComponentTopWireSegment' ) );
     } else {
       verticalSegment = WireSegment.createComponentBottomWireSegment( lightBulb, rightCorner,
-        tandem ? tandem.createTandem( 'lightBulbComponentBottomWireSegment' ) : null );
+        tandem.createTandem( 'lightBulbComponentBottomWireSegment' ) );
     }
     segments.push( verticalSegment );
 
     // connect lightbulb to switch connection point.
     var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-    segments.push( new WireSegment( rightCorner, switchConnectionPoint ) );
+
+    // Tandem IDs must be unique, so append a counter index
+    segments.push( new WireSegment( rightCorner, switchConnectionPoint,
+      tandem.createTandem( 'lightBulbSwitchWireSegment' + COUNTER ) ) );
+    COUNTER++;
 
     Wire.call( this, config.modelViewTransform, config.wireThickness, segments, connectionPoint );
 

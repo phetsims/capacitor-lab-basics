@@ -43,7 +43,12 @@ define( function( require ) {
      * @return {Shape[]}
      */
     createTopPlateShape: function() {
-      return this.createBoxShape( this.capacitor.location.x, this.capacitor.getTopConnectionPoint().y, this.capacitor.location.z, this.capacitor.plateSize );
+      var x = this.capacitor.location.x;
+      var y = this.capacitor.getTopConnectionPoint().y;
+      var z = this.capacitor.location.z;
+      var size = this.capacitor.plateSizeProperty.value;
+
+      return this.createBoxShape( x, y, z, size );
     },
 
     /**
@@ -52,7 +57,13 @@ define( function( require ) {
      * @return {Shape[]}
      */
     createBottomPlateShape: function() {
-      return this.createBoxShape( this.capacitor.location.x, this.capacitor.location.y + ( this.capacitor.plateSeparation / 2 ), this.capacitor.location.z, this.capacitor.plateSize );
+      var x = this.capacitor.location.x;
+      var y = this.capacitor.location.y;
+      var z = this.capacitor.location.z;
+      var d = this.capacitor.plateSeparationProperty.value;
+      var size = this.capacitor.plateSizeProperty.value;
+
+      return this.createBoxShape( x, y + ( d / 2 ), z, size );
     },
 
     /**
@@ -61,7 +72,7 @@ define( function( require ) {
      * @return {Shape}
      */
     createAirBetweenPlateShape: function() {
-      if ( this.capacitor.dielectricOffset === 0 ) {
+      if ( this.capacitor.dielectricOffsetProperty.value === 0 ) {
         return this.createEmptyShape();
       }
       else {
@@ -103,7 +114,8 @@ define( function( require ) {
      * @return {shape}
      */
     createAirBetweenPlatesShapeOccluded: function() {
-      // NOTE: Without dielectrics, createAirBetweenPlateShape will produce nothing.  This function should never be called.
+      // NOTE: Without dielectrics, createAirBetweenPlateShape will produce nothing.
+      // This function should never be called.
       console.error( 'Dielectrics have not been ported yet, this function should not be in use.' );
     },
 

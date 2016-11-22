@@ -15,7 +15,8 @@ define( function( require ) {
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
+  var Range = require( 'DOT/Range' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
@@ -32,24 +33,26 @@ define( function( require ) {
    */
   function AbstractCircuit( config, createCircuitComponents, createWires, tandem ) {
 
-    var propertySetOptions = tandem ? {
-      tandemSet: {
-        currentAmplitude: tandem.createTandem( 'currentAmplitudeProperty' ),
-        circuitConnection: tandem.createTandem( 'circuitConnectionProperty' ),
-        disconnectedPlateCharge: tandem.createTandem( 'disconnectedPlateChargeProperty' )
-      },
-      phetioValueTypeSet: {
-        currentAmplitude: TNumber( { units: 'amperes' } ),
-        circuitConnection: TString,
-        disconnectedPlateCharge: TNumber( { units: 'coulombs' } )
-      }
-    } : {};
+    this.currentAmplitudeProperty = new Property( 0, {
+      tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
+      phetioValueType: TNumber( {
+        units: 'amperes'
+      } ),
+      documentation: 'currentAmplitudeProperty is updated by the model and should not be set by users'
+    } );
 
-    PropertySet.call( this, {
-      currentAmplitude: 0,
-      circuitConnection: CircuitConnectionEnum.BATTERY_CONNECTED,
-      disconnectedPlateCharge: 0
-    }, propertySetOptions );
+    this.circuitConnectionProperty = new Property( CircuitConnectionEnum.BATTERY_CONNECTED, {
+      tandem: tandem.createTandem( 'circuitConnectionProperty' ),
+      phetioValueType: TString
+    } );
+
+    this.disconnectedPlateChargeProperty = new Property( 0, {
+      tandem: tandem.createTandem( 'disconnectedPlateChargeProperty' ),
+      phetioValueType: TNumber( {
+        units: 'coulombs',
+        range: new Range( -CLBConstants.PLATE_CHARGE_METER_MAX_VALUE, CLBConstants.PLATE_CHARGE_METER_MAX_VALUE )
+      } )
+    } );
 
     var self = this;
 
@@ -64,7 +67,7 @@ define( function( require ) {
     // create basic circuit components
     // @public
     this.battery = new Battery( config.batteryLocation, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue,
-      config.modelViewTransform, tandem && tandem.createTandem( 'battery' ) );
+      config.modelViewTransform, tandem.createTandem( 'battery' ) );
     this.circuitComponents = createCircuitComponents( config, this.circuitConnectionProperty, tandem );
 
     // capture the circuit components into individual arrays.  Note that using slice assumes order of capacitors and
@@ -96,7 +99,7 @@ define( function( require ) {
       self.wires.forEach( function( wire ) {
         wire.segments.forEach( function( segment ) {
           // not all segments need to be updated
-          segment.update && segment.update( circuitConnection );
+          segment.update && segment.update();
         } );
       } );
     }
@@ -121,7 +124,7 @@ define( function( require ) {
     // no guarantee that capacitors have been constructed.
     this.capacitors.forEach( function( capacitor ) {
       capacitor.plateSeparationProperty.lazyLink( function() {
-        updateSegments( self.circuitConnection );
+        updateSegments( self.circuitConnectionProperty.value );
         self.updatePlateVoltages();
       } );
     } );
@@ -136,7 +139,7 @@ define( function( require ) {
 
     // update all segments when battery polarity changes.
     this.battery.polarityProperty.link( function( polarity ) {
-      updateSegments( self.circuitConnection );
+      updateSegments( self.circuitConnectionProperty.value );
     } );
 
     // when the disconnected plate charge property changes, set the disconnected plate voltage.
@@ -160,7 +163,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'AbstractCircuit', AbstractCircuit );
 
-  return inherit( PropertySet, AbstractCircuit, {
+  return inherit( Object, AbstractCircuit, {
 
     /**
      * Updates the plate voltages.
@@ -174,7 +177,7 @@ define( function( require ) {
      * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
      */
     setDisconnectedPlateVoltage: function() {
-      if ( this.circuitConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         this.updatePlateVoltages();
       }
     },
@@ -183,11 +186,11 @@ define( function( require ) {
      * Sets the value used for plate charge when the battery is disconnected.
      * (design doc symbol: Q_total)
      *
-     * @param {number} disconnectedPlateCharge Coulombs
+     * @param {number} charge - in Coulombs
      */
-    setDisconnectedPlateCharge: function( disconnectedPlateCharge ) {
-      if ( disconnectedPlateCharge !== this.disconnectedPlateCharge ) {
-        this.disconnectedPlateCharge = disconnectedPlateCharge;
+    setDisconnectedPlateCharge: function( charge ) {
+      if ( charge !== this.disconnectedPlateChargeProperty.value ) {
+        this.disconnectedPlateChargeProperty.set( charge );
       }
     },
 
@@ -196,7 +199,9 @@ define( function( require ) {
       this.capacitors.forEach( function( capacitor ) {
         capacitor.reset();
       } );
+      this.currentAmplitudeProperty.reset();
       this.circuitConnectionProperty.reset();
+      this.disconnectedPlateChargeProperty.reset();
     },
 
     /**
@@ -378,7 +383,7 @@ define( function( require ) {
      * @returns {number}
      */
     getTotalVoltage: function() {
-      return this.battery.voltage;
+      return this.battery.voltageProperty.value;
     },
 
     /**
@@ -465,10 +470,9 @@ define( function( require ) {
       var Q = this.getTotalCharge();
       if ( this.previousTotalCharge !== -1 ) {
         var dQ = Q - this.previousTotalCharge;
-        this.currentAmplitude = dQ / dt;
+        this.currentAmplitudeProperty.set( dQ / dt );
       }
       this.previousTotalCharge = Q;
     }
   } );
 } );
-

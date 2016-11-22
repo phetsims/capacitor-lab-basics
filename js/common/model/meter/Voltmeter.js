@@ -13,7 +13,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+  var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
@@ -24,7 +24,9 @@ define( function( require ) {
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
-  var PROBE_TIP_SIZE = new Dimension2( 0.001, 0.0018 ); // meters
+  var PROBE_TIP_SIZE = new Dimension2( 0.0005, 0.0015 ); // meters
+
+  // Initial locations when dragged out of toolbox
   var BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
   var POSITIVE_PROBE_LOCATION = new Vector3( 0.0669, 0.0298, 0 );
   var NEGATIVE_PROBE_LOCATION = new Vector3( 0.0707, 0.0329, 0 );
@@ -35,42 +37,44 @@ define( function( require ) {
    * @param {AbstractCircuit} circuit
    * @param {Bounds2} dragBounds
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Tandem} tandem
+   * @param {Tandem|null} tandem - null if this is a temporary component used for calculations
    * @constructor
    */
   function Voltmeter( circuit, dragBounds, modelViewTransform, tandem ) {
 
-    // @public
-    PropertySet.call( this, {
-      visible: false,
-      inUserControl: false,
-      bodyLocation: BODY_LOCATION,
-      positiveProbeLocation: POSITIVE_PROBE_LOCATION,
-      negativeProbeLocation: NEGATIVE_PROBE_LOCATION,
-      value: null // This is a number. Will be properly initialized by updateValue
-    }, tandem ? {
-      tandemSet: {
-        visible: tandem.createTandem( 'visibleProperty' ),
-        inUserControl: tandem.createTandem( 'inUserControlProperty' ),
-        bodyLocation: tandem.createTandem( 'bodyLocationProperty' ),
-        positiveProbeLocation: tandem.createTandem( 'positiveProbeLocationProperty' ),
-        negativeProbeLocation: tandem.createTandem( 'negativeProbeLocationProperty' ),
-        value: tandem.createTandem( 'valueProperty' )
-      },
-      phetioValueTypeSet: {
-        visible: TBoolean,
-        inUserControl: TBoolean,
-        bodyLocation: TVector3,
-        positiveProbeLocation: TVector3,
-        negativeProbeLocation: TVector3,
-        value: TNumber( { units: 'volts' } )
-      }
-    } : {} );
+    this.visibleProperty = new Property( false, {
+      tandem: tandem.createTandem( 'visibleProperty' ),
+      phetioValueType: TBoolean
+    } );
+    this.inUserControlProperty = new Property( false, {
+      tandem: tandem.createTandem( 'inUserControlProperty' ),
+      phetioValueType: TBoolean
+    } );
+    this.bodyLocationProperty = new Property( BODY_LOCATION, {
+      tandem: tandem.createTandem( 'bodyLocationProperty' ),
+      phetioValueType: TVector3
+    } );
+    this.positiveProbeLocationProperty = new Property( POSITIVE_PROBE_LOCATION, {
+      tandem: tandem.createTandem( 'positiveProbeLocationProperty' ),
+      phetioValueType: TVector3
+    } );
+    this.negativeProbeLocationProperty = new Property( NEGATIVE_PROBE_LOCATION, {
+      tandem: tandem.createTandem( 'negativeProbeLocationProperty' ),
+      phetioValueType: TVector3
+    } );
+    this.measuredVoltageProperty = new Property( null, {
+      tandem: tandem.createTandem( 'measuredVoltageProperty' ),
+      phetioValueType: TNumber( {
+        units: 'volts'
+      } )
+    } );
+
     var self = this;
 
     this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform ); // @public (read-only)
     this.circuit = circuit; // @private
     this.dragBounds = dragBounds; // @public (read-only)
+    this.modelViewTransform = modelViewTransform;
 
     // @private
     var touchingFreePlate = function( probeShape ) {
@@ -96,36 +100,45 @@ define( function( require ) {
      */
     var updateValue = function() {
       if ( self.probesAreTouching() ) {
-        self.value = 0;
+        self.measuredVoltageProperty.set( 0 );
+        return;
       }
       else {
         var positiveProbeShape = self.shapeCreator.getPositiveProbeTipShape();
         var negativeProbeShape = self.shapeCreator.getNegativeProbeTipShape();
 
-        // Ensure that the voltage is null when one (and only one) probe is on a disconnected lightbulb
-        // or battery
         if ( self.circuit.lightBulb ) {
-          if ( ( touchingFreeLightBulb( positiveProbeShape ) && !touchingFreeLightBulb( negativeProbeShape ) ) ||
-               ( !touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) ) {
-            self.value = null;
+
+          // Set voltage to zero when both probes are touching the disconnected lightbulb
+          if ( touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) {
+            self.measuredVoltageProperty.set( 0 );
             return;
           }
+
+          // Set voltage to null when one (and only one) probe is on a disconnected lightbulb
+          if ( ( touchingFreeLightBulb( positiveProbeShape ) && !touchingFreeLightBulb( negativeProbeShape ) ) ||
+            ( !touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) ) {
+            self.measuredVoltageProperty.set( null );
+            return;
+          }
+
+          // Set voltage to null when one (and only one) probe is on a disconnected battery
           else if ( ( touchingFreeBattery( positiveProbeShape ) && !touchingFreeBattery( negativeProbeShape ) ) ||
-                    ( !touchingFreeBattery( positiveProbeShape ) && touchingFreeBattery( negativeProbeShape ) ) ) {
-            self.value = null;
+            ( !touchingFreeBattery( positiveProbeShape ) && touchingFreeBattery( negativeProbeShape ) ) ) {
+            self.measuredVoltageProperty.set( null );
             return;
           }
         }
 
-        // Ensure that voltage is null when one (and only one) probe is on a disconnected plate.
+        // Set voltage to null when one (and only one) probe is on a disconnected plate.
         if ( ( touchingFreePlate( positiveProbeShape ) && !touchingFreePlate( negativeProbeShape ) ) ||
-             ( !touchingFreePlate( positiveProbeShape ) && touchingFreePlate( negativeProbeShape ) ) ) {
-          self.value = null;
+          ( !touchingFreePlate( positiveProbeShape ) && touchingFreePlate( negativeProbeShape ) ) ) {
+          self.measuredVoltageProperty.set( null );
           return;
         }
 
         // Handle all other cases
-        self.value = self.circuit.getVoltageBetween( positiveProbeShape, negativeProbeShape );
+        self.measuredVoltageProperty.set( self.circuit.getVoltageBetween( positiveProbeShape, negativeProbeShape ) );
       }
     };
 
@@ -135,7 +148,7 @@ define( function( require ) {
     } );
 
     // update the value when the probes move
-    this.multilink( [ 'negativeProbeLocation', 'positiveProbeLocation' ], updateValue );
+    Property.multilink( [self.negativeProbeLocationProperty, self.positiveProbeLocationProperty ], updateValue );
 
     // update all segments and the plate voltages when capacitor plate geometry changes.  Lazy link because there is
     // no guarantee that capacitors have been constructed.
@@ -159,16 +172,29 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'Voltmeter', Voltmeter );
 
-  return inherit( PropertySet, Voltmeter, {
+  return inherit( Object, Voltmeter, {
 
     /**
      * Probes are touching if their tips intersect.
      *
      * @returns {boolean}
-     self.updateValue();
      */
     probesAreTouching: function() {
-      return this.shapeCreator.getPositiveProbeTipShape().intersectsBounds( this.shapeCreator.getNegativeProbeTipShape() );
+      var touching = false;
+      var posShape = this.shapeCreator.getPositiveProbeTipShape();
+      var negShape = this.shapeCreator.getNegativeProbeTipShape();
+      posShape.subpaths.forEach( function( subpath ) {
+        subpath.points.forEach( function( point ) {
+          if ( negShape.containsPoint( point ) ) {
+            touching = true;
+            return;
+          }
+        } );
+        if ( touching ) {
+          return;
+        } // For efficiency
+      } );
+      return touching;
     },
 
     /**
@@ -178,7 +204,15 @@ define( function( require ) {
      */
     getProbeTipSizeReference: function() {
       return PROBE_TIP_SIZE;
+    },
+
+    reset: function() {
+      this.visibleProperty.reset();
+      this.inUserControlProperty.reset();
+      this.bodyLocationProperty.reset();
+      this.positiveProbeLocationProperty.reset();
+      this.negativeProbeLocationProperty.reset();
+      this.measuredVoltageProperty.reset();
     }
   } );
 } );
-

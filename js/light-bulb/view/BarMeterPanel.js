@@ -7,6 +7,7 @@
  * right while the bar meters are aligned to the left.  The checkboxes are also aligned to the left.
  *
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -20,6 +21,7 @@ define( function( require ) {
   var Panel = require( 'SUN/Panel' );
   var CheckBox = require( 'SUN/CheckBox' );
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
+  var PlateChargeBarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/PlateChargeBarMeterNode' );
   var Vector2 = require( 'DOT/Vector2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -28,17 +30,20 @@ define( function( require ) {
 
   // constants
   var CHECKBOX_VERTICAL_SPACING = 28;
-  var VALUE_FONT = new PhetFont( 15 );
+  var VALUE_FONT = new PhetFont( 16 );
   var VALUE_COLOR = 'black';
 
   // strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
-  var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
   var plateChargeString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge' );
+  var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
+  var unitsPicoCoulombsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoCoulombs' );
+  var unitsPicoFaradsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoFarads' );
+  var unitsPicoJoulesString = require( 'string!CAPACITOR_LAB_BASICS/units.picoJoules' );
 
   /**
    * @param {BarMeter[]} model
-   * @param {Property.<boolean>} minWidth
+   * @param {Property.<boolean>} minWidth - minimum width of the whole panel
    * @param {Tandem} tandem
    * @constructor
    */
@@ -50,14 +55,42 @@ define( function( require ) {
 
     // create the bar meter nodes with their text values.
     var meterNodes = new Node();
-    var capacitanceMeterNode = BarMeterNode.createCapacitanceBarMeterNode( model.capacitanceMeter );
-    var plateChargeMeterNode = BarMeterNode.createPlateChargeBarMeterNode( model.plateChargeMeter );
-    var storedEnergyMeterNode = BarMeterNode.createStoredEnergyBarMeterNode( model.storedEnergyMeter );
+
+    var capacitanceMeterNode = new BarMeterNode(
+      model.capacitanceMeter,
+      CLBConstants.CAPACITANCE_COLOR,
+      CLBConstants.CAPACITANCE_METER_MAX_VALUE,
+      unitsPicoFaradsString,
+      capacitanceString,
+      tandem.createTandem( 'capacitanceMeterNode' ) );
+
+    var plateChargeMeterNode = new PlateChargeBarMeterNode(
+      model.plateChargeMeter,
+      CLBConstants.POSITIVE_CHARGE_COLOR,
+      CLBConstants.PLATE_CHARGE_METER_MAX_VALUE,
+      unitsPicoCoulombsString,
+      plateChargeString,
+      tandem.createTandem( 'plateChargeMeterNode' ) );
+
+    var storedEnergyMeterNode = new BarMeterNode(
+      model.storedEnergyMeter,
+      CLBConstants.STORED_ENERGY_COLOR,
+      CLBConstants.STORED_ENERGY_METER_MAX_VALUE,
+      unitsPicoJoulesString,
+      storedEnergyString,
+      tandem.createTandem( 'storedEnergyMeterNode' ) );
+
     meterNodes.children = [ capacitanceMeterNode, plateChargeMeterNode, storedEnergyMeterNode ];
 
     // create checkboxes for each meter node
     var checkBoxNodes = new Node();
-    var fontOptions = { font: VALUE_FONT, fill: VALUE_COLOR, maxWidth: minWidth * 0.19 };
+
+    // Settings for title strings
+    var fontOptions = {
+      font: VALUE_FONT,
+      fill: VALUE_COLOR,
+      maxWidth: 120
+    };
 
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
     var capacitanceCheckBox = new CheckBox( capacitanceTitle, model.capacitanceMeterVisibleProperty, {
@@ -87,11 +120,11 @@ define( function( require ) {
     plateChargeCheckBox.translation = new Vector2( 0, CHECKBOX_VERTICAL_SPACING );
     storedEnergyCheckBox.translation = new Vector2( 0, 2 * CHECKBOX_VERTICAL_SPACING );
 
-    x = capacitanceCheckBox.right + capacitanceMeterNode.valueNode.width + 37;
+    x = 0.44*minWidth;
     y = capacitanceCheckBox.centerY + 2;
     capacitanceMeterNode.axisLine.translation = new Vector2( x, y );
 
-    x = capacitanceMeterNode.axisLine.x;
+    // x = capacitanceMeterNode.axisLine.x;
     y = plateChargeCheckBox.centerY + 2;
     plateChargeMeterNode.axisLine.translation = new Vector2( x, y );
 
@@ -120,4 +153,3 @@ define( function( require ) {
   return inherit( Panel, BarMeterPanel );
 
 } );
-

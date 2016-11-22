@@ -12,6 +12,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var DragHandleArrowNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleArrowNode' );
@@ -60,7 +61,7 @@ define( function( require ) {
 
     // arrow
     var arrowNode = new DragHandleArrowNode( ARROW_TIP_LOCATION, ARROW_TAIL_LOCATION );
-    arrowNode.addInputListener( new PlateAreaDragHandler( arrowNode, capacitor, modelViewTransform, valueRange,
+    this.addInputListener( new PlateAreaDragHandler( arrowNode, capacitor, modelViewTransform, valueRange,
       tandem.createTandem( 'inputListener' ) ) );
 
     // this.touchArea = arrowNode.bounds;
@@ -73,6 +74,20 @@ define( function( require ) {
     var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
     // @private
     this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, unitsMillimetersString + '<sup>' + 2 + '</sup>' );
+
+    // Make text part of the draggable area
+    this.valueNode.mouseArea = this.valueNode.bounds.dilated( 0 );
+    this.valueNode.touchArea = this.valueNode.bounds.dilated( 0 );
+
+    // Highlight the arrow on pointer over text
+    this.valueNode.addInputListener( new ButtonListener( {
+      over: function( event ) {
+        arrowNode.fill = arrowNode.highlightColor;
+      },
+      up: function( event ) {
+        arrowNode.fill = arrowNode.normalColor;
+      }
+    } ) );
 
     // rendering order
     this.addChild( lineNode );
@@ -116,14 +131,15 @@ define( function( require ) {
     // synchronizes the value display with the model
     updateDisplay: function() {
       var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( this.capacitor.getPlateArea() );
-      this.valueNode.setValue( millimetersSquared );
+      this.valueNode.setValue( millimetersSquared, 0 ); // Zero decimal places
     },
 
     // Attach drag handle to capacitor's top plate, at back-irght corner of top face.
     updateOffset: function() {
-      var x = this.capacitor.location.x + ( this.capacitor.plateSize.width / 2 );
-      var y = this.capacitor.location.y - ( this.capacitor.plateSeparation / 2 ) - this.capacitor.plateSize.height;
-      var z = this.capacitor.location.z + ( this.capacitor.plateSize.depth / 2 );
+      var plateSize = this.capacitor.plateSizeProperty.value;
+      var x = this.capacitor.location.x + ( plateSize.width / 2 );
+      var y = this.capacitor.location.y - ( this.capacitor.plateSeparationProperty.value / 2 ) - plateSize.height;
+      var z = this.capacitor.location.z + ( plateSize.depth / 2 );
       this.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
     }
   } );

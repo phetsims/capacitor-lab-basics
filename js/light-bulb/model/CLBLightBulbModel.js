@@ -13,6 +13,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var Vector3 = require( 'DOT/Vector3' );
   var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
   var LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
@@ -43,11 +44,30 @@ define( function( require ) {
 
     CLBModel.call( this, tandem );
 
+    this.tandem = tandem; // @private
+
     this.switchUsedProperty = switchUsedProperty; // @public
     this.modelViewTransform = modelViewTransform; // @private
 
+    // A requested PhET-iO customization is to simplify the switch into a
+    // single-pole double-throw switch for the light-bulb circuit instead of
+    // the default three-position version (phet-io/569).
+    // Enable with the switch=twoState query parameter.
+    var useTwoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
+
+    var twoState = [
+      CircuitConnectionEnum.BATTERY_CONNECTED,
+      CircuitConnectionEnum.LIGHT_BULB_CONNECTED
+    ];
+    var threeState = [
+      CircuitConnectionEnum.BATTERY_CONNECTED,
+      CircuitConnectionEnum.OPEN_CIRCUIT,
+      CircuitConnectionEnum.LIGHT_BULB_CONNECTED
+    ];
+
     // configuration info for the circuit
     var circuitConfig = new CircuitConfig( {
+      circuitConnections: useTwoStateSwitch ? twoState : threeState,
       modelViewTransform: modelViewTransform,
       batteryLocation: BATTERY_LOCATION,
       lightBulbXSpacing: LIGHT_BULB_X_SPACING,
@@ -73,21 +93,17 @@ define( function( require ) {
       function() {
         return circuit.getTotalCapacitance();
       },
-      tandem ? tandem.createTandem( 'capacitanceMeter' ) : null );
+      tandem.createTandem( 'capacitanceMeter' ) );
     this.plateChargeMeter = new BarMeter( this.circuit, this.plateChargeMeterVisibleProperty,
       function() {
         return circuit.getTotalCharge();
       },
-      tandem ? tandem.createTandem( 'plateChargeMeter' ) : null );
+      tandem.createTandem( 'plateChargeMeter' ) );
     this.storedEnergyMeter = new BarMeter( this.circuit, this.storedEnergyMeterVisibleProperty,
       function() {
         return circuit.getStoredEnergy();
       },
-      tandem ? tandem.createTandem( 'storedEnergyMeter' ) : null );
-
-    // this.capacitanceMeter = BarMeter.CapacitanceMeter( this.circuit, this.capacitanceMeterVisibleProperty, tandem );
-    // this.plateChargeMeter = BarMeter.PlateChargeMeter( this.circuit, this.plateChargeMeterVisibleProperty, tandem );
-    // this.storedEnergyMeter = BarMeter.StoredEnergyMeter( this.circuit, this.storedEnergyMeterVisibleProperty, tandem );
+      tandem.createTandem( 'storedEnergyMeter' ) );
 
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
 
@@ -159,11 +175,18 @@ define( function( require ) {
         numberOfLightBulbs: 1
       } );
 
-      // No tandem here - this is for internal implementation.
-      var circuit = new LightBulbCircuit( circuitConfig, null );
+      // This circuit is constructed as part of an implementation and should not be instrumented.
+      // A null value could be passed in here, but then all children would need null checks.
+      // Instead, pass in a disabled tandem instance. All children will inherit the `enabled` value
+      // unless specifically overridden.
+      // var circuit = new LightBulbCircuit( circuitConfig, null );
+      var circuit = new LightBulbCircuit( circuitConfig,
+        this.tandem.createTandem( 'tempLightBulbCircuit', {
+          enabled: false
+        } ) );
 
       // disconnect the battery and set the max plate charge
-      circuit.circuitConnection = CircuitConnectionEnum.OPEN_CIRCUIT;
+      circuit.circuitConnectionProperty.set( CircuitConnectionEnum.OPEN_CIRCUIT );
       circuit.setDisconnectedPlateCharge( this.getMaxPlateCharge() );
 
       return circuit.capacitor.getEffectiveEField();
