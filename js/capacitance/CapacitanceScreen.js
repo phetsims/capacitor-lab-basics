@@ -17,6 +17,8 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
+  var Property = require( 'AXON/Property' );
+  var Color = require( 'SCENERY/util/Color' );
 
   // strings
   var capacitanceTitleString = require( 'string!CAPACITOR_LAB_BASICS/capacitance.title' );
@@ -35,7 +37,7 @@ define( function( require ) {
 
     var options = {
       name: capacitanceTitleString,
-      backgroundColor: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR,
+      backgroundColorProperty: new Property( Color.toColor( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ) ),
       homeScreenIcon: icon,
       tandem: tandem
     };
