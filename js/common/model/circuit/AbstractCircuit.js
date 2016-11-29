@@ -32,7 +32,7 @@ define( function( require ) {
    * @param {Tandem} tandem
    */
   function AbstractCircuit( config, createCircuitComponents, createWires, tandem ) {
-
+    //REVIEW: documentation
     this.currentAmplitudeProperty = new Property( 0, {
       tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
       phetioValueType: TNumber( {
@@ -41,11 +41,13 @@ define( function( require ) {
       documentation: 'currentAmplitudeProperty is updated by the model and should not be set by users'
     } );
 
+    //REVIEW: documentation
     this.circuitConnectionProperty = new Property( CircuitConnectionEnum.BATTERY_CONNECTED, {
       tandem: tandem.createTandem( 'circuitConnectionProperty' ),
       phetioValueType: TString
     } );
 
+    //REVIEW: documentation
     this.disconnectedPlateChargeProperty = new Property( 0, {
       tandem: tandem.createTandem( 'disconnectedPlateChargeProperty' ),
       phetioValueType: TNumber( {
@@ -56,11 +58,15 @@ define( function( require ) {
 
     var self = this;
 
+    //REVIEW: Why is -1 special? Docs related to #130 would help
+    //REVIEW: Not private, should be protected (usage in LightBulbCircuit)
     this.previousTotalCharge = -1; // no value, @private
 
+    //REVIEW: documentation
     this.config = config;
 
     // Overwrite in concrete instances
+    //REVIEW: mark as protected, or are they public?
     this.maxPlateCharge = Infinity;
     this.maxEffectiveEField = Infinity;
 
@@ -68,19 +74,27 @@ define( function( require ) {
     // @public
     this.battery = new Battery( config.batteryLocation, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue,
       config.modelViewTransform, tandem.createTandem( 'battery' ) );
+
+    //REVIEW: documentation - Type important here!
     this.circuitComponents = createCircuitComponents( config, this.circuitConnectionProperty, tandem );
 
     // capture the circuit components into individual arrays.  Note that using slice assumes order of capacitors and
     // then lightbulbs. If new order is important, new method is necessary.
     // @public
+    //REVIEW: type documentation is important here.
+    //REVIEW: Information about order of components is needed, OR a better method that doesn't rely on that should be
+    //        used.
     this.capacitors = this.circuitComponents.slice( 0, config.numberOfCapacitors );
     this.lightBulbs = this.circuitComponents.slice( config.numberOfCapacitors, config.numberOfLightBulbs + 1 );
+
+    //REVIEW: type documentation would be helpful
     this.circuitSwitches = [];
     this.capacitors.forEach( function( capacitor ) {
       self.circuitSwitches.push( capacitor.topCircuitSwitch );
       self.circuitSwitches.push( capacitor.bottomCircuitSwitch );
     } );
 
+    //REVIEW: type documentation important here
     this.wires = createWires(
       config,
       this.battery,
@@ -170,6 +184,7 @@ define( function( require ) {
      * Subclasses must call this at the end of their constructor, see note in constructor.
      */
     updatePlateVoltages: function() {
+      //REVIEW: Replace with throwing an error for an abstract method
       console.log( 'updatePlateVoltages should be implemented in descendant classes.' );
     },
 
@@ -194,6 +209,7 @@ define( function( require ) {
       }
     },
 
+    //REVIEW: documentation, with @override
     reset: function() {
       this.battery.reset();
       this.capacitors.forEach( function( capacitor ) {
@@ -219,6 +235,7 @@ define( function( require ) {
      * connected and disconnected.
      */
     isBatteryConnected: function() {
+      //REVIEW: I don't ever see this being used. Maybe documentation is out of date, and this is dead code?
       return true;
     },
 
