@@ -34,7 +34,7 @@ define( function( require ) {
 
     this.startPointProperty = new Property( startPoint, {
       tandem: tandem.createTandem( 'startPointProperty' ),
-      phetioValueType: TVector3,
+      phetioValueType: TVector3
     } );
 
     this.endPointProperty = new Property( endPoint, {
