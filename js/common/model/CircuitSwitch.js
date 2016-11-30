@@ -177,7 +177,7 @@ define( function( require ) {
       } ).map( function( circuitSwitchConnection ) {
         var angle = topSign * ( Math.PI + CONNECTION_ANGLE_MAP[ circuitSwitchConnection ] );
         return {
-          location: Vector2.createPolar( CLBConstants.SWITCH_WIRE_LENGTH, angle ).toVector3(),
+          location: hingeXY.plus( Vector2.createPolar( CLBConstants.SWITCH_WIRE_LENGTH, angle ) ).toVector3(),
           connectionType: circuitSwitchConnection
         };
       } );
