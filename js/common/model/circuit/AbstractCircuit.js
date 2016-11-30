@@ -144,7 +144,7 @@ define( function( require ) {
     } );
 
     // update the plate voltages when the capacitor plate size changes.  Lazy link because there is no guarantee that
-    // capacators have been constructed.
+    // capacitors have been constructed.
     this.capacitors.forEach( function( capacitor ) {
       capacitor.plateSizeProperty.lazyLink( function() {
         self.updatePlateVoltages();
