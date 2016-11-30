@@ -56,7 +56,7 @@ define( function( require ) {
      * REVIEW: visibility doc
      *
      * @param {Capacitor|LightBulb} component
-     * @param {Vector2} endPoint
+     * @param {Vector2} endPoint REVIEW: Pretty sure it's Vector3
      * @param {Tandem} tandem - end point for the wire segment
      * REVIEW: returns?
      */
@@ -69,7 +69,7 @@ define( function( require ) {
      * REVIEW: visibility doc
      *
      * @param {Capacitor|LightBulb} component
-     * @param {Vector2} endPoint - end point for the wire segment
+     * @param {Vector2} endPoint - end point for the wire segment REVIEW: Pretty sure it's Vector3
      * @param {Tandem} tandem
      * REVIEW: returns?
      */
@@ -83,7 +83,7 @@ define( function( require ) {
      *
      * REVIEW: Seems cleaner to have CircuitSwitch have a createWireSegment() function, recommend to move to there
      *
-     * @param {Vector2} startPoint - start point for the switch segment
+     * @param {Vector2} startPoint - start point for the switch segment REVIEW: Pretty sure it's Vector3
      * @param {Object} activeConnection
      * @param {Tandem} tandem
      * REVIEW: returns?
@@ -107,7 +107,7 @@ define( function( require ) {
    * REVIEW: visibility doc
    *
    * @param {Capacitor|LightBulb} component
-   * @param {Vector2} endPoint
+   * @param {Vector2} endPoint REVIEW: Pretty sure it's Vector3
    * @param {Tandem} tandem
    */
   function ComponentTopWireSegment( component, endPoint, tandem ) {

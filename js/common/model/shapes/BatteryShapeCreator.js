@@ -21,7 +21,7 @@ define( function( require ) {
    * Constructor for a BatteryShapeCreator.
    *
    * @param {Battery} battery
-   * @param {ModelViewTransform2} modelViewTransform
+   * @param {ModelViewTransform2} modelViewTransform REVIEW: nope, see below
    */
   function BatteryShapeCreator( battery, modelViewTransform ) {
     if ( assert ) {

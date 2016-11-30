@@ -143,7 +143,9 @@ define( function( require ) {
     STORED_ENERGY_COLOR: 'yellow',
     POSITIVE_CHARGE_COLOR: PhetColorScheme.RED_COLORBLIND,
     NEGATIVE_CHARGE_COLOR: 'blue',
+    //REVIEW: Pretty sure this custom color is never visible in the sim, recommend removal of color in general
     CUSTOM_DIELECTRIC_COLOR: 'rgb( 255, 255, 125 )', // pale yellow
+    //REVIEW: Pretty sure this custom color is never visible in the sim, recommend removal of color in general
     AIR_COLOR: 'rgba( 255, 0, 0, 1 )', // This should never be seen so pick something obviously wrong.
 
     // other common colors

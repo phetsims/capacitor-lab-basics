@@ -18,7 +18,7 @@ define( function( require ) {
 
   /**
    * @param {CircuitConfig} config
-   * @param {Property.<string>} circuitConnectionProperty
+   * @param {Property.<string>} circuitConnectionProperty REVIEW: Property.<CircuitConnectionEnum>
    * @param {Tandem} tandem
    */
   function SwitchedCapacitor( config, circuitConnectionProperty, tandem ) {
@@ -38,6 +38,7 @@ define( function( require ) {
     Capacitor.call( this, location, config.modelViewTransform, tandem, options );
 
     // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
+    //REVIEW: Recommended CircuitSwitch.TOP and CircuitSwitch.BOTTOM in CircuitSwitch's review
     this.topCircuitSwitch = new CircuitSwitch( 'top', config, circuitConnectionProperty,
       tandem.createTandem( 'topCircuitSwitch' ) );
     this.bottomCircuitSwitch = new CircuitSwitch( 'bottom', config, circuitConnectionProperty,
@@ -46,6 +47,8 @@ define( function( require ) {
     // link the top and bottom circuit switches together so that they rotate together
     // as the user drags
     var self = this;
+    //REVIEW: note about JS's handling of negating numbers not causing infinite loops here might be good. This would
+    //        otherwise be a semi-dangerous pattern.
     this.topCircuitSwitch.angleProperty.link( function( angle ) {
       self.bottomCircuitSwitch.angleProperty.set( -angle );
     } );

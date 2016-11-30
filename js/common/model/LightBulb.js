@@ -43,6 +43,7 @@ define( function( require ) {
 
     /**
      * Does the base shape intersect the shape of the bulb base?
+     * REVIEW: visibility doc
      *
      * @param  {Vector3} point
      * @returns {boolean}
@@ -53,17 +54,22 @@ define( function( require ) {
 
     /**
      * The top connection point is the top center of light bulb, which is the center of the
+     * REVIEW: visibility doc
+     * REVIEW: returns?
      */
     getTopConnectionPoint: function() {
+      //REVIEW: return this.location.copy(); // if you need a defensive copy
       return new Vector3( this.location.x, this.location.y, this.location.z );
     },
 
+    //REVIEW: doc
     getBottomConnectionPoint: function() {
       return new Vector3( this.location.x - BULB_BASE_SIZE.width * 3 / 5, this.location.y, this.location.z );
     },
 
     /**
      * Calculate the current flowing through this lightbulb using Ohm's Law, V = I R
+     * REVIEW: visibility doc
      *
      * @param {number} voltage voltage accrose the resistor
      * @returns {number}
@@ -74,25 +80,30 @@ define( function( require ) {
 
     /**
      * Get the size the base in model coordinates
+     * REVIEW: visibility doc
      *
-     * @returns {type}  description
+     * @returns {type}  description REVIEW: doc?
      */
     getBaseSize: function() {
+      //REVIEW: this constant is already exposed as LightBulb.BULB_BASE_SIZE, can we just use that?
       return BULB_BASE_SIZE;
     },
 
 
     /**
      * Get the width of the top of the conductor which is part of the light bulb base
+     * REVIEW: visibility doc
      *
      * @returns {number}
      */
     getTopBaseConductorWidth: function() {
+      //REVIEW: This is constant, can we expose this as LightBulb.TOP_BASE_CONDUCTOR_WIDTH?
       return BULB_BASE_SIZE.width * 3 / 7;
     },
 
     /**
      * Get the width of the top of the insulator which is part of the light bulb base
+     * REVIEW: visibility doc
      *
      * REVIEW: This functions seems to be unused, recommend removal!
      *
@@ -104,6 +115,7 @@ define( function( require ) {
 
     /**
      * Get the width of the bottom of the insulator which is part of the light bulb base
+     * REVIEW: visibility doc
      *
      * REVIEW: This functions seems to be unused, recommend removal!
      *
@@ -115,6 +127,7 @@ define( function( require ) {
 
     /**
      * Get the width of the bottom of the conductor which is part of the light bulb base
+     * REVIEW: visibility doc
      *
      * REVIEW: This functions seems to be unused, recommend removal!
      *

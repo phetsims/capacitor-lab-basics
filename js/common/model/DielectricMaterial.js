@@ -7,6 +7,9 @@
  * NOTE: Air is the only dielectric material needed for now. Dielectrics not being ported at this time.
  * However, a basic custom dielectric is used to calculate the maximum number of charges possible on a capacitor.
  *
+ * REVIEW: Dielectrics not really supported in the sim, and things should use the vacuum dielectric constant.
+ * REVIEW: Recommend this type gets deleted, along with TDielectricMaterial
+ *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
  */
@@ -37,8 +40,8 @@ define( function( require ) {
   function DielectricMaterial( name, dielectricConstant, color, tandem ) {
 
     // @public (read-only)
-    this.name = name;
-    this.color = new Color( color );
+    this.name = name; //REVIEW: Name never used, would be removed if this stays
+    this.color = new Color( color ); //REVIEW: Color never displayed, would be removed if this stays
     this.dielectricConstant = dielectricConstant;
 
     tandem && tandem.addInstance( this, TDielectricMaterial );

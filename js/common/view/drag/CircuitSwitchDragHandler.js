@@ -71,6 +71,7 @@ define( function( require ) {
         initialEndPoint = circuitSwitch.getSwitchEndPoint(); // in model coordinates
         angleOffset = initialEndPoint.minus( hingePoint ).toVector2().angle(); // angle of switch segment with the horizontal
         lastAngle = angleOffset;
+        //REVIEW: what does setting 'dragging' here do? Don't see sim-specific checks on it
         switchNode.dragging = true;
 
         circuitSwitch.circuitConnectionProperty.set( CircuitConnectionEnum.IN_TRANSIT );
@@ -132,8 +133,8 @@ define( function( require ) {
         circuitSwitch.circuitConnectionProperty.set( connection );
 
         circuitSwitch.angleProperty.set( angle );
+        //REVIEW: what does setting 'dragging' here do? Don't see sim-specific checks on it
         switchNode.dragging = false;
-
       }
     } );
   }

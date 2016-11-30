@@ -21,7 +21,7 @@ define( function( require ) {
    * Constructor for a CapacitorShapeCreator.
    *
    * @param {Capacitor} capacitor
-   * @param {ModelViewTransform2} modelViewTransform
+   * @param {ModelViewTransform2} modelViewTransform REVIEW: nope, see below
    * @constructor
    */
   function CapacitorShapeCreator( capacitor, modelViewTransform ) {

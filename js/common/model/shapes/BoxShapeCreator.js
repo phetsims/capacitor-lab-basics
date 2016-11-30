@@ -18,7 +18,7 @@ define( function( require ) {
   /**
    * Constructor for a BoxShapeCreator.
    *
-   * @param {ModelViewTransform2} modelViewTransform
+   * @param {ModelViewTransform2} modelViewTransform REVIEW: nope, see below
    * @constructor
    */
   function BoxShapeCreator( modelViewTransform ) {
