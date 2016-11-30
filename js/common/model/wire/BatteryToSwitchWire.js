@@ -81,6 +81,7 @@ define( function( require ) {
     }
 
     segments.push( switchSegment );
+    //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
     Wire.call( this, config.modelViewTransform, config.wireThickness, segments, connectionPoint );
   }
 

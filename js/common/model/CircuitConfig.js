@@ -23,6 +23,7 @@ define( function( require ) {
   var BATTERY_LOCATION = new Vector3( 0.0065, 0.030, 0 ); // meters
   var CAPACITOR_X_SPACING = 0.024; // meters
   var CAPACITOR_Y_SPACING = 0; // meters
+  //REVIEW: LIGHT_BULB_X_SPACING is always 0.023, consider factoring out into a common location and not passing around
   var LIGHT_BULB_X_SPACING = 0.023; // meters
   var PLATE_WIDTH = CLBConstants.PLATE_WIDTH_RANGE.defaultValue;
   var PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
@@ -36,48 +37,59 @@ define( function( require ) {
   // constructor
   function CircuitConfig( options ) {
 
+    //REVIEW: Including type information (e.g. circuitConnections {Array.<CircuitConnectionEnum>}) would be helpful
     options = _.extend( {
       modelViewTransform: new CLBModelViewTransform3D(),
-      batteryLocation: BATTERY_LOCATION,
+      batteryLocation: BATTERY_LOCATION, //REVIEW: I don't see this being overridden anywhere, presumably factor it out.
       capacitorXSpacing: CAPACITOR_X_SPACING,
       capacitorYSpacing: CAPACITOR_Y_SPACING,
       plateWidth: PLATE_WIDTH,
       plateSeparation: PLATE_SEPARATION,
       wireExtent: WIRE_EXTENT,
+      //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
       wireThickness: WIRE_THICKNESS,
+      //REVIEW: LIGHT_BULB_X_SPACING is always 0.023, consider factoring out into a common location and not passing around
       lightBulbXSpacing: LIGHT_BULB_X_SPACING,
+      //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
       dielectricMaterial: DielectricMaterial.AIR,
       dielectricOffset: DIELECTRIC_OFFSET,
-      lightBulbResistance: LIGHT_BULB_RESISTANCE,
+      lightBulbResistance: LIGHT_BULB_RESISTANCE, //REVIEW: I don't see this being overridden anywhere, presumably factor it out.
       circuitConnections: [
         CircuitConnectionEnum.BATTERY_CONNECTED,
         CircuitConnectionEnum.OPEN_CIRCUIT,
         CircuitConnectionEnum.LIGHT_BULB_CONNECTED
       ],
+      //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
       numberOfCapacitors: NUMBER_OF_CAPACITORS,
       numberOfLightBulbs: NUMBER_OF_LIGHTBULBS
     }, options );
 
+    //REVIEW: Call me crazy, but `_.extend( this, { ...defaults... }, options )` would do all of this.
     // @public
     this.modelViewTransform = options.modelViewTransform;
-    this.batteryLocation = options.batteryLocation;
+    this.batteryLocation = options.batteryLocation;//REVIEW: I don't see this being overridden anywhere, presumably factor it out.
     this.capacitorXSpacing = options.capacitorXSpacing;
     this.capacitorYSpacing = options.capacitorYSpacing;
     this.plateWidth = options.plateWidth;
     this.plateSeparation = options.plateSeparation;
+    //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
     this.wireExtent = options.wireExtent;
     this.wireThickness = options.wireThickness;
+    //REVIEW: LIGHT_BULB_X_SPACING is always 0.023, consider factoring out into a common location and not passing around
     this.lightBulbXSpacing = options.lightBulbXSpacing;
+    //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
     this.dielectricMaterial = options.dielectricMaterial;
     this.dielectricOffset = options.dielectricOffset;
     this.lightBulbResistance = options.lightBulbResistance;
     this.circuitConnections = options.circuitConnections;
+    //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
     this.numberOfCapacitors = options.numberOfCapacitors;
     this.numberOfLightBulbs = options.numberOfLightBulbs;
   }
 
   capacitorLabBasics.register( 'CircuitConfig', CircuitConfig );
 
+  //REVIEW: Since it has no prototype, consider CircuitConfig having just a method (CircuitConfig.create( ... )) that returns a plain object.
   return inherit( Object, CircuitConfig );
 
 } );

@@ -27,10 +27,12 @@ define( function( require ) {
   // constants
   var BATTERY_LOCATION = new Vector3( 0.0065, 0.030, 0 ); // meters
   var CAPACITOR_X_SPACING = 0.0180; // meters
+  //REVIEW: LIGHT_BULB_X_SPACING is always 0.023, consider factoring out into a common location and not passing around
   var LIGHT_BULB_X_SPACING = 0.023; // meters
   var CAPACITOR_Y_SPACING = 0.0010; // meters
   var PLATE_WIDTH = CLBConstants.PLATE_WIDTH_RANGE.defaultValue;
   var PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
+  //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
   var WIRE_THICKNESS = CLBConstants.WIRE_THICKNESS;
   var WIRE_EXTENT = 0.017; // how far the wire extends above or below the capacitor (meters)
 
@@ -70,17 +72,21 @@ define( function( require ) {
       circuitConnections: useTwoStateSwitch ? twoState : threeState,
       modelViewTransform: modelViewTransform,
       batteryLocation: BATTERY_LOCATION,
+      //REVIEW: LIGHT_BULB_X_SPACING is always 0.023, consider factoring out into a common location and not passing around
       lightBulbXSpacing: LIGHT_BULB_X_SPACING,
       capacitorXSpacing: CAPACITOR_X_SPACING,
       capacitorYSpacing: CAPACITOR_Y_SPACING,
       plateWidth: PLATE_WIDTH,
       plateSeparation: PLATE_SEPARATION,
       wireExtent: WIRE_EXTENT,
+      //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
       wireThickness: WIRE_THICKNESS,
+      //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
       numberOfCapacitors: 1,
       numberOfLightBulbs: 1
     } );
 
+    //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
     this.dielectricMaterial = DielectricMaterial.AIR; // @public (read-only)
 
     this.circuit = new LightBulbCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
@@ -169,10 +175,13 @@ define( function( require ) {
         capacitorYSpacing: CAPACITOR_Y_SPACING,
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
+        //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
         wireThickness: CLBConstants.WIRE_THICKNESS,
         wireExtent: WIRE_EXTENT,
+        //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
         dielectricMaterial: DielectricMaterial.createCustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.min ),
         dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min,
+        //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
         numberOfCapacitors: 1,
         numberOfLightBulbs: 1
       } );

@@ -100,6 +100,10 @@ define( function( require ) {
       var capacitor = new Capacitor( new Vector3( 0, 0, 0 ), modelViewTransform, disabledTandem, {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.max,
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
+        //REVIEW: This is the only usage of a non-air dielectric material, but is used to determine total plate charge.
+        //        Why does this use a non-air dielectric constant (seems buggy), since it may give incorrect total plate
+        //        charge since other capacitors use air?
+        //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
         dielectricMaterial: DielectricMaterial.createCustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.max ),
         dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min
       } );

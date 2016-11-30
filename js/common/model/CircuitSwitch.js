@@ -4,6 +4,7 @@
  * Circuit switch.  The circuit switch has a start point and an end point.  The start point acts as a hinge, and
  * the end point can switch to new connection points.  It is assumed that the circuit switch is connected to
  * a capacitor in this simulation.
+ * REVIEW: 'hinge point' terminology works better than the 'start point', I'd replace usages (it's somewhat mixed)
  *
  * @author Jesse Greenberg
  * @author Andrew Adare
@@ -32,9 +33,9 @@ define( function( require ) {
   /**
    * Constructor for a CircuitSwitch.
    *
-   * @param {string} positionLabel - 'top' or 'bottom'
+   * @param {string} positionLabel - 'top' or 'bottom' REVIEW: Create CircuitSwitch.TOP and CircuitSwitch.BOTTOM, and use those. Should avoid typos
    * @param {CircuitConfig} config
-   * @param {Property.<string>} circuitConnectionProperty
+   * @param {Property.<string>} circuitConnectionProperty REVIEW: CircuitConnectionEnum instead of string?
    * @param {Tandem} tandem
    */
   function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem ) {
@@ -43,20 +44,27 @@ define( function( require ) {
     assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
       'Unsupported positionLabel: ' + positionLabel );
 
+    //REVIEW: visibility doc (also note that it removes the 'open circuit' option when a capacitor and light bulb exist)
     this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
     // @public
-    this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
+    this.hingePoint = this.getSwitchHingePoint( positionLabel, config ); //REVIEW: type info would help here
     this.circuitConnectionProperty = circuitConnectionProperty;
 
     // @private
+    //REVIEW: initialAngle doesn't need to be a property, since it's inlined in the Property declaration below
     this.initialAngle = 0; // with respect to the vertical ( open switch )
+    //REVIEW: modelViewTransform doesn't need to be a property, since it's only used in the Wire declaration below
     this.modelViewTransform = config.modelViewTransform;
     this.connections = this.getSwitchConnections( positionLabel, this.hingePoint.toVector2(), config.circuitConnections );
+    //REVIEW: activeConnection doesn't need to be a property, since no methods use it
+    //REVIEW: The only 'read' to activeConnection is when creating the WireSegment. When updated later, it is never used.
+    //REVIEW: Recommend just inlining this in WireSegment construction, and using local vars elsewhere.
     this.activeConnection = this.getConnection( circuitConnectionProperty.value );
     var self = this;
 
     //REVIEW: Use NumberProperty instead
+    //REVIEW: visibility doc
     this.angleProperty = new Property( this.initialAngle, {
       tandem: tandem.createTandem( 'angleProperty' ),
       phetioValueType: TNumber( {
@@ -73,8 +81,10 @@ define( function( require ) {
     this.switchSegment = WireSegment.createSwitchSegment( this.hingePoint, this.activeConnection,
       tandem.createTandem( 'switchSegment' ) );
 
+    //REVIEW: probably public, and probably the wire between the hinge point and end point?
     this.switchWire = new Wire( this.modelViewTransform, CLBConstants.WIRE_THICKNESS, [ this.switchSegment ],
       connectionName ); // No tandem for now. In future, may add tandem.createTandem( 'switchWire' )
+    //REVIEW: Recommend adding a tandem OR removing the comment?
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
@@ -83,10 +93,12 @@ define( function( require ) {
       if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
         return;
       }
+      //REVIEW: recommend to remove the activeConnection usage here, since it's an intermediate value (just use a var).
       self.activeConnection = self.getConnection( circuitConnection );
       self.switchSegment.endPointProperty.set( self.activeConnection.location );
 
       // Shorten the switch wire (requested in #140)
+      //REVIEW: recommend endPoint, hingePoint and delta (abbreviations here don't help readability)
       var ep = self.switchSegment.endPointProperty.get();
       var hp = self.switchSegment.hingePoint;
       var v = ep.minus( hp );
@@ -102,18 +114,19 @@ define( function( require ) {
 
     //REVIEW: doc
     //REVIEW: This function is never called, and should be removed (dead code), unless we really SHOULD be resetting.
+    //REVIEW: Probably never get rid of a switch, so OK to remove?
     reset: function() {
       this.angleProperty.reset();
     },
 
     /**
      * Get (x,y,z) position of switch pivot point
+     * @private
      *
-     * @param  {string} positionLabel - 'top' or 'bottom'
-     * @param  {CircuitConfig} config - Class containing circuit geometry and properties
+     * @param {string} positionLabel - 'top' or 'bottom'
+     * @param {CircuitConfig} config - Class containing circuit geometry and properties
      *
      * @returns {Vector3}
-     * @private
      */
     getSwitchHingePoint: function( positionLabel, config ) {
 
@@ -141,17 +154,37 @@ define( function( require ) {
     /**
      * Get an array of objects containing locations (as Vector3) and connection types (as strings)
      * of the switch connection points
+     * @private
      *
      * @param  {string} positionLabel - 'top' or 'bottom'
      * @param  {Vector2} hingeXY - Location of switch hinge
      * @param  {CircuitConfig} config - Class containing circuit geometry and properties
      *
-     * @returns {Object[]} - Array of Objects containing connection points and types
-     * @private
+     * @returns {Object[]} - Array of Objects containing connection points and types REVIEW: document the fields of this object, like in getConnection()
      */
     getSwitchConnections: function( positionLabel, hingeXY, circuitConnections ) {
+      /* REVIEW: Simplification and avoid branches, should be able to replace this entire function:
+      // at constants
+      var SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point
+      var CONNECTION_ANGLE_MAP = {}; // maps {CircuitConnectionEnum} => additional angle offset for connection type {number}
+      CONNECTION_ANGLE_MAP[ CircuitConnectionEnum.OPEN_CIRCUIT ] = 0;
+      CONNECTION_ANGLE_MAP[ CircuitConnectionEnum.BATTERY_CONNECTED ] = SWITCH_ANGLE;
+      CONNECTION_ANGLE_MAP[ CircuitConnectionEnum.LIGHT_BULB_CONNECTED ] = -SWITCH_ANGLE;
+      // ...
+      var topSign = ( position === CircuitSwitch.TOP ) ? -1 : 1;
+      return circuitConnections.filter( function( circuitSwitchConnection ) {
+        return circuitSwitchConnection !== CircuitConnectionEnum.IN_TRANSIT;
+      } ).map( function( circuitSwitchConnection ) {
+        var angle = topSign * ( Math.PI + CONNECTION_ANGLE_MAP[ circuitSwitchConnection ] );
+        return {
+          location: Vector2.createPolar( CLBConstants.SWITCH_WIRE_LENGTH, angle ).toVector3(),
+          connectionType: circuitSwitchConnection
+        };
+      } );
+      */
 
       // Projection of switch wire vector to its components (angle is from a vertical wire)
+      //REVIEW: l is 'length'? Recommend avoiding the 'l' abbreviation, it's sometimes hard to read
       var l = CLBConstants.SWITCH_WIRE_LENGTH;
       var dx = l * Math.sin( SWITCH_ANGLE );
       var dy = l * Math.cos( SWITCH_ANGLE );
@@ -160,6 +193,7 @@ define( function( require ) {
       var topOffset = new Vector2( 0, l );
 
       // Compute 2D switch contact points
+
       var topPoint;
       var leftPoint;
       var rightPoint;
@@ -206,9 +240,10 @@ define( function( require ) {
 
     /**
      * Get the desired connection from the connection type.
+     * REVIEW: visibility doc
      *
      * @param connectionType
-     * @returns {Object} returnConnection - object of the format { location: Vector3, connectionType: string }
+     * @returns {Object} returnConnection - object of the format { location: Vector3, connectionType: string } REVIEW: CircuitConnectionEnum, not string
      */
     getConnection: function( connectionType ) {
       var returnConnection = null;
@@ -227,6 +262,7 @@ define( function( require ) {
      * Convenience method for getting the connection locations. Similar to getConnection above, but directly returns
      * the location.
      *
+     * REVIEW: Type should note CircuitConnectionEnum, and presumably assert that it can't be IN_TRANSIT
      * @param {string} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
      */
     getConnectionPoint: function( connectionType ) {

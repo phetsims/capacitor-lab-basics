@@ -91,6 +91,7 @@ define( function( require ) {
     //REVIEW: type documentation is important here.
     //REVIEW: Information about order of components is needed, OR a better method that doesn't rely on that should be
     //        used.
+    //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
     this.capacitors = this.circuitComponents.slice( 0, config.numberOfCapacitors );
     this.lightBulbs = this.circuitComponents.slice( config.numberOfCapacitors, config.numberOfLightBulbs + 1 );
 

@@ -9,6 +9,8 @@
  * REVIEW: Lots of similar code structures in this file, ripe for simplification. Separate out "is it connected / does
  *         it overlap with any wires" code.
  *         See https://github.com/phetsims/capacitor-lab-basics/issues/174
+ * REVIEW: Since this codebase won't support extensions, presumably these should be combined, see
+ *         https://github.com/phetsims/capacitor-lab-basics/issues/117
  *
  *  |-----|------|------|
  *  |      /      /      /
@@ -240,6 +242,7 @@ define( function( require ) {
      * @returns {boolean}
      */
     connectedToDisconnectedBatteryBottom: function( shape ) {
+      //REVIEW: intersectsBottomTerminal returns the constant false, so this should be able to be simplified
       var intersectsBottomTerminal = this.battery.intersectsBottomTerminal( shape );
       var intersectsBottomWires = false;
       var bottomBatteryWires = this.getBottomBatteryWires();
@@ -288,6 +291,7 @@ define( function( require ) {
      * @returns {boolean}
      */
     connectedToBatteryBottom: function( shape ) {
+      //REVIEW: intersectsBottomTerminal returns the constant false, so this should be able to be simplified
       var intersectsBottomTerminal = this.battery.intersectsBottomTerminal( shape );
       var intersectsBottomWires = false;
       var bottomBatteryWires = this.getBottomBatteryWires();
@@ -357,6 +361,7 @@ define( function( require ) {
    */
   var createCircuitComponents = function( config, circuitConnectionProperty, tandem ) {
 
+    //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
     assert && assert( config.numberOfCapacitors === 1,
       'Capacitor Lab: Basics is designed to use exactly one capacitor' );
 
@@ -378,6 +383,7 @@ define( function( require ) {
     //REVIEW: better to inline var in loop, e.g.  `for( var i ... )`
     var i;
     for ( i = 0; i < config.numberOfLightBulbs; i++ ) {
+      //REVIEW: LIGHT_BULB_X_SPACING is always 0.023, presumably hard-code here or have a separate constant somewhere
       x += config.lightBulbXSpacing;
       location = new Vector3( x, y, z );
       var lightBulb = new LightBulb( location, config.lightBulbResistance, config.modelViewTransform );

@@ -8,6 +8,7 @@
  * dielectric between its plates, and the other of which has air between its plates.
  *
  * NOTE: Dielectrics have not been ported and are not used in Capacitor Lab: Basics.
+ * REVIEW: So presumably any references can be removed?
  *
  * A capacitor's capacitance (C) is solely dependent on its geometry and the dielectric material. Charge (Q) on the
  * plates is a function of capacitance and voltage (V) across the plates: Q = CV
@@ -51,6 +52,7 @@ define( function( require ) {
     options = _.extend( {
       plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
       plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.max,
+      //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
       dielectricMaterial: DielectricMaterial.AIR,
       dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.max
     }, options );
@@ -67,12 +69,14 @@ define( function( require ) {
     // Square plates.
     var plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth );
 
+    //REVIEW: visibility doc
     this.plateSizeProperty = new Property( plateBounds, {
       tandem: tandem.createTandem( 'plateSizeProperty' ),
       phetioValueType: TBounds3
     } );
 
     //REVIEW: Use NumberProperty instead
+    //REVIEW: visibility doc
     this.plateSeparationProperty = new Property( options.plateSeparation, {
       tandem: tandem.createTandem( 'plateSeparationProperty' ),
       phetioValueType: TNumber( {
@@ -83,6 +87,7 @@ define( function( require ) {
 
     // zero until it's connected into a circuit
     //REVIEW: Use NumberProperty instead
+    //REVIEW: visibility doc
     this.platesVoltageProperty = new Property( 0, {
       tandem: tandem.createTandem( 'platesVoltageProperty' ),
       phetioValueType: TNumber( {
@@ -90,6 +95,8 @@ define( function( require ) {
       } )
     } );
 
+    //REVIEW: visibility doc
+    //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
     this.dielectricMaterialProperty = new Property( options.dielectricMaterial, {
       tandem: tandem.createTandem( 'dielectricMaterialProperty' ),
       phetioValueType: TDielectricMaterial
@@ -97,6 +104,8 @@ define( function( require ) {
 
     // in meters, default is totally outside of capacitor plates.
     //REVIEW: Use NumberProperty instead
+    //REVIEW: visibility doc
+    //REVIEW: Given that air is the only dielectric material that should be used, do we still need this dielectric offset?
     this.dielectricOffsetProperty = new Property( options.dielectricOffset, {
       tandem: tandem.createTandem( 'dielectricOffsetProperty' ),
       phetioValueType: TNumber( {
@@ -116,6 +125,7 @@ define( function( require ) {
     /**
      * Convenience method, gets the area of one plate's top (or bottom) surfaces.
      * (design doc symbol: A)
+     * REVIEW: visibility doc
      *
      * @returns {number} area in meters^2
      */
@@ -127,6 +137,7 @@ define( function( require ) {
      * Gets the area of the contact between one of the plates and air.  Note that without dielectrics this is the same
      * as the plate area.
      * (design doc symbol: A_air)
+     * REVIEW: visibility doc
      *
      * @returns {number} area in meters^2
      */
@@ -137,12 +148,14 @@ define( function( require ) {
     /**
      * Gets the area of the contact between one of the plates and the dielectric material.
      * (design doc symbol: A_dielectric)
+     * REVIEW: visibility doc
      *
      * @returns {number} area, in meters^2
      */
     getDielectricContactArea: function() {
       var absoluteOffset = Math.abs( this.dielectricOffsetProperty.value );
       var area = ( this.plateSizeProperty.value.width - absoluteOffset ) * this.plateSizeProperty.value.depth; // front * side
+      //REVIEW: return Math.max( 0, area );
       if ( area < 0 ) {
         area = 0;
       }
@@ -153,12 +166,14 @@ define( function( require ) {
      * Sets the distance between the 2 parallel plates.
      * NOTE: The model for this sim requires that the plate separation be > 0.
      * (design doc symbol: d)
+     * REVIEW: visibility doc
      *
      * REVIEW: This function is never called, remove as it's dead code.
      *
      * @param {number} plateSeparation distance, in meters.
      */
     setPlateSeparation: function( plateSeparation ) {
+      //REVIEW: If kept, this should be replaced by an assertion
       if ( plateSeparation <= 0 ) {
         console.error( 'plateSeparation must be > 0: ' + plateSeparation );
       }
@@ -168,6 +183,7 @@ define( function( require ) {
     /**
      * Sets the plate width.
      * (design doc symbol: L)
+     * REVIEW: visibility doc
      *
      * Only the plate width settable. Plates are square, the plate depth is identical to the width. And the height
      * (thickness) is constant.
@@ -184,6 +200,7 @@ define( function( require ) {
 
     /**
      * Convenience method for determining the outside center of the top plate.  This is a wire attachment point.
+     * REVIEW: visibility doc
      *
      * @returns {Vector3}
      */
@@ -193,6 +210,7 @@ define( function( require ) {
 
     /**
      * Convenience method for determining the outside center of the bottom plate.  This is a wire attachment point.
+     * REVIEW: visibility doc
      *
      * @returns {Vector3}
      */
@@ -200,9 +218,10 @@ define( function( require ) {
       return new Vector3( this.location.x, this.location.y + ( this.plateSeparationProperty.value / 2 ) + this.plateSizeProperty.value.height, this.location.z );
     },
 
-    // d =  epsilon * epsilon_0 * A / C
+    // d =  epsilon * epsilon_0 * A / C  REVIEW: if kept, inline this into the main doc
     /**
      * Get the plate separation of this capacitor.  Value is determined by the equation d =  epsilon * epsilon_0 * A / C
+     * REVIEW: visibility doc
      *
      * REVIEW: This function isn't used, remove dead code.
      *
@@ -217,6 +236,7 @@ define( function( require ) {
 
     /**
      * General formula for computing capacitance.
+     * REVIEW: visibility doc
      *
      * @param {number} epsilon dielectric constant, dimensionless
      * @param {number} area of the contact between the dielectric and one plate, meters^2
@@ -230,6 +250,7 @@ define( function( require ) {
     /**
      * Gets the capacitance due to the part of the capacitor that is contacting air.
      * (design doc symbol: C_air)
+     * REVIEW: visibility doc
      *
      * @returns {number} capacitance, in Farads
      */
@@ -240,22 +261,27 @@ define( function( require ) {
     /**
      * Gets the capacitance due to the part of the capacitor that is contacting the dielectric.
      * (design doc symbol: C_dielectric)
+     * REVIEW: visibility doc
      *
      * @returns {number} capacitance, in Farads
      */
     getDielectricCapacitance: function() {
+      //REVIEW: Only used dielectric material is air, so this should be simplified to use the AIR constant, see https://github.com/phetsims/capacitor-lab-basics/issues/117
       return this.getCapacitance( this.dielectricMaterialProperty.value.dielectricConstant, this.getDielectricContactArea(), this.plateSeparationProperty.value );
     },
 
     /**
      * Does a Shape intersect the top plate shape?  Assumes that a shape is much smaller than the
      * top plate.  This is sufficient in the case of probes.
+     * REVIEW: visibility doc
      *
      * @param {Shape} shape
      * @returns {boolean}
      */
     intersectsTopPlate: function( shape ) {
       var intersectsTopPlate = false;
+      //REVIEW: Why are we creating these shapes repeatedly? Presumably just create them on startup since they don't change.
+      //REVIEW: Use _.some()
       this.shapeCreator.createTopPlateShapeOccluded().forEach( function( topPlateShape ) {
 
         // kite does not support finding the intersection between two shapes and checking for
@@ -272,12 +298,15 @@ define( function( require ) {
     /**
      * Does a shape intersect the bottom plate shape?  Assumes that the shape is small relative
      * to the plate shape.
+     * REVIEW: visibility doc
      *
      * @param {Shape} shape
      * @returns {boolean}
      */
     intersectsBottomPlate: function( shape ) {
       var intersectsBottomPlate = false;
+      //REVIEW: Why are we creating these shapes repeatedly? Presumably just create them on startup since they don't change.
+      //REVIEW: Use _.some()
       this.shapeCreator.createBottomPlateShapeOccluded().forEach( function( bottomPlateShape ) {
         if ( bottomPlateShape.containsPoint( shape.bounds.center ) ) {
           intersectsBottomPlate = true;
@@ -290,6 +319,7 @@ define( function( require ) {
      * Is a point inside the Shape that is the 2D projection of the space between the capacitor plates?  In the Java
      * sim this checked for points between plates in air or in a dielectric.  Dielectrics are being ignored for the
      * moment so this is identical to isInsideAirBetweenPlates().
+     * REVIEW: visibility doc
      *
      * REVIEW: This function is only used by an unused function, and should be removed (dead code)
      *
@@ -304,9 +334,9 @@ define( function( require ) {
      * Gets the charge for the portion of the top plate contacting the air.  If charge is less than half of an electron
      * charge, return 0.
      * (design doc symbol: Q_air)
+     * REVIEW: visibility doc
      *
      * @returns {number} charge, in Coulombs
-     *
      */
     getAirPlateCharge: function() {
       var airPlateCharge = this.getAirCapacitance() * this.platesVoltageProperty.value;
@@ -321,6 +351,7 @@ define( function( require ) {
     /**
      * Gets the charge for the portion of the top plate contacting the dielectric.
      * (design doc symbol: Q_dielectric)
+     * REVIEW: visibility doc
      *
      * @returns {number} charge, in Coulombs
      */
@@ -337,6 +368,7 @@ define( function( require ) {
     /**
      * Gets the total charge on the top plate. Note that without dielectrics this is equal to getAirPlateCharge().
      * (design doc symbol: Q_total)
+     * REVIEW: visibility doc
      *
      * @returns {number} charge, in Coulombs
      */
@@ -347,6 +379,7 @@ define( function( require ) {
     /**
      * Get the total capacitance of this capacitor.  Note that without dielectrics this is identical to the capacitance
      * of air.  When dielectrics are added, be sure to include dielectric capacitance components.
+     * REVIEW: visibility doc
      *
      * @returns {number}
      */
@@ -357,6 +390,7 @@ define( function( require ) {
     /**
      * Gets the excess plate charge due to plates contacting air.
      * (design doc symbol: Q_excess_air)
+     * REVIEW: visibility doc
      *
      * REVIEW: This function is not used and should be removed (dead code)
      *
@@ -368,6 +402,7 @@ define( function( require ) {
 
     /**
      * General solution for excess plate charge.
+     * REVIEW: visibility doc
      *
      * REVIEW: This function is only used by the above (unused) function and should be removed (dead code)
      *
@@ -377,6 +412,7 @@ define( function( require ) {
      * @returns {number} charge, in Coulombs (C)
      */
     getExcessPlateCharge: function( epsilon_r, C, V_plates ) {
+      //REVIEW: if kept, this should be replaced with an assertion
       if ( epsilon_r <= 0 ) {
         console.error( 'Model requires epsilon_r > 0 : ' + epsilon_r );
       }
@@ -386,6 +422,7 @@ define( function( require ) {
     /**
      * Gets the effective (net) field between the plates. This is uniform everywhere between the plates.
      * If the total charge on the plate is less than half that of a single electron, effective field is zero.
+     * REVIEW: visibility doc
      *
      * (design doc symbol: E_effective)
      *
@@ -404,6 +441,7 @@ define( function( require ) {
     /**
      * Gets the field due to the plates in the capacitor volume that contains air.
      * (design doc symbol: E_plates_air)
+     * REVIEW: visibility doc
      *
      * REVIEW: This function is only used by an unused function, and should be removed (dead code)
      *
@@ -415,6 +453,7 @@ define( function( require ) {
 
     /**
      * General solution for the E-field due to some dielectric.
+     * REVIEW: visibility doc
      *
      * REVIEW: This function is only used by an unused function, and should be removed (dead code)
      *
@@ -434,6 +473,7 @@ define( function( require ) {
     /**
      * Gets the field due to air polarization.
      * (design doc symbol: E_air)
+     * REVIEW: visibility doc
      *
      * REVIEW: Unused function, should be removed (dead code)
      *
@@ -446,6 +486,7 @@ define( function( require ) {
     /**
      * Discharge the capacitor when it is in parallel with some resistance.  This updates the voltage of the plates
      * assuming the solution
+     * REVIEW: visibility doc
      *
      * Vc = Vo*exp( -t / ( R * C ) )
      *
@@ -469,6 +510,7 @@ define( function( require ) {
     /**
      * It is possible to change the capacitance while the capacitor is discharging.  The parameters
      * for the solution
+     * REVIEW: visibility doc
      *
      * Vc = Vo*exp( -t / ( R * C ) )
      *
@@ -494,10 +536,12 @@ define( function( require ) {
       this.transientTime = 0;
     },
 
+    //REVIEW: doc
     reset: function() {
       this.plateSizeProperty.reset();
       this.plateSeparationProperty.reset();
       this.platesVoltageProperty.reset();
+      //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
       this.dielectricMaterialProperty.reset();
       this.dielectricOffsetProperty.reset();
     }

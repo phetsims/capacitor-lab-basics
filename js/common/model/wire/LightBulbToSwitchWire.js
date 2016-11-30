@@ -61,8 +61,8 @@ define( function( require ) {
       tandem.createTandem( 'lightBulbSwitchWireSegment' + COUNTER ) ) );
     COUNTER++;
 
+    //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
     Wire.call( this, config.modelViewTransform, config.wireThickness, segments, connectionPoint );
-
   }
 
   capacitorLabBasics.register( 'LightBulbToSwitchWire', LightBulbToSwitchWire );

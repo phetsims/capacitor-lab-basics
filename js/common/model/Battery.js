@@ -95,16 +95,19 @@ define( function( require ) {
 
     /**
      * Return false if testing intersection with bottom terminal.  This terminal is not visible.
+     * REVIEW: visibility doc
      *
      * @param {Shape} shape
      * @returns {boolean}
      */
     intersectsBottomTerminal: function( shape ) {
+      //REVIEW: This is a constant? Should be factored out in locations
       return false; // bottom terminal is not visible
     },
 
     /**
      * Determine if the shape intersects with the top battery terminal.
+     * REVIEW: visibility doc
      *
      * @param shape
      * @returns {boolean}
@@ -117,6 +120,7 @@ define( function( require ) {
     /**
      * Gets the offset of the bottom terminal from the battery's origin, in model coordinates (meters).
      * We don't need to account for the polarity since the bottom terminal is never visible.
+     * REVIEW: visibility doc
      */
     getBottomTerminalYOffset: function() {
       return BODY_SIZE.height / 2;
@@ -125,6 +129,7 @@ define( function( require ) {
     /**
      * Gets the offset of the top terminal from the battery's origin, in model coordinates (meters).
      * This offset depends on the polarity.
+     * REVIEW: visibility doc
      */
     getTopTerminalYOffset: function() {
       if ( this.polarityProperty.value === CLBConstants.POLARITY.POSITIVE ) {
@@ -135,22 +140,28 @@ define( function( require ) {
       }
     },
 
+    //REVIEW: doc
+    //REVIEW: do we need a function for this?
     getPositiveTerminalEllipseSize: function() {
       return POSITIVE_TERMINAL_ELLIPSE_SIZE;
     },
 
+    //REVIEW: doc
+    //REVIEW: do we need a function for this?
     getNegativeTerminalEllipseSize: function() {
       return NEGATIVE_TERMINAL_ELLIPSE_SIZE;
     },
 
+    //REVIEW: doc
+    //REVIEW: do we need a function for this?
     getPositiveTerminalCylinderHeight: function() {
       return POSITIVE_TERMINAL_CYLINDER_HEIGHT;
     },
 
+    //REVIEW: doc
     reset: function() {
       this.voltageProperty.reset();
       this.polarityProperty.reset();
     }
   } );
 } );
-

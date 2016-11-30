@@ -64,6 +64,7 @@ define( function( require ) {
     DIELECTRIC_OFFSET_RANGE: new RangeWithValue( 0, PLATE_WIDTH_RANGE.max, PLATE_WIDTH_RANGE.defaultValue ), // meters
 
     // dielectric constants (dimensionless)
+    //REVIEW: Vacuum should be kept, rest are not needed (see https://github.com/phetsims/capacitor-lab-basics/issues/178)
     EPSILON_VACUUM: 1,
     EPSILON_GLASS: 4.7,
     EPSILON_PAPER: 3.5,
@@ -82,6 +83,9 @@ define( function( require ) {
      * beer that it will never be a problem.  Any developer who needs to change this in the future
      * is hereby bound by the Developer Code of Ethics to inform me, so that I can collect on
      * this wager.
+     * REVIEW: why are we getting air capacitance AND dielectric capacitance?
+     * REVIEW: Since we're not handling dielectrics in this sim, it seems simpler to replace AIR epsilon with a vaccuum.
+     *         Andrew, should CM be contacted?
      */
     EPSILON_AIR: 1.0,
 
