@@ -41,6 +41,7 @@ define( function( require ) {
 
     // Configuration info for the circuit.
     // Default number of capacitors is 1, default number of lightbulbs is 0.
+    //REVIEW: Not just the default, but always what it has?
     var circuitConfig = new CircuitConfig( {
       circuitConnections: [ CircuitConnectionEnum.BATTERY_CONNECTED, CircuitConnectionEnum.OPEN_CIRCUIT ]
     } );
