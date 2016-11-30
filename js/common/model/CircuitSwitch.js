@@ -246,6 +246,7 @@ define( function( require ) {
      * @returns {Object} returnConnection - object of the format { location: Vector3, connectionType: string } REVIEW: CircuitConnectionEnum, not string
      */
     getConnection: function( connectionType ) {
+      //REVIEW: return _.find( this.connections, function( connection ) { return connection.connectionType === connectionType; } );
       var returnConnection = null;
       this.connections.forEach( function( connection ) {
         if ( connection.connectionType === connectionType ) {
@@ -261,20 +262,22 @@ define( function( require ) {
     /**
      * Convenience method for getting the connection locations. Similar to getConnection above, but directly returns
      * the location.
+     * REVIEW: visibility doc
      *
      * REVIEW: Type should note CircuitConnectionEnum, and presumably assert that it can't be IN_TRANSIT
      * @param {string} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
      */
     getConnectionPoint: function( connectionType ) {
-
+      //REVIEW: inline the two lines together?
       var connection = this.getConnection( connectionType );
       return connection.location;
     },
 
     /**
      * Get the location of the endpoint for the circuit switch segment.
+     * REVIEW: visibility doc
      *
-     * @returns {Vector2} [description]
+     * @returns {Vector2} [description] REVIEW: wrong type doc, Vector3 as asserted below?
      */
     getSwitchEndPoint: function() {
 
@@ -287,20 +290,34 @@ define( function( require ) {
 
     /**
      * Get the connection point that will be nearest the connecting capacitor.
+     * REVIEW: visibility doc
      *
-     * @returns {Vector2}
+     * REVIEW: hingePoint is public, just have the client use that?
+     *
+     * @returns {Vector2} REVIEW: wrong type doc? See below
      */
     getCapacitorConnectionPoint: function() {
+      if ( assert ) {
+        if ( this.hingePoint.constructor.name !== 'Vector2' ) {
+          console.log( 'REVIEW (CircuitSwitch.getCapacitorConnectionPoint): Probably not a Vector2: ' + this.hingePoint.constructor.name );
+        }
+      }
       return this.hingePoint;
     },
 
     /**
      * Get the limiting angle of the circuit switch to the right.
      * The limiting angle is dependent on wheter a light bulb is connected to the circuit.
+     * REVIEW: visibility doc
      *
      * @returns {number}
      */
     getRightLimitAngle: function() {
+      /* REVIEW: simpler implementation?
+      return _.maxBy( this.connections, function( connection ) {
+        return connection.location.x;
+      } ).location.minus( this.hingePoint ).toVector2().angle();
+      */
 
       var self = this;
 
@@ -318,9 +335,16 @@ define( function( require ) {
 
     /**
      * Get the limiting angle of the circuit switch to the left.
-     * @returns {[type]} [description]
+     * REVIEW: visibility doc
+     *
+     * @returns {[type]} [description] REVIEW: probably {number}
      */
     getLeftLimitAngle: function() {
+      /* REVIEW: more general implementation?
+      return _.minBy( this.connections, function( connection ) {
+        return connection.location.x;
+      } ).location.minus( this.hingePoint ).toVector2().angle();
+      */
       var a = this.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
       var b = this.hingePoint;
 
