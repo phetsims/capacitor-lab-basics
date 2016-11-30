@@ -54,7 +54,9 @@ define( function( require ) {
     var self = this;
 
     // @public
+    //REVIEW: Probably move this up to the common circuit, since every circuit has exactly one.
     this.capacitor = this.capacitors[ 0 ];
+    //REVIEW: Probably can remove code that handles multiple light-bulbs?
     this.lightBulb = this.lightBulbs[ 0 ];
 
     // Make sure that the charges are correct when the battery is reconnected to the circuit.

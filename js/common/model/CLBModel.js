@@ -104,6 +104,7 @@ define( function( require ) {
       // Construct Capacitor without a Tandem instance (null), since this is an intermediate object
       // used only in calculations.
       //REVIEW tip: new Vector3() is a (0,0,0)
+      //REVIEW: This is the only usage of a raw Capacitor. Can we get rid of this, so we can only have SwitchedCapacitor?
       var capacitor = new Capacitor( new Vector3( 0, 0, 0 ), modelViewTransform, disabledTandem, {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.max,
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,

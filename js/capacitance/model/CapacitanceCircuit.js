@@ -40,6 +40,7 @@ define( function( require ) {
 
     ParallelCircuit.call( this, config, tandem );
 
+    //REVIEW: Probably move this up to the common circuit, since every circuit has exactly one.
     this.capacitor = this.capacitors[ 0 ]; // @public
   }
 
