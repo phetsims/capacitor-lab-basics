@@ -28,6 +28,7 @@ define( function( require ) {
    */
   function BarMeter( circuit, visibleProperty, valueFunction, tandem ) {
 
+    //REVIEW: Use NumberProperty
     this.valueProperty = new Property( valueFunction( circuit ), {
       tandem: tandem.createTandem( 'valueProperty' ),
       phetioValueType: TNumber()
@@ -40,6 +41,9 @@ define( function( require ) {
     this.circuit = circuit; // @private
     this.valueFunction = valueFunction; // @private
 
+    //REVIEW: Disposal not implemented.
+    //REVIEW: AbstractCircuit does not declare circuit.capacitor. What subtype dependencies does this actually have?
+    //        Update documentation to note the dependency.
     // TODO implement disposal
     Property.multilink( [
       circuit.capacitor.plateSizeProperty,
@@ -48,16 +52,17 @@ define( function( require ) {
     ], function() {
       self.updateValue();
     } );
-
   }
 
   capacitorLabBasics.register( 'BarMeter', BarMeter );
-  return inherit( Object, BarMeter, {
 
+  return inherit( Object, BarMeter, {
+    //REVIEW: doc
     updateValue: function() {
       this.valueProperty.set( this.valueFunction( this.circuit ) );
     },
 
+    //REVIEW: doc
     reset: function() {
       this.visibleProperty.reset();
     }

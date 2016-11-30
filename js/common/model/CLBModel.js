@@ -30,35 +30,42 @@ define( function( require ) {
    * @constructor
    */
   function CLBModel( tandem ) {
-
+    //REVIEW: Use BooleanProperty
     this.plateChargesVisibleProperty = new Property( CLBConstants.PLATE_CHARGES_VISIBLE, {
       tandem: tandem.createTandem( 'plateChargesVisibleProperty' ),
       phetioValueType: TBoolean
     } );
+    //REVIEW: Use BooleanProperty
     this.eFieldVisibleProperty = new Property( CLBConstants.EFIELD_VISIBLE, {
       tandem: tandem.createTandem( 'eFieldVisibleProperty' ),
       phetioValueType: TBoolean
     } );
+    //REVIEW: Use BooleanProperty
     this.capacitanceMeterVisibleProperty = new Property( true, {
       tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
+    //REVIEW: Use BooleanProperty
     this.plateChargeMeterVisibleProperty = new Property( false, {
       tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
+    //REVIEW: Use BooleanProperty
     this.storedEnergyMeterVisibleProperty = new Property( false, {
       tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
+    //REVIEW: Use BooleanProperty
     this.barGraphsVisibleProperty = new Property( true, {
       tandem: tandem.createTandem( 'barGraphsVisibleProperty' ),
       phetioValueType: TBoolean
     } );
+    //REVIEW: Use BooleanProperty
     this.voltmeterVisibleProperty = new Property( false, {
       tandem: tandem.createTandem( 'voltmeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
+    //REVIEW: Use BooleanProperty
     this.currentVisibleProperty = new Property( true, {
       tandem: tandem.createTandem( 'currentVisibleProperty' ),
       phetioValueType: TBoolean

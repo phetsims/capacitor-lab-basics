@@ -29,11 +29,12 @@ define( function( require ) {
   function UnitsUtils() {}
 
   capacitorLabBasics.register( 'UnitsUtils', UnitsUtils );
-   
+
   return inherit( Object, UnitsUtils, {}, {
 
     /**
      * Utility function to convert from meters to millimeters.
+     * REVIEW: visibility doc
      *
      * @param {number} d
      * @returns {number}
@@ -44,6 +45,7 @@ define( function( require ) {
 
     /**
      * Utility function to convert meters squared to millimeters squared.
+     * REVIEW: visibility doc
      *
      * @param {number} d
      * @returns {number}
@@ -51,6 +53,5 @@ define( function( require ) {
     metersSquaredToMillimetersSquared: function( d ) {
       return d * ( MILLIMETERS_PER_METER * MILLIMETERS_PER_METER );
     }
-
   } );
 } );

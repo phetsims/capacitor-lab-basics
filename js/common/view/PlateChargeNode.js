@@ -99,6 +99,7 @@ define( function( require ) {
     this.parentNode = new Node(); // @private parent node for charges
     this.addChild( this.parentNode );
 
+    //REVIEW: Disposal not implemented.
     // TODO implement disposal
     Property.multilink( [
       capacitor.plateSizeProperty,

@@ -25,6 +25,11 @@ define( function( require ) {
    * @constructor
    */
   function CapacitorShapeCreator( capacitor, modelViewTransform ) {
+    if ( assert ) {
+      if ( modelViewTransform.constructor.name !== 'ModelViewTransform2' ) {
+        console.log( 'REVIEW (CapacitorShapeCreator): Probably not a ModelViewTransform2: ' + modelViewTransform.constructor.name );
+      }
+    }
     // @private
     this.capacitor = capacitor;
     this.boxShapeCreator = new BoxShapeCreator( modelViewTransform );
@@ -39,8 +44,9 @@ define( function( require ) {
     //----------------------------------------------------------------------------------------
     /**
      * Top plate, unoccluded.
+     * REVIEW: visibility doc
      *
-     * @return {Shape[]}
+     * @return {Shape[]} REVIEW: createBoxShapes() instead?
      */
     createTopPlateShape: function() {
       var x = this.capacitor.location.x;
@@ -53,8 +59,9 @@ define( function( require ) {
 
     /**
      * Bottom plate, unoccluded.
+     * REVIEW: visibility doc
      *
-     * @return {Shape[]}
+     * @return {Shape[]} REVIEW: createBoxShapes() instead?
      */
     createBottomPlateShape: function() {
       var x = this.capacitor.location.x;
@@ -68,54 +75,70 @@ define( function( require ) {
 
     /**
      * Air that is between the capacitor plates.
+     * REVIEW: visibility doc
      *
      * @return {Shape}
      */
     createAirBetweenPlateShape: function() {
+      var result;
       if ( this.capacitor.dielectricOffsetProperty.value === 0 ) {
-        return this.createEmptyShape();
+        result = this.createEmptyShape();
       }
       else {
         // Dielectrics are not being ported yet. we should never reach this!
         assert && assert( 'Dielectrics have not yet been ported, dielectric offset should always be zero.' );
       }
+      if ( assert ) {
+        if ( result.constructor.name !== 'Shape' ) {
+          console.log( 'REVIEW (CapacitorShapeCreator): Probably not a Shape: ' + result.constructor.name );
+        }
+      }
+      return result;
     },
 
     /**
      * Visible portion of the top plate. Nothing occludes the top plate.
+     * REVIEW: visibility doc
      *
-     * @return {Shape[]}
+     * @return {Shape[]} REVIEW: createBoxShapes() instead?
      */
     createTopPlateShapeOccluded: function() {
+      //REVIEW: one usage, no overrides. Just use createTopPlateShape() instead?
       return this.createTopPlateShape();
     },
 
     /**
      * Visible portion of the bottom plate. May be partially occluded by the top plate.
+     * REVIEW: visibility doc
      *
-     * @return {Shape[]}
+     * @return {Shape[]} REVIEW: createBoxShapes() instead?
      */
     createBottomPlateShapeOccluded: function() {
+      //REVIEW: one usage, no overrides. Just use createTopPlateShape() instead?
       return this.createBottomPlateShape();
     },
 
     /**
      * Visible portion of the dielectric between the plates. May be partially occluded by the top plate.
+     * REVIEW: visibility doc
      *
-     * @return
+     * @return REVIEW: no return statement
      */
     createDielectricBetweenPlatesShapeOccluded: function() {
+      //REVIEW: stub methods for implemented things probably shouldn't exist?
       console.error( 'Dielectrics have not been ported yet!' );
     },
 
     /**
      * Visible portion of air between the plates. May be partially occluded by the top plate.
+     * REVIEW: visibility doc
      *
      * @return {shape}
      */
     createAirBetweenPlatesShapeOccluded: function() {
       // NOTE: Without dielectrics, createAirBetweenPlateShape will produce nothing.
       // This function should never be called.
+      //REVIEW: stub methods for implemented things probably shouldn't exist?
       console.error( 'Dielectrics have not been ported yet, this function should not be in use.' );
     },
 
@@ -124,12 +147,13 @@ define( function( require ) {
     //----------------------------------------------------------------------------------------
     /**
      * Create an array of planar shapes that form a box.
+     * REVIEW: visibility doc
      * @param x
      * @param y
      * @param z
      * @param size
      *
-     * @returns {Shape[]}
+     * @returns {Shape[]} REVIEW: createBoxShapes() instead? REVIEW: createBoxShapes() instead?
      */
     createBoxShape: function( x, y, z, size ) {
       return this.boxShapeCreator.createBoxShape( x, y, z, size.width, size.height, size.depth );
@@ -137,6 +161,7 @@ define( function( require ) {
 
     // Encapsulation of empty shape.
     createEmptyShape: function() {
+      //REVIEW: that's not a Shape!
       return new Rectangle( 0, 0, 0, 0 );
     }
 

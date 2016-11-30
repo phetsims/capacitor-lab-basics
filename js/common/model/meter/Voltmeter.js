@@ -27,6 +27,7 @@ define( function( require ) {
   var PROBE_TIP_SIZE = new Dimension2( 0.0005, 0.0015 ); // meters
 
   // Initial locations when dragged out of toolbox
+  //REVIEW: The body gets dragged out, how would an initial location matter?
   var BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
   var POSITIVE_PROBE_LOCATION = new Vector3( 0.0669, 0.0298, 0 );
   var NEGATIVE_PROBE_LOCATION = new Vector3( 0.0707, 0.0329, 0 );
@@ -42,26 +43,39 @@ define( function( require ) {
    */
   function Voltmeter( circuit, dragBounds, modelViewTransform, tandem ) {
 
+    //REVIEW: Use BooleanProperty
+    //REVIEW: Visibility doc
     this.visibleProperty = new Property( false, {
       tandem: tandem.createTandem( 'visibleProperty' ),
       phetioValueType: TBoolean
     } );
+
+    //REVIEW: Use BooleanProperty
+    //REVIEW: Visibility doc
     this.inUserControlProperty = new Property( false, {
       tandem: tandem.createTandem( 'inUserControlProperty' ),
       phetioValueType: TBoolean
     } );
+
+    //REVIEW: Visibility doc
     this.bodyLocationProperty = new Property( BODY_LOCATION, {
       tandem: tandem.createTandem( 'bodyLocationProperty' ),
       phetioValueType: TVector3
     } );
+
+    //REVIEW: Visibility doc
     this.positiveProbeLocationProperty = new Property( POSITIVE_PROBE_LOCATION, {
       tandem: tandem.createTandem( 'positiveProbeLocationProperty' ),
       phetioValueType: TVector3
     } );
+
+    //REVIEW: Visibility doc
     this.negativeProbeLocationProperty = new Property( NEGATIVE_PROBE_LOCATION, {
       tandem: tandem.createTandem( 'negativeProbeLocationProperty' ),
       phetioValueType: TVector3
     } );
+
+    //REVIEW: doc why it's null. Is that allowed with TNumber, or would something like TOption (does that exist) be better?
     this.measuredVoltageProperty = new Property( null, {
       tandem: tandem.createTandem( 'measuredVoltageProperty' ),
       phetioValueType: TNumber( {
@@ -72,11 +86,14 @@ define( function( require ) {
     var self = this;
 
     this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform ); // @public (read-only)
+    //REVIEW: These are from constructor parameters, great to initialize near the top of the constructor
     this.circuit = circuit; // @private
     this.dragBounds = dragBounds; // @public (read-only)
-    this.modelViewTransform = modelViewTransform;
+    this.modelViewTransform = modelViewTransform; //REVIEW: visibility doc
 
-    // @private
+    //REVIEW: https://github.com/phetsims/capacitor-lab-basics/issues/174 should help with duplication here
+
+    // @private REVIEW: visibility doc not needed on local variables
     var touchingFreePlate = function( probeShape ) {
       var t = self.circuit.connectedToDisconnectedCapacitorTop( probeShape );
       var b = self.circuit.connectedToDisconnectedCapacitorBottom( probeShape );
@@ -99,6 +116,8 @@ define( function( require ) {
      * Update the value of the meter, called when many different properties change
      */
     var updateValue = function() {
+      //REVIEW: lots of `self.measuredVoltageProperty.set( .. ); return;`
+      //        Would prefer `return ..` for all in a computeValue() function, then updateValue sets it.
       if ( self.probesAreTouching() ) {
         self.measuredVoltageProperty.set( 0 );
         return;
@@ -108,6 +127,8 @@ define( function( require ) {
         var negativeProbeShape = self.shapeCreator.getNegativeProbeTipShape();
 
         if ( self.circuit.lightBulb ) {
+          //REVIEW: factor out duplicated expressions like `touchingFreeLightBulb( positiveProbeShape )`. Should help
+          //        performance and readability
 
           // Set voltage to zero when both probes are touching the disconnected lightbulb
           if ( touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) {
@@ -176,10 +197,12 @@ define( function( require ) {
 
     /**
      * Probes are touching if their tips intersect.
+     * REVIEW: visibility doc
      *
      * @returns {boolean}
      */
     probesAreTouching: function() {
+      //REVIEW: Use https://github.com/phetsims/capacitor-lab-basics/issues/175 instead
       var touching = false;
       var posShape = this.shapeCreator.getPositiveProbeTipShape();
       var negShape = this.shapeCreator.getNegativeProbeTipShape();
@@ -199,13 +222,16 @@ define( function( require ) {
 
     /**
      * Get the probe tip size in model coordinates
+     * REVIEW: visibility doc
      *
      * @returns {Dimension2}
      */
     getProbeTipSizeReference: function() {
+      //REVIEW: This is a constant with few usages and no overrides. Consider exposing it as a constant.
       return PROBE_TIP_SIZE;
     },
 
+    //REVIEW: doc
     reset: function() {
       this.visibleProperty.reset();
       this.inUserControlProperty.reset();

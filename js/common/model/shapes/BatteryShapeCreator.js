@@ -24,6 +24,11 @@ define( function( require ) {
    * @param {ModelViewTransform2} modelViewTransform
    */
   function BatteryShapeCreator( battery, modelViewTransform ) {
+    if ( assert ) {
+      if ( modelViewTransform.constructor.name !== 'ModelViewTransform2' ) {
+        console.log( 'REVIEW (BatteryShapeCreator): Probably not a ModelViewTransform2: ' + modelViewTransform.constructor.name );
+      }
+    }
     this.battery = battery; // @public
     this.modelViewTransform = modelViewTransform; // @private
   }
@@ -35,6 +40,8 @@ define( function( require ) {
     /**
      * Creates the shape of the top terminal in the world coordinate frame. Which terminal is on top depends on the
      * polarity.
+     * REVIEW: visibility doc
+     * REVIEW: return value
      */
     createTopTerminalShape: function() {
       if ( this.battery.polarityProperty.value === CLBConstants.POLARITY.POSITIVE ) {
@@ -49,6 +56,7 @@ define( function( require ) {
      * Creates the shape of the positive terminal body relative to some specified origin.  The positive terminal is a
      * cylinder.  This shape does not include the elliptical top of the cylinder.  Use with
      * createPositiveTerminalShapeTop() to create entire to terminal shape.
+     * REVIEW: visibility doc
      *
      * @param {Vector3} origin
      * @return {Shape}
@@ -77,11 +85,13 @@ define( function( require ) {
     /**
      * Create the top of the positive terminal.  Use with createPositiveTerminalBodyShape() to create the entire shape
      * of the top terminal.
+     * REVIEW: visibility doc
      *
      * @param {Vector3} origin
+     * REVIEW: return doc
      */
     createPositiveTerminalShapeTop: function( origin ) {
-
+      //REVIEW: only request the ellipse size once?
       var ellipseWidth = this.battery.getPositiveTerminalEllipseSize().width;
       var ellipseHeight = this.battery.getPositiveTerminalEllipseSize().height;
       var ellipseY = origin.y + this.battery.getTopTerminalYOffset();
@@ -91,12 +101,13 @@ define( function( require ) {
 
     /**
      * Creates the shape of the negative terminal relative to some specified origin.
+     * REVIEW: visibility doc
      *
      * @param {Vector3} origin
      * @return {Shape}
      */
     createNegativeTerminalShape: function( origin ) {
-
+      //REVIEW: only request the ellipse size once?
       var width = this.battery.getNegativeTerminalEllipseSize().width;
       var height = this.battery.getNegativeTerminalEllipseSize().height;
       var y = origin.y + this.battery.getTopTerminalYOffset();

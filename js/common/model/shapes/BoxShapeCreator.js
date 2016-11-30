@@ -22,6 +22,11 @@ define( function( require ) {
    * @constructor
    */
   function BoxShapeCreator( modelViewTransform ) {
+    if ( assert ) {
+      if ( modelViewTransform.constructor.name !== 'ModelViewTransform2' ) {
+        console.log( 'REVIEW (BoxShapeCreator): Probably not a ModelViewTransform2: ' + modelViewTransform.constructor.name );
+      }
+    }
     this.modelViewTransform = modelViewTransform; // @public
   }
 
@@ -30,7 +35,8 @@ define( function( require ) {
   return inherit( Object, BoxShapeCreator, {
 
     /**
-     * Top faces is a parallelogram.
+     * Top faces is a parallelogram. REVIEW: grammar?
+     * REVIEW: visibility doc
      *
      *    p0 -------------- p1
      *   /                /
@@ -43,7 +49,7 @@ define( function( require ) {
      * @param {number} width
      * @param {number} height
      * @param {number} depth
-     *
+     * REVIEW: returns?
      */
     createTopFace: function( x, y, z, width, height, depth ) {
       // points
@@ -58,8 +64,10 @@ define( function( require ) {
 
     /**
      * Create the top face of the Box with a Bounds3 object.
+     * REVIEW: visibility doc
      *
-     * @param {Bounds3} size
+     * @param {Bounds3} size REVIEW: usually 'bounds' is better than 'size', since size is usually {Dimension2}
+     * REVIEW: returns?
      */
     createTopFaceBounds3: function( size ) {
       return this.createTopFace( size.minX, size.minY, size.minZ, size.width, size.height, size.depth );
@@ -67,6 +75,7 @@ define( function( require ) {
 
     /**
      * Front face is a rectangle.
+     * REVIEW: visibility doc
      * <code>
      * p0 --------------- p1
      * |                 |
@@ -79,6 +88,7 @@ define( function( require ) {
      * @param {number} width
      * @param {number} height
      * @param {number} depth
+     * REVIEW: returns?
      */
     createFrontFace: function( x, y, z, width, height, depth ) {
       // points
@@ -92,8 +102,10 @@ define( function( require ) {
 
     /**
      * Create the front face of the box with a Bounds3 object.
+     * REVIEW: visibility doc
      *
-     * @param {Bounds3} size
+     * @param {Bounds3} size REVIEW: usually 'bounds' is better than 'size', since size is usually {Dimension2}
+     * REVIEW: returns?
      */
     createFrontFaceBounds3: function( size ) {
       return this.createFrontFace( size.minX, size.minY, size.minZ, size.width, size.height, size.depth );
@@ -101,6 +113,7 @@ define( function( require ) {
 
     /**
      * Right-side face is a parallelogram.
+     * REVIEW: visibility doc
      *
      *     p1
      *   /  |
@@ -119,6 +132,7 @@ define( function( require ) {
      * @param {number} width
      * @param {number} height
      * @param {number} depth
+     * REVIEW: returns?
      */
     createRightSideFace: function( x, y, z, width, height, depth ) {
       // points
@@ -132,8 +146,10 @@ define( function( require ) {
 
     /**
      * Create the right face of the box with a Bounds3 object.
+     * REVIEW: visibility doc
      *
-     * @param {Bounds3} size
+     * @param {Bounds3} size REVIEW: usually 'bounds' is better than 'size', since size is usually {Dimension2}
+     * REVIEW: returns?
      */
     createRightSideFaceBounds3: function( size ) {
       return this.createRightSideFace( size.minX, size.minY, size.minZ, size.width, size.height, size.depth );
@@ -141,6 +157,7 @@ define( function( require ) {
 
     /**
      * A complete box, relative to a specific origin.
+     * REVIEW: visibility doc
      *
      * Previously, this was built up using constructional area geometry.  For the port, we return an array that
      * can be added to the scene in parts.
@@ -151,6 +168,7 @@ define( function( require ) {
      * @param {number} width
      * @param {number} height
      * @param {number} depth
+     * REVIEW: returns?
      */
     createBoxShape: function( x, y, z, width, height, depth ) {
       var topShape = this.createTopFace( x, y, z, width, height, depth );
@@ -159,8 +177,11 @@ define( function( require ) {
       return [ topShape, frontShape, sideShape ];
     },
 
-    /*
+    /**
      * A face is defined by 4 points, specified in view coordinates.
+     * REVIEW: visibility doc
+     *
+     * REVIEW: returns?
      */
     createFace: function( p0, p1, p2, p3 ) {
       return new Shape()

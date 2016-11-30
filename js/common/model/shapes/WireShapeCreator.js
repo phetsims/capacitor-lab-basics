@@ -23,6 +23,11 @@ define( function( require ) {
    * @param {ModelViewTransform2} modelViewTransform
    */
   function WireShapeCreator( wire, modelViewTransform ) {
+    if ( assert ) {
+      if ( modelViewTransform.constructor.name !== 'ModelViewTransform2' ) {
+        console.log( 'REVIEW (WireShapeCreator): Probably not a ModelViewTransform2: ' + modelViewTransform.constructor.name );
+      }
+    }
     // @private
     this.wire = wire;
     this.modelViewTransform = modelViewTransform;

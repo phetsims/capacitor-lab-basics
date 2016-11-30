@@ -6,6 +6,10 @@
  * hand side of the circuit, while the circuit components are to the right
  * REVIEW: Sentence structure "so that elements"
  *
+ * REVIEW: Lots of similar code structures in this file, ripe for simplification. Separate out "is it connected / does
+ *         it overlap with any wires" code.
+ *         See https://github.com/phetsims/capacitor-lab-basics/issues/174
+ *
  *  |-----|------|------|
  *  |      /      /      /
  *  |     |      |      |
@@ -156,6 +160,7 @@ define( function( require ) {
     },
 
     //REVIEW: doc
+    //REVIEW: This function and the others below share a lot of code that could potentially be factored out.
     connectedToDisconnectedCapacitorBottom: function( shape ) {
       var intersectsBottomWires = false;
       var bottomCapacitorWires = this.getBottomCapacitorWires();
@@ -238,7 +243,8 @@ define( function( require ) {
       var intersectsBottomTerminal = this.battery.intersectsBottomTerminal( shape );
       var intersectsBottomWires = false;
       var bottomBatteryWires = this.getBottomBatteryWires();
-
+      //REVIEW: simplification:
+      // intersectsBottomWires = this.shapeTouchesWireGroup( shape, this.getBottomBatteryWires() )
       bottomBatteryWires.forEach( function( bottomWire ) {
         if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
@@ -251,6 +257,7 @@ define( function( require ) {
 
     /**
      * True if shape is touching part of the circuit that is connected to the battery's top terminal.
+     * REVIEW: visibility doc
      *
      * @param {Shape} shape
      * @returns {boolean}
@@ -261,6 +268,7 @@ define( function( require ) {
       var topBatteryWires = this.getTopBatteryWires();
       topBatteryWires = topBatteryWires.concat( this.getTopCapacitorWires() );
       topBatteryWires = topBatteryWires.concat( this.getTopSwitchWires() );
+      //REVIEW: See above simplifications, use this.shapeTouchesWireGroup
       topBatteryWires.forEach( function( topWire ) {
         if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWire = true;
@@ -274,6 +282,7 @@ define( function( require ) {
 
     /**
      * True if shape is touching part of the circuit that is connected to the battery's bottom terminal.
+     * REVIEW: visibility doc
      *
      * @param {Shape} shape
      * @returns {boolean}
@@ -284,6 +293,7 @@ define( function( require ) {
       var bottomBatteryWires = this.getBottomBatteryWires();
       bottomBatteryWires = bottomBatteryWires.concat( this.getBottomCapacitorWires() );
       bottomBatteryWires = bottomBatteryWires.concat( this.getBottomSwitchWires() );
+      //REVIEW: See above simplifications, use this.shapeTouchesWireGroup
       bottomBatteryWires.forEach( function( bottomWire ) {
         if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
@@ -297,11 +307,13 @@ define( function( require ) {
 
     /**
      * True if the shape intersects any capacitor's top plate.
+     * REVIEW: visibility doc
      *
      * @param {Shape} shape
      * @returns {boolean}
      */
     intersectsSomeTopPlate: function( shape ) {
+      //REVIEW: return _.some( this.capacitors, function( capacitor ) { return capacitor.intersectsTopPlate( shape ) } );
       var intersects = false;
       this.capacitors.forEach( function( capacitor ) {
         if ( capacitor.intersectsTopPlate( shape ) ) {
@@ -314,11 +326,13 @@ define( function( require ) {
 
     /**
      * True if the shape intersects any capacitor's bottom plate.
+     * REVIEW: visibility doc
      *
      * @param {Shape} shape
      * @returns {boolean}
      */
     intersectsSomeBottomPlate: function( shape ) {
+      //REVIEW: return _.some( this.capacitors, function( capacitor ) { return capacitor.intersectsBottomPlate( shape ) } );
       var intersects = false;
       this.capacitors.forEach( function( capacitor ) {
         if ( capacitor.intersectsBottomPlate( shape ) ) {
@@ -334,11 +348,12 @@ define( function( require ) {
    * Function which creates circuit components for the parallel circuit.  The function is constructed so that
    * capacitors are before light bulbs in left to right order.  If order of circuit components matters, this is the
    * function to change.
+   * REVIEW: visibility doc
    *
    * @param {CircuitConfig} config - object defining the circuit
-   * @param {Property.<string>} circuitConnectionProperty -
+   * @param {Property.<string>} circuitConnectionProperty - REVIEW: Property.<CircuitConnectionEnum> recommended
    * @param {Tandem} tandem
-   * @returns {Array} circuitComponents
+   * @returns {Array} circuitComponents REVIEW: Array of what?
    */
   var createCircuitComponents = function( config, circuitConnectionProperty, tandem ) {
 
@@ -350,6 +365,8 @@ define( function( require ) {
     var z = config.batteryLocation.z;
     var location = new Vector3( x, y, z );
 
+    //REVIEW: initialize with first element, since it is unused (instead of init, declare, push):
+    // var circuitComponents = [ new SwitchedCapacitor( ... ) ];
     var circuitComponents = [];
 
     var capacitor = new SwitchedCapacitor( config, circuitConnectionProperty,
@@ -358,6 +375,7 @@ define( function( require ) {
     circuitComponents.push( capacitor );
 
     // create the light bulbs
+    //REVIEW: better to inline var in loop, e.g.  `for( var i ... )`
     var i;
     for ( i = 0; i < config.numberOfLightBulbs; i++ ) {
       x += config.lightBulbXSpacing;
@@ -372,14 +390,16 @@ define( function( require ) {
   /**
    * Function that creates all wires of the circuit.  Function assumes that capacitors are to the left of the
    * lightbulb.
+   * REVIEW: Note the above constraint in the function where they are created.
+   * REVIEW: visibility doc
    *
    * @param {CircuitConfig} config
    * @param {Battery} battery
    * @param {LightBulb[]} lightBulbs
    * @param {Capacitor[]} capacitors
    * @param {CircuitSwitch[]} circuitSwitches
-   * @param {Property.<string>} circuitConnectionProperty
-   * @returns {Array}
+   * @param {Property.<string>} circuitConnectionProperty REVIEW: Property.<CircuitConnectionEnum> recommended
+   * @returns {Array} REVIEW: Array of what?
    */
   var createWires = function( config, battery, lightBulbs, capacitors,
     circuitSwitches, circuitConnectionProperty, tandem ) {
@@ -433,6 +453,8 @@ define( function( require ) {
         tandem
       ) );
 
+      //REVIEW: I usually wrap loops like this with `if( assert ) { ... }`, so the loop is guaranteed to not make it to
+      //        production
       // now connect the rest of the light bulbs in the circuit
       for ( var i = 1; i < lightBulbs.length; i++ ) {
         // NOTE: This is not needed in the Basics version of the sim, but is left here to jump start
@@ -445,5 +467,4 @@ define( function( require ) {
   };
 
   return ParallelCircuit;
-
 } );

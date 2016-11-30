@@ -45,6 +45,7 @@ define( function( require ) {
     } );
 
     //REVIEW: documentation
+    //REVIEW: When doing this, doc it as Property.<CircuitConnectionEnum>, not Property.<String> (treated as its own type)
     this.circuitConnectionProperty = new Property( CircuitConnectionEnum.BATTERY_CONNECTED, {
       tandem: tandem.createTandem( 'circuitConnectionProperty' ),
       phetioValueType: TString
