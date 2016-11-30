@@ -4,6 +4,7 @@
  * Model of a circuit with a battery (B) and N circuit components (Z1...Zn) in parallel.  Switches exist between
  * circuit connections so that elements.  The layout of the circuit assumes that the battery is on the left
  * hand side of the circuit, while the circuit components are to the right
+ * REVIEW: Sentence structure "so that elements"
  *
  *  |-----|------|------|
  *  |      /      /      /
@@ -51,10 +52,12 @@ define( function( require ) {
 
     /**
      * Get the total capacitance of all parallel capacitors in this circuit using C_total = C1 + C2 + ... + Cn
+     * REVIEW: visibility doc
      *
      * @returns {number}
      */
     getTotalCapacitance: function() {
+      //REVIEW: return _.sumBy( this.capacitors, function( capacitor ) { return capacitor.getTotalCapacitance(); } );
       var sum = 0;
       this.capacitors.forEach( function( capacitor ) {
         sum += capacitor.getTotalCapacitance();
@@ -65,6 +68,7 @@ define( function( require ) {
     /**
      * Gets the voltage at a shape, with respect to ground. Returns null if the
      * Shape is not connected to the circuit.
+     * REVIEW: visibility doc
      *
      * @param {Shape} shape - object whose bounds are checked for contact/intersection with the thing being measured
      * @return {number} voltage
@@ -134,8 +138,12 @@ define( function( require ) {
       return voltage;
     },
 
+    //REVIEW: doc
     shapeTouchesWireGroup: function( shape, wires ) {
-
+      //REVIEW:
+      // return _.some( wires, function( wire ) {
+      //   return wire.shapeProperty.value.intersectsBounds( shape.bounds );
+      // } );
       var intersectsWires = false;
 
       wires.forEach( function( wire ) {
@@ -147,13 +155,18 @@ define( function( require ) {
       return intersectsWires;
     },
 
+    //REVIEW: doc
     connectedToDisconnectedCapacitorBottom: function( shape ) {
-
       var intersectsBottomWires = false;
       var bottomCapacitorWires = this.getBottomCapacitorWires();
       var bottomSwitchWires = this.getBottomSwitchWires();
       var bottomWires = bottomCapacitorWires.concat( bottomSwitchWires );
 
+      //REVIEW: simplification:
+      // var bottomWires = this.getBottomCapacitorWires().concat( this.getBottomSwitchWires() );
+      // var intersectsBottomWires = this.shapeTouchesWireGroup( shape, bottomWires );
+      //REVIEW: Also, easier to check for whether disconnected is false before we need to compute this. Recommend top:
+      // if ( !disconnected ) { return false; } // skips a lot
       bottomWires.forEach( function( bottomWire ) {
         if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
@@ -167,7 +180,9 @@ define( function( require ) {
       return ( intersectsBottomWires || intersectsSomeBottomPlate ) && disconnected;
     },
 
+    //REVIEW: doc
     connectedToDisconnectedCapacitorTop: function( shape ) {
+      //REVIEW: See the 'bottom' case simplifications above, everything from connectedToDisconnectedCapacitorBottom applies.
       var intersectsTopWire = false;
 
       // only the wires that are connected to the battery
@@ -189,8 +204,10 @@ define( function( require ) {
 
     /**
      * Check to see if shape connects any wires that are connected to the battery top when the battery is disconnected.
-     * @param shape
-     * @returns {*|boolean}
+     * REVIEW: visibility doc
+     *
+     * @param shape  REVIEW: {Shape}?
+     * @returns {*|boolean}   REVIEW: Just {boolean}?
      */
     connectedToDisconnectedBatteryTop: function( shape ) {
       var intersectsTopTerminal = this.battery.intersectsTopTerminal( shape );
@@ -198,6 +215,7 @@ define( function( require ) {
 
       // only the wires that are connected to the battery
       var topBatteryWires = this.getTopBatteryWires();
+      //REVIEW: var intersectsTopWire = this.shapeTouchesWireGroup( shape, this.getTopBatteryWires() );
       topBatteryWires.forEach( function( topWire ) {
         if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWire = true;
@@ -211,6 +229,7 @@ define( function( require ) {
     /**
      * True if shape is touching part of the circuit that is connected to the battery's bottom terminal when the battery
      * is disconnected.
+     * REVIEW: visibility doc
      *
      * @param {Shape} shape
      * @returns {boolean}

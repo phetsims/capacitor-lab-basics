@@ -3,6 +3,9 @@
 /**
  * Base model for all circuits.
  *
+ * REVIEW: There is only one direct subtype: ParallelCircuit. Is future work planned to use this, or should they be
+ *         collapsed together?
+ *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
  */
@@ -89,6 +92,10 @@ define( function( require ) {
 
     //REVIEW: type documentation would be helpful
     this.circuitSwitches = [];
+    //REVIEW: to avoid 'self' reference, could do:
+    // this.circuitSwitches = _.flatten( this.capacitors.map( function( capacitor ) {
+    //   return [ capacitor.topCircuitSwitch, capacitor.bottomCircuitSwitch ];
+    // } ) );
     this.capacitors.forEach( function( capacitor ) {
       self.circuitSwitches.push( capacitor.topCircuitSwitch );
       self.circuitSwitches.push( capacitor.bottomCircuitSwitch );
@@ -104,15 +111,20 @@ define( function( require ) {
       this.circuitConnectionProperty,
       tandem );
 
+    //REVIEW: Recommend passing reason for assertion as the second parameter, e.g.:
+    // assert && assert( this.wires.length >= 2, 'Valid circuits must include at least two wires' );
     // Make sure all is well with circuit components.  Circuit must include at least one circuit component and two wires.
     assert && assert( this.circuitComponents.length >= 1 );
     assert && assert( this.wires.length >= 2 );
 
     function updateSegments( circuitConnection ) {
+      //REVIEW: circuitConnection is always self.circuitConnectionProperty.value
       // update start and end points of each wire segment
       self.wires.forEach( function( wire ) {
+        //REVIEW: We are digging into Wire a lot here. wire.update() could do this?
         wire.segments.forEach( function( segment ) {
           // not all segments need to be updated
+          //REVIEW: Any advantage of this over having a no-op update() on WireSegment itself?
           segment.update && segment.update();
         } );
       } );
@@ -182,6 +194,7 @@ define( function( require ) {
     /**
      * Updates the plate voltages.
      * Subclasses must call this at the end of their constructor, see note in constructor.
+     * REVIEW: visibility doc
      */
     updatePlateVoltages: function() {
       //REVIEW: Replace with throwing an error for an abstract method
@@ -190,6 +203,7 @@ define( function( require ) {
 
     /**
      * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
+     * REVIEW: visibility doc
      */
     setDisconnectedPlateVoltage: function() {
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
@@ -200,6 +214,7 @@ define( function( require ) {
     /**
      * Sets the value used for plate charge when the battery is disconnected.
      * (design doc symbol: Q_total)
+     * REVIEW: visibility doc
      *
      * @param {number} charge - in Coulombs
      */
@@ -222,6 +237,7 @@ define( function( require ) {
 
     /**
      * Step function for the AbstractCircuit.  Updates current amplitude and current indicators.
+     * REVIEW: visibility doc
      *
      * @param {number} dt
      */
@@ -231,6 +247,8 @@ define( function( require ) {
 
     /**
      * Default implementation has a connected battery.
+     * REVIEW: visibility doc
+     *
      * In some other circuits, we'll override this and add a setter, so that the battery can be dynamically
      * connected and disconnected.
      */
@@ -241,10 +259,16 @@ define( function( require ) {
 
     /**
      * Gets the wires connected to the top of circuit components.
+     * REVIEW: visibility doc
      *
      * @return {Wire[]} topWires
      */
     getTopWires: function() {
+      /*
+       * REVIEW:
+       * simplification, which could be indented to multiple lines:
+       * return this.getTopBatteryWires().concat( this.getTopLightBulbWires() ).concat( this.getTopCapacitorWires() );
+       */
       var topBatteryWires = this.getTopBatteryWires();
       var topLightBulbWires = this.getTopLightBulbWires();
       var topCapacitorWires = this.getTopCapacitorWires();
@@ -258,8 +282,18 @@ define( function( require ) {
 
     /**
      * Get all top wires that are connected to the battery.
+     * REVIEW: visibility doc
+     * REVIEW: Once the circuit is being constructed, the wires won't change. Compute this on startup, so usages can
+     *         get circuit.topBatteryWires
      */
     getTopBatteryWires: function() {
+      /*
+       * REVIEW:
+       * Would usually prefer the filter() function be used when possible.
+       * return this.wires.filter( function( wire ) {
+       *   return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP;
+       * } );
+       */
       var topBatteryWires = [];
       this.wires.forEach( function( wire ) {
         if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
@@ -271,8 +305,12 @@ define( function( require ) {
 
     /**
      * Get all top wires that are connected to the battery.
+     * REVIEW: visibility doc
+     * REVIEW: Once the circuit is being constructed, the wires won't change. Compute this on startup, so usages can
+     *         get circuit.bottomBatteryWires
      */
     getBottomBatteryWires: function() {
+      //REVIEW: See recommended filter() usage above
       var bottomBatteryWires = [];
       this.wires.forEach( function( wire ) {
         if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM ) {
@@ -284,8 +322,12 @@ define( function( require ) {
 
     /**
      * Get all top wires that are connected to the light bulb.
+     * REVIEW: visibility doc
+     * REVIEW: Once the circuit is being constructed, the wires won't change. Compute this on startup, so usages can
+     *         get circuit.topLightBulbWires
      */
     getTopLightBulbWires: function() {
+      //REVIEW: See recommended filter() usage above
       var topLightBulbWires = [];
       this.wires.forEach( function( wire ) {
         if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
@@ -297,8 +339,12 @@ define( function( require ) {
 
     /**
      * Get all bottom wires that are connected to the light bulb.
+     * REVIEW: visibility doc
+     * REVIEW: Once the circuit is being constructed, the wires won't change. Compute this on startup, so usages can
+     *         get circuit.bottomLightBulbWires
      */
     getBottomLightBulbWires: function() {
+      //REVIEW: See recommended filter() usage above
       var bottomLightBulbWires = [];
       this.wires.forEach( function( wire ) {
         if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM ) {
@@ -310,8 +356,13 @@ define( function( require ) {
 
     /**
      * Get all the top wires that connect the circuit switch.
+     * REVIEW: visibility doc
+     * REVIEW: Once the circuit is being constructed, the switches won't change. Compute on startup, so usages can get
+     *         circuit.topSwitchWires
+     * REVIEW: Doc return type
      */
     getTopSwitchWires: function() {
+      //REVIEW: See recommended filter() usage above
       var topCircuitSwitchWires = [];
       this.circuitSwitches.forEach( function( circuitSwitch ) {
         var switchWire = circuitSwitch.switchWire;
@@ -324,10 +375,14 @@ define( function( require ) {
 
     /**
      * Get all the bottom wires that connect the circuit switch.
+     * REVIEW: visibility doc
+     * REVIEW: Once the circuit is being constructed, the wires won't change. Compute on startup, so usages can get
+     *         circuit.bottomSwitchWires
      *
      * @returns {Wire[]}
      */
     getBottomSwitchWires: function() {
+      //REVIEW: See recommended filter() usage above
       var bottomCircuitSwitchWires = [];
       this.circuitSwitches.forEach( function( circuitSwitch ) {
         var switchWire = circuitSwitch.switchWire;
@@ -340,10 +395,14 @@ define( function( require ) {
 
     /**
      * Get all the top wires that are connected to the capacitor.
+     * REVIEW: visibility doc
+     * REVIEW: Once the circuit is being constructed, the wires won't change. Compute on startup, so usages can get
+     *         circuit.topSwitchWires
      *
      * @returns {Wire[]}
      */
     getTopCapacitorWires: function() {
+      //REVIEW: See recommended filter() usage above
       var topCapacitorWires = [];
       this.wires.forEach( function( wire ) {
         if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
@@ -355,10 +414,14 @@ define( function( require ) {
 
     /**
      * Get all the bottom wires that are connected to the capacitor.
+     * REVIEW: visibility doc
+     * REVIEW: Once the circuit is being constructed, the wires won't change. Compute on startup, so usages can get
+     *         circuit.topSwitchWires
      *
      * @returns {Wire[]}
      */
     getBottomCapacitorWires: function() {
+      //REVIEW: See recommended filter() usage above
       var bottomCapacitorWires = [];
       this.wires.forEach( function( wire ) {
         if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM ) {
@@ -370,10 +433,12 @@ define( function( require ) {
 
     /**
      * Gets the wire connected to the battery's bottom terminal.
+     * REVIEW: visibility doc
      *
      * @return {Wire[]} bottomWires
      */
     getBottomWires: function() {
+      //REVIEW: This can be simplified to like 1-3 lines.
       var bottomBatteryWires = this.getBottomBatteryWires();
       var bottomLightBulbWires = this.getBottomLightBulbWires();
       var bottomCapacitorWires = this.getBottomCapacitorWires();
@@ -388,6 +453,7 @@ define( function( require ) {
 
     /**
      * Get the total charge with Q_total = V_total * C_total
+     * REVIEW: visibility doc
      *
      * @return {number}
      */
@@ -397,6 +463,8 @@ define( function( require ) {
 
     /**
      * Since the default is a connected battery, the total voltage is the battery voltage.
+     * REVIEW: visibility doc
+     *
      * @returns {number}
      */
     getTotalVoltage: function() {
@@ -406,6 +474,7 @@ define( function( require ) {
     /**
      * Gets the voltage between 2 Shapes. The shapes are in world coordinates.
      * Returns null if the 2 Shapes are not both connected to the circuit.
+     * REVIEW: visibility doc
      *
      * @param {Shape} positiveShape
      * @param {Shape} negativeShape
@@ -421,16 +490,19 @@ define( function( require ) {
     /**
      * Gets the voltage at a shape, with respect to ground. Returns null if the
      * Shape is not connected to the circuit.
+     * REVIEW: visibility doc
      *
      * @param {Shape} shape
      * @return {number}
      */
     getVoltageAt: function( shape ) {
+      //REVIEW: throw an error instead, we shouldn't hit this (typical for abstract functions)
       console.log( 'getVoltageAt() should be implemented in descendant classes of AbstractCircuit' );
     },
 
     /**
      * Gets the energy stored in the circuit. (design doc symbol: U)
+     * REVIEW: visibility doc
      *
      * @return {number}
      */
@@ -443,6 +515,7 @@ define( function( require ) {
     /**
      * Gets the effective E-field at a specified location. Inside the plates, this is E_effective. Outside the plates,
      * it is zero.
+     * REVIEW: visibility doc
      *
      * @param {Vector3} location
      * @return {number} eField
@@ -453,6 +526,7 @@ define( function( require ) {
         if ( capacitor.isBetweenPlates( location ) ) {
           eField = capacitor.getEffectiveEField();
           //return; //break
+          //REVIEW: If you use _.each, returning false will break out of the loop.
         }
       } );
       return eField;
@@ -461,6 +535,7 @@ define( function( require ) {
     /**
      * Field due to the plate, at a specific location. Between the plates, the field is either E_plate_dielectric or
      * E_plate_air, depending on whether the probe intersects the dielectric.  Outside the plates, the field is zero.
+     * REVIEW: visibility doc
      *
      * Note that as of 5/29/2015 without Dielectrics, the only possible value is E_plate_air.
      *
@@ -469,6 +544,10 @@ define( function( require ) {
      */
     getPlatesDielectricEFieldAt: function( location ) {
       var eField = 0;
+      //REVIEW: Consider summing without an intermediate variable:
+      // return _.sumBy( this.capacitors, function( capacitor ) {
+      //   return capacitor.isInsideAirBetweenPlates( location ) ? capacitor.getPlatesAirEField : 0;
+      // } );
       this.capacitors.forEach( function( capacitor ) {
         if ( capacitor.isInsideAirBetweenPlates( location ) ) {
           eField = capacitor.getPlatesAirEField();
@@ -480,6 +559,7 @@ define( function( require ) {
     /**
      * Update the Current amplitude. Current amplitude is proportional to dQ/dt, the change in charge (Q_total) over
      * time.
+     * REVIEW: visibility doc
      *
      * @param {number} dt
      */

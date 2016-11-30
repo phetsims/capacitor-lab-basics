@@ -407,6 +407,7 @@ define( function( require ) {
      */
     getPlatesEField: function( epsilon_r, V_plates, d ) {
       if ( d <= 0 ) {
+        //REVIEW: assertion seems appropriate here?
         console.error( 'Model requires d (plate separation) > 0 : ' + d );
       }
       return epsilon_r * V_plates / d;
