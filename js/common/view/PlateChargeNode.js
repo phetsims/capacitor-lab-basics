@@ -120,6 +120,7 @@ define( function( require ) {
      * Charge on the portion of the plate that this node handles.
      */
     getPlateCharge: function() {
+      //REVIEW: replace with throwing an error
       console.log( 'getPlateCharge function should be implemented in descendant classes.' );
     },
 
@@ -128,6 +129,7 @@ define( function( require ) {
      * This is relative to the plate's origin, and specified in model coordinates.
      */
     getContactXOrigin: function() {
+      //REVIEW: replace with throwing an error
       console.log( 'getContactXOrigin must be overridden  in descendant classes. ' );
     },
 
@@ -136,6 +138,7 @@ define( function( require ) {
      * Specified in model coordinates.
      */
     getContactWidth: function() {
+      //REVIEW: replace with throwing an error
       console.log( 'getContactWidth should be overridden in descendant classes.' );
     },
 

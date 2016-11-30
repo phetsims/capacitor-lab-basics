@@ -37,6 +37,7 @@ define( function( require ) {
      * @return
      */
     getGridSize: function( numberOfObjects, width, height ) {
+      //REVIEW: replace with throwing an error
       console.error( 'getGridSize should be overridden by descendant classes.' );
     }
   }, {

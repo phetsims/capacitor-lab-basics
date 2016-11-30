@@ -142,6 +142,8 @@ define( function( require ) {
 
     /**
      * Stop the animation.  No op if there is no animation running
+     *
+     * REVIEW: This function isn't ever called, it should be removed (dead code)
      */
     stopAnimation: function() {
       if ( this.animation ) {

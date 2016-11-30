@@ -44,6 +44,7 @@ define( function( require ) {
     var angleOffset = 0;
     var angle = 0;
 
+    //REVIEW: Is this query parameter existing long-term?
     this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
     this.snapRange = {

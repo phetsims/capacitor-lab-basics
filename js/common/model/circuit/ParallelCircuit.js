@@ -459,6 +459,7 @@ define( function( require ) {
       for ( var i = 1; i < lightBulbs.length; i++ ) {
         // NOTE: This is not needed in the Basics version of the sim, but is left here to jump start
         // multiple light bulbs if needed by Capacitor Lab.
+        //REVIEW: This is asserting that this string is truthy, which is true here. assert( false, ... ) to fail out.
         assert && assert( 'There should only be one light bulb in Capacitor Lab: Basics' );
       }
     }

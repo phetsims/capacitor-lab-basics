@@ -465,6 +465,7 @@ define( function( require ) {
      * @returns {number}
      */
     getTotalCharge: function() {
+      //REVIEW: Is this ever used? It seems to be overridden by every subtype?
       return this.getTotalVoltage() * this.getTotalCapacitance();
     },
 
@@ -524,6 +525,8 @@ define( function( require ) {
      * it is zero.
      * REVIEW: visibility doc
      *
+     * REVIEW: This function appears to be unused, recommend removal of dead code.
+     *
      * @param {Vector3} location
      * @returns {number} eField
      */
@@ -545,6 +548,8 @@ define( function( require ) {
      * REVIEW: visibility doc
      *
      * Note that as of 5/29/2015 without Dielectrics, the only possible value is E_plate_air.
+     *
+     * REVIEW: This function appears to be unused, recommend removal of dead code.
      *
      * @param {Vector3} location
      * @returns {number} eField

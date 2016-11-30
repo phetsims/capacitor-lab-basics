@@ -154,6 +154,8 @@ define( function( require ) {
      * NOTE: The model for this sim requires that the plate separation be > 0.
      * (design doc symbol: d)
      *
+     * REVIEW: This function is never called, remove as it's dead code.
+     *
      * @param {number} plateSeparation distance, in meters.
      */
     setPlateSeparation: function( plateSeparation ) {
@@ -173,6 +175,7 @@ define( function( require ) {
      * @param {number} plateWidth meters
      */
     setPlateWidth: function( plateWidth ) {
+      //REVIEW: Please replace this with an assertion
       if ( plateWidth <= 0 ) {
         console.error( 'plateWidth must be > 0: ' + plateWidth );
       }
@@ -200,6 +203,8 @@ define( function( require ) {
     // d =  epsilon * epsilon_0 * A / C
     /**
      * Get the plate separation of this capacitor.  Value is determined by the equation d =  epsilon * epsilon_0 * A / C
+     *
+     * REVIEW: This function isn't used, remove dead code.
      *
      * @param {number} dielectricConstant
      * @param {number} plateWidth
@@ -286,6 +291,8 @@ define( function( require ) {
      * sim this checked for points between plates in air or in a dielectric.  Dielectrics are being ignored for the
      * moment so this is identical to isInsideAirBetweenPlates().
      *
+     * REVIEW: This function is only used by an unused function, and should be removed (dead code)
+     *
      * @param {Vector3} point a point in the global 2D model coordinate frame
      * @returns {boolean}
      */
@@ -351,6 +358,8 @@ define( function( require ) {
      * Gets the excess plate charge due to plates contacting air.
      * (design doc symbol: Q_excess_air)
      *
+     * REVIEW: This function is not used and should be removed (dead code)
+     *
      * @returns {number} excess charge, in Coulombs
      */
     getExcessAirPlateCharge: function() {
@@ -359,6 +368,8 @@ define( function( require ) {
 
     /**
      * General solution for excess plate charge.
+     *
+     * REVIEW: This function is only used by the above (unused) function and should be removed (dead code)
      *
      * @param {number} epsilon_r dielectric constant, dimensionless
      * @param {number} C capacitance due to the dielectric
@@ -394,6 +405,8 @@ define( function( require ) {
      * Gets the field due to the plates in the capacitor volume that contains air.
      * (design doc symbol: E_plates_air)
      *
+     * REVIEW: This function is only used by an unused function, and should be removed (dead code)
+     *
      * @returns E-field, in Volts/meter
      */
     getPlatesAirEField: function() {
@@ -402,6 +415,8 @@ define( function( require ) {
 
     /**
      * General solution for the E-field due to some dielectric.
+     *
+     * REVIEW: This function is only used by an unused function, and should be removed (dead code)
      *
      * @param {number} epsilon_r dielectric constant, dimensionless
      * @param {number} V_plates plate voltage, volts
@@ -419,6 +434,8 @@ define( function( require ) {
     /**
      * Gets the field due to air polarization.
      * (design doc symbol: E_air)
+     *
+     * REVIEW: Unused function, should be removed (dead code)
      *
      * @returns {number} E-field, in Volts/meter
      */

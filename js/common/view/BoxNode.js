@@ -95,6 +95,7 @@ define( function( require ) {
       return baseColor.darkerColor().darkerColor();
     },
 
+    //REVIEW: This seems to not be used, should be removed (dead code)
     setColor: function( color ) {
       this.topNode.fill = this.getTopColor( color );
       this.frontNode.fill = this.getFrontColor( color );

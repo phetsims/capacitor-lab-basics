@@ -94,6 +94,8 @@ define( function( require ) {
     /**
      * Get the width of the top of the insulator which is part of the light bulb base
      *
+     * REVIEW: This functions seems to be unused, recommend removal!
+     *
      * @returns {number}
      */
     getTopBaseInsulatorWidth: function() {
@@ -103,6 +105,8 @@ define( function( require ) {
     /**
      * Get the width of the bottom of the insulator which is part of the light bulb base
      *
+     * REVIEW: This functions seems to be unused, recommend removal!
+     *
      * @returns {number}
      */
     getBottomBaseInsulatorWidth: function() {
@@ -111,6 +115,8 @@ define( function( require ) {
 
     /**
      * Get the width of the bottom of the conductor which is part of the light bulb base
+     *
+     * REVIEW: This functions seems to be unused, recommend removal!
      *
      * @returns {number}
      */

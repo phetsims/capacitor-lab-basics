@@ -98,6 +98,8 @@ define( function( require ) {
 
     /**
      * Gets the maximum excess charge for the dielectric area (Q_excess_dielectric).
+     *
+     * REVIEW: function not used, remove it (dead code)
      */
     getMaxExcessDielectricPlateCharge: function() {
       return this.getCapacitorWithMaxCharge().getExcessDielectricPlateCharge();

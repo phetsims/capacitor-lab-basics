@@ -100,6 +100,8 @@ define( function( require ) {
 
   return inherit( Object, CircuitSwitch, {
 
+    //REVIEW: doc
+    //REVIEW: This function is never called, and should be removed (dead code), unless we really SHOULD be resetting.
     reset: function() {
       this.angleProperty.reset();
     },
@@ -194,6 +196,7 @@ define( function( require ) {
           } );
         }
         else {
+          //REVIEW: This is asserting that this string is truthy, which is true here. assert( false, ... ) to fail out.
           assert && assert( 'attempting to create switch conection which is not supported' );
         }
       } );

@@ -77,6 +77,8 @@ define( function( require ) {
      * Air that is between the capacitor plates.
      * REVIEW: visibility doc
      *
+     * REVIEW: This function doesn't appear to be used. Remove dead code.
+     *
      * @returns {Shape}
      */
     createAirBetweenPlateShape: function() {
@@ -86,6 +88,7 @@ define( function( require ) {
       }
       else {
         // Dielectrics are not being ported yet. we should never reach this!
+        //REVIEW: This is asserting that this string is truthy, which is true here. assert( false, ... ) to fail out.
         assert && assert( 'Dielectrics have not yet been ported, dielectric offset should always be zero.' );
       }
       if ( assert ) {

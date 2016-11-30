@@ -68,6 +68,8 @@ define( function( require ) {
     /**
      * Get the voltage accross the capacitor plates.
      *
+     * REVIEW: same as LightBulbCircuit's implementation, can we share code?
+     *
      * @returns {number}
      */
     getCapacitorPlateVoltage: function() {

@@ -66,6 +66,7 @@ define( function( require ) {
     }
 
     else {
+      //REVIEW: replace with assertion at the top
       console.error( 'EFieldLine must be of orientation UP or DOWN' );
     }
 
@@ -189,6 +190,8 @@ define( function( require ) {
 
     /**
      * Computes number of lines to put on the smallest plate, linearly proportional to plate charge.
+     *
+     * REVIEW: This function is never called and should be removed (dead code)
      */
     getNumberOfLines: function( effectiveEField ) {
       var absEField = Math.abs( effectiveEField );

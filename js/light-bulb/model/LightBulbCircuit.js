@@ -127,6 +127,7 @@ define( function( require ) {
       }
     },
 
+    // REVIEW: same as CapacitanceCircuit's implementation, can we share code?
     getCapacitorPlateVoltage: function() {
       return this.capacitor.platesVoltageProperty.value;
     },
