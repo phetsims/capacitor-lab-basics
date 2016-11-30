@@ -59,7 +59,7 @@ define( function( require ) {
      * REVIEW: visibility doc
      *
      * @param {Vector3} origin
-     * @return {Shape}
+     * @returns {Shape}
      */
     createPositiveTerminalShapeBody: function( origin ) {
 
@@ -104,7 +104,7 @@ define( function( require ) {
      * REVIEW: visibility doc
      *
      * @param {Vector3} origin
-     * @return {Shape}
+     * @returns {Shape}
      */
     createNegativeTerminalShape: function( origin ) {
       //REVIEW: only request the ellipse size once?

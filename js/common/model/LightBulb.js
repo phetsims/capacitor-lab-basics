@@ -45,7 +45,7 @@ define( function( require ) {
      * Does the base shape intersect the shape of the bulb base?
      *
      * @param  {Vector3} point
-     * @return {boolean}
+     * @returns {boolean}
      */
     intersectsBulbBase: function( shape ) {
       return this.shapeCreator.createBaseShape().bounds.intersectsBounds( shape.bounds );
@@ -66,7 +66,7 @@ define( function( require ) {
      * Calculate the current flowing through this lightbulb using Ohm's Law, V = I R
      *
      * @param {number} voltage voltage accrose the resistor
-     * @return {number}
+     * @returns {number}
      */
     getCurrent: function( voltage ) {
       return voltage / this.resistance;
@@ -75,7 +75,7 @@ define( function( require ) {
     /**
      * Get the size the base in model coordinates
      *
-     * @return {type}  description
+     * @returns {type}  description
      */
     getBaseSize: function() {
       return BULB_BASE_SIZE;
@@ -85,7 +85,7 @@ define( function( require ) {
     /**
      * Get the width of the top of the conductor which is part of the light bulb base
      *
-     * @return {number}
+     * @returns {number}
      */
     getTopBaseConductorWidth: function() {
       return BULB_BASE_SIZE.width * 3 / 7;
@@ -94,7 +94,7 @@ define( function( require ) {
     /**
      * Get the width of the top of the insulator which is part of the light bulb base
      *
-     * @return {number}
+     * @returns {number}
      */
     getTopBaseInsulatorWidth: function() {
       return BULB_BASE_SIZE.width * 3 / 7;
@@ -103,7 +103,7 @@ define( function( require ) {
     /**
      * Get the width of the bottom of the insulator which is part of the light bulb base
      *
-     * @return {number}
+     * @returns {number}
      */
     getBottomBaseInsulatorWidth: function() {
       return BULB_BASE_SIZE.width * 5 / 7;
@@ -112,7 +112,7 @@ define( function( require ) {
     /**
      * Get the width of the bottom of the conductor which is part of the light bulb base
      *
-     * @return {number}
+     * @returns {number}
      */
     getBottomBaseConductorHeight: function() {
       return BULB_BASE_SIZE.height / 3;

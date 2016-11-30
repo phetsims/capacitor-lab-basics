@@ -114,7 +114,7 @@ define( function( require ) {
      * Convenience method, gets the area of one plate's top (or bottom) surfaces.
      * (design doc symbol: A)
      *
-     * @return {number} area in meters^2
+     * @returns {number} area in meters^2
      */
     getPlateArea: function() {
       return this.plateSizeProperty.value.width * this.plateSizeProperty.value.depth;
@@ -125,7 +125,7 @@ define( function( require ) {
      * as the plate area.
      * (design doc symbol: A_air)
      *
-     * @return {number} area in meters^2
+     * @returns {number} area in meters^2
      */
     getAirContactArea: function() {
       return this.getPlateArea() - this.getDielectricContactArea();
@@ -135,7 +135,7 @@ define( function( require ) {
      * Gets the area of the contact between one of the plates and the dielectric material.
      * (design doc symbol: A_dielectric)
      *
-     * @return {number} area, in meters^2
+     * @returns {number} area, in meters^2
      */
     getDielectricContactArea: function() {
       var absoluteOffset = Math.abs( this.dielectricOffsetProperty.value );
@@ -179,7 +179,7 @@ define( function( require ) {
     /**
      * Convenience method for determining the outside center of the top plate.  This is a wire attachment point.
      *
-     * @return {Vector3}
+     * @returns {Vector3}
      */
     getTopConnectionPoint: function() {
       return new Vector3( this.location.x, this.location.y - ( this.plateSeparationProperty.value / 2 ) - this.plateSizeProperty.value.height, this.location.z );
@@ -188,7 +188,7 @@ define( function( require ) {
     /**
      * Convenience method for determining the outside center of the bottom plate.  This is a wire attachment point.
      *
-     * @return {Vector3}
+     * @returns {Vector3}
      */
     getBottomConnectionPoint: function() {
       return new Vector3( this.location.x, this.location.y + ( this.plateSeparationProperty.value / 2 ) + this.plateSizeProperty.value.height, this.location.z );
@@ -213,7 +213,7 @@ define( function( require ) {
      * @param {number} epsilon dielectric constant, dimensionless
      * @param {number} area of the contact between the dielectric and one plate, meters^2
      * @param {number} plateSeparation distance between the plates, meters
-     * @return {number} capacitance, in Farads
+     * @returns {number} capacitance, in Farads
      */
     getCapacitance: function( epsilon, area, plateSeparation ) {
       return epsilon * CLBConstants.EPSILON_0 * area / plateSeparation;
@@ -223,7 +223,7 @@ define( function( require ) {
      * Gets the capacitance due to the part of the capacitor that is contacting air.
      * (design doc symbol: C_air)
      *
-     * @return {number} capacitance, in Farads
+     * @returns {number} capacitance, in Farads
      */
     getAirCapacitance: function() {
       return this.getCapacitance( CLBConstants.EPSILON_AIR, this.getAirContactArea(), this.plateSeparationProperty.value );
@@ -233,7 +233,7 @@ define( function( require ) {
      * Gets the capacitance due to the part of the capacitor that is contacting the dielectric.
      * (design doc symbol: C_dielectric)
      *
-     * @return {number} capacitance, in Farads
+     * @returns {number} capacitance, in Farads
      */
     getDielectricCapacitance: function() {
       return this.getCapacitance( this.dielectricMaterialProperty.value.dielectricConstant, this.getDielectricContactArea(), this.plateSeparationProperty.value );
@@ -244,7 +244,7 @@ define( function( require ) {
      * top plate.  This is sufficient in the case of probes.
      *
      * @param {Shape} shape
-     * @return {boolean}
+     * @returns {boolean}
      */
     intersectsTopPlate: function( shape ) {
       var intersectsTopPlate = false;
@@ -266,7 +266,7 @@ define( function( require ) {
      * to the plate shape.
      *
      * @param {Shape} shape
-     * @return {boolean}
+     * @returns {boolean}
      */
     intersectsBottomPlate: function( shape ) {
       var intersectsBottomPlate = false;
@@ -284,7 +284,7 @@ define( function( require ) {
      * moment so this is identical to isInsideAirBetweenPlates().
      *
      * @param {Vector3} point a point in the global 2D model coordinate frame
-     * @return {boolean}
+     * @returns {boolean}
      */
     isBetweenPlates: function( point ) {
       return this.isInsideAirBetweenPlates( point );
@@ -295,7 +295,7 @@ define( function( require ) {
      * charge, return 0.
      * (design doc symbol: Q_air)
      *
-     * @return {number} charge, in Coulombs
+     * @returns {number} charge, in Coulombs
      *
      */
     getAirPlateCharge: function() {
@@ -312,7 +312,7 @@ define( function( require ) {
      * Gets the charge for the portion of the top plate contacting the dielectric.
      * (design doc symbol: Q_dielectric)
      *
-     * @return {number} charge, in Coulombs
+     * @returns {number} charge, in Coulombs
      */
     getDielectricPlateCharge: function() {
       var dielectricCharge = this.getDielectricCapacitance() * this.platesVoltageProperty.value;
@@ -328,7 +328,7 @@ define( function( require ) {
      * Gets the total charge on the top plate. Note that without dielectrics this is equal to getAirPlateCharge().
      * (design doc symbol: Q_total)
      *
-     * @return {number} charge, in Coulombs
+     * @returns {number} charge, in Coulombs
      */
     getTotalPlateCharge: function() {
       return this.getAirPlateCharge() + this.getDielectricPlateCharge();
@@ -348,7 +348,7 @@ define( function( require ) {
      * Gets the excess plate charge due to plates contacting air.
      * (design doc symbol: Q_excess_air)
      *
-     * @return {number} excess charge, in Coulombs
+     * @returns {number} excess charge, in Coulombs
      */
     getExcessAirPlateCharge: function() {
       return this.getExcessPlateCharge( CLBConstants.EPSILON_AIR, this.getAirCapacitance(), this.platesVoltageProperty.value );
@@ -360,7 +360,7 @@ define( function( require ) {
      * @param {number} epsilon_r dielectric constant, dimensionless
      * @param {number} C capacitance due to the dielectric
      * @param {number} V_plates plate voltage, volts
-     * @return {number} charge, in Coulombs (C)
+     * @returns {number} charge, in Coulombs (C)
      */
     getExcessPlateCharge: function( epsilon_r, C, V_plates ) {
       if ( epsilon_r <= 0 ) {
@@ -375,7 +375,7 @@ define( function( require ) {
      *
      * (design doc symbol: E_effective)
      *
-     * @return {number} Volts/meter
+     * @returns {number} Volts/meter
      */
     getEffectiveEField: function() {
       var totalPlateCharge = this.getTotalPlateCharge();
@@ -391,7 +391,7 @@ define( function( require ) {
      * Gets the field due to the plates in the capacitor volume that contains air.
      * (design doc symbol: E_plates_air)
      *
-     * @return E-field, in Volts/meter
+     * @returns E-field, in Volts/meter
      */
     getPlatesAirEField: function() {
       return this.getPlatesEField( CLBConstants.EPSILON_AIR, this.platesVoltageProperty.value, this.plateSeparationProperty.value );
@@ -403,7 +403,7 @@ define( function( require ) {
      * @param {number} epsilon_r dielectric constant, dimensionless
      * @param {number} V_plates plate voltage, volts
      * @param {number} d plate separation, meters
-     * @return {number} E-field, in Volts/meter
+     * @returns {number} E-field, in Volts/meter
      */
     getPlatesEField: function( epsilon_r, V_plates, d ) {
       if ( d <= 0 ) {
@@ -417,7 +417,7 @@ define( function( require ) {
      * Gets the field due to air polarization.
      * (design doc symbol: E_air)
      *
-     * @return {number} E-field, in Volts/meter
+     * @returns {number} E-field, in Volts/meter
      */
     getAirEField: function() {
       return this.getPlatesAirEField() - this.getEffectiveEField();

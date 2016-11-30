@@ -68,7 +68,7 @@ define( function( require ) {
     /**
      * Get the voltage accross the capacitor plates.
      *
-     * @return {number}
+     * @returns {number}
      */
     getCapacitorPlateVoltage: function() {
       return this.capacitor.platesVoltageProperty.value;
@@ -77,7 +77,7 @@ define( function( require ) {
     /**
      * Gets the total charge in the circuit.(design doc symbol: Q_total)
      *
-     * @return {number}
+     * @returns {number}
      */
     getTotalCharge: function() {
       return this.capacitor.getTotalPlateCharge();

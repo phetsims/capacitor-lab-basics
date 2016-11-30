@@ -81,7 +81,7 @@ define( function( require ) {
      * @param {number} x
      * @param {number} y
      * @param {number} z
-     * @return {Vector2}
+     * @returns {Vector2}
      */
     modelToViewXYZ: function( x, y, z ) {
       return this.modelToViewPosition( new Vector3( x, y, z ) );
@@ -91,7 +91,7 @@ define( function( require ) {
      * Maps a delta from 3D model coordinates to 2D view coordinates.
      *
      * @param {Vector3} delta
-     * @return {Vector2}
+     * @returns {Vector2}
      */
     modelToViewDelta: function( delta ) {
 
@@ -107,7 +107,7 @@ define( function( require ) {
      * @param {number} xDelta
      * @param {number} yDelta
      * @param {number} zDelta
-     * @return {Vector2}
+     * @returns {Vector2}
      */
     modelToViewDeltaXYZ: function( xDelta, yDelta, zDelta ) {
       return this.modelToViewDelta( new Vector3( xDelta, yDelta, zDelta ) );
@@ -127,7 +127,7 @@ define( function( require ) {
      * Bounds are all in the 2D xy plane, and have no depth.
      *
      * @param  {Bounds2} modelBounds
-     * @return {Bounds2}
+     * @returns {Bounds2}
      */
     modelToViewBounds: function( modelBounds ) {
       return this.modelToViewTransform2D.transformBounds2( modelBounds );
@@ -186,7 +186,7 @@ define( function( require ) {
      * Transforms 2D view bounds to 2D model bounds since bounds have no depth.
      *
      * @param {Bounds2} viewBounds
-     * @return {Bounds2}
+     * @returns {Bounds2}
      */
     viewToModelBounds: function( viewBounds ) {
       return this.viewToModelTransform2D.transformBounds2( viewBounds );

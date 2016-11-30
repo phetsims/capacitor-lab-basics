@@ -37,7 +37,7 @@ define( function( require ) {
      * The base shape is composed of a rectangle, half circle, and custom shape to mimic the image representing
      * the base.
      *
-     * @return {Shape}
+     * @returns {Shape}
      */
     createBaseShape: function() {
 

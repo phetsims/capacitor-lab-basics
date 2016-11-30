@@ -109,7 +109,7 @@ define( function( require ) {
      * @param  {string} positionLabel - 'top' or 'bottom'
      * @param  {CircuitConfig} config - Class containing circuit geometry and properties
      *
-     * @return {Vector3}
+     * @returns {Vector3}
      * @private
      */
     getSwitchHingePoint: function( positionLabel, config ) {
@@ -143,7 +143,7 @@ define( function( require ) {
      * @param  {Vector2} hingeXY - Location of switch hinge
      * @param  {CircuitConfig} config - Class containing circuit geometry and properties
      *
-     * @return {Object[]} - Array of Objects containing connection points and types
+     * @returns {Object[]} - Array of Objects containing connection points and types
      * @private
      */
     getSwitchConnections: function( positionLabel, hingeXY, circuitConnections ) {
@@ -234,7 +234,7 @@ define( function( require ) {
     /**
      * Get the location of the endpoint for the circuit switch segment.
      *
-     * @return {Vector2} [description]
+     * @returns {Vector2} [description]
      */
     getSwitchEndPoint: function() {
 
@@ -248,7 +248,7 @@ define( function( require ) {
     /**
      * Get the connection point that will be nearest the connecting capacitor.
      *
-     * @return {Vector2}
+     * @returns {Vector2}
      */
     getCapacitorConnectionPoint: function() {
       return this.hingePoint;
@@ -258,7 +258,7 @@ define( function( require ) {
      * Get the limiting angle of the circuit switch to the right.
      * The limiting angle is dependent on wheter a light bulb is connected to the circuit.
      *
-     * @return {number}
+     * @returns {number}
      */
     getRightLimitAngle: function() {
 
@@ -278,7 +278,7 @@ define( function( require ) {
 
     /**
      * Get the limiting angle of the circuit switch to the left.
-     * @return {[type]} [description]
+     * @returns {[type]} [description]
      */
     getLeftLimitAngle: function() {
       var a = this.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );

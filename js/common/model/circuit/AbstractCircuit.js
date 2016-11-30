@@ -262,7 +262,7 @@ define( function( require ) {
      * Gets the wires connected to the top of circuit components.
      * REVIEW: visibility doc
      *
-     * @return {Wire[]} topWires
+     * @returns {Wire[]} topWires
      */
     getTopWires: function() {
       /*
@@ -436,7 +436,7 @@ define( function( require ) {
      * Gets the wire connected to the battery's bottom terminal.
      * REVIEW: visibility doc
      *
-     * @return {Wire[]} bottomWires
+     * @returns {Wire[]} bottomWires
      */
     getBottomWires: function() {
       //REVIEW: This can be simplified to like 1-3 lines.
@@ -456,7 +456,7 @@ define( function( require ) {
      * Get the total charge with Q_total = V_total * C_total
      * REVIEW: visibility doc
      *
-     * @return {number}
+     * @returns {number}
      */
     getTotalCharge: function() {
       return this.getTotalVoltage() * this.getTotalCapacitance();
@@ -494,7 +494,7 @@ define( function( require ) {
      * REVIEW: visibility doc
      *
      * @param {Shape} shape
-     * @return {number}
+     * @returns {number}
      */
     getVoltageAt: function( shape ) {
       //REVIEW: throw an error instead, we shouldn't hit this (typical for abstract functions)
@@ -505,7 +505,7 @@ define( function( require ) {
      * Gets the energy stored in the circuit. (design doc symbol: U)
      * REVIEW: visibility doc
      *
-     * @return {number}
+     * @returns {number}
      */
     getStoredEnergy: function() {
       var C_total = this.getTotalCapacitance(); // F
@@ -519,7 +519,7 @@ define( function( require ) {
      * REVIEW: visibility doc
      *
      * @param {Vector3} location
-     * @return {number} eField
+     * @returns {number} eField
      */
     getEffectiveEFieldAt: function( location ) {
       var eField = 0;
@@ -541,7 +541,7 @@ define( function( require ) {
      * Note that as of 5/29/2015 without Dielectrics, the only possible value is E_plate_air.
      *
      * @param {Vector3} location
-     * @return {number} eField
+     * @returns {number} eField
      */
     getPlatesDielectricEFieldAt: function( location ) {
       var eField = 0;

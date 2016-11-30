@@ -24,7 +24,7 @@ define( function( require ) {
   function IGridSizeStrategy() {}
 
   capacitorLabBasics.register( 'IGridSizeStrategy', IGridSizeStrategy );
-  
+
   inherit( Object, IGridSizeStrategy, {
 
     /**
@@ -67,7 +67,7 @@ define( function( require ) {
      * @param  {number} numberOfObjects [description]
      * @param  {number}} width
      * @param  {number} height
-     * @return {Dimension2}
+     * @returns {Dimension2}
      */
     getGridSize: function( numberOfObjects, width, height ) {
       var columns = 0;

@@ -59,7 +59,7 @@ define( function( require ) {
     /**
      * Get bounds for a plate with maximum width.  Useful for layout and bounds calculations.
      *
-     * @return {Bounds3}
+     * @returns {Bounds3}
      */
     getMaxBoxNodeBounds: function() {
       var maxWidthBoxNode = new BoxNode(

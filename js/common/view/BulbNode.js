@@ -120,7 +120,7 @@ define( function( require ) {
    * of brightness.
    *
    * @param  {Object} options
-   * @return {Node}
+   * @returns {Node}
    * @private
    */
   function drawBulbNode( options ) {

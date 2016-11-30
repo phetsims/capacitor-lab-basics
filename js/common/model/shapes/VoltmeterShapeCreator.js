@@ -40,7 +40,7 @@ define( function( require ) {
     /**
      * Gets the shape of the positive probe's tip in the world coordinate frame.
      *
-     * @return {Shape}
+     * @returns {Shape}
      */
     getPositiveProbeTipShape: function() {
       var origin = this.voltmeter.positiveProbeLocationProperty.value.plus( PROBE_TIP_OFFSET );
@@ -50,7 +50,7 @@ define( function( require ) {
     /**
      * Gets the shape of the negative probe's tip in the world coordinate frame.
      *
-     * @return {Shape}
+     * @returns {Shape}
      */
     getNegativeProbeTipShape: function() {
       var origin = this.voltmeter.negativeProbeLocationProperty.value.plus( PROBE_TIP_OFFSET );

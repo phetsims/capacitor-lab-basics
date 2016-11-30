@@ -175,7 +175,7 @@ define( function( require ) {
      * computed for the minimum plate size.
      *
      * @param {number} effectiveEField
-     * @return {number} spacing, in model coordinates
+     * @returns {number} spacing, in model coordinates
      */
     getLineSpacing: function( effectiveEField ) {
       if ( effectiveEField === 0 ) {

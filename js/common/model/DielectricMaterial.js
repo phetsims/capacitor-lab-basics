@@ -55,7 +55,7 @@ define( function( require ) {
      * See https://github.com/phetsims/capacitor-lab-basics/issues/81
      *
      * @param  {number}
-     * @return {DielectricMaterial}
+     * @returns {DielectricMaterial}
      */
     createCustomDielectricMaterial: function( dielectricConstant ) {
       return new DielectricMaterial( 'Custom', dielectricConstant, CLBConstants.CUSTOM_DIELECTRIC_COLOR, null );

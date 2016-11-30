@@ -75,7 +75,7 @@ define( function( require ) {
      * REVIEW: visibility doc
      *
      * @param {Shape} shape - object whose bounds are checked for contact/intersection with the thing being measured
-     * @return {number} voltage
+     * @returns {number} voltage
      * @override
      */
     getVoltageAt: function( shape ) {

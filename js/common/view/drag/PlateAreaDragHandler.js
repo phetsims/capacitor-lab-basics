@@ -91,7 +91,7 @@ define( function( require ) {
      *
      * @param {Vector2} pMouse
      * @param {number} samplePlateWidth
-     * @return {number}
+     * @returns {number}
      */
     getModelX: function( pMouse, samplePlateWidth ) {
       var pBackRightCorner = this.modelViewTransform.modelToViewXYZ( samplePlateWidth / 2, 0, samplePlateWidth / 2 );

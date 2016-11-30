@@ -136,7 +136,7 @@ define( function( require ) {
      * Shape is not connected to the circuit.
      *
      * @param {Shape} shape
-     * @return {number}
+     * @returns {number}
      * @override
      */
     getVoltageAt: function( shape ) {
@@ -189,7 +189,7 @@ define( function( require ) {
      * Determine if the shape is connected to the top of the lightbulb when it
      * is disconnected from the circuit.
      * @param  {Shape} shape - shape of the element connected to the light bulb
-     * @return {boolean}
+     * @returns {boolean}
      */
     connectedToDisconnectedLightBulbTop: function( shape ) {
 
@@ -212,7 +212,7 @@ define( function( require ) {
      * Determine if the shape is connected to the bottom of the lightbulb when it
      * is disconnected from the circuit.
      * @param  {Shape} shape - shape of the element connected to the light bulb
-     * @return {boolean}
+     * @returns {boolean}
      */
     connectedToDisconnectedLightBulbBottom: function( shape ) {
 
@@ -283,7 +283,7 @@ define( function( require ) {
     /**
      * Gets the total charge in the circuit.(design doc symbol: Q_total)
      *
-     * @return {number}
+     * @returns {number}
      */
     getTotalCharge: function() {
       return this.capacitor.getTotalPlateCharge();

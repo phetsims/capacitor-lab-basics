@@ -81,7 +81,7 @@ define( function( require ) {
     /**
      * Return a capacitor with the maximum amount of charge allowed by the model.
      *
-     * @return {Capacitor}
+     * @returns {Capacitor}
      */
     getCapacitorWithMaxCharge: function() {
       // arbitrary model view transform

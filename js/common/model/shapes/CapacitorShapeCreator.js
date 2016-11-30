@@ -46,7 +46,7 @@ define( function( require ) {
      * Top plate, unoccluded.
      * REVIEW: visibility doc
      *
-     * @return {Shape[]} REVIEW: createBoxShapes() instead?
+     * @returns {Shape[]} REVIEW: createBoxShapes() instead?
      */
     createTopPlateShape: function() {
       var x = this.capacitor.location.x;
@@ -61,7 +61,7 @@ define( function( require ) {
      * Bottom plate, unoccluded.
      * REVIEW: visibility doc
      *
-     * @return {Shape[]} REVIEW: createBoxShapes() instead?
+     * @returns {Shape[]} REVIEW: createBoxShapes() instead?
      */
     createBottomPlateShape: function() {
       var x = this.capacitor.location.x;
@@ -77,7 +77,7 @@ define( function( require ) {
      * Air that is between the capacitor plates.
      * REVIEW: visibility doc
      *
-     * @return {Shape}
+     * @returns {Shape}
      */
     createAirBetweenPlateShape: function() {
       var result;
@@ -100,7 +100,7 @@ define( function( require ) {
      * Visible portion of the top plate. Nothing occludes the top plate.
      * REVIEW: visibility doc
      *
-     * @return {Shape[]} REVIEW: createBoxShapes() instead?
+     * @returns {Shape[]} REVIEW: createBoxShapes() instead?
      */
     createTopPlateShapeOccluded: function() {
       //REVIEW: one usage, no overrides. Just use createTopPlateShape() instead?
@@ -111,7 +111,7 @@ define( function( require ) {
      * Visible portion of the bottom plate. May be partially occluded by the top plate.
      * REVIEW: visibility doc
      *
-     * @return {Shape[]} REVIEW: createBoxShapes() instead?
+     * @returns {Shape[]} REVIEW: createBoxShapes() instead?
      */
     createBottomPlateShapeOccluded: function() {
       //REVIEW: one usage, no overrides. Just use createTopPlateShape() instead?
@@ -122,7 +122,7 @@ define( function( require ) {
      * Visible portion of the dielectric between the plates. May be partially occluded by the top plate.
      * REVIEW: visibility doc
      *
-     * @return REVIEW: no return statement
+     * @returns REVIEW: no return statement
      */
     createDielectricBetweenPlatesShapeOccluded: function() {
       //REVIEW: stub methods for implemented things probably shouldn't exist?
@@ -133,7 +133,7 @@ define( function( require ) {
      * Visible portion of air between the plates. May be partially occluded by the top plate.
      * REVIEW: visibility doc
      *
-     * @return {shape}
+     * @returns {shape}
      */
     createAirBetweenPlatesShapeOccluded: function() {
       // NOTE: Without dielectrics, createAirBetweenPlateShape will produce nothing.

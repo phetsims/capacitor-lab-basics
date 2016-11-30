@@ -219,7 +219,7 @@ define( function( require ) {
      *
      * @param {number} plateCharge
      * @param {number} maxPlateCharge
-     * @return {number} numberOfCharges
+     * @returns {number} numberOfCharges
      */
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
       var absCharge = Math.abs( plateCharge );

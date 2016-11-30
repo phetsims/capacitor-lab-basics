@@ -63,13 +63,13 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'BoxNode', BoxNode );
-  
+
   return inherit( Node, BoxNode, {
 
     /**
      * Get color for the top of the capacitor.  Top color is the base color.
      *
-     * @return {Color}
+     * @returns {Color}
      */
     getTopColor: function( baseColor ) {
       return baseColor;
@@ -79,7 +79,7 @@ define( function( require ) {
      * Get the color for the front of the capacitor.  Front color is one shade darker
      *
      * @param {Color} baseColor
-     * @return {Color}
+     * @returns {Color}
      */
     getFrontColor: function( baseColor ) {
       return baseColor.darkerColor();
