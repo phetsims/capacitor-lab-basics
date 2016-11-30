@@ -36,10 +36,12 @@ define( function( require ) {
      * Gets the shape of the light bulb base in the world coordinate frame.  Origin at the top center.
      * The base shape is composed of a rectangle, half circle, and custom shape to mimic the image representing
      * the base.
+     * REVIEW: visibility doc
      *
      * @returns {Shape}
      */
     createBaseShape: function() {
+      //REVIEW: why the commented-out code?
 
       // origin is at (0, 0) - this is the 'top' of the bulb base
       // var origin = new Vector2( 0, 0 );
@@ -67,6 +69,7 @@ define( function( require ) {
       // baseShape.lineTo( 0, height / 2 );
       // baseShape.close();
 
+      //REVIEW: formatting?
       var baseShape = Shape.rect(-height/2, -topConductorWidth/2, 3*topConductorWidth/4, 3*height/4);
 
       // transform to the location of the bulb

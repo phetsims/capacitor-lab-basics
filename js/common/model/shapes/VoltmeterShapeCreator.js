@@ -39,6 +39,7 @@ define( function( require ) {
 
     /**
      * Gets the shape of the positive probe's tip in the world coordinate frame.
+     * REVIEW: visibility doc
      *
      * @returns {Shape}
      */
@@ -49,6 +50,7 @@ define( function( require ) {
 
     /**
      * Gets the shape of the negative probe's tip in the world coordinate frame.
+     * REVIEW: visibility doc
      *
      * @returns {Shape}
      */
@@ -59,12 +61,14 @@ define( function( require ) {
 
     /**
      * Get the shape of a probe tip relative to some specified origin.
+     * REVIEW: visibility doc
      *
      * @param {Vector3} origin
      * @param {number} theta - rotation of modelViewTransform for 3D perspective
-     * @returns {shape}
+     * @returns {Shape}
      */
     getProbeTipShape: function( origin, theta ) {
+      //REVIEW Just get the size once?
       var width = this.voltmeter.getProbeTipSizeReference().width;
       var height = this.voltmeter.getProbeTipSizeReference().height;
       var x = origin.x;

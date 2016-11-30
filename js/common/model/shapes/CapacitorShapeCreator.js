@@ -133,7 +133,7 @@ define( function( require ) {
      * Visible portion of air between the plates. May be partially occluded by the top plate.
      * REVIEW: visibility doc
      *
-     * @returns {shape}
+     * @returns {Shape}
      */
     createAirBetweenPlatesShapeOccluded: function() {
       // NOTE: Without dielectrics, createAirBetweenPlateShape will produce nothing.

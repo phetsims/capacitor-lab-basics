@@ -41,6 +41,8 @@ define( function( require ) {
      * Create a wire shape.  Shape is generated from the stroked shape of the line
      * segments which are added together totp to tail.  This assumes that segments
      * are added pieced together in the correct order.
+     * REVIEW: visibility doc
+     *
      * @returns {Shape}
      */
     createWireShape: function() {
@@ -65,6 +67,7 @@ define( function( require ) {
       // go through the points 'tip to tail', assuming they are in the desired order
       for ( var i = 1; i < this.wire.segments.length; i++ ) {
         var currentSegment = this.wire.segments[ i ];
+        //REVIEW: use endPointProperty.value.toVector2() here also?
         wireShape.lineToPoint( new Vector2(
           currentSegment.endPointProperty.value.x,
           currentSegment.endPointProperty.value.y ) );
