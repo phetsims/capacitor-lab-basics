@@ -41,13 +41,16 @@ define( function( require ) {
     }, options );
 
     // @private
+    //REVIEW: Transform3 has built in inverse functions, use those instead
+    //REVIEW: 'new' shouldn't be provided, it's a factory function
+    //REVIEW: Matrix.scaling( options.scale ) will work, applies it to both X and Y
     this.modelToViewTransform2D = new Transform3( new Matrix3.scaling( options.scale, options.scale ) );
     this.viewToModelTransform2D = new Transform3( new Matrix3.scaling( 1 / options.scale, 1 / options.scale ) );
 
     // @public (read-only)
+    //REVIEW: pitch not used in other places, @private might be better?
     this.pitch = options.pitch;
     this.yaw = options.yaw;
-
   }
 
   capacitorLabBasics.register( 'CLBModelViewTransform3D', CLBModelViewTransform3D );
@@ -60,23 +63,31 @@ define( function( require ) {
 
     /**
      * Maps a point from 3D model coordinates to 2D view coordinates.
+     * REVIEW: visibility doc
      *
      * @param {Vector3} modelPoint
-     * @return
+     * @return REVIEW: {Vector2}?
      */
     modelToViewPosition: function( modelPoint ) {
-
       assert && assert( modelPoint instanceof Vector3,
         'modelPoint must be of type Vector3. Received ' + modelPoint );
 
+      /* REVIEW: avoid component-wise math, use mutable methods if performance is a bottleneck
+      var offsetModelPoint = modelPoint.plus( Vector2.createPolar( modelPoint.z * Math.sin( this.pitch ), this.yaw ) );
+      return this.modelToViewTransform2D.transformPosition2( offsetModelPoint )
+      // or for the mutable option, at the top of the file declare:
+      var scratchVectorA = new Vector2();
+      // later (consider a second scratch vector for the 2d modelPoint?)
+      scratchVectorA.setPolar( modelPoint.z * Math.sin( this.pitch ), this.yaw ).add( modelPoint );
+      */
       var xModel = modelPoint.x + ( modelPoint.z * Math.sin( this.pitch ) * Math.cos( this.yaw ) );
       var yModel = modelPoint.y + ( modelPoint.z * Math.sin( this.pitch ) * Math.sin( this.yaw ) );
       return this.modelToViewTransform2D.transformPosition2( new Vector2( xModel, yModel ) );
-
     },
 
     /**
      * Maps a point from 3D model coordinates to 2D view coordinates.
+     * REVIEW: visibility doc
      *
      * @param {number} x
      * @param {number} y
@@ -84,25 +95,30 @@ define( function( require ) {
      * @returns {Vector2}
      */
     modelToViewXYZ: function( x, y, z ) {
+      //REVIEW (performance): If it's a bottleneck, use a scratch Vector3 here.
       return this.modelToViewPosition( new Vector3( x, y, z ) );
     },
 
     /**
      * Maps a delta from 3D model coordinates to 2D view coordinates.
+     * REVIEW: visibility doc
      *
      * @param {Vector3} delta
      * @returns {Vector2}
      */
     modelToViewDelta: function( delta ) {
-
+      //REVIEW (performance): If it's a bottleneck, use a scratch Vector3 here.
+      //REVIEW: new Vector3() is at (0,0,0)
       var origin = this.modelToViewPosition( new Vector3( 0, 0, 0 ) );
+      //REVIEW: generally 'position' is a better name than 'p'
       var p = this.modelToViewPosition( delta );
+      //REVIEW: return p.minus( origin );
       return new Vector2( p.x - origin.x, p.y - origin.y );
-
     },
 
     /**
      * Maps a delta from 3D model coordinates to 2D view coordinates.
+     * REVIEW: visibility doc
      *
      * @param {number} xDelta
      * @param {number} yDelta
@@ -110,14 +126,16 @@ define( function( require ) {
      * @returns {Vector2}
      */
     modelToViewDeltaXYZ: function( xDelta, yDelta, zDelta ) {
+      //REVIEW (performance): If it's a bottleneck, use a scratch Vector3 here.
       return this.modelToViewDelta( new Vector3( xDelta, yDelta, zDelta ) );
     },
 
     /**
      * Model shapes are all in the 2D xy plane, and have no depth.
+     * REVIEW: visibility doc
      *
      * @param {Shape} modelShape
-     * @return
+     * @return REVIEW: {Shape}?
      */
     modelToViewShape: function( modelShape ) {
       return this.modelToViewTransform2D.transformShape( modelShape );
@@ -125,6 +143,7 @@ define( function( require ) {
 
     /**
      * Bounds are all in the 2D xy plane, and have no depth.
+     * REVIEW: visibility doc
      *
      * @param  {Bounds2} modelBounds
      * @returns {Bounds2}
@@ -139,58 +158,74 @@ define( function( require ) {
 
     /**
      * Maps a point from 2D view coordinates to 3D model coordinates. The z coordinate will be zero.
+     * REVIEW: visibility doc
+     *
+     * REVIEW: Note about how this isn't the inverse of modelToViewPosition might be good (with the note about z=0)
      *
      * @param {Vector2} pView
-     * @return
+     * @return REVIEW: {Vector3}?
      */
     viewToModelPosition: function( pView ) {
+      //REVIEW: Transform3 has built in inverse functions, use that here instead
+      //REVIEW: generally 'position' is a better name than 'p'
       var p = this.viewToModelTransform2D.transformPosition2( pView );
+      //REVIEW: return p.toVector3();
       return new Vector3( p.x, p.y, 0 );
     },
 
     /**
      * Maps a point from 2D view coordinates to 3D model coordinates. The z coordinate will be zero.
+     * REVIEW: visibility doc
      *
      * @param {number} x
      * @param {number} y
-     * @return
+     * @return REVIEW: {Vector3}?
      */
     viewToModelXY: function( x, y ) {
+      //REVIEW (performance): If it's a bottleneck, use a scratch Vector2 here.
       return this.viewToModelPosition( new Vector2( x, y ) );
     },
 
     /**
      * Maps a delta from 2D view coordinates to 3D model coordinates. The z coordinate will be zero.
+     * REVIEW: visibility doc
      *
      * @param {Vector2} delta
-     * @return
+     * @return REVIEW: {Vector3}?
      */
     viewToModelDelta: function( delta ) {
+      //REVIEW (performance): If it's a bottleneck, use a scratch Vector2 here.
+      //REVIEW: new Vector2() is at (0,0)
       var origin = this.viewToModelPosition( new Vector2( 0, 0 ) );
+      //REVIEW: generally 'position' is a better name than 'p'
       var p = this.viewToModelPosition( delta );
+      //REVIEW: return p.minus( origin );
       return new Vector3( p.x - origin.x, p.y - origin.y, p.z - origin.z );
     },
 
     /**
      * Maps a delta from 2D view coordinates to 3D model coordinates. The z coordinate will be zero.
+     * REVIEW: visibility doc
      *
      * @param {number} xDelta
      * @param {number} yDelta
-     * @return
+     * @return REVIEW: {Vector3}?
      */
     viewToModelDeltaXY: function( xDelta, yDelta ) {
+      //REVIEW (performance): If it's a bottleneck, use a scratch Vector2 here.
       return this.viewToModelDelta( new Vector2( xDelta, yDelta ) );
     },
 
     /**
      * Transforms 2D view bounds to 2D model bounds since bounds have no depth.
+     * REVIEW: visibility doc
      *
      * @param {Bounds2} viewBounds
      * @returns {Bounds2}
      */
     viewToModelBounds: function( viewBounds ) {
+      //REVIEW: Transform3 has built in inverse functions, use that here instead
       return this.viewToModelTransform2D.transformBounds2( viewBounds );
     }
-
   } );
 } );

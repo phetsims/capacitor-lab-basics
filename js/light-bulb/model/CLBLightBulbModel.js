@@ -46,6 +46,7 @@ define( function( require ) {
 
     CLBModel.call( this, tandem );
 
+    //REVIEW: CLBModel (supertype) does this, why is this also done here?
     this.tandem = tandem; // @private
 
     this.switchUsedProperty = switchUsedProperty; // @public
@@ -191,6 +192,9 @@ define( function( require ) {
       // Instead, pass in a disabled tandem instance. All children will inherit the `enabled` value
       // unless specifically overridden.
       // var circuit = new LightBulbCircuit( circuitConfig, null );
+      //REVIEW: Why are we creating a tandem (and then not disposing) for this temporary object, in a function getMaxEffectiveEField?
+      //REVIEW: Does phet-io behave badly with duplicated tandems?
+      //REVIEW: If this is needed, please document the reason tandem is provided.
       var circuit = new LightBulbCircuit( circuitConfig,
         this.tandem.createTandem( 'tempLightBulbCircuit', {
           enabled: false

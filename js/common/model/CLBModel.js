@@ -25,6 +25,7 @@ define( function( require ) {
 
   /**
    * Constructor for the CLBModel.
+   * REVIEW: Both subtypes of this have tandem required, so can null ever be passed here?
    * @param {Tandem|null} tandem - null if this is part of a temporary circuit used for calculations
    *
    * @constructor
@@ -32,11 +33,13 @@ define( function( require ) {
   function CLBModel( tandem ) {
 
     //REVIEW: Use BooleanProperty instead
+    //REVIEW: initial value presumably doesn't need to be refactored out here? This is the only usage.
     this.plateChargesVisibleProperty = new Property( CLBConstants.PLATE_CHARGES_VISIBLE, {
       tandem: tandem.createTandem( 'plateChargesVisibleProperty' ),
       phetioValueType: TBoolean
     } );
     //REVIEW: Use BooleanProperty instead
+    //REVIEW: initial value presumably doesn't need to be refactored out here? This is the only usage.
     this.eFieldVisibleProperty = new Property( CLBConstants.EFIELD_VISIBLE, {
       tandem: tandem.createTandem( 'eFieldVisibleProperty' ),
       phetioValueType: TBoolean
@@ -72,6 +75,7 @@ define( function( require ) {
       phetioValueType: TBoolean
     } );
 
+    //REVIEW: Note that subtypes are setting this also. Recommend to only set it here.
     this.tandem = tandem; // @private
   }
 
@@ -81,6 +85,7 @@ define( function( require ) {
 
     /**
      * Return a capacitor with the maximum amount of charge allowed by the model.
+     * REVIEW: visibility doc
      *
      * @returns {Capacitor}
      */
@@ -91,12 +96,14 @@ define( function( require ) {
       // This component is constructed as part of an implementation and gets a
       // disabled tandem instance. All children will inherit the `enabled` value
       // unless specifically overridden.
+      //REVIEW: Why do we even pass a disabled tandem in here? Would be cleaner to not provide it.
       var disabledTandem = this.tandem.createTandem( 'tempCapacitor', {
         enabled: false
       } );
 
       // Construct Capacitor without a Tandem instance (null), since this is an intermediate object
       // used only in calculations.
+      //REVIEW tip: new Vector3() is a (0,0,0)
       var capacitor = new Capacitor( new Vector3( 0, 0, 0 ), modelViewTransform, disabledTandem, {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.max,
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
@@ -112,6 +119,7 @@ define( function( require ) {
       return capacitor;
     },
 
+    //REVIEW: doc
     reset: function() {
       this.plateChargesVisibleProperty.reset();
       this.eFieldVisibleProperty.reset();

@@ -81,6 +81,8 @@ define( function( require ) {
      * Factory for a SwitchSegment that acts as a switch between two connection points
      * REVIEW: visibility doc
      *
+     * REVIEW: Seems cleaner to have CircuitSwitch have a createWireSegment() function, recommend to move to there
+     *
      * @param {Vector2} startPoint - start point for the switch segment
      * @param {Object} activeConnection
      * @param {Tandem} tandem
@@ -129,7 +131,7 @@ define( function( require ) {
    * point of a component.  Adjusts the start point when the component geometry changes.
    *
    * @param {Capacitor|LightBulb} component
-   * @param {Vector2} endPoint
+   * @param {Vector2} endPoint REVIEW: Nope, probably Vector3
    * @param {Tandem} tandem
    */
   function ComponentBottomWireSegment( component, endPoint, tandem ) {
@@ -152,8 +154,10 @@ define( function( require ) {
    * Constructor for a switch segment.  End point of the switch segment will change depending on the connection
    * state of the circuit.
    *
-   * @param {Vector2} hingePoint
-   * @param {Object} activeConnection
+   * REVIEW: Seems cleaner to have CircuitSwitch have a createWireSegment() function, recommend to move to there
+   *
+   * @param {Vector2} hingePoint REVIEW: Nope, probably Vector3
+   * @param {Object} activeConnection REVIEW: doc this, or at least refer to CircuitSwitch where it's used
    * @param {Tandem} tandem
    * @constructor
    */
