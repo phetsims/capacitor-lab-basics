@@ -5,6 +5,7 @@
  * parallel circuit, with some added features.  The capacitor also has a switch attached to it so that it can be
  * disconnected from the battery.
  *
+ * REVIEW: This diagram shows a circuit that is unobtainable in the sim? Switch can't go right if there is no bulb.
  * |-----|
  * |      /
  * B     C
@@ -51,6 +52,7 @@ define( function( require ) {
     /**
      * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
      * calls this method from its constructor.
+     * REVIEW: visibility doc
      */
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
@@ -67,7 +69,8 @@ define( function( require ) {
     },
 
     /**
-     * Get the voltage accross the capacitor plates.
+     * Get the voltage across the capacitor plates.
+     * REVIEW: visibility doc
      *
      * REVIEW: same as LightBulbCircuit's implementation, can we share code?
      *
@@ -79,6 +82,10 @@ define( function( require ) {
 
     /**
      * Gets the total charge in the circuit.(design doc symbol: Q_total)
+     * REVIEW: visibility doc
+     *
+     * REVIEW: Same as LightBulbCircuit's getTotalCharge(), should be factored out to a parent type (since all
+     * circuits in this sim have one capacitor)
      *
      * @returns {number}
      */
@@ -86,5 +93,4 @@ define( function( require ) {
       return this.capacitor.getTotalPlateCharge();
     }
   } );
-
 } );

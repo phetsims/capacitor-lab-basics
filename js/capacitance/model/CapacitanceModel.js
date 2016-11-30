@@ -33,7 +33,10 @@ define( function( require ) {
 
     CLBModel.call( this, tandem );
 
+    //REVIEW: All screens use this property, so we shouldn't define it here (do that in CLBModel)
     this.switchUsedProperty = switchUsedProperty; // @public
+
+    //REVIEW: All screens use this property, so we shouldn't define it here (do that in CLBModel)
     this.modelViewTransform = modelViewTransform; // @public (read-only)
 
     //REVIEW: CLBModel (supertype) does this, why is this also done here?
@@ -50,6 +53,8 @@ define( function( require ) {
     this.dielectricMaterial = DielectricMaterial.AIR; // @public (read-only)
 
     this.circuit = new CapacitanceCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
+
+    //REVIEW: This is the same for both models, pull it down into CLBModel?
     this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
 
     // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
@@ -79,6 +84,8 @@ define( function( require ) {
       this.capacitanceMeter.reset();
       this.voltmeter.reset();
       this.circuit.reset();
+
+      //REVIEW: This is a global property that affects both screens. Presumably it shouldn't be reset by one screen?
       this.switchUsedProperty.reset();
     },
 

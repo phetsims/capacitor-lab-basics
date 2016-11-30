@@ -49,7 +49,10 @@ define( function( require ) {
     //REVIEW: CLBModel (supertype) does this, why is this also done here?
     this.tandem = tandem; // @private
 
+    //REVIEW: All screens use this property, so we shouldn't define it here (do that in CLBModel)
     this.switchUsedProperty = switchUsedProperty; // @public
+
+    //REVIEW: All screens use this property, so we shouldn't define it here (do that in CLBModel)
     this.modelViewTransform = modelViewTransform; // @private
 
     // A requested PhET-iO customization is to simplify the switch into a
@@ -91,6 +94,8 @@ define( function( require ) {
     this.dielectricMaterial = DielectricMaterial.AIR; // @public (read-only)
 
     this.circuit = new LightBulbCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
+
+    //REVIEW: This is the same for both models, pull it down into CLBModel?
     this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // private
 
     var circuit = this.circuit;
@@ -132,6 +137,8 @@ define( function( require ) {
       this.storedEnergyMeter.reset();
       this.voltmeter.reset();
       this.circuit.reset();
+
+      //REVIEW: This is a global property that affects both screens. Presumably it shouldn't be reset by one screen?
       this.switchUsedProperty.reset();
     },
 

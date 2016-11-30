@@ -287,6 +287,9 @@ define( function( require ) {
     /**
      * Gets the total charge in the circuit.(design doc symbol: Q_total)
      *
+     * REVIEW: Same as CapacitanceCircuit's getTotalCharge(), should be factored out to a parent type (since all
+     * circuits in this sim have one capacitor)
+     *
      * @returns {number}
      */
     getTotalCharge: function() {
