@@ -76,6 +76,7 @@ define( function( require ) {
     } );
 
     //REVIEW: doc why it's null. Is that allowed with TNumber, or would something like TOption (does that exist) be better?
+    //REVIEW: Consider NumberProperty instead, if null isn't a problem.
     this.measuredVoltageProperty = new Property( null, {
       tandem: tandem.createTandem( 'measuredVoltageProperty' ),
       phetioValueType: TNumber( {

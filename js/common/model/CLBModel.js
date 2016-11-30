@@ -30,42 +30,43 @@ define( function( require ) {
    * @constructor
    */
   function CLBModel( tandem ) {
-    //REVIEW: Use BooleanProperty
+
+    //REVIEW: Use BooleanProperty instead
     this.plateChargesVisibleProperty = new Property( CLBConstants.PLATE_CHARGES_VISIBLE, {
       tandem: tandem.createTandem( 'plateChargesVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty
+    //REVIEW: Use BooleanProperty instead
     this.eFieldVisibleProperty = new Property( CLBConstants.EFIELD_VISIBLE, {
       tandem: tandem.createTandem( 'eFieldVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty
+    //REVIEW: Use BooleanProperty instead
     this.capacitanceMeterVisibleProperty = new Property( true, {
       tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty
+    //REVIEW: Use BooleanProperty instead
     this.plateChargeMeterVisibleProperty = new Property( false, {
       tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty
+    //REVIEW: Use BooleanProperty instead
     this.storedEnergyMeterVisibleProperty = new Property( false, {
       tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty
+    //REVIEW: Use BooleanProperty instead
     this.barGraphsVisibleProperty = new Property( true, {
       tandem: tandem.createTandem( 'barGraphsVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty
+    //REVIEW: Use BooleanProperty instead
     this.voltmeterVisibleProperty = new Property( false, {
       tandem: tandem.createTandem( 'voltmeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty
+    //REVIEW: Use BooleanProperty instead
     this.currentVisibleProperty = new Property( true, {
       tandem: tandem.createTandem( 'currentVisibleProperty' ),
       phetioValueType: TBoolean

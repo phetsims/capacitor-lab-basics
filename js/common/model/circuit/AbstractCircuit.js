@@ -36,6 +36,7 @@ define( function( require ) {
    */
   function AbstractCircuit( config, createCircuitComponents, createWires, tandem ) {
     //REVIEW: documentation
+    //REVIEW: Use NumberProperty instead
     this.currentAmplitudeProperty = new Property( 0, {
       tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
       phetioValueType: TNumber( {
@@ -52,6 +53,7 @@ define( function( require ) {
     } );
 
     //REVIEW: documentation
+    //REVIEW: Use NumberProperty instead
     this.disconnectedPlateChargeProperty = new Property( 0, {
       tandem: tandem.createTandem( 'disconnectedPlateChargeProperty' ),
       phetioValueType: TNumber( {
@@ -80,6 +82,7 @@ define( function( require ) {
       config.modelViewTransform, tandem.createTandem( 'battery' ) );
 
     //REVIEW: documentation - Type important here!
+    //REVIEW: Why does a callback need to be passed? It would be ideal to create these in the subtype.
     this.circuitComponents = createCircuitComponents( config, this.circuitConnectionProperty, tandem );
 
     // capture the circuit components into individual arrays.  Note that using slice assumes order of capacitors and
@@ -103,6 +106,7 @@ define( function( require ) {
     } );
 
     //REVIEW: type documentation important here
+    //REVIEW: Why does a callback need to be passed? It would be ideal to create these in the subtype.
     this.wires = createWires(
       config,
       this.battery,
@@ -234,6 +238,8 @@ define( function( require ) {
       this.currentAmplitudeProperty.reset();
       this.circuitConnectionProperty.reset();
       this.disconnectedPlateChargeProperty.reset();
+
+      //REVIEW: Does previousTotalCharge need reset?
     },
 
     /**
@@ -561,6 +567,7 @@ define( function( require ) {
      * Update the Current amplitude. Current amplitude is proportional to dQ/dt, the change in charge (Q_total) over
      * time.
      * REVIEW: visibility doc
+     * REVIEW: NOTE that this is presumably meant to be overridden
      *
      * @param {number} dt
      */

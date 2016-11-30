@@ -56,6 +56,7 @@ define( function( require ) {
     this.activeConnection = this.getConnection( circuitConnectionProperty.value );
     var self = this;
 
+    //REVIEW: Use NumberProperty instead
     this.angleProperty = new Property( this.initialAngle, {
       tandem: tandem.createTandem( 'angleProperty' ),
       phetioValueType: TNumber( {

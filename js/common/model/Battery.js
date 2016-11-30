@@ -55,7 +55,8 @@ define( function( require ) {
   function Battery( location, voltage, modelViewTransform, tandem ) {
 
     // @public
-    this.voltageProperty = new Property(voltage, {
+    //REVIEW: Use NumberProperty instead
+    this.voltageProperty = new Property( voltage, {
       tandem: tandem.createTandem( 'voltageProperty' ),
       phetioValueType: TNumber( { units: 'volts' } )
     } );

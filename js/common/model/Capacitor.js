@@ -72,6 +72,7 @@ define( function( require ) {
       phetioValueType: TBounds3
     } );
 
+    //REVIEW: Use NumberProperty instead
     this.plateSeparationProperty = new Property( options.plateSeparation, {
       tandem: tandem.createTandem( 'plateSeparationProperty' ),
       phetioValueType: TNumber( {
@@ -81,6 +82,7 @@ define( function( require ) {
     } );
 
     // zero until it's connected into a circuit
+    //REVIEW: Use NumberProperty instead
     this.platesVoltageProperty = new Property( 0, {
       tandem: tandem.createTandem( 'platesVoltageProperty' ),
       phetioValueType: TNumber( {
@@ -94,6 +96,7 @@ define( function( require ) {
     } );
 
     // in meters, default is totally outside of capacitor plates.
+    //REVIEW: Use NumberProperty instead
     this.dielectricOffsetProperty = new Property( options.dielectricOffset, {
       tandem: tandem.createTandem( 'dielectricOffsetProperty' ),
       phetioValueType: TNumber( {
