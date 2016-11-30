@@ -32,11 +32,13 @@ define( function( require ) {
     assert && assert( startPoint instanceof Vector3 );
     assert && assert( endPoint instanceof Vector3 );
 
+    //REVIEW: visibility docs
     this.startPointProperty = new Property( startPoint, {
       tandem: tandem.createTandem( 'startPointProperty' ),
       phetioValueType: TVector3
     } );
 
+    //REVIEW: visibility docs
     this.endPointProperty = new Property( endPoint, {
       tandem: tandem.createTandem( 'endPointProperty' ),
       phetioValueType: TVector3
@@ -51,9 +53,12 @@ define( function( require ) {
 
     /**
      * Factory for a ComponentWireSegment that attaches to the top of a circuit component
-     * @param {Capacitor || LightBulb} component
+     * REVIEW: visibility doc
+     *
+     * @param {Capacitor|LightBulb} component
      * @param {Vector2} endPoint
      * @param {Tandem} tandem - end point for the wire segment
+     * REVIEW: returns?
      */
     createComponentTopWireSegment: function( component, endPoint, tandem ) {
       return new ComponentTopWireSegment( component, endPoint, tandem );
@@ -61,9 +66,12 @@ define( function( require ) {
 
     /**
      * Factory for a ComponentWireSegment that attaches to the bottom of a circuit component
-     * @param {Capacitor | LightBulb} component
+     * REVIEW: visibility doc
+     *
+     * @param {Capacitor|LightBulb} component
      * @param {Vector2} endPoint - end point for the wire segment
      * @param {Tandem} tandem
+     * REVIEW: returns?
      */
     createComponentBottomWireSegment: function( component, endPoint, tandem ) {
       return new ComponentBottomWireSegment( component, endPoint, tandem );
@@ -71,14 +79,19 @@ define( function( require ) {
 
     /**
      * Factory for a SwitchSegment that acts as a switch between two connection points
+     * REVIEW: visibility doc
+     *
      * @param {Vector2} startPoint - start point for the switch segment
      * @param {Object} activeConnection
      * @param {Tandem} tandem
+     * REVIEW: returns?
      */
     createSwitchSegment: function( startPoint, activeConnection, tandem ) {
       return new SwitchSegment( startPoint, activeConnection, tandem );
     },
 
+    //REVIEW: doc
+    //REVIEW: Find where this is called? I can't find any usages.
     reset: function() {
       this.startPointProperty.reset();
       this.endPointProperty.reset();
@@ -89,13 +102,15 @@ define( function( require ) {
   /**
    * Constructor for ComponentTopWireSegment.  This is a wire segment whose start point is connected to the top
    * connection point of a component.  Adjusts the wire geometry when the component changes geometry or orientation.
+   * REVIEW: visibility doc
    *
-   * @param {Capacitor || LightBulb} component
+   * @param {Capacitor|LightBulb} component
    * @param {Vector2} endPoint
    * @param {Tandem} tandem
    */
   function ComponentTopWireSegment( component, endPoint, tandem ) {
     WireSegment.call( this, component.getTopConnectionPoint(), endPoint, tandem );
+    //REVIEW: visibility doc
     this.component = component;
   }
 
@@ -103,6 +118,7 @@ define( function( require ) {
 
   inherit( WireSegment, ComponentTopWireSegment, {
     // update the start point of the segment, called when the component geometry changes
+    //REVIEW: JSDoc
     update: function() {
       this.startPointProperty.set( this.component.getTopConnectionPoint() );
     }
@@ -112,12 +128,13 @@ define( function( require ) {
    * Constructor for ComponentBottomWireSegment.  Wire segment whose start point is connected to the bottom connection
    * point of a component.  Adjusts the start point when the component geometry changes.
    *
-   * @param {Capacitor || LightBulb} component
+   * @param {Capacitor|LightBulb} component
    * @param {Vector2} endPoint
    * @param {Tandem} tandem
    */
   function ComponentBottomWireSegment( component, endPoint, tandem ) {
     WireSegment.call( this, component.getBottomConnectionPoint(), endPoint, tandem );
+    //REVIEW: visibility doc
     this.component = component;
   }
 
@@ -125,6 +142,7 @@ define( function( require ) {
 
   inherit( WireSegment, ComponentBottomWireSegment, {
     // update the start point of the segment, called when the component geometry changes
+    //REVIEW: JSDoc
     update: function() {
       this.startPointProperty.set( this.component.getBottomConnectionPoint() );
     }
@@ -132,7 +150,7 @@ define( function( require ) {
 
   /**
    * Constructor for a switch segment.  End point of the switch segment will change depending on the connection
-   * state of the circutit.
+   * state of the circuit.
    *
    * @param {Vector2} hingePoint
    * @param {Object} activeConnection
@@ -140,6 +158,7 @@ define( function( require ) {
    * @constructor
    */
   function SwitchSegment( hingePoint, activeConnection, tandem ) {
+    //REVIEW: visibility docs
     this.activeConnection = activeConnection;
     this.hingePoint = hingePoint;
     WireSegment.call( this, hingePoint, activeConnection.location, tandem );
@@ -150,12 +169,13 @@ define( function( require ) {
   inherit( WireSegment, SwitchSegment, {
 
     // update the endpoint for the switch segment, called when the connection point of the circuit changes
+    //REVIEW: JSDoc
     update: function( activeConnection, angle ) {
+      //REVIEW: Check usages, at least one didn't have the angle parameter. Can it be removed?
       // set the new active connection point
       this.endPoint = activeConnection.location;
     }
   } );
 
   return WireSegment;
-
 } );

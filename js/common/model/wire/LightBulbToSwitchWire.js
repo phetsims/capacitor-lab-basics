@@ -21,6 +21,7 @@ define( function( require ) {
   var COUNTER = 0;
 
   /**
+   * REVIEW: enumeration for connectionPoint?
    * @param {string} connectionPoint one of 'TOP' or 'BOTTOM'
    * @param {CircuitConfig} config
    * @param {LightBulb} lightBulb
@@ -70,16 +71,19 @@ define( function( require ) {
 
     /**
      * Factory methods for top and bottom LightBulbToSwitchWire instances
+     * REVIEW: visibility
      *
      * @param {CircuitConfig} config
      * @param {LightBulb} lightBulb
      * @param {CircuitSwitch} circuitSwitch
      * @param {Tandem} tandem
+     * REVIEW: returns?
      */
     createLightBulbToSwitchWireBottom: function( config, lightBulb, circuitSwitch, tandem ) {
       return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch, tandem );
     },
 
+    //REVIEW: doc
     createLightBulbToSwitchWireTop: function( config, lightBulb, circuitSwitch, tandem ) {
       return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch, tandem );
     }

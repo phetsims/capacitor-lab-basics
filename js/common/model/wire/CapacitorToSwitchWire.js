@@ -18,6 +18,7 @@ define( function( require ) {
   /**
    * Constructor.
    *
+   * REVIEW: for connectionPoint, use an enumeration, and doc the enumeration here.
    * @param {string} connectionPoint
    * @param {CircuitConfig} config
    * @param {Capacitor} capacitor
@@ -26,6 +27,7 @@ define( function( require ) {
    * @constructor
    */
   function CapacitorToSwitchWire( connectionPoint, config, capacitor, circuitSwitch, tandem ) {
+    //REVIEW: adding one thing, do we really need the segments array here? Use [ segment ] later?
     var segments = [];
 
     // add the vertical segment.
@@ -46,19 +48,21 @@ define( function( require ) {
   capacitorLabBasics.register( 'CapacitorToSwitchWire', CapacitorToSwitchWire );
 
   return inherit( Wire, CapacitorToSwitchWire, {}, {
-
-  /**
-   * Factory methods for top and bottom CapacitorToSwitchWire instances
-   *
-   * @param {CircuitConfig} config
-   * @param {Capacitor} capacitor
-   * @param {CircuitSwitch} circuitSwitch
-   * @param {Tandem} tandem
-   */
+    /**
+     * Factory methods for top and bottom CapacitorToSwitchWire instances
+     * REVIEW: visibility doc
+     *
+     * @param {CircuitConfig} config
+     * @param {Capacitor} capacitor
+     * @param {CircuitSwitch} circuitSwitch
+     * @param {Tandem} tandem
+     * REVIEW: returns?
+     */
     createCapacitorToSwitchWireTop: function( config, capacitor, circuitSwitch, tandem ) {
       return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP, config, capacitor, circuitSwitch, tandem );
     },
 
+    //REVIEW: doc?
     createCapacitorToSwitchWireBottom: function( config, capacitor, circuitSwitch, tandem ) {
       return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM, config, capacitor, circuitSwitch, tandem );
     }

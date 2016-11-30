@@ -34,9 +34,11 @@ define( function( require ) {
 
     this.segments = segments; // @public
     this.connectionPoint = connectionPoint; // @public
-    this.thickness = thickness; // @public
+    this.thickness = thickness; // @public REVIEW: never used outside constructor, why is this a property?
     this.shapeCreator = new WireShapeCreator( this, modelViewTransform ); // @private
+    //REVIEW: shapeCreator not used by functions outside constructor that are actually called, recommend it be left as local variable
 
+    //REVIEW: visibility doc (public presumably)
     this.shapeProperty = new Property( this.shapeCreator.createWireShape(), {
       // Wire is not currently instrumented
     } );
@@ -57,39 +59,55 @@ define( function( require ) {
 
     /**
      * Cleanup function to avoid memory leaks.
+     * REVIEW: visibility doc
      */
     cleanUp: function() {
+      //REVIEW: Why isn't this getting called?
       this.segments.forEach( function( segment ) {
+        //REVIEW: WireSegment.cleanUp doesn't exist.
         segment.cleanUp();
       } );
     },
 
     /**
      * Function that creates the shape of this wire through the shape creator.
+     * REVIEW: visibility doc
+     * REVIEW: returns?
+     * REVIEW: This is not called, dead code? Should be removed or called.
      */
     createShapes: function() {
+      //REVIEW: createWireShapes() doesn't exist on anything else
       return this.shapeCreator.createWireShapes();
     },
 
     /**
      * Get the corner offset of the wire.
+     * REVIEW: visibility doc
+     * REVIEW: This is not called, dead code? Should be removed or called.
      *
      * @returns {number}
      */
     getCornerOffset: function() {
+      //REVIEW: getCornerOffset() doesn't exist on anything else
       return this.shapeCreator.getCornerOffset();
     },
 
     /**
      * Get the end offset of the wire.
+     * REVIEW: visibility doc
+     * REVIEW: This is not called, dead code? Should be removed or called.
      *
      * @returns {number}
      */
     getEndOffset: function() {
+      //REVIEW: getEndOffset() doesn't exist on anything else
       return this.shapeCreator.getEndOffset();
     },
 
+    //REVIEW: doc
+    //REVIEW: Why is this not being called?
     reset: function() {
+      //REVIEW: Why would it not reset its segments?
       this.shapeProperty.reset();
     }
   } );

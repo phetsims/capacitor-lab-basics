@@ -61,7 +61,8 @@ define( function( require ) {
       phetioValueType: TNumber( { units: 'volts' } )
     } );
 
-    this.polarityProperty = new Property(CLBConstants.POLARITY.POSITIVE, {
+    //REVIEW: visibility documentation, with type for enumeration?
+    this.polarityProperty = new Property( CLBConstants.POLARITY.POSITIVE, {
       tandem: tandem.createTandem( 'polarityProperty' ),
       phetioValueType: TString
     } );
@@ -109,6 +110,7 @@ define( function( require ) {
      * @returns {boolean}
      */
     intersectsTopTerminal: function( shape ) {
+      //REVIEW: why are we creating new shapes every time we check for an intersection? Performance implication?
       return shape.intersectsBounds( this.shapeCreator.createTopTerminalShape() );
     },
 
