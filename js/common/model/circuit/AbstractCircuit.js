@@ -282,20 +282,9 @@ define( function( require ) {
      *         get circuit.topBatteryWires
      */
     getTopBatteryWires: function() {
-      /*
-       * REVIEW:
-       * Would usually prefer the filter() function be used when possible.
-       * return this.wires.filter( function( wire ) {
-       *   return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP;
-       * } );
-       */
-      var topBatteryWires = [];
-      this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-          topBatteryWires.push( wire );
-        }
+      return this.wires.filter( function( wire ) {
+        return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP;
       } );
-      return topBatteryWires;
     },
 
     /**
@@ -305,14 +294,9 @@ define( function( require ) {
      *         get circuit.bottomBatteryWires
      */
     getBottomBatteryWires: function() {
-      //REVIEW: See recommended filter() usage above
-      var bottomBatteryWires = [];
-      this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM ) {
-          bottomBatteryWires.push( wire );
-        }
+      return this.wires.filter( function( wire ) {
+        return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM;
       } );
-      return bottomBatteryWires;
     },
 
     /**
@@ -322,14 +306,9 @@ define( function( require ) {
      *         get circuit.topLightBulbWires
      */
     getTopLightBulbWires: function() {
-      //REVIEW: See recommended filter() usage above
-      var topLightBulbWires = [];
-      this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP ) {
-          topLightBulbWires.push( wire );
-        }
+      return this.wires.filter( function( wire ) {
+        return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP;
       } );
-      return topLightBulbWires;
     },
 
     /**
@@ -339,14 +318,9 @@ define( function( require ) {
      *         get circuit.bottomLightBulbWires
      */
     getBottomLightBulbWires: function() {
-      //REVIEW: See recommended filter() usage above
-      var bottomLightBulbWires = [];
-      this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM ) {
-          bottomLightBulbWires.push( wire );
-        }
+      return this.wires.filter( function( wire ) {
+        return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM;
       } );
-      return bottomLightBulbWires;
     },
 
     /**
@@ -357,7 +331,6 @@ define( function( require ) {
      * REVIEW: Doc return type
      */
     getTopSwitchWires: function() {
-      //REVIEW: See recommended filter() usage above
       var topCircuitSwitchWires = [];
       this.circuitSwitches.forEach( function( circuitSwitch ) {
         var switchWire = circuitSwitch.switchWire;
@@ -377,7 +350,6 @@ define( function( require ) {
      * @returns {Wire[]}
      */
     getBottomSwitchWires: function() {
-      //REVIEW: See recommended filter() usage above
       var bottomCircuitSwitchWires = [];
       this.circuitSwitches.forEach( function( circuitSwitch ) {
         var switchWire = circuitSwitch.switchWire;
@@ -397,14 +369,9 @@ define( function( require ) {
      * @returns {Wire[]}
      */
     getTopCapacitorWires: function() {
-      //REVIEW: See recommended filter() usage above
-      var topCapacitorWires = [];
-      this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
-          topCapacitorWires.push( wire );
-        }
+      return this.wires.filter( function( wire ) {
+        return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP;
       } );
-      return topCapacitorWires;
     },
 
     /**
@@ -416,14 +383,9 @@ define( function( require ) {
      * @returns {Wire[]}
      */
     getBottomCapacitorWires: function() {
-      //REVIEW: See recommended filter() usage above
-      var bottomCapacitorWires = [];
-      this.wires.forEach( function( wire ) {
-        if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM ) {
-          bottomCapacitorWires.push( wire );
-        }
+      return this.wires.filter( function( wire ) {
+        return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM;
       } );
-      return bottomCapacitorWires;
     },
 
     /**
