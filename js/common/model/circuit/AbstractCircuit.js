@@ -463,54 +463,6 @@ define( function( require ) {
     },
 
     /**
-     * Gets the effective E-field at a specified location. Inside the plates, this is E_effective. Outside the plates,
-     * it is zero.
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This function appears to be unused, recommend removal of dead code.
-     *
-     * @param {Vector3} location
-     * @returns {number} eField
-     */
-    getEffectiveEFieldAt: function( location ) {
-      var eField = 0;
-      this.capacitors.forEach( function( capacitor ) {
-        if ( capacitor.isBetweenPlates( location ) ) {
-          eField = capacitor.getEffectiveEField();
-          //return; //break
-          //REVIEW: If you use _.each, returning false will break out of the loop.
-        }
-      } );
-      return eField;
-    },
-
-    /**
-     * Field due to the plate, at a specific location. Between the plates, the field is either E_plate_dielectric or
-     * E_plate_air, depending on whether the probe intersects the dielectric.  Outside the plates, the field is zero.
-     * REVIEW: visibility doc
-     *
-     * Note that as of 5/29/2015 without Dielectrics, the only possible value is E_plate_air.
-     *
-     * REVIEW: This function appears to be unused, recommend removal of dead code.
-     *
-     * @param {Vector3} location
-     * @returns {number} eField
-     */
-    getPlatesDielectricEFieldAt: function( location ) {
-      var eField = 0;
-      //REVIEW: Consider summing without an intermediate variable:
-      // return _.sumBy( this.capacitors, function( capacitor ) {
-      //   return capacitor.isInsideAirBetweenPlates( location ) ? capacitor.getPlatesAirEField : 0;
-      // } );
-      this.capacitors.forEach( function( capacitor ) {
-        if ( capacitor.isInsideAirBetweenPlates( location ) ) {
-          eField = capacitor.getPlatesAirEField();
-        }
-      } );
-      return eField;
-    },
-
-    /**
      * Update the Current amplitude. Current amplitude is proportional to dQ/dt, the change in charge (Q_total) over
      * time.
      * REVIEW: visibility doc
