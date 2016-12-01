@@ -255,24 +255,12 @@ define( function( require ) {
 
     /**
      * Step function for the AbstractCircuit.  Updates current amplitude and current indicators.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {number} dt
      */
     step: function( dt ) {
       this.updateCurrentAmplitude( dt );
-    },
-
-    /**
-     * Default implementation has a connected battery.
-     * REVIEW: visibility doc
-     *
-     * In some other circuits, we'll override this and add a setter, so that the battery can be dynamically
-     * connected and disconnected.
-     */
-    isBatteryConnected: function() {
-      //REVIEW: I don't ever see this being used. Maybe documentation is out of date, and this is dead code?
-      return true;
     },
 
     /**
