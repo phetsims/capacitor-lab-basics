@@ -83,7 +83,7 @@ define( function( require ) {
     this.previousTotalCharge = 0;
 
     // Overwrite in concrete instances
-    //REVIEW: mark as protected, or are they public?
+    // @protected
     this.maxPlateCharge = Infinity;
     this.maxEffectiveEField = Infinity;
 
@@ -250,8 +250,7 @@ define( function( require ) {
       this.currentAmplitudeProperty.reset();
       this.circuitConnectionProperty.reset();
       this.disconnectedPlateChargeProperty.reset();
-
-      //REVIEW: Does previousTotalCharge need reset?
+      this.previousTotalCharge = 0;
     },
 
     /**
