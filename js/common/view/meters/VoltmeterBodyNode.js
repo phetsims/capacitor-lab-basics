@@ -54,6 +54,8 @@ define( function( require ) {
     Node.call( this );
     var self = this;
 
+    this.cursor = 'pointer';
+
     this.bodyLocationProperty = voltmeter.bodyLocationProperty; // @public
 
     // body of the meter
