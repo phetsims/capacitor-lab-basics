@@ -83,6 +83,8 @@ define( function( require ) {
     getVoltageAt: function( shape ) {
       var voltage = null;
 
+      //REVIEW: this implementation appears to be specific to the CapacitanceCircuit. Should it live there?
+
       // Closed circuit (battery to capacitor)
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
         if ( this.connectedToBatteryTop( shape ) ) {

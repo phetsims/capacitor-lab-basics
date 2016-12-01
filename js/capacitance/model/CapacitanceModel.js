@@ -59,6 +59,8 @@ define( function( require ) {
 
     // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
     var circuit = this.circuit;
+
+    //REVIEW: visibility doc (public?)
     this.capacitanceMeter = new BarMeter( this.circuit, this.capacitanceMeterVisibleProperty,
       function() {
         return circuit.getTotalCapacitance();
@@ -66,8 +68,10 @@ define( function( require ) {
       tandem.createTandem( 'capacitanceMeter' ) );
 
     // @public
+    //REVIEW: This is the same code as used by CLBLightBulbModel. Since it is used in both screens, it should presumably be on the supertype?
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
 
+    //REVIEW: This is done in all other concrete models (CLBLightBulbModel), and should be factored out to the supertype
     this.circuit.maxPlateCharge = this.getMaxPlateCharge();
     this.circuit.maxEffectiveEField = this.getMaxEffectiveEField();
   }
@@ -78,6 +82,7 @@ define( function( require ) {
 
     /**
      * Reset function for this model.
+     * REVIEW: visibility doc
      */
     reset: function() {
       CLBModel.prototype.reset.call( this );
@@ -91,6 +96,9 @@ define( function( require ) {
 
     /**
      * Step function for the CLBModel.
+     * REVIEW: visibility doc
+     *
+     * REVIEW: This is the same as in CLBLightBulbModel, and should be shared in the supertype.
      *
      * @param {number} dt
      */
@@ -102,6 +110,11 @@ define( function( require ) {
      * Gets the maximum charge on the top plate (Q_total).
      * We compute this with the battery connected because this is used to determine the range of the Plate Charge
      * slider.
+     * REVIEW: visibility doc
+     *
+     * REVIEW: This is the same as in CLBLightBulbModel, and should be shared in the supertype.
+     *
+     * REVIEW: returns?
      */
     getMaxPlateCharge: function() {
       return this.getCapacitorWithMaxCharge().getTotalPlateCharge();
@@ -109,8 +122,11 @@ define( function( require ) {
 
     /**
      * Gets the maximum excess charge for the dielectric area (Q_excess_dielectric).
+     * REVIEW: visibility doc
      *
      * REVIEW: function not used, remove it (dead code)
+     *
+     * REVIEW: returns?
      */
     getMaxExcessDielectricPlateCharge: function() {
       return this.getCapacitorWithMaxCharge().getExcessDielectricPlateCharge();
@@ -121,10 +137,12 @@ define( function( require ) {
      * The maximum occurs when the battery is disconnected, the Plate Charge control is set to its maximum,
      * the plate area is set to its minimum, and the dielectric constant is min, and the dielectric is fully inserted.
      * And in this situation, plate separation is irrelevant.
+     * REVIEW: visibility doc
      *
      * return {number}
      */
     getMaxEffectiveEField: function() {
+      //REVIEW: a good amount of shared logic with CLBLightBulbModel's version of this. Can common logic be factored out?
       var circuitConfig = new CircuitConfig( {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,

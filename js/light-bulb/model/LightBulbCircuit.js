@@ -82,7 +82,7 @@ define( function( require ) {
   capacitorLabBasics.register( 'LightBulbCircuit', LightBulbCircuit );
 
   return inherit( ParallelCircuit, LightBulbCircuit, {
-
+    //REVIEW: doc
     step: function( dt ) {
 
       // Step through common circuit components
@@ -110,9 +110,11 @@ define( function( require ) {
     /**
      * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
      * calls this method from its constructor. Remember to call this method at the end of this class' constructor.
+     * REVIEW: visibility doc
      */
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
+        //REVIEW: First two logic cases are shared with CapacitanceCircuit. Can we factor this out?
         if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           // if the battery is connected, the voltage is equal to the battery voltage
           this.capacitor.platesVoltageProperty.value = this.battery.voltageProperty.value;
@@ -130,7 +132,8 @@ define( function( require ) {
       }
     },
 
-    // REVIEW: same as CapacitanceCircuit's implementation, can we share code?
+    //REVIEW: doc
+    //REVIEW: same as CapacitanceCircuit's implementation, can we share code?
     getCapacitorPlateVoltage: function() {
       return this.capacitor.platesVoltageProperty.value;
     },
@@ -138,6 +141,7 @@ define( function( require ) {
     /**
      * Gets the voltage at a shape, with respect to ground. Returns null if the
      * Shape is not connected to the circuit.
+     * REVIEW: visibility doc
      *
      * @param {Shape} shape
      * @returns {number}
@@ -162,8 +166,12 @@ define( function( require ) {
       return voltage;
     },
 
+    //REVIEW: doc
     connectedToLightBulbTop: function( shape ) {
-
+      /* REVIEW: simplifications
+      var topWires = this.getTopLightBulbWires().concat( this.getTopCapacitorWires() ).concat( this.getTopSwitchWires() );
+      var intersectsTopWires = this.shapeTouchesWireGroup( shape, topWires );
+      */
       var intersectsTopWires = false;
       var topLightBulbWires = this.getTopLightBulbWires();
       var topCapacitorWires = this.getTopCapacitorWires();
@@ -192,16 +200,21 @@ define( function( require ) {
     /**
      * Determine if the shape is connected to the top of the lightbulb when it
      * is disconnected from the circuit.
+     * REVIEW: visibility doc
+     *
      * @param  {Shape} shape - shape of the element connected to the light bulb
      * @returns {boolean}
      */
     connectedToDisconnectedLightBulbTop: function( shape ) {
-
+      //REVIEW: see notes in supertypes about potential improvements by using zones
       var intersectsTopWires = false;
       var topLightBulbWires = this.getTopLightBulbWires();
 
       var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
+      //REVIEW: var intersectsTopWires = this.shapeTouchesWireGroup( shape, this.getTopLightBulbWires() );
+      //REVIEW: Also, easier to check for whether disconnected is false before we need to compute this. Recommend top:
+      // if ( !disconnected ) { return false; } // skips a lot
       topLightBulbWires.forEach( function( bottomWire ) {
         if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWires = true;
@@ -219,10 +232,13 @@ define( function( require ) {
      * @returns {boolean}
      */
     connectedToDisconnectedLightBulbBottom: function( shape ) {
-
+      //REVIEW: see notes in supertypes about potential improvements by using zones
       var intersectsBottomWires = false;
       var bottomLightBulbWires = this.getBottomLightBulbWires();
 
+      //REVIEW: var intersectsBottomWires = this.shapeTouchesWireGroup( shape, this.getBottomLightBulbWires() );
+      //REVIEW: Also, easier to check for whether disconnected is false before we need to compute this. Recommend top:
+      // if ( !disconnected ) { return false; } // skips a lot
       bottomLightBulbWires.forEach( function( bottomWire ) {
         if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
@@ -233,8 +249,12 @@ define( function( require ) {
       return intersectsBottomWires && disconnected;
     },
 
+    //REVIEW: doc
     connectedToLightBulbBottom: function( shape ) {
-
+      /* REVIEW: simplification
+      var bottomWires = this.getBottomLightBulbWires().concat( this.getBottomCapacitorWires() ).concat( this.getBottomSwitchWires() );
+      var intersectsBottomWires = this.shapeTouchesWireGroup( shape, bottomWires );
+      */
       var intersectsBottomWires = false;
       var bottomLightBulbWires = this.getBottomLightBulbWires();
       var bottomCapacitorWires = this.getBottomCapacitorWires();
@@ -263,6 +283,7 @@ define( function( require ) {
     /**
      * Sets the value used for plate charge when the battery is disconnected.
      * (design doc symbol: Q_total)
+     * REVIEW: visibility doc
      *
      * @param {number} disconnectedPlateCharge Coulombs
      */
@@ -277,6 +298,8 @@ define( function( require ) {
 
     /**
      * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
+     * REVIEW: visibility doc
+     * REVIEW: Usually setters take a value, would updateDisconnectedPlateVoltage be a more appropriate name?
      */
     setDisconnectedPlateVoltage: function() {
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
@@ -286,6 +309,7 @@ define( function( require ) {
 
     /**
      * Gets the total charge in the circuit.(design doc symbol: Q_total)
+     * REVIEW: visibility doc
      *
      * REVIEW: Same as CapacitanceCircuit's getTotalCharge(), should be factored out to a parent type (since all
      * circuits in this sim have one capacitor)
@@ -299,8 +323,9 @@ define( function( require ) {
     /**
      * Update the current amplitude depending on the circuit connection.  If the capacitor is connected to the light
      * bulb, find the current by I = V / R.  Otherwise, current is found by dQ/dT.
+     * REVIEW: visibility doc
      *
-     * @param  {number} dt
+     * @param {number} dt
      */
     updateCurrentAmplitude: function( dt ) {
 

@@ -45,16 +45,19 @@ define( function( require ) {
       phetioValueType: TBoolean
     } );
     //REVIEW: Use BooleanProperty instead
+    //REVIEW: This appears only relevant to the light-bulb screen, move to CLBLightBulbModel? (Can't toggle on first screen)
     this.capacitanceMeterVisibleProperty = new Property( true, {
       tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
     //REVIEW: Use BooleanProperty instead
+    //REVIEW: This is only relevant to the light-bulb screen, move to CLBLightBulbModel
     this.plateChargeMeterVisibleProperty = new Property( false, {
       tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
     //REVIEW: Use BooleanProperty instead
+    //REVIEW: This is only relevant to the light-bulb screen, move to CLBLightBulbModel
     this.storedEnergyMeterVisibleProperty = new Property( false, {
       tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
       phetioValueType: TBoolean
