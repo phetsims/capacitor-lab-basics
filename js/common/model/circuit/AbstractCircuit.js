@@ -401,14 +401,14 @@ define( function( require ) {
     },
 
     /**
-     * Get the total charge with Q_total = V_total * C_total
-     * REVIEW: visibility doc
+     * Get the total charge
+     * @public
+     * @override
      *
      * @returns {number}
      */
     getTotalCharge: function() {
-      //REVIEW: Is this ever used? It seems to be overridden by every subtype?
-      return this.getTotalVoltage() * this.getTotalCapacitance();
+      assert && assert( false, 'getTotalCharge should be implemented in descendant classes of AbstractCircuit' );
     },
 
     /**

@@ -57,6 +57,22 @@ define( function( require ) {
   inherit( AbstractCircuit, ParallelCircuit, {
 
     /**
+     * Update the Current amplitude. Current amplitude is proportional to dQ/dt,
+     * the change in charge (Q_total) over time.
+     * @public
+     *
+     * @param {number} dt
+     */
+    updateCurrentAmplitude: function( dt ) {
+      var Q = this.getTotalCharge();
+      if ( this.previousTotalCharge !== -1 ) {
+        var dQ = Q - this.previousTotalCharge;
+        this.currentAmplitudeProperty.set( dQ / dt );
+      }
+      this.previousTotalCharge = Q;
+    },
+
+    /**
      * Get the total capacitance of all parallel capacitors in this circuit using C_total = C1 + C2 + ... + Cn
      * REVIEW: visibility doc
      *
