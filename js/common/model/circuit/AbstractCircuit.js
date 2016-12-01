@@ -395,17 +395,9 @@ define( function( require ) {
      * @returns {Wire[]} bottomWires
      */
     getBottomWires: function() {
-      //REVIEW: This can be simplified to like 1-3 lines.
-      var bottomBatteryWires = this.getBottomBatteryWires();
-      var bottomLightBulbWires = this.getBottomLightBulbWires();
-      var bottomCapacitorWires = this.getBottomCapacitorWires();
-
-      var bottomWires = [];
-      bottomWires = bottomWires.concat( bottomBatteryWires );
-      bottomWires = bottomWires.concat( bottomLightBulbWires );
-      bottomWires = bottomWires.concat( bottomCapacitorWires );
-
-      return bottomWires;
+      return this.getBottomBatteryWires()
+        .concat( this.getBottomLightBulbWires() )
+        .concat( this.getBottomCapacitorWires() );
     },
 
     /**
