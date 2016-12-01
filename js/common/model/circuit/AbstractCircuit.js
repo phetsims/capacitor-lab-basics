@@ -18,6 +18,7 @@ define( function( require ) {
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
 
@@ -35,9 +36,14 @@ define( function( require ) {
    * @param {Tandem} tandem
    */
   function AbstractCircuit( config, createCircuitComponents, createWires, tandem ) {
-    //REVIEW: documentation
-    //REVIEW: Use NumberProperty instead
-    this.currentAmplitudeProperty = new Property( 0, {
+
+    /**
+     * Signed current through circuit. Used to update arrows
+     *
+     * @type {NumberProperty}
+     * @public
+     */
+    this.currentAmplitudeProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
       phetioValueType: TNumber( {
         units: 'amperes'
@@ -45,16 +51,24 @@ define( function( require ) {
       documentation: 'currentAmplitudeProperty is updated by the model and should not be set by users'
     } );
 
-    //REVIEW: documentation
-    //REVIEW: When doing this, doc it as Property.<CircuitConnectionEnum>, not Property.<String> (treated as its own type)
+    /**
+     * Property tracking the state of the switch
+     *
+     * @type {Property.<CircuitConnectionEnum>}
+     * @public
+     */
     this.circuitConnectionProperty = new Property( CircuitConnectionEnum.BATTERY_CONNECTED, {
       tandem: tandem.createTandem( 'circuitConnectionProperty' ),
       phetioValueType: TString
     } );
 
-    //REVIEW: documentation
-    //REVIEW: Use NumberProperty instead
-    this.disconnectedPlateChargeProperty = new Property( 0, {
+    /**
+     * Property tracking the signed charge value on the upper plate
+     *
+     * @type {NumberProperty}
+     * @public
+     */
+    this.disconnectedPlateChargeProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'disconnectedPlateChargeProperty' ),
       phetioValueType: TNumber( {
         units: 'coulombs',
@@ -64,12 +78,9 @@ define( function( require ) {
 
     var self = this;
 
-    //REVIEW: Why is -1 special? Docs related to #130 would help
-    //REVIEW: Not private, should be protected (usage in LightBulbCircuit)
-    this.previousTotalCharge = -1; // no value, @private
-
-    //REVIEW: documentation
-    this.config = config;
+    // Utility variable for current calculation
+    // @protected
+    this.previousTotalCharge = 0;
 
     // Overwrite in concrete instances
     //REVIEW: mark as protected, or are they public?
