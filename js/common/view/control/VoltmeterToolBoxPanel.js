@@ -38,7 +38,7 @@ define( function( require ) {
 
     // create the icon for the toolbox.
     var voltmeterIconNode = VoltmeterNode.createVoltmeterIconNode();
-
+    voltmeterIconNode.cursor = 'pointer';
 
     voltmeterIconNode.addInputListener( {
       down: function( event ) {
