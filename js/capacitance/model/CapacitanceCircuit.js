@@ -92,6 +92,23 @@ define( function( require ) {
      */
     getTotalCharge: function() {
       return this.capacitor.getTotalPlateCharge();
+    },
+
+    /**
+     * Update the Current amplitude. Current amplitude is proportional to dQ/dt,
+     * the change in charge (Q_total) over time.
+     * @public
+     *
+     * @param {number} dt
+     */
+    updateCurrentAmplitude: function( dt ) {
+      var Q = this.getTotalCharge();
+      if ( this.previousTotalCharge !== -1 ) {
+        var dQ = Q - this.previousTotalCharge;
+        this.currentAmplitudeProperty.set( dQ / dt );
+      }
+      this.previousTotalCharge = Q;
     }
+
   } );
 } );

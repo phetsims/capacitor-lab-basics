@@ -463,20 +463,15 @@ define( function( require ) {
     },
 
     /**
-     * Update the Current amplitude. Current amplitude is proportional to dQ/dt, the change in charge (Q_total) over
-     * time.
-     * REVIEW: visibility doc
-     * REVIEW: NOTE that this is presumably meant to be overridden
+     * Current update function
+     * @public
+     * @override
      *
      * @param {number} dt
      */
     updateCurrentAmplitude: function( dt ) {
-      var Q = this.getTotalCharge();
-      if ( this.previousTotalCharge !== -1 ) {
-        var dQ = Q - this.previousTotalCharge;
-        this.currentAmplitudeProperty.set( dQ / dt );
-      }
-      this.previousTotalCharge = Q;
+      assert && assert( false,
+        'updateCurrentAmplitude should be implemented in descendant classes of AbstractCircuit' );
     }
   } );
 } );
