@@ -81,6 +81,7 @@ define( function( require ) {
       var labelText = new TandemText( StringUtils.format( pattern0Value1UnitsString, value, unitsVoltsString ), {
         font: LABEL_FONT,
         fill: textFill,
+        cursor: 'arrow',
         maxWidth: imageNode.width * 0.5,
         tandem: tandem
       } );
