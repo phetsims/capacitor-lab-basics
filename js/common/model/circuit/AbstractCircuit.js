@@ -211,16 +211,15 @@ define( function( require ) {
     /**
      * Updates the plate voltages.
      * Subclasses must call this at the end of their constructor, see note in constructor.
-     * REVIEW: visibility doc
+     * @public
      */
     updatePlateVoltages: function() {
-      //REVIEW: Replace with throwing an error for an abstract method
-      console.log( 'updatePlateVoltages should be implemented in descendant classes.' );
+      assert && assert( false, 'updatePlateVoltages should be implemented in descendant classes.' );
     },
 
     /**
-     * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
-     * REVIEW: visibility doc
+     * Sets the plate voltages, but checks to make sure that the battery is disconnected from the circuit.
+     * @public
      */
     setDisconnectedPlateVoltage: function() {
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
@@ -231,7 +230,7 @@ define( function( require ) {
     /**
      * Sets the value used for plate charge when the battery is disconnected.
      * (design doc symbol: Q_total)
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {number} charge - in Coulombs
      */
@@ -241,7 +240,8 @@ define( function( require ) {
       }
     },
 
-    //REVIEW: documentation, with @override
+    // @override
+    // @public
     reset: function() {
       this.battery.reset();
       this.capacitors.forEach( function( capacitor ) {
@@ -265,25 +265,14 @@ define( function( require ) {
 
     /**
      * Gets the wires connected to the top of circuit components.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {Wire[]} topWires
      */
     getTopWires: function() {
-      /*
-       * REVIEW:
-       * simplification, which could be indented to multiple lines:
-       * return this.getTopBatteryWires().concat( this.getTopLightBulbWires() ).concat( this.getTopCapacitorWires() );
-       */
-      var topBatteryWires = this.getTopBatteryWires();
-      var topLightBulbWires = this.getTopLightBulbWires();
-      var topCapacitorWires = this.getTopCapacitorWires();
-
-      var topWires = [];
-      topWires = topWires.concat( topBatteryWires );
-      topWires = topWires.concat( topLightBulbWires );
-      topWires = topWires.concat( topCapacitorWires );
-      return topWires;
+      return this.getTopBatteryWires()
+        .concat( this.getTopLightBulbWires() )
+        .concat( this.getTopCapacitorWires() );
     },
 
     /**
