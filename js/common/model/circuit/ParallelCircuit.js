@@ -57,6 +57,16 @@ define( function( require ) {
   inherit( AbstractCircuit, ParallelCircuit, {
 
     /**
+     * Step function for the AbstractCircuit.  Updates current amplitude and current indicators.
+     * @public
+     *
+     * @param {number} dt
+     */
+    step: function( dt ) {
+      this.updateCurrentAmplitude( dt );
+    },
+
+    /**
      * Update the Current amplitude. Current amplitude is proportional to dQ/dt,
      * the change in charge (Q_total) over time.
      * @public

@@ -224,16 +224,6 @@ define( function( require ) {
     },
 
     /**
-     * Step function for the AbstractCircuit.  Updates current amplitude and current indicators.
-     * @public
-     *
-     * @param {number} dt
-     */
-    step: function( dt ) {
-      this.updateCurrentAmplitude( dt );
-    },
-
-    /**
      * Gets the wires connected to the top of circuit components.
      * @public
      *
