@@ -56,6 +56,18 @@ define( function( require ) {
 
   inherit( AbstractCircuit, ParallelCircuit, {
 
+    // @public
+    reset: function() {
+      this.battery.reset();
+      this.capacitors.forEach( function( capacitor ) {
+        capacitor.reset();
+      } );
+      this.currentAmplitudeProperty.reset();
+      this.circuitConnectionProperty.reset();
+      this.disconnectedPlateChargeProperty.reset();
+      this.previousTotalCharge = 0;
+    },
+
     /**
      * Step function for the AbstractCircuit.  Updates current amplitude and current indicators.
      * @public

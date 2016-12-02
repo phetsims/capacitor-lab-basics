@@ -151,10 +151,8 @@ define( function( require ) {
     // performance issues, these links would be a great place to start.
     // udpate all segments, disconnected plate charge, and plate voltages when the connection property changes
     this.circuitConnectionProperty.lazyLink( function( circuitConnection ) {
-      /*
-       * When disconnecting the battery, set the disconnected plate charge to whatever the total plate charge was with
-       * the battery connected.  Need to do this before changing the plate voltages property.
-       */
+      // When disconnecting the battery, set the disconnected plate charge to whatever the total plate charge was with
+      // the battery connected.  Need to do this before changing the plate voltages property.
       if ( circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
         self.disconnectedPlateChargeProperty.set( self.getTotalCharge() );
       }
@@ -209,19 +207,6 @@ define( function( require ) {
   capacitorLabBasics.register( 'AbstractCircuit', AbstractCircuit );
 
   return inherit( Object, AbstractCircuit, {
-
-    // @override
-    // @public
-    reset: function() {
-      this.battery.reset();
-      this.capacitors.forEach( function( capacitor ) {
-        capacitor.reset();
-      } );
-      this.currentAmplitudeProperty.reset();
-      this.circuitConnectionProperty.reset();
-      this.disconnectedPlateChargeProperty.reset();
-      this.previousTotalCharge = 0;
-    },
 
     /**
      * Gets the wires connected to the top of circuit components.
