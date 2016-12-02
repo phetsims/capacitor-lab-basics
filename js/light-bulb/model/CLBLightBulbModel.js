@@ -85,8 +85,6 @@ define( function( require ) {
       wireExtent: WIRE_EXTENT,
       //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
       wireThickness: WIRE_THICKNESS,
-      //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
-      numberOfCapacitors: 1,
       numberOfLightBulbs: 1
     } );
 
@@ -194,8 +192,6 @@ define( function( require ) {
         //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
         wireThickness: CLBConstants.WIRE_THICKNESS,
         wireExtent: WIRE_EXTENT,
-        //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
-        numberOfCapacitors: 1,
         numberOfLightBulbs: 1
       } );
 

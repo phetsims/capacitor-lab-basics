@@ -245,7 +245,7 @@ define( function( require ) {
      * @returns {Object} returnConnection - object of the format { location: Vector3, connectionType: string } REVIEW: CircuitConnectionEnum, not string
      */
     getConnection: function( connectionType ) {
-      console.log(this.connections);
+
       var returnConnection = _.find( this.connections, function( connection ) {
         return connection.connectionType === connectionType;
       } );

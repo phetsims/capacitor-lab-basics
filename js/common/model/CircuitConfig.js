@@ -71,8 +71,6 @@ define( function( require ) {
     this.lightBulbXSpacing = options.lightBulbXSpacing;
     this.lightBulbResistance = options.lightBulbResistance;
     this.circuitConnections = options.circuitConnections;
-    //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
-    this.numberOfCapacitors = options.numberOfCapacitors;
     this.numberOfLightBulbs = options.numberOfLightBulbs;
   }
 
