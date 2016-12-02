@@ -89,6 +89,16 @@ define( function( require ) {
     },
 
     /**
+     * Since the default is a connected battery, the total voltage is the battery voltage.
+     * @public
+     *
+     * @returns {number}
+     */
+    getTotalVoltage: function() {
+      return this.battery.voltageProperty.value;
+    },
+
+    /**
      * Gets the energy stored in the circuit. (design doc symbol: U)
      * REVIEW: visibility doc
      *

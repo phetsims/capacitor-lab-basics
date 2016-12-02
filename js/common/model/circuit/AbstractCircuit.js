@@ -412,16 +412,6 @@ define( function( require ) {
     },
 
     /**
-     * Since the default is a connected battery, the total voltage is the battery voltage.
-     * REVIEW: visibility doc
-     *
-     * @returns {number}
-     */
-    getTotalVoltage: function() {
-      return this.battery.voltageProperty.value;
-    },
-
-    /**
      * Gets the voltage at a shape, with respect to ground. Returns null if the
      * Shape is not connected to the circuit.
      * REVIEW: visibility doc
