@@ -14,19 +14,18 @@ define( function( require ) {
   var PlateChargeNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateChargeNode' );
 
   /**
-   * Constructor.
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Object} options - See options for PlateChargeNode
    * @constructor
    */
-  function AirPlateChargeNode( capacitor, modelViewTransform, options ) {
+  function VacuumPlateChargeNode( capacitor, modelViewTransform, options ) {
     PlateChargeNode.call( this, capacitor, modelViewTransform, options );
   }
 
-  capacitorLabBasics.register( 'AirPlateChargeNode', AirPlateChargeNode );
+  capacitorLabBasics.register( 'VacuumPlateChargeNode', VacuumPlateChargeNode );
 
-  return inherit( PlateChargeNode, AirPlateChargeNode, {
+  return inherit( PlateChargeNode, VacuumPlateChargeNode, {
 
     // Gets the portion of the plate charge due to air.
     getPlateCharge: function() {
