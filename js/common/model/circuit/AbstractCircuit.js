@@ -187,7 +187,9 @@ define( function( require ) {
 
     // when the disconnected plate charge property changes, set the disconnected plate voltage.
     this.disconnectedPlateChargeProperty.lazyLink( function() {
-      self.setDisconnectedPlateVoltage();
+      if ( self.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        self.updatePlateVoltages();
+      }
     } );
 
     /*
@@ -207,25 +209,6 @@ define( function( require ) {
   capacitorLabBasics.register( 'AbstractCircuit', AbstractCircuit );
 
   return inherit( Object, AbstractCircuit, {
-
-    /**
-     * Updates the plate voltages.
-     * Subclasses must call this at the end of their constructor, see note in constructor.
-     * @public
-     */
-    updatePlateVoltages: function() {
-      assert && assert( false, 'updatePlateVoltages should be implemented in descendant classes.' );
-    },
-
-    /**
-     * Sets the plate voltages, but checks to make sure that the battery is disconnected from the circuit.
-     * @public
-     */
-    setDisconnectedPlateVoltage: function() {
-      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
-        this.updatePlateVoltages();
-      }
-    },
 
     // @override
     // @public
