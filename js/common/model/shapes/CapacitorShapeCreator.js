@@ -74,32 +74,6 @@ define( function( require ) {
     },
 
     /**
-     * Air that is between the capacitor plates.
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This function doesn't appear to be used. Remove dead code.
-     *
-     * @returns {Shape}
-     */
-    createAirBetweenPlateShape: function() {
-      var result;
-      if ( this.capacitor.dielectricOffsetProperty.value === 0 ) {
-        result = this.createEmptyShape();
-      }
-      else {
-        // Dielectrics are not being ported yet. we should never reach this!
-        //REVIEW: This is asserting that this string is truthy, which is true here. assert( false, ... ) to fail out.
-        assert && assert( 'Dielectrics have not yet been ported, dielectric offset should always be zero.' );
-      }
-      if ( assert ) {
-        if ( result.constructor.name !== 'Shape' ) {
-          console.log( 'REVIEW (CapacitorShapeCreator): Probably not a Shape: ' + result.constructor.name );
-        }
-      }
-      return result;
-    },
-
-    /**
      * Visible portion of the top plate. Nothing occludes the top plate.
      * REVIEW: visibility doc
      *
@@ -119,30 +93,6 @@ define( function( require ) {
     createBottomPlateShapeOccluded: function() {
       //REVIEW: one usage, no overrides. Just use createTopPlateShape() instead?
       return this.createBottomPlateShape();
-    },
-
-    /**
-     * Visible portion of the dielectric between the plates. May be partially occluded by the top plate.
-     * REVIEW: visibility doc
-     *
-     * @returns REVIEW: no return statement
-     */
-    createDielectricBetweenPlatesShapeOccluded: function() {
-      //REVIEW: stub methods for implemented things probably shouldn't exist?
-      console.error( 'Dielectrics have not been ported yet!' );
-    },
-
-    /**
-     * Visible portion of air between the plates. May be partially occluded by the top plate.
-     * REVIEW: visibility doc
-     *
-     * @returns {Shape}
-     */
-    createAirBetweenPlatesShapeOccluded: function() {
-      // NOTE: Without dielectrics, createAirBetweenPlateShape will produce nothing.
-      // This function should never be called.
-      //REVIEW: stub methods for implemented things probably shouldn't exist?
-      console.error( 'Dielectrics have not been ported yet, this function should not be in use.' );
     },
 
     //----------------------------------------------------------------------------------------

@@ -31,9 +31,6 @@ define( function( require ) {
     var options = {
       plateWidth: config.plateWidth,
       plateSeparation: config.plateSeparation,
-      //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
-      dielectricMaterial: config.dielectricMaterial,
-      dielectricOffset: config.dielectricOffset
     };
     Capacitor.call( this, location, config.modelViewTransform, tandem, options );
 
@@ -61,4 +58,3 @@ define( function( require ) {
 
   return inherit( Capacitor, SwitchedCapacitor );
 } );
-

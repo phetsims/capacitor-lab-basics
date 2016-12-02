@@ -15,7 +15,6 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
-  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
@@ -110,13 +109,7 @@ define( function( require ) {
       //REVIEW: This is the only usage of a raw Capacitor. Can we get rid of this, so we can only have SwitchedCapacitor?
       var capacitor = new Capacitor( new Vector3( 0, 0, 0 ), modelViewTransform, disabledTandem, {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.max,
-        plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
-        //REVIEW: This is the only usage of a non-air dielectric material, but is used to determine total plate charge.
-        //        Why does this use a non-air dielectric constant (seems buggy), since it may give incorrect total plate
-        //        charge since other capacitors use air?
-        //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
-        dielectricMaterial: DielectricMaterial.createCustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.max ),
-        dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min
+        plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min
       } );
 
       capacitor.platesVoltageProperty.set( CLBConstants.BATTERY_VOLTAGE_RANGE.max );

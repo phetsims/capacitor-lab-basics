@@ -21,7 +21,6 @@ define( function( require ) {
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
-  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
@@ -90,9 +89,6 @@ define( function( require ) {
       numberOfCapacitors: 1,
       numberOfLightBulbs: 1
     } );
-
-    //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
-    this.dielectricMaterial = DielectricMaterial.AIR; // @public (read-only)
 
     this.circuit = new LightBulbCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
 
@@ -180,21 +176,9 @@ define( function( require ) {
     },
 
     /**
-     * Gets the maximum excess charge for the dielectric area (Q_excess_dielectric).
-     * REVIEW: visibility doc
-     *
-     * REVIEW: function not used, remove it (dead code)
-     *
-     * REVIEW: returns?
-     */
-    getMaxExcessDielectricPlateCharge: function() {
-      return this.getCapacitorWithMaxCharge().getExcessDielectricPlateCharge();
-    },
-
-    /**
      * Gets the maximum effective E-field between the plates (E_effective).
-     * The maximum occurs when the battery is disconnected, the Plate Charge control is set to its maximum,
-     * the plate area is set to its minimum, and the dielectric constant is min, and the dielectric is fully inserted.
+     * The maximum occurs when the battery is disconnected, the Plate Charge
+     * control is set to its maximum, and the plate area is set to its minimum.
      * And in this situation, plate separation is irrelevant.
      * REVIEW: visibility doc
      *
@@ -210,9 +194,6 @@ define( function( require ) {
         //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
         wireThickness: CLBConstants.WIRE_THICKNESS,
         wireExtent: WIRE_EXTENT,
-        //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
-        dielectricMaterial: DielectricMaterial.createCustomDielectricMaterial( CLBConstants.DIELECTRIC_CONSTANT_RANGE.min ),
-        dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.min,
         //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
         numberOfCapacitors: 1,
         numberOfLightBulbs: 1
@@ -222,14 +203,11 @@ define( function( require ) {
       // A null value could be passed in here, but then all children would need null checks.
       // Instead, pass in a disabled tandem instance. All children will inherit the `enabled` value
       // unless specifically overridden.
-      // var circuit = new LightBulbCircuit( circuitConfig, null );
       //REVIEW: Why are we creating a tandem (and then not disposing) for this temporary object, in a function getMaxEffectiveEField?
       //REVIEW: Does phet-io behave badly with duplicated tandems?
       //REVIEW: If this is needed, please document the reason tandem is provided.
       var circuit = new LightBulbCircuit( circuitConfig,
-        this.tandem.createTandem( 'tempLightBulbCircuit', {
-          enabled: false
-        } ) );
+        this.tandem.createTandem( 'tempLightBulbCircuit', { enabled: false } ) );
 
       // disconnect the battery and set the max plate charge
       circuit.circuitConnectionProperty.set( CircuitConnectionEnum.OPEN_CIRCUIT );

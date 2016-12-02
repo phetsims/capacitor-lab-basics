@@ -7,9 +7,6 @@
  *
  * All model coordinates are relative to the capacitor's local coordinate frame.
  *
- * NOTE: Skipping the port of DielectricPlateChargeNode for now.  Without
- * dielectrics this should not be needed.
- *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
  */
@@ -173,7 +170,7 @@ define( function( require ) {
 
         var zMargin = this.modelViewTransform.viewToModelDeltaXY( CLBConstants.NEGATIVE_CHARGE_SIZE.width, 0 ).x;
 
-        var gridWidth = this.getContactWidth(); // contact between plate and dielectric
+        var gridWidth = this.getContactWidth(); // contact between plate and vacuum gap
         var gridDepth = this.capacitor.plateSizeProperty.value.depth - ( 2 * zMargin );
 
         // grid dimensions

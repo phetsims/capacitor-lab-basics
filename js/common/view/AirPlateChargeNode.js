@@ -1,8 +1,7 @@
 // Copyright 2016, University of Colorado Boulder
 
 /**
- * Portion of the plate charge area in contact with air.  Charges appear on this node which
- * is in contact with aire (not in contact with the dielectric.)
+ * Portion of the plate charge area facing the vacuum gap
  *
  * @author Jesse Greenberg
  */
@@ -35,15 +34,13 @@ define( function( require ) {
     },
 
     // Gets the x offset (relative to the plate origin) of the portion of the
-    // plate that is in contact with air.
+    // plate that is facing the vacuum gap
     getContactXOrigin: function() {
       return -this.capacitor.plateSizeProperty.value.width / 2;
     },
 
     /**
      * Gets the width of the portion of the plate that is in contact with air.
-     * NOTE: This should always return the width of the capacitor plates since
-     * dielectrics have not been introduced yet.
      *
      * @returns {number}
      */

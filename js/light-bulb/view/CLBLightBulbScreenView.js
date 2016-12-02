@@ -3,8 +3,6 @@
 /**
  * ScreenView for "Light Bulb" screen of Capacitor Lab: Basics.
  *
- * This this extension of ScreenView is a direct port of DielectricCanvas of Capacitor Lab without dielectrics.
- *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
  */
@@ -52,7 +50,6 @@ define( function( require ) {
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
 
     // View control panel and voltmeter panel
-    // var viewControlPanelWidth = this.layoutBounds.width - lightBulbCircuitNode.right;
     var viewControlPanelWidth = 200;
     var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
       numberOfBarGraphs: 3,

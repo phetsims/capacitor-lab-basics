@@ -1,10 +1,11 @@
-// Copyright 2014-2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Visual representation of a capacitor.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -83,7 +84,7 @@ define( function( require ) {
       this.topPlateNode.setBoxSize( this.capacitor.plateSizeProperty.value );
       this.bottomPlateNode.setBoxSize( this.capacitor.plateSizeProperty.value );
 
-      // layout nodes with zero dielectric offset
+      // layout nodes
       var x = 0;
       var y = -( this.capacitor.plateSeparationProperty.value / 2 ) - this.capacitor.plateSizeProperty.value.height;
       var z = 0;

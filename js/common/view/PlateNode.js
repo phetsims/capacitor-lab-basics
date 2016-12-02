@@ -1,12 +1,11 @@
-// Copyright 2014-2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
- * Visual representation of a capacitor plate.  For a partially-inserted
- * dielectric, the portion of the plate that contacts the dielectric is charged
- * differently than the portion of the plate that contacts air.
+ * Visual representation of a capacitor plate.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';

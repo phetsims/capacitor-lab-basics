@@ -14,7 +14,6 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
-  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector3 = require( 'DOT/Vector3' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
@@ -29,7 +28,6 @@ define( function( require ) {
   var PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
   var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
   var WIRE_THICKNESS = CLBConstants.WIRE_THICKNESS;
-  var DIELECTRIC_OFFSET = 0.02; // meters
   var LIGHT_BULB_RESISTANCE = 5e12; // Ohms. Artificially large to stretch discharge time
   var NUMBER_OF_CAPACITORS = 1;
   var NUMBER_OF_LIGHTBULBS = 0;
@@ -50,9 +48,6 @@ define( function( require ) {
       wireThickness: WIRE_THICKNESS,
       //REVIEW: LIGHT_BULB_X_SPACING is always 0.023, consider factoring out into a common location and not passing around
       lightBulbXSpacing: LIGHT_BULB_X_SPACING,
-      //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
-      dielectricMaterial: DielectricMaterial.AIR,
-      dielectricOffset: DIELECTRIC_OFFSET,
       lightBulbResistance: LIGHT_BULB_RESISTANCE, //REVIEW: I don't see this being overridden anywhere, presumably factor it out.
       circuitConnections: [
         CircuitConnectionEnum.BATTERY_CONNECTED,
@@ -77,9 +72,6 @@ define( function( require ) {
     this.wireThickness = options.wireThickness;
     //REVIEW: LIGHT_BULB_X_SPACING is always 0.023, consider factoring out into a common location and not passing around
     this.lightBulbXSpacing = options.lightBulbXSpacing;
-    //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
-    this.dielectricMaterial = options.dielectricMaterial;
-    this.dielectricOffset = options.dielectricOffset;
     this.lightBulbResistance = options.lightBulbResistance;
     this.circuitConnections = options.circuitConnections;
     //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
