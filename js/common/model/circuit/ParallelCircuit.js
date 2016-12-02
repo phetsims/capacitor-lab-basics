@@ -89,6 +89,18 @@ define( function( require ) {
     },
 
     /**
+     * Gets the energy stored in the circuit. (design doc symbol: U)
+     * REVIEW: visibility doc
+     *
+     * @returns {number}
+     */
+    getStoredEnergy: function() {
+      var C = this.getTotalCapacitance(); // F
+      var V = this.getCapacitorPlateVoltage(); // V
+      return 0.5 * C * V * V; // Joules (J)
+    },
+
+    /**
      * Gets the voltage at a shape, with respect to ground. Returns null if the
      * Shape is not connected to the circuit.
      * REVIEW: visibility doc
@@ -379,10 +391,6 @@ define( function( require ) {
    * @returns {Array} circuitComponents REVIEW: Array of what?
    */
   var createCircuitComponents = function( config, circuitConnectionProperty, tandem ) {
-
-    //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
-    assert && assert( config.numberOfCapacitors === 1,
-      'Capacitor Lab: Basics is designed to use exactly one capacitor' );
 
     var x = config.batteryLocation.x + config.capacitorXSpacing;
     var y = config.batteryLocation.y + config.capacitorYSpacing;

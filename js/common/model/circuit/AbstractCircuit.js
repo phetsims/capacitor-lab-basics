@@ -451,18 +451,6 @@ define( function( require ) {
     },
 
     /**
-     * Gets the energy stored in the circuit. (design doc symbol: U)
-     * REVIEW: visibility doc
-     *
-     * @returns {number}
-     */
-    getStoredEnergy: function() {
-      var C_total = this.getTotalCapacitance(); // F
-      var V_total = this.getCapacitorPlateVoltage(); // V
-      return 0.5 * C_total * V_total * V_total; // Joules (J)
-    },
-
-    /**
      * Current update function
      * @public
      * @override
