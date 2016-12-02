@@ -29,7 +29,6 @@ define( function( require ) {
   var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
   var WIRE_THICKNESS = CLBConstants.WIRE_THICKNESS;
   var LIGHT_BULB_RESISTANCE = 5e12; // Ohms. Artificially large to stretch discharge time
-  var NUMBER_OF_CAPACITORS = 1;
   var NUMBER_OF_LIGHTBULBS = 0;
 
   // constructor
@@ -54,8 +53,6 @@ define( function( require ) {
         CircuitConnectionEnum.OPEN_CIRCUIT,
         CircuitConnectionEnum.LIGHT_BULB_CONNECTED
       ],
-      //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
-      numberOfCapacitors: NUMBER_OF_CAPACITORS,
       numberOfLightBulbs: NUMBER_OF_LIGHTBULBS
     }, options );
 
