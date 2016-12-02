@@ -230,8 +230,7 @@ define( function( require ) {
           } );
         }
         else {
-          //REVIEW: This is asserting that this string is truthy, which is true here. assert( false, ... ) to fail out.
-          assert && assert( 'attempting to create switch conection which is not supported' );
+          assert && assert( false, 'attempting to create switch conection which is not supported' );
         }
       } );
 
@@ -240,18 +239,15 @@ define( function( require ) {
 
     /**
      * Get the desired connection from the connection type.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param connectionType
      * @returns {Object} returnConnection - object of the format { location: Vector3, connectionType: string } REVIEW: CircuitConnectionEnum, not string
      */
     getConnection: function( connectionType ) {
-      //REVIEW: return _.find( this.connections, function( connection ) { return connection.connectionType === connectionType; } );
-      var returnConnection = null;
-      this.connections.forEach( function( connection ) {
-        if ( connection.connectionType === connectionType ) {
-          returnConnection = connection;
-        }
+      console.log(this.connections);
+      var returnConnection = _.find( this.connections, function( connection ) {
+        return connection.connectionType === connectionType;
       } );
 
       assert && assert( returnConnection, 'No connection type for this circuit named ' + connectionType );
