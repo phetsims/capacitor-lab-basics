@@ -175,6 +175,22 @@ define( function( require ) {
       return voltage;
     },
 
+    /**
+     * Gets the voltage between 2 Shapes. The shapes are in world coordinates.
+     * Returns null if the 2 Shapes are not both connected to the circuit.
+     * @public
+     *
+     * @param {Shape} positiveShape
+     * @param {Shape} negativeShape
+     * return {number}
+     */
+    getVoltageBetween: function( positiveShape, negativeShape ) {
+      var vPlus = this.getVoltageAt( positiveShape );
+      var vMinus = this.getVoltageAt( negativeShape );
+
+      return ( vPlus === null || vMinus === null ) ? null : vPlus - vMinus;
+    },
+
     //REVIEW: doc
     shapeTouchesWireGroup: function( shape, wires ) {
       //REVIEW:
