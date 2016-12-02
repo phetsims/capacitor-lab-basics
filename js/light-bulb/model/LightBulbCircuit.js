@@ -63,7 +63,7 @@ define( function( require ) {
        * the battery connected.  Need to do this before changing the plate voltages property.
        */
       if ( circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
-        self.setDisconnectedPlateCharge( self.getTotalCharge() );
+        self.disconnectedPlateChargeProperty.set( self.getTotalCharge() );
       }
       self.updatePlateVoltages();
 

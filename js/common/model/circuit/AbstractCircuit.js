@@ -156,7 +156,7 @@ define( function( require ) {
        * the battery connected.  Need to do this before changing the plate voltages property.
        */
       if ( circuitConnection !== CircuitConnectionEnum.BATTERY_CONNECTED ) {
-        self.setDisconnectedPlateCharge( self.getTotalCharge() );
+        self.disconnectedPlateChargeProperty.set( self.getTotalCharge() );
       }
       self.updatePlateVoltages();
 
@@ -224,19 +224,6 @@ define( function( require ) {
     setDisconnectedPlateVoltage: function() {
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         this.updatePlateVoltages();
-      }
-    },
-
-    /**
-     * Sets the value used for plate charge when the battery is disconnected.
-     * (design doc symbol: Q_total)
-     * @public
-     *
-     * @param {number} charge - in Coulombs
-     */
-    setDisconnectedPlateCharge: function( charge ) {
-      if ( charge !== this.disconnectedPlateChargeProperty.value ) {
-        this.disconnectedPlateChargeProperty.set( charge );
       }
     },
 
@@ -398,42 +385,6 @@ define( function( require ) {
       return this.getBottomBatteryWires()
         .concat( this.getBottomLightBulbWires() )
         .concat( this.getBottomCapacitorWires() );
-    },
-
-    /**
-     * Get the total charge
-     * @public
-     * @override
-     *
-     * @returns {number}
-     */
-    getTotalCharge: function() {
-      assert && assert( false, 'getTotalCharge should be implemented in descendant classes of AbstractCircuit' );
-    },
-
-    /**
-     * Gets the voltage at a shape, with respect to ground. Returns null if the
-     * Shape is not connected to the circuit.
-     * REVIEW: visibility doc
-     *
-     * @param {Shape} shape
-     * @returns {number}
-     */
-    getVoltageAt: function( shape ) {
-      //REVIEW: throw an error instead, we shouldn't hit this (typical for abstract functions)
-      console.log( 'getVoltageAt() should be implemented in descendant classes of AbstractCircuit' );
-    },
-
-    /**
-     * Current update function
-     * @public
-     * @override
-     *
-     * @param {number} dt
-     */
-    updateCurrentAmplitude: function( dt ) {
-      assert && assert( false,
-        'updateCurrentAmplitude should be implemented in descendant classes of AbstractCircuit' );
     }
   } );
 } );

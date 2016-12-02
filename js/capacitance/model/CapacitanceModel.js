@@ -146,7 +146,7 @@ define( function( require ) {
 
       // disconnect the battery and set the max plate charge
       circuit.circuitConnectionProperty.set( CircuitConnectionEnum.OPEN_CIRCUIT );
-      circuit.setDisconnectedPlateCharge( this.getMaxPlateCharge() );
+      circuit.disconnectedPlateChargeProperty.set( this.getMaxPlateCharge() );
 
       return circuit.capacitor.getEffectiveEField();
     }
