@@ -33,9 +33,6 @@ define( function( require ) {
    * @constructor
    */
   function CapacitanceCircuit( config, tandem ) {
-    //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
-    assert && assert( config.numberOfCapacitors === 1,
-      'LightBulbCircuit should have 1 Capacitor in CL:B. config.numberOfCapacitors: ' + config.numberOfCapacitors );
     assert && assert( config.numberOfLightBulbs === 0,
       'LightBulbCircuit should have 0 LightBulbs in CL:B. config.numberOfLightBulbs: ' + config.numberOfLightBulbs );
 
