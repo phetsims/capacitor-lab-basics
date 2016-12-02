@@ -3,21 +3,20 @@
 /**
  * Model of a capacitor whose geometry can be directly manipulated by the user.
  *
- * A capacitor consists of 2 parallel, square plates, with a dielectric material between the plates. When the
- * dielectric can be partially inserted, the capacitor must be modeled as 2 parallel capacitors, one of which has the
- * dielectric between its plates, and the other of which has air between its plates.
+ * A capacitor consists of 2 parallel, square plates, separated by vacuum.
+ * There is no modeling of non-vacuum dielectric materials whatsoever in
+ * Capacitor Lab: Basics.
  *
- * NOTE: Dielectrics have not been ported and are not used in Capacitor Lab: Basics.
- * REVIEW: So presumably any references can be removed?
- *
- * A capacitor's capacitance (C) is solely dependent on its geometry and the dielectric material. Charge (Q) on the
+ * The capacitance (C) is solely dependent on its geometry. Charge (Q) on the
  * plates is a function of capacitance and voltage (V) across the plates: Q = CV
  *
- * Variable names used in this implementation where chosen to match the specification in the design document, and
- * therefore violate Java naming conventions.
+ * Variable names used in this implementation where chosen to match the
+ * specification in the design document, and therefore violate Java naming
+ * conventions.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 
 define( function( require ) {
@@ -28,14 +27,12 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CapacitorShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/CapacitorShapeCreator' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var DielectricMaterial = require( 'CAPACITOR_LAB_BASICS/common/model/DielectricMaterial' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
   var TBounds3 = require( 'ifphetio!PHET_IO/types/dot/TBounds3' );
-  var TDielectricMaterial = require( 'ifphetio!PHET_IO/simulations/capacitor-lab-basics/TDielectricMaterial' );
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
 
   /**
@@ -52,9 +49,6 @@ define( function( require ) {
     options = _.extend( {
       plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
       plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.max,
-      //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
-      dielectricMaterial: DielectricMaterial.AIR,
-      dielectricOffset: CLBConstants.DIELECTRIC_OFFSET_RANGE.max
     }, options );
 
     // @public
@@ -95,27 +89,9 @@ define( function( require ) {
       } )
     } );
 
-    //REVIEW: visibility doc
-    //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
-    this.dielectricMaterialProperty = new Property( options.dielectricMaterial, {
-      tandem: tandem.createTandem( 'dielectricMaterialProperty' ),
-      phetioValueType: TDielectricMaterial
-    } );
-
-    // in meters, default is totally outside of capacitor plates.
-    //REVIEW: Use NumberProperty instead
-    //REVIEW: visibility doc
-    //REVIEW: Given that air is the only dielectric material that should be used, do we still need this dielectric offset?
-    this.dielectricOffsetProperty = new Property( options.dielectricOffset, {
-      tandem: tandem.createTandem( 'dielectricOffsetProperty' ),
-      phetioValueType: TNumber( {
-        units: 'meters'
-      } )
-    } );
-
     // @private - track the previous capacitance to adjust the inital voltage when discharging, see
     // updateDischargeParameters() below.
-    this.previousCapacitance = this.getTotalCapacitance();
+    this.previousCapacitance = this.getCapacitance();
   }
 
   capacitorLabBasics.register( 'Capacitor', Capacitor );
@@ -131,53 +107,6 @@ define( function( require ) {
      */
     getPlateArea: function() {
       return this.plateSizeProperty.value.width * this.plateSizeProperty.value.depth;
-    },
-
-    /**
-     * Gets the area of the contact between one of the plates and air.  Note that without dielectrics this is the same
-     * as the plate area.
-     * (design doc symbol: A_air)
-     * REVIEW: visibility doc
-     *
-     * @returns {number} area in meters^2
-     */
-    getAirContactArea: function() {
-      return this.getPlateArea() - this.getDielectricContactArea();
-    },
-
-    /**
-     * Gets the area of the contact between one of the plates and the dielectric material.
-     * (design doc symbol: A_dielectric)
-     * REVIEW: visibility doc
-     *
-     * @returns {number} area, in meters^2
-     */
-    getDielectricContactArea: function() {
-      var absoluteOffset = Math.abs( this.dielectricOffsetProperty.value );
-      var area = ( this.plateSizeProperty.value.width - absoluteOffset ) * this.plateSizeProperty.value.depth; // front * side
-      //REVIEW: return Math.max( 0, area );
-      if ( area < 0 ) {
-        area = 0;
-      }
-      return area;
-    },
-
-    /**
-     * Sets the distance between the 2 parallel plates.
-     * NOTE: The model for this sim requires that the plate separation be > 0.
-     * (design doc symbol: d)
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This function is never called, remove as it's dead code.
-     *
-     * @param {number} plateSeparation distance, in meters.
-     */
-    setPlateSeparation: function( plateSeparation ) {
-      //REVIEW: If kept, this should be replaced by an assertion
-      if ( plateSeparation <= 0 ) {
-        console.error( 'plateSeparation must be > 0: ' + plateSeparation );
-      }
-      this.plateSeparationProperty.value = plateSeparation;
     },
 
     /**
@@ -205,7 +134,10 @@ define( function( require ) {
      * @returns {Vector3}
      */
     getTopConnectionPoint: function() {
-      return new Vector3( this.location.x, this.location.y - ( this.plateSeparationProperty.value / 2 ) - this.plateSizeProperty.value.height, this.location.z );
+      return new Vector3(
+        this.location.x,
+        this.location.y - ( this.plateSeparationProperty.value / 2 ) - this.plateSizeProperty.value.height,
+        this.location.z );
     },
 
     /**
@@ -215,59 +147,22 @@ define( function( require ) {
      * @returns {Vector3}
      */
     getBottomConnectionPoint: function() {
-      return new Vector3( this.location.x, this.location.y + ( this.plateSeparationProperty.value / 2 ) + this.plateSizeProperty.value.height, this.location.z );
-    },
-
-    // d =  epsilon * epsilon_0 * A / C  REVIEW: if kept, inline this into the main doc
-    /**
-     * Get the plate separation of this capacitor.  Value is determined by the equation d =  epsilon * epsilon_0 * A / C
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This function isn't used, remove dead code.
-     *
-     * @param {number} dielectricConstant
-     * @param {number} plateWidth
-     * @param {number} capacitance
-     * @returns {number}
-     */
-    getPlateSeparation: function( dielectricConstant, plateWidth, capacitance ) {
-      return dielectricConstant * CLBConstants.EPSILON_0 * plateWidth * plateWidth / capacitance;
+      return new Vector3(
+        this.location.x,
+        this.location.y + ( this.plateSeparationProperty.value / 2 ) + this.plateSizeProperty.value.height,
+        this.location.z );
     },
 
     /**
-     * General formula for computing capacitance.
-     * REVIEW: visibility doc
+     * General formula for computing capacitance in vacuum.
+     * @public
      *
-     * @param {number} epsilon dielectric constant, dimensionless
-     * @param {number} area of the contact between the dielectric and one plate, meters^2
-     * @param {number} plateSeparation distance between the plates, meters
-     * @returns {number} capacitance, in Farads
+     * @returns {number} capacitance in Farads
      */
-    getCapacitance: function( epsilon, area, plateSeparation ) {
-      return epsilon * CLBConstants.EPSILON_0 * area / plateSeparation;
-    },
-
-    /**
-     * Gets the capacitance due to the part of the capacitor that is contacting air.
-     * (design doc symbol: C_air)
-     * REVIEW: visibility doc
-     *
-     * @returns {number} capacitance, in Farads
-     */
-    getAirCapacitance: function() {
-      return this.getCapacitance( CLBConstants.EPSILON_AIR, this.getAirContactArea(), this.plateSeparationProperty.value );
-    },
-
-    /**
-     * Gets the capacitance due to the part of the capacitor that is contacting the dielectric.
-     * (design doc symbol: C_dielectric)
-     * REVIEW: visibility doc
-     *
-     * @returns {number} capacitance, in Farads
-     */
-    getDielectricCapacitance: function() {
-      //REVIEW: Only used dielectric material is air, so this should be simplified to use the AIR constant, see https://github.com/phetsims/capacitor-lab-basics/issues/117
-      return this.getCapacitance( this.dielectricMaterialProperty.value.dielectricConstant, this.getDielectricContactArea(), this.plateSeparationProperty.value );
+    getCapacitance: function() {
+      var d = this.plateSeparationProperty.value;
+      assert && assert( d > 0, 'Plate separation is ' + d );
+      return CLBConstants.EPSILON_0 * this.getPlateArea() / d;
     },
 
     /**
@@ -316,121 +211,34 @@ define( function( require ) {
     },
 
     /**
-     * Is a point inside the Shape that is the 2D projection of the space between the capacitor plates?  In the Java
-     * sim this checked for points between plates in air or in a dielectric.  Dielectrics are being ignored for the
-     * moment so this is identical to isInsideAirBetweenPlates().
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This function is only used by an unused function, and should be removed (dead code)
-     *
-     * @param {Vector3} point a point in the global 2D model coordinate frame
-     * @returns {boolean}
-     */
-    isBetweenPlates: function( point ) {
-      return this.isInsideAirBetweenPlates( point );
-    },
-
-    /**
-     * Gets the charge for the portion of the top plate contacting the air.  If charge is less than half of an electron
-     * charge, return 0.
-     * (design doc symbol: Q_air)
-     * REVIEW: visibility doc
+     * Gets the charge for the portion of the top plate.
+     * If charge is less than half of an electron charge, return 0.
+     * @public
      *
      * @returns {number} charge, in Coulombs
      */
-    getAirPlateCharge: function() {
-      var airPlateCharge = this.getAirCapacitance() * this.platesVoltageProperty.value;
-      if ( Math.abs( airPlateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
+    getPlateCharge: function() {
+      var plateCharge = this.getCapacitance() * this.platesVoltageProperty.value;
+      if ( Math.abs( plateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
       }
       else {
-        return airPlateCharge;
+        return plateCharge;
       }
-    },
-
-    /**
-     * Gets the charge for the portion of the top plate contacting the dielectric.
-     * (design doc symbol: Q_dielectric)
-     * REVIEW: visibility doc
-     *
-     * @returns {number} charge, in Coulombs
-     */
-    getDielectricPlateCharge: function() {
-      var dielectricCharge = this.getDielectricCapacitance() * this.platesVoltageProperty.value;
-      if ( Math.abs( dielectricCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
-        return 0;
-      }
-      else {
-        return dielectricCharge;
-      }
-    },
-
-    /**
-     * Gets the total charge on the top plate. Note that without dielectrics this is equal to getAirPlateCharge().
-     * (design doc symbol: Q_total)
-     * REVIEW: visibility doc
-     *
-     * @returns {number} charge, in Coulombs
-     */
-    getTotalPlateCharge: function() {
-      return this.getAirPlateCharge() + this.getDielectricPlateCharge();
-    },
-
-    /**
-     * Get the total capacitance of this capacitor.  Note that without dielectrics this is identical to the capacitance
-     * of air.  When dielectrics are added, be sure to include dielectric capacitance components.
-     * REVIEW: visibility doc
-     *
-     * @returns {number}
-     */
-    getTotalCapacitance: function() {
-      return this.getAirCapacitance() + this.getDielectricCapacitance();
-    },
-
-    /**
-     * Gets the excess plate charge due to plates contacting air.
-     * (design doc symbol: Q_excess_air)
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This function is not used and should be removed (dead code)
-     *
-     * @returns {number} excess charge, in Coulombs
-     */
-    getExcessAirPlateCharge: function() {
-      return this.getExcessPlateCharge( CLBConstants.EPSILON_AIR, this.getAirCapacitance(), this.platesVoltageProperty.value );
-    },
-
-    /**
-     * General solution for excess plate charge.
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This function is only used by the above (unused) function and should be removed (dead code)
-     *
-     * @param {number} epsilon_r dielectric constant, dimensionless
-     * @param {number} C capacitance due to the dielectric
-     * @param {number} V_plates plate voltage, volts
-     * @returns {number} charge, in Coulombs (C)
-     */
-    getExcessPlateCharge: function( epsilon_r, C, V_plates ) {
-      //REVIEW: if kept, this should be replaced with an assertion
-      if ( epsilon_r <= 0 ) {
-        console.error( 'Model requires epsilon_r > 0 : ' + epsilon_r );
-      }
-      return ( ( epsilon_r - CLBConstants.EPSILON_VACUUM ) / epsilon_r ) * C * V_plates; // Coulombs (1C = 1F * 1V)
     },
 
     /**
      * Gets the effective (net) field between the plates. This is uniform everywhere between the plates.
      * If the total charge on the plate is less than half that of a single electron, effective field is zero.
-     * REVIEW: visibility doc
+     * @public
      *
      * (design doc symbol: E_effective)
      *
      * @returns {number} Volts/meter
      */
     getEffectiveEField: function() {
-      var totalPlateCharge = this.getTotalPlateCharge();
-      if ( Math.abs( totalPlateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
+      var plateCharge = this.getPlateCharge();
+      if ( Math.abs( plateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
       }
       else {
@@ -439,54 +247,8 @@ define( function( require ) {
     },
 
     /**
-     * Gets the field due to the plates in the capacitor volume that contains air.
-     * (design doc symbol: E_plates_air)
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This function is only used by an unused function, and should be removed (dead code)
-     *
-     * @returns E-field, in Volts/meter
-     */
-    getPlatesAirEField: function() {
-      return this.getPlatesEField( CLBConstants.EPSILON_AIR, this.platesVoltageProperty.value, this.plateSeparationProperty.value );
-    },
-
-    /**
-     * General solution for the E-field due to some dielectric.
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This function is only used by an unused function, and should be removed (dead code)
-     *
-     * @param {number} epsilon_r dielectric constant, dimensionless
-     * @param {number} V_plates plate voltage, volts
-     * @param {number} d plate separation, meters
-     * @returns {number} E-field, in Volts/meter
-     */
-    getPlatesEField: function( epsilon_r, V_plates, d ) {
-      if ( d <= 0 ) {
-        //REVIEW: assertion seems appropriate here?
-        console.error( 'Model requires d (plate separation) > 0 : ' + d );
-      }
-      return epsilon_r * V_plates / d;
-    },
-
-    /**
-     * Gets the field due to air polarization.
-     * (design doc symbol: E_air)
-     * REVIEW: visibility doc
-     *
-     * REVIEW: Unused function, should be removed (dead code)
-     *
-     * @returns {number} E-field, in Volts/meter
-     */
-    getAirEField: function() {
-      return this.getPlatesAirEField() - this.getEffectiveEField();
-    },
-
-    /**
      * Discharge the capacitor when it is in parallel with some resistance.  This updates the voltage of the plates
      * assuming the solution
-     * REVIEW: visibility doc
      *
      * Vc = Vo*exp( -t / ( R * C ) )
      *
@@ -494,11 +256,13 @@ define( function( require ) {
      *
      * Ic = - R*C * dVc/dt
      *
+     * @public
+     *
      * @param {number} R
      * @param {number} dt
      */
     discharge: function( R, dt ) {
-      var C = this.getTotalCapacitance();
+      var C = this.getCapacitance();
 
       this.transientTime += dt; // step time since switch was closed
       var exp = Math.exp( -this.transientTime / ( R * C ) );
@@ -510,24 +274,25 @@ define( function( require ) {
     /**
      * It is possible to change the capacitance while the capacitor is discharging.  The parameters
      * for the solution
-     * REVIEW: visibility doc
      *
      * Vc = Vo*exp( -t / ( R * C ) )
      *
      * need to change.
      *
      * Suppose that the capacitor has capacitance C1 with charge Q1 and voltage V1.  The capacitance
-     * is instantaneously increased to C2.  The charge will remain Q1, but the voltage will decrease proportionally
-     * from V1 to V2, like V2 = V1 / ( C2 / C1 ).  The RC time constant also needs to change
-     * since C has been updated.  This assumes that the capacitance changes instantaneously.
+     * is instantaneously increased to C2.  The charge will remain Q1, but the voltage will decrease
+     * proportionally from V1 to V2, like V2 = V1 / ( C2 / C1 ).  The RC time constant also needs to
+     * change since C has been updated.  This assumes that the capacitance changes instantaneously.
      *
      * Therefore, the solution needs to change to
      * Vc = V2 * exp( -t / ( R * C2 ) )
+     *
+     * @public
      */
     updateDischargeParameters: function() {
 
       // in the discharge function, C is recalculated every time step, so we only need to adjust Vo.
-      var capacitanceRatio = this.getTotalCapacitance() / this.previousCapacitance;
+      var capacitanceRatio = this.getCapacitance() / this.previousCapacitance;
 
       // update the initial voltage Vo
       this.voltageAtSwitchClose = this.platesVoltageProperty.value / capacitanceRatio;
@@ -536,14 +301,11 @@ define( function( require ) {
       this.transientTime = 0;
     },
 
-    //REVIEW: doc
+    // @public
     reset: function() {
       this.plateSizeProperty.reset();
       this.plateSeparationProperty.reset();
       this.platesVoltageProperty.reset();
-      //REVIEW: Only used dielectric material is air, so this ability should be removed, see https://github.com/phetsims/capacitor-lab-basics/issues/117
-      this.dielectricMaterialProperty.reset();
-      this.dielectricOffsetProperty.reset();
     }
 
   } );

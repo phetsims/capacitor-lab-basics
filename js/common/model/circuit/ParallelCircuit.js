@@ -79,10 +79,11 @@ define( function( require ) {
      * @returns {number}
      */
     getTotalCapacitance: function() {
-      //REVIEW: return _.sumBy( this.capacitors, function( capacitor ) { return capacitor.getTotalCapacitance(); } );
+      //REVIEW: return _.sumBy( this.capacitors, function( capacitor ) { return capacitor.getCapacitance(); } );
       var sum = 0;
       this.capacitors.forEach( function( capacitor ) {
-        sum += capacitor.getTotalCapacitance();
+        assert && assert( !_.isNaN( capacitor.getCapacitance() ), 'capacitance is NaN' );
+        sum += capacitor.getCapacitance();
       } );
       return sum;
     },

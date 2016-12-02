@@ -176,7 +176,7 @@ define( function( require ) {
      * REVIEW: returns?
      */
     getMaxPlateCharge: function() {
-      return this.getCapacitorWithMaxCharge().getTotalPlateCharge();
+      return this.getCapacitorWithMaxCharge().getPlateCharge();
     },
 
     /**

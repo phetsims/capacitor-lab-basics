@@ -31,7 +31,7 @@ define( function( require ) {
 
     // Gets the portion of the plate charge due to air.
     getPlateCharge: function() {
-      return this.capacitor.getTotalPlateCharge();
+      return this.capacitor.getPlateCharge();
     },
 
     // Gets the x offset (relative to the plate origin) of the portion of the

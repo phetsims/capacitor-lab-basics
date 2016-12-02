@@ -29,7 +29,10 @@ define( function( require ) {
   function BarMeter( circuit, visibleProperty, valueFunction, tandem ) {
 
     //REVIEW: Use NumberProperty
-    this.valueProperty = new Property( valueFunction( circuit ), {
+    var meterValue = valueFunction( circuit );
+    assert && assert( !_.isNaN( meterValue ), 'meterValue is ' + meterValue );
+
+    this.valueProperty = new Property( meterValue, {
       tandem: tandem.createTandem( 'valueProperty' ),
       phetioValueType: TNumber()
     } );
