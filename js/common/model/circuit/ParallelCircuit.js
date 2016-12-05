@@ -119,19 +119,20 @@ define( function( require ) {
       this.circuitConnectionProperty,
       tandem );
 
+    // Return the subset of wires in the provided zone
     // @private
-    function getWireSubset( zone ) {
+    function selectWires( zone ) {
       return self.wires.filter( function( wire ) {
         return wire.connectionPoint === zone;
       } );
     }
 
-    this.topBatteryWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP );
-    this.bottomBatteryWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM );
-    this.topLightBulbWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP );
-    this.bottomLightBulbWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM );
-    this.topCapacitorWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP );
-    this.bottomCapacitorWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM );
+    this.topBatteryWires = selectWires( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP );
+    this.bottomBatteryWires = selectWires( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM );
+    this.topLightBulbWires = selectWires( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP );
+    this.bottomLightBulbWires = selectWires( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM );
+    this.topCapacitorWires = selectWires( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP );
+    this.bottomCapacitorWires = selectWires( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM );
 
     this.topWires = this.topBatteryWires.concat( this.topLightBulbWires ).concat( this.topCapacitorWires );
     this.bottomWires = this.bottomBatteryWires.concat( this.bottomLightBulbWires ).concat( this.bottomCapacitorWires );
