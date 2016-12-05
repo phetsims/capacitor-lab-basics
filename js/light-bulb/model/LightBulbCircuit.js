@@ -189,12 +189,12 @@ define( function( require ) {
       } );
 
       // does the shape intersect a top plate?
-      var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
+      var intersectsTopPlate = this.capacitor.intersectsTopPlate( shape );
 
       // does the shape intersect the light bulb base?
       var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
-      return intersectsBulbBase || intersectsSomeTopPlate || intersectsTopWires;
+      return intersectsBulbBase || intersectsTopPlate || intersectsTopWires;
     },
 
     /**
@@ -273,10 +273,9 @@ define( function( require ) {
         }
       } );
 
-      var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
+      var intersectsBottomPlate = this.capacitor.intersectsBottomPlate( shape );
 
-      return intersectsBottomWires || intersectsSomeBottomPlate || intersectsBulbBase;
-
+      return intersectsBottomWires || intersectsBottomPlate || intersectsBulbBase;
     },
 
     /**

@@ -335,11 +335,11 @@ define( function( require ) {
         }
       } );
 
-      var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
+      var intersectsBottomPlate = this.capacitor.intersectsBottomPlate( shape );
       var disconnected =
         this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ||
         this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT;
-      return ( intersectsBottomWires || intersectsSomeBottomPlate ) && disconnected;
+      return ( intersectsBottomWires || intersectsBottomPlate ) && disconnected;
     },
 
     //REVIEW: doc
@@ -357,11 +357,11 @@ define( function( require ) {
         }
       } );
 
-      var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
+      var intersectsTopPlate = this.capacitor.intersectsTopPlate( shape );
       var disconnected =
         this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ||
         this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT;
-      return ( intersectsTopWire || intersectsSomeTopPlate ) && disconnected;
+      return ( intersectsTopWire || intersectsTopPlate ) && disconnected;
     },
 
     /**
@@ -432,10 +432,10 @@ define( function( require ) {
           intersectsTopWire = true;
         }
       } );
-      var intersectsSomeTopPlate = this.intersectsSomeTopPlate( shape );
+      var intersectsTopPlate = this.capacitor.intersectsTopPlate( shape );
       var batteryConnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED;
 
-      return intersectsTopTerminal || intersectsTopWire || ( intersectsSomeTopPlate && batteryConnected );
+      return intersectsTopTerminal || intersectsTopWire || ( intersectsTopPlate && batteryConnected );
     },
 
     /**
@@ -458,34 +458,10 @@ define( function( require ) {
           intersectsBottomWires = true;
         }
       } );
-      var intersectsSomeBottomPlate = this.intersectsSomeBottomPlate( shape );
+      var intersectsBottomPlate = this.capacitor.intersectsBottomPlate( shape );
       var batteryConnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED;
 
-      return intersectsBottomTerminal || intersectsBottomWires || ( intersectsSomeBottomPlate && batteryConnected );
-    },
-
-    /**
-     * True if the shape intersects any capacitor's top plate.
-     * REVIEW: visibility doc
-      // TODO: with design change to one capacitor, this function is unnecessary
-     *
-     * @param {Shape} shape
-     * @returns {boolean}
-     */
-    intersectsSomeTopPlate: function( shape ) {
-      return this.capacitor.intersectsTopPlate( shape );
-    },
-
-    /**
-     * True if the shape intersects any capacitor's bottom plate.
-     * REVIEW: visibility doc
-      // TODO: with design change to one capacitor, this function is unnecessary
-     *
-     * @param {Shape} shape
-     * @returns {boolean}
-     */
-    intersectsSomeBottomPlate: function( shape ) {
-      return this.capacitor.intersectsBottomPlate( shape );
+      return intersectsBottomTerminal || intersectsBottomWires || ( intersectsBottomPlate && batteryConnected );
     }
   } );
 
