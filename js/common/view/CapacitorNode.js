@@ -25,7 +25,7 @@ define( function( require ) {
   /**
    * Constructor for a CapacitorNode.
    *
-   * @param {AbstractCircuit} circuit
+   * @param {ParallelCircuit} circuit
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
@@ -38,7 +38,7 @@ define( function( require ) {
     var self = this; // extend scope for nested callbacks
 
     // @private
-    //REVIEW: AbstractCircuit does not declare capacitor. Does this require a CapacitanceCircuit instead?
+    //REVIEW: ParallelCircuit does not declare capacitor. Does this require a CapacitanceCircuit instead?
     this.capacitor = circuit.capacitor;
     this.modelViewTransform = modelViewTransform;
     this.topPlateNode = PlateNode.createTopPlateNode( this.capacitor, modelViewTransform, circuit.maxPlateCharge );

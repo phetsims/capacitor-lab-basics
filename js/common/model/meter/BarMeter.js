@@ -20,7 +20,7 @@ define( function( require ) {
   /**
    * Constructor for a BarMeter.
    *
-   * @param {AbstractCircuit} circuit
+   * @param {ParallelCircuit} circuit
    * @param {Property.<boolean>} visibleProperty - model property that determines if the entire meter is visible.
    * @param {Function} valueFunction
    * @param {Tandem} tandem
@@ -45,7 +45,7 @@ define( function( require ) {
     this.valueFunction = valueFunction; // @private
 
     //REVIEW: Disposal not implemented.
-    //REVIEW: AbstractCircuit does not declare circuit.capacitor. What subtype dependencies does this actually have?
+    //REVIEW: ParallelCircuit does not declare circuit.capacitor. What subtype dependencies does this actually have?
     //        Update documentation to note the dependency.
     // TODO implement disposal
     Property.multilink( [

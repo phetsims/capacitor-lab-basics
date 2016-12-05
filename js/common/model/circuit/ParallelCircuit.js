@@ -29,7 +29,6 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var AbstractCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/AbstractCircuit' );
   var Battery = require( 'CAPACITOR_LAB_BASICS/common/model/Battery' );
   var BatteryToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/BatteryToSwitchWire' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -58,8 +57,6 @@ define( function( require ) {
    * @constructor
    */
   function ParallelCircuit( config, tandem ) {
-    AbstractCircuit.call( this, config, createCircuitComponents, createWires, tandem );
-
     /**
      * Signed current through circuit. Used to update arrows
      *
@@ -154,24 +151,26 @@ define( function( require ) {
       this.circuitConnectionProperty,
       tandem );
 
-    this.topBatteryWires = this.wires.filter( function( wire ) {
-      return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP;
-    } );
-    this.bottomBatteryWires = this.wires.filter( function( wire ) {
-      return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM;
-    } );
-    this.topLightBulbWires = this.wires.filter( function( wire ) {
-      return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP;
-    } );
-    this.bottomLightBulbWires = this.wires.filter( function( wire ) {
-      return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM;
-    } );
-    this.topCapacitorWires = this.wires.filter( function( wire ) {
-      return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP;
-    } );
-    this.bottomCapacitorWires = this.wires.filter( function( wire ) {
-      return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM;
-    } );
+    function getWireSubset( zone ) {
+      return self.wires.filter( function( wire ) {
+        return wire.connectionPoint === zone;
+      } );
+    }
+
+    this.topBatteryWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP );
+    this.bottomBatteryWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM );
+    this.topLightBulbWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP );
+    this.bottomLightBulbWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM );
+    this.topCapacitorWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP );
+    this.bottomCapacitorWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM );
+
+    // this.topBatteryWires = this.wires.filter( function( wire ) {return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP; } );
+    // this.bottomBatteryWires = this.wires.filter( function( wire ) {return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM; } );
+    // this.topLightBulbWires = this.wires.filter( function( wire ) {return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP; } );
+    // this.bottomLightBulbWires = this.wires.filter( function( wire ) {return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM; } );
+    // this.topCapacitorWires = this.wires.filter( function( wire ) {return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP; } );
+    // this.bottomCapacitorWires = this.wires.filter( function( wire ) {return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM; } );
+
     this.topWires = this.topBatteryWires.concat( this.topLightBulbWires ).concat( this.topCapacitorWires );
     this.bottomWires = this.bottomBatteryWires.concat( this.bottomLightBulbWires ).concat( this.bottomCapacitorWires );
 
@@ -283,7 +282,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'ParallelCircuit', ParallelCircuit );
 
-  inherit( AbstractCircuit, ParallelCircuit, {
+  inherit( Object, ParallelCircuit, {
 
     // @public
     reset: function() {
@@ -298,7 +297,7 @@ define( function( require ) {
     },
 
     /**
-     * Step function for the AbstractCircuit.  Updates current amplitude and current indicators.
+     * Updates current amplitude and current indicators.
      * @public
      *
      * @param {number} dt
