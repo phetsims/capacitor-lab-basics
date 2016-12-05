@@ -156,8 +156,7 @@ define( function( require ) {
     // Circuit must include at least one circuit component and two wires.
     assert && assert( this.wires.length >= 2, 'Valid circuits must include at least two wires' );
 
-    function updateSegments( circuitConnection ) {
-      //REVIEW: circuitConnection is always self.circuitConnectionProperty.value
+    function updateSegments() {
       // update start and end points of each wire segment
       self.wires.forEach( function( wire ) {
         //REVIEW: We are digging into Wire a lot here. wire.update() could do this?
@@ -180,12 +179,12 @@ define( function( require ) {
       }
       self.updatePlateVoltages();
 
-      updateSegments( circuitConnection );
+      updateSegments();
     } );
 
     // update all segments and the plate voltages when capacitor plate geometry changes.
     this.capacitor.plateSeparationProperty.lazyLink( function() {
-      updateSegments( self.circuitConnectionProperty.value );
+      updateSegments();
       self.updatePlateVoltages();
     } );
 
@@ -196,7 +195,7 @@ define( function( require ) {
 
     // update all segments when battery polarity changes.
     this.battery.polarityProperty.link( function( polarity ) {
-      updateSegments( self.circuitConnectionProperty.value );
+      updateSegments();
     } );
 
     // when the disconnected plate charge property changes, set the disconnected plate voltage.
