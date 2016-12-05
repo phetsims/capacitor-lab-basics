@@ -26,13 +26,11 @@ define( function( require ) {
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
   var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
   var SwitchedCapacitor = require( 'CAPACITOR_LAB_BASICS/common/model/SwitchedCapacitor' );
-  var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
@@ -47,6 +45,9 @@ define( function( require ) {
    * @constructor
    */
   function ParallelCircuit( config, tandem ) {
+
+    var self = this;
+
     /**
      * Signed current through circuit. Used to update arrows
      *
@@ -86,10 +87,6 @@ define( function( require ) {
       } )
     } );
 
-    //REVIEW: documentation - Type important here!
-    this.circuitComponents = createCircuitComponents( config, this.circuitConnectionProperty, tandem );
-    var self = this;
-
     // Utility variable for current calculation
     // @protected
     this.previousTotalCharge = 0;
@@ -99,47 +96,30 @@ define( function( require ) {
     this.maxPlateCharge = Infinity;
     this.maxEffectiveEField = Infinity;
 
-    // create basic circuit components
     // @public
     this.battery = new Battery( config.batteryLocation, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue,
       config.modelViewTransform, tandem.createTandem( 'battery' ) );
 
-    //REVIEW: documentation - Type important here!
-    //REVIEW: Why does a callback need to be passed? It would be ideal to create these in the subtype.
-    this.circuitComponents = createCircuitComponents( config, this.circuitConnectionProperty, tandem );
-
-    // capture the circuit components into individual arrays.  Note that using slice assumes order of capacitors and
-    // then lightbulbs. If new order is important, new method is necessary.
     // @public
-    //REVIEW: type documentation is important here.
-    //REVIEW: Information about order of components is needed, OR a better method that doesn't rely on that should be
-    //        used.
-    //REVIEW: number of capacitors is always 1, presumably factor this out so that circuits just have one.
-    this.capacitors = this.circuitComponents.slice( 0, 1 );
-    this.lightBulbs = this.circuitComponents.slice( 1, config.numberOfLightBulbs + 1 );
+    this.capacitor = new SwitchedCapacitor( config, this.circuitConnectionProperty,
+      tandem.createTandem( 'switchedCapacitor' ) );
 
-    //REVIEW: type documentation would be helpful
-    this.circuitSwitches = [];
-    //REVIEW: to avoid 'self' reference, could do:
-    // this.circuitSwitches = _.flatten( this.capacitors.map( function( capacitor ) {
-    //   return [ capacitor.topCircuitSwitch, capacitor.bottomCircuitSwitch ];
-    // } ) );
-    this.capacitors.forEach( function( capacitor ) {
-      self.circuitSwitches.push( capacitor.topCircuitSwitch );
-      self.circuitSwitches.push( capacitor.bottomCircuitSwitch );
-    } );
+    // Array of CircuitSwitch instances
+    // @public
+    this.circuitSwitches = [ this.capacitor.topCircuitSwitch, this.capacitor.bottomCircuitSwitch ];
 
-    //REVIEW: type documentation important here
-    //REVIEW: Why does a callback need to be passed? It would be ideal to create these in the subtype.
+    // Array of Wire instances
+    // @public
     this.wires = createWires(
       config,
       this.battery,
-      this.lightBulbs,
-      this.capacitors,
+      this.lightBulb,
+      this.capacitor,
       this.circuitSwitches,
       this.circuitConnectionProperty,
       tandem );
 
+    // @private
     function getWireSubset( zone ) {
       return self.wires.filter( function( wire ) {
         return wire.connectionPoint === zone;
@@ -175,7 +155,7 @@ define( function( require ) {
     //REVIEW: Recommend passing reason for assertion as the second parameter, e.g.:
     // assert && assert( this.wires.length >= 2, 'Valid circuits must include at least two wires' );
     // Make sure all is well with circuit components.  Circuit must include at least one circuit component and two wires.
-    assert && assert( this.circuitComponents.length >= 1 );
+    // assert && assert( this.circuitComponents.length >= 1 );
     assert && assert( this.wires.length >= 2 );
 
     function updateSegments( circuitConnection ) {
@@ -205,21 +185,15 @@ define( function( require ) {
       updateSegments( circuitConnection );
     } );
 
-    // update all segments and the plate voltages when capacitor plate geometry changes.  Lazy link because there is
-    // no guarantee that capacitors have been constructed.
-    this.capacitors.forEach( function( capacitor ) {
-      capacitor.plateSeparationProperty.lazyLink( function() {
-        updateSegments( self.circuitConnectionProperty.value );
-        self.updatePlateVoltages();
-      } );
+    // update all segments and the plate voltages when capacitor plate geometry changes.
+    this.capacitor.plateSeparationProperty.lazyLink( function() {
+      updateSegments( self.circuitConnectionProperty.value );
+      self.updatePlateVoltages();
     } );
 
-    // update the plate voltages when the capacitor plate size changes.  Lazy link because there is no guarantee that
-    // capacitors have been constructed.
-    this.capacitors.forEach( function( capacitor ) {
-      capacitor.plateSizeProperty.lazyLink( function() {
-        self.updatePlateVoltages();
-      } );
+    // update the plate voltages when the capacitor plate size changes.
+    this.capacitor.plateSizeProperty.lazyLink( function() {
+      self.updatePlateVoltages();
     } );
 
     // update all segments when battery polarity changes.
@@ -245,8 +219,6 @@ define( function( require ) {
         self.updatePlateVoltages();
       }
     } );
-
-
   }
 
   capacitorLabBasics.register( 'ParallelCircuit', ParallelCircuit );
@@ -256,9 +228,7 @@ define( function( require ) {
     // @public
     reset: function() {
       this.battery.reset();
-      this.capacitors.forEach( function( capacitor ) {
-        capacitor.reset();
-      } );
+      this.capacitor.reset();
       this.currentAmplitudeProperty.reset();
       this.circuitConnectionProperty.reset();
       this.disconnectedPlateChargeProperty.reset();
@@ -292,19 +262,14 @@ define( function( require ) {
     },
 
     /**
-     * Get the total capacitance of all parallel capacitors in this circuit using C_total = C1 + C2 + ... + Cn
+     * Get the total capacitance the circuit
+     * TODO: unnecessary now
      * REVIEW: visibility doc
      *
      * @returns {number}
      */
     getTotalCapacitance: function() {
-      //REVIEW: return _.sumBy( this.capacitors, function( capacitor ) { return capacitor.getCapacitance(); } );
-      var sum = 0;
-      this.capacitors.forEach( function( capacitor ) {
-        assert && assert( !_.isNaN( capacitor.getCapacitance() ), 'capacitance is NaN' );
-        sum += capacitor.getCapacitance();
-      } );
-      return sum;
+      return this.capacitor.getCapacitance();
     },
 
     /**
@@ -588,151 +553,86 @@ define( function( require ) {
     /**
      * True if the shape intersects any capacitor's top plate.
      * REVIEW: visibility doc
+      // TODO: with design change to one capacitor, this function is unnecessary
      *
      * @param {Shape} shape
      * @returns {boolean}
      */
     intersectsSomeTopPlate: function( shape ) {
-      //REVIEW: return _.some( this.capacitors, function( capacitor ) { return capacitor.intersectsTopPlate( shape ) } );
-      var intersects = false;
-      this.capacitors.forEach( function( capacitor ) {
-        if ( capacitor.intersectsTopPlate( shape ) ) {
-          intersects = true;
-          //return; //break
-        }
-      } );
-      return intersects;
+      return this.capacitor.intersectsTopPlate( shape );
     },
 
     /**
      * True if the shape intersects any capacitor's bottom plate.
      * REVIEW: visibility doc
+      // TODO: with design change to one capacitor, this function is unnecessary
      *
      * @param {Shape} shape
      * @returns {boolean}
      */
     intersectsSomeBottomPlate: function( shape ) {
-      //REVIEW: return _.some( this.capacitors, function( capacitor ) { return capacitor.intersectsBottomPlate( shape ) } );
-      var intersects = false;
-      this.capacitors.forEach( function( capacitor ) {
-        if ( capacitor.intersectsBottomPlate( shape ) ) {
-          intersects = true;
-          //return; //break
-        }
-      } );
-      return intersects;
+      return this.capacitor.intersectsBottomPlate( shape );
     }
   } );
 
   /**
-   * Function which creates circuit components for the parallel circuit.  The function is constructed so that
-   * capacitors are before light bulbs in left to right order.  If order of circuit components matters, this is the
-   * function to change.
-   * @private
-   *
-   * @param {CircuitConfig} config - object defining the circuit
-   * @param {Property.<string>} circuitConnectionProperty - REVIEW: Property.<CircuitConnectionEnum> recommended
-   * @param {Tandem} tandem
-   * @returns {Array} circuitComponents REVIEW: Array of what?
-   */
-  var createCircuitComponents = function( config, circuitConnectionProperty, tandem ) {
-
-    var x = config.batteryLocation.x + config.capacitorXSpacing;
-    var y = config.batteryLocation.y + config.capacitorYSpacing;
-    var z = config.batteryLocation.z;
-    var location = new Vector3( x, y, z );
-
-    var circuitComponents = [
-      new SwitchedCapacitor( config, circuitConnectionProperty, tandem.createTandem( 'switchedCapacitor' ) )
-    ];
-
-    // Create a light bulb if this is the second screen.
-    for ( var i = 0; i < config.numberOfLightBulbs; i++ ) {
-      //REVIEW: LIGHT_BULB_X_SPACING is always 0.023, presumably hard-code here or have a separate constant somewhere
-      x += config.lightBulbXSpacing;
-      location = new Vector3( x, y, z );
-      var lightBulb = new LightBulb( location, config.lightBulbResistance, config.modelViewTransform );
-      circuitComponents.push( lightBulb );
-    }
-
-    return circuitComponents;
-  };
-
-  /**
-   * Function that creates all wires of the circuit.  Function assumes that capacitors are to the left of the
-   * lightbulb.
+   * Function that creates all wires of the circuit.  Assumes the capacitor is to the left of the lightbulb.
    * REVIEW: Note the above constraint in the function where they are created.
    * REVIEW: visibility doc
    *
    * @param {CircuitConfig} config
    * @param {Battery} battery
-   * @param {LightBulb[]} lightBulbs
-   * @param {Capacitor[]} capacitors
+   * @param {LightBulb | null} lightBulb
+   * @param {Capacitor} capacitor
    * @param {CircuitSwitch[]} circuitSwitches
    * @param {Property.<string>} circuitConnectionProperty REVIEW: Property.<CircuitConnectionEnum> recommended
    * @returns {Array} REVIEW: Array of what?
    */
-  var createWires = function( config, battery, lightBulbs, capacitors,
+  var createWires = function( config, battery, lightBulb, capacitor,
     circuitSwitches, circuitConnectionProperty, tandem ) {
-
-    // wire battery to first capacitor, there must be at least one capacitor in the circuit
-    assert && assert( capacitors.length > 0, 'There must be at least one capacitor in the circuit' );
 
     var wires = [];
 
     wires.push( BatteryToSwitchWire.createBatteryToSwitchWireTop(
       config,
       battery,
-      capacitors[ 0 ].topCircuitSwitch,
+      capacitor.topCircuitSwitch,
       tandem.createTandem( 'batteryToSwitchWireTop' ) ) );
 
     wires.push( BatteryToSwitchWire.createBatteryToSwitchWireBottom(
       config,
       battery,
-      capacitors[ 0 ].bottomCircuitSwitch,
+      capacitor.bottomCircuitSwitch,
       tandem.createTandem( 'batteryToSwitchWireBottom' ) ) );
 
-    // wire capacitors to the switches
-    capacitors.forEach( function( capacitor ) {
-      wires.push( CapacitorToSwitchWire.createCapacitorToSwitchWireTop(
-        config,
-        capacitor,
-        capacitor.topCircuitSwitch,
-        tandem
-      ) );
-      wires.push( CapacitorToSwitchWire.createCapacitorToSwitchWireBottom(
-        config,
-        capacitor,
-        capacitor.bottomCircuitSwitch,
-        tandem
-      ) );
-    } );
+    // Wire capacitor to the switches
+    wires.push( CapacitorToSwitchWire.createCapacitorToSwitchWireTop(
+      config,
+      capacitor,
+      capacitor.topCircuitSwitch,
+      tandem
+    ) );
+    wires.push( CapacitorToSwitchWire.createCapacitorToSwitchWireBottom(
+      config,
+      capacitor,
+      capacitor.bottomCircuitSwitch,
+      tandem
+    ) );
 
-    // if there are any light bulbs in the circuit, add them here
-    if ( lightBulbs.length > 0 ) {
-      // the first light bulb must be connected to the last capacitor switch
+    // If there is a light bulb in the circuit, wire it up
+    if ( lightBulb ) {
       wires.push( LightBulbToSwitchWire.createLightBulbToSwitchWireTop(
         config,
-        lightBulbs[ 0 ],
-        capacitors[ capacitors.length - 1 ].topCircuitSwitch,
+        lightBulb,
+        capacitor.topCircuitSwitch,
         tandem
       ) );
       wires.push( LightBulbToSwitchWire.createLightBulbToSwitchWireBottom(
         config,
-        lightBulbs[ 0 ],
-        capacitors[ capacitors.length - 1 ].bottomCircuitSwitch,
+        lightBulb,
+        capacitor.bottomCircuitSwitch,
         tandem
       ) );
-
-      //REVIEW: I usually wrap loops like this with `if( assert ) { ... }`, so the loop is guaranteed to not make it to
-      //        production
-      // now connect the rest of the light bulbs in the circuit
-      for ( var i = 1; i < lightBulbs.length; i++ ) {
-        // NOTE: This is not needed in the Basics version of the sim, but is left here to jump start
-        // multiple light bulbs if needed by Capacitor Lab.
-        //REVIEW: This is asserting that this string is truthy, which is true here. assert( false, ... ) to fail out.
-        assert && assert( 'There should only be one light bulb in Capacitor Lab: Basics' );
-      }
     }
 
     return wires;

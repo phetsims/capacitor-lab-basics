@@ -26,13 +26,15 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
-  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
+  var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   // During exponential voltage drop, circuit voltage crosses this threshold,
-  // below which we no longer call discharge() for efficiency.
+  // below which we no longer call discharge() so I and V don't tail off forever.
   var MIN_VOLTAGE = 1e-3; // Volts. Minimum readable value on voltmeter.
 
   /**
@@ -44,17 +46,18 @@ define( function( require ) {
    */
   function LightBulbCircuit( config, tandem ) {
 
-    assert && assert( config.numberOfLightBulbs === 1,
-      'LightBulbCircuit should have 1 LightBulb in CL:B. config.numberOfLightBulbs: ' + config.numberOfLightBulbs );
-
-    ParallelCircuit.call( this, config, tandem );
     var self = this;
 
+    var bulbLocation = new Vector3(
+      config.batteryLocation.x + config.capacitorXSpacing + config.lightBulbXSpacing,
+      config.batteryLocation.y + config.capacitorYSpacing,
+      config.batteryLocation.z
+    );
+
     // @public
-    //REVIEW: Probably move this up to the common circuit, since every circuit has exactly one.
-    this.capacitor = this.capacitors[ 0 ];
-    //REVIEW: Probably can remove code that handles multiple light-bulbs?
-    this.lightBulb = this.lightBulbs[ 0 ];
+    this.lightBulb = new LightBulb( bulbLocation, config.lightBulbResistance, config.modelViewTransform );
+
+    ParallelCircuit.call( this, config, tandem );
 
     // Make sure that the charges are correct when the battery is reconnected to the circuit.
     this.circuitConnectionProperty.link( function( circuitConnection ) {

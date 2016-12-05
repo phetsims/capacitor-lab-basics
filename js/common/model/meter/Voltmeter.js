@@ -164,32 +164,23 @@ define( function( require ) {
       }
     };
 
-    // search through capacitors, update value if plate voltage changes
-    circuit.capacitors.forEach( function( capacitor ) {
-      capacitor.platesVoltageProperty.link( updateValue );
-    } );
+    // Update voltage reading if plate voltage changes
+    circuit.capacitor.platesVoltageProperty.link( updateValue );
 
-    // update the value when the probes move
+    // Update reading when the probes move
     Property.multilink( [self.negativeProbeLocationProperty, self.positiveProbeLocationProperty ], updateValue );
 
-    // update all segments and the plate voltages when capacitor plate geometry changes.  Lazy link because there is
-    // no guarantee that capacitors have been constructed.
-    circuit.capacitors.forEach( function( capacitor ) {
-      capacitor.plateSeparationProperty.lazyLink( updateValue );
-    } );
+    // Update all segments and the plate voltages when capacitor plate geometry changes. Capacitor may not exist yet.
+    circuit.capacitor.plateSeparationProperty.lazyLink( updateValue );
 
-    // update the plate voltages when the capacitor plate size changes.  Lazy link because there is no guarantee that
-    // capacators have been constructed.
-    circuit.capacitors.forEach( function( capacitor ) {
-      capacitor.plateSizeProperty.lazyLink( updateValue );
-    } );
+    // Update the plate voltage when the capacitor plate size changes. Capacitor may not exist yet.
+    circuit.capacitor.plateSizeProperty.lazyLink( updateValue );
 
     // update the value when the circuit connection property changes
     circuit.circuitConnectionProperty.link( updateValue );
 
     // Update when battery voltage changes
     circuit.battery.voltageProperty.link( updateValue );
-
   }
 
   capacitorLabBasics.register( 'Voltmeter', Voltmeter );

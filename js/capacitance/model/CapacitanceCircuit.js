@@ -33,13 +33,10 @@ define( function( require ) {
    * @constructor
    */
   function CapacitanceCircuit( config, tandem ) {
-    assert && assert( config.numberOfLightBulbs === 0,
-      'LightBulbCircuit should have 0 LightBulbs in CL:B. config.numberOfLightBulbs: ' + config.numberOfLightBulbs );
+
+    this.lightBulb = null; // There is no light bulb in the first screen
 
     ParallelCircuit.call( this, config, tandem );
-
-    //REVIEW: Probably move this up to the common circuit, since every circuit has exactly one.
-    this.capacitor = this.capacitors[ 0 ]; // @public
   }
 
   capacitorLabBasics.register( 'CapacitanceCircuit', CapacitanceCircuit );

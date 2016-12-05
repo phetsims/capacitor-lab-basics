@@ -30,6 +30,8 @@ define( function( require ) {
    */
   function CapacitanceModel( switchUsedProperty, modelViewTransform, tandem ) {
 
+    var self = this;
+
     CLBModel.call( this, tandem );
 
     //REVIEW: All screens use this property, so we shouldn't define it here (do that in CLBModel)
@@ -42,8 +44,6 @@ define( function( require ) {
     this.tandem = tandem; // @private
 
     // Configuration info for the circuit.
-    // Default number of capacitors is 1, default number of lightbulbs is 0.
-    //REVIEW: Not just the default, but always what it has?
     var circuitConfig = new CircuitConfig( {
       circuitConnections: [ CircuitConnectionEnum.BATTERY_CONNECTED, CircuitConnectionEnum.OPEN_CIRCUIT ]
     } );
@@ -53,13 +53,10 @@ define( function( require ) {
     //REVIEW: This is the same for both models, pull it down into CLBModel?
     this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
 
-    // Allow null instead of tandem if this component is part of a temporary circuit used for calculations
-    var circuit = this.circuit;
-
     //REVIEW: visibility doc (public?)
     this.capacitanceMeter = new BarMeter( this.circuit, this.capacitanceMeterVisibleProperty,
       function() {
-        return circuit.getTotalCapacitance();
+        return self.circuit.getTotalCapacitance();
       },
       tandem.createTandem( 'capacitanceMeter' ) );
 
