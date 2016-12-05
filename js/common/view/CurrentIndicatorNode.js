@@ -62,7 +62,8 @@ define( function( require ) {
       headHeight: ARROW_HEAD_HEIGHT,
       headWidth: ARROW_HEAD_WIDTH,
       tailWidth: ARROW_TAIL_WIDTH,
-      fill: ARROW_COLOR
+      fill: ARROW_COLOR,
+      tandem: tandem.createTandem( 'arrowNode' )
     } );
 
     this.addChild( arrowNode );

@@ -60,7 +60,8 @@ define( function( require ) {
     this.modelViewTransform = modelViewTransform;
 
     // arrow
-    var arrowNode = new DragHandleArrowNode( ARROW_TIP_LOCATION, ARROW_TAIL_LOCATION );
+    var arrowNode = new DragHandleArrowNode( ARROW_TIP_LOCATION, ARROW_TAIL_LOCATION,
+      tandem.createTandem( 'arrowNode' ) );
     this.addInputListener( new PlateAreaDragHandler( arrowNode, capacitor, modelViewTransform, valueRange,
       tandem.createTandem( 'inputListener' ) ) );
 
@@ -144,4 +145,3 @@ define( function( require ) {
     }
   } );
 } );
-

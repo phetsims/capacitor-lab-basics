@@ -84,7 +84,8 @@ define( function( require ) {
       fill: barColor,
       headWidth: this.barNode.barSize.height + 5,
       tailWidth: 12,
-      stroke: 'black'
+      stroke: 'black',
+      tandem: tandem.createTandem( 'arrowNode' )
     } );
 
     Node.call( this );

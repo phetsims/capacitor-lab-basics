@@ -28,7 +28,7 @@ define( function( require ) {
    * @param {Vector2} pEnd
    * @constructor
    */
-  function DragHandleArrowNode( pStart, pEnd ) {
+  function DragHandleArrowNode( pStart, pEnd, tandem ) {
     var self = this; // extend scope for input listener callbacks
 
     // calculate the parameter for head and tail width and height.
@@ -41,7 +41,8 @@ define( function( require ) {
       doubleHead: true,
       headHeight: length,
       headWidth: length / 2,
-      tailWidth: length / 5
+      tailWidth: length / 5,
+      tandem: tandem.createTandem( 'arrowNode' )
     } );
 
     this.normalColor = NORMAL_COLOR;
