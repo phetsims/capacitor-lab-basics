@@ -108,7 +108,7 @@ define( function( require ) {
     // @public
     this.circuitSwitches = [ this.capacitor.topCircuitSwitch, this.capacitor.bottomCircuitSwitch ];
 
-    // Array of Wire instances
+    // Create array of Wire instances. Assumes the capacitor is to the left of the lightbulb.
     // @public
     this.wires = createWires(
       config,
@@ -156,21 +156,14 @@ define( function( require ) {
     // Circuit must include at least one circuit component and two wires.
     assert && assert( this.wires.length >= 2, 'Valid circuits must include at least two wires' );
 
+    // Update start and end points of each wire segment
     function updateSegments() {
-      // update start and end points of each wire segment
       self.wires.forEach( function( wire ) {
-        //REVIEW: We are digging into Wire a lot here. wire.update() could do this?
-        wire.segments.forEach( function( segment ) {
-          // not all segments need to be updated
-          //REVIEW: Any advantage of this over having a no-op update() on WireSegment itself?
-          segment.update && segment.update();
-        } );
+        wire.update();
       } );
     }
 
-    // Whenever a circuit property changes, all segments are updated. This works, but is excessive.  If there are
-    // performance issues, these links would be a great place to start.
-    // udpate all segments, disconnected plate charge, and plate voltages when the connection property changes
+    // Update all segments, disconnected plate charge, and plate voltages when the connection property changes
     this.circuitConnectionProperty.lazyLink( function( circuitConnection ) {
       // When disconnecting the battery, set the disconnected plate charge to whatever the total plate charge was with
       // the battery connected.  Need to do this before changing the plate voltages property.
@@ -182,7 +175,7 @@ define( function( require ) {
       updateSegments();
     } );
 
-    // update all segments and the plate voltages when capacitor plate geometry changes.
+    // Update all segments and the plate voltages when capacitor plate geometry changes.
     this.capacitor.plateSeparationProperty.lazyLink( function() {
       updateSegments();
       self.updatePlateVoltages();
@@ -497,48 +490,43 @@ define( function( require ) {
   } );
 
   /**
-   * Function that creates all wires of the circuit.  Assumes the capacitor is to the left of the lightbulb.
-   * REVIEW: Note the above constraint in the function where they are created.
-   * REVIEW: visibility doc
+   * Function that creates all wires of the circuit.
+   * Assumes the capacitor is to the left of the lightbulb.
+   * @private
    *
    * @param {CircuitConfig} config
    * @param {Battery} battery
    * @param {LightBulb | null} lightBulb
    * @param {Capacitor} capacitor
    * @param {CircuitSwitch[]} circuitSwitches
-   * @param {Property.<string>} circuitConnectionProperty REVIEW: Property.<CircuitConnectionEnum> recommended
-   * @returns {Array} REVIEW: Array of what?
+   * @param {Property.<CircuitConnectionEnum>} circuitConnectionProperty
+   * @returns {Wire[]}
    */
   var createWires = function( config, battery, lightBulb, capacitor,
     circuitSwitches, circuitConnectionProperty, tandem ) {
 
-    var wires = [];
-
-    wires.push( BatteryToSwitchWire.createBatteryToSwitchWireTop(
-      config,
-      battery,
-      capacitor.topCircuitSwitch,
-      tandem.createTandem( 'batteryToSwitchWireTop' ) ) );
-
-    wires.push( BatteryToSwitchWire.createBatteryToSwitchWireBottom(
-      config,
-      battery,
-      capacitor.bottomCircuitSwitch,
-      tandem.createTandem( 'batteryToSwitchWireBottom' ) ) );
-
-    // Wire capacitor to the switches
-    wires.push( CapacitorToSwitchWire.createCapacitorToSwitchWireTop(
-      config,
-      capacitor,
-      capacitor.topCircuitSwitch,
-      tandem
-    ) );
-    wires.push( CapacitorToSwitchWire.createCapacitorToSwitchWireBottom(
-      config,
-      capacitor,
-      capacitor.bottomCircuitSwitch,
-      tandem
-    ) );
+    var wires = [
+      BatteryToSwitchWire.createBatteryToSwitchWireTop(
+        config,
+        battery,
+        capacitor.topCircuitSwitch,
+        tandem.createTandem( 'batteryToSwitchWireTop' ) ),
+      BatteryToSwitchWire.createBatteryToSwitchWireBottom(
+        config,
+        battery,
+        capacitor.bottomCircuitSwitch,
+        tandem.createTandem( 'batteryToSwitchWireBottom' ) ),
+      CapacitorToSwitchWire.createCapacitorToSwitchWireTop(
+        config,
+        capacitor,
+        capacitor.topCircuitSwitch,
+        tandem ),
+      CapacitorToSwitchWire.createCapacitorToSwitchWireBottom(
+        config,
+        capacitor,
+        capacitor.bottomCircuitSwitch,
+        tandem )
+    ];
 
     // If there is a light bulb in the circuit, wire it up
     if ( lightBulb ) {

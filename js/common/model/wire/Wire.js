@@ -104,6 +104,14 @@ define( function( require ) {
       return this.shapeCreator.getEndOffset();
     },
 
+    update: function() {
+      this.segments.forEach( function( segment ) {
+        // not all segments need to be updated
+        //REVIEW: Any advantage of this over having a no-op update() on WireSegment itself?
+        segment.update && segment.update();
+      } );
+    },
+
     //REVIEW: doc
     //REVIEW: Why is this not being called?
     reset: function() {
