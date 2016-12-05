@@ -300,21 +300,19 @@ define( function( require ) {
       return ( vPlus === null || vMinus === null ) ? null : vPlus - vMinus;
     },
 
-    //REVIEW: doc
+    /**
+     * Check if shape intersects any wire in the array, stopping to return if true.
+     * @public
+     *
+     * @param  {Shape} shape
+     * @param  {Wire[]} wires
+     *
+     * @return {boolean}
+     */
     shapeTouchesWireGroup: function( shape, wires ) {
-      //REVIEW:
-      // return _.some( wires, function( wire ) {
-      //   return wire.shapeProperty.value.intersectsBounds( shape.bounds );
-      // } );
-      var intersectsWires = false;
-
-      wires.forEach( function( wire ) {
-        if ( wire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
-          intersectsWires = true;
-        }
+      return _.some( wires, function( wire ) {
+        return wire.shapeProperty.value.intersectsBounds( shape.bounds );
       } );
-
-      return intersectsWires;
     },
 
     //REVIEW: doc
