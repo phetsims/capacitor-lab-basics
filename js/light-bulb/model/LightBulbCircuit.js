@@ -141,7 +141,7 @@ define( function( require ) {
     /**
      * Gets the voltage at a shape, with respect to ground. Returns null if the
      * Shape is not connected to the circuit.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Shape} shape
      * @returns {number}

@@ -263,8 +263,7 @@ define( function( require ) {
 
     /**
      * Get the total capacitance the circuit
-     * TODO: unnecessary now
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {number}
      */
@@ -284,7 +283,7 @@ define( function( require ) {
 
     /**
      * Gets the energy stored in the circuit. (design doc symbol: U)
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {number}
      */
@@ -292,81 +291,6 @@ define( function( require ) {
       var C = this.getTotalCapacitance(); // F
       var V = this.getCapacitorPlateVoltage(); // V
       return 0.5 * C * V * V; // Joules (J)
-    },
-
-    /**
-     * Gets the voltage at a shape, with respect to ground. Returns null if the
-     * Shape is not connected to the circuit.
-     * REVIEW: visibility doc
-     *
-     * @param {Shape} shape - object whose bounds are checked for contact/intersection with the thing being measured
-     * @returns {number} voltage
-     * @override
-     */
-    getVoltageAt: function( shape ) {
-      var voltage = null;
-
-      //REVIEW: this implementation appears to be specific to the CapacitanceCircuit. Should it live there?
-
-      // Closed circuit (battery to capacitor)
-      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
-        if ( this.connectedToBatteryTop( shape ) ) {
-          voltage = this.getTotalVoltage();
-        }
-        else if ( this.connectedToBatteryBottom( shape ) ) {
-          voltage = 0;
-        }
-        else if (
-          this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
-          this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ) {
-          voltage = 0;
-        }
-      }
-
-      // Open Circuit
-      else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
-        if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
-          voltage = this.getCapacitorPlateVoltage();
-        }
-        else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
-          voltage = 0;
-        }
-        else if ( this.connectedToBatteryTop( shape ) ) {
-          voltage = this.getTotalVoltage();
-        }
-        else if ( this.connectedToBatteryBottom( shape ) ) {
-          voltage = 0;
-        }
-        else if (
-          this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
-          this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ) {
-          voltage = 0;
-        }
-      }
-
-      // On switch drag, provide a voltage readout if probes are connected to the battery
-      else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT ) {
-        if ( this.connectedToBatteryTop( shape ) ) {
-          voltage = this.getTotalVoltage();
-        }
-        else if ( this.connectedToBatteryBottom( shape ) ) {
-          voltage = 0;
-        }
-        else if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
-          voltage = this.getCapacitorPlateVoltage();
-        }
-        else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
-          voltage = 0;
-        }
-      }
-
-      // Error case
-      else {
-        assert && assert( false,
-          'Unsupported circuit connection property value: ' + this.circuitConnectionProperty.get() );
-      }
-
-      return voltage;
     },
 
     /**

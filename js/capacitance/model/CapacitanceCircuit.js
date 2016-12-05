@@ -64,6 +64,79 @@ define( function( require ) {
     },
 
     /**
+     * Gets the voltage at a shape, with respect to ground. Returns null if the
+     * Shape is not connected to the circuit.
+     * @public
+     *
+     * @param {Shape} shape - object whose bounds are checked for contact/intersection with the thing being measured
+     * @returns {number} voltage
+     * @override
+     */
+    getVoltageAt: function( shape ) {
+      var voltage = null;
+
+      // Closed circuit (battery to capacitor)
+      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        if ( this.connectedToBatteryTop( shape ) ) {
+          voltage = this.getTotalVoltage();
+        }
+        else if ( this.connectedToBatteryBottom( shape ) ) {
+          voltage = 0;
+        }
+        else if (
+          this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
+          this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ) {
+          voltage = 0;
+        }
+      }
+
+      // Open Circuit
+      else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
+          voltage = this.getCapacitorPlateVoltage();
+        }
+        else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
+          voltage = 0;
+        }
+        else if ( this.connectedToBatteryTop( shape ) ) {
+          voltage = this.getTotalVoltage();
+        }
+        else if ( this.connectedToBatteryBottom( shape ) ) {
+          voltage = 0;
+        }
+        else if (
+          this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
+          this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ) {
+          voltage = 0;
+        }
+      }
+
+      // On switch drag, provide a voltage readout if probes are connected to the battery
+      else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.IN_TRANSIT ) {
+        if ( this.connectedToBatteryTop( shape ) ) {
+          voltage = this.getTotalVoltage();
+        }
+        else if ( this.connectedToBatteryBottom( shape ) ) {
+          voltage = 0;
+        }
+        else if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
+          voltage = this.getCapacitorPlateVoltage();
+        }
+        else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
+          voltage = 0;
+        }
+      }
+
+      // Error case
+      else {
+        assert && assert( false,
+          'Unsupported circuit connection property value: ' + this.circuitConnectionProperty.get() );
+      }
+
+      return voltage;
+    },
+
+    /**
      * Get the voltage across the capacitor plates.
      * REVIEW: visibility doc
      *
