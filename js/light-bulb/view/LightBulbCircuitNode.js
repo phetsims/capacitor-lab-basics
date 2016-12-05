@@ -40,8 +40,10 @@ define( function( require ) {
     // , model.modelViewTransform );
 
     // @private current indicators
-    this.bulbTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, 0 );
-    this.bulbBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, Math.PI );
+    this.bulbTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, 0,
+    tandem.createTandem( 'bulbTopCurrentIndicatorNode' ) );
+    this.bulbBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, Math.PI,
+    tandem.createTandem( 'bulbBottomCurrentIndicatorNode' ) );
 
     // rendering order
     this.addChild( lightBulbNode );

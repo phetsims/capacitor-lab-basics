@@ -52,7 +52,7 @@ define( function( require ) {
    * @param {number} positiveOrientation
    * @constructor
    */
-  function CurrentIndicatorNode( currentAmplitudeProperty, positiveOrientation ) {
+  function CurrentIndicatorNode( currentAmplitudeProperty, positiveOrientation, tandem ) {
 
     Node.call( this, { opacity: 0 } );
     var self = this;
