@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Model of a circuit with a battery (B) and N circuit components (Z1...Zn) in parallel.  Switches exist between
@@ -9,20 +9,10 @@
  * REVIEW: Lots of similar code structures in this file, ripe for simplification. Separate out "is it connected / does
  *         it overlap with any wires" code.
  *         See https://github.com/phetsims/capacitor-lab-basics/issues/174
- * REVIEW: Since this codebase won't support extensions, presumably these should be combined, see
- *         https://github.com/phetsims/capacitor-lab-basics/issues/117
- *
- *  |-----|------|------|
- *  |      /      /      /
- *  |     |      |      |
- *  B     Z1     Z2    Z3
- *  |     |      |      |
- *  |     |      |      |
- *   \     \      \      \
- *  |-----|------|------|
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 
 define( function( require ) {
@@ -97,7 +87,6 @@ define( function( require ) {
     } );
 
     //REVIEW: documentation - Type important here!
-    //REVIEW: Why does a callback need to be passed? It would be ideal to create these in the subtype.
     this.circuitComponents = createCircuitComponents( config, this.circuitConnectionProperty, tandem );
     var self = this;
 
@@ -164,13 +153,6 @@ define( function( require ) {
     this.topCapacitorWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP );
     this.bottomCapacitorWires = getWireSubset( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM );
 
-    // this.topBatteryWires = this.wires.filter( function( wire ) {return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP; } );
-    // this.bottomBatteryWires = this.wires.filter( function( wire ) {return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM; } );
-    // this.topLightBulbWires = this.wires.filter( function( wire ) {return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP; } );
-    // this.bottomLightBulbWires = this.wires.filter( function( wire ) {return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM; } );
-    // this.topCapacitorWires = this.wires.filter( function( wire ) {return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP; } );
-    // this.bottomCapacitorWires = this.wires.filter( function( wire ) {return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM; } );
-
     this.topWires = this.topBatteryWires.concat( this.topLightBulbWires ).concat( this.topCapacitorWires );
     this.bottomWires = this.bottomBatteryWires.concat( this.bottomLightBulbWires ).concat( this.bottomCapacitorWires );
 
@@ -189,19 +171,6 @@ define( function( require ) {
         self.bottomSwitchWires.push( wire );
       }
     } );
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     //REVIEW: Recommend passing reason for assertion as the second parameter, e.g.:
     // assert && assert( this.wires.length >= 2, 'Valid circuits must include at least two wires' );
@@ -659,7 +628,7 @@ define( function( require ) {
    * Function which creates circuit components for the parallel circuit.  The function is constructed so that
    * capacitors are before light bulbs in left to right order.  If order of circuit components matters, this is the
    * function to change.
-   * REVIEW: visibility doc
+   * @private
    *
    * @param {CircuitConfig} config - object defining the circuit
    * @param {Property.<string>} circuitConnectionProperty - REVIEW: Property.<CircuitConnectionEnum> recommended
@@ -673,19 +642,12 @@ define( function( require ) {
     var z = config.batteryLocation.z;
     var location = new Vector3( x, y, z );
 
-    //REVIEW: initialize with first element, since it is unused (instead of init, declare, push):
-    // var circuitComponents = [ new SwitchedCapacitor( ... ) ];
-    var circuitComponents = [];
+    var circuitComponents = [
+      new SwitchedCapacitor( config, circuitConnectionProperty, tandem.createTandem( 'switchedCapacitor' ) )
+    ];
 
-    var capacitor = new SwitchedCapacitor( config, circuitConnectionProperty,
-      tandem.createTandem( 'switchedCapacitor' ) );
-
-    circuitComponents.push( capacitor );
-
-    // create the light bulbs
-    //REVIEW: better to inline var in loop, e.g.  `for( var i ... )`
-    var i;
-    for ( i = 0; i < config.numberOfLightBulbs; i++ ) {
+    // Create a light bulb if this is the second screen.
+    for ( var i = 0; i < config.numberOfLightBulbs; i++ ) {
       //REVIEW: LIGHT_BULB_X_SPACING is always 0.023, presumably hard-code here or have a separate constant somewhere
       x += config.lightBulbXSpacing;
       location = new Vector3( x, y, z );
