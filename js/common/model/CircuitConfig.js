@@ -29,7 +29,6 @@ define( function( require ) {
   var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
   var WIRE_THICKNESS = CLBConstants.WIRE_THICKNESS;
   var LIGHT_BULB_RESISTANCE = 5e12; // Ohms. Artificially large to stretch discharge time
-  var NUMBER_OF_LIGHTBULBS = 0;
 
   // constructor
   function CircuitConfig( options ) {
