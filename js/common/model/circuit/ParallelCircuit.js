@@ -105,14 +105,45 @@ define( function( require ) {
 
     // Create array of Wire instances. Assumes the capacitor is to the left of the lightbulb.
     // @public
-    this.wires = createWires(
-      config,
-      this.battery,
-      this.lightBulb,
-      this.capacitor,
-      this.circuitSwitches,
-      this.circuitConnectionProperty,
-      tandem );
+    this.wires = [
+      BatteryToSwitchWire.createBatteryToSwitchWireTop(
+        config,
+        this.battery,
+        this.capacitor.topCircuitSwitch,
+        tandem.createTandem( 'batteryToSwitchWireTop' ) ),
+      BatteryToSwitchWire.createBatteryToSwitchWireBottom(
+        config,
+        this.battery,
+        this.capacitor.bottomCircuitSwitch,
+        tandem.createTandem( 'batteryToSwitchWireBottom' ) ),
+      CapacitorToSwitchWire.createCapacitorToSwitchWireTop(
+        config,
+        this.capacitor,
+        this.capacitor.topCircuitSwitch,
+        tandem ),
+      CapacitorToSwitchWire.createCapacitorToSwitchWireBottom(
+        config,
+        this.capacitor,
+        this.capacitor.bottomCircuitSwitch,
+        tandem )
+    ];
+
+    // If there is a light bulb in the circuit, wire it up
+    if ( this.lightBulb ) {
+      this.wires.push( LightBulbToSwitchWire.createLightBulbToSwitchWireTop(
+        config,
+        this.lightBulb,
+        this.capacitor.topCircuitSwitch,
+        tandem
+      ) );
+      this.wires.push( LightBulbToSwitchWire.createLightBulbToSwitchWireBottom(
+        config,
+        this.lightBulb,
+        this.capacitor.bottomCircuitSwitch,
+        tandem
+      ) );
+    }
+
 
     // Return the subset of wires in the provided zone
     // @private
@@ -427,64 +458,6 @@ define( function( require ) {
     }
 
   } );
-
-  /**
-   * Function that creates all wires of the circuit.
-   * Assumes the capacitor is to the left of the lightbulb.
-   * @private
-   *
-   * @param {CircuitConfig} config
-   * @param {Battery} battery
-   * @param {LightBulb | null} lightBulb
-   * @param {Capacitor} capacitor
-   * @param {CircuitSwitch[]} circuitSwitches
-   * @param {Property.<CircuitConnectionEnum>} circuitConnectionProperty
-   * @returns {Wire[]}
-   */
-  var createWires = function( config, battery, lightBulb, capacitor,
-    circuitSwitches, circuitConnectionProperty, tandem ) {
-
-    var wires = [
-      BatteryToSwitchWire.createBatteryToSwitchWireTop(
-        config,
-        battery,
-        capacitor.topCircuitSwitch,
-        tandem.createTandem( 'batteryToSwitchWireTop' ) ),
-      BatteryToSwitchWire.createBatteryToSwitchWireBottom(
-        config,
-        battery,
-        capacitor.bottomCircuitSwitch,
-        tandem.createTandem( 'batteryToSwitchWireBottom' ) ),
-      CapacitorToSwitchWire.createCapacitorToSwitchWireTop(
-        config,
-        capacitor,
-        capacitor.topCircuitSwitch,
-        tandem ),
-      CapacitorToSwitchWire.createCapacitorToSwitchWireBottom(
-        config,
-        capacitor,
-        capacitor.bottomCircuitSwitch,
-        tandem )
-    ];
-
-    // If there is a light bulb in the circuit, wire it up
-    if ( lightBulb ) {
-      wires.push( LightBulbToSwitchWire.createLightBulbToSwitchWireTop(
-        config,
-        lightBulb,
-        capacitor.topCircuitSwitch,
-        tandem
-      ) );
-      wires.push( LightBulbToSwitchWire.createLightBulbToSwitchWireBottom(
-        config,
-        lightBulb,
-        capacitor.bottomCircuitSwitch,
-        tandem
-      ) );
-    }
-
-    return wires;
-  };
 
   return ParallelCircuit;
 } );
