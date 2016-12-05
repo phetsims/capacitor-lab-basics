@@ -84,8 +84,7 @@ define( function( require ) {
       plateSeparation: PLATE_SEPARATION,
       wireExtent: WIRE_EXTENT,
       //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
-      wireThickness: WIRE_THICKNESS,
-      numberOfLightBulbs: 1
+      wireThickness: WIRE_THICKNESS
     } );
 
     this.circuit = new LightBulbCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
@@ -191,8 +190,7 @@ define( function( require ) {
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
         //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
         wireThickness: CLBConstants.WIRE_THICKNESS,
-        wireExtent: WIRE_EXTENT,
-        numberOfLightBulbs: 1
+        wireExtent: WIRE_EXTENT
       } );
 
       // This circuit is constructed as part of an implementation and should not be instrumented.

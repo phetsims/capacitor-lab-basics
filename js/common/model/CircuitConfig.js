@@ -52,8 +52,7 @@ define( function( require ) {
         CircuitConnectionEnum.BATTERY_CONNECTED,
         CircuitConnectionEnum.OPEN_CIRCUIT,
         CircuitConnectionEnum.LIGHT_BULB_CONNECTED
-      ],
-      numberOfLightBulbs: NUMBER_OF_LIGHTBULBS
+      ]
     }, options );
 
     //REVIEW: Call me crazy, but `_.extend( this, { ...defaults... }, options )` would do all of this.
@@ -71,7 +70,6 @@ define( function( require ) {
     this.lightBulbXSpacing = options.lightBulbXSpacing;
     this.lightBulbResistance = options.lightBulbResistance;
     this.circuitConnections = options.circuitConnections;
-    this.numberOfLightBulbs = options.numberOfLightBulbs;
   }
 
   capacitorLabBasics.register( 'CircuitConfig', CircuitConfig );
