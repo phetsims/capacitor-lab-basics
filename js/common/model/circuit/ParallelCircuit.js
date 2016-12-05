@@ -152,11 +152,9 @@ define( function( require ) {
       }
     } );
 
-    //REVIEW: Recommend passing reason for assertion as the second parameter, e.g.:
-    // assert && assert( this.wires.length >= 2, 'Valid circuits must include at least two wires' );
-    // Make sure all is well with circuit components.  Circuit must include at least one circuit component and two wires.
-    // assert && assert( this.circuitComponents.length >= 1 );
-    assert && assert( this.wires.length >= 2 );
+    // Make sure all is well with circuit components.
+    // Circuit must include at least one circuit component and two wires.
+    assert && assert( this.wires.length >= 2, 'Valid circuits must include at least two wires' );
 
     function updateSegments( circuitConnection ) {
       //REVIEW: circuitConnection is always self.circuitConnectionProperty.value
