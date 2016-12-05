@@ -154,6 +154,56 @@ define( function( require ) {
       this.circuitConnectionProperty,
       tandem );
 
+    this.topBatteryWires = this.wires.filter( function( wire ) {
+      return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP;
+    } );
+    this.bottomBatteryWires = this.wires.filter( function( wire ) {
+      return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM;
+    } );
+    this.topLightBulbWires = this.wires.filter( function( wire ) {
+      return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP;
+    } );
+    this.bottomLightBulbWires = this.wires.filter( function( wire ) {
+      return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM;
+    } );
+    this.topCapacitorWires = this.wires.filter( function( wire ) {
+      return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP;
+    } );
+    this.bottomCapacitorWires = this.wires.filter( function( wire ) {
+      return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM;
+    } );
+    this.topWires = this.topBatteryWires.concat( this.topLightBulbWires ).concat( this.topCapacitorWires );
+    this.bottomWires = this.bottomBatteryWires.concat( this.bottomLightBulbWires ).concat( this.bottomCapacitorWires );
+
+    this.topSwitchWires = [];
+    this.circuitSwitches.forEach( function( circuitSwitch ) {
+      var wire = circuitSwitch.switchWire;
+      if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP ) {
+        self.topSwitchWires.push( wire );
+      }
+    } );
+
+    this.bottomSwitchWires = [];
+    this.circuitSwitches.forEach( function( circuitSwitch ) {
+      var wire = circuitSwitch.switchWire;
+      if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM ) {
+        self.bottomSwitchWires.push( wire );
+      }
+    } );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //REVIEW: Recommend passing reason for assertion as the second parameter, e.g.:
     // assert && assert( this.wires.length >= 2, 'Valid circuits must include at least two wires' );
     // Make sure all is well with circuit components.  Circuit must include at least one circuit component and two wires.
@@ -334,8 +384,8 @@ define( function( require ) {
           voltage = 0;
         }
         else if (
-          this.shapeTouchesWireGroup( shape, this.getTopLightBulbWires() ) ||
-          this.shapeTouchesWireGroup( shape, this.getBottomLightBulbWires() ) ) {
+          this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
+          this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ) {
           voltage = 0;
         }
       }
@@ -355,8 +405,8 @@ define( function( require ) {
           voltage = 0;
         }
         else if (
-          this.shapeTouchesWireGroup( shape, this.getTopLightBulbWires() ) ||
-          this.shapeTouchesWireGroup( shape, this.getBottomLightBulbWires() ) ) {
+          this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
+          this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ) {
           voltage = 0;
         }
       }
@@ -423,8 +473,8 @@ define( function( require ) {
     //REVIEW: This function and the others below share a lot of code that could potentially be factored out.
     connectedToDisconnectedCapacitorBottom: function( shape ) {
       var intersectsBottomWires = false;
-      var bottomCapacitorWires = this.getBottomCapacitorWires();
-      var bottomSwitchWires = this.getBottomSwitchWires();
+      var bottomCapacitorWires = this.bottomCapacitorWires;
+      var bottomSwitchWires = this.bottomSwitchWires;
       var bottomWires = bottomCapacitorWires.concat( bottomSwitchWires );
 
       //REVIEW: simplification:
@@ -451,8 +501,8 @@ define( function( require ) {
       var intersectsTopWire = false;
 
       // only the wires that are connected to the battery
-      var topCapacitorWires = this.getTopCapacitorWires();
-      var topCircuitSwitchWires = this.getTopSwitchWires();
+      var topCapacitorWires = this.topCapacitorWires;
+      var topCircuitSwitchWires = this.topSwitchWires;
       var topWires = topCapacitorWires.concat( topCircuitSwitchWires );
       topWires.forEach( function( topWire ) {
         if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
@@ -479,8 +529,8 @@ define( function( require ) {
       var intersectsTopWire = false;
 
       // only the wires that are connected to the battery
-      var topBatteryWires = this.getTopBatteryWires();
-      //REVIEW: var intersectsTopWire = this.shapeTouchesWireGroup( shape, this.getTopBatteryWires() );
+      var topBatteryWires = this.topBatteryWires;
+      //REVIEW: var intersectsTopWire = this.shapeTouchesWireGroup( shape, this.topBatteryWires );
       topBatteryWires.forEach( function( topWire ) {
         if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsTopWire = true;
@@ -503,9 +553,9 @@ define( function( require ) {
       //REVIEW: intersectsBottomTerminal returns the constant false, so this should be able to be simplified
       var intersectsBottomTerminal = this.battery.intersectsBottomTerminal( shape );
       var intersectsBottomWires = false;
-      var bottomBatteryWires = this.getBottomBatteryWires();
+      var bottomBatteryWires = this.bottomBatteryWires;
       //REVIEW: simplification:
-      // intersectsBottomWires = this.shapeTouchesWireGroup( shape, this.getBottomBatteryWires() )
+      // intersectsBottomWires = this.shapeTouchesWireGroup( shape, this.bottomBatteryWires )
       bottomBatteryWires.forEach( function( bottomWire ) {
         if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
           intersectsBottomWires = true;
@@ -526,9 +576,9 @@ define( function( require ) {
     connectedToBatteryTop: function( shape ) {
       var intersectsTopTerminal = this.battery.intersectsTopTerminal( shape );
       var intersectsTopWire = false;
-      var topBatteryWires = this.getTopBatteryWires();
-      topBatteryWires = topBatteryWires.concat( this.getTopCapacitorWires() );
-      topBatteryWires = topBatteryWires.concat( this.getTopSwitchWires() );
+      var topBatteryWires = this.topBatteryWires;
+      topBatteryWires = topBatteryWires.concat( this.topCapacitorWires );
+      topBatteryWires = topBatteryWires.concat( this.topSwitchWires );
       //REVIEW: See above simplifications, use this.shapeTouchesWireGroup
       topBatteryWires.forEach( function( topWire ) {
         if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
@@ -552,9 +602,9 @@ define( function( require ) {
       //REVIEW: intersectsBottomTerminal returns the constant false, so this should be able to be simplified
       var intersectsBottomTerminal = this.battery.intersectsBottomTerminal( shape );
       var intersectsBottomWires = false;
-      var bottomBatteryWires = this.getBottomBatteryWires();
-      bottomBatteryWires = bottomBatteryWires.concat( this.getBottomCapacitorWires() );
-      bottomBatteryWires = bottomBatteryWires.concat( this.getBottomSwitchWires() );
+      var bottomBatteryWires = this.bottomBatteryWires;
+      bottomBatteryWires = bottomBatteryWires.concat( this.bottomCapacitorWires );
+      bottomBatteryWires = bottomBatteryWires.concat( this.bottomSwitchWires );
       //REVIEW: See above simplifications, use this.shapeTouchesWireGroup
       bottomBatteryWires.forEach( function( bottomWire ) {
         if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {

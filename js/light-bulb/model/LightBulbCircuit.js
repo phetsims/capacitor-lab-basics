@@ -170,9 +170,9 @@ define( function( require ) {
       var intersectsTopWires = this.shapeTouchesWireGroup( shape, topWires );
       */
       var intersectsTopWires = false;
-      var topLightBulbWires = this.getTopLightBulbWires();
-      var topCapacitorWires = this.getTopCapacitorWires();
-      var topSwitchWires = this.getTopSwitchWires();
+      var topLightBulbWires = this.topLightBulbWires;
+      var topCapacitorWires = this.topCapacitorWires;
+      var topSwitchWires = this.topSwitchWires;
 
       var topWires = [];
       topWires = topWires.concat( topLightBulbWires );
@@ -205,8 +205,7 @@ define( function( require ) {
     connectedToDisconnectedLightBulbTop: function( shape ) {
       //REVIEW: see notes in supertypes about potential improvements by using zones
       var intersectsTopWires = false;
-      var topLightBulbWires = this.getTopLightBulbWires();
-
+      var topLightBulbWires = this.topLightBulbWires;
       var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
       //REVIEW: var intersectsTopWires = this.shapeTouchesWireGroup( shape, this.getTopLightBulbWires() );
@@ -231,7 +230,7 @@ define( function( require ) {
     connectedToDisconnectedLightBulbBottom: function( shape ) {
       //REVIEW: see notes in supertypes about potential improvements by using zones
       var intersectsBottomWires = false;
-      var bottomLightBulbWires = this.getBottomLightBulbWires();
+      var bottomLightBulbWires = this.bottomLightBulbWires;
 
       //REVIEW: var intersectsBottomWires = this.shapeTouchesWireGroup( shape, this.getBottomLightBulbWires() );
       //REVIEW: Also, easier to check for whether disconnected is false before we need to compute this. Recommend top:
@@ -253,9 +252,9 @@ define( function( require ) {
       var intersectsBottomWires = this.shapeTouchesWireGroup( shape, bottomWires );
       */
       var intersectsBottomWires = false;
-      var bottomLightBulbWires = this.getBottomLightBulbWires();
-      var bottomCapacitorWires = this.getBottomCapacitorWires();
-      var bottomSwitchWires = this.getBottomSwitchWires();
+      var bottomLightBulbWires = this.bottomLightBulbWires;
+      var bottomCapacitorWires = this.bottomCapacitorWires;
+      var bottomSwitchWires = this.bottomSwitchWires;
 
       var bottomWires = [];
       bottomWires = bottomWires.concat( bottomLightBulbWires );

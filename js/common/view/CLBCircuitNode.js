@@ -53,10 +53,10 @@ define( function( require ) {
 
     this.topWireNode = new Node();
     this.bottomWireNode = new Node();
-    this.circuit.getTopWires().forEach( function( topWire ) {
+    this.circuit.topWires.forEach( function( topWire ) {
       self.topWireNode.addChild( new WireNode( topWire ) );
     } );
-    this.circuit.getBottomWires().forEach( function( bottomWire ) {
+    this.circuit.bottomWires.forEach( function( bottomWire ) {
       self.bottomWireNode.addChild( new WireNode( bottomWire ) );
     } );
 

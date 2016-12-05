@@ -14,7 +14,7 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  // var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
 
   /**
@@ -39,11 +39,11 @@ define( function( require ) {
      *
      * @returns {Wire[]} topWires
      */
-    getTopWires: function() {
-      return this.getTopBatteryWires()
-        .concat( this.getTopLightBulbWires() )
-        .concat( this.getTopCapacitorWires() );
-    },
+    // getTopWires: function() {
+    //   return this.getTopBatteryWires()
+    //     .concat( this.getTopLightBulbWires() )
+    //     .concat( this.getTopCapacitorWires() );
+    // },
 
     /**
      * Get all top wires that are connected to the battery.
@@ -51,11 +51,11 @@ define( function( require ) {
      * REVIEW: Once the circuit is being constructed, the wires won't change. Compute this on startup, so usages can
      *         get circuit.topBatteryWires
      */
-    getTopBatteryWires: function() {
-      return this.wires.filter( function( wire ) {
-        return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP;
-      } );
-    },
+    // getTopBatteryWires: function() {
+    //   return this.wires.filter( function( wire ) {
+    //     return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP;
+    //   } );
+    // },
 
     /**
      * Get all top wires that are connected to the battery.
@@ -63,11 +63,11 @@ define( function( require ) {
      * REVIEW: Once the circuit is being constructed, the wires won't change. Compute this on startup, so usages can
      *         get circuit.bottomBatteryWires
      */
-    getBottomBatteryWires: function() {
-      return this.wires.filter( function( wire ) {
-        return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM;
-      } );
-    },
+    // getBottomBatteryWires: function() {
+    //   return this.wires.filter( function( wire ) {
+    //     return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM;
+    //   } );
+    // },
 
     /**
      * Get all top wires that are connected to the light bulb.
@@ -75,11 +75,11 @@ define( function( require ) {
      * REVIEW: Once the circuit is being constructed, the wires won't change. Compute this on startup, so usages can
      *         get circuit.topLightBulbWires
      */
-    getTopLightBulbWires: function() {
-      return this.wires.filter( function( wire ) {
-        return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP;
-      } );
-    },
+    // getTopLightBulbWires: function() {
+    //   return this.wires.filter( function( wire ) {
+    //     return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP;
+    //   } );
+    // },
 
     /**
      * Get all bottom wires that are connected to the light bulb.
@@ -87,11 +87,11 @@ define( function( require ) {
      * REVIEW: Once the circuit is being constructed, the wires won't change. Compute this on startup, so usages can
      *         get circuit.bottomLightBulbWires
      */
-    getBottomLightBulbWires: function() {
-      return this.wires.filter( function( wire ) {
-        return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM;
-      } );
-    },
+    // getBottomLightBulbWires: function() {
+    //   return this.wires.filter( function( wire ) {
+    //     return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM;
+    //   } );
+    // },
 
     /**
      * Get all the top wires that connect the circuit switch.
@@ -100,16 +100,16 @@ define( function( require ) {
      *         circuit.topSwitchWires
      * REVIEW: Doc return type
      */
-    getTopSwitchWires: function() {
-      var topCircuitSwitchWires = [];
-      this.circuitSwitches.forEach( function( circuitSwitch ) {
-        var switchWire = circuitSwitch.switchWire;
-        if ( switchWire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP ) {
-          topCircuitSwitchWires.push( switchWire );
-        }
-      } );
-      return topCircuitSwitchWires;
-    },
+    // getTopSwitchWires: function() {
+    //   var topCircuitSwitchWires = [];
+    //   this.circuitSwitches.forEach( function( circuitSwitch ) {
+    //     var switchWire = circuitSwitch.switchWire;
+    //     if ( switchWire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP ) {
+    //       topCircuitSwitchWires.push( switchWire );
+    //     }
+    //   } );
+    //   return topCircuitSwitchWires;
+    // },
 
     /**
      * Get all the bottom wires that connect the circuit switch.
@@ -119,16 +119,16 @@ define( function( require ) {
      *
      * @returns {Wire[]}
      */
-    getBottomSwitchWires: function() {
-      var bottomCircuitSwitchWires = [];
-      this.circuitSwitches.forEach( function( circuitSwitch ) {
-        var switchWire = circuitSwitch.switchWire;
-        if ( switchWire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM ) {
-          bottomCircuitSwitchWires.push( switchWire );
-        }
-      } );
-      return bottomCircuitSwitchWires;
-    },
+    // getBottomSwitchWires: function() {
+    //   var bottomCircuitSwitchWires = [];
+    //   this.circuitSwitches.forEach( function( circuitSwitch ) {
+    //     var switchWire = circuitSwitch.switchWire;
+    //     if ( switchWire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM ) {
+    //       bottomCircuitSwitchWires.push( switchWire );
+    //     }
+    //   } );
+    //   return bottomCircuitSwitchWires;
+    // },
 
     /**
      * Get all the top wires that are connected to the capacitor.
@@ -138,11 +138,11 @@ define( function( require ) {
      *
      * @returns {Wire[]}
      */
-    getTopCapacitorWires: function() {
-      return this.wires.filter( function( wire ) {
-        return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP;
-      } );
-    },
+    // getTopCapacitorWires: function() {
+    //   return this.wires.filter( function( wire ) {
+    //     return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP;
+    //   } );
+    // },
 
     /**
      * Get all the bottom wires that are connected to the capacitor.
@@ -152,11 +152,11 @@ define( function( require ) {
      *
      * @returns {Wire[]}
      */
-    getBottomCapacitorWires: function() {
-      return this.wires.filter( function( wire ) {
-        return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM;
-      } );
-    },
+    // getBottomCapacitorWires: function() {
+    //   return this.wires.filter( function( wire ) {
+    //     return wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM;
+    //   } );
+    // },
 
     /**
      * Gets the wire connected to the battery's bottom terminal.
@@ -164,10 +164,10 @@ define( function( require ) {
      *
      * @returns {Wire[]} bottomWires
      */
-    getBottomWires: function() {
-      return this.getBottomBatteryWires()
-        .concat( this.getBottomLightBulbWires() )
-        .concat( this.getBottomCapacitorWires() );
-    }
+    // getBottomWires: function() {
+    //   return this.getBottomBatteryWires()
+    //     .concat( this.getBottomLightBulbWires() )
+    //     .concat( this.getBottomCapacitorWires() );
+    // }
   } );
 } );
