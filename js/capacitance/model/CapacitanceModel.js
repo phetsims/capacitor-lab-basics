@@ -75,9 +75,7 @@ define( function( require ) {
       //REVIEW: a good amount of shared logic with CLBLightBulbModel's version of this. Can common logic be factored out?
       var circuitConfig = new CircuitConfig( {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
-        plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
-        //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
-        wireThickness: CLBConstants.WIRE_THICKNESS
+        plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min
       } );
 
       // This circuit is constructed as part of an implementation and should not be instrumented.

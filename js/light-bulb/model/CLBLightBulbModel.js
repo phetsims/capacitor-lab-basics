@@ -31,8 +31,6 @@ define( function( require ) {
   var CAPACITOR_Y_SPACING = 0.0010; // meters
   var PLATE_WIDTH = CLBConstants.PLATE_WIDTH_RANGE.defaultValue;
   var PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
-  //REVIEW: What visual difference does sharing wire-extent with the other screen make? The values are very similar
-  var WIRE_EXTENT = 0.017; // how far the wire extends above or below the capacitor (meters)
 
   /**
    * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
@@ -65,8 +63,7 @@ define( function( require ) {
       capacitorXSpacing: CAPACITOR_X_SPACING,
       capacitorYSpacing: CAPACITOR_Y_SPACING,
       plateWidth: PLATE_WIDTH,
-      plateSeparation: PLATE_SEPARATION,
-      wireExtent: WIRE_EXTENT
+      plateSeparation: PLATE_SEPARATION
     } );
 
     this.circuit = new LightBulbCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
@@ -144,8 +141,7 @@ define( function( require ) {
         capacitorXSpacing: CAPACITOR_X_SPACING,
         capacitorYSpacing: CAPACITOR_Y_SPACING,
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
-        plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
-        wireExtent: WIRE_EXTENT
+        plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min
       } );
 
       // This circuit is constructed as part of an implementation and should not be instrumented.
@@ -156,9 +152,7 @@ define( function( require ) {
       //REVIEW: Does phet-io behave badly with duplicated tandems?
       //REVIEW: If this is needed, please document the reason tandem is provided.
       var circuit = new LightBulbCircuit( circuitConfig,
-        this.tandem.createTandem( 'tempLightBulbCircuit', {
-          enabled: false
-        } ) );
+        this.tandem.createTandem( 'tempLightBulbCircuit', { enabled: false } ) );
 
       // disconnect the battery and set the max plate charge
       circuit.circuitConnectionProperty.set( CircuitConnectionEnum.OPEN_CIRCUIT );
