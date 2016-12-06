@@ -122,7 +122,7 @@ define( function( require ) {
      * @public
      */
     updatePlateVoltages: function() {
-        // If the battery is connected, the voltage is equal to the battery voltage
+      // If the battery is connected, the voltage is equal to the battery voltage
       if ( this.circuitConnectionProperty !== undefined ) {
         if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
           this.capacitor.platesVoltageProperty.value = this.battery.voltageProperty.value;
@@ -168,122 +168,78 @@ define( function( require ) {
       return voltage;
     },
 
-    //REVIEW: doc
+    /**
+     * True if shape is touching top of capacitor-to-light bulb circuit
+     * @public
+     *
+     * @param {Shape} shape
+     * @returns {boolean}
+     */
     connectedToLightBulbTop: function( shape ) {
-      /* REVIEW: simplifications
-      var topWires = this.getTopLightBulbWires().concat( this.getTopCapacitorWires() ).concat( this.getTopSwitchWires() );
-      var intersectsTopWires = this.shapeTouchesWireGroup( shape, topWires );
-      */
-      var intersectsTopWires = false;
-      var topLightBulbWires = this.topLightBulbWires;
-      var topCapacitorWires = this.topCapacitorWires;
-      var topSwitchWires = this.topSwitchWires;
+      var touchesWires = this.shapeTouchesWireGroup( shape, this.topLightBulbWires );
+      var touchesPlate = this.capacitor.intersectsTopPlate( shape );
+      var touchesBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
-      var topWires = [];
-      topWires = topWires.concat( topLightBulbWires );
-      topWires = topWires.concat( topCapacitorWires );
-      topWires = topWires.concat( topSwitchWires );
+      return touchesBulbBase || touchesPlate || touchesWires;
+    },
 
-      topWires.forEach( function( topWire ) {
-        if ( topWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
-          intersectsTopWires = true;
-        }
-      } );
+    /**
+     * True if shape is touching bottom of capacitor-to-light bulb circuit
+     * @public
+     *
+     * @param {Shape} shape
+     * @returns {boolean}
+     */
+    connectedToLightBulbBottom: function( shape ) {
+      var touchesWires = this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires );
+      var touchesPlate = this.capacitor.intersectsBottomPlate( shape );
+      var touchesBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
-      // does the shape intersect a top plate?
-      var intersectsTopPlate = this.capacitor.intersectsTopPlate( shape );
-
-      // does the shape intersect the light bulb base?
-      var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
-
-      return intersectsBulbBase || intersectsTopPlate || intersectsTopWires;
+      return touchesBulbBase || touchesPlate || touchesWires;
     },
 
     /**
      * Determine if the shape is connected to the top of the lightbulb when it
      * is disconnected from the circuit.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param  {Shape} shape - shape of the element connected to the light bulb
      * @returns {boolean}
      */
     connectedToDisconnectedLightBulbTop: function( shape ) {
-      //REVIEW: see notes in supertypes about potential improvements by using zones
-      var intersectsTopWires = false;
-      var topLightBulbWires = this.topLightBulbWires;
-      var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
-      //REVIEW: var intersectsTopWires = this.shapeTouchesWireGroup( shape, this.getTopLightBulbWires() );
-      //REVIEW: Also, easier to check for whether disconnected is false before we need to compute this. Recommend top:
-      // if ( !disconnected ) { return false; } // skips a lot
-      topLightBulbWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
-          intersectsTopWires = true;
-        }
-      } );
+      // Light bulb must be disconnected
+      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        return false;
+      }
 
-      var disconnected = !( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-      return ( intersectsBulbBase || intersectsTopWires ) && disconnected;
+      return ( this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
+        this.lightBulb.intersectsBulbBase( shape ) );
     },
 
     /**
-     * Determine if the shape is connected to the bottom of the lightbulb when it
+     * Determine if the shape is connected to the top of the lightbulb when it
      * is disconnected from the circuit.
+     * @public
+     *
      * @param  {Shape} shape - shape of the element connected to the light bulb
      * @returns {boolean}
      */
     connectedToDisconnectedLightBulbBottom: function( shape ) {
-      //REVIEW: see notes in supertypes about potential improvements by using zones
-      var intersectsBottomWires = false;
-      var bottomLightBulbWires = this.bottomLightBulbWires;
 
-      //REVIEW: var intersectsBottomWires = this.shapeTouchesWireGroup( shape, this.getBottomLightBulbWires() );
-      //REVIEW: Also, easier to check for whether disconnected is false before we need to compute this. Recommend top:
-      // if ( !disconnected ) { return false; } // skips a lot
-      bottomLightBulbWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
-          intersectsBottomWires = true;
-        }
-      } );
+      // Light bulb must be disconnected
+      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        return false;
+      }
 
-      var disconnected = !( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-      return intersectsBottomWires && disconnected;
-    },
-
-    //REVIEW: doc
-    connectedToLightBulbBottom: function( shape ) {
-      /* REVIEW: simplification
-      var bottomWires = this.getBottomLightBulbWires().concat( this.getBottomCapacitorWires() ).concat( this.getBottomSwitchWires() );
-      var intersectsBottomWires = this.shapeTouchesWireGroup( shape, bottomWires );
-      */
-      var intersectsBottomWires = false;
-      var bottomLightBulbWires = this.bottomLightBulbWires;
-      var bottomCapacitorWires = this.bottomCapacitorWires;
-      var bottomSwitchWires = this.bottomSwitchWires;
-
-      var bottomWires = [];
-      bottomWires = bottomWires.concat( bottomLightBulbWires );
-      bottomWires = bottomWires.concat( bottomCapacitorWires );
-      bottomWires = bottomWires.concat( bottomSwitchWires );
-
-      // does the shape intersect the light bulb base?
-      var intersectsBulbBase = this.lightBulb.intersectsBulbBase( shape );
-
-      bottomWires.forEach( function( bottomWire ) {
-        if ( bottomWire.shapeProperty.value.intersectsBounds( shape.bounds ) ) {
-          intersectsBottomWires = true;
-        }
-      } );
-
-      var intersectsBottomPlate = this.capacitor.intersectsBottomPlate( shape );
-
-      return intersectsBottomWires || intersectsBottomPlate || intersectsBulbBase;
+      return ( this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ||
+        this.lightBulb.intersectsBulbBase( shape ) );
     },
 
     /**
      * Sets the value used for plate charge when the battery is disconnected.
      * (design doc symbol: Q_total)
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {number} disconnectedPlateCharge Coulombs
      */
@@ -298,7 +254,7 @@ define( function( require ) {
 
     /**
      * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
-     * REVIEW: visibility doc
+     * @public
      * REVIEW: Usually setters take a value, would updateDisconnectedPlateVoltage be a more appropriate name?
      */
     setDisconnectedPlateVoltage: function() {
