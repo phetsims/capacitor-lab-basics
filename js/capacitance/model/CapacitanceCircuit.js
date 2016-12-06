@@ -134,31 +134,6 @@ define( function( require ) {
       }
 
       return voltage;
-    },
-
-    /**
-     * Get the voltage across the capacitor plates.
-     * REVIEW: visibility doc
-     *
-     * REVIEW: same as LightBulbCircuit's implementation, can we share code?
-     *
-     * @returns {number}
-     */
-    getCapacitorPlateVoltage: function() {
-      return this.capacitor.platesVoltageProperty.value;
-    },
-
-    /**
-     * Gets the total charge in the circuit.(design doc symbol: Q_total)
-     * REVIEW: visibility doc
-     *
-     * REVIEW: Same as LightBulbCircuit's getTotalCharge(), should be factored out to a parent type (since all
-     * circuits in this sim have one capacitor)
-     *
-     * @returns {number}
-     */
-    getTotalCharge: function() {
-      return this.capacitor.getPlateCharge();
     }
   } );
 } );

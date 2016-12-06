@@ -20,6 +20,7 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 
 define( function( require ) {
@@ -83,7 +84,13 @@ define( function( require ) {
   capacitorLabBasics.register( 'LightBulbCircuit', LightBulbCircuit );
 
   return inherit( ParallelCircuit, LightBulbCircuit, {
-    //REVIEW: doc
+
+    /**
+     * LightBulbCircuit model update function
+     * @public
+     *
+     * @param  {number} dt time step in seconds
+     */
     step: function( dt ) {
 
       // Step through common circuit components
@@ -109,9 +116,10 @@ define( function( require ) {
     },
 
     /**
-     * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
-     * calls this method from its constructor. Remember to call this method at the end of this class' constructor.
-     * REVIEW: visibility doc
+     * Updates the plate voltage, depending on whether the battery is connected.
+     * Null check required because superclass calls this method from its constructor.
+     * Remember to call this method at the end of this class' constructor.
+     * @public
      */
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
@@ -131,12 +139,6 @@ define( function( require ) {
           this.capacitor.updateDischargeParameters();
         }
       }
-    },
-
-    //REVIEW: doc
-    //REVIEW: same as CapacitanceCircuit's implementation, can we share code?
-    getCapacitorPlateVoltage: function() {
-      return this.capacitor.platesVoltageProperty.value;
     },
 
     /**
@@ -304,19 +306,6 @@ define( function( require ) {
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
         this.updatePlateVoltages();
       }
-    },
-
-    /**
-     * Gets the total charge in the circuit.(design doc symbol: Q_total)
-     * REVIEW: visibility doc
-     *
-     * REVIEW: Same as CapacitanceCircuit's getTotalCharge(), should be factored out to a parent type (since all
-     * circuits in this sim have one capacitor)
-     *
-     * @returns {number}
-     */
-    getTotalCharge: function() {
-      return this.capacitor.getPlateCharge();
     },
 
     /**

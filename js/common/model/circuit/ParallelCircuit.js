@@ -299,12 +299,32 @@ define( function( require ) {
     },
 
     /**
+     * Gets the total charge in the circuit.(design doc symbol: Q_total)
+     * @public
+     *
+     * @returns {number}
+     */
+    getTotalCharge: function() {
+      return this.capacitor.getPlateCharge();
+    },
+
+    /**
+     * Get the voltage across the capacitor plates.
+     * @public
+     *
+     * @returns {number}
+     */
+    getCapacitorPlateVoltage: function() {
+      return this.capacitor.platesVoltageProperty.value;
+    },
+
+    /**
      * Gets the energy stored in the circuit. (design doc symbol: U)
      * @public
      *
      * @returns {number}
      */
-    getStoredEnergy: function() {
+      getStoredEnergy: function() {
       var C = this.getTotalCapacitance(); // F
       var V = this.getCapacitorPlateVoltage(); // V
       return 0.5 * C * V * V; // Joules (J)
