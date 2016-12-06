@@ -34,23 +34,14 @@ define( function( require ) {
       tandem: tandem.createTandem( 'plateChargesVisibleProperty' ),
       phetioValueType: TBoolean
     } );
+
     this.eFieldVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'eFieldVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: This appears only relevant to the light-bulb screen, move to CLBLightBulbModel? (Can't toggle on first screen)
+
     this.capacitanceMeterVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
-      phetioValueType: TBoolean
-    } );
-    //REVIEW: This is only relevant to the light-bulb screen, move to CLBLightBulbModel
-    this.plateChargeMeterVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
-      phetioValueType: TBoolean
-    } );
-    //REVIEW: This is only relevant to the light-bulb screen, move to CLBLightBulbModel
-    this.storedEnergyMeterVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
 
@@ -110,8 +101,6 @@ define( function( require ) {
       this.plateChargesVisibleProperty.reset();
       this.eFieldVisibleProperty.reset();
       this.capacitanceMeterVisibleProperty.reset();
-      this.plateChargeMeterVisibleProperty.reset();
-      this.storedEnergyMeterVisibleProperty.reset();
       this.barGraphsVisibleProperty.reset();
       this.voltmeterVisibleProperty.reset();
       this.currentVisibleProperty.reset();

@@ -13,6 +13,7 @@ define( function( require ) {
 
   // modules
   var BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
@@ -22,6 +23,9 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
+
+  // phet-io modules
+  var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
 
   // constants
   var CAPACITOR_X_SPACING = 0.0180; // meters
@@ -40,6 +44,16 @@ define( function( require ) {
   function CLBLightBulbModel( switchUsedProperty, modelViewTransform, tandem ) {
 
     CLBModel.call( this, tandem );
+
+    this.plateChargeMeterVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
+      phetioValueType: TBoolean
+    } );
+
+    this.storedEnergyMeterVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
+      phetioValueType: TBoolean
+    } );
 
     //REVIEW: CLBModel (supertype) does this, why is this also done here?
     this.tandem = tandem; // @private
@@ -126,6 +140,9 @@ define( function( require ) {
      */
     reset: function() {
       CLBModel.prototype.reset.call( this );
+      this.plateChargesVisibleProperty.reset();
+      this.plateChargeMeterVisibleProperty.reset();
+      this.storedEnergyMeterVisibleProperty.reset();
       this.capacitanceMeter.reset();
       this.plateChargeMeter.reset();
       this.storedEnergyMeter.reset();
@@ -189,7 +206,9 @@ define( function( require ) {
       //REVIEW: Does phet-io behave badly with duplicated tandems?
       //REVIEW: If this is needed, please document the reason tandem is provided.
       var circuit = new LightBulbCircuit( circuitConfig,
-        this.tandem.createTandem( 'tempLightBulbCircuit', { enabled: false } ) );
+        this.tandem.createTandem( 'tempLightBulbCircuit', {
+          enabled: false
+        } ) );
 
       // disconnect the battery and set the max plate charge
       circuit.circuitConnectionProperty.set( CircuitConnectionEnum.OPEN_CIRCUIT );
