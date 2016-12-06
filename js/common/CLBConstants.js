@@ -1,10 +1,11 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Shared constants used in multiple locations within the sim.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -99,13 +100,11 @@ define( function( require ) {
     // plate charges
     NUMBER_OF_PLATE_CHARGES: new RangeWithValue( 1, 625 ),
     NEGATIVE_CHARGE_SIZE: new Dimension2( 7, 2 ),
-    PLATE_CHARGES_VISIBLE: true, //REVIEW: This presumably doesn't need to be factored out here, with one usage?
     ELECTRON_CHARGE: 1.60218E-19,
     MIN_PLATE_CHARGE: 0.01E-12, // absolute minimum plate charge in coulombs
 
     // E-field
     NUMBER_OF_EFIELD_LINES: new RangeWithValue( 1, 900 ), // number of lines on smallest plate
-    EFIELD_VISIBLE: false, //REVIEW: This presumably doesn't need to be factored out here, with one usage?
     DIRECTION: {
       UP: 'UP',
       DOWN: 'DOWN'

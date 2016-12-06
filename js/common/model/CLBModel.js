@@ -11,12 +11,12 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
@@ -24,55 +24,47 @@ define( function( require ) {
 
   /**
    * Constructor for the CLBModel.
-   * REVIEW: Both subtypes of this have tandem required, so can null ever be passed here?
-   * @param {Tandem|null} tandem - null if this is part of a temporary circuit used for calculations
+   * @param {Tandem} tandem
    *
    * @constructor
    */
   function CLBModel( tandem ) {
 
-    //REVIEW: Use BooleanProperty instead
-    //REVIEW: initial value presumably doesn't need to be refactored out here? This is the only usage.
-    this.plateChargesVisibleProperty = new Property( CLBConstants.PLATE_CHARGES_VISIBLE, {
+    this.plateChargesVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'plateChargesVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty instead
-    //REVIEW: initial value presumably doesn't need to be refactored out here? This is the only usage.
-    this.eFieldVisibleProperty = new Property( CLBConstants.EFIELD_VISIBLE, {
+    this.eFieldVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'eFieldVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty instead
     //REVIEW: This appears only relevant to the light-bulb screen, move to CLBLightBulbModel? (Can't toggle on first screen)
-    this.capacitanceMeterVisibleProperty = new Property( true, {
+    this.capacitanceMeterVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty instead
     //REVIEW: This is only relevant to the light-bulb screen, move to CLBLightBulbModel
-    this.plateChargeMeterVisibleProperty = new Property( false, {
+    this.plateChargeMeterVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty instead
     //REVIEW: This is only relevant to the light-bulb screen, move to CLBLightBulbModel
-    this.storedEnergyMeterVisibleProperty = new Property( false, {
+    this.storedEnergyMeterVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty instead
-    this.barGraphsVisibleProperty = new Property( true, {
+
+    this.barGraphsVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'barGraphsVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty instead
-    this.voltmeterVisibleProperty = new Property( false, {
+
+    this.voltmeterVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'voltmeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-    //REVIEW: Use BooleanProperty instead
-    this.currentVisibleProperty = new Property( true, {
+
+    this.currentVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'currentVisibleProperty' ),
       phetioValueType: TBoolean
     } );
@@ -87,7 +79,7 @@ define( function( require ) {
 
     /**
      * Return a capacitor with the maximum amount of charge allowed by the model.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {Capacitor}
      */
@@ -99,15 +91,12 @@ define( function( require ) {
       // disabled tandem instance. All children will inherit the `enabled` value
       // unless specifically overridden.
       //REVIEW: Why do we even pass a disabled tandem in here? Would be cleaner to not provide it.
-      var disabledTandem = this.tandem.createTandem( 'tempCapacitor', {
-        enabled: false
-      } );
+      var disabledTandem = this.tandem.createTandem( 'tempCapacitor', { enabled: false } );
 
       // Construct Capacitor without a Tandem instance (null), since this is an intermediate object
       // used only in calculations.
-      //REVIEW tip: new Vector3() is a (0,0,0)
       //REVIEW: This is the only usage of a raw Capacitor. Can we get rid of this, so we can only have SwitchedCapacitor?
-      var capacitor = new Capacitor( new Vector3( 0, 0, 0 ), modelViewTransform, disabledTandem, {
+      var capacitor = new Capacitor( new Vector3(), modelViewTransform, disabledTandem, {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.max,
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min
       } );
@@ -116,7 +105,7 @@ define( function( require ) {
       return capacitor;
     },
 
-    //REVIEW: doc
+    // @public
     reset: function() {
       this.plateChargesVisibleProperty.reset();
       this.eFieldVisibleProperty.reset();
