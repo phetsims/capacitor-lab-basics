@@ -27,7 +27,7 @@ define( function( require ) {
   // constructor
   function CircuitConfig( options ) {
 
-    options = _.extend( {
+    options = _.extend( this, {
       modelViewTransform: new CLBModelViewTransform3D(),
       capacitorXSpacing: CAPACITOR_X_SPACING,
       capacitorYSpacing: CAPACITOR_Y_SPACING,
@@ -42,16 +42,6 @@ define( function( require ) {
         CircuitConnectionEnum.LIGHT_BULB_CONNECTED
       ]
     }, options );
-
-    //REVIEW: Call me crazy, but `_.extend( this, { ...defaults... }, options )` would do all of this.
-    // @public
-    this.modelViewTransform = options.modelViewTransform;
-    this.capacitorXSpacing = options.capacitorXSpacing;
-    this.capacitorYSpacing = options.capacitorYSpacing;
-    this.plateWidth = options.plateWidth;
-    this.plateSeparation = options.plateSeparation;
-    this.wireExtent = options.wireExtent;
-    this.circuitConnections = options.circuitConnections;
   }
 
   capacitorLabBasics.register( 'CircuitConfig', CircuitConfig );
