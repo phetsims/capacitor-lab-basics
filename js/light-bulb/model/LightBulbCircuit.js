@@ -56,7 +56,7 @@ define( function( require ) {
     );
 
     // @public
-    this.lightBulb = new LightBulb( bulbLocation, config.lightBulbResistance, config.modelViewTransform );
+    this.lightBulb = new LightBulb( bulbLocation, config.modelViewTransform );
 
     ParallelCircuit.call( this, config, tandem );
 

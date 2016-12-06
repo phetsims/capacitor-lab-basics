@@ -11,11 +11,12 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Vector3 = require( 'DOT/Vector3' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var LightBulbShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/LightBulbShapeCreator' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var Dimension2 = require( 'DOT/Dimension2' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var LightBulbShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/LightBulbShapeCreator' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   // constants
   var BULB_BASE_SIZE = new Dimension2( 0.0050, 0.0035 );
@@ -24,17 +25,15 @@ define( function( require ) {
    * Constructor for the light bulb.
    *
    * @param {Vector3} location
-   * @param {number} resistance - internal resistance of the bulb
    * @param {CLModelViewTransform3D} modelViewTransform
    * @constructor
    */
-  function LightBulb( location, resistance, modelViewTransform ) {
+  function LightBulb( location, modelViewTransform ) {
 
     // @public (read-only)
     this.location = location;
-    this.resistance = resistance;
+    this.resistance = CLBConstants.LIGHT_BULB_RESISTANCE;
     this.shapeCreator = new LightBulbShapeCreator( this, modelViewTransform );
-
   }
 
   capacitorLabBasics.register( 'LightBulb', LightBulb );

@@ -23,7 +23,6 @@ define( function( require ) {
   var PLATE_WIDTH = CLBConstants.PLATE_WIDTH_RANGE.defaultValue;
   var PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
   var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
-  var LIGHT_BULB_RESISTANCE = 5e12; // Ohms. Artificially large to stretch discharge time
 
   // constructor
   function CircuitConfig( options ) {
@@ -35,7 +34,6 @@ define( function( require ) {
       plateWidth: PLATE_WIDTH,
       plateSeparation: PLATE_SEPARATION,
       wireExtent: WIRE_EXTENT,
-      lightBulbResistance: LIGHT_BULB_RESISTANCE, //REVIEW: I don't see this being overridden anywhere, presumably factor it out.
 
       // Type: {Array.<CircuitConnectionEnum>})
       circuitConnections: [
@@ -53,7 +51,6 @@ define( function( require ) {
     this.plateWidth = options.plateWidth;
     this.plateSeparation = options.plateSeparation;
     this.wireExtent = options.wireExtent;
-    this.lightBulbResistance = options.lightBulbResistance;
     this.circuitConnections = options.circuitConnections;
   }
 

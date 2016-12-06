@@ -56,6 +56,7 @@ define( function( require ) {
     // constants factored from CircuitConfig (code review recommendation)
     LIGHT_BULB_X_SPACING: 0.023, // meters
     BATTERY_LOCATION: new Vector3( 0.0065, 0.030, 0 ), // meters
+    LIGHT_BULB_RESISTANCE: 5e12, // Ohms. Artificially large to stretch discharge time
 
     // switch
     SWITCH_WIRE_LENGTH: 0.0064, // in meters
