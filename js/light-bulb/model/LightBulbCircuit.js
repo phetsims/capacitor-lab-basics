@@ -253,20 +253,9 @@ define( function( require ) {
     },
 
     /**
-     * Sets the plate voltages, but checks to make sure that th ebattery is disconnected from the circuit.
-     * @public
-     * REVIEW: Usually setters take a value, would updateDisconnectedPlateVoltage be a more appropriate name?
-     */
-    setDisconnectedPlateVoltage: function() {
-      if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
-        this.updatePlateVoltages();
-      }
-    },
-
-    /**
      * Update the current amplitude depending on the circuit connection.  If the capacitor is connected to the light
      * bulb, find the current by I = V / R.  Otherwise, current is found by dQ/dT.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {number} dt
      */
