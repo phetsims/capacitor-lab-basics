@@ -1,19 +1,19 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Model of a circuit with a battery (B) connected to a single capacitor (C1).  This is treated as a special case of a
  * parallel circuit, with some added features.  The capacitor also has a switch attached to it so that it can be
  * disconnected from the battery.
  *
- * REVIEW: This diagram shows a circuit that is unobtainable in the sim? Switch can't go right if there is no bulb.
- * |-----|
- * |      /
- * B     C
- * |      \
- * |-----|
+ * |-----+
+ * |        /
+ * B       C
+ * |        \
+ * |-----+
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 
 define( function( require ) {
@@ -46,7 +46,7 @@ define( function( require ) {
     /**
      * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
      * calls this method from its constructor.
-     * REVIEW: visibility doc
+     * @public
      */
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
