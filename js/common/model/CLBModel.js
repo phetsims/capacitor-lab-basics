@@ -63,7 +63,6 @@ define( function( require ) {
       phetioValueType: TBoolean
     } );
 
-    //REVIEW: Note that subtypes are setting this also. Recommend to only set it here.
     this.tandem = tandem; // @private
   }
 
@@ -81,14 +80,12 @@ define( function( require ) {
       // arbitrary model view transform
       var modelViewTransform = new CLBModelViewTransform3D();
 
-      // This component is constructed as part of an implementation and gets a
-      // disabled tandem instance. All children will inherit the `enabled` value
-      // unless specifically overridden.
-      //REVIEW: Why do we even pass a disabled tandem in here? Would be cleaner to not provide it.
+      // The capacitor below is constructed to implement a calculation and should
+      // not be instrumented, but null/undefined tandem instances cause problems.
+      // So it is given a Tandem instance with `enabled: false`.
+      // All its children inherit this `enabled` setting unless overridden.
       var disabledTandem = this.tandem.createTandem( 'tempCapacitor', { enabled: false } );
 
-      // Construct Capacitor without a Tandem instance (null), since this is an intermediate object
-      // used only in calculations.
       //REVIEW: This is the only usage of a raw Capacitor. Can we get rid of this, so we can only have SwitchedCapacitor?
       var capacitor = new Capacitor( new Vector3(), modelViewTransform, disabledTandem, {
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.max,
