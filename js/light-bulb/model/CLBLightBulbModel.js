@@ -55,9 +55,6 @@ define( function( require ) {
       phetioValueType: TBoolean
     } );
 
-    //REVIEW: CLBModel (supertype) does this, why is this also done here?
-    this.tandem = tandem; // @private
-
     //REVIEW: All screens use this property, so we shouldn't define it here (do that in CLBModel)
     this.switchUsedProperty = switchUsedProperty; // @public
 
