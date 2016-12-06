@@ -40,9 +40,6 @@ define( function( require ) {
     //REVIEW: All screens use this property, so we shouldn't define it here (do that in CLBModel)
     this.modelViewTransform = modelViewTransform; // @public (read-only)
 
-    //REVIEW: CLBModel (supertype) does this, why is this also done here?
-    this.tandem = tandem; // @private
-
     // Configuration info for the circuit.
     var circuitConfig = new CircuitConfig( {
       circuitConnections: [ CircuitConnectionEnum.BATTERY_CONNECTED, CircuitConnectionEnum.OPEN_CIRCUIT ]
