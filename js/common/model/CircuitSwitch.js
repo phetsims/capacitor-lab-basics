@@ -81,10 +81,9 @@ define( function( require ) {
     this.switchSegment = WireSegment.createSwitchSegment( this.hingePoint, this.activeConnection,
       tandem.createTandem( 'switchSegment' ) );
 
-    //REVIEW: probably public, and probably the wire between the hinge point and end point?
-    this.switchWire = new Wire( this.modelViewTransform, CLBConstants.WIRE_THICKNESS, [ this.switchSegment ],
-      connectionName ); // No tandem for now. In future, may add tandem.createTandem( 'switchWire' )
-    //REVIEW: Recommend adding a tandem OR removing the comment?
+    // Wire between the hinge point and end point
+    // @public
+    this.switchWire = new Wire( this.modelViewTransform, [ this.switchSegment ], connectionName );
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
@@ -135,11 +134,11 @@ define( function( require ) {
         'Unsupported positionLabel: ' + positionLabel );
 
       // create the circuit switches that connect the capacitor to the circuit
-      var x = config.batteryLocation.x + config.capacitorXSpacing;
-      var z = config.batteryLocation.z;
+      var x = CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing;
+      var z = CLBConstants.BATTERY_LOCATION.z;
 
       var yOffset = CLBConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
-      var y = config.batteryLocation.y;
+      var y = CLBConstants.BATTERY_LOCATION.y;
 
       if ( positionLabel === 'top' ) {
         y -= yOffset;

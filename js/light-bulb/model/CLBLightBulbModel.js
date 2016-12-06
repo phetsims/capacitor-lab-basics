@@ -1,38 +1,33 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * The main model for the "Light Bulb" screen of Capacitor Lab: Basics.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 
 define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
-  var Vector3 = require( 'DOT/Vector3' );
-  var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
-  var LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
   var BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
-  var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
-  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
-  var CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
+  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
+  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
+  var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
 
   // constants
-  var BATTERY_LOCATION = new Vector3( 0.0065, 0.030, 0 ); // meters
   var CAPACITOR_X_SPACING = 0.0180; // meters
-  //REVIEW: LIGHT_BULB_X_SPACING is always 0.023, consider factoring out into a common location and not passing around
-  var LIGHT_BULB_X_SPACING = 0.023; // meters
   var CAPACITOR_Y_SPACING = 0.0010; // meters
   var PLATE_WIDTH = CLBConstants.PLATE_WIDTH_RANGE.defaultValue;
   var PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
-  //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
-  var WIRE_THICKNESS = CLBConstants.WIRE_THICKNESS;
   //REVIEW: What visual difference does sharing wire-extent with the other screen make? The values are very similar
   var WIRE_EXTENT = 0.017; // how far the wire extends above or below the capacitor (meters)
 
@@ -75,16 +70,11 @@ define( function( require ) {
     var circuitConfig = new CircuitConfig( {
       circuitConnections: useTwoStateSwitch ? twoState : threeState,
       modelViewTransform: modelViewTransform,
-      batteryLocation: BATTERY_LOCATION,
-      //REVIEW: LIGHT_BULB_X_SPACING is always 0.023, consider factoring out into a common location and not passing around
-      lightBulbXSpacing: LIGHT_BULB_X_SPACING,
       capacitorXSpacing: CAPACITOR_X_SPACING,
       capacitorYSpacing: CAPACITOR_Y_SPACING,
       plateWidth: PLATE_WIDTH,
       plateSeparation: PLATE_SEPARATION,
-      wireExtent: WIRE_EXTENT,
-      //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
-      wireThickness: WIRE_THICKNESS
+      wireExtent: WIRE_EXTENT
     } );
 
     this.circuit = new LightBulbCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
@@ -188,8 +178,6 @@ define( function( require ) {
         capacitorYSpacing: CAPACITOR_Y_SPACING,
         plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
         plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min,
-        //REVIEW: Wire thickness never varies from CLBConstants.WIRE_THICKNESS. Don't need to pass this around
-        wireThickness: CLBConstants.WIRE_THICKNESS,
         wireExtent: WIRE_EXTENT
       } );
 

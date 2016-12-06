@@ -22,19 +22,15 @@ define( function( require ) {
 
   /**
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {number} thickness
    * @param {WireSegment[]} segments
    * @param {string} connectionPoint
    *
    * @constructor
    */
-  function Wire( modelViewTransform, thickness, segments, connectionPoint ) {
-
-    assert && assert( thickness > 0 );
+  function Wire( modelViewTransform, segments, connectionPoint ) {
 
     this.segments = segments; // @public
     this.connectionPoint = connectionPoint; // @public
-    this.thickness = thickness; // @public REVIEW: never used outside constructor, why is this a property?
     this.shapeCreator = new WireShapeCreator( this, modelViewTransform ); // @private
     //REVIEW: shapeCreator not used by functions outside constructor that are actually called, recommend it be left as local variable
 

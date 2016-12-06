@@ -10,11 +10,12 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
-  var Vector3 = require( 'DOT/Vector3' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   /**
    * @param {CircuitConfig} config
@@ -24,9 +25,9 @@ define( function( require ) {
   function SwitchedCapacitor( config, circuitConnectionProperty, tandem ) {
 
     var location = new Vector3(
-      config.batteryLocation.x + config.capacitorXSpacing,
-      config.batteryLocation.y + config.capacitorYSpacing,
-      config.batteryLocation.z );
+      CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing,
+      CLBConstants.BATTERY_LOCATION.y + config.capacitorYSpacing,
+      CLBConstants.BATTERY_LOCATION.z );
 
     var options = {
       plateWidth: config.plateWidth,

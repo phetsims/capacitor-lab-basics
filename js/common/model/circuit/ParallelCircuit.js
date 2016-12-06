@@ -92,7 +92,7 @@ define( function( require ) {
     this.maxEffectiveEField = Infinity;
 
     // @public
-    this.battery = new Battery( config.batteryLocation, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue,
+    this.battery = new Battery( CLBConstants.BATTERY_LOCATION, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue,
       config.modelViewTransform, tandem.createTandem( 'battery' ) );
 
     // @public

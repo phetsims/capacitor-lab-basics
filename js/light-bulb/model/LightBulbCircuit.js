@@ -28,6 +28,7 @@ define( function( require ) {
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
@@ -49,9 +50,9 @@ define( function( require ) {
     var self = this;
 
     var bulbLocation = new Vector3(
-      config.batteryLocation.x + config.capacitorXSpacing + config.lightBulbXSpacing,
-      config.batteryLocation.y + config.capacitorYSpacing,
-      config.batteryLocation.z
+      CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing + CLBConstants.LIGHT_BULB_X_SPACING,
+      CLBConstants.BATTERY_LOCATION.y + config.capacitorYSpacing,
+      CLBConstants.BATTERY_LOCATION.z
     );
 
     // @public

@@ -14,6 +14,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   var CLBConstants = {
 
@@ -51,6 +52,10 @@ define( function( require ) {
     PLATE_HEIGHT: 0.0005, // meters
     PLATE_SEPARATION_RANGE: new RangeWithValue( 0.002, 0.01, 0.01 ), // meters
     CAPACITANCE_RANGE: new RangeWithValue( 1E-13, 3E-13 ), // Farads
+
+    // constants factored from CircuitConfig (code review recommendation)
+    LIGHT_BULB_X_SPACING: 0.023, // meters
+    BATTERY_LOCATION: new Vector3( 0.0065, 0.030, 0 ), // meters
 
     // switch
     SWITCH_WIRE_LENGTH: 0.0064, // in meters
