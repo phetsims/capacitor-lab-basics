@@ -122,20 +122,19 @@ define( function( require ) {
      * @public
      */
     updatePlateVoltages: function() {
+        // If the battery is connected, the voltage is equal to the battery voltage
       if ( this.circuitConnectionProperty !== undefined ) {
-        //REVIEW: First two logic cases are shared with CapacitanceCircuit. Can we factor this out?
         if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
-          // if the battery is connected, the voltage is equal to the battery voltage
           this.capacitor.platesVoltageProperty.value = this.battery.voltageProperty.value;
         }
+        // If circuit is open, use V = Q/C
         else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.OPEN_CIRCUIT ) {
-          // otherwise, the voltage can be found by V=Q/C
           this.capacitor.platesVoltageProperty.value =
             this.disconnectedPlateChargeProperty.value / this.capacitor.getCapacitance();
         }
+        // the capacitor is discharging, but plate geometry is changing at the same time so we need
+        // to update the parameters of the transient discharge equation parameters
         else if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
-          // the capacitor is discharging, but plate geometry is changing at the same time so we need
-          // to update the parameters of the transient discharge equation parameters
           this.capacitor.updateDischargeParameters();
         }
       }

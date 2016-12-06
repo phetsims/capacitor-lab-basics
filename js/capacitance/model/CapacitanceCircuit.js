@@ -50,13 +50,12 @@ define( function( require ) {
      */
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
-        //REVIEW: These cases are shared with LightBulbCircuit. Can this be factored out?
+        // if the battery is connected, the voltage is equal to the battery voltage
         if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
-          // if the battery is connected, the voltage is equal to the battery voltage
           this.capacitor.platesVoltageProperty.value = this.battery.voltageProperty.value;
         }
+        // otherwise, the voltage can be found by V=Q/C
         else {
-          // otherwise, the voltage can be found by V=Q/C
           this.capacitor.platesVoltageProperty.value =
             this.disconnectedPlateChargeProperty.value / this.capacitor.getCapacitance();
         }
