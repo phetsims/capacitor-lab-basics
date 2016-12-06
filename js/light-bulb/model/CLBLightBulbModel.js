@@ -22,7 +22,6 @@ define( function( require ) {
   var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
-  var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
 
   // phet-io modules
   var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
@@ -42,18 +41,6 @@ define( function( require ) {
    * @constructor
    */
   function CLBLightBulbModel( switchUsedProperty, modelViewTransform, tandem ) {
-
-    CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
-
-    this.plateChargeMeterVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
-      phetioValueType: TBoolean
-    } );
-
-    this.storedEnergyMeterVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
-      phetioValueType: TBoolean
-    } );
 
     // A requested PhET-iO customization is to simplify the switch into a
     // single-pole double-throw switch for the light-bulb circuit instead of
@@ -84,8 +71,17 @@ define( function( require ) {
 
     this.circuit = new LightBulbCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
 
-    //REVIEW: This is the same for both models, pull it down into CLBModel?
-    this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // private
+    CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
+
+    this.plateChargeMeterVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
+      phetioValueType: TBoolean
+    } );
+
+    this.storedEnergyMeterVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
+      phetioValueType: TBoolean
+    } );
 
     var circuit = this.circuit;
 
@@ -111,10 +107,6 @@ define( function( require ) {
         return circuit.getStoredEnergy();
       },
       tandem.createTandem( 'storedEnergyMeter' ) );
-
-    //REVIEW: visibility doc
-    //REVIEW: This is the same code as used by CapacitanceModel. Since it is used in both screens, it should presumably be on the supertype?
-    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
 
     //REVIEW: This is done in all other concrete models (CapacitanceModel), and should be factored out to the supertype
     this.circuit.maxPlateCharge = this.getMaxPlateCharge();
@@ -154,20 +146,6 @@ define( function( require ) {
     },
 
     /**
-     * Gets the maximum charge on the top plate (Q_total).
-     * We compute this with the battery connected because this is used to determine the range of the Plate Charge
-     * slider.
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This is the same as in CapacitanceModel, and should be shared in the supertype.
-     *
-     * REVIEW: returns?
-     */
-    getMaxPlateCharge: function() {
-      return this.getCapacitorWithMaxCharge().getPlateCharge();
-    },
-
-    /**
      * Gets the maximum effective E-field between the plates (E_effective).
      * The maximum occurs when the battery is disconnected, the Plate Charge
      * control is set to its maximum, and the plate area is set to its minimum.
@@ -194,9 +172,7 @@ define( function( require ) {
       //REVIEW: Does phet-io behave badly with duplicated tandems?
       //REVIEW: If this is needed, please document the reason tandem is provided.
       var circuit = new LightBulbCircuit( circuitConfig,
-        this.tandem.createTandem( 'tempLightBulbCircuit', {
-          enabled: false
-        } ) );
+        this.tandem.createTandem( 'tempLightBulbCircuit', { enabled: false } ) );
 
       // disconnect the battery and set the max plate charge
       circuit.circuitConnectionProperty.set( CircuitConnectionEnum.OPEN_CIRCUIT );

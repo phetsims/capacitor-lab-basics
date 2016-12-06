@@ -18,6 +18,7 @@ define( function( require ) {
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector3 = require( 'DOT/Vector3' );
+  var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
 
   // phet-io modules
   var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
@@ -63,7 +64,15 @@ define( function( require ) {
       phetioValueType: TBoolean
     } );
 
-    this.tandem = tandem; // @private
+    this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
+
+    // @public
+    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
+
+    this.tandem = tandem; // @protected
+
+    this.circuit.maxPlateCharge = this.getMaxPlateCharge();
+    this.circuit.maxEffectiveEField = this.getMaxEffectiveEField();
   }
 
   capacitorLabBasics.register( 'CLBModel', CLBModel );
@@ -94,6 +103,18 @@ define( function( require ) {
 
       capacitor.platesVoltageProperty.set( CLBConstants.BATTERY_VOLTAGE_RANGE.max );
       return capacitor;
+    },
+
+    /**
+     * Gets the maximum charge on the top plate (Q_total).
+     * We compute this with the battery connected because this is used to
+     * determine the range of the Plate Charge slider.
+     * @public
+     *
+     * @returns {number} max plate charge
+     */
+    getMaxPlateCharge: function() {
+      return this.getCapacitorWithMaxCharge().getPlateCharge();
     },
 
     // @public

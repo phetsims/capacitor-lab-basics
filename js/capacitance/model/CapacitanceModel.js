@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Capacitance model for Capacitor Lab: Basics.  This model has a battery connected in parallel to a capacitor, and
@@ -6,6 +6,7 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 
 define( function( require ) {
@@ -17,7 +18,6 @@ define( function( require ) {
   var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
   var CapacitanceCircuit = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitanceCircuit' );
   var BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
-  var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
   var CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
   var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -32,32 +32,19 @@ define( function( require ) {
 
     var self = this;
 
-    CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
-
-    // Configuration info for the circuit.
     var circuitConfig = new CircuitConfig( {
       circuitConnections: [ CircuitConnectionEnum.BATTERY_CONNECTED, CircuitConnectionEnum.OPEN_CIRCUIT ]
     } );
-
     this.circuit = new CapacitanceCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
 
-    //REVIEW: This is the same for both models, pull it down into CLBModel?
-    this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
+    CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
 
-    //REVIEW: visibility doc (public?)
+    // @public
     this.capacitanceMeter = new BarMeter( this.circuit, this.capacitanceMeterVisibleProperty,
       function() {
         return self.circuit.getTotalCapacitance();
       },
       tandem.createTandem( 'capacitanceMeter' ) );
-
-    // @public
-    //REVIEW: This is the same code as used by CLBLightBulbModel. Since it is used in both screens, it should presumably be on the supertype?
-    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
-
-    //REVIEW: This is done in all other concrete models (CLBLightBulbModel), and should be factored out to the supertype
-    this.circuit.maxPlateCharge = this.getMaxPlateCharge();
-    this.circuit.maxEffectiveEField = this.getMaxEffectiveEField();
   }
 
   capacitorLabBasics.register( 'CapacitanceModel', CapacitanceModel );
@@ -85,20 +72,6 @@ define( function( require ) {
      */
     step: function( dt ) {
       this.circuit.step( dt );
-    },
-
-    /**
-     * Gets the maximum charge on the top plate (Q_total).
-     * We compute this with the battery connected because this is used to determine the range of the Plate Charge
-     * slider.
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This is the same as in CLBLightBulbModel, and should be shared in the supertype.
-     *
-     * REVIEW: returns?
-     */
-    getMaxPlateCharge: function() {
-      return this.getCapacitorWithMaxCharge().getPlateCharge();
     },
 
     /**
