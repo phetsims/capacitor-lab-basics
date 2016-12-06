@@ -53,25 +53,13 @@ define( function( require ) {
 
     /**
      * Reset function for this model.
-     * REVIEW: visibility doc
+     * @public
      */
     reset: function() {
       CLBModel.prototype.reset.call( this );
       this.capacitanceMeter.reset();
       this.voltmeter.reset();
       this.circuit.reset();
-    },
-
-    /**
-     * Step function for the CLBModel.
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This is the same as in CLBLightBulbModel, and should be shared in the supertype.
-     *
-     * @param {number} dt
-     */
-    step: function( dt ) {
-      this.circuit.step( dt );
     },
 
     /**

@@ -107,10 +107,6 @@ define( function( require ) {
         return circuit.getStoredEnergy();
       },
       tandem.createTandem( 'storedEnergyMeter' ) );
-
-    //REVIEW: This is done in all other concrete models (CapacitanceModel), and should be factored out to the supertype
-    this.circuit.maxPlateCharge = this.getMaxPlateCharge();
-    this.circuit.maxEffectiveEField = this.getMaxEffectiveEField();
   }
 
   capacitorLabBasics.register( 'CLBLightBulbModel', CLBLightBulbModel );
@@ -131,18 +127,6 @@ define( function( require ) {
       this.storedEnergyMeter.reset();
       this.voltmeter.reset();
       this.circuit.reset();
-    },
-
-    /**
-     * Step function for the CLBModel.
-     * REVIEW: visibility doc
-     *
-     * REVIEW: This is the same as in CapacitanceModel, and should be shared in the supertype.
-     *
-     * @param {number} dt
-     */
-    step: function( dt ) {
-      this.circuit.step( dt );
     },
 
     /**
@@ -172,7 +156,9 @@ define( function( require ) {
       //REVIEW: Does phet-io behave badly with duplicated tandems?
       //REVIEW: If this is needed, please document the reason tandem is provided.
       var circuit = new LightBulbCircuit( circuitConfig,
-        this.tandem.createTandem( 'tempLightBulbCircuit', { enabled: false } ) );
+        this.tandem.createTandem( 'tempLightBulbCircuit', {
+          enabled: false
+        } ) );
 
       // disconnect the battery and set the max plate charge
       circuit.circuitConnectionProperty.set( CircuitConnectionEnum.OPEN_CIRCUIT );

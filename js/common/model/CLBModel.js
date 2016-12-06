@@ -117,6 +117,16 @@ define( function( require ) {
       return this.getCapacitorWithMaxCharge().getPlateCharge();
     },
 
+    /**
+     * Step function for the CLBModel.
+     * @public
+     *
+     * @param {number} dt
+     */
+    step: function( dt ) {
+      this.circuit.step( dt );
+    },
+
     // @public
     reset: function() {
       this.plateChargesVisibleProperty.reset();
