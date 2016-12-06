@@ -23,12 +23,15 @@ define( function( require ) {
   var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
 
   /**
-   * Constructor for the CLBModel.
+   * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
-   *
    * @constructor
    */
-  function CLBModel( tandem ) {
+  function CLBModel( switchUsedProperty, modelViewTransform, tandem ) {
+
+    this.switchUsedProperty = switchUsedProperty; // @public
+    this.modelViewTransform = modelViewTransform; // @public (read-only)
 
     this.plateChargesVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'plateChargesVisibleProperty' ),
@@ -104,6 +107,7 @@ define( function( require ) {
       this.barGraphsVisibleProperty.reset();
       this.voltmeterVisibleProperty.reset();
       this.currentVisibleProperty.reset();
+      this.switchUsedProperty.reset();
     }
   } );
 } );

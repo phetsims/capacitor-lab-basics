@@ -43,7 +43,7 @@ define( function( require ) {
    */
   function CLBLightBulbModel( switchUsedProperty, modelViewTransform, tandem ) {
 
-    CLBModel.call( this, tandem );
+    CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
 
     this.plateChargeMeterVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
@@ -54,12 +54,6 @@ define( function( require ) {
       tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
       phetioValueType: TBoolean
     } );
-
-    //REVIEW: All screens use this property, so we shouldn't define it here (do that in CLBModel)
-    this.switchUsedProperty = switchUsedProperty; // @public
-
-    //REVIEW: All screens use this property, so we shouldn't define it here (do that in CLBModel)
-    this.modelViewTransform = modelViewTransform; // @private
 
     // A requested PhET-iO customization is to simplify the switch into a
     // single-pole double-throw switch for the light-bulb circuit instead of
@@ -133,7 +127,7 @@ define( function( require ) {
 
     /**
      * Reset function for this model.
-     * REVIEW: visibility doc
+     * @public
      */
     reset: function() {
       CLBModel.prototype.reset.call( this );
@@ -145,9 +139,6 @@ define( function( require ) {
       this.storedEnergyMeter.reset();
       this.voltmeter.reset();
       this.circuit.reset();
-
-      //REVIEW: This is a global property that affects both screens. Presumably it shouldn't be reset by one screen?
-      this.switchUsedProperty.reset();
     },
 
     /**

@@ -32,13 +32,7 @@ define( function( require ) {
 
     var self = this;
 
-    CLBModel.call( this, tandem );
-
-    //REVIEW: All screens use this property, so we shouldn't define it here (do that in CLBModel)
-    this.switchUsedProperty = switchUsedProperty; // @public
-
-    //REVIEW: All screens use this property, so we shouldn't define it here (do that in CLBModel)
-    this.modelViewTransform = modelViewTransform; // @public (read-only)
+    CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
 
     // Configuration info for the circuit.
     var circuitConfig = new CircuitConfig( {
@@ -79,9 +73,6 @@ define( function( require ) {
       this.capacitanceMeter.reset();
       this.voltmeter.reset();
       this.circuit.reset();
-
-      //REVIEW: This is a global property that affects both screens. Presumably it shouldn't be reset by one screen?
-      this.switchUsedProperty.reset();
     },
 
     /**
