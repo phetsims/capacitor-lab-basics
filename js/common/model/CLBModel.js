@@ -118,6 +118,25 @@ define( function( require ) {
     },
 
     /**
+     * Compute maximum possible E-field in the capacitor as
+     *
+     * E_max = Q_max / (epsilon_0 * A_min)
+     *       = (A_max / A_min) * V_max / d_min
+     *
+     * where A is the plate area, d is the plate separation, and V is the battery voltage.
+     * @public
+     *
+     * @return {[type]} [description]
+     */
+    getMaxEffectiveEField: function() {
+
+      var maxArea = CLBConstants.PLATE_WIDTH_RANGE.max * CLBConstants.PLATE_WIDTH_RANGE.max;
+      var minArea = CLBConstants.PLATE_WIDTH_RANGE.min * CLBConstants.PLATE_WIDTH_RANGE.min;
+
+      return maxArea / minArea * CLBConstants.BATTERY_VOLTAGE_RANGE.max / CLBConstants.PLATE_SEPARATION_RANGE.min;
+    },
+
+    /**
      * Step function for the CLBModel.
      * @public
      *

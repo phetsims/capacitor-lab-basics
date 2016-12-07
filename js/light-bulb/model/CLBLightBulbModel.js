@@ -124,41 +124,6 @@ define( function( require ) {
       this.storedEnergyMeter.reset();
       this.voltmeter.reset();
       this.circuit.reset();
-    },
-
-    /**
-     * Gets the maximum effective E-field between the plates (E_effective).
-     * The maximum occurs when the battery is disconnected, the Plate Charge
-     * control is set to its maximum, and the plate area is set to its minimum.
-     * And in this situation, plate separation is irrelevant.
-     * REVIEW: visibility doc
-     *
-     * return {number}
-     */
-    getMaxEffectiveEField: function() {
-      //REVIEW: a good amount of shared logic with CapacitanceModel's version of this. Can common logic be factored out?
-      var circuitConfig = new CircuitConfig( {
-        capacitorXSpacing: CAPACITOR_X_SPACING,
-        capacitorYSpacing: CAPACITOR_Y_SPACING,
-        plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
-        plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min
-      } );
-
-      // This circuit is constructed as part of an implementation and should not be instrumented.
-      // A null value could be passed in here, but then all children would need null checks.
-      // Instead, pass in a disabled tandem instance. All children will inherit the `enabled` value
-      // unless specifically overridden.
-      //REVIEW: Why are we creating a tandem (and then not disposing) for this temporary object, in a function getMaxEffectiveEField?
-      //REVIEW: Does phet-io behave badly with duplicated tandems?
-      //REVIEW: If this is needed, please document the reason tandem is provided.
-      var circuit = new LightBulbCircuit( circuitConfig,
-        this.tandem.createTandem( 'tempLightBulbCircuit', { enabled: false } ) );
-
-      // disconnect the battery and set the max plate charge
-      circuit.circuitConnectionProperty.set( CircuitConnectionEnum.OPEN_CIRCUIT );
-      circuit.disconnectedPlateChargeProperty.set( this.getMaxPlateCharge() );
-
-      return circuit.capacitor.getEffectiveEField();
     }
 
   } );
