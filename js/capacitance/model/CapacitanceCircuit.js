@@ -1,15 +1,17 @@
 // Copyright 2016, University of Colorado Boulder
 
 /**
- * Model of a circuit with a battery (B) connected to a single capacitor (C1).  This is treated as a special case of a
+ * Model of a circuit with a battery (B) connected to a single capacitor.  This is treated as a special case of a
  * parallel circuit, with some added features.  The capacitor also has a switch attached to it so that it can be
  * disconnected from the battery.
  *
- * |-----+
- * |        /
- * B       C
- * |        \
- * |-----+
+ * +-----+
+ * |      \
+ * |       |
+ * B      ===
+ * |       |
+ * |      /
+ * +-----+
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
