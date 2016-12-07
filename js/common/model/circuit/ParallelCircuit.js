@@ -324,7 +324,7 @@ define( function( require ) {
      *
      * @returns {number}
      */
-      getStoredEnergy: function() {
+    getStoredEnergy: function() {
       var C = this.getTotalCapacitance(); // F
       var V = this.getCapacitorPlateVoltage(); // V
       return 0.5 * C * V * V; // Joules (J)
@@ -386,7 +386,11 @@ define( function( require ) {
         return false;
       }
 
-      return ( this.shapeTouchesWireGroup( shape, this.topWires ) || this.capacitor.intersectsTopPlate( shape ) );
+      return (
+        this.shapeTouchesWireGroup( shape, this.topCapacitorWires ) ||
+        this.shapeTouchesWireGroup( shape, this.topSwitchWires ) ||
+        this.capacitor.intersectsTopPlate( shape )
+      );
     },
 
     /**
@@ -403,7 +407,11 @@ define( function( require ) {
         return false;
       }
 
-      return ( this.shapeTouchesWireGroup( shape, this.bottomWires ) || this.capacitor.intersectsBottomPlate( shape ) );
+      return (
+        this.shapeTouchesWireGroup( shape, this.bottomCapacitorWires ) ||
+        this.shapeTouchesWireGroup( shape, this.bottomSwitchWires ) ||
+        this.capacitor.intersectsBottomPlate( shape )
+      );
     },
 
 
