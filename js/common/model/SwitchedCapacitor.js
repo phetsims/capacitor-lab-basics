@@ -35,10 +35,9 @@ define( function( require ) {
     };
     Capacitor.call( this, location, config.modelViewTransform, tandem, options );
 
-    //REVIEW: Recommended CircuitSwitch.TOP and CircuitSwitch.BOTTOM in CircuitSwitch's review
-    this.topCircuitSwitch = new CircuitSwitch( 'top', config, circuitConnectionProperty,
+    this.topCircuitSwitch = CircuitSwitch.TOP( config, circuitConnectionProperty,
       tandem.createTandem( 'topCircuitSwitch' ) );
-    this.bottomCircuitSwitch = new CircuitSwitch( 'bottom', config, circuitConnectionProperty,
+    this.bottomCircuitSwitch = CircuitSwitch.BOTTOM( config, circuitConnectionProperty,
       tandem.createTandem( 'bottomCircuitSwitch' ) );
 
     // link the top and bottom circuit switches together so that they rotate together

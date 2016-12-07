@@ -33,9 +33,9 @@ define( function( require ) {
   /**
    * Constructor for a CircuitSwitch.
    *
-   * @param {string} positionLabel - 'top' or 'bottom' REVIEW: Create CircuitSwitch.TOP and CircuitSwitch.BOTTOM, and use those. Should avoid typos
+   * @param {string} positionLabel - 'top' or 'bottom'
    * @param {CircuitConfig} config
-   * @param {Property.<string>} circuitConnectionProperty REVIEW: CircuitConnectionEnum instead of string?
+   * @param {Property.<CircuitConnectionEnum>} circuitConnectionProperty
    * @param {Tandem} tandem
    */
   function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem ) {
@@ -347,6 +347,33 @@ define( function( require ) {
         'One of these is not a Vector3:\n' + a + '\n' + b );
 
       return a.minus( b ).toVector2().angle();
+    }
+  }, {
+
+    /**
+     * Factory method for a top CircuitSwitch
+     * @public
+     *
+     * @param {CircuitConfig} config
+     * @param {Property.<CircuitConnectionEnum>} circuitConnectionProperty
+     * @param {Tandem} tandem
+     * @returns {CircuitSwitch}
+     */
+    TOP: function( config, circuitConnectionProperty, tandem ) {
+      return new CircuitSwitch( 'top', config, circuitConnectionProperty, tandem );
+    },
+
+    /**
+     * Factory method for a bottom CircuitSwitch
+     * @public
+     *
+     * @param {CircuitConfig} config
+     * @param {Property.<CircuitConnectionEnum>} circuitConnectionProperty
+     * @param {Tandem} tandem
+     * @returns {CircuitSwitch}
+     */
+    BOTTOM: function( config, circuitConnectionProperty, tandem ) {
+      return new CircuitSwitch( 'bottom', config, circuitConnectionProperty, tandem );
     }
   } );
 } );
