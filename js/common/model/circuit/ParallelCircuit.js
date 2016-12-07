@@ -25,7 +25,7 @@ define( function( require ) {
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
-  var SwitchedCapacitor = require( 'CAPACITOR_LAB_BASICS/common/model/SwitchedCapacitor' );
+  var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
@@ -96,8 +96,7 @@ define( function( require ) {
       config.modelViewTransform, tandem.createTandem( 'battery' ) );
 
     // @public
-    this.capacitor = new SwitchedCapacitor( config, this.circuitConnectionProperty,
-      tandem.createTandem( 'switchedCapacitor' ) );
+    this.capacitor = new Capacitor( config, this.circuitConnectionProperty, tandem.createTandem( 'capacitor' ) );
 
     // Array of CircuitSwitch instances
     // @public

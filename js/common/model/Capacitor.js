@@ -26,6 +26,7 @@ define( function( require ) {
   var Bounds3 = require( 'DOT/Bounds3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CapacitorShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/CapacitorShapeCreator' );
+  var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
@@ -37,13 +38,18 @@ define( function( require ) {
 
   /**
    * Constructor for the Capacitor.
-   * @param {Vector3} location
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {CircuitConfig} config
+   * @param {Property.<CircuitConnectionEnum>} circuitConnectionProperty
    * @param {Tandem} tandem
    * @param {Object} [options]
    * @constructor
    */
-  function Capacitor( location, modelViewTransform, tandem, options ) {
+  function Capacitor( config, circuitConnectionProperty, tandem, options ) {
+
+    var location = new Vector3(
+      CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing,
+      CLBConstants.BATTERY_LOCATION.y + config.capacitorYSpacing,
+      CLBConstants.BATTERY_LOCATION.z );
 
     // options that populate the capacitor with various geometric properties
     options = _.extend( {
@@ -54,11 +60,11 @@ define( function( require ) {
     // @public
     this.transientTime = 0; // model time updated when the switch is closed and while the capacitor is discharging
     this.voltageAtSwitchClose = 0; // voltage of the plates when the bulb switch is initially closed
-    this.modelViewTransform = modelViewTransform;
+    this.modelViewTransform = config.modelViewTransform;
     this.location = location;
 
     // @private
-    this.shapeCreator = new CapacitorShapeCreator( this, modelViewTransform );
+    this.shapeCreator = new CapacitorShapeCreator( this, config.modelViewTransform );
 
     // Square plates.
     var plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth );
@@ -92,6 +98,24 @@ define( function( require ) {
     // @private - track the previous capacitance to adjust the inital voltage when discharging, see
     // updateDischargeParameters() below.
     this.previousCapacitance = this.getCapacitance();
+
+    this.topCircuitSwitch = CircuitSwitch.TOP( config, circuitConnectionProperty,
+      tandem.createTandem( 'topCircuitSwitch' ) );
+    this.bottomCircuitSwitch = CircuitSwitch.BOTTOM( config, circuitConnectionProperty,
+      tandem.createTandem( 'bottomCircuitSwitch' ) );
+
+    // link the top and bottom circuit switches together so that they rotate together
+    // as the user drags
+    var self = this;
+    //REVIEW: note about JS's handling of negating numbers not causing infinite loops here might be good. This would
+    //        otherwise be a semi-dangerous pattern.
+    this.topCircuitSwitch.angleProperty.link( function( angle ) {
+      self.bottomCircuitSwitch.angleProperty.set( -angle );
+    } );
+    this.bottomCircuitSwitch.angleProperty.link( function( angle ) {
+      self.topCircuitSwitch.angleProperty.set( -angle );
+    } );
+
   }
 
   capacitorLabBasics.register( 'Capacitor', Capacitor );

@@ -13,9 +13,9 @@ define( function( require ) {
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  // var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Vector3 = require( 'DOT/Vector3' );
+  // var Vector3 = require( 'DOT/Vector3' );
 
   /**
    * @param {CircuitConfig} config
@@ -24,16 +24,11 @@ define( function( require ) {
    */
   function SwitchedCapacitor( config, circuitConnectionProperty, tandem ) {
 
-    var location = new Vector3(
-      CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing,
-      CLBConstants.BATTERY_LOCATION.y + config.capacitorYSpacing,
-      CLBConstants.BATTERY_LOCATION.z );
-
     var options = {
       plateWidth: config.plateWidth,
       plateSeparation: config.plateSeparation,
     };
-    Capacitor.call( this, location, config.modelViewTransform, tandem, options );
+    Capacitor.call( this, config, tandem, options );
 
     this.topCircuitSwitch = CircuitSwitch.TOP( config, circuitConnectionProperty,
       tandem.createTandem( 'topCircuitSwitch' ) );
