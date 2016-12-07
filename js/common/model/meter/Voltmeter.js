@@ -94,7 +94,6 @@ define( function( require ) {
 
     //REVIEW: https://github.com/phetsims/capacitor-lab-basics/issues/174 should help with duplication here
 
-    // @private REVIEW: visibility doc not needed on local variables
     var touchingFreePlate = function( probeShape ) {
       var t = self.circuit.connectedToDisconnectedCapacitorTop( probeShape );
       var b = self.circuit.connectedToDisconnectedCapacitorBottom( probeShape );

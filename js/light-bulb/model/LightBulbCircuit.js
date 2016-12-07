@@ -141,31 +141,26 @@ define( function( require ) {
     },
 
     /**
-     * Gets the voltage at a shape, with respect to ground. Returns null if the
-     * Shape is not connected to the circuit.
+     * True if shape is touching top of capacitor-to-light bulb circuit
      * @public
      *
      * @param {Shape} shape
-     * @returns {number}
-     * @override
+     * @returns {boolean}
      */
-    getVoltageAt: function( shape ) {
-      var voltage = null;
+    connectedToLightBulbTop: function( shape ) {
 
-      if ( this.connectedToLightBulbTop( shape ) ) {
-        voltage = this.getCapacitorPlateVoltage();
-      }
-      else if ( this.connectedToLightBulbBottom( shape ) ) {
-        voltage = 0;
-      }
-      else if ( this.connectedToBatteryTop( shape ) ) {
-        voltage = this.getTotalVoltage();
-      }
-      else if ( this.connectedToBatteryBottom( shape ) ) {
-        voltage = 0;
+      // Light bulb must be connected
+      if ( this.circuitConnectionProperty.value !== CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        return false;
       }
 
-      return voltage;
+      return (
+        this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
+        this.shapeTouchesWireGroup( shape, this.topCapacitorWires ) ||
+        this.shapeTouchesWireGroup( shape, this.topSwitchWires ) ||
+        this.capacitor.intersectsTopPlate( shape ) ||
+        this.lightBulb.intersectsBulbBase( shape )
+      );
     },
 
     /**
@@ -175,27 +170,20 @@ define( function( require ) {
      * @param {Shape} shape
      * @returns {boolean}
      */
-    connectedToLightBulbTop: function( shape ) {
-      var touchesWires = this.shapeTouchesWireGroup( shape, this.topLightBulbWires );
-      var touchesPlate = this.capacitor.intersectsTopPlate( shape );
-      var touchesBulbBase = this.lightBulb.intersectsBulbBase( shape );
-
-      return touchesBulbBase || touchesPlate || touchesWires;
-    },
-
-    /**
-     * True if shape is touching bottom of capacitor-to-light bulb circuit
-     * @public
-     *
-     * @param {Shape} shape
-     * @returns {boolean}
-     */
     connectedToLightBulbBottom: function( shape ) {
-      var touchesWires = this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires );
-      var touchesPlate = this.capacitor.intersectsBottomPlate( shape );
-      var touchesBulbBase = this.lightBulb.intersectsBulbBase( shape );
 
-      return touchesBulbBase || touchesPlate || touchesWires;
+      // Light bulb must be connected
+      if ( this.circuitConnectionProperty.value !== CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        return false;
+      }
+
+      return (
+        this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ||
+        this.shapeTouchesWireGroup( shape, this.bottomCapacitorWires ) ||
+        this.shapeTouchesWireGroup( shape, this.bottomSwitchWires ) ||
+        this.capacitor.intersectsBottomPlate( shape ) ||
+        this.lightBulb.intersectsBulbBase( shape )
+      );
     },
 
     /**
@@ -212,9 +200,10 @@ define( function( require ) {
       if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
         return false;
       }
-
-      return ( this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
-        this.lightBulb.intersectsBulbBase( shape ) );
+      return (
+        this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
+        this.lightBulb.intersectsBulbBase( shape )
+      );
     },
 
     /**
@@ -232,8 +221,10 @@ define( function( require ) {
         return false;
       }
 
-      return ( this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ||
-        this.lightBulb.intersectsBulbBase( shape ) );
+      return (
+        this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ||
+        this.lightBulb.intersectsBulbBase( shape )
+      );
     },
 
     /**
