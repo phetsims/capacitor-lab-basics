@@ -510,23 +510,6 @@ define( function( require ) {
         )
       );
     }
-
-    // /**
-    //  * True if shape is touching part of the circuit that is connected to the
-    //  * battery's bottom terminal.
-    //  * @public
-    //  *
-    //  * @param {Shape} shape
-    //  * @returns {boolean}
-    //  */
-    // connectedToBatteryBottom: function( shape ) {
-    //   var touchesTerminal = this.battery.intersectsBottomTerminal( shape );
-    //   var touchesWire = this.shapeTouchesWireGroup( shape, this.bottomBatteryWires );
-    //   var touchesPlate = this.capacitor.intersectsBottomPlate( shape );
-
-    //   return touchesTerminal || touchesWire || ( touchesPlate && this.batteryConnected() );
-    // }
-
   } );
 
   return ParallelCircuit;
