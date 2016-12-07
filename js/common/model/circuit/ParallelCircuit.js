@@ -490,7 +490,7 @@ define( function( require ) {
 
     /**
      * True if shape is touching part of the circuit that is connected to the
-     * battery's top terminal.
+     * battery's bottom terminal.
      * @public
      *
      * @param {Shape} shape
