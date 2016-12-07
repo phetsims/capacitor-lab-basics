@@ -12,12 +12,9 @@ define( function( require ) {
 
   // modules
   var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Vector3 = require( 'DOT/Vector3' );
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
 
   // phet-io modules
@@ -80,41 +77,21 @@ define( function( require ) {
   return inherit( Object, CLBModel, {
 
     /**
-     * Return a capacitor with the maximum amount of charge allowed by the model.
+     * Compute maximum possible charge on the top plate as
+     *
+     * Q_max = (epsilon_0 * A_max / d_min) * V_max
+     *
+     * where A is the plate area, d is the plate separation, and V is the battery voltage.
      * @public
      *
-     * @returns {Capacitor}
-     */
-    getCapacitorWithMaxCharge: function() {
-      // arbitrary model view transform
-      var modelViewTransform = new CLBModelViewTransform3D();
-
-      // The capacitor below is constructed to implement a calculation and should
-      // not be instrumented, but null/undefined tandem instances cause problems.
-      // So it is given a Tandem instance with `enabled: false`.
-      // All its children inherit this `enabled` setting unless overridden.
-      var disabledTandem = this.tandem.createTandem( 'tempCapacitor', { enabled: false } );
-
-      //REVIEW: This is the only usage of a raw Capacitor. Can we get rid of this, so we can only have SwitchedCapacitor?
-      var capacitor = new Capacitor( new Vector3(), modelViewTransform, disabledTandem, {
-        plateWidth: CLBConstants.PLATE_WIDTH_RANGE.max,
-        plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.min
-      } );
-
-      capacitor.platesVoltageProperty.set( CLBConstants.BATTERY_VOLTAGE_RANGE.max );
-      return capacitor;
-    },
-
-    /**
-     * Gets the maximum charge on the top plate (Q_total).
-     * We compute this with the battery connected because this is used to
-     * determine the range of the Plate Charge slider.
-     * @public
-     *
-     * @returns {number} max plate charge
+     * @returns {number} charge in Coulombs
      */
     getMaxPlateCharge: function() {
-      return this.getCapacitorWithMaxCharge().getPlateCharge();
+
+      var maxArea = CLBConstants.PLATE_WIDTH_RANGE.max * CLBConstants.PLATE_WIDTH_RANGE.max;
+      var maxVoltage = CLBConstants.BATTERY_VOLTAGE_RANGE.max;
+
+      return CLBConstants.EPSILON_0 * maxArea * maxVoltage / CLBConstants.PLATE_SEPARATION_RANGE.min;
     },
 
     /**
