@@ -373,6 +373,16 @@ define( function( require ) {
     },
 
     /**
+     * Retuns true if the switch is contacting the battery branch of the circuit
+     * @public
+     *
+     * @return {boolean}
+     */
+    batteryConnected: function() {
+      return this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED;
+    },
+
+    /**
      * Check to see if shape connects any wires that are connected to the capacitor
      * top when the circuit is open.
      * @public
@@ -429,8 +439,10 @@ define( function( require ) {
         return false;
       }
 
-      return ( this.battery.intersectsTopTerminal( shape ) ||
-        this.shapeTouchesWireGroup( shape, this.topBatteryWires ) );
+      return (
+        this.battery.intersectsTopTerminal( shape ) ||
+        this.shapeTouchesWireGroup( shape, this.topBatteryWires )
+      );
     },
 
     /**
@@ -447,8 +459,10 @@ define( function( require ) {
         return false;
       }
 
-      return ( this.battery.intersectsBottomTerminal( shape ) ||
-        this.shapeTouchesWireGroup( shape, this.bottomBatteryWires ) );
+      return (
+        this.battery.intersectsBottomTerminal( shape ) ||
+        this.shapeTouchesWireGroup( shape, this.bottomBatteryWires )
+      );
     },
 
     /**
@@ -460,30 +474,58 @@ define( function( require ) {
      * @returns {boolean}
      */
     connectedToBatteryTop: function( shape ) {
-      var touchesTerminal = this.battery.intersectsTopTerminal( shape );
-      var touchesWire = this.shapeTouchesWireGroup( shape, this.topBatteryWires );
-      var touchesPlate = this.capacitor.intersectsTopPlate( shape );
-      var batteryConnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED;
-
-      return touchesTerminal || touchesWire || ( touchesPlate && batteryConnected );
+      return (
+        this.shapeTouchesWireGroup( shape, this.topBatteryWires ) ||
+        this.battery.intersectsTopTerminal( shape ) ||
+        (
+          this.batteryConnected() &&
+          (
+            this.capacitor.intersectsTopPlate( shape ) ||
+            this.shapeTouchesWireGroup( shape, this.topCapacitorWires ) ||
+            this.shapeTouchesWireGroup( shape, this.topSwitchWires )
+          )
+        )
+      );
     },
 
     /**
      * True if shape is touching part of the circuit that is connected to the
-     * battery's bottom terminal.
+     * battery's top terminal.
      * @public
      *
      * @param {Shape} shape
      * @returns {boolean}
      */
     connectedToBatteryBottom: function( shape ) {
-      var touchesTerminal = this.battery.intersectsBottomTerminal( shape );
-      var touchesWire = this.shapeTouchesWireGroup( shape, this.bottomBatteryWires );
-      var touchesPlate = this.capacitor.intersectsBottomPlate( shape );
-      var batteryConnected = this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED;
-
-      return touchesTerminal || touchesWire || ( touchesPlate && batteryConnected );
+      return (
+        this.shapeTouchesWireGroup( shape, this.bottomBatteryWires ) ||
+        this.battery.intersectsBottomTerminal( shape ) ||
+        (
+          this.batteryConnected() &&
+          (
+            this.capacitor.intersectsBottomPlate( shape ) ||
+            this.shapeTouchesWireGroup( shape, this.bottomCapacitorWires ) ||
+            this.shapeTouchesWireGroup( shape, this.bottomSwitchWires )
+          )
+        )
+      );
     }
+
+    // /**
+    //  * True if shape is touching part of the circuit that is connected to the
+    //  * battery's bottom terminal.
+    //  * @public
+    //  *
+    //  * @param {Shape} shape
+    //  * @returns {boolean}
+    //  */
+    // connectedToBatteryBottom: function( shape ) {
+    //   var touchesTerminal = this.battery.intersectsBottomTerminal( shape );
+    //   var touchesWire = this.shapeTouchesWireGroup( shape, this.bottomBatteryWires );
+    //   var touchesPlate = this.capacitor.intersectsBottomPlate( shape );
+
+    //   return touchesTerminal || touchesWire || ( touchesPlate && this.batteryConnected() );
+    // }
 
   } );
 
