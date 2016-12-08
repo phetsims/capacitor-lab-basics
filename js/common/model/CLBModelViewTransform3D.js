@@ -68,7 +68,7 @@ define( function( require ) {
      * @public
      *
      * @param {Vector3} modelPoint
-     * @return REVIEW: {Vector2}?
+     * @return {Vector3}
      */
     modelToViewPosition: function( modelPoint ) {
       assert && assert( modelPoint instanceof Vector3,
@@ -160,12 +160,11 @@ define( function( require ) {
 
     /**
      * Maps a point from 2D view coordinates to 3D model coordinates. The z coordinate will be zero.
+     * This is different than the inverse of modelToViewPosition.
      * @public
      *
-     * REVIEW: Note about how this isn't the inverse of modelToViewPosition might be good (with the note about z=0)
-     *
      * @param {Vector2} pView
-     * @return REVIEW: {Vector3}?
+     * @return {Vector3}
      */
     viewToModelPosition: function( pView ) {
       //REVIEW: Transform3 has built in inverse functions, use that here instead
@@ -181,7 +180,7 @@ define( function( require ) {
      *
      * @param {number} x
      * @param {number} y
-     * @return REVIEW: {Vector3}?
+     * @return {Vector3}
      */
     viewToModelXY: function( x, y ) {
       //REVIEW (performance): If it's a bottleneck, use a scratch Vector2 here.
@@ -193,16 +192,13 @@ define( function( require ) {
      * @public
      *
      * @param {Vector2} delta
-     * @return REVIEW: {Vector3}?
+     * @return {Vector3}
      */
     viewToModelDelta: function( delta ) {
       //REVIEW (performance): If it's a bottleneck, use a scratch Vector2 here.
-      //REVIEW: new Vector2() is at (0,0)
-      var origin = this.viewToModelPosition( new Vector2( 0, 0 ) );
-      //REVIEW: generally 'position' is a better name than 'p'
-      var p = this.viewToModelPosition( delta );
-      //REVIEW: return p.minus( origin );
-      return new Vector3( p.x - origin.x, p.y - origin.y, p.z - origin.z );
+      var origin = this.viewToModelPosition( new Vector2() );
+
+      return this.viewToModelPosition( delta ).minus( origin );
     },
 
     /**
@@ -211,7 +207,7 @@ define( function( require ) {
      *
      * @param {number} xDelta
      * @param {number} yDelta
-     * @return REVIEW: {Vector3}?
+     * @return {Vector3}
      */
     viewToModelDeltaXY: function( xDelta, yDelta ) {
       //REVIEW (performance): If it's a bottleneck, use a scratch Vector2 here.
