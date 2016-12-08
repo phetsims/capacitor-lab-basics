@@ -17,7 +17,7 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Property = require( 'AXON/Property' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
@@ -39,6 +39,8 @@ define( function( require ) {
    */
   function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem ) {
 
+    var self = this;
+
     // Validate positionLabel string
     assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
       'Unsupported positionLabel: ' + positionLabel );
@@ -47,24 +49,18 @@ define( function( require ) {
     // @private
     this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
-    // {Vector3}
+    // Type: Vector3
     // @public
     this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
+
     this.circuitConnectionProperty = circuitConnectionProperty;
 
     // @private
-    //REVIEW: initialAngle doesn't need to be a property, since it's inlined in the Property declaration below
-    this.initialAngle = 0; // with respect to the vertical ( open switch )
     this.connections = this.getSwitchConnections( positionLabel, this.hingePoint.toVector2(), config.circuitConnections );
-    //REVIEW: activeConnection doesn't need to be a property, since no methods use it
-    //REVIEW: The only 'read' to activeConnection is when creating the WireSegment. When updated later, it is never used.
-    //REVIEW: Recommend just inlining this in WireSegment construction, and using local vars elsewhere.
-    this.activeConnection = this.getConnection( circuitConnectionProperty.value );
-    var self = this;
 
-    //REVIEW: Use NumberProperty instead
+    // Switch angle with respect to the vertical ( open switch )
     // @public
-    this.angleProperty = new Property( this.initialAngle, {
+    this.angleProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'angleProperty' ),
       phetioValueType: TNumber( {
         units: 'radians'
@@ -109,13 +105,6 @@ define( function( require ) {
 
   return inherit( Object, CircuitSwitch, {
 
-    //REVIEW: doc
-    //REVIEW: This function is never called, and should be removed (dead code), unless we really SHOULD be resetting.
-    //REVIEW: Probably never get rid of a switch, so OK to remove?
-    reset: function() {
-      this.angleProperty.reset();
-    },
-
     /**
      * Get (x,y,z) position of switch pivot point
      * @private
@@ -156,8 +145,7 @@ define( function( require ) {
      * @param  {string} positionLabel - 'top' or 'bottom'
      * @param  {Vector2} hingeXY - Location of switch hinge
      * @param  {CircuitConfig} config - Class containing circuit geometry and properties
-     *
-     * @returns {Object[]} - Array of Objects containing connection points and types REVIEW: document the fields of this object, like in getConnection()
+     * @returns {Object[]} - Array of objects like { location: Vector3, connectionType: CircuitConnectionEnum }
      */
     getSwitchConnections: function( positionLabel, hingeXY, circuitConnections ) {
       /* REVIEW: Simplification and avoid branches, should be able to replace this entire function:
@@ -238,7 +226,7 @@ define( function( require ) {
      * @public
      *
      * @param connectionType
-     * @returns {Object} returnConnection - object of the format { location: Vector3, connectionType: string } REVIEW: CircuitConnectionEnum, not string
+     * @returns {Object} returnConnection - with format { location: Vector3, connectionType: CircuitConnectionEnum }
      */
     getConnection: function( connectionType ) {
 
@@ -254,20 +242,22 @@ define( function( require ) {
     /**
      * Convenience method for getting the connection locations. Similar to getConnection above, but directly returns
      * the location.
-     * REVIEW: visibility doc
+     * @public
      *
-     * REVIEW: Type should note CircuitConnectionEnum, and presumably assert that it can't be IN_TRANSIT
-     * @param {string} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
+     * @param {CircuitConnectionEnum} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
      */
     getConnectionPoint: function( connectionType ) {
+      assert && assert( connectionType !== CircuitConnectionEnum.IN_TRANSIT,
+        'Cannot call getConnectionPoint while IN_TRANSIT' );
+
       return this.getConnection( connectionType ).location;
     },
 
     /**
      * Get the location of the endpoint for the circuit switch segment.
-     * REVIEW: visibility doc
+     * @public
      *
-     * @returns {Vector2} [description] REVIEW: wrong type doc, Vector3 as asserted below?
+     * @returns {Vector3}
      */
     getSwitchEndPoint: function() {
 
@@ -279,26 +269,9 @@ define( function( require ) {
     },
 
     /**
-     * Get the connection point that will be nearest the connecting capacitor.
-     * REVIEW: visibility doc
-     *
-     * REVIEW: hingePoint is public, just have the client use that?
-     *
-     * @returns {Vector2} REVIEW: wrong type doc? See below
-     */
-    getCapacitorConnectionPoint: function() {
-      if ( assert ) {
-        if ( this.hingePoint.constructor.name !== 'Vector2' ) {
-          console.log( 'REVIEW (CircuitSwitch.getCapacitorConnectionPoint): Probably not a Vector2: ' + this.hingePoint.constructor.name );
-        }
-      }
-      return this.hingePoint;
-    },
-
-    /**
      * Get the limiting angle of the circuit switch to the right.
      * The limiting angle is dependent on wheter a light bulb is connected to the circuit.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {number}
      */
@@ -325,7 +298,7 @@ define( function( require ) {
 
     /**
      * Get the limiting angle of the circuit switch to the left.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {[type]} [description] REVIEW: probably {number}
      */

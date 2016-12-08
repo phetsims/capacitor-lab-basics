@@ -31,7 +31,7 @@ define( function( require ) {
     var segments = [];
 
     // add the vertical segment.
-    var switchConnectionPoint = circuitSwitch.getCapacitorConnectionPoint();
+    var switchConnectionPoint = circuitSwitch.hingePoint;
     var segment;
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
       segment = WireSegment.createComponentTopWireSegment( capacitor, switchConnectionPoint,
