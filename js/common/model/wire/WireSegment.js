@@ -27,7 +27,6 @@ define( function( require ) {
    * @param {Tandem} tandem
    * @constructor
    */
-
   function WireSegment( startPoint, endPoint, tandem ) {
 
     assert && assert( startPoint instanceof Vector3 );
@@ -54,10 +53,10 @@ define( function( require ) {
 
     /**
      * Factory for a ComponentWireSegment that attaches to the top of a circuit component
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Capacitor|LightBulb} component
-     * @param {Vector2} endPoint REVIEW: Pretty sure it's Vector3
+     * @param {Vector3} endPoint
      * @param {Tandem} tandem - end point for the wire segment
      * REVIEW: returns?
      */
@@ -67,10 +66,10 @@ define( function( require ) {
 
     /**
      * Factory for a ComponentWireSegment that attaches to the bottom of a circuit component
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Capacitor|LightBulb} component
-     * @param {Vector2} endPoint - end point for the wire segment REVIEW: Pretty sure it's Vector3
+     * @param {Vector3} endPoint
      * @param {Tandem} tandem
      * REVIEW: returns?
      */
@@ -80,7 +79,7 @@ define( function( require ) {
 
     /**
      * Factory for a SwitchSegment that acts as a switch between two connection points
-     * REVIEW: visibility doc
+     * @public
      *
      * REVIEW: Seems cleaner to have CircuitSwitch have a createWireSegment() function, recommend to move to there
      *
@@ -91,21 +90,13 @@ define( function( require ) {
      */
     createSwitchSegment: function( startPoint, activeConnection, tandem ) {
       return new SwitchSegment( startPoint, activeConnection, tandem );
-    },
-
-    //REVIEW: doc
-    //REVIEW: Find where this is called? I can't find any usages.
-    reset: function() {
-      this.startPointProperty.reset();
-      this.endPointProperty.reset();
     }
-
   } );
 
   /**
    * Constructor for ComponentTopWireSegment.  This is a wire segment whose start point is connected to the top
    * connection point of a component.  Adjusts the wire geometry when the component changes geometry or orientation.
-   * REVIEW: visibility doc
+   * @public
    *
    * @param {Capacitor|LightBulb} component
    * @param {Vector2} endPoint REVIEW: Pretty sure it's Vector3
@@ -120,8 +111,11 @@ define( function( require ) {
   capacitorLabBasics.register( 'ComponentTopWireSegment', ComponentTopWireSegment );
 
   inherit( WireSegment, ComponentTopWireSegment, {
-    // update the start point of the segment, called when the component geometry changes
-    //REVIEW: JSDoc
+
+    /**
+     * Update the start point of the segment. Called when the component geometry changes.
+     * @public
+     */
     update: function() {
       this.startPointProperty.set( this.component.getTopConnectionPoint() );
     }
@@ -132,7 +126,7 @@ define( function( require ) {
    * point of a component.  Adjusts the start point when the component geometry changes.
    *
    * @param {Capacitor|LightBulb} component
-   * @param {Vector2} endPoint REVIEW: Nope, probably Vector3
+   * @param {Vector3} endPoint
    * @param {Tandem} tandem
    */
   function ComponentBottomWireSegment( component, endPoint, tandem ) {
@@ -163,28 +157,14 @@ define( function( require ) {
    * @constructor
    */
   function SwitchSegment( hingePoint, activeConnection, tandem ) {
-    //REVIEW: visibility docs
-    this.activeConnection = activeConnection;
+    // @public
     this.hingePoint = hingePoint;
     WireSegment.call( this, hingePoint, activeConnection.location, tandem );
   }
 
   capacitorLabBasics.register( 'SwitchSegment', SwitchSegment );
 
-  inherit( WireSegment, SwitchSegment, {
-
-    /**
-     * Update the endpoint for the switch segment, called when the connection point of the circuit changes
-     * @param  {CircuitConnection} activeConnection
-     * @param  {number} angle
-     * @public
-     */
-    update: function( activeConnection, angle ) {
-      //REVIEW: Check usages, at least one didn't have the angle parameter. Can it be removed?
-      // set the new active connection point
-      this.endPoint = activeConnection.location;
-    }
-  } );
+  inherit( WireSegment, SwitchSegment );
 
   return WireSegment;
 } );

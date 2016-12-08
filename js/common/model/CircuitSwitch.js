@@ -293,6 +293,7 @@ define( function( require ) {
      * @returns {number}
      */
     getLeftLimitAngle: function() {
+
       // Get the left-most connection.
       // Would prefer to use _.minBy, but not available in lodash 2.4.1
       var leftMost = _.first( _.sortBy( this.connections, [ function( connection ) {
