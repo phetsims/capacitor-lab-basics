@@ -83,6 +83,9 @@ define( function( require ) {
     this.location = location; // @public (read-only)
     this.shapeCreator = new BatteryShapeCreator( this, modelViewTransform ); // @private
 
+    // @private
+    this.topTerminalShape = this.shapeCreator.createTopTerminalShape();
+
     this.voltageProperty.link( function() {
       self.polarityProperty.set( self.getPolarity( self.voltageProperty.value ) );
     } );
@@ -112,8 +115,7 @@ define( function( require ) {
      * @returns {boolean}
      */
     intersectsTopTerminal: function( shape ) {
-      //REVIEW: why are we creating new shapes every time we check for an intersection? Performance implication?
-      return shape.intersectsBounds( this.shapeCreator.createTopTerminalShape() );
+      return shape.intersectsBounds( this.topTerminalShape );
     },
 
     /**
