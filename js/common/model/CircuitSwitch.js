@@ -276,45 +276,30 @@ define( function( require ) {
      * @returns {number}
      */
     getRightLimitAngle: function() {
-      /* REVIEW: simpler implementation?
-      return _.maxBy( this.connections, function( connection ) {
+
+      // Get the right-most connection.
+      // Would prefer to use _.maxBy, but not available in lodash 2.4.1
+      var rightMost = _.last( _.sortBy( this.connections, [ function( connection ) {
         return connection.location.x;
-      } ).location.minus( this.hingePoint ).toVector2().angle();
-      */
+      } ] ) );
 
-      var self = this;
-
-      var c = self.twoStateSwitch ? CircuitConnectionEnum.LIGHT_BULB_CONNECTED : CircuitConnectionEnum.OPEN_CIRCUIT;
-      var rightConnectionPoint = self.getConnectionPoint( c );
-
-      this.connections.forEach( function( connection ) {
-        if ( connection.connectionType === 'LIGHT_BULB_CONNECTED' ) {
-          rightConnectionPoint = self.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
-        }
-      } );
-
-      return rightConnectionPoint.minus( self.hingePoint ).toVector2().angle();
+      return rightMost.location.minus( this.hingePoint ).toVector2().angle();
     },
 
     /**
      * Get the limiting angle of the circuit switch to the left.
      * @public
      *
-     * @returns {[type]} [description] REVIEW: probably {number}
+     * @returns {number}
      */
     getLeftLimitAngle: function() {
-      /* REVIEW: more general implementation?
-      return _.minBy( this.connections, function( connection ) {
+      // Get the left-most connection.
+      // Would prefer to use _.minBy, but not available in lodash 2.4.1
+      var leftMost = _.first( _.sortBy( this.connections, [ function( connection ) {
         return connection.location.x;
-      } ).location.minus( this.hingePoint ).toVector2().angle();
-      */
-      var a = this.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
-      var b = this.hingePoint;
+      } ] ) );
 
-      assert && assert( a instanceof Vector3 && b instanceof Vector3,
-        'One of these is not a Vector3:\n' + a + '\n' + b );
-
-      return a.minus( b ).toVector2().angle();
+      return leftMost.location.minus( this.hingePoint ).toVector2().angle();
     }
   }, {
 
