@@ -39,14 +39,15 @@ define( function( require ) {
 
   /**
    * Constructor.
+   * @constructor
    *
    * @param {CLBModel} model
    * @param {Tandem} tandem
    * @param {Object} options
-   * @constructor
    */
   function CLBViewControlPanel( model, tandem, options ) {
-
+    //REVIEW: Usually defaultOptions is inlined, e.g.
+    // options = _.extend( {\n ...defaultoptions... \n}, options );
     var defaultOptions = {
       numberOfBarGraphs: 1,
       maxTextWidth: 250
@@ -54,6 +55,7 @@ define( function( require ) {
 
     options = _.extend( {}, defaultOptions, options );
 
+    //REVIEW: 'toggles', 'checkboxes', or 'checkboxItems' would be better than 'assets'? Not sure what 'asset' means here.
     var viewAssets = [
       {
         string: plateChargesString,
@@ -77,17 +79,37 @@ define( function( require ) {
       }
     ];
 
-
+    /* REVIEW: inline simplification
+    var viewCheckBoxItems = viewAssets.map( function( asset ) {
+      return {
+        content: new Text( asset.string, { font: CHECK_BOX_FONT, maxWidth: options.maxTextWidth } ),
+        property: asset.property,
+        label: asset.string,
+        tandemName: asset.tandemName
+      };
+    } );
+    */
     var viewCheckBoxItems = createCheckBoxItems( viewAssets, options.maxTextWidth );
     var verticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems, {
       tandem: tandem.createTandem( 'verticalCheckBoxGroup' )
     } );
+
+    /* REVIEW: simplification (use VBox, don't have a named single-use function)
+    var viewVisibilityControlBox = new VBox( {
+      children: [
+        new Text( viewString, { font: PANEL_TITLE_FONT, maxWidth: 300 } ),
+        new VStrut( TITLE_VERTICAL_SPACE ),
+        verticalCheckBoxGroup
+      ],
+      align: 'left'
+    } );
+    */
     var viewVisibilityControlBox = createControlBox( viewString, verticalCheckBoxGroup );
 
     Panel.call( this, viewVisibilityControlBox, {
       xMargin: 10,
       yMargin: 10,
-      align: 'left',
+      align: 'left', //REVIEW: Why is align specified without minWidth? Remove?
       fill: CLBConstants.METER_PANEL_FILL
     } );
 
@@ -97,6 +119,7 @@ define( function( require ) {
   }
 
   // convenience functions for constructing panels and layout boxes
+  //REVIEW: named function not necessary, see simplification with map above
   /**
    * Organize strings and properties into objects for each check box group.
    *
@@ -117,6 +140,7 @@ define( function( require ) {
   }
 
   /**
+   *REVIEW: recommend removal and inlining above, as it's only called one time
    * Create a layout box with a title and a group of check boxes.
    * @param {string} titleString
    * @param {VerticalCheckBoxGroup} checkBoxGroup
