@@ -40,8 +40,8 @@ define( function( require ) {
     /**
      * Creates the shape of the top terminal in the world coordinate frame. Which terminal is on top depends on the
      * polarity.
-     * REVIEW: visibility doc
-     * REVIEW: return value
+     * @public
+     * @returns {Shape}
      */
     createTopTerminalShape: function() {
       if ( this.battery.polarityProperty.value === CLBConstants.POLARITY.POSITIVE ) {
@@ -56,7 +56,7 @@ define( function( require ) {
      * Creates the shape of the positive terminal body relative to some specified origin.  The positive terminal is a
      * cylinder.  This shape does not include the elliptical top of the cylinder.  Use with
      * createPositiveTerminalShapeTop() to create entire to terminal shape.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Vector3} origin
      * @returns {Shape}
