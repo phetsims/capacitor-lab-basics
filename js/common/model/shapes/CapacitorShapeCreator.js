@@ -45,7 +45,7 @@ define( function( require ) {
      * Top plate, unoccluded.
      * @public
      *
-     * @returns {Shape[]} REVIEW: createBoxShapes() instead?
+     * @returns {createBoxShape()}
      */
     createTopPlateShape: function() {
       var x = this.capacitor.location.x;
@@ -60,7 +60,7 @@ define( function( require ) {
      * Bottom plate, unoccluded.
      * @public
      *
-     * @returns {Shape[]} REVIEW: createBoxShapes() instead?
+     * @returns {createBoxShape()}
      */
     createBottomPlateShape: function() {
       var x = this.capacitor.location.x;
@@ -83,7 +83,7 @@ define( function( require ) {
      * @param z
      * @param size
      *
-     * @returns {Shape[]} REVIEW: createBoxShapes() instead? REVIEW: createBoxShapes() instead?
+     * @returns {BoxShapeCreator.createBoxShape()}
      */
     createBoxShape: function( x, y, z, size ) {
       return this.boxShapeCreator.createBoxShape( x, y, z, size.width, size.height, size.depth );

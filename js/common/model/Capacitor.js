@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Model of a capacitor whose geometry can be directly manipulated by the user.
@@ -105,6 +105,9 @@ define( function( require ) {
     this.bottomCircuitSwitch = CircuitSwitch.BOTTOM( config, circuitConnectionProperty,
       tandem.createTandem( 'bottomCircuitSwitch' ) );
 
+    this.topPlateFaces = this.shapeCreator.createTopPlateShape();
+    this.bottomPlateFaces = this.shapeCreator.createBottomPlateShape();
+
     // link the top and bottom circuit switches together so that they rotate together
     // as the user drags
     var self = this;
@@ -193,20 +196,14 @@ define( function( require ) {
      * @returns {boolean}
      */
     intersectsTopPlate: function( shape ) {
-      var intersectsTopPlate = false;
-      //REVIEW: Why are we creating these shapes repeatedly? Presumably just create them on startup since they don't change.
-      //REVIEW: Use _.some()
-      this.shapeCreator.createTopPlateShape().forEach( function( topPlateShape ) {
 
-        // kite does not support finding the intersection between two shapes and checking for
-        // intersection of shape bounds is too inacurate in this case because of the 3d perspective.
-        // Determining if center of shape bounds is most accurate assuming the shape is small relative
-        // to the plate
-        if ( topPlateShape.containsPoint( shape.bounds.center ) ) {
-          intersectsTopPlate = true;
-        }
+      // kite does not support finding the intersection between two shapes and checking for
+      // intersection of shape bounds is too inacurate in this case because of the 3d perspective.
+      // Determining if center of shape bounds is most accurate assuming the shape is small relative
+      // to the plate
+      return _.some( this.topPlateFaces, function( plateShape ) {
+        plateShape.containsPoint( shape.bounds.center );
       } );
-      return intersectsTopPlate;
     },
 
     /**
@@ -218,15 +215,9 @@ define( function( require ) {
      * @returns {boolean}
      */
     intersectsBottomPlate: function( shape ) {
-      var intersectsBottomPlate = false;
-      //REVIEW: Why are we creating these shapes repeatedly? Presumably just create them on startup since they don't change.
-      //REVIEW: Use _.some()
-      this.shapeCreator.createBottomPlateShape().forEach( function( bottomPlateShape ) {
-        if ( bottomPlateShape.containsPoint( shape.bounds.center ) ) {
-          intersectsBottomPlate = true;
-        }
+      return _.some( this.bottomPlateFaces, function( plateShape ) {
+        plateShape.containsPoint( shape.bounds.center );
       } );
-      return intersectsBottomPlate;
     },
 
     /**
