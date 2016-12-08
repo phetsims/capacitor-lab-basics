@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Provides the transforms between model and view 3D-coordinate systems. In both coordinate systems, +x is to the right,
@@ -13,6 +13,7 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -41,15 +42,16 @@ define( function( require ) {
     }, options );
 
     // @private
+    this.modelToViewTransform2D = new Transform3( Matrix3.scaling( options.scale ) );
+
     //REVIEW: Transform3 has built in inverse functions, use those instead
-    //REVIEW: 'new' shouldn't be provided, it's a factory function
     //REVIEW: Matrix.scaling( options.scale ) will work, applies it to both X and Y
-    this.modelToViewTransform2D = new Transform3( new Matrix3.scaling( options.scale, options.scale ) );
-    this.viewToModelTransform2D = new Transform3( new Matrix3.scaling( 1 / options.scale, 1 / options.scale ) );
+    this.viewToModelTransform2D = new Transform3( Matrix3.scaling( 1 / options.scale, 1 / options.scale ) );
+
+    // @private
+    this.pitch = options.pitch;
 
     // @public (read-only)
-    //REVIEW: pitch not used in other places, @private might be better?
-    this.pitch = options.pitch;
     this.yaw = options.yaw;
   }
 
@@ -63,7 +65,7 @@ define( function( require ) {
 
     /**
      * Maps a point from 3D model coordinates to 2D view coordinates.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Vector3} modelPoint
      * @return REVIEW: {Vector2}?
@@ -87,7 +89,7 @@ define( function( require ) {
 
     /**
      * Maps a point from 3D model coordinates to 2D view coordinates.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {number} x
      * @param {number} y
@@ -101,7 +103,7 @@ define( function( require ) {
 
     /**
      * Maps a delta from 3D model coordinates to 2D view coordinates.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Vector3} delta
      * @returns {Vector2}
@@ -118,7 +120,7 @@ define( function( require ) {
 
     /**
      * Maps a delta from 3D model coordinates to 2D view coordinates.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {number} xDelta
      * @param {number} yDelta
@@ -132,7 +134,7 @@ define( function( require ) {
 
     /**
      * Model shapes are all in the 2D xy plane, and have no depth.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Shape} modelShape
      * @return REVIEW: {Shape}?
@@ -143,7 +145,7 @@ define( function( require ) {
 
     /**
      * Bounds are all in the 2D xy plane, and have no depth.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param  {Bounds2} modelBounds
      * @returns {Bounds2}
@@ -158,7 +160,7 @@ define( function( require ) {
 
     /**
      * Maps a point from 2D view coordinates to 3D model coordinates. The z coordinate will be zero.
-     * REVIEW: visibility doc
+     * @public
      *
      * REVIEW: Note about how this isn't the inverse of modelToViewPosition might be good (with the note about z=0)
      *
@@ -175,7 +177,7 @@ define( function( require ) {
 
     /**
      * Maps a point from 2D view coordinates to 3D model coordinates. The z coordinate will be zero.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {number} x
      * @param {number} y
@@ -188,7 +190,7 @@ define( function( require ) {
 
     /**
      * Maps a delta from 2D view coordinates to 3D model coordinates. The z coordinate will be zero.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Vector2} delta
      * @return REVIEW: {Vector3}?
@@ -205,7 +207,7 @@ define( function( require ) {
 
     /**
      * Maps a delta from 2D view coordinates to 3D model coordinates. The z coordinate will be zero.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {number} xDelta
      * @param {number} yDelta
@@ -218,7 +220,7 @@ define( function( require ) {
 
     /**
      * Transforms 2D view bounds to 2D model bounds since bounds have no depth.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Bounds2} viewBounds
      * @returns {Bounds2}
