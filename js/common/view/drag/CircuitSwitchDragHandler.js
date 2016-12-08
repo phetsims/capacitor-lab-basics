@@ -18,7 +18,7 @@ define( function( require ) {
   var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Range = require( 'DOT/Range' );
-  var TandemDragHandler = require( 'TANDEM/scenery/input/TandemDragHandler' );
+  var TandemSimpleDragHandler = require( 'TANDEM/scenery/input/TandemSimpleDragHandler' );
 
   // Compute the distance (in radians) between angles a and b, using an inlined dot product
   // (inlined to remove allocations)
@@ -61,7 +61,7 @@ define( function( require ) {
       };
     }
 
-    TandemDragHandler.call( this, {
+    TandemSimpleDragHandler.call( this, {
       tandem: tandem,
       allowTouchSnag: false,
 
@@ -141,6 +141,6 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'CircuitSwitchDragHandler', CircuitSwitchDragHandler );
 
-  return inherit( TandemDragHandler, CircuitSwitchDragHandler );
+  return inherit( TandemSimpleDragHandler, CircuitSwitchDragHandler );
 
 } );
