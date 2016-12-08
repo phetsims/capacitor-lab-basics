@@ -77,7 +77,8 @@ define( function( require ) {
       CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
 
     // Add the switch wire that spans two connection points. Default connection is to the battery.
-    this.switchSegment = WireSegment.createSwitchSegment( this.hingePoint, this.activeConnection,
+    this.switchSegment = WireSegment.createSwitchSegment( this.hingePoint,
+      this.getConnection( circuitConnectionProperty.value ),
       tandem.createTandem( 'switchSegment' ) );
 
     // Wire between the hinge point and end point
@@ -91,17 +92,15 @@ define( function( require ) {
       if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
         return;
       }
-      //REVIEW: recommend to remove the activeConnection usage here, since it's an intermediate value (just use a var).
-      self.activeConnection = self.getConnection( circuitConnection );
-      self.switchSegment.endPointProperty.set( self.activeConnection.location );
+
+      self.switchSegment.endPointProperty.set( self.getConnection( circuitConnection ).location );
 
       // Shorten the switch wire (requested in #140)
-      //REVIEW: recommend endPoint, hingePoint and delta (abbreviations here don't help readability)
-      var ep = self.switchSegment.endPointProperty.get();
-      var hp = self.switchSegment.hingePoint;
-      var v = ep.minus( hp );
-      v.setMagnitude( 0.9 * CLBConstants.SWITCH_WIRE_LENGTH );
-      self.switchSegment.endPointProperty.set( hp.plus( v ) );
+      var endPoint = self.switchSegment.endPointProperty.get();
+      var hingePoint = self.switchSegment.hingePoint;
+      var delta = endPoint.minus( hingePoint );
+      delta.setMagnitude( 0.9 * CLBConstants.SWITCH_WIRE_LENGTH );
+      self.switchSegment.endPointProperty.set( hingePoint.plus( delta ) );
     } );
 
   }

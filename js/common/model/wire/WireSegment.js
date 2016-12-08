@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * A straight segment of wire. One or more segments are joined to create a Wire.  Contains factory functions to
@@ -7,6 +7,7 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -32,13 +33,13 @@ define( function( require ) {
     assert && assert( startPoint instanceof Vector3 );
     assert && assert( endPoint instanceof Vector3 );
 
-    //REVIEW: visibility docs
+    // @public
     this.startPointProperty = new Property( startPoint, {
       tandem: tandem.createTandem( 'startPointProperty' ),
       phetioValueType: TVector3
     } );
 
-    //REVIEW: visibility docs
+    // @public
     this.endPointProperty = new Property( endPoint, {
       tandem: tandem.createTandem( 'endPointProperty' ),
       phetioValueType: TVector3
@@ -156,7 +157,7 @@ define( function( require ) {
    *
    * REVIEW: Seems cleaner to have CircuitSwitch have a createWireSegment() function, recommend to move to there
    *
-   * @param {Vector2} hingePoint REVIEW: Nope, probably Vector3
+   * @param {Vector3} hingePoint
    * @param {Object} activeConnection REVIEW: doc this, or at least refer to CircuitSwitch where it's used
    * @param {Tandem} tandem
    * @constructor
@@ -172,8 +173,12 @@ define( function( require ) {
 
   inherit( WireSegment, SwitchSegment, {
 
-    // update the endpoint for the switch segment, called when the connection point of the circuit changes
-    //REVIEW: JSDoc
+    /**
+     * Update the endpoint for the switch segment, called when the connection point of the circuit changes
+     * @param  {CircuitConnection} activeConnection
+     * @param  {number} angle
+     * @public
+     */
     update: function( activeConnection, angle ) {
       //REVIEW: Check usages, at least one didn't have the angle parameter. Can it be removed?
       // set the new active connection point
