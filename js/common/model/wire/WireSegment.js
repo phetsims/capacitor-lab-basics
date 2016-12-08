@@ -131,15 +131,19 @@ define( function( require ) {
    */
   function ComponentBottomWireSegment( component, endPoint, tandem ) {
     WireSegment.call( this, component.getBottomConnectionPoint(), endPoint, tandem );
-    //REVIEW: visibility doc
+
+    // @private
     this.component = component;
   }
 
   capacitorLabBasics.register( 'ComponentBottomWireSegment', ComponentBottomWireSegment );
 
   inherit( WireSegment, ComponentBottomWireSegment, {
-    // update the start point of the segment, called when the component geometry changes
-    //REVIEW: JSDoc
+
+    /**
+     * Update the start point of the segment. Called when the component geometry changes
+     * @public
+     */
     update: function() {
       this.startPointProperty.set( this.component.getBottomConnectionPoint() );
     }
