@@ -27,6 +27,12 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
+
+  // Scratch variable for performance
+  // @private
+  var scratchVector2 = new Vector2();
+  var scratchVector3 = new Vector3();
+
   /**
    * Constructor for the CLBModelViewTransform3D.
    *
@@ -71,6 +77,7 @@ define( function( require ) {
      * @return {Vector3}
      */
     modelToViewPosition: function( modelPoint ) {
+
       assert && assert( modelPoint instanceof Vector3,
         'modelPoint must be of type Vector3. Received ' + modelPoint );
 
@@ -82,9 +89,13 @@ define( function( require ) {
       // later (consider a second scratch vector for the 2d modelPoint?)
       scratchVectorA.setPolar( modelPoint.z * Math.sin( this.pitch ), this.yaw ).add( modelPoint );
       */
-      var xModel = modelPoint.x + ( modelPoint.z * Math.sin( this.pitch ) * Math.cos( this.yaw ) );
-      var yModel = modelPoint.y + ( modelPoint.z * Math.sin( this.pitch ) * Math.sin( this.yaw ) );
-      return this.modelToViewTransform2D.transformPosition2( new Vector2( xModel, yModel ) );
+
+      // var xModel = modelPoint.x + ( modelPoint.z * Math.sin( this.pitch ) * Math.cos( this.yaw ) );
+      // var yModel = modelPoint.y + ( modelPoint.z * Math.sin( this.pitch ) * Math.sin( this.yaw ) );
+      // return this.modelToViewTransform2D.transformPosition2( new Vector2( xModel, yModel ) );
+
+      scratchVector2.setPolar( modelPoint.z * Math.sin( this.pitch ), this.yaw ).add( modelPoint );
+      return this.modelToViewTransform2D.transformPosition2( scratchVector2 );
     },
 
     /**
@@ -97,8 +108,7 @@ define( function( require ) {
      * @returns {Vector2}
      */
     modelToViewXYZ: function( x, y, z ) {
-      //REVIEW (performance): If it's a bottleneck, use a scratch Vector3 here.
-      return this.modelToViewPosition( new Vector3( x, y, z ) );
+      return this.modelToViewPosition( scratchVector3.setXYZ( x, y, z ) );
     },
 
     /**
@@ -109,13 +119,8 @@ define( function( require ) {
      * @returns {Vector2}
      */
     modelToViewDelta: function( delta ) {
-      //REVIEW (performance): If it's a bottleneck, use a scratch Vector3 here.
-      //REVIEW: new Vector3() is at (0,0,0)
-      var origin = this.modelToViewPosition( new Vector3( 0, 0, 0 ) );
-      //REVIEW: generally 'position' is a better name than 'p'
-      var p = this.modelToViewPosition( delta );
-      //REVIEW: return p.minus( origin );
-      return new Vector2( p.x - origin.x, p.y - origin.y );
+      var origin = this.modelToViewPosition( scratchVector3.setXYZ( 0, 0, 0 ) );
+      return this.modelToViewPosition( delta ).minus( origin );
     },
 
     /**
@@ -128,8 +133,7 @@ define( function( require ) {
      * @returns {Vector2}
      */
     modelToViewDeltaXYZ: function( xDelta, yDelta, zDelta ) {
-      //REVIEW (performance): If it's a bottleneck, use a scratch Vector3 here.
-      return this.modelToViewDelta( new Vector3( xDelta, yDelta, zDelta ) );
+      return this.modelToViewDelta( scratchVector3.setXYZ( xDelta, yDelta, zDelta ) );
     },
 
     /**
@@ -168,10 +172,7 @@ define( function( require ) {
      */
     viewToModelPosition: function( pView ) {
       //REVIEW: Transform3 has built in inverse functions, use that here instead
-      //REVIEW: generally 'position' is a better name than 'p'
-      var p = this.viewToModelTransform2D.transformPosition2( pView );
-      //REVIEW: return p.toVector3();
-      return new Vector3( p.x, p.y, 0 );
+      return this.viewToModelTransform2D.transformPosition2( pView ).toVector3();
     },
 
     /**
@@ -183,8 +184,7 @@ define( function( require ) {
      * @return {Vector3}
      */
     viewToModelXY: function( x, y ) {
-      //REVIEW (performance): If it's a bottleneck, use a scratch Vector2 here.
-      return this.viewToModelPosition( new Vector2( x, y ) );
+      return this.viewToModelPosition( scratchVector2.setXY( x, y ) );
     },
 
     /**
@@ -195,8 +195,7 @@ define( function( require ) {
      * @return {Vector3}
      */
     viewToModelDelta: function( delta ) {
-      //REVIEW (performance): If it's a bottleneck, use a scratch Vector2 here.
-      var origin = this.viewToModelPosition( new Vector2() );
+      var origin = this.viewToModelPosition( scratchVector2.setXY( 0, 0 ) );
 
       return this.viewToModelPosition( delta ).minus( origin );
     },
@@ -210,8 +209,7 @@ define( function( require ) {
      * @return {Vector3}
      */
     viewToModelDeltaXY: function( xDelta, yDelta ) {
-      //REVIEW (performance): If it's a bottleneck, use a scratch Vector2 here.
-      return this.viewToModelDelta( new Vector2( xDelta, yDelta ) );
+      return this.viewToModelDelta( scratchVector2.setXY( xDelta, yDelta ) );
     },
 
     /**
