@@ -67,11 +67,11 @@ define( function( require ) {
      * Create the top face of the Box with a Bounds3 object.
      * @public
      *
-     * @param {Bounds3} size REVIEW: usually 'bounds' is better than 'size', since size is usually {Dimension2}
+     * @param {Bounds3} bounds
      * @returns {Shape}
      */
-    createTopFaceBounds3: function( size ) {
-      return this.createTopFace( size.minX, size.minY, size.minZ, size.width, size.height, size.depth );
+    createTopFaceBounds3: function( bounds ) {
+      return this.createTopFace( bounds.minX, bounds.minY, bounds.minZ, bounds.width, bounds.height, bounds.depth );
     },
 
     /**
@@ -105,11 +105,11 @@ define( function( require ) {
      * Create the front face of the box with a Bounds3 object.
      * @public
      *
-     * @param {Bounds3} size REVIEW: usually 'bounds' is better than 'size', since size is usually {Dimension2}
+     * @param {Bounds3} bounds
      * @returns {Shape}
      */
-    createFrontFaceBounds3: function( size ) {
-      return this.createFrontFace( size.minX, size.minY, size.minZ, size.width, size.height, size.depth );
+    createFrontFaceBounds3: function( bounds ) {
+      return this.createFrontFace( bounds.minX, bounds.minY, bounds.minZ, bounds.width, bounds.height, bounds.depth );
     },
 
     /**
@@ -149,11 +149,11 @@ define( function( require ) {
      * Create the right face of the box with a Bounds3 object.
      * @public
      *
-     * @param {Bounds3} size REVIEW: usually 'bounds' is better than 'size', since size is usually {Dimension2}
+     * @param {Bounds3} bounds
      * @returns {Shape}
      */
-    createRightSideFaceBounds3: function( size ) {
-      return this.createRightSideFace( size.minX, size.minY, size.minZ, size.width, size.height, size.depth );
+    createRightSideFaceBounds3: function( bounds ) {
+      return this.createRightSideFace( bounds.minX, bounds.minY, bounds.minZ, bounds.width, bounds.height, bounds.depth );
     },
 
     /**
