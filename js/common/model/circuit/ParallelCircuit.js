@@ -54,7 +54,7 @@ define( function( require ) {
       phetioValueType: TNumber( {
         units: 'amperes'
       } ),
-      documentation: 'currentAmplitudeProperty is updated by the model and should not be set by users'
+      phetioInstanceDocumentation: 'currentAmplitudeProperty is updated by the model and should not be set by users'
     } );
 
     /**
