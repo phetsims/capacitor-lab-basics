@@ -43,18 +43,18 @@ define( function( require ) {
     assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
       'Unsupported positionLabel: ' + positionLabel );
 
-    // @private (also note that it removes the 'open circuit' option when a capacitor and light bulb exist)
+    // Removes the 'open circuit' option when a capacitor and light bulb exist
+    // @private
     this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
+    // {Vector3}
     // @public
-    this.hingePoint = this.getSwitchHingePoint( positionLabel, config ); //REVIEW: type info would help here
+    this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
     this.circuitConnectionProperty = circuitConnectionProperty;
 
     // @private
     //REVIEW: initialAngle doesn't need to be a property, since it's inlined in the Property declaration below
     this.initialAngle = 0; // with respect to the vertical ( open switch )
-    //REVIEW: modelViewTransform doesn't need to be a property, since it's only used in the Wire declaration below
-    this.modelViewTransform = config.modelViewTransform;
     this.connections = this.getSwitchConnections( positionLabel, this.hingePoint.toVector2(), config.circuitConnections );
     //REVIEW: activeConnection doesn't need to be a property, since no methods use it
     //REVIEW: The only 'read' to activeConnection is when creating the WireSegment. When updated later, it is never used.
@@ -82,7 +82,7 @@ define( function( require ) {
 
     // Wire between the hinge point and end point
     // @public
-    this.switchWire = new Wire( this.modelViewTransform, [ this.switchSegment ], connectionName );
+    this.switchWire = new Wire( config.modelViewTransform, [ this.switchSegment ], connectionName );
 
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
