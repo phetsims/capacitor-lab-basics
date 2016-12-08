@@ -26,8 +26,10 @@ define( function( require ) {
   var Bounds3 = require( 'DOT/Bounds3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CapacitorShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/CapacitorShapeCreator' );
+  var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
 
@@ -37,13 +39,18 @@ define( function( require ) {
 
   /**
    * Constructor for the Capacitor.
-   * @param {Vector3} location
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {CircuitConfig} config
+   * @param {Property.<CircuitConnectionEnum>} circuitConnectionProperty
    * @param {Tandem} tandem
    * @param {Object} [options]
    * @constructor
    */
-  function Capacitor( location, modelViewTransform, tandem, options ) {
+  function Capacitor( config, circuitConnectionProperty, tandem, options ) {
+
+    var location = new Vector3(
+      CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing,
+      CLBConstants.BATTERY_LOCATION.y + config.capacitorYSpacing,
+      CLBConstants.BATTERY_LOCATION.z );
 
     // options that populate the capacitor with various geometric properties
     options = _.extend( {
@@ -54,24 +61,23 @@ define( function( require ) {
     // @public
     this.transientTime = 0; // model time updated when the switch is closed and while the capacitor is discharging
     this.voltageAtSwitchClose = 0; // voltage of the plates when the bulb switch is initially closed
-    this.modelViewTransform = modelViewTransform;
+    this.modelViewTransform = config.modelViewTransform;
     this.location = location;
 
     // @private
-    this.shapeCreator = new CapacitorShapeCreator( this, modelViewTransform );
+    this.shapeCreator = new CapacitorShapeCreator( this, config.modelViewTransform );
 
     // Square plates.
     var plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth );
 
-    //REVIEW: visibility doc
+    // @public
     this.plateSizeProperty = new Property( plateBounds, {
       tandem: tandem.createTandem( 'plateSizeProperty' ),
       phetioValueType: TBounds3
     } );
 
-    //REVIEW: Use NumberProperty instead
-    //REVIEW: visibility doc
-    this.plateSeparationProperty = new Property( options.plateSeparation, {
+    // @public
+    this.plateSeparationProperty = new NumberProperty( options.plateSeparation, {
       tandem: tandem.createTandem( 'plateSeparationProperty' ),
       phetioValueType: TNumber( {
         units: 'meters',
@@ -80,18 +86,37 @@ define( function( require ) {
     } );
 
     // zero until it's connected into a circuit
-    //REVIEW: Use NumberProperty instead
-    //REVIEW: visibility doc
-    this.platesVoltageProperty = new Property( 0, {
+    // @public
+    this.platesVoltageProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'platesVoltageProperty' ),
       phetioValueType: TNumber( {
         units: 'volts'
       } )
     } );
 
-    // @private - track the previous capacitance to adjust the inital voltage when discharging, see
+    // Track the previous capacitance to adjust the inital voltage when discharging, see
     // updateDischargeParameters() below.
+    // @private
     this.previousCapacitance = this.getCapacitance();
+
+    // @public
+    this.topCircuitSwitch = CircuitSwitch.TOP( config, circuitConnectionProperty,
+      tandem.createTandem( 'topCircuitSwitch' ) );
+    this.bottomCircuitSwitch = CircuitSwitch.BOTTOM( config, circuitConnectionProperty,
+      tandem.createTandem( 'bottomCircuitSwitch' ) );
+
+    // link the top and bottom circuit switches together so that they rotate together
+    // as the user drags
+    var self = this;
+    //REVIEW: note about JS's handling of negating numbers not causing infinite loops here might be good. This would
+    //        otherwise be a semi-dangerous pattern.
+    this.topCircuitSwitch.angleProperty.link( function( angle ) {
+      self.bottomCircuitSwitch.angleProperty.set( -angle );
+    } );
+    this.bottomCircuitSwitch.angleProperty.link( function( angle ) {
+      self.topCircuitSwitch.angleProperty.set( -angle );
+    } );
+
   }
 
   capacitorLabBasics.register( 'Capacitor', Capacitor );
@@ -101,7 +126,7 @@ define( function( require ) {
     /**
      * Convenience method, gets the area of one plate's top (or bottom) surfaces.
      * (design doc symbol: A)
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {number} area in meters^2
      */
@@ -110,26 +135,20 @@ define( function( require ) {
     },
 
     /**
-     * Sets the plate width.
+     * Sets width and depth of square plates. Thickness is constant.
      * (design doc symbol: L)
-     * REVIEW: visibility doc
+     * @public
      *
-     * Only the plate width settable. Plates are square, the plate depth is identical to the width. And the height
-     * (thickness) is constant.
-     *
-     * @param {number} plateWidth meters
+     * @param {number} plateWidth - meters
      */
     setPlateWidth: function( plateWidth ) {
-      //REVIEW: Please replace this with an assertion
-      if ( plateWidth <= 0 ) {
-        console.error( 'plateWidth must be > 0: ' + plateWidth );
-      }
+      assert && assert( plateWidth > 0, 'plateWidth must be > 0: ' + plateWidth );
       this.plateSizeProperty.set( new Bounds3( 0, 0, 0, plateWidth, this.plateSizeProperty.value.height, plateWidth ) );
     },
 
     /**
      * Convenience method for determining the outside center of the top plate.  This is a wire attachment point.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {Vector3}
      */
@@ -142,7 +161,7 @@ define( function( require ) {
 
     /**
      * Convenience method for determining the outside center of the bottom plate.  This is a wire attachment point.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {Vector3}
      */
@@ -168,7 +187,7 @@ define( function( require ) {
     /**
      * Does a Shape intersect the top plate shape?  Assumes that a shape is much smaller than the
      * top plate.  This is sufficient in the case of probes.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Shape} shape
      * @returns {boolean}
@@ -193,7 +212,7 @@ define( function( require ) {
     /**
      * Does a shape intersect the bottom plate shape?  Assumes that the shape is small relative
      * to the plate shape.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Shape} shape
      * @returns {boolean}

@@ -1,10 +1,9 @@
 // Copyright 2016, University of Colorado Boulder
 
 /**
- * Circuit switch.  The circuit switch has a start point and an end point.  The start point acts as a hinge, and
- * the end point can switch to new connection points.  It is assumed that the circuit switch is connected to
+ * The circuit switch has a hinge point and an end point that can switch to new
+ * connection points.  It is assumed that the circuit switch is connected to
  * a capacitor in this simulation.
- * REVIEW: 'hinge point' terminology works better than the 'start point', I'd replace usages (it's somewhat mixed)
  *
  * @author Jesse Greenberg
  * @author Andrew Adare
@@ -44,7 +43,7 @@ define( function( require ) {
     assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
       'Unsupported positionLabel: ' + positionLabel );
 
-    //REVIEW: visibility doc (also note that it removes the 'open circuit' option when a capacitor and light bulb exist)
+    // @private (also note that it removes the 'open circuit' option when a capacitor and light bulb exist)
     this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
     // @public
@@ -64,7 +63,7 @@ define( function( require ) {
     var self = this;
 
     //REVIEW: Use NumberProperty instead
-    //REVIEW: visibility doc
+    // @public
     this.angleProperty = new Property( this.initialAngle, {
       tandem: tandem.createTandem( 'angleProperty' ),
       phetioValueType: TNumber( {
@@ -183,13 +182,12 @@ define( function( require ) {
       */
 
       // Projection of switch wire vector to its components (angle is from a vertical wire)
-      //REVIEW: l is 'length'? Recommend avoiding the 'l' abbreviation, it's sometimes hard to read
-      var l = CLBConstants.SWITCH_WIRE_LENGTH;
-      var dx = l * Math.sin( SWITCH_ANGLE );
-      var dy = l * Math.cos( SWITCH_ANGLE );
+      var length = CLBConstants.SWITCH_WIRE_LENGTH;
+      var dx = length * Math.sin( SWITCH_ANGLE );
+      var dy = length * Math.cos( SWITCH_ANGLE );
 
       // Top point of hinge from pivot point
-      var topOffset = new Vector2( 0, l );
+      var topOffset = new Vector2( 0, length );
 
       // Compute 2D switch contact points
 
@@ -263,9 +261,7 @@ define( function( require ) {
      * @param {string} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
      */
     getConnectionPoint: function( connectionType ) {
-      //REVIEW: inline the two lines together?
-      var connection = this.getConnection( connectionType );
-      return connection.location;
+      return this.getConnection( connectionType ).location;
     },
 
     /**
