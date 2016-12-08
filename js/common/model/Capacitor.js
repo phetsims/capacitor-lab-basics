@@ -29,6 +29,7 @@ define( function( require ) {
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
 
@@ -69,15 +70,14 @@ define( function( require ) {
     // Square plates.
     var plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth );
 
-    //REVIEW: visibility doc
+    // @public
     this.plateSizeProperty = new Property( plateBounds, {
       tandem: tandem.createTandem( 'plateSizeProperty' ),
       phetioValueType: TBounds3
     } );
 
-    //REVIEW: Use NumberProperty instead
-    //REVIEW: visibility doc
-    this.plateSeparationProperty = new Property( options.plateSeparation, {
+    // @public
+    this.plateSeparationProperty = new NumberProperty( options.plateSeparation, {
       tandem: tandem.createTandem( 'plateSeparationProperty' ),
       phetioValueType: TNumber( {
         units: 'meters',
@@ -86,19 +86,20 @@ define( function( require ) {
     } );
 
     // zero until it's connected into a circuit
-    //REVIEW: Use NumberProperty instead
-    //REVIEW: visibility doc
-    this.platesVoltageProperty = new Property( 0, {
+    // @public
+    this.platesVoltageProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'platesVoltageProperty' ),
       phetioValueType: TNumber( {
         units: 'volts'
       } )
     } );
 
-    // @private - track the previous capacitance to adjust the inital voltage when discharging, see
+    // Track the previous capacitance to adjust the inital voltage when discharging, see
     // updateDischargeParameters() below.
+    // @private
     this.previousCapacitance = this.getCapacitance();
 
+    // @public
     this.topCircuitSwitch = CircuitSwitch.TOP( config, circuitConnectionProperty,
       tandem.createTandem( 'topCircuitSwitch' ) );
     this.bottomCircuitSwitch = CircuitSwitch.BOTTOM( config, circuitConnectionProperty,
@@ -125,7 +126,7 @@ define( function( require ) {
     /**
      * Convenience method, gets the area of one plate's top (or bottom) surfaces.
      * (design doc symbol: A)
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {number} area in meters^2
      */
@@ -134,26 +135,20 @@ define( function( require ) {
     },
 
     /**
-     * Sets the plate width.
+     * Sets width and depth of square plates. Thickness is constant.
      * (design doc symbol: L)
-     * REVIEW: visibility doc
+     * @public
      *
-     * Only the plate width settable. Plates are square, the plate depth is identical to the width. And the height
-     * (thickness) is constant.
-     *
-     * @param {number} plateWidth meters
+     * @param {number} plateWidth - meters
      */
     setPlateWidth: function( plateWidth ) {
-      //REVIEW: Please replace this with an assertion
-      if ( plateWidth <= 0 ) {
-        console.error( 'plateWidth must be > 0: ' + plateWidth );
-      }
+      assert && assert( plateWidth > 0, 'plateWidth must be > 0: ' + plateWidth );
       this.plateSizeProperty.set( new Bounds3( 0, 0, 0, plateWidth, this.plateSizeProperty.value.height, plateWidth ) );
     },
 
     /**
      * Convenience method for determining the outside center of the top plate.  This is a wire attachment point.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {Vector3}
      */
@@ -166,7 +161,7 @@ define( function( require ) {
 
     /**
      * Convenience method for determining the outside center of the bottom plate.  This is a wire attachment point.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {Vector3}
      */
@@ -192,7 +187,7 @@ define( function( require ) {
     /**
      * Does a Shape intersect the top plate shape?  Assumes that a shape is much smaller than the
      * top plate.  This is sufficient in the case of probes.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Shape} shape
      * @returns {boolean}
@@ -217,7 +212,7 @@ define( function( require ) {
     /**
      * Does a shape intersect the bottom plate shape?  Assumes that the shape is small relative
      * to the plate shape.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Shape} shape
      * @returns {boolean}
