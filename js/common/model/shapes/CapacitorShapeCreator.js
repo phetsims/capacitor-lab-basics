@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Creates 2D projections of shapes that are related to the 3D capacitor model. All of these shapes are 2D projections
@@ -7,6 +7,7 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -21,15 +22,14 @@ define( function( require ) {
    * Constructor for a CapacitorShapeCreator.
    *
    * @param {Capacitor} capacitor
-   * @param {ModelViewTransform2} modelViewTransform REVIEW: nope, see below
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @constructor
    */
   function CapacitorShapeCreator( capacitor, modelViewTransform ) {
-    if ( assert ) {
-      if ( modelViewTransform.constructor.name !== 'ModelViewTransform2' ) {
-        console.log( 'REVIEW (CapacitorShapeCreator): Probably not a ModelViewTransform2: ' + modelViewTransform.constructor.name );
-      }
-    }
+
+    assert && assert( modelViewTransform.constructor.name === 'CLBModelViewTransform3D',
+      'Expected a CLBModelViewTransform3D, got: ' + modelViewTransform.constructor.name );
+
     // @private
     this.capacitor = capacitor;
     this.boxShapeCreator = new BoxShapeCreator( modelViewTransform );

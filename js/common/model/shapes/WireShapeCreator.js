@@ -1,10 +1,11 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Creates the 2D shape for a wire. Shapes are in the global view coordinate frame.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -20,14 +21,13 @@ define( function( require ) {
    * Constructor for WireShapeCreator.
    *
    * @param {Wire} wire
-   * @param {ModelViewTransform2} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    */
   function WireShapeCreator( wire, modelViewTransform ) {
-    if ( assert ) {
-      if ( modelViewTransform.constructor.name !== 'ModelViewTransform2' ) {
-        console.log( 'REVIEW (WireShapeCreator): Probably not a ModelViewTransform2: ' + modelViewTransform.constructor.name );
-      }
-    }
+
+    assert && assert( modelViewTransform.constructor.name === 'CLBModelViewTransform3D',
+      'Expected a CLBModelViewTransform3D, got: ' + modelViewTransform.constructor.name );
+
     // @private
     this.wire = wire;
     this.modelViewTransform = modelViewTransform;
