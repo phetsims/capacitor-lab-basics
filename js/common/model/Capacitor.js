@@ -196,7 +196,7 @@ define( function( require ) {
       var intersectsTopPlate = false;
       //REVIEW: Why are we creating these shapes repeatedly? Presumably just create them on startup since they don't change.
       //REVIEW: Use _.some()
-      this.shapeCreator.createTopPlateShapeOccluded().forEach( function( topPlateShape ) {
+      this.shapeCreator.createTopPlateShape().forEach( function( topPlateShape ) {
 
         // kite does not support finding the intersection between two shapes and checking for
         // intersection of shape bounds is too inacurate in this case because of the 3d perspective.
@@ -221,7 +221,7 @@ define( function( require ) {
       var intersectsBottomPlate = false;
       //REVIEW: Why are we creating these shapes repeatedly? Presumably just create them on startup since they don't change.
       //REVIEW: Use _.some()
-      this.shapeCreator.createBottomPlateShapeOccluded().forEach( function( bottomPlateShape ) {
+      this.shapeCreator.createBottomPlateShape().forEach( function( bottomPlateShape ) {
         if ( bottomPlateShape.containsPoint( shape.bounds.center ) ) {
           intersectsBottomPlate = true;
         }

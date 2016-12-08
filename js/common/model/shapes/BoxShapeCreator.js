@@ -77,7 +77,7 @@ define( function( require ) {
     /**
      * Front face is a rectangle.
      * @public
-     * <code>
+     *
      * p0 --------------- p1
      * |                 |
      * |                 |

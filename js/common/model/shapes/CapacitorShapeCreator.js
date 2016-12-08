@@ -15,7 +15,6 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var BoxShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BoxShapeCreator' );
-  var Rectangle = require( 'DOT/Rectangle' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
@@ -44,7 +43,7 @@ define( function( require ) {
     //----------------------------------------------------------------------------------------
     /**
      * Top plate, unoccluded.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {Shape[]} REVIEW: createBoxShapes() instead?
      */
@@ -59,7 +58,7 @@ define( function( require ) {
 
     /**
      * Bottom plate, unoccluded.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {Shape[]} REVIEW: createBoxShapes() instead?
      */
@@ -73,34 +72,12 @@ define( function( require ) {
       return this.createBoxShape( x, y + ( d / 2 ), z, size );
     },
 
-    /**
-     * Visible portion of the top plate. Nothing occludes the top plate.
-     * REVIEW: visibility doc
-     *
-     * @returns {Shape[]} REVIEW: createBoxShapes() instead?
-     */
-    createTopPlateShapeOccluded: function() {
-      //REVIEW: one usage, no overrides. Just use createTopPlateShape() instead?
-      return this.createTopPlateShape();
-    },
-
-    /**
-     * Visible portion of the bottom plate. May be partially occluded by the top plate.
-     * REVIEW: visibility doc
-     *
-     * @returns {Shape[]} REVIEW: createBoxShapes() instead?
-     */
-    createBottomPlateShapeOccluded: function() {
-      //REVIEW: one usage, no overrides. Just use createTopPlateShape() instead?
-      return this.createBottomPlateShape();
-    },
-
     //----------------------------------------------------------------------------------------
     // general shapes
     //----------------------------------------------------------------------------------------
     /**
      * Create an array of planar shapes that form a box.
-     * REVIEW: visibility doc
+     * @public
      * @param x
      * @param y
      * @param z
@@ -110,13 +87,6 @@ define( function( require ) {
      */
     createBoxShape: function( x, y, z, size ) {
       return this.boxShapeCreator.createBoxShape( x, y, z, size.width, size.height, size.depth );
-    },
-
-    // Encapsulation of empty shape.
-    createEmptyShape: function() {
-      //REVIEW: that's not a Shape!
-      return new Rectangle( 0, 0, 0, 0 );
     }
-
   } );
 } );
