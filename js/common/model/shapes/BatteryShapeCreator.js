@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Creates 2D projections of shapes that are related to the 3D battery model. Shapes are in the global view coordinate
@@ -6,29 +6,29 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Shape = require( 'KITE/Shape' );
-  var Rectangle = require( 'DOT/Rectangle' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Rectangle = require( 'DOT/Rectangle' );
+  var Shape = require( 'KITE/Shape' );
 
   /**
    * Constructor for a BatteryShapeCreator.
    *
    * @param {Battery} battery
-   * @param {ModelViewTransform2} modelViewTransform REVIEW: nope, see below
+   * @param {CLBModelViewTransform3D} modelViewTransform
    */
   function BatteryShapeCreator( battery, modelViewTransform ) {
-    if ( assert ) {
-      if ( modelViewTransform.constructor.name !== 'ModelViewTransform2' ) {
-        console.log( 'REVIEW (BatteryShapeCreator): Probably not a ModelViewTransform2: ' + modelViewTransform.constructor.name );
-      }
-    }
+
+    assert && assert( modelViewTransform.constructor.name === 'CLBModelViewTransform3D',
+      'Expected a CLBModelViewTransform3D, got: ' + modelViewTransform.constructor.name );
+
     this.battery = battery; // @public
     this.modelViewTransform = modelViewTransform; // @private
   }
@@ -67,15 +67,15 @@ define( function( require ) {
       var ellipseHeight = this.createPositiveTerminalShapeTop( origin ).bounds.height;
 
       // wall of the cylinder
-      var cylinderWidth = this.battery.getPositiveTerminalEllipseSize().width;
-      var cylinderHeight = this.battery.getPositiveTerminalCylinderHeight();
+      var cylinderWidth = this.battery.positiveTerminalEllipseSize.width;
+      var cylinderHeight = this.battery.positiveTerminalCylinderHeight;
       var cylinderY = origin.y + this.battery.getTopTerminalYOffset();
       var wallShape = new Rectangle( origin.x, cylinderY, cylinderWidth, cylinderHeight );
 
       return this.modelViewTransform.modelToViewShape( new Shape()
-        .moveTo( wallShape.minX, wallShape.minY )// Top left of wall.
+        .moveTo( wallShape.minX, wallShape.minY ) // Top left of wall.
         .ellipticalArc( wallShape.centerX, wallShape.minY, wallShape.width / 2, ellipseHeight / 2, 0, Math.PI, 0, false )
-        .lineTo( wallShape.maxX, wallShape.maxY )// Bottom right of wall.
+        .lineTo( wallShape.maxX, wallShape.maxY ) // Bottom right of wall.
         .ellipticalArc( wallShape.centerX, wallShape.maxY, wallShape.width / 2, wallShape.height / 2, 0, 0, Math.PI, false )
         .close() // Connect final line.
       );
@@ -85,31 +85,28 @@ define( function( require ) {
     /**
      * Create the top of the positive terminal.  Use with createPositiveTerminalBodyShape() to create the entire shape
      * of the top terminal.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Vector3} origin
-     * REVIEW: return doc
+     * @returns {Shape} ellipse for top of terminal
      */
     createPositiveTerminalShapeTop: function( origin ) {
-      //REVIEW: only request the ellipse size once?
-      var ellipseWidth = this.battery.getPositiveTerminalEllipseSize().width;
-      var ellipseHeight = this.battery.getPositiveTerminalEllipseSize().height;
+      var ellipseWidth = this.battery.positiveTerminalEllipseSize.width;
+      var ellipseHeight = this.battery.positiveTerminalEllipseSize.height;
       var ellipseY = origin.y + this.battery.getTopTerminalYOffset();
       return Shape.ellipse( origin.x, ellipseY, ellipseWidth / 2, ellipseHeight / 2, 0, 0, Math.PI / 2, false );
-
     },
 
     /**
      * Creates the shape of the negative terminal relative to some specified origin.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Vector3} origin
      * @returns {Shape}
      */
     createNegativeTerminalShape: function( origin ) {
-      //REVIEW: only request the ellipse size once?
-      var width = this.battery.getNegativeTerminalEllipseSize().width;
-      var height = this.battery.getNegativeTerminalEllipseSize().height;
+      var width = this.battery.negativeTerminalEllipseSize.width;
+      var height = this.battery.negativeTerminalEllipseSize.height;
       var y = origin.y + this.battery.getTopTerminalYOffset();
       return this.modelViewTransform.modelToViewShape( Shape.ellipse( origin.x, y, width / 2, height / 2, 0, 0, Math.PI, false ) );
     }

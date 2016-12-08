@@ -447,6 +447,8 @@ define( function( require ) {
     /**
      * Check to see if shape connects any wires that are connected to the battery
      * bottom when the battery is disconnected.
+     *
+     * There is no check for direct contact with the bottom terminal, since it's not exposed in the 3D view.
      * @public
      *
      * @param {shape}
@@ -459,7 +461,6 @@ define( function( require ) {
       }
 
       return (
-        this.battery.intersectsBottomTerminal( shape ) ||
         this.shapeTouchesWireGroup( shape, this.bottomBatteryWires )
       );
     },
@@ -490,6 +491,8 @@ define( function( require ) {
     /**
      * True if shape is touching part of the circuit that is connected to the
      * battery's bottom terminal.
+     *
+     * There is no check for direct contact with the bottom terminal, since it's not exposed in the 3D view.
      * @public
      *
      * @param {Shape} shape
@@ -498,7 +501,6 @@ define( function( require ) {
     connectedToBatteryBottom: function( shape ) {
       return (
         this.shapeTouchesWireGroup( shape, this.bottomBatteryWires ) ||
-        this.battery.intersectsBottomTerminal( shape ) ||
         (
           this.batteryConnected() &&
           (

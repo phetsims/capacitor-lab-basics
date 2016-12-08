@@ -1,22 +1,24 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Simple model of a DC battery.  Origin is at the geometric center of the battery's body.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 
 define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Property = require( 'AXON/Property' );
-  var Dimension2 = require( 'DOT/Dimension2' );
   var BatteryShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BatteryShapeCreator' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var Dimension2 = require( 'DOT/Dimension2' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
+  var Property = require( 'AXON/Property' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
@@ -40,8 +42,8 @@ define( function( require ) {
    * The terminal is an ellipse, whose dimension were determined by visual inspection.
    * The origin of the terminal is at the center of the ellipse.
    */
-  var NEGATIVE_TERMINAL_ELLIPSE_SIZE = new Dimension2( 0.0035, 0.0009 ); // dimension of the ellipse that defines the negative terminal
-  var NEGATIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.0005; // center of the negative terminal, when it's the top terminal
+  var NEGATIVE_TERMINAL_ELLIPSE_SIZE = new Dimension2( 0.0035, 0.0009 ); // Ellipse axes defining the negative terminal
+  var NEGATIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.0005; // center of negative terminal when at the top
 
   /**
    * Constructor for a Battery.
@@ -55,19 +57,28 @@ define( function( require ) {
   function Battery( location, voltage, modelViewTransform, tandem ) {
 
     // @public
-    //REVIEW: Use NumberProperty instead
-    this.voltageProperty = new Property( voltage, {
+    this.voltageProperty = new NumberProperty( voltage, {
       tandem: tandem.createTandem( 'voltageProperty' ),
-      phetioValueType: TNumber( { units: 'volts' } )
+      phetioValueType: TNumber( {
+        units: 'volts'
+      } )
     } );
 
-    //REVIEW: visibility documentation, with type for enumeration?
+    // Value type: enumeration (string)
+    // @public
     this.polarityProperty = new Property( CLBConstants.POLARITY.POSITIVE, {
       tandem: tandem.createTandem( 'polarityProperty' ),
       phetioValueType: TString
     } );
 
     var self = this;
+
+    // @public
+    this.positiveTerminalEllipseSize = POSITIVE_TERMINAL_ELLIPSE_SIZE;
+    // @public
+    this.negativeTerminalEllipseSize = NEGATIVE_TERMINAL_ELLIPSE_SIZE;
+    // @public
+    this.positiveTerminalCylinderHeight = POSITIVE_TERMINAL_CYLINDER_HEIGHT;
 
     this.location = location; // @public (read-only)
     this.shapeCreator = new BatteryShapeCreator( this, modelViewTransform ); // @private
@@ -94,20 +105,8 @@ define( function( require ) {
     },
 
     /**
-     * Return false if testing intersection with bottom terminal.  This terminal is not visible.
-     * REVIEW: visibility doc
-     *
-     * @param {Shape} shape
-     * @returns {boolean}
-     */
-    intersectsBottomTerminal: function( shape ) {
-      //REVIEW: This is a constant? Should be factored out in locations
-      return false; // bottom terminal is not visible
-    },
-
-    /**
      * Determine if the shape intersects with the top battery terminal.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param shape
      * @returns {boolean}
@@ -120,7 +119,7 @@ define( function( require ) {
     /**
      * Gets the offset of the bottom terminal from the battery's origin, in model coordinates (meters).
      * We don't need to account for the polarity since the bottom terminal is never visible.
-     * REVIEW: visibility doc
+     * @public
      */
     getBottomTerminalYOffset: function() {
       return BODY_SIZE.height / 2;
@@ -129,7 +128,7 @@ define( function( require ) {
     /**
      * Gets the offset of the top terminal from the battery's origin, in model coordinates (meters).
      * This offset depends on the polarity.
-     * REVIEW: visibility doc
+     * @public
      */
     getTopTerminalYOffset: function() {
       if ( this.polarityProperty.value === CLBConstants.POLARITY.POSITIVE ) {
@@ -140,25 +139,7 @@ define( function( require ) {
       }
     },
 
-    //REVIEW: doc
-    //REVIEW: do we need a function for this?
-    getPositiveTerminalEllipseSize: function() {
-      return POSITIVE_TERMINAL_ELLIPSE_SIZE;
-    },
-
-    //REVIEW: doc
-    //REVIEW: do we need a function for this?
-    getNegativeTerminalEllipseSize: function() {
-      return NEGATIVE_TERMINAL_ELLIPSE_SIZE;
-    },
-
-    //REVIEW: doc
-    //REVIEW: do we need a function for this?
-    getPositiveTerminalCylinderHeight: function() {
-      return POSITIVE_TERMINAL_CYLINDER_HEIGHT;
-    },
-
-    //REVIEW: doc
+    // @public
     reset: function() {
       this.voltageProperty.reset();
       this.polarityProperty.reset();
