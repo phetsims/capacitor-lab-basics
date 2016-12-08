@@ -37,8 +37,8 @@
     "branch": "master"
   },
   "phet-io": {
-    "sha": "bcdb25495d7f1055e3b3afcd8c8e714717e8abc2",
-    "branch": "master"
+    "sha": "3c07cac2d02bceff6c0d89030184981b9a50acd6",
+    "branch": "capacitor-lab-basics-1.4-phetio"
   },
   "phet-io-website": {
     "sha": "528402554ab49e7dd2eb5de3044cd90ab8100e8f",
