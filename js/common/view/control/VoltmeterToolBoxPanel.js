@@ -22,13 +22,13 @@ define( function( require ) {
   var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
 
   /**
+   * @constructor
    *
    * @param {VoltmeterNode} voltmeterNode
-   * @param {CLModelViewTransform} modelViewTransform
+   * @param {CLModelViewTransform} modelViewTransform REVIEW: Seems like a CLBModelViewTransform3D?
    * @param {Property.<boolean>} inUserControlProperty
    * @param {Property.<boolean>} voltmeterVisibleProperty
    * @param {Tandem} tandem
-   * @constructor
    */
   function VoltmeterToolBoxPanel( voltmeterNode, modelViewTransform, inUserControlProperty, voltmeterVisibleProperty,
     tandem ) {
@@ -61,6 +61,7 @@ define( function( require ) {
     // wrap all off this content inside of a node that will hold the input element and its descriptions
     Node.call( this );
 
+    //REVIEW: variable not used elsewhere, inline?
     var toolboxPanel = new Panel( voltmeterIconNode, {
       xMargin: 15,
       yMargin: 15,
@@ -89,4 +90,3 @@ define( function( require ) {
 
   return inherit( Node, VoltmeterToolBoxPanel );
 } );
-
