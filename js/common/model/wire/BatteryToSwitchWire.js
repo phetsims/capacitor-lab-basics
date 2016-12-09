@@ -90,13 +90,13 @@ define( function( require ) {
 
     /**
      * Factory function for BatteryToSwitchWire (bottom side)
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {CircuitConfig} config
      * @param {Battery} battery
      * @param {CircuitSwitch} circuitSwitch
      * @param {Tandem} tandem
-     * REVIEW: returns?
+     * @returns {Wire}
      */
     createBatteryToSwitchWireBottom: function( config, battery, circuitSwitch, tandem ) {
       return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM, config, battery, circuitSwitch,
@@ -105,13 +105,13 @@ define( function( require ) {
 
     /**
      * Factory function for BatteryToSwitchWire (top side)
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {CircuitConfig} config
      * @param {Battery} battery
      * @param {CircuitSwitch} circuitSwitch
      * @param {Tandem} tandem
-     * REVIEW: returns?
+     * @returns {Wire}
      */
     createBatteryToSwitchWireTop: function( config, battery, circuitSwitch, tandem ) {
       return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP, config, battery, circuitSwitch,
