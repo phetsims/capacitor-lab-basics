@@ -128,7 +128,7 @@ define( function( require ) {
      * @public
      *
      * @param {Shape} modelShape
-     * @return REVIEW: {Shape}?
+     * @return {Shape}
      */
     modelToViewShape: function( modelShape ) {
       return this.modelToViewTransform2D.transformShape( modelShape );
