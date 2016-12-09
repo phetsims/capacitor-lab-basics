@@ -95,21 +95,18 @@ define( function( require ) {
     //REVIEW: https://github.com/phetsims/capacitor-lab-basics/issues/174 should help with duplication here
 
     var touchingFreePlate = function( probeShape ) {
-      var t = self.circuit.connectedToDisconnectedCapacitorTop( probeShape );
-      var b = self.circuit.connectedToDisconnectedCapacitorBottom( probeShape );
-      return ( t || b );
+      return ( self.circuit.connectedToDisconnectedCapacitorTop( probeShape ) ||
+        self.circuit.connectedToDisconnectedCapacitorBottom( probeShape ) );
     };
 
     var touchingFreeLightBulb = function( probeShape ) {
-      var t = self.circuit.connectedToDisconnectedLightBulbTop( probeShape );
-      var b = self.circuit.connectedToDisconnectedLightBulbBottom( probeShape );
-      return ( t || b );
+      return ( self.circuit.connectedToDisconnectedLightBulbTop( probeShape ) ||
+        self.circuit.connectedToDisconnectedLightBulbBottom( probeShape ) );
     };
 
     var touchingFreeBattery = function( probeShape ) {
-      var t = self.circuit.connectedToDisconnectedBatteryTop( probeShape );
-      var b = self.circuit.connectedToDisconnectedBatteryBottom( probeShape );
-      return ( t || b );
+      return ( self.circuit.connectedToDisconnectedBatteryTop( probeShape ) ||
+        self.circuit.connectedToDisconnectedBatteryBottom( probeShape ) );
     };
 
     /**
@@ -127,18 +124,18 @@ define( function( require ) {
         var negativeProbeShape = self.shapeCreator.getNegativeProbeTipShape();
 
         if ( self.circuit.lightBulb ) {
-          //REVIEW: factor out duplicated expressions like `touchingFreeLightBulb( positiveProbeShape )`. Should help
-          //        performance and readability
+          var positiveContactsLight = touchingFreeLightBulb( positiveProbeShape );
+          var negativeContactsLight = touchingFreeLightBulb( negativeProbeShape );
 
           // Set voltage to zero when both probes are touching the disconnected lightbulb
-          if ( touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) {
+          if ( positiveContactsLight && negativeContactsLight ) {
             self.measuredVoltageProperty.set( 0 );
             return;
           }
 
           // Set voltage to null when one (and only one) probe is on a disconnected lightbulb
-          if ( ( touchingFreeLightBulb( positiveProbeShape ) && !touchingFreeLightBulb( negativeProbeShape ) ) ||
-            ( !touchingFreeLightBulb( positiveProbeShape ) && touchingFreeLightBulb( negativeProbeShape ) ) ) {
+          if ( ( positiveContactsLight && !negativeContactsLight ) ||
+            ( !positiveContactsLight && negativeContactsLight ) ) {
             self.measuredVoltageProperty.set( null );
             return;
           }
