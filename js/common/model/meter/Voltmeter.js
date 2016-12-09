@@ -1,10 +1,11 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Voltmeter model.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -27,8 +28,6 @@ define( function( require ) {
   var PROBE_TIP_SIZE = new Dimension2( 0.0005, 0.0015 ); // meters
 
   // Initial locations when dragged out of toolbox
-  //REVIEW: The body gets dragged out, how would an initial location matter?
-  var BODY_LOCATION = new Vector3( 0.071, 0.026, 0 );
   var POSITIVE_PROBE_LOCATION = new Vector3( 0.0669, 0.0298, 0 );
   var NEGATIVE_PROBE_LOCATION = new Vector3( 0.0707, 0.0329, 0 );
 
@@ -38,7 +37,7 @@ define( function( require ) {
    * @param {ParallelCircuit} circuit
    * @param {Bounds2} dragBounds
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Tandem|null} tandem - null if this is a temporary component used for calculations
+   * @param {Tandem} tandem
    * @constructor
    */
   function Voltmeter( circuit, dragBounds, modelViewTransform, tandem ) {
@@ -58,7 +57,7 @@ define( function( require ) {
     } );
 
     //REVIEW: Visibility doc
-    this.bodyLocationProperty = new Property( BODY_LOCATION, {
+    this.bodyLocationProperty = new Property( new Vector3(), {
       tandem: tandem.createTandem( 'bodyLocationProperty' ),
       phetioValueType: TVector3
     } );
