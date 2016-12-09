@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Creates 2D projections of shapes that are related to the 3D voltmeter model.
@@ -6,6 +6,7 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -39,7 +40,7 @@ define( function( require ) {
 
     /**
      * Gets the shape of the positive probe's tip in the world coordinate frame.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {Shape}
      */
@@ -50,7 +51,7 @@ define( function( require ) {
 
     /**
      * Gets the shape of the negative probe's tip in the world coordinate frame.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {Shape}
      */
@@ -61,7 +62,7 @@ define( function( require ) {
 
     /**
      * Get the shape of a probe tip relative to some specified origin.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {Vector3} origin
      * @param {number} theta - rotation of modelViewTransform for 3D perspective
