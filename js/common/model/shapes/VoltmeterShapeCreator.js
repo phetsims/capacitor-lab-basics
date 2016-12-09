@@ -68,9 +68,9 @@ define( function( require ) {
      * @returns {Shape}
      */
     getProbeTipShape: function( origin, theta ) {
-      //REVIEW Just get the size once?
-      var width = this.voltmeter.getProbeTipSizeReference().width;
-      var height = this.voltmeter.getProbeTipSizeReference().height;
+      var size = this.voltmeter.probeTipSizeReference;
+      var width = size.width;
+      var height = size.height;
       var x = origin.x;
       var y = origin.y;
       var rec = Shape.rectangle( x, y, width, height );

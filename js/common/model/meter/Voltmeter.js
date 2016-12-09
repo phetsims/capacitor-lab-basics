@@ -46,6 +46,7 @@ define( function( require ) {
     this.circuit = circuit; // @private
     this.dragBounds = dragBounds; // @public (read-only)
     this.modelViewTransform = modelViewTransform; // @private
+    this.probeTipSizeReference = PROBE_TIP_SIZE; // @public (read-only)
 
     // @public
     this.visibleProperty = new BooleanProperty( false, {
@@ -210,18 +211,7 @@ define( function( require ) {
       return touching;
     },
 
-    /**
-     * Get the probe tip size in model coordinates
-     * REVIEW: visibility doc
-     *
-     * @returns {Dimension2}
-     */
-    getProbeTipSizeReference: function() {
-      //REVIEW: This is a constant with few usages and no overrides. Consider exposing it as a constant.
-      return PROBE_TIP_SIZE;
-    },
-
-    //REVIEW: doc
+    // @public
     reset: function() {
       this.visibleProperty.reset();
       this.inUserControlProperty.reset();
