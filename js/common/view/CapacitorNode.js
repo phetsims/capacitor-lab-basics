@@ -38,7 +38,6 @@ define( function( require ) {
     var self = this; // extend scope for nested callbacks
 
     // @private
-    //REVIEW: ParallelCircuit does not declare capacitor. Does this require a CapacitanceCircuit instead?
     this.capacitor = circuit.capacitor;
     this.modelViewTransform = modelViewTransform;
     this.topPlateNode = PlateNode.createTopPlateNode( this.capacitor, modelViewTransform, circuit.maxPlateCharge );

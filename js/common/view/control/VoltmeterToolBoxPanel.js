@@ -19,13 +19,13 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
 
   // phet-io modules
-  var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
+  var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
 
   /**
    * @constructor
    *
    * @param {VoltmeterNode} voltmeterNode
-   * @param {CLModelViewTransform} modelViewTransform REVIEW: Seems like a CLBModelViewTransform3D?
+   * @param {CLModelViewTransform3D} modelViewTransform
    * @param {Property.<boolean>} inUserControlProperty
    * @param {Property.<boolean>} voltmeterVisibleProperty
    * @param {Tandem} tandem
@@ -61,13 +61,11 @@ define( function( require ) {
     // wrap all off this content inside of a node that will hold the input element and its descriptions
     Node.call( this );
 
-    //REVIEW: variable not used elsewhere, inline?
-    var toolboxPanel = new Panel( voltmeterIconNode, {
+    this.addChild( new Panel( voltmeterIconNode, {
       xMargin: 15,
       yMargin: 15,
       fill: CLBConstants.METER_PANEL_FILL
-    } );
-    this.addChild( toolboxPanel );
+    } ) );
 
     voltmeterVisibleProperty.link( function( voltmeterVisible ) {
       voltmeterIconNode.visible = !voltmeterVisible;

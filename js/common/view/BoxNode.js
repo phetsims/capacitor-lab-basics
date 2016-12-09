@@ -95,13 +95,6 @@ define( function( require ) {
       return baseColor.darkerColor().darkerColor();
     },
 
-    //REVIEW: This seems to not be used, should be removed (dead code)
-    setColor: function( color ) {
-      this.topNode.fill = this.getTopColor( color );
-      this.frontNode.fill = this.getFrontColor( color );
-      this.rightSideNode.fill = this.getSideColor( color );
-    },
-
     updateShapes: function() {
       this.topNode.shape = this.shapeCreator.createTopFaceBounds3( this.size );
       this.frontNode.shape = this.shapeCreator.createFrontFaceBounds3( this.size );

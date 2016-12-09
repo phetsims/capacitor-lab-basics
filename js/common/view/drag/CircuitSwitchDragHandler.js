@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Drag handler for the switch node.  The circuit switch can be dragged between connection points, and is also limited
@@ -8,6 +8,7 @@
  * On drag end, the switch snaps to the cloest connection point.
  *
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -44,7 +45,7 @@ define( function( require ) {
     var angleOffset = 0;
     var angle = 0;
 
-    //REVIEW: Is this query parameter existing long-term?
+    // Customization for PhET-iO applications
     this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
     this.snapRange = {
@@ -71,8 +72,6 @@ define( function( require ) {
         initialEndPoint = circuitSwitch.getSwitchEndPoint(); // in model coordinates
         angleOffset = initialEndPoint.minus( hingePoint ).toVector2().angle(); // angle of switch segment with the horizontal
         lastAngle = angleOffset;
-        //REVIEW: what does setting 'dragging' here do? Don't see sim-specific checks on it
-        switchNode.dragging = true;
 
         circuitSwitch.circuitConnectionProperty.set( CircuitConnectionEnum.IN_TRANSIT );
 
@@ -133,8 +132,6 @@ define( function( require ) {
         circuitSwitch.circuitConnectionProperty.set( connection );
 
         circuitSwitch.angleProperty.set( angle );
-        //REVIEW: what does setting 'dragging' here do? Don't see sim-specific checks on it
-        switchNode.dragging = false;
       }
     } );
   }
