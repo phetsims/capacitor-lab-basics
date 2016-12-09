@@ -34,7 +34,7 @@ define( function( require ) {
 
     /**
      * Utility function to convert from meters to millimeters.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {number} d
      * @returns {number}
@@ -45,7 +45,7 @@ define( function( require ) {
 
     /**
      * Utility function to convert meters squared to millimeters squared.
-     * REVIEW: visibility doc
+     * @public
      *
      * @param {number} d
      * @returns {number}
