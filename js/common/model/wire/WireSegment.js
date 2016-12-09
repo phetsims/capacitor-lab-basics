@@ -92,7 +92,7 @@ define( function( require ) {
    * @public
    *
    * @param {Capacitor|LightBulb} component
-   * @param {Vector2} endPoint REVIEW: Pretty sure it's Vector3
+   * @param {Vector3} endPoint
    * @param {Tandem} tandem
    */
   function ComponentTopWireSegment( component, endPoint, tandem ) {
