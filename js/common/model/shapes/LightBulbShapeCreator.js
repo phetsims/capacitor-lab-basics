@@ -1,20 +1,20 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
- * Creates 2D projections of shapes that are related to the light bulb. Shapes are in the global view coordinate
- * frame.
+ * Creates 2D projections of shapes that are related to the light bulb.
+ * Shapes are in the global view coordinate frame.
  *
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Shape = require( 'KITE/Shape' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  // var Vector2 = require( 'DOT/Vector2' );
+  var inherit = require( 'PHET_CORE/inherit' );
   var Matrix3 = require( 'DOT/Matrix3' );
+  var Shape = require( 'KITE/Shape' );
 
   /**
    * Constructor.
@@ -36,41 +36,16 @@ define( function( require ) {
      * Gets the shape of the light bulb base in the world coordinate frame.  Origin at the top center.
      * The base shape is composed of a rectangle, half circle, and custom shape to mimic the image representing
      * the base.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {Shape}
      */
     createBaseShape: function() {
-      //REVIEW: why the commented-out code?
 
-      // origin is at (0, 0) - this is the 'top' of the bulb base
-      // var origin = new Vector2( 0, 0 );
+      var height = this.lightBulb.bulbBaseSize.height;
+      var topConductorWidth = this.lightBulb.topBaseConductorWidth;
 
-      // shape of the bulb base, initially at the origin
-      // var baseShape = new Shape();
-      // baseShape.moveToPoint( origin );
-
-      var height = this.lightBulb.getBaseSize().height;
-      var topConductorWidth = this.lightBulb.getTopBaseConductorWidth();
-      // var bottomInsulatorWidth = this.lightBulb.getBottomBaseInsulatorWidth();
-      // var bottomConductorHeight = this.lightBulb.getBottomBaseConductorHeight();
-
-      // // parameters for the arc that defines the bottom of the conductor shape
-      // var startAngle = 1.5 * Math.PI;
-      // var endAngle = Math.PI / 2;
-      // var counterClockwise = true;
-
-      // // draw the entire shape of the light bulb base
-      // baseShape.lineTo( 0, -height / 2 );
-      // baseShape.lineTo( -topConductorWidth, -height / 2 );
-      // baseShape.lineTo( -bottomInsulatorWidth, -bottomConductorHeight );
-      // baseShape.arc( -bottomInsulatorWidth, 0, bottomConductorHeight, startAngle, endAngle, counterClockwise );
-      // baseShape.lineTo( -topConductorWidth, height / 2 );
-      // baseShape.lineTo( 0, height / 2 );
-      // baseShape.close();
-
-      //REVIEW: formatting?
-      var baseShape = Shape.rect(-height/2, -topConductorWidth/2, 3*topConductorWidth/4, 3*height/4);
+      var baseShape = Shape.rect( -height / 2, -topConductorWidth / 2, 3 * topConductorWidth / 4, 3 * height / 4 );
 
       // transform to the location of the bulb
       baseShape = baseShape.transformed( new Matrix3.translation(
@@ -79,9 +54,7 @@ define( function( require ) {
       ) );
 
       return this.modelViewTransform.modelToViewShape( baseShape );
-
     }
-
   } );
 
 } );
