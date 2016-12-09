@@ -37,8 +37,7 @@ define( function( require ) {
      * @return
      */
     getGridSize: function( numberOfObjects, width, height ) {
-      //REVIEW: replace with throwing an error
-      console.error( 'getGridSize should be overridden by descendant classes.' );
+      assert && assert( false, 'getGridSize should be overridden by descendant classes.' );
     }
   }, {
     /**
@@ -104,45 +103,6 @@ define( function( require ) {
       return new Dimension2( columns, rows );
     }
   } );
-
-//  /**
-//   * Strategy borrowed from CCK's view.piccolo.lifelike.CapacitorNode (r40140, line 207).
-//   * Problem:  This strategy works well when the plate is square, but falls apart
-//   * as the plate becomes narrow. When the plate is narrow, this strategy creates
-//   * grid sizes where one of the dimensions is zero (eg, 8x0, 0x14).
-//   */
-//  public static class CCKStrategy implements IGridSizeStrategy {
-//
-//    public Dimension getGridSize( int numberOfObjects, double width, double height ) {
-//    double alpha = Math.sqrt( numberOfObjects / width / height );
-//    // casting here may result in some charges being thrown out, but that's OK
-//    int columns = (int) ( width * alpha );
-//    int rows = (int) ( height * alpha );
-//      return new Dimension( columns, rows );
-//    }
-//  }
-
-//  /**
-//   * Workaround for one of the known issues with CCKGridSizeStrategy.
-//   * Ensures that we don't have a grid size where exactly one of the dimensions is zero.
-//   * Problem: If numberOfCharges is kept constant, a plate with smaller
-//   * area but larger aspect ratio will display more charges.
-//   * For example, if charges=7, a 5x200mm plate will display 7 charges,
-//   * while a 200x200mm plate will only display 4 charges.
-//   */
-//  public static class ModifiedCCKStrategy extends CCKStrategy {
-//
-//    public Dimension getGridSize( int numberOfObjects, double width, double height ) {
-//      Dimension gridSize = super.getGridSize( numberOfObjects, width, height );
-//      if ( gridSize.width == 0 && gridSize.height != 0 ) {
-//      gridSize.setSize( 1, numberOfObjects );
-//      }
-//      else if ( gridSize.width != 0 && gridSize.height == 0 ) {
-//        gridSize.setSize( numberOfObjects, 1 );
-//      }
-//    return gridSize;
-//    }
-//  }
 
   return IGridSizeStrategy;
 
