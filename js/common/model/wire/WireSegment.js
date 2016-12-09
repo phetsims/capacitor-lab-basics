@@ -47,7 +47,15 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'WireSegment', WireSegment );
 
-  inherit( Object, WireSegment, {}, {
+  inherit( Object, WireSegment, {
+
+    /**
+     * No-op function to provide a uniform interface for all descendants
+     * @public
+     */
+    update: function() {},
+
+  }, {
 
     // Factory methods for specific wire segments
 
@@ -104,7 +112,8 @@ define( function( require ) {
    */
   function ComponentTopWireSegment( component, endPoint, tandem ) {
     WireSegment.call( this, component.getTopConnectionPoint(), endPoint, tandem );
-    //REVIEW: visibility doc
+
+    // @private
     this.component = component;
   }
 

@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * A wire is a collection of connected wire segments. It contains a creator object that creates the wire shape. The
@@ -32,9 +32,8 @@ define( function( require ) {
     this.segments = segments; // @public
     this.connectionPoint = connectionPoint; // @public
     this.shapeCreator = new WireShapeCreator( this, modelViewTransform ); // @private
-    //REVIEW: shapeCreator not used by functions outside constructor that are actually called, recommend it be left as local variable
 
-    //REVIEW: visibility doc (public presumably)
+    // @public
     this.shapeProperty = new Property( this.shapeCreator.createWireShape(), {
       // Wire is not currently instrumented
     } );
@@ -54,64 +53,20 @@ define( function( require ) {
   return inherit( Object, Wire, {
 
     /**
-     * Cleanup function to avoid memory leaks.
-     * REVIEW: visibility doc
+     * Update all segments of the wire
+     * @public
      */
-    cleanUp: function() {
-      //REVIEW: Why isn't this getting called?
-      this.segments.forEach( function( segment ) {
-        //REVIEW: WireSegment.cleanUp doesn't exist.
-        segment.cleanUp();
-      } );
-    },
-
-    /**
-     * Function that creates the shape of this wire through the shape creator.
-     * REVIEW: visibility doc
-     * REVIEW: returns?
-     * REVIEW: This is not called, dead code? Should be removed or called.
-     */
-    createShapes: function() {
-      //REVIEW: createWireShapes() doesn't exist on anything else
-      return this.shapeCreator.createWireShapes();
-    },
-
-    /**
-     * Get the corner offset of the wire.
-     * REVIEW: visibility doc
-     * REVIEW: This is not called, dead code? Should be removed or called.
-     *
-     * @returns {number}
-     */
-    getCornerOffset: function() {
-      //REVIEW: getCornerOffset() doesn't exist on anything else
-      return this.shapeCreator.getCornerOffset();
-    },
-
-    /**
-     * Get the end offset of the wire.
-     * REVIEW: visibility doc
-     * REVIEW: This is not called, dead code? Should be removed or called.
-     *
-     * @returns {number}
-     */
-    getEndOffset: function() {
-      //REVIEW: getEndOffset() doesn't exist on anything else
-      return this.shapeCreator.getEndOffset();
-    },
-
     update: function() {
       this.segments.forEach( function( segment ) {
-        // not all segments need to be updated
-        //REVIEW: Any advantage of this over having a no-op update() on WireSegment itself?
-        segment.update && segment.update();
+        segment.update();
       } );
     },
 
-    //REVIEW: doc
-    //REVIEW: Why is this not being called?
+    /**
+     * Reset wire
+     * @public
+     */
     reset: function() {
-      //REVIEW: Why would it not reset its segments?
       this.shapeProperty.reset();
     }
   } );
