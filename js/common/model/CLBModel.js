@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Base model for Capacitor Lab: Basics.  This gets extended by CLBLightBulbModel and CapacitanceModel.
@@ -6,6 +6,7 @@
  *
  * @author Chris Malley
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -14,11 +15,16 @@ define( function( require ) {
   var BooleanProperty = require( 'AXON/BooleanProperty' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
 
   // phet-io modules
   var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
+
+  // constants
+  // reference coordinate frame size for world nodes
+  var CANVAS_RENDERING_SIZE = new Dimension2( 1024, 618 );
 
   /**
    * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
@@ -61,7 +67,7 @@ define( function( require ) {
       phetioValueType: TBoolean
     } );
 
-    this.worldBounds = CLBConstants.CANVAS_RENDERING_SIZE.toBounds(); // @private
+    this.worldBounds = CANVAS_RENDERING_SIZE.toBounds(); // @private
 
     // @public
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );

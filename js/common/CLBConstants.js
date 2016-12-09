@@ -77,10 +77,6 @@ define( function( require ) {
     DISCONNECTED_POINT_STROKE: PhetColorScheme.RED_COLORBLIND,
     CONNECTION_POINT_HIGHLIGHTED: 'yellow',
 
-    // reference coordinate frame size for world nodes
-    //REVIEW: Only should be used in the common model declaration (not used elsewhere). Do we need this separated out?
-    CANVAS_RENDERING_SIZE: new Dimension2( 1024, 618 ),
-
     // model-view transform.  Note explicit conversion to radians
     MVT_SCALE: 12000, // scale factor when going from model to view
     MVT_YAW: -45 * Math.PI / 180, // rotation about the vertical axis, right-hand rule determines sign.
