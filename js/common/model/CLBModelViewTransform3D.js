@@ -81,19 +81,6 @@ define( function( require ) {
       assert && assert( modelPoint instanceof Vector3,
         'modelPoint must be of type Vector3. Received ' + modelPoint );
 
-      /* REVIEW: avoid component-wise math, use mutable methods if performance is a bottleneck
-      var offsetModelPoint = modelPoint.plus( Vector2.createPolar( modelPoint.z * Math.sin( this.pitch ), this.yaw ) );
-      return this.modelToViewTransform2D.transformPosition2( offsetModelPoint )
-      // or for the mutable option, at the top of the file declare:
-      var scratchVectorA = new Vector2();
-      // later (consider a second scratch vector for the 2d modelPoint?)
-      scratchVectorA.setPolar( modelPoint.z * Math.sin( this.pitch ), this.yaw ).add( modelPoint );
-      */
-
-      // var xModel = modelPoint.x + ( modelPoint.z * Math.sin( this.pitch ) * Math.cos( this.yaw ) );
-      // var yModel = modelPoint.y + ( modelPoint.z * Math.sin( this.pitch ) * Math.sin( this.yaw ) );
-      // return this.modelToViewTransform2D.transformPosition2( new Vector2( xModel, yModel ) );
-
       scratchVector2.setPolar( modelPoint.z * Math.sin( this.pitch ), this.yaw ).add( modelPoint );
       return this.modelToViewTransform2D.transformPosition2( scratchVector2 );
     },
