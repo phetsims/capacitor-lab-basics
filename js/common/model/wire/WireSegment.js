@@ -66,7 +66,7 @@ define( function( require ) {
      * @param {Capacitor|LightBulb} component
      * @param {Vector3} endPoint
      * @param {Tandem} tandem - end point for the wire segment
-     * REVIEW: returns?
+     * @returns {WireSegment}
      */
     createComponentTopWireSegment: function( component, endPoint, tandem ) {
       return new ComponentTopWireSegment( component, endPoint, tandem );
@@ -79,25 +79,10 @@ define( function( require ) {
      * @param {Capacitor|LightBulb} component
      * @param {Vector3} endPoint
      * @param {Tandem} tandem
-     * REVIEW: returns?
+     * @returns {WireSegment}
      */
     createComponentBottomWireSegment: function( component, endPoint, tandem ) {
       return new ComponentBottomWireSegment( component, endPoint, tandem );
-    },
-
-    /**
-     * Factory for a SwitchSegment that acts as a switch between two connection points
-     * @public
-     *
-     * REVIEW: Seems cleaner to have CircuitSwitch have a createWireSegment() function, recommend to move to there
-     *
-     * @param {Vector2} startPoint - start point for the switch segment REVIEW: Pretty sure it's Vector3
-     * @param {Object} activeConnection
-     * @param {Tandem} tandem
-     * REVIEW: returns?
-     */
-    createSwitchSegment: function( startPoint, activeConnection, tandem ) {
-      return new SwitchSegment( startPoint, activeConnection, tandem );
     }
   } );
 
@@ -157,27 +142,6 @@ define( function( require ) {
       this.startPointProperty.set( this.component.getBottomConnectionPoint() );
     }
   } );
-
-  /**
-   * Constructor for a switch segment.  End point of the switch segment will change depending on the connection
-   * state of the circuit.
-   *
-   * REVIEW: Seems cleaner to have CircuitSwitch have a createWireSegment() function, recommend to move to there
-   *
-   * @param {Vector3} hingePoint
-   * @param {Object} activeConnection REVIEW: doc this, or at least refer to CircuitSwitch where it's used
-   * @param {Tandem} tandem
-   * @constructor
-   */
-  function SwitchSegment( hingePoint, activeConnection, tandem ) {
-    // @public
-    this.hingePoint = hingePoint;
-    WireSegment.call( this, hingePoint, activeConnection.location, tandem );
-  }
-
-  capacitorLabBasics.register( 'SwitchSegment', SwitchSegment );
-
-  inherit( WireSegment, SwitchSegment );
 
   return WireSegment;
 } );

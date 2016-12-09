@@ -73,9 +73,10 @@ define( function( require ) {
       CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
 
     // Add the switch wire that spans two connection points. Default connection is to the battery.
-    this.switchSegment = WireSegment.createSwitchSegment( this.hingePoint,
-      this.getConnection( circuitConnectionProperty.value ),
+    this.switchSegment = new WireSegment( this.hingePoint,
+      this.getConnection( circuitConnectionProperty.value ).location,
       tandem.createTandem( 'switchSegment' ) );
+    this.switchSegment.hingePoint = this.hingePoint;
 
     // Wire between the hinge point and end point
     // @public
