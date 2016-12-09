@@ -120,7 +120,7 @@ define( function( require ) {
      * @returns {Vector2}
      */
     modelToViewDeltaXYZ: function( xDelta, yDelta, zDelta ) {
-      return this.modelToViewDelta( scratchVector3.setXYZ( xDelta, yDelta, zDelta ) );
+      return this.modelToViewDelta( new Vector3( xDelta, yDelta, zDelta ) );
     },
 
     /**
@@ -196,7 +196,7 @@ define( function( require ) {
      * @return {Vector3}
      */
     viewToModelDeltaXY: function( xDelta, yDelta ) {
-      return this.viewToModelDelta( scratchVector2.setXY( xDelta, yDelta ) );
+      return this.viewToModelDelta( new Vector2( xDelta, yDelta ) );
     },
 
     /**
