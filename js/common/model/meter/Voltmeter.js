@@ -110,54 +110,63 @@ define( function( require ) {
     };
 
     /**
-     * Update the value of the meter, called when many different properties change
+     * Compute voltage reading for meter, called when many different properties change
+     * Null values correspond to a ? on the voltmeter.
+     * @private
+     * @returns {number} - voltage difference between probes
      */
-    var updateValue = function() {
-      //REVIEW: lots of `self.measuredVoltageProperty.set( .. ); return;`
-      //        Would prefer `return ..` for all in a computeValue() function, then updateValue sets it.
+    var computeValue = function() {
+
       if ( self.probesAreTouching() ) {
-        self.measuredVoltageProperty.set( 0 );
-        return;
+        return 0;
       }
       else {
-        var positiveProbeShape = self.shapeCreator.getPositiveProbeTipShape();
-        var negativeProbeShape = self.shapeCreator.getNegativeProbeTipShape();
+
+        var positiveProbe = self.shapeCreator.getPositiveProbeTipShape();
+        var negativeProbe = self.shapeCreator.getNegativeProbeTipShape();
+
+        // Booleans representing electrical contact between probes and circuit components.
+        // Compute once for performance
+        var positiveToBattery = touchingFreeBattery( positiveProbe );
+        var negativeToBattery = touchingFreeBattery( negativeProbe );
+        var positiveToPlate = touchingFreePlate( positiveProbe );
+        var negativeToPlate = touchingFreePlate( negativeProbe );
 
         if ( self.circuit.lightBulb ) {
-          var positiveContactsLight = touchingFreeLightBulb( positiveProbeShape );
-          var negativeContactsLight = touchingFreeLightBulb( negativeProbeShape );
+          var positiveToLight = touchingFreeLightBulb( positiveProbe );
+          var negativeToLight = touchingFreeLightBulb( negativeProbe );
 
           // Set voltage to zero when both probes are touching the disconnected lightbulb
-          if ( positiveContactsLight && negativeContactsLight ) {
-            self.measuredVoltageProperty.set( 0 );
-            return;
+          if ( positiveToLight && negativeToLight ) {
+            return 0;
           }
 
           // Set voltage to null when one (and only one) probe is on a disconnected lightbulb
-          if ( ( positiveContactsLight && !negativeContactsLight ) ||
-            ( !positiveContactsLight && negativeContactsLight ) ) {
-            self.measuredVoltageProperty.set( null );
-            return;
+          if ( ( positiveToLight && !negativeToLight ) || ( !positiveToLight && negativeToLight ) ) {
+            return null;
           }
 
           // Set voltage to null when one (and only one) probe is on a disconnected battery
-          else if ( ( touchingFreeBattery( positiveProbeShape ) && !touchingFreeBattery( negativeProbeShape ) ) ||
-            ( !touchingFreeBattery( positiveProbeShape ) && touchingFreeBattery( negativeProbeShape ) ) ) {
-            self.measuredVoltageProperty.set( null );
-            return;
+          else if ( ( positiveToBattery && !negativeToBattery ) || ( !positiveToBattery && negativeToBattery ) ) {
+            return null;
           }
         }
 
         // Set voltage to null when one (and only one) probe is on a disconnected plate.
-        if ( ( touchingFreePlate( positiveProbeShape ) && !touchingFreePlate( negativeProbeShape ) ) ||
-          ( !touchingFreePlate( positiveProbeShape ) && touchingFreePlate( negativeProbeShape ) ) ) {
-          self.measuredVoltageProperty.set( null );
-          return;
+        if ( ( positiveToPlate && !negativeToPlate ) || ( !positiveToPlate && negativeToPlate ) ) {
+          return null;
         }
 
         // Handle all other cases
-        self.measuredVoltageProperty.set( self.circuit.getVoltageBetween( positiveProbeShape, negativeProbeShape ) );
+        return self.circuit.getVoltageBetween( positiveProbe, negativeProbe );
       }
+    };
+
+    /**
+     * Update the value of the meter. Called when many different properties change.
+     */
+    var updateValue = function() {
+      self.measuredVoltageProperty.set( computeValue() );
     };
 
     // Update voltage reading if plate voltage changes
