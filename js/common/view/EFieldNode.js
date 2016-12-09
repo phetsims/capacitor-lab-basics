@@ -66,8 +66,7 @@ define( function( require ) {
     }
 
     else {
-      //REVIEW: replace with assertion at the top
-      console.error( 'EFieldLine must be of orientation UP or DOWN' );
+      assert && assert( false, 'EFieldLine must be of orientation UP or DOWN' );
     }
 
   }
@@ -186,20 +185,6 @@ define( function( require ) {
         var spacing = SPACING_CONSTANT / Math.sqrt( Math.abs( effectiveEField ) ); // sqrt looks best for a square plate
         return spacing;
       }
-    },
-
-    /**
-     * Computes number of lines to put on the smallest plate, linearly proportional to plate charge.
-     *
-     * REVIEW: This function is never called and should be removed (dead code)
-     */
-    getNumberOfLines: function( effectiveEField ) {
-      var absEField = Math.abs( effectiveEField );
-      var numberOfLines = Math.floor( CLBConstants.NUMBER_OF_EFIELD_LINES.max * absEField / this.maxEffectiveEField );
-      if ( absEField > 0 && numberOfLines < CLBConstants.NUMBER_OF_EFIELD_LINES.min ) {
-        numberOfLines = CLBConstants.NUMBER_OF_EFIELD_LINES.min;
-      }
-      return numberOfLines;
     }
 
   } );
