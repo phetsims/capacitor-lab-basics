@@ -15,7 +15,6 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var LineStyles = require( 'KITE/util/LineStyles' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var Vector2 = require( 'DOT/Vector2' );
 
   /**
    * Constructor for WireShapeCreator.
