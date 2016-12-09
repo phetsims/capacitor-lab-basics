@@ -9,6 +9,7 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -43,7 +44,6 @@ define( function( require ) {
     context.fillStyle = POSITIVE_CHARGE_COLOR;
     context.fillRect( location.x - chargeWidth / 2, location.y - chargeHeight / 2, chargeWidth, chargeHeight );
     context.fillRect( location.x - chargeHeight / 2, location.y - chargeWidth / 2, chargeHeight, chargeWidth );
-
   }
 
   /**
@@ -96,8 +96,7 @@ define( function( require ) {
     this.parentNode = new Node(); // @private parent node for charges
     this.addChild( this.parentNode );
 
-    //REVIEW: Disposal not implemented.
-    // TODO implement disposal
+    // No disposal required because the capacitor is persistent
     Property.multilink( [
       capacitor.plateSizeProperty,
       capacitor.plateSeparationProperty,
@@ -117,8 +116,7 @@ define( function( require ) {
      * Charge on the portion of the plate that this node handles.
      */
     getPlateCharge: function() {
-      //REVIEW: replace with throwing an error
-      console.log( 'getPlateCharge function should be implemented in descendant classes.' );
+      assert && assert( false, 'getPlateCharge function should be implemented in descendant classes.' );
     },
 
     /**
@@ -126,8 +124,7 @@ define( function( require ) {
      * This is relative to the plate's origin, and specified in model coordinates.
      */
     getContactXOrigin: function() {
-      //REVIEW: replace with throwing an error
-      console.log( 'getContactXOrigin must be overridden  in descendant classes. ' );
+      assert && assert( false, 'getContactXOrigin must be overridden  in descendant classes. ' );
     },
 
     /**
@@ -135,8 +132,7 @@ define( function( require ) {
      * Specified in model coordinates.
      */
     getContactWidth: function() {
-      //REVIEW: replace with throwing an error
-      console.log( 'getContactWidth should be overridden in descendant classes.' );
+      assert && assert( false, 'getContactWidth should be overridden in descendant classes.' );
     },
 
     isPositivelyCharged: function() {
