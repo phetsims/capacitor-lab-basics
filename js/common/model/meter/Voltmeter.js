@@ -194,12 +194,12 @@ define( function( require ) {
 
     /**
      * Probes are touching if their tips intersect.
-     * REVIEW: visibility doc
+     * @public
      *
      * @returns {boolean}
      */
     probesAreTouching: function() {
-      //REVIEW: Use https://github.com/phetsims/capacitor-lab-basics/issues/175 instead
+      //REVIEW: Use https://github.com/phetsims/capacitor-lab-basics/issues/175 instead (assigned to JO)
       var touching = false;
       var posShape = this.shapeCreator.getPositiveProbeTipShape();
       var negShape = this.shapeCreator.getNegativeProbeTipShape();
