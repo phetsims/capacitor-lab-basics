@@ -69,20 +69,29 @@ define( function( require ) {
   return inherit( Wire, LightBulbToSwitchWire, {}, {
 
     /**
-     * Factory methods for top and bottom LightBulbToSwitchWire instances
-     * REVIEW: visibility
+     * Factory methods for top LightBulbToSwitchWire instance
+     * @public
      *
      * @param {CircuitConfig} config
      * @param {LightBulb} lightBulb
      * @param {CircuitSwitch} circuitSwitch
      * @param {Tandem} tandem
-     * REVIEW: returns?
+     * @returns {Wire}
      */
     createLightBulbToSwitchWireBottom: function( config, lightBulb, circuitSwitch, tandem ) {
       return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch, tandem );
     },
 
-    //REVIEW: doc
+    /**
+     * Factory methods for bottom LightBulbToSwitchWire instance
+     * @public
+     *
+     * @param {CircuitConfig} config
+     * @param {LightBulb} lightBulb
+     * @param {CircuitSwitch} circuitSwitch
+     * @param {Tandem} tandem
+     * @returns {Wire}
+     */
     createLightBulbToSwitchWireTop: function( config, lightBulb, circuitSwitch, tandem ) {
       return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch, tandem );
     }
