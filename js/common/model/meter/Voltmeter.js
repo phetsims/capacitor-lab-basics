@@ -11,6 +11,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -42,40 +43,43 @@ define( function( require ) {
    */
   function Voltmeter( circuit, dragBounds, modelViewTransform, tandem ) {
 
-    //REVIEW: Use BooleanProperty
-    //REVIEW: Visibility doc
-    this.visibleProperty = new Property( false, {
+    this.circuit = circuit; // @private
+    this.dragBounds = dragBounds; // @public (read-only)
+    this.modelViewTransform = modelViewTransform; // @private
+
+    // @public
+    this.visibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'visibleProperty' ),
       phetioValueType: TBoolean
     } );
 
-    //REVIEW: Use BooleanProperty
-    //REVIEW: Visibility doc
-    this.inUserControlProperty = new Property( false, {
+    // @public
+    this.inUserControlProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'inUserControlProperty' ),
       phetioValueType: TBoolean
     } );
 
-    //REVIEW: Visibility doc
+    // @public
     this.bodyLocationProperty = new Property( new Vector3(), {
       tandem: tandem.createTandem( 'bodyLocationProperty' ),
       phetioValueType: TVector3
     } );
 
-    //REVIEW: Visibility doc
+    // @public
     this.positiveProbeLocationProperty = new Property( POSITIVE_PROBE_LOCATION, {
       tandem: tandem.createTandem( 'positiveProbeLocationProperty' ),
       phetioValueType: TVector3
     } );
 
-    //REVIEW: Visibility doc
+    // @public
     this.negativeProbeLocationProperty = new Property( NEGATIVE_PROBE_LOCATION, {
       tandem: tandem.createTandem( 'negativeProbeLocationProperty' ),
       phetioValueType: TVector3
     } );
 
-    //REVIEW: doc why it's null. Is that allowed with TNumber, or would something like TOption (does that exist) be better?
-    //REVIEW: Consider NumberProperty instead, if null isn't a problem.
+    // By design, the voltmeter reads "?" for disconnected contacts, which is
+    // represented internally by a null assignment value.
+    // @public
     this.measuredVoltageProperty = new Property( null, {
       tandem: tandem.createTandem( 'measuredVoltageProperty' ),
       phetioValueType: TNumber( {
@@ -86,10 +90,6 @@ define( function( require ) {
     var self = this;
 
     this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform ); // @public (read-only)
-    //REVIEW: These are from constructor parameters, great to initialize near the top of the constructor
-    this.circuit = circuit; // @private
-    this.dragBounds = dragBounds; // @public (read-only)
-    this.modelViewTransform = modelViewTransform; //REVIEW: visibility doc
 
     //REVIEW: https://github.com/phetsims/capacitor-lab-basics/issues/174 should help with duplication here
 
@@ -166,7 +166,7 @@ define( function( require ) {
     circuit.capacitor.platesVoltageProperty.link( updateValue );
 
     // Update reading when the probes move
-    Property.multilink( [self.negativeProbeLocationProperty, self.positiveProbeLocationProperty ], updateValue );
+    Property.multilink( [ self.negativeProbeLocationProperty, self.positiveProbeLocationProperty ], updateValue );
 
     // Update all segments and the plate voltages when capacitor plate geometry changes. Capacitor may not exist yet.
     circuit.capacitor.plateSeparationProperty.lazyLink( updateValue );
