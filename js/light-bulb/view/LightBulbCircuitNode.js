@@ -10,13 +10,13 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
-  var Vector3 = require( 'DOT/Vector3' );
-  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
   var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CLBCircuitNode = require( 'CAPACITOR_LAB_BASICS/common/view/CLBCircuitNode' );
+  var CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   /**
    * Constructor for a CircuitNode.
@@ -88,8 +88,8 @@ define( function( require ) {
      * @param  {boolean} currentIndicatorsVisible
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
-      var isBatteryConnected = ( circuitConnection === CircuitStateTypes.BATTERY_CONNECTED );
-      var isLightBulbConnected = ( circuitConnection === CircuitStateTypes.LIGHT_BULB_CONNECTED );
+      var isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
+      var isLightBulbConnected = ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED );
 
       this.batteryTopCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
       this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );

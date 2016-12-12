@@ -16,7 +16,7 @@ define( function( require ) {
   var BooleanProperty = require( 'AXON/BooleanProperty' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
-  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
+  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
   var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
@@ -47,13 +47,13 @@ define( function( require ) {
     var useTwoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
     var twoState = [
-      CircuitStateTypes.BATTERY_CONNECTED,
-      CircuitStateTypes.LIGHT_BULB_CONNECTED
+      CircuitState.BATTERY_CONNECTED,
+      CircuitState.LIGHT_BULB_CONNECTED
     ];
     var threeState = [
-      CircuitStateTypes.BATTERY_CONNECTED,
-      CircuitStateTypes.OPEN_CIRCUIT,
-      CircuitStateTypes.LIGHT_BULB_CONNECTED
+      CircuitState.BATTERY_CONNECTED,
+      CircuitState.OPEN_CIRCUIT,
+      CircuitState.LIGHT_BULB_CONNECTED
     ];
 
     // configuration info for the circuit

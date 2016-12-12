@@ -18,7 +18,7 @@ define( function( require ) {
   var BatteryToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/BatteryToSwitchWire' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CapacitorToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/CapacitorToSwitchWire' );
-  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
+  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
@@ -26,7 +26,7 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
-  var CircuitPlaces = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitPlaces' );
+  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
@@ -61,10 +61,10 @@ define( function( require ) {
     /**
      * Property tracking the state of the switch
      *
-     * @type {Property.<CircuitStateTypes>}
+     * @type {Property.<CircuitState>}
      * @public
      */
-    this.circuitConnectionProperty = new Property( CircuitStateTypes.BATTERY_CONNECTED, {
+    this.circuitConnectionProperty = new Property( CircuitState.BATTERY_CONNECTED, {
       tandem: tandem.createTandem( 'circuitConnectionProperty' ),
       phetioValueType: TString
     } );
@@ -147,7 +147,7 @@ define( function( require ) {
     /**
      * Return the subset of wires connected to the provided location
      * @private
-     * @param  {string} place - One of the constants in CircuitPlaces
+     * @param  {string} place - One of the constants in CircuitLocation
      * @return {Wire[]}
      */
     function selectWires( zone ) {
@@ -157,12 +157,12 @@ define( function( require ) {
     }
 
     // Get collections of wires electrically connected to various parts of the circuit
-    this.topBatteryWires = selectWires( CircuitPlaces.BATTERY_TOP );
-    this.bottomBatteryWires = selectWires( CircuitPlaces.BATTERY_BOTTOM );
-    this.topLightBulbWires = selectWires( CircuitPlaces.LIGHT_BULB_TOP );
-    this.bottomLightBulbWires = selectWires( CircuitPlaces.LIGHT_BULB_BOTTOM );
-    this.topCapacitorWires = selectWires( CircuitPlaces.CAPACITOR_TOP );
-    this.bottomCapacitorWires = selectWires( CircuitPlaces.CAPACITOR_BOTTOM );
+    this.topBatteryWires = selectWires( CircuitLocation.BATTERY_TOP );
+    this.bottomBatteryWires = selectWires( CircuitLocation.BATTERY_BOTTOM );
+    this.topLightBulbWires = selectWires( CircuitLocation.LIGHT_BULB_TOP );
+    this.bottomLightBulbWires = selectWires( CircuitLocation.LIGHT_BULB_BOTTOM );
+    this.topCapacitorWires = selectWires( CircuitLocation.CAPACITOR_TOP );
+    this.bottomCapacitorWires = selectWires( CircuitLocation.CAPACITOR_BOTTOM );
 
     this.topWires = this.topBatteryWires.concat( this.topLightBulbWires ).concat( this.topCapacitorWires );
     this.bottomWires = this.bottomBatteryWires.concat( this.bottomLightBulbWires ).concat( this.bottomCapacitorWires );
@@ -170,7 +170,7 @@ define( function( require ) {
     this.topSwitchWires = [];
     this.circuitSwitches.forEach( function( circuitSwitch ) {
       var wire = circuitSwitch.switchWire;
-      if ( wire.connectionPoint === CircuitPlaces.CIRCUIT_SWITCH_TOP ) {
+      if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_TOP ) {
         self.topSwitchWires.push( wire );
       }
     } );
@@ -178,7 +178,7 @@ define( function( require ) {
     this.bottomSwitchWires = [];
     this.circuitSwitches.forEach( function( circuitSwitch ) {
       var wire = circuitSwitch.switchWire;
-      if ( wire.connectionPoint === CircuitPlaces.CIRCUIT_SWITCH_BOTTOM ) {
+      if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_BOTTOM ) {
         self.bottomSwitchWires.push( wire );
       }
     } );
@@ -198,7 +198,7 @@ define( function( require ) {
     this.circuitConnectionProperty.lazyLink( function( circuitConnection ) {
       // When disconnecting the battery, set the disconnected plate charge to whatever the total plate charge was with
       // the battery connected.  Need to do this before changing the plate voltages property.
-      if ( circuitConnection !== CircuitStateTypes.BATTERY_CONNECTED ) {
+      if ( circuitConnection !== CircuitState.BATTERY_CONNECTED ) {
         self.disconnectedPlateChargeProperty.set( self.getTotalCharge() );
       }
       self.updatePlateVoltages();
@@ -224,7 +224,7 @@ define( function( require ) {
 
     // when the disconnected plate charge property changes, set the disconnected plate voltage.
     this.disconnectedPlateChargeProperty.lazyLink( function() {
-      if ( self.circuitConnectionProperty.value === CircuitStateTypes.OPEN_CIRCUIT ) {
+      if ( self.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
         self.updatePlateVoltages();
       }
     } );
@@ -236,7 +236,7 @@ define( function( require ) {
      * necessary fields in the subclass may not be initialized.
      */
     this.battery.voltageProperty.lazyLink( function() {
-      if ( self.circuitConnectionProperty.value === CircuitStateTypes.BATTERY_CONNECTED ) {
+      if ( self.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
         self.updatePlateVoltages();
       }
     } );
@@ -373,7 +373,7 @@ define( function( require ) {
      */
     isOpen: function() {
       var connection = this.circuitConnectionProperty.value;
-      return connection === CircuitStateTypes.OPEN_CIRCUIT || connection === CircuitStateTypes.SWITCH_IN_TRANSIT;
+      return connection === CircuitState.OPEN_CIRCUIT || connection === CircuitState.SWITCH_IN_TRANSIT;
     },
 
     /**
@@ -383,7 +383,7 @@ define( function( require ) {
      * @return {boolean}
      */
     batteryConnected: function() {
-      return this.circuitConnectionProperty.value === CircuitStateTypes.BATTERY_CONNECTED;
+      return this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED;
     },
 
     /**
@@ -439,7 +439,7 @@ define( function( require ) {
      */
     connectedToDisconnectedBatteryTop: function( shape ) {
 
-      if ( this.circuitConnectionProperty.value === CircuitStateTypes.BATTERY_CONNECTED ) {
+      if ( this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
         return false;
       }
 
@@ -461,7 +461,7 @@ define( function( require ) {
      */
     connectedToDisconnectedBatteryBottom: function( shape ) {
 
-      if ( this.circuitConnectionProperty.value === CircuitStateTypes.BATTERY_CONNECTED ) {
+      if ( this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
         return false;
       }
 
@@ -530,7 +530,7 @@ define( function( require ) {
       var voltage = null;
 
       // Closed circuit between battery and capacitor
-      if ( this.circuitConnectionProperty.value === CircuitStateTypes.BATTERY_CONNECTED ) {
+      if ( this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
         if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
         }
@@ -545,7 +545,7 @@ define( function( require ) {
       }
 
       // Closed circuit between light bulb and capacitor
-      else if ( this.circuitConnectionProperty.value === CircuitStateTypes.LIGHT_BULB_CONNECTED ) {
+      else if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
         if ( this.connectedToLightBulbTop( shape ) ) {
           voltage = this.getCapacitorPlateVoltage();
         }
@@ -561,7 +561,7 @@ define( function( require ) {
       }
 
       // Open Circuit
-      else if ( this.circuitConnectionProperty.value === CircuitStateTypes.OPEN_CIRCUIT ) {
+      else if ( this.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
         if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
           voltage = this.getCapacitorPlateVoltage();
         }
@@ -582,7 +582,7 @@ define( function( require ) {
       }
 
       // On switch drag, provide a voltage readout if probes are connected to the battery
-      else if ( this.circuitConnectionProperty.value === CircuitStateTypes.SWITCH_IN_TRANSIT ) {
+      else if ( this.circuitConnectionProperty.value === CircuitState.SWITCH_IN_TRANSIT ) {
         if ( this.connectedToBatteryTop( shape ) ) {
           voltage = this.getTotalVoltage();
         }

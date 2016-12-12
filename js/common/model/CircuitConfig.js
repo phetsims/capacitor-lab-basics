@@ -16,7 +16,7 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
+  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
 
   // Constants with default assignments
   var CAPACITOR_X_SPACING = 0.024; // meters
@@ -36,11 +36,11 @@ define( function( require ) {
       plateSeparation: PLATE_SEPARATION,
       wireExtent: WIRE_EXTENT,
 
-      // Type: {Array.<CircuitStateTypes>})
+      // Type: {Array.<CircuitState>})
       circuitConnections: [
-        CircuitStateTypes.BATTERY_CONNECTED,
-        CircuitStateTypes.OPEN_CIRCUIT,
-        CircuitStateTypes.LIGHT_BULB_CONNECTED
+        CircuitState.BATTERY_CONNECTED,
+        CircuitState.OPEN_CIRCUIT,
+        CircuitState.LIGHT_BULB_CONNECTED
       ]
     }, options );
   }

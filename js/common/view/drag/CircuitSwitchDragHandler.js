@@ -15,7 +15,7 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
+  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Range = require( 'DOT/Range' );
@@ -73,7 +73,7 @@ define( function( require ) {
         angleOffset = initialEndPoint.minus( hingePoint ).toVector2().angle(); // angle of switch segment with the horizontal
         lastAngle = angleOffset;
 
-        circuitSwitch.circuitConnectionProperty.set( CircuitStateTypes.SWITCH_IN_TRANSIT );
+        circuitSwitch.circuitConnectionProperty.set( CircuitState.SWITCH_IN_TRANSIT );
 
       },
       drag: function( event ) {
@@ -119,13 +119,13 @@ define( function( require ) {
 
         var connection = null;
         if ( self.snapRange.right.contains( absAngle ) ) {
-          connection = CircuitStateTypes.LIGHT_BULB_CONNECTED;
+          connection = CircuitState.LIGHT_BULB_CONNECTED;
         }
         else if ( self.snapRange.center.contains( absAngle ) ) {
-          connection = CircuitStateTypes.OPEN_CIRCUIT;
+          connection = CircuitState.OPEN_CIRCUIT;
         }
         else if ( self.snapRange.left.contains( absAngle ) ) {
-          connection = CircuitStateTypes.BATTERY_CONNECTED;
+          connection = CircuitState.BATTERY_CONNECTED;
         }
         assert && assert( connection, 'No snap region found for switch angle: ' + absAngle );
 

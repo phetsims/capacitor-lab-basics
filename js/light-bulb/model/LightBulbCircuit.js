@@ -28,7 +28,7 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
+  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
@@ -67,13 +67,13 @@ define( function( require ) {
        * When disconnecting the battery, set the disconnected plate charge to whatever the total plate charge was with
        * the battery connected.  Need to do this before changing the plate voltages property.
        */
-      if ( circuitConnection !== CircuitStateTypes.BATTERY_CONNECTED ) {
+      if ( circuitConnection !== CircuitState.BATTERY_CONNECTED ) {
         self.disconnectedPlateChargeProperty.set( self.getTotalCharge() );
       }
       self.updatePlateVoltages();
 
       // if light bulb connected, reset values for transient calculations
-      if ( circuitConnection === CircuitStateTypes.LIGHT_BULB_CONNECTED ) {
+      if ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED ) {
         self.capacitor.transientTime = 0;
         self.capacitor.voltageAtSwitchClose = self.capacitor.platesVoltageProperty.value;
       }
@@ -101,7 +101,7 @@ define( function( require ) {
       // This is both for performance, and for better timing control.
       // The current arrows should start fading when the voltmeter reading drops
       // below MIN_VOLTAGE.
-      if ( this.circuitConnectionProperty.value === CircuitStateTypes.LIGHT_BULB_CONNECTED ) {
+      if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
         if ( Math.abs( this.capacitor.platesVoltageProperty.value ) > MIN_VOLTAGE ) {
           this.capacitor.discharge( this.lightBulb.resistance, dt );
         }
@@ -124,17 +124,17 @@ define( function( require ) {
     updatePlateVoltages: function() {
       // If the battery is connected, the voltage is equal to the battery voltage
       if ( this.circuitConnectionProperty !== undefined ) {
-        if ( this.circuitConnectionProperty.value === CircuitStateTypes.BATTERY_CONNECTED ) {
+        if ( this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
           this.capacitor.platesVoltageProperty.value = this.battery.voltageProperty.value;
         }
         // If circuit is open, use V = Q/C
-        else if ( this.circuitConnectionProperty.value === CircuitStateTypes.OPEN_CIRCUIT ) {
+        else if ( this.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
           this.capacitor.platesVoltageProperty.value =
             this.disconnectedPlateChargeProperty.value / this.capacitor.getCapacitance();
         }
         // the capacitor is discharging, but plate geometry is changing at the same time so we need
         // to update the parameters of the transient discharge equation parameters
-        else if ( this.circuitConnectionProperty.value === CircuitStateTypes.LIGHT_BULB_CONNECTED ) {
+        else if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
           this.capacitor.updateDischargeParameters();
         }
       }
@@ -150,7 +150,7 @@ define( function( require ) {
     connectedToLightBulbTop: function( shape ) {
 
       // Light bulb must be connected
-      if ( this.circuitConnectionProperty.value !== CircuitStateTypes.LIGHT_BULB_CONNECTED ) {
+      if ( this.circuitConnectionProperty.value !== CircuitState.LIGHT_BULB_CONNECTED ) {
         return false;
       }
 
@@ -173,7 +173,7 @@ define( function( require ) {
     connectedToLightBulbBottom: function( shape ) {
 
       // Light bulb must be connected
-      if ( this.circuitConnectionProperty.value !== CircuitStateTypes.LIGHT_BULB_CONNECTED ) {
+      if ( this.circuitConnectionProperty.value !== CircuitState.LIGHT_BULB_CONNECTED ) {
         return false;
       }
 
@@ -197,7 +197,7 @@ define( function( require ) {
     connectedToDisconnectedLightBulbTop: function( shape ) {
 
       // Light bulb must be disconnected
-      if ( this.circuitConnectionProperty.value === CircuitStateTypes.LIGHT_BULB_CONNECTED ) {
+      if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
         return false;
       }
       return (
@@ -217,7 +217,7 @@ define( function( require ) {
     connectedToDisconnectedLightBulbBottom: function( shape ) {
 
       // Light bulb must be disconnected
-      if ( this.circuitConnectionProperty.value === CircuitStateTypes.LIGHT_BULB_CONNECTED ) {
+      if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
         return false;
       }
 
@@ -237,7 +237,7 @@ define( function( require ) {
     setDisconnectedPlateCharge: function( disconnectedPlateCharge ) {
       if ( disconnectedPlateCharge !== this.disconnectedPlateChargeProperty.value ) {
         this.disconnectedPlateChargeProperty.value = disconnectedPlateCharge;
-        if ( this.circuitConnectionProperty.value !== CircuitStateTypes.BATTERY_CONNECTED ) {
+        if ( this.circuitConnectionProperty.value !== CircuitState.BATTERY_CONNECTED ) {
           this.updatePlateVoltages();
         }
       }
@@ -253,7 +253,7 @@ define( function( require ) {
     updateCurrentAmplitude: function( dt ) {
 
       // if the circuit is connected to the light bulb, I = V / R
-      if ( this.circuitConnectionProperty.value === CircuitStateTypes.LIGHT_BULB_CONNECTED ) {
+      if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
         var current = this.capacitor.platesVoltageProperty.value / this.lightBulb.resistance;
 
         // The cutoff is doubled here for #58

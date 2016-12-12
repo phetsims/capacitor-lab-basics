@@ -10,8 +10,8 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitPlaces = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitPlaces' );
-  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
+  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector3 = require( 'DOT/Vector3' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
@@ -33,13 +33,13 @@ define( function( require ) {
     var segments = [];
 
     // y coordinate of the horizontal wire
-    var horizontalY = circuitSwitch.getConnectionPoint( CircuitStateTypes.BATTERY_CONNECTED ).y;
+    var horizontalY = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED ).y;
     var leftCorner = new Vector3( battery.location.x, horizontalY );
 
     // add the vertical segment.
     var verticalSegment;
     var startPoint;
-    if ( connectionPoint === CircuitPlaces.BATTERY_TOP ) {
+    if ( connectionPoint === CircuitLocation.BATTERY_TOP ) {
 
       startPoint = new Vector3( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), 0 );
 
@@ -69,13 +69,13 @@ define( function( require ) {
     var switchSegment;
     var switchConnectionPoint;
 
-    if ( connectionPoint === CircuitPlaces.BATTERY_TOP ) {
-      switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitStateTypes.BATTERY_CONNECTED );
+    if ( connectionPoint === CircuitLocation.BATTERY_TOP ) {
+      switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED );
       switchSegment = new WireSegment( leftCorner, switchConnectionPoint,
         tandem.createTandem( 'batteryTopToSwitchSegment' ) );
     }
     else {
-      switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitStateTypes.BATTERY_CONNECTED );
+      switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED );
       switchSegment = new WireSegment( leftCorner, switchConnectionPoint,
         tandem.createTandem( 'batteryBottomToSwitchSegment' ) );
     }
@@ -99,7 +99,7 @@ define( function( require ) {
      * @returns {Wire}
      */
     createBatteryToSwitchWireBottom: function( config, battery, circuitSwitch, tandem ) {
-      return new BatteryToSwitchWire( CircuitPlaces.BATTERY_BOTTOM, config, battery, circuitSwitch,
+      return new BatteryToSwitchWire( CircuitLocation.BATTERY_BOTTOM, config, battery, circuitSwitch,
         tandem );
     },
 
@@ -114,7 +114,7 @@ define( function( require ) {
      * @returns {Wire}
      */
     createBatteryToSwitchWireTop: function( config, battery, circuitSwitch, tandem ) {
-      return new BatteryToSwitchWire( CircuitPlaces.BATTERY_TOP, config, battery, circuitSwitch,
+      return new BatteryToSwitchWire( CircuitLocation.BATTERY_TOP, config, battery, circuitSwitch,
         tandem );
     }
   } );

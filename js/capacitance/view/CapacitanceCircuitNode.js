@@ -11,7 +11,7 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
+  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBCircuitNode = require( 'CAPACITOR_LAB_BASICS/common/view/CLBCircuitNode' );
 
@@ -49,7 +49,7 @@ define( function( require ) {
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
 
-      var isBatteryConnected = ( circuitConnection === CircuitStateTypes.BATTERY_CONNECTED );
+      var isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
 
       this.batteryTopCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
       this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );

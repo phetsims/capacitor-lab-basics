@@ -13,7 +13,7 @@ define( function( require ) {
   // Modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Circle = require( 'SCENERY/nodes/Circle' );
-  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
+  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var ConnectionAreaNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaNode' );
@@ -134,8 +134,8 @@ define( function( require ) {
       tipCircle.translation = modelViewTransform.modelToViewPosition( hp.plus( v ) );
 
       // Solder joint visibility
-      if ( circuitConnection === CircuitStateTypes.SWITCH_IN_TRANSIT ||
-           circuitConnection === CircuitStateTypes.OPEN_CIRCUIT ) {
+      if ( circuitConnection === CircuitState.SWITCH_IN_TRANSIT ||
+           circuitConnection === CircuitState.OPEN_CIRCUIT ) {
         shadedSphereNode.setVisible( false );
         tipCircle.radius = SWITCH_CIRCLE_SMALL_RADIUS;
       }
@@ -145,7 +145,7 @@ define( function( require ) {
       }
 
       // Connection circle color
-      if ( circuitConnection === CircuitStateTypes.SWITCH_IN_TRANSIT ) {
+      if ( circuitConnection === CircuitState.SWITCH_IN_TRANSIT ) {
         tipCircle.stroke = PhetColorScheme.RED_COLORBLIND;
       }
       else {

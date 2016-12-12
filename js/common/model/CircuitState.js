@@ -13,7 +13,7 @@ define( function( require ) {
 
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
-  var CircuitStateTypes = {
+  var CircuitState = {
     BATTERY_CONNECTED: 'BATTERY_CONNECTED',
     LIGHT_BULB_CONNECTED: 'LIGHT_BULB_CONNECTED',
     OPEN_CIRCUIT: 'OPEN_CIRCUIT',
@@ -21,9 +21,9 @@ define( function( require ) {
   };
 
   // verify that enum is immutable, without the runtime penalty in production code
-  if ( assert ) { Object.freeze( CircuitStateTypes ); }
+  if ( assert ) { Object.freeze( CircuitState ); }
 
-  capacitorLabBasics.register( 'CircuitStateTypes', CircuitStateTypes );
+  capacitorLabBasics.register( 'CircuitState', CircuitState );
 
-  return CircuitStateTypes;
+  return CircuitState;
 } );

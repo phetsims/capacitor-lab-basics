@@ -10,7 +10,7 @@ define( function( require ) {
 
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
-  var CircuitPlaces = {
+  var CircuitLocation = {
     BATTERY_TOP: 'BATTERY_TOP',
     BATTERY_BOTTOM: 'BATTERY_BOTTOM',
     LIGHT_BULB_TOP: 'LIGHT_BULB_TOP',
@@ -23,10 +23,10 @@ define( function( require ) {
 
   // Verify that enum is immutable without runtime penalty in production code
   if ( assert ) {
-    Object.freeze( CircuitPlaces );
+    Object.freeze( CircuitLocation );
   }
 
-  capacitorLabBasics.register( 'CircuitPlaces', CircuitPlaces );
+  capacitorLabBasics.register( 'CircuitLocation', CircuitLocation );
 
-  return CircuitPlaces;
+  return CircuitLocation;
 } );

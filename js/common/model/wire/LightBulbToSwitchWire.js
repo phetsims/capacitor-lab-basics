@@ -11,8 +11,8 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitPlaces = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitPlaces' );
-  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
+  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector3 = require( 'DOT/Vector3' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
@@ -33,10 +33,10 @@ define( function( require ) {
     var segments = [];
 
     // Get y coordinate of the horizontal wire
-    var horizontalY = circuitSwitch.getConnectionPoint( CircuitStateTypes.BATTERY_CONNECTED ).y;
+    var horizontalY = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED ).y;
 
     // Get x coordinate of the connection point
-    var isTop = connectionPoint === CircuitPlaces.LIGHT_BULB_TOP;
+    var isTop = connectionPoint === CircuitLocation.LIGHT_BULB_TOP;
     var connectionPointX = isTop ? lightBulb.getTopConnectionPoint().x : lightBulb.getBottomConnectionPoint().x;
 
     // This is the (x,y) position of the upper right corner
@@ -54,7 +54,7 @@ define( function( require ) {
     segments.push( verticalSegment );
 
     // connect lightbulb to switch connection point.
-    var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitStateTypes.LIGHT_BULB_CONNECTED );
+    var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.LIGHT_BULB_CONNECTED );
 
     // Tandem IDs must be unique, so append a counter index
     segments.push( new WireSegment( rightCorner, switchConnectionPoint,
@@ -79,7 +79,7 @@ define( function( require ) {
      * @returns {Wire}
      */
     createLightBulbToSwitchWireBottom: function( config, lightBulb, circuitSwitch, tandem ) {
-      return new LightBulbToSwitchWire( CircuitPlaces.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch, tandem );
+      return new LightBulbToSwitchWire( CircuitLocation.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch, tandem );
     },
 
     /**
@@ -93,7 +93,7 @@ define( function( require ) {
      * @returns {Wire}
      */
     createLightBulbToSwitchWireTop: function( config, lightBulb, circuitSwitch, tandem ) {
-      return new LightBulbToSwitchWire( CircuitPlaces.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch, tandem );
+      return new LightBulbToSwitchWire( CircuitLocation.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch, tandem );
     }
 
   } );
