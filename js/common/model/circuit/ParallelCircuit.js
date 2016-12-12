@@ -147,12 +147,12 @@ define( function( require ) {
     /**
      * Return the subset of wires connected to the provided location
      * @private
-     * @param  {string} place - One of the constants in CircuitLocation
+     * @param  {string} location - One of the constants in CircuitLocation
      * @return {Wire[]}
      */
-    function selectWires( zone ) {
+    function selectWires( location ) {
       return self.wires.filter( function( wire ) {
-        return wire.connectionPoint === zone;
+        return wire.connectionPoint === location;
       } );
     }
 
