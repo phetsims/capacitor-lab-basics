@@ -120,11 +120,12 @@ define( function( require ) {
     plateChargeCheckBox.translation = new Vector2( 0, CHECKBOX_VERTICAL_SPACING );
     storedEnergyCheckBox.translation = new Vector2( 0, 2 * CHECKBOX_VERTICAL_SPACING );
 
+    // The BarMeterNodes have a common x-coordinate
     x = 0.44*minWidth;
+
     y = capacitanceCheckBox.centerY + 2;
     capacitanceMeterNode.axisLine.translation = new Vector2( x, y );
 
-    // x = capacitanceMeterNode.axisLine.x;
     y = plateChargeCheckBox.centerY + 2;
     plateChargeMeterNode.axisLine.translation = new Vector2( x, y );
 

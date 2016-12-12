@@ -330,9 +330,6 @@ define( function( require ) {
      */
     getStoredEnergy: function() {
       return this.capacitor.storedEnergyProperty.value;
-      // var C = this.getTotalCapacitance(); // F
-      // var V = this.getCapacitorPlateVoltage(); // V
-      // return 0.5 * C * V * V; // Joules (J)
     },
 
     /**

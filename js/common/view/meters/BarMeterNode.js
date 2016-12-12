@@ -164,7 +164,7 @@ define( function( require ) {
 
     updateLayout: function() {
       this.barNode.leftCenter = this.axisLine.leftCenter;
-      this.valueTextNode.rightCenter = this.axisLine.leftCenter.minusXY( VALUE_METER_SPACING, 0 );
+      this.valueTextNode.leftCenter = this.axisLine.leftCenter.minusXY( VALUE_MAX_WIDTH, 0 );
     }
 
   } );
