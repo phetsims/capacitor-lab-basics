@@ -31,7 +31,7 @@ define( function( require ) {
 
     var self = this;
 
-    var circuitConfig = new CircuitConfig( {
+    var circuitConfig = CircuitConfig.create( {
       circuitConnections: [ CircuitState.BATTERY_CONNECTED, CircuitState.OPEN_CIRCUIT ]
     } );
     this.circuit = new CapacitanceCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public

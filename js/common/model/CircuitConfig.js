@@ -15,7 +15,6 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
-  var inherit = require( 'PHET_CORE/inherit' );
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
 
   // Constants with default assignments
@@ -25,30 +24,30 @@ define( function( require ) {
   var PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
   var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
 
-  // constructor
-  function CircuitConfig( options ) {
+  var CircuitConfig = {
+    create: function( options ) {
 
-    options = _.extend( this, {
-      modelViewTransform: new CLBModelViewTransform3D(),
-      capacitorXSpacing: CAPACITOR_X_SPACING,
-      capacitorYSpacing: CAPACITOR_Y_SPACING,
-      plateWidth: PLATE_WIDTH,
-      plateSeparation: PLATE_SEPARATION,
-      wireExtent: WIRE_EXTENT,
+      return _.extend( {
+        modelViewTransform: new CLBModelViewTransform3D(),
+        capacitorXSpacing: CAPACITOR_X_SPACING,
+        capacitorYSpacing: CAPACITOR_Y_SPACING,
+        plateWidth: PLATE_WIDTH,
+        plateSeparation: PLATE_SEPARATION,
+        wireExtent: WIRE_EXTENT,
 
-      // Type: {Array.<CircuitState>})
-      circuitConnections: [
-        CircuitState.BATTERY_CONNECTED,
-        CircuitState.OPEN_CIRCUIT,
-        CircuitState.LIGHT_BULB_CONNECTED
-      ]
-    }, options );
-  }
+        // Type: {Array.<CircuitState>})
+        circuitConnections: [
+          CircuitState.BATTERY_CONNECTED,
+          CircuitState.OPEN_CIRCUIT,
+          CircuitState.LIGHT_BULB_CONNECTED
+        ]
+      }, options );
+
+    }
+  };
 
   capacitorLabBasics.register( 'CircuitConfig', CircuitConfig );
 
-  //REVIEW: Since it has no prototype, consider CircuitConfig having just a method (CircuitConfig.create( ... )) that returns a plain object.
-  return inherit( Object, CircuitConfig );
+  return CircuitConfig;
 
 } );
-

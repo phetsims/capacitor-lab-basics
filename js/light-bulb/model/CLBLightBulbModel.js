@@ -59,7 +59,7 @@ define( function( require ) {
     ];
 
     // configuration info for the circuit
-    var circuitConfig = new CircuitConfig( {
+    var circuitConfig = CircuitConfig.create( {
       circuitConnections: useTwoStateSwitch ? twoState : threeState,
       modelViewTransform: modelViewTransform,
       capacitorXSpacing: CAPACITOR_X_SPACING,
