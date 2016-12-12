@@ -107,8 +107,7 @@ define( function( require ) {
         }
 
         else {
-          this.capacitor.plateVoltageProperty.set( 0 );
-          this.currentAmplitudeProperty.set( 0 );
+          this.capacitor.plateVoltageProperty.reset();
           this.previousTotalCharge = 0; // This fixes #130
         }
       }
