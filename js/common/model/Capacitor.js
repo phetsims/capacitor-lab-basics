@@ -113,7 +113,13 @@ define( function( require ) {
           charge = 0;
         }
 
-          return charge;
+        return charge;
+      } );
+
+    // @public
+    this.storedEnergyProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty ],
+      function( capacitance, voltage ) {
+        return 0.5 * capacitance * voltage * voltage;
       } );
 
     // Track the previous capacitance to adjust the inital voltage when discharging, see
