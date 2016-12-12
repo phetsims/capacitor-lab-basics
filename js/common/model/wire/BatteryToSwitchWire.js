@@ -11,10 +11,10 @@ define( function( require ) {
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector3 = require( 'DOT/Vector3' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
+  var WireConnections = require( 'CAPACITOR_LAB_BASICS/common/model/WireConnections' );
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   /**
@@ -39,7 +39,7 @@ define( function( require ) {
     // add the vertical segment.
     var verticalSegment;
     var startPoint;
-    if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
+    if ( connectionPoint === WireConnections.BATTERY_TOP ) {
 
       startPoint = new Vector3( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), 0 );
 
@@ -69,7 +69,7 @@ define( function( require ) {
     var switchSegment;
     var switchConnectionPoint;
 
-    if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
+    if ( connectionPoint === WireConnections.BATTERY_TOP ) {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitStateTypes.BATTERY_CONNECTED );
       switchSegment = new WireSegment( leftCorner, switchConnectionPoint,
         tandem.createTandem( 'batteryTopToSwitchSegment' ) );
@@ -99,7 +99,7 @@ define( function( require ) {
      * @returns {Wire}
      */
     createBatteryToSwitchWireBottom: function( config, battery, circuitSwitch, tandem ) {
-      return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM, config, battery, circuitSwitch,
+      return new BatteryToSwitchWire( WireConnections.BATTERY_BOTTOM, config, battery, circuitSwitch,
         tandem );
     },
 
@@ -114,7 +114,7 @@ define( function( require ) {
      * @returns {Wire}
      */
     createBatteryToSwitchWireTop: function( config, battery, circuitSwitch, tandem ) {
-      return new BatteryToSwitchWire( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP, config, battery, circuitSwitch,
+      return new BatteryToSwitchWire( WireConnections.BATTERY_TOP, config, battery, circuitSwitch,
         tandem );
     }
   } );

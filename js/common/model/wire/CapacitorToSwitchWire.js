@@ -11,10 +11,10 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
-  var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
+  var WireConnections = require( 'CAPACITOR_LAB_BASICS/common/model/WireConnections' );
+  var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   /**
    * Constructor.
@@ -32,7 +32,7 @@ define( function( require ) {
     // add the vertical segment.
     var switchConnectionPoint = circuitSwitch.hingePoint;
     var segment;
-    if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP ) {
+    if ( connectionPoint === WireConnections.CAPACITOR_TOP ) {
       segment = WireSegment.createComponentTopWireSegment( capacitor, switchConnectionPoint,
         tandem.createTandem( 'capacitorComponentTopWireSegment' ) );
     }
@@ -59,7 +59,7 @@ define( function( require ) {
      * @returns CapacitorToSwitchWire
      */
     createCapacitorToSwitchWireTop: function( config, capacitor, circuitSwitch, tandem ) {
-      return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP,
+      return new CapacitorToSwitchWire( WireConnections.CAPACITOR_TOP,
         config, capacitor, circuitSwitch, tandem );
     },
 
@@ -74,7 +74,7 @@ define( function( require ) {
      * @returns CapacitorToSwitchWire
      */
     createCapacitorToSwitchWireBottom: function( config, capacitor, circuitSwitch, tandem ) {
-      return new CapacitorToSwitchWire( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM,
+      return new CapacitorToSwitchWire( WireConnections.CAPACITOR_BOTTOM,
         config, capacitor, circuitSwitch, tandem );
     }
   } );

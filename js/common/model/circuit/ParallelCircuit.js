@@ -26,6 +26,7 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
+  var WireConnections = require( 'CAPACITOR_LAB_BASICS/common/model/WireConnections' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
@@ -152,12 +153,13 @@ define( function( require ) {
       } );
     }
 
-    this.topBatteryWires = selectWires( CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP );
-    this.bottomBatteryWires = selectWires( CLBConstants.WIRE_CONNECTIONS.BATTERY_BOTTOM );
-    this.topLightBulbWires = selectWires( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP );
-    this.bottomLightBulbWires = selectWires( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM );
-    this.topCapacitorWires = selectWires( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_TOP );
-    this.bottomCapacitorWires = selectWires( CLBConstants.WIRE_CONNECTIONS.CAPACITOR_BOTTOM );
+    // Get collections of wires directly connected to various parts of the circuit
+    this.topBatteryWires = selectWires( WireConnections.BATTERY_TOP );
+    this.bottomBatteryWires = selectWires( WireConnections.BATTERY_BOTTOM );
+    this.topLightBulbWires = selectWires( WireConnections.LIGHT_BULB_TOP );
+    this.bottomLightBulbWires = selectWires( WireConnections.LIGHT_BULB_BOTTOM );
+    this.topCapacitorWires = selectWires( WireConnections.CAPACITOR_TOP );
+    this.bottomCapacitorWires = selectWires( WireConnections.CAPACITOR_BOTTOM );
 
     this.topWires = this.topBatteryWires.concat( this.topLightBulbWires ).concat( this.topCapacitorWires );
     this.bottomWires = this.bottomBatteryWires.concat( this.bottomLightBulbWires ).concat( this.bottomCapacitorWires );
@@ -165,7 +167,7 @@ define( function( require ) {
     this.topSwitchWires = [];
     this.circuitSwitches.forEach( function( circuitSwitch ) {
       var wire = circuitSwitch.switchWire;
-      if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP ) {
+      if ( wire.connectionPoint === WireConnections.CIRCUIT_SWITCH_TOP ) {
         self.topSwitchWires.push( wire );
       }
     } );
@@ -173,7 +175,7 @@ define( function( require ) {
     this.bottomSwitchWires = [];
     this.circuitSwitches.forEach( function( circuitSwitch ) {
       var wire = circuitSwitch.switchWire;
-      if ( wire.connectionPoint === CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM ) {
+      if ( wire.connectionPoint === WireConnections.CIRCUIT_SWITCH_BOTTOM ) {
         self.bottomSwitchWires.push( wire );
       }
     } );

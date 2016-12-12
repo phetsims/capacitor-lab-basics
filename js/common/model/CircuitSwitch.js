@@ -21,6 +21,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
+  var WireConnections = require( 'CAPACITOR_LAB_BASICS/common/model/WireConnections' );
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   // phet-io modules
@@ -69,8 +70,8 @@ define( function( require ) {
 
     // Assign string identifying connection point
     var connectionName = ( positionLabel === 'top' ) ?
-      CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_TOP :
-      CLBConstants.WIRE_CONNECTIONS.CIRCUIT_SWITCH_BOTTOM;
+      WireConnections.CIRCUIT_SWITCH_TOP :
+      WireConnections.CIRCUIT_SWITCH_BOTTOM;
 
     // Add the switch wire that spans two connection points. Default connection is to the battery.
     this.switchSegment = new WireSegment( this.hingePoint,

@@ -12,10 +12,10 @@ define( function( require ) {
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector3 = require( 'DOT/Vector3' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
+  var WireConnections = require( 'CAPACITOR_LAB_BASICS/common/model/WireConnections' );
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   var COUNTER = 0;
@@ -36,7 +36,7 @@ define( function( require ) {
     var horizontalY = circuitSwitch.getConnectionPoint( CircuitStateTypes.BATTERY_CONNECTED ).y;
 
     // Get x coordinate of the connection point
-    var isTop = connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP;
+    var isTop = connectionPoint === WireConnections.LIGHT_BULB_TOP;
     var connectionPointX = isTop ? lightBulb.getTopConnectionPoint().x : lightBulb.getBottomConnectionPoint().x;
 
     // This is the (x,y) position of the upper right corner
@@ -79,7 +79,7 @@ define( function( require ) {
      * @returns {Wire}
      */
     createLightBulbToSwitchWireBottom: function( config, lightBulb, circuitSwitch, tandem ) {
-      return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch, tandem );
+      return new LightBulbToSwitchWire( WireConnections.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch, tandem );
     },
 
     /**
@@ -93,7 +93,7 @@ define( function( require ) {
      * @returns {Wire}
      */
     createLightBulbToSwitchWireTop: function( config, lightBulb, circuitSwitch, tandem ) {
-      return new LightBulbToSwitchWire( CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch, tandem );
+      return new LightBulbToSwitchWire( WireConnections.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch, tandem );
     }
 
   } );
