@@ -18,7 +18,7 @@ define( function( require ) {
   var CapacitanceCircuit = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitanceCircuit' );
   var BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
   var CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
-  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
@@ -32,7 +32,7 @@ define( function( require ) {
     var self = this;
 
     var circuitConfig = new CircuitConfig( {
-      circuitConnections: [ CircuitConnectionEnum.BATTERY_CONNECTED, CircuitConnectionEnum.OPEN_CIRCUIT ]
+      circuitConnections: [ CircuitStateTypes.BATTERY_CONNECTED, CircuitStateTypes.OPEN_CIRCUIT ]
     } );
     this.circuit = new CapacitanceCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
 

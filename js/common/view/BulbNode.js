@@ -25,7 +25,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
   var Vector2 = require( 'DOT/Vector2' );
   var LinearFunction = require( 'DOT/LinearFunction' );
-  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // images
@@ -65,7 +65,7 @@ define( function( require ) {
     var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 300, true );
 
     var updateBrightnessScale = function( voltage ) {
-      if ( circuitConnectionProperty.value === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+      if ( circuitConnectionProperty.value === CircuitStateTypes.LIGHT_BULB_CONNECTED ) {
         var targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
         if ( targetScaleFactor < 0.1 ) {
           self.bulb.haloNode.visible = false;

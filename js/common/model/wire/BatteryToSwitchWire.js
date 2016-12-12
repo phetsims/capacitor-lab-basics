@@ -10,7 +10,7 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector3 = require( 'DOT/Vector3' );
@@ -33,7 +33,7 @@ define( function( require ) {
     var segments = [];
 
     // y coordinate of the horizontal wire
-    var horizontalY = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED ).y;
+    var horizontalY = circuitSwitch.getConnectionPoint( CircuitStateTypes.BATTERY_CONNECTED ).y;
     var leftCorner = new Vector3( battery.location.x, horizontalY );
 
     // add the vertical segment.
@@ -70,12 +70,12 @@ define( function( require ) {
     var switchConnectionPoint;
 
     if ( connectionPoint === CLBConstants.WIRE_CONNECTIONS.BATTERY_TOP ) {
-      switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
+      switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitStateTypes.BATTERY_CONNECTED );
       switchSegment = new WireSegment( leftCorner, switchConnectionPoint,
         tandem.createTandem( 'batteryTopToSwitchSegment' ) );
     }
     else {
-      switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED );
+      switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitStateTypes.BATTERY_CONNECTED );
       switchSegment = new WireSegment( leftCorner, switchConnectionPoint,
         tandem.createTandem( 'batteryBottomToSwitchSegment' ) );
     }

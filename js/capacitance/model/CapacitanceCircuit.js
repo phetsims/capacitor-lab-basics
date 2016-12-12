@@ -24,7 +24,7 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
-  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
@@ -53,7 +53,7 @@ define( function( require ) {
     updatePlateVoltages: function() {
       if ( this.circuitConnectionProperty !== undefined ) {
         // if the battery is connected, the voltage is equal to the battery voltage
-        if ( this.circuitConnectionProperty.value === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        if ( this.circuitConnectionProperty.value === CircuitStateTypes.BATTERY_CONNECTED ) {
           this.capacitor.platesVoltageProperty.value = this.battery.voltageProperty.value;
         }
         // otherwise, the voltage can be found by V=Q/C

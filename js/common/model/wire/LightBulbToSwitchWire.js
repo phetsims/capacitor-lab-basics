@@ -11,7 +11,7 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Vector3 = require( 'DOT/Vector3' );
@@ -33,7 +33,7 @@ define( function( require ) {
     var segments = [];
 
     // Get y coordinate of the horizontal wire
-    var horizontalY = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.BATTERY_CONNECTED ).y;
+    var horizontalY = circuitSwitch.getConnectionPoint( CircuitStateTypes.BATTERY_CONNECTED ).y;
 
     // Get x coordinate of the connection point
     var isTop = connectionPoint === CLBConstants.WIRE_CONNECTIONS.LIGHT_BULB_TOP;
@@ -54,7 +54,7 @@ define( function( require ) {
     segments.push( verticalSegment );
 
     // connect lightbulb to switch connection point.
-    var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitConnectionEnum.LIGHT_BULB_CONNECTED );
+    var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitStateTypes.LIGHT_BULB_CONNECTED );
 
     // Tandem IDs must be unique, so append a counter index
     segments.push( new WireSegment( rightCorner, switchConnectionPoint,

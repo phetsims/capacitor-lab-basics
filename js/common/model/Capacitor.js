@@ -40,7 +40,7 @@ define( function( require ) {
   /**
    * Constructor for the Capacitor.
    * @param {CircuitConfig} config
-   * @param {Property.<CircuitConnectionEnum>} circuitConnectionProperty
+   * @param {Property.<CircuitStateTypes>} circuitConnectionProperty
    * @param {Tandem} tandem
    * @param {Object} [options]
    * @constructor

@@ -13,7 +13,7 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitConnectionEnum = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConnectionEnum' );
+  var CircuitStateTypes = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitStateTypes' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -34,7 +34,7 @@ define( function( require ) {
    *
    * @param {string} positionLabel - 'top' or 'bottom'
    * @param {CircuitConfig} config
-   * @param {Property.<CircuitConnectionEnum>} circuitConnectionProperty
+   * @param {Property.<CircuitStateTypes>} circuitConnectionProperty
    * @param {Tandem} tandem
    */
   function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem ) {
@@ -86,7 +86,7 @@ define( function( require ) {
     circuitConnectionProperty.link( function( circuitConnection ) {
 
       // If the switch is being dragged, it is in transit and there is no active connection.
-      if ( circuitConnection === CircuitConnectionEnum.IN_TRANSIT ) {
+      if ( circuitConnection === CircuitStateTypes.SWITCH_IN_TRANSIT ) {
         return;
       }
 
@@ -146,20 +146,20 @@ define( function( require ) {
      * @param  {string} positionLabel - 'top' or 'bottom'
      * @param  {Vector2} hingeXY - Location of switch hinge
      * @param  {CircuitConfig} config - Class containing circuit geometry and properties
-     * @returns {Object[]} - Array of objects like { location: Vector3, connectionType: CircuitConnectionEnum }
+     * @returns {Object[]} - Array of objects like { location: Vector3, connectionType: CircuitStateTypes }
      */
     getSwitchConnections: function( positionLabel, hingeXY, circuitConnections ) {
       /* REVIEW: Simplification and avoid branches, should be able to replace this entire function:
       // at constants
       var SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point
-      var CONNECTION_ANGLE_MAP = {}; // maps {CircuitConnectionEnum} => additional angle offset for connection type {number}
-      CONNECTION_ANGLE_MAP[ CircuitConnectionEnum.OPEN_CIRCUIT ] = 0;
-      CONNECTION_ANGLE_MAP[ CircuitConnectionEnum.BATTERY_CONNECTED ] = SWITCH_ANGLE;
-      CONNECTION_ANGLE_MAP[ CircuitConnectionEnum.LIGHT_BULB_CONNECTED ] = -SWITCH_ANGLE;
+      var CONNECTION_ANGLE_MAP = {}; // maps {CircuitStateTypes} => additional angle offset for connection type {number}
+      CONNECTION_ANGLE_MAP[ CircuitStateTypes.OPEN_CIRCUIT ] = 0;
+      CONNECTION_ANGLE_MAP[ CircuitStateTypes.BATTERY_CONNECTED ] = SWITCH_ANGLE;
+      CONNECTION_ANGLE_MAP[ CircuitStateTypes.LIGHT_BULB_CONNECTED ] = -SWITCH_ANGLE;
       // ...
       var topSign = ( position === CircuitSwitch.TOP ) ? -1 : 1;
       return circuitConnections.filter( function( circuitSwitchConnection ) {
-        return circuitSwitchConnection !== CircuitConnectionEnum.IN_TRANSIT;
+        return circuitSwitchConnection !== CircuitStateTypes.SWITCH_IN_TRANSIT;
       } ).map( function( circuitSwitchConnection ) {
         var angle = topSign * ( Math.PI + CONNECTION_ANGLE_MAP[ circuitSwitchConnection ] );
         return {
@@ -196,19 +196,19 @@ define( function( require ) {
 
       var connections = [];
       circuitConnections.forEach( function( circuitSwitchConnection ) {
-        if ( circuitSwitchConnection === CircuitConnectionEnum.OPEN_CIRCUIT ) {
+        if ( circuitSwitchConnection === CircuitStateTypes.OPEN_CIRCUIT ) {
           connections.push( {
             location: topPoint.toVector3(),
             connectionType: circuitSwitchConnection
           } );
         }
-        else if ( circuitSwitchConnection === CircuitConnectionEnum.BATTERY_CONNECTED ) {
+        else if ( circuitSwitchConnection === CircuitStateTypes.BATTERY_CONNECTED ) {
           connections.push( {
             location: leftPoint.toVector3(),
             connectionType: circuitSwitchConnection
           } );
         }
-        else if ( circuitSwitchConnection === CircuitConnectionEnum.LIGHT_BULB_CONNECTED ) {
+        else if ( circuitSwitchConnection === CircuitStateTypes.LIGHT_BULB_CONNECTED ) {
           connections.push( {
             location: rightPoint.toVector3(),
             connectionType: circuitSwitchConnection
@@ -227,7 +227,7 @@ define( function( require ) {
      * @public
      *
      * @param connectionType
-     * @returns {Object} returnConnection - with format { location: Vector3, connectionType: CircuitConnectionEnum }
+     * @returns {Object} returnConnection - with format { location: Vector3, connectionType: CircuitStateTypes }
      */
     getConnection: function( connectionType ) {
 
@@ -245,11 +245,11 @@ define( function( require ) {
      * the location.
      * @public
      *
-     * @param {CircuitConnectionEnum} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
+     * @param {CircuitStateTypes} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
      */
     getConnectionPoint: function( connectionType ) {
-      assert && assert( connectionType !== CircuitConnectionEnum.IN_TRANSIT,
-        'Cannot call getConnectionPoint while IN_TRANSIT' );
+      assert && assert( connectionType !== CircuitStateTypes.SWITCH_IN_TRANSIT,
+        'Cannot call getConnectionPoint while SWITCH_IN_TRANSIT' );
 
       return this.getConnection( connectionType ).location;
     },
@@ -310,7 +310,7 @@ define( function( require ) {
      * @public
      *
      * @param {CircuitConfig} config
-     * @param {Property.<CircuitConnectionEnum>} circuitConnectionProperty
+     * @param {Property.<CircuitStateTypes>} circuitConnectionProperty
      * @param {Tandem} tandem
      * @returns {CircuitSwitch}
      */
@@ -323,7 +323,7 @@ define( function( require ) {
      * @public
      *
      * @param {CircuitConfig} config
-     * @param {Property.<CircuitConnectionEnum>} circuitConnectionProperty
+     * @param {Property.<CircuitStateTypes>} circuitConnectionProperty
      * @param {Tandem} tandem
      * @returns {CircuitSwitch}
      */
