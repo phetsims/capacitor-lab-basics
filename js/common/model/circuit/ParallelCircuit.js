@@ -26,7 +26,7 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
   var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
-  var WireConnections = require( 'CAPACITOR_LAB_BASICS/common/model/WireConnections' );
+  var CircuitPlaces = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitPlaces' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
@@ -144,22 +144,25 @@ define( function( require ) {
       ) );
     }
 
-
-    // Return the subset of wires in the provided zone
-    // @private
+    /**
+     * Return the subset of wires connected to the provided location
+     * @private
+     * @param  {string} place - One of the constants in CircuitPlaces
+     * @return {Wire[]}
+     */
     function selectWires( zone ) {
       return self.wires.filter( function( wire ) {
         return wire.connectionPoint === zone;
       } );
     }
 
-    // Get collections of wires directly connected to various parts of the circuit
-    this.topBatteryWires = selectWires( WireConnections.BATTERY_TOP );
-    this.bottomBatteryWires = selectWires( WireConnections.BATTERY_BOTTOM );
-    this.topLightBulbWires = selectWires( WireConnections.LIGHT_BULB_TOP );
-    this.bottomLightBulbWires = selectWires( WireConnections.LIGHT_BULB_BOTTOM );
-    this.topCapacitorWires = selectWires( WireConnections.CAPACITOR_TOP );
-    this.bottomCapacitorWires = selectWires( WireConnections.CAPACITOR_BOTTOM );
+    // Get collections of wires electrically connected to various parts of the circuit
+    this.topBatteryWires = selectWires( CircuitPlaces.BATTERY_TOP );
+    this.bottomBatteryWires = selectWires( CircuitPlaces.BATTERY_BOTTOM );
+    this.topLightBulbWires = selectWires( CircuitPlaces.LIGHT_BULB_TOP );
+    this.bottomLightBulbWires = selectWires( CircuitPlaces.LIGHT_BULB_BOTTOM );
+    this.topCapacitorWires = selectWires( CircuitPlaces.CAPACITOR_TOP );
+    this.bottomCapacitorWires = selectWires( CircuitPlaces.CAPACITOR_BOTTOM );
 
     this.topWires = this.topBatteryWires.concat( this.topLightBulbWires ).concat( this.topCapacitorWires );
     this.bottomWires = this.bottomBatteryWires.concat( this.bottomLightBulbWires ).concat( this.bottomCapacitorWires );
@@ -167,7 +170,7 @@ define( function( require ) {
     this.topSwitchWires = [];
     this.circuitSwitches.forEach( function( circuitSwitch ) {
       var wire = circuitSwitch.switchWire;
-      if ( wire.connectionPoint === WireConnections.CIRCUIT_SWITCH_TOP ) {
+      if ( wire.connectionPoint === CircuitPlaces.CIRCUIT_SWITCH_TOP ) {
         self.topSwitchWires.push( wire );
       }
     } );
@@ -175,7 +178,7 @@ define( function( require ) {
     this.bottomSwitchWires = [];
     this.circuitSwitches.forEach( function( circuitSwitch ) {
       var wire = circuitSwitch.switchWire;
-      if ( wire.connectionPoint === WireConnections.CIRCUIT_SWITCH_BOTTOM ) {
+      if ( wire.connectionPoint === CircuitPlaces.CIRCUIT_SWITCH_BOTTOM ) {
         self.bottomSwitchWires.push( wire );
       }
     } );
