@@ -13,8 +13,6 @@ define( function( require ) {
 
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
-  //REVIEW: Personally, I've used enumerations without the 'Enum' suffix. Consider renaming to CircuitConnection.
-  //        Also, it's been referred to as circuitConnectionType, so CircuitConnectionType would also work well.
   var CircuitStateTypes = {
     BATTERY_CONNECTED: 'BATTERY_CONNECTED',
     LIGHT_BULB_CONNECTED: 'LIGHT_BULB_CONNECTED',
