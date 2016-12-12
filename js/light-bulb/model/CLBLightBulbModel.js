@@ -22,11 +22,11 @@ define( function( require ) {
   var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
+  // var NumberProperty = require( 'AXON/NumberProperty' );
 
   // phet-io modules
   var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
-  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
+  // var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
 
   // constants
   var CAPACITOR_X_SPACING = 0.0180; // meters
