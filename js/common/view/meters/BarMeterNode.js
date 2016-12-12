@@ -167,8 +167,5 @@ define( function( require ) {
       this.valueTextNode.rightCenter = this.axisLine.leftCenter.minusXY( VALUE_METER_SPACING, 0 );
     }
 
-    // getMaxWidth: function() {
-    //   return this.barNode.barSize.width;
-    // }
   } );
 } );

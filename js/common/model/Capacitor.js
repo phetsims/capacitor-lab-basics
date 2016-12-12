@@ -100,6 +100,9 @@ define( function( require ) {
       function( plateSeparation, plateSize ) {
         assert && assert( plateSeparation > 0, 'Plate separation is ' + plateSeparation );
         return CLBConstants.EPSILON_0 * plateSize.width * plateSize.depth / plateSeparation;
+      }, {
+        tandem: tandem.createTandem( 'capacitanceProperty' ),
+        phetioValueType: TNumber( {units: 'Farads' } )
       } );
 
     // Charge on top plate of capacitor
@@ -112,14 +115,19 @@ define( function( require ) {
         if ( Math.abs( charge ) < CLBConstants.MIN_PLATE_CHARGE ) {
           charge = 0;
         }
-
         return charge;
+      }, {
+        tandem: tandem.createTandem( 'plateChargeProperty' ),
+        phetioValueType: TNumber( {units: 'Coulombs' } )
       } );
 
     // @public
     this.storedEnergyProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty ],
       function( capacitance, voltage ) {
         return 0.5 * capacitance * voltage * voltage;
+      }, {
+        tandem: tandem.createTandem( 'storedEnergyProperty' ),
+        phetioValueType: TNumber( {units: 'Joules' } )
       } );
 
     // Track the previous capacitance to adjust the inital voltage when discharging, see

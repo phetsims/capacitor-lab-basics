@@ -22,11 +22,9 @@ define( function( require ) {
   var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
-  // var NumberProperty = require( 'AXON/NumberProperty' );
 
   // phet-io modules
   var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
-  // var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
 
   // constants
   var CAPACITOR_X_SPACING = 0.0180; // meters
@@ -84,40 +82,19 @@ define( function( require ) {
 
     var circuit = this.circuit;
 
-    // REVIEW comments suggest to pass properties to BarMeter instead of callbacks, but, questions...
-    // - Where would link function reside, (here, BarMeter, or circuit model)?
-    // - How to keep BarMeter general for three different properties?
-    // - Why should a property be used instead of a callback?
-    //
-    // this.capacitanceProperty = new NumberProperty( this.circuit.getTotalCapacitance(), {
-    //   tandem: tandem.createTandem( 'capacitanceProperty' ),
-    //   phetioValueType: TNumber( { units: 'Farads' } )
-    // } );
-    // this.chargeProperty = new NumberProperty( this.circuit.getTotalCharge(), {
-    //   tandem: tandem.createTandem( 'chargeProperty' ),
-    //   phetioValueType: TNumber( { units: 'Coulombs' } )
-    // } );
-    // this.storedEnergyProperty = new NumberProperty( this.circuit.getStoredEnergy(), {
-    //   tandem: tandem.createTandem( 'storedEnergyProperty' ),
-    //   phetioValueType: TNumber( { units: 'Joules' } )
-    // } );
-
     // @public
     this.capacitanceMeter = new BarMeter( this.circuit, this.capacitanceMeterVisibleProperty,
-      //REVIEW: Does a property make sense here, since presumably we want to listen to it?
-      circuit.getTotalCapacitance.bind( circuit ),
+      circuit.capacitor.capacitanceProperty,
       tandem.createTandem( 'capacitanceMeter' ) );
 
     // @public
     this.plateChargeMeter = new BarMeter( this.circuit, this.plateChargeMeterVisibleProperty,
-      //REVIEW: Does a property make sense here, since presumably we want to listen to it?
-      circuit.getTotalCharge.bind( circuit ),
+      circuit.capacitor.plateChargeProperty,
       tandem.createTandem( 'plateChargeMeter' ) );
 
     // @public
     this.storedEnergyMeter = new BarMeter( this.circuit, this.storedEnergyMeterVisibleProperty,
-      //REVIEW: Does a property make sense here, since presumably we want to listen to it?
-      circuit.getStoredEnergy.bind( circuit ),
+      circuit.capacitor.storedEnergyProperty,
       tandem.createTandem( 'storedEnergyMeter' ) );
   }
 

@@ -29,8 +29,6 @@ define( function( require ) {
    */
   function CapacitanceModel( switchUsedProperty, modelViewTransform, tandem ) {
 
-    var self = this;
-
     var circuitConfig = CircuitConfig.create( {
       circuitConnections: [ CircuitState.BATTERY_CONNECTED, CircuitState.OPEN_CIRCUIT ]
     } );
@@ -40,9 +38,7 @@ define( function( require ) {
 
     // @public
     this.capacitanceMeter = new BarMeter( this.circuit, this.capacitanceMeterVisibleProperty,
-      function() {
-        return self.circuit.getTotalCapacitance();
-      },
+      this.circuit.capacitor.capacitanceProperty,
       tandem.createTandem( 'capacitanceMeter' ) );
   }
 
