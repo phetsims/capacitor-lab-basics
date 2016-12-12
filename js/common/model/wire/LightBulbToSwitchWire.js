@@ -21,8 +21,7 @@ define( function( require ) {
   var COUNTER = 0;
 
   /**
-   * REVIEW: enumeration for connectionPoint?
-   * @param {string} connectionPoint one of 'TOP' or 'BOTTOM'
+   * @param {string} connectionPoint - enumeration constant from CircuitLocation
    * @param {CircuitConfig} config
    * @param {LightBulb} lightBulb
    * @param {CircuitSwitch} circuitSwitch

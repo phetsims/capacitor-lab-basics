@@ -17,10 +17,7 @@ define( function( require ) {
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   /**
-   * Constructor.
-   *
-   * REVIEW: for connectionPoint, use an enumeration, and doc the enumeration here.
-   * @param {string} connectionPoint
+   * @param {string} connectionPoint - enumeration constant from CircuitLocation
    * @param {CircuitConfig} config
    * @param {Capacitor} capacitor
    * @param {CircuitSwitch} circuitSwitch
@@ -59,8 +56,7 @@ define( function( require ) {
      * @returns CapacitorToSwitchWire
      */
     createCapacitorToSwitchWireTop: function( config, capacitor, circuitSwitch, tandem ) {
-      return new CapacitorToSwitchWire( CircuitLocation.CAPACITOR_TOP,
-        config, capacitor, circuitSwitch, tandem );
+      return new CapacitorToSwitchWire( CircuitLocation.CAPACITOR_TOP, config, capacitor, circuitSwitch, tandem );
     },
 
     /**
@@ -74,8 +70,7 @@ define( function( require ) {
      * @returns CapacitorToSwitchWire
      */
     createCapacitorToSwitchWireBottom: function( config, capacitor, circuitSwitch, tandem ) {
-      return new CapacitorToSwitchWire( CircuitLocation.CAPACITOR_BOTTOM,
-        config, capacitor, circuitSwitch, tandem );
+      return new CapacitorToSwitchWire( CircuitLocation.CAPACITOR_BOTTOM, config, capacitor, circuitSwitch, tandem );
     }
   } );
 } );

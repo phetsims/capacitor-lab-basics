@@ -18,10 +18,7 @@ define( function( require ) {
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   /**
-   * Constructor.
-   *
-   * REVIEW: for connectionPoint, use an enumeration, and doc the enumeration here.
-   * @param {string} connectionPoint - string indicating object which is connected to the capacitor
+   * @param {string} connectionPoint - enumeration constant from CircuitLocation
    * @param {CircuitConfig} config
    * @param {Battery} battery
    * @param {CircuitSwitch} circuitSwitch
