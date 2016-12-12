@@ -20,7 +20,6 @@ define( function( require ) {
   var CapacitorToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/CapacitorToSwitchWire' );
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var DerivedProperty = require( 'AXON/DerivedProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
   var NumberProperty = require( 'AXON/NumberProperty' );
@@ -32,10 +31,6 @@ define( function( require ) {
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
   var TString = require( 'ifphetio!PHET_IO/types/TString' );
-
-  // During exponential voltage drop, circuit voltage crosses this threshold,
-  // below which we no longer call discharge() so I and V don't tail off forever.
-  var MIN_VOLTAGE = 1e-3; // Volts. Minimum readable value on voltmeter.
 
   /**
    * Constructor for a Parallel Circuit.
@@ -55,23 +50,13 @@ define( function( require ) {
      * @type {NumberProperty}
      * @public
      */
-    // this.currentAmplitudeProperty = new NumberProperty( 0, {
-    //   tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
-    //   phetioValueType: TNumber( {
-    //     units: 'amperes'
-    //   } ),
-    //   phetioInstanceDocumentation: 'currentAmplitudeProperty is updated by the model and should not be set by users'
-    // } );
-
-
-    // Utility variable for current calculation
-    // @protected
-    this.previousTotalCharge = 0;
-
-    // Overwrite in concrete instances
-    // @protected
-    this.maxPlateCharge = Infinity;
-    this.maxEffectiveEField = Infinity;
+    this.currentAmplitudeProperty = new NumberProperty( 0, {
+      tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
+      phetioValueType: TNumber( {
+        units: 'amperes'
+      } ),
+      phetioInstanceDocumentation: 'currentAmplitudeProperty is updated by the model and should not be set by users'
+    } );
 
     /**
      * Property tracking the state of the switch
@@ -83,14 +68,6 @@ define( function( require ) {
       tandem: tandem.createTandem( 'circuitConnectionProperty' ),
       phetioValueType: TString
     } );
-
-    // @public
-    this.battery = new Battery( CLBConstants.BATTERY_LOCATION, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue,
-      config.modelViewTransform, tandem.createTandem( 'battery' ) );
-
-    // @public
-    this.capacitor = new Capacitor( config, this.circuitConnectionProperty, tandem.createTandem( 'capacitor' ) );
-
 
     /**
      * Property tracking the signed charge value on the upper plate
@@ -106,37 +83,21 @@ define( function( require ) {
       } )
     } );
 
+    // Utility variable for current calculation
+    // @protected
+    this.previousTotalCharge = 0;
+
+    // Overwrite in concrete instances
+    // @protected
+    this.maxPlateCharge = Infinity;
+    this.maxEffectiveEField = Infinity;
+
     // @public
-    this.currentAmplitudeProperty = new DerivedProperty( [
-          this.capacitor.plateChargeProperty,
-          this.capacitor.plateVoltageProperty,
-          this.circuitConnectionProperty
-        ],
-        function( charge, voltage, connection ) {
-          var current = 0;
+    this.battery = new Battery( CLBConstants.BATTERY_LOCATION, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue,
+      config.modelViewTransform, tandem.createTandem( 'battery' ) );
 
-          // If the circuit is connected to the light bulb, I = V / R
-          if ( connection === CircuitState.LIGHT_BULB_CONNECTED ) {
-            current = voltage / self.lightBulb.resistance;
-
-            // The cutoff is doubled here for #58
-            if ( Math.abs( current ) < 2 * MIN_VOLTAGE / self.lightBulb.resistance ) {
-              current = 0;
-            }
-          }
-
-          // Otherwise, I = dQ/dt.
-          else {
-            var dt = 1/60; // TODO: factor out
-            current = ( charge - self.previousTotalCharge ) / dt;
-            self.previousTotalCharge = charge;
-          }
-          return current;
-        }, {
-        tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
-        phetioValueType: TNumber( { units: 'amperes' } ),
-        phetioInstanceDocumentation: 'currentAmplitudeProperty is updated by the model and should not be set by users'
-      } );
+    // @public
+    this.capacitor = new Capacitor( config, this.circuitConnectionProperty, tandem.createTandem( 'capacitor' ) );
 
     // Array of CircuitSwitch instances
     // @public
@@ -289,6 +250,7 @@ define( function( require ) {
     reset: function() {
       this.battery.reset();
       this.capacitor.reset();
+      this.currentAmplitudeProperty.reset();
       this.circuitConnectionProperty.reset();
       this.disconnectedPlateChargeProperty.reset();
       this.previousTotalCharge = 0;
@@ -301,7 +263,7 @@ define( function( require ) {
      * @param {number} dt
      */
     step: function( dt ) {
-      // this.updateCurrentAmplitude( dt );
+      this.updateCurrentAmplitude( dt );
     },
 
     /**
@@ -311,14 +273,14 @@ define( function( require ) {
      *
      * @param {number} dt
      */
-    // updateCurrentAmplitude: function( dt ) {
-    //   var Q = this.getTotalCharge();
-    //   if ( this.previousTotalCharge !== -1 ) {
-    //     var dQ = Q - this.previousTotalCharge;
-    //     this.currentAmplitudeProperty.set( dQ / dt );
-    //   }
-    //   this.previousTotalCharge = Q;
-    // },
+    updateCurrentAmplitude: function( dt ) {
+      var Q = this.getTotalCharge();
+      if ( this.previousTotalCharge !== -1 ) {
+        var dQ = Q - this.previousTotalCharge;
+        this.currentAmplitudeProperty.set( dQ / dt );
+      }
+      this.previousTotalCharge = Q;
+    },
 
     /**
      * Get the total capacitance the circuit
@@ -368,6 +330,9 @@ define( function( require ) {
      */
     getStoredEnergy: function() {
       return this.capacitor.storedEnergyProperty.value;
+      // var C = this.getTotalCapacitance(); // F
+      // var V = this.getCapacitorPlateVoltage(); // V
+      // return 0.5 * C * V * V; // Joules (J)
     },
 
     /**

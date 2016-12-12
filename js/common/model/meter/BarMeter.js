@@ -41,6 +41,7 @@ define( function( require ) {
      * @public
      */
     reset: function() {
+      this.valueProperty.reset();
       this.visibleProperty.reset();
     }
 
