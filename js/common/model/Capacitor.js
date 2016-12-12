@@ -28,6 +28,7 @@ define( function( require ) {
   var CapacitorShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/CapacitorShapeCreator' );
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var DerivedProperty = require( 'AXON/DerivedProperty' );
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
@@ -94,10 +95,16 @@ define( function( require ) {
       } )
     } );
 
+    this.capacitanceProperty = new DerivedProperty( [ this.plateSeparationProperty, this.plateSizeProperty ],
+      function( plateSeparation, plateSize ) {
+      assert && assert( plateSeparation > 0, 'Plate separation is ' + plateSeparation );
+      return CLBConstants.EPSILON_0 * plateSize.width * plateSize.depth / plateSeparation;
+    } );
+
     // Track the previous capacitance to adjust the inital voltage when discharging, see
     // updateDischargeParameters() below.
     // @private
-    this.previousCapacitance = this.getCapacitance();
+    this.previousCapacitance = this.capacitanceProperty.value;
 
     // @public
     this.topCircuitSwitch = CircuitSwitch.TOP( config, circuitConnectionProperty,
@@ -111,8 +118,9 @@ define( function( require ) {
     // link the top and bottom circuit switches together so that they rotate together
     // as the user drags
     var self = this;
-    //REVIEW: note about JS's handling of negating numbers not causing infinite loops here might be good. This would
-    //        otherwise be a semi-dangerous pattern.
+
+    // JS handles negative numbers precisely so there will not be an infinite
+    // loop here due to mutual recursion.
     this.topCircuitSwitch.angleProperty.link( function( angle ) {
       self.bottomCircuitSwitch.angleProperty.set( -angle );
     } );
@@ -228,7 +236,7 @@ define( function( require ) {
      * @returns {number} charge, in Coulombs
      */
     getPlateCharge: function() {
-      var plateCharge = this.getCapacitance() * this.platesVoltageProperty.value;
+      var plateCharge = this.capacitanceProperty.value * this.platesVoltageProperty.value;
       if ( Math.abs( plateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
       }
@@ -272,7 +280,7 @@ define( function( require ) {
      * @param {number} dt
      */
     discharge: function( R, dt ) {
-      var C = this.getCapacitance();
+      var C = this.capacitanceProperty.value;
 
       this.transientTime += dt; // step time since switch was closed
       var exp = Math.exp( -this.transientTime / ( R * C ) );
@@ -302,7 +310,7 @@ define( function( require ) {
     updateDischargeParameters: function() {
 
       // in the discharge function, C is recalculated every time step, so we only need to adjust Vo.
-      var capacitanceRatio = this.getCapacitance() / this.previousCapacitance;
+      var capacitanceRatio = this.capacitanceProperty.value / this.previousCapacitance;
 
       // update the initial voltage Vo
       this.voltageAtSwitchClose = this.platesVoltageProperty.value / capacitanceRatio;

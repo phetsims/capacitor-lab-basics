@@ -289,7 +289,7 @@ define( function( require ) {
      * @returns {number}
      */
     getTotalCapacitance: function() {
-      return this.capacitor.getCapacitance();
+      return this.capacitor.capacitanceProperty.value;
     },
 
     /**

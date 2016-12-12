@@ -130,7 +130,7 @@ define( function( require ) {
         // If circuit is open, use V = Q/C
         else if ( this.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
           this.capacitor.platesVoltageProperty.value =
-            this.disconnectedPlateChargeProperty.value / this.capacitor.getCapacitance();
+            this.disconnectedPlateChargeProperty.value / this.capacitor.capacitanceProperty.value;
         }
         // the capacitor is discharging, but plate geometry is changing at the same time so we need
         // to update the parameters of the transient discharge equation parameters

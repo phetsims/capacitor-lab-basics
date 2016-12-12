@@ -59,7 +59,7 @@ define( function( require ) {
         // otherwise, the voltage can be found by V=Q/C
         else {
           this.capacitor.platesVoltageProperty.value =
-            this.disconnectedPlateChargeProperty.value / this.capacitor.getCapacitance();
+            this.disconnectedPlateChargeProperty.value / this.capacitor.capacitanceProperty.value;
         }
       }
     }
