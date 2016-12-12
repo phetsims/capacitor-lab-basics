@@ -85,8 +85,10 @@ define( function( require ) {
     var circuit = this.circuit;
 
     // REVIEW comments suggest to pass properties to BarMeter instead of callbacks, but, questions...
-    // - Where would link function reside, here or in BarMeter?
+    // - Where would link function reside, (here, BarMeter, or circuit model)?
     // - How to keep BarMeter general for three different properties?
+    // - Why should a property be used instead of a callback?
+    //
     // this.capacitanceProperty = new NumberProperty( this.circuit.getTotalCapacitance(), {
     //   tandem: tandem.createTandem( 'capacitanceProperty' ),
     //   phetioValueType: TNumber( { units: 'Farads' } )
