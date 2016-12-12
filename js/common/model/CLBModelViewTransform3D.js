@@ -50,10 +50,6 @@ define( function( require ) {
     // @private
     this.modelToViewTransform2D = new Transform3( Matrix3.scaling( options.scale ) );
 
-    //REVIEW: Transform3 has built in inverse functions, use those instead
-    //REVIEW: Matrix.scaling( options.scale ) will work, applies it to both X and Y
-    this.viewToModelTransform2D = new Transform3( Matrix3.scaling( 1 / options.scale, 1 / options.scale ) );
-
     // @private
     this.pitch = options.pitch;
 
@@ -158,8 +154,7 @@ define( function( require ) {
      * @return {Vector3}
      */
     viewToModelPosition: function( pView ) {
-      //REVIEW: Transform3 has built in inverse functions, use that here instead
-      return this.viewToModelTransform2D.transformPosition2( pView ).toVector3();
+      return this.modelToViewTransform2D.inversePosition2( pView ).toVector3();
     },
 
     /**
@@ -207,8 +202,8 @@ define( function( require ) {
      * @returns {Bounds2}
      */
     viewToModelBounds: function( viewBounds ) {
-      //REVIEW: Transform3 has built in inverse functions, use that here instead
-      return this.viewToModelTransform2D.transformBounds2( viewBounds );
+      return this.modelToViewTransform2D.inverseBounds2( viewBounds );
+
     }
   } );
 } );
