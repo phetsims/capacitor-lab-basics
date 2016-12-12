@@ -49,7 +49,7 @@ define( function( require ) {
     Property.multilink( [
       circuit.capacitor.plateSizeProperty,
       circuit.capacitor.plateSeparationProperty,
-      circuit.capacitor.platesVoltageProperty
+      circuit.capacitor.plateVoltageProperty
     ], function() {
       self.updateValue();
     } );

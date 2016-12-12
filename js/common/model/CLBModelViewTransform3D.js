@@ -203,7 +203,6 @@ define( function( require ) {
      */
     viewToModelBounds: function( viewBounds ) {
       return this.modelToViewTransform2D.inverseBounds2( viewBounds );
-
     }
   } );
 } );

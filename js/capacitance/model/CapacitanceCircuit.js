@@ -54,11 +54,11 @@ define( function( require ) {
       if ( this.circuitConnectionProperty !== undefined ) {
         // if the battery is connected, the voltage is equal to the battery voltage
         if ( this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
-          this.capacitor.platesVoltageProperty.value = this.battery.voltageProperty.value;
+          this.capacitor.plateVoltageProperty.value = this.battery.voltageProperty.value;
         }
         // otherwise, the voltage can be found by V=Q/C
         else {
-          this.capacitor.platesVoltageProperty.value =
+          this.capacitor.plateVoltageProperty.value =
             this.disconnectedPlateChargeProperty.value / this.capacitor.capacitanceProperty.value;
         }
       }

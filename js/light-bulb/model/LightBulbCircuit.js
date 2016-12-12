@@ -75,7 +75,7 @@ define( function( require ) {
       // if light bulb connected, reset values for transient calculations
       if ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED ) {
         self.capacitor.transientTime = 0;
-        self.capacitor.voltageAtSwitchClose = self.capacitor.platesVoltageProperty.value;
+        self.capacitor.voltageAtSwitchClose = self.capacitor.plateVoltageProperty.value;
       }
 
     } );
@@ -102,12 +102,12 @@ define( function( require ) {
       // The current arrows should start fading when the voltmeter reading drops
       // below MIN_VOLTAGE.
       if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-        if ( Math.abs( this.capacitor.platesVoltageProperty.value ) > MIN_VOLTAGE ) {
+        if ( Math.abs( this.capacitor.plateVoltageProperty.value ) > MIN_VOLTAGE ) {
           this.capacitor.discharge( this.lightBulb.resistance, dt );
         }
 
         else {
-          this.capacitor.platesVoltageProperty.set( 0 );
+          this.capacitor.plateVoltageProperty.set( 0 );
           this.currentAmplitudeProperty.set( 0 );
           this.previousTotalCharge = 0; // This fixes #130
         }
@@ -125,11 +125,11 @@ define( function( require ) {
       // If the battery is connected, the voltage is equal to the battery voltage
       if ( this.circuitConnectionProperty !== undefined ) {
         if ( this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
-          this.capacitor.platesVoltageProperty.value = this.battery.voltageProperty.value;
+          this.capacitor.plateVoltageProperty.value = this.battery.voltageProperty.value;
         }
         // If circuit is open, use V = Q/C
         else if ( this.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
-          this.capacitor.platesVoltageProperty.value =
+          this.capacitor.plateVoltageProperty.value =
             this.disconnectedPlateChargeProperty.value / this.capacitor.capacitanceProperty.value;
         }
         // the capacitor is discharging, but plate geometry is changing at the same time so we need
@@ -254,7 +254,7 @@ define( function( require ) {
 
       // if the circuit is connected to the light bulb, I = V / R
       if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-        var current = this.capacitor.platesVoltageProperty.value / this.lightBulb.resistance;
+        var current = this.capacitor.plateVoltageProperty.value / this.lightBulb.resistance;
 
         // The cutoff is doubled here for #58
         if ( Math.abs( current ) < 2 * MIN_VOLTAGE / this.lightBulb.resistance ) {

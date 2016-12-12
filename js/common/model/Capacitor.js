@@ -88,18 +88,33 @@ define( function( require ) {
 
     // zero until it's connected into a circuit
     // @public
-    this.platesVoltageProperty = new NumberProperty( 0, {
-      tandem: tandem.createTandem( 'platesVoltageProperty' ),
+    this.plateVoltageProperty = new NumberProperty( 0, {
+      tandem: tandem.createTandem( 'plateVoltageProperty' ),
       phetioValueType: TNumber( {
         units: 'volts'
       } )
     } );
 
+    // @public
     this.capacitanceProperty = new DerivedProperty( [ this.plateSeparationProperty, this.plateSizeProperty ],
       function( plateSeparation, plateSize ) {
-      assert && assert( plateSeparation > 0, 'Plate separation is ' + plateSeparation );
-      return CLBConstants.EPSILON_0 * plateSize.width * plateSize.depth / plateSeparation;
-    } );
+        assert && assert( plateSeparation > 0, 'Plate separation is ' + plateSeparation );
+        return CLBConstants.EPSILON_0 * plateSize.width * plateSize.depth / plateSeparation;
+      } );
+
+    // Charge on top plate of capacitor
+    // @public
+    this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty ],
+      function( capacitance, voltage ) {
+        var charge = capacitance * voltage;
+
+        // Force an underflow to zero below the threshold for stability
+        if ( Math.abs( charge ) < CLBConstants.MIN_PLATE_CHARGE ) {
+          charge = 0;
+        }
+
+          return charge;
+      } );
 
     // Track the previous capacitance to adjust the inital voltage when discharging, see
     // updateDischargeParameters() below.
@@ -184,18 +199,6 @@ define( function( require ) {
     },
 
     /**
-     * General formula for computing capacitance in vacuum.
-     * @public
-     *
-     * @returns {number} capacitance in Farads
-     */
-    getCapacitance: function() {
-      var d = this.plateSeparationProperty.value;
-      assert && assert( d > 0, 'Plate separation is ' + d );
-      return CLBConstants.EPSILON_0 * this.getPlateArea() / d;
-    },
-
-    /**
      * Does a Shape intersect the top plate shape?  Assumes that a shape is much smaller than the
      * top plate.  This is sufficient in the case of probes.
      * @public
@@ -229,23 +232,6 @@ define( function( require ) {
     },
 
     /**
-     * Gets the charge for the portion of the top plate.
-     * If charge is less than half of an electron charge, return 0.
-     * @public
-     *
-     * @returns {number} charge, in Coulombs
-     */
-    getPlateCharge: function() {
-      var plateCharge = this.capacitanceProperty.value * this.platesVoltageProperty.value;
-      if ( Math.abs( plateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
-        return 0;
-      }
-      else {
-        return plateCharge;
-      }
-    },
-
-    /**
      * Gets the effective (net) field between the plates. This is uniform everywhere between the plates.
      * If the total charge on the plate is less than half that of a single electron, effective field is zero.
      * @public
@@ -255,12 +241,12 @@ define( function( require ) {
      * @returns {number} Volts/meter
      */
     getEffectiveEField: function() {
-      var plateCharge = this.getPlateCharge();
+      var plateCharge = this.plateChargeProperty.value;
       if ( Math.abs( plateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
       }
       else {
-        return this.platesVoltageProperty.value / this.plateSeparationProperty.value;
+        return this.plateVoltageProperty.value / this.plateSeparationProperty.value;
       }
     },
 
@@ -284,7 +270,7 @@ define( function( require ) {
 
       this.transientTime += dt; // step time since switch was closed
       var exp = Math.exp( -this.transientTime / ( R * C ) );
-      this.platesVoltageProperty.value = this.voltageAtSwitchClose * exp;
+      this.plateVoltageProperty.value = this.voltageAtSwitchClose * exp;
 
       this.previousCapacitance = C;
     },
@@ -313,7 +299,7 @@ define( function( require ) {
       var capacitanceRatio = this.capacitanceProperty.value / this.previousCapacitance;
 
       // update the initial voltage Vo
-      this.voltageAtSwitchClose = this.platesVoltageProperty.value / capacitanceRatio;
+      this.voltageAtSwitchClose = this.plateVoltageProperty.value / capacitanceRatio;
 
       // reset transient time
       this.transientTime = 0;
@@ -323,7 +309,7 @@ define( function( require ) {
     reset: function() {
       this.plateSizeProperty.reset();
       this.plateSeparationProperty.reset();
-      this.platesVoltageProperty.reset();
+      this.plateVoltageProperty.reset();
     }
 
   } );

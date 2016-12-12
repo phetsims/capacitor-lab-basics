@@ -100,7 +100,7 @@ define( function( require ) {
     Property.multilink( [
       capacitor.plateSizeProperty,
       capacitor.plateSeparationProperty,
-      capacitor.platesVoltageProperty
+      capacitor.plateVoltageProperty
     ], function() {
       if ( self.isVisible() ) {
         self.invalidatePaint();

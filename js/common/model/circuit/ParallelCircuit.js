@@ -309,7 +309,7 @@ define( function( require ) {
      * @returns {number}
      */
     getTotalCharge: function() {
-      return this.capacitor.getPlateCharge();
+      return this.capacitor.plateChargeProperty.value;
     },
 
     /**
@@ -319,7 +319,7 @@ define( function( require ) {
      * @returns {number}
      */
     getCapacitorPlateVoltage: function() {
-      return this.capacitor.platesVoltageProperty.value;
+      return this.capacitor.plateVoltageProperty.value;
     },
 
     /**

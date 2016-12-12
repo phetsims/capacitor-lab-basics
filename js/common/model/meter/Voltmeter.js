@@ -170,7 +170,7 @@ define( function( require ) {
     };
 
     // Update voltage reading if plate voltage changes
-    circuit.capacitor.platesVoltageProperty.link( updateValue );
+    circuit.capacitor.plateVoltageProperty.link( updateValue );
 
     // Update reading when the probes move
     Property.multilink( [ self.negativeProbeLocationProperty, self.positiveProbeLocationProperty ], updateValue );
