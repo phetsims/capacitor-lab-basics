@@ -3,6 +3,7 @@
 /**
  * Interface for all strategies used to determine the size of the grid used to cover a 2D surface with objects.
  *
+ * REVIEW: Can we summarize what was tried and why it didn't work?
  * Only one of these strategies is used. The others are kept for historical purposes, so that we know what we tried,
  * why it didn't work, and how we arrived at the final solution.
  *
