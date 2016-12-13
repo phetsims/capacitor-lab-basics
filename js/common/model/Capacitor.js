@@ -102,7 +102,7 @@ define( function( require ) {
         return CLBConstants.EPSILON_0 * plateSize.width * plateSize.depth / plateSeparation;
       }, {
         tandem: tandem.createTandem( 'capacitanceProperty' ),
-        phetioValueType: TNumber( {units: 'Farads' } )
+        phetioValueType: TNumber( { units: 'farads' } )
       } );
 
     // Charge on top plate of capacitor
@@ -118,7 +118,7 @@ define( function( require ) {
         return charge;
       }, {
         tandem: tandem.createTandem( 'plateChargeProperty' ),
-        phetioValueType: TNumber( {units: 'Coulombs' } )
+        phetioValueType: TNumber( { units: 'coulombs' } )
       } );
 
     // @public
@@ -127,7 +127,7 @@ define( function( require ) {
         return 0.5 * capacitance * voltage * voltage;
       }, {
         tandem: tandem.createTandem( 'storedEnergyProperty' ),
-        phetioValueType: TNumber( {units: 'Joules' } )
+        phetioValueType: TNumber( { units: 'joules' } )
       } );
 
     // Track the previous capacitance to adjust the inital voltage when discharging, see
