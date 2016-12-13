@@ -157,6 +157,7 @@ define( function( require ) {
     }
 
     // Get collections of wires electrically connected to various parts of the circuit
+    // @public
     this.topBatteryWires = selectWires( CircuitLocation.BATTERY_TOP );
     this.bottomBatteryWires = selectWires( CircuitLocation.BATTERY_BOTTOM );
     this.topLightBulbWires = selectWires( CircuitLocation.LIGHT_BULB_TOP );
@@ -164,10 +165,12 @@ define( function( require ) {
     this.topCapacitorWires = selectWires( CircuitLocation.CAPACITOR_TOP );
     this.bottomCapacitorWires = selectWires( CircuitLocation.CAPACITOR_BOTTOM );
 
+    // @public
     this.topWires = this.topBatteryWires.concat( this.topLightBulbWires ).concat( this.topCapacitorWires );
     this.bottomWires = this.bottomBatteryWires.concat( this.bottomLightBulbWires ).concat( this.bottomCapacitorWires );
-
     this.topSwitchWires = [];
+    this.bottomSwitchWires = [];
+
     this.circuitSwitches.forEach( function( circuitSwitch ) {
       var wire = circuitSwitch.switchWire;
       if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_TOP ) {
@@ -175,7 +178,6 @@ define( function( require ) {
       }
     } );
 
-    this.bottomSwitchWires = [];
     this.circuitSwitches.forEach( function( circuitSwitch ) {
       var wire = circuitSwitch.switchWire;
       if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_BOTTOM ) {
@@ -283,7 +285,7 @@ define( function( require ) {
     },
 
     /**
-     * Get the total capacitance the circuit
+     * Get the total capacitance in the circuit
      * @public
      *
      * @returns {number}
@@ -303,7 +305,8 @@ define( function( require ) {
     },
 
     /**
-     * Gets the total charge in the circuit.(design doc symbol: Q_total)
+     * Gets the total charge in the circuit.
+     * Design doc symbol: Q_total
      * @public
      *
      * @returns {number}
