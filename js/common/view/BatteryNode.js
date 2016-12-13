@@ -1,4 +1,4 @@
-// Copyright 2014-2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Visual representation of a DC battery, with a control for setting its voltage. Image flips when the polarity of the
@@ -6,6 +6,7 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -123,5 +124,4 @@ define( function( require ) {
   capacitorLabBasics.register( 'BatteryNode', BatteryNode );
 
   return inherit( Node, BatteryNode, {} );
-
 } );

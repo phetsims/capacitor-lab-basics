@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Pseudo-3D representation of a box, using parallelograms.  Only the three visible faces are shown: top, front,
@@ -7,6 +7,7 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -38,17 +39,21 @@ define( function( require ) {
     this.shapeCreator = new BoxShapeCreator( modelViewTransform );
     this.size = size;
 
-    // @private front faces
+    // @private
     this.topNode = new Path( this.shapeCreator.createTopFaceBounds3( size ), {
       fill: this.getTopColor( color ),
       lineWidth: LINE_WIDTH,
       stroke: STROKE
     } );
+
+    // @private
     this.frontNode = new Path( this.shapeCreator.createFrontFaceBounds3( size ), {
       fill: this.getFrontColor( color ),
       lineWidth: LINE_WIDTH,
       stroke: STROKE
     } );
+
+    // @private
     this.rightSideNode = new Path( this.shapeCreator.createRightSideFaceBounds3( size ), {
       fill: this.getSideColor( color ),
       lineWidth: LINE_WIDTH,
@@ -59,7 +64,6 @@ define( function( require ) {
     this.addChild( this.topNode );
     this.addChild( this.frontNode );
     this.addChild( this.rightSideNode );
-
   }
 
   capacitorLabBasics.register( 'BoxNode', BoxNode );
@@ -68,6 +72,7 @@ define( function( require ) {
 
     /**
      * Get color for the top of the capacitor.  Top color is the base color.
+     * @public
      *
      * @returns {Color}
      */
@@ -77,6 +82,7 @@ define( function( require ) {
 
     /**
      * Get the color for the front of the capacitor.  Front color is one shade darker
+     * @public
      *
      * @param {Color} baseColor
      * @returns {Color}
@@ -87,6 +93,7 @@ define( function( require ) {
 
     /**
      * Get the color for the side of the capacitor.  Side color is two shade darker.
+     * @public
      *
      * @param {Color} baseColor
      *
@@ -95,6 +102,10 @@ define( function( require ) {
       return baseColor.darkerColor().darkerColor();
     },
 
+    /**
+     * Set shapes from size property
+     * @public
+     */
     updateShapes: function() {
       this.topNode.shape = this.shapeCreator.createTopFaceBounds3( this.size );
       this.frontNode.shape = this.shapeCreator.createFrontFaceBounds3( this.size );
@@ -103,6 +114,7 @@ define( function( require ) {
 
     /**
      * Set the size of this box.
+     * @public
      *
      * @param {Bounds3} size
      */
@@ -114,6 +126,3 @@ define( function( require ) {
     }
   } );
 } );
-
-
-

@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Bulb Node.  Bulb is composed of a image at the base, and the bulb and filament are drawn.
@@ -58,7 +58,7 @@ define( function( require ) {
     } );
     var self = this;
 
-    this.bulb = drawBulbNode( options );
+    this.bulb = drawBulbNode( options ); // @private
     this.addChild( this.bulb );
 
     // NOTE: this map deviates from the the bulb in faradays-law
@@ -106,6 +106,7 @@ define( function( require ) {
 
     /**
      * Create a bulb node icon.  This creates a node that is not linked to any model properties.
+     * @public
      *
      * @param {Object} options
      */

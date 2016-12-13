@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Base type for the circuit nodes in Capacitor Lab: Basics.
@@ -46,13 +46,18 @@ define( function( require ) {
     this.circuit = model.circuit; // @public
 
     // circuit components
+
+    // @private
     this.batteryNode = new BatteryNode( this.circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE,
       tandem.createTandem( 'batteryNode' ) );
+
     var capacitorNode = new CapacitorNode( this.circuit, model.modelViewTransform, model.plateChargesVisibleProperty,
       model.eFieldVisibleProperty, tandem.createTandem( 'capacitorNode' ) );
 
+    // @public
     this.topWireNode = new Node();
     this.bottomWireNode = new Node();
+
     this.circuit.topWires.forEach( function( topWire ) {
       self.topWireNode.addChild( new WireNode( topWire ) );
     } );
@@ -63,6 +68,7 @@ define( function( require ) {
     tandem.createTandem( 'topWireNode' ).addInstance( this.topWireNode, TNode );
     tandem.createTandem( 'bottomWireNode' ).addInstance( this.bottomWireNode, TNode );
 
+    // @private
     this.circuitSwitchNodes = [];
     self.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 0 ], model.modelViewTransform,
       tandem.createTandem( 'topSwitchNode' ) ) );
@@ -150,14 +156,14 @@ define( function( require ) {
     /**
      * Update the visibility of the current indicator nodes, implemented in
      * each of the circuit sub types.
+     * @public
      *
      * @param  {Object} circuitConnection
      * @param  {Property.<boolean>} currentIndicatorsVisible
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
-      console.error( 'updateCurrentVisibility should be implemented in descendant types' );
+      assert && assert(false, 'updateCurrentVisibility should be implemented in descendant types' );
     }
 
   } );
 } );
-
