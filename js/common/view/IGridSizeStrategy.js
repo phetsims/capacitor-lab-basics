@@ -1,14 +1,7 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Interface for all strategies used to determine the size of the grid used to cover a 2D surface with objects.
- *
- * REVIEW: Can we summarize what was tried and why it didn't work?
- * Only one of these strategies is used. The others are kept for historical purposes, so that we know what we tried,
- * why it didn't work, and how we arrived at the final solution.
- *
- * Note: I am not porting any of the other solutions for now.  They are still here in original Java for documentation
- * and we can port them later if desired.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
@@ -31,11 +24,11 @@ define( function( require ) {
     /**
      * Gets the size of the grid.
      * The number of cells in the grid may be more or less than numberOfObjects.
+     * @private
      *
      * @param numberOfObjects number of objects to put on the plate
      * @param width           width of the plate
      * @param height          height of the plate
-     * @return
      */
     getGridSize: function( numberOfObjects, width, height ) {
       assert && assert( false, 'getGridSize should be overridden by descendant classes.' );
@@ -43,6 +36,7 @@ define( function( require ) {
   }, {
     /**
      * This factory determines the strategy used throughout the application.
+     * @public
      */
     createStrategy: function() { return new CCKStrategyWithRounding(); }
   } );
@@ -69,6 +63,7 @@ define( function( require ) {
      * @param  {number}} width
      * @param  {number} height
      * @returns {Dimension2}
+     * @private
      */
     getGridSize: function( numberOfObjects, width, height ) {
       var columns = 0;
