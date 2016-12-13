@@ -1,7 +1,6 @@
 // Copyright 2016, University of Colorado Boulder
 
 /**
- *
  * BarMeterNode subclass that implements a custom setValue method
  * @author Jesse Greenberg
  * @author Andrew Adare
@@ -16,7 +15,6 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   /**
-   *
    * @param {BarMeter} meter
    * @param {string} barColor - fill color of the BarMeter
    * @param {number} maxValue - model value at which the bar has max length
@@ -32,7 +30,12 @@ define( function( require ) {
 
   return inherit( BarMeterNode, PlateChargeBarMeterNode, {
 
-    // This meter displays absolute value, and changes color to indicate positive or negative charge.
+    /**
+     * This meter displays absolute value, and changes color to indicate positive or negative charge.
+     *
+     * @param {number} value
+     * @public
+     */
     setValue: function( value ) {
       BarMeterNode.prototype.setValue.call( this, Math.abs( value ) );
       this.setBarColor( ( value >= 0 ) ? CLBConstants.POSITIVE_CHARGE_COLOR : CLBConstants.NEGATIVE_CHARGE_COLOR );

@@ -39,9 +39,11 @@ define( function( require ) {
     this.bodyNode = bodyNode;
     this.probeNode = probeNode;
 
+    // @private
     this.bodyControlPointOffset = BODY_CONTROL_POINT_OFFSET;
     this.probeControlPointOffset = PROBE_CONTROL_POINT_OFFSET;
 
+    // @private
     this.bodyConnectionOffset = isPositive ? bodyNode.positiveConnectionOffset : bodyNode.negativeConnectionOffset;
     this.probeConnectionOffset = probeNode.connectionOffset;
 
@@ -68,6 +70,7 @@ define( function( require ) {
 
     /**
      * Update the wire path.
+     * @public
      */
     update: function() {
 
@@ -91,6 +94,7 @@ define( function( require ) {
      * @param {VoltmeterBodyNode||VoltmeterProbeNode} node
      * @param {Vector2} connectionOffset
      * @returns {Vector2}
+     * @public
      */
     getConnectionPoint: function( node, connectionOffset ) {
       return node.translation.plus( connectionOffset );

@@ -24,7 +24,6 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // digital display
-  //private static final NumberFormat DISPLAY_VALUE_FORMAT = new DefaultDecimalFormat( "0.00" );
   var DISPLAY_FONT = new PhetFont( 18 );
 
   // title display
@@ -155,6 +154,7 @@ define( function( require ) {
      *
      * @param {Text} valueText
      * @param {number} value
+     * @public
      */
     setValueText: function( valueText, value ) {
       if ( value === null ) {

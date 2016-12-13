@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * A voltmeter has a body, 2 probes, and 2 wires connecting the probes to the body.
@@ -7,11 +7,13 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
 
   // modules
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -25,7 +27,6 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // phet-io modules
   var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
@@ -59,8 +60,9 @@ define( function( require ) {
     var self = this;
 
     // construct all parts of the probe
+    // @public
     this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty,
-      tandem.createTandem( 'voltmeterBodyNode' ) ); // @public
+      tandem.createTandem( 'voltmeterBodyNode' ) );
     this.positiveProbeNode = VoltmeterProbeNode.createPositiveVoltmeterProbeNode( voltmeter, modelViewTransform,
       tandem.createTandem( 'positiveProbeNode' ) );
     this.negativeProbeNode = VoltmeterProbeNode.createNegativeVoltmeterProbeNode( voltmeter, modelViewTransform,
@@ -101,7 +103,12 @@ define( function( require ) {
 
   inherit( Node, VoltmeterNode, {}, {
 
-    // Create an icon of the voltmeter, to be used in the toolbox panel.
+    /**
+     * Create an icon of the voltmeter, to be used in the toolbox panel.
+     *
+     * @return {VoltmeterIconNode}
+     * @public
+     */
     createVoltmeterIconNode: function() {
       return new VoltmeterIconNode();
     },
@@ -187,7 +194,6 @@ define( function( require ) {
       stroke: PhetColorScheme.RED_COLORBLIND,
       lineWidth: 2
     } );
-
 
     // rendering order for the icon
     this.children = [ voltmeterImageNode, labelText, readoutRectangle, blackProbeImage, redProbeImage, redWirePath,

@@ -1,11 +1,12 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
- * Base class for voltmeter probes.  Static functions create each of the positive and negative
- * nodes.
+ * Class for voltmeter probes in the view.  Static functions create each of the
+ * positive and negative nodes.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -94,6 +95,7 @@ define( function( require ) {
      * Returns a new Vector2.
      *
      * @returns {Vector2}
+     * @public
      */
     getConnectionOffset: function() {
       return this.connectionOffset.copy();
@@ -101,17 +103,26 @@ define( function( require ) {
   }, {
 
     /**
-     * Factories for a positive or negative VoltmeterProbeNode
+     * Factory for a positive VoltmeterProbeNode
      *
      * @param {Voltmeter} voltmeter
      * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {Tandem} tandem
+     * @public
      */
     createPositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
       return new VoltmeterProbeNode( redVoltmeterProbeImage,
         voltmeter.positiveProbeLocationProperty, modelViewTransform, voltmeter.dragBounds, tandem );
     },
 
+    /**
+     * Factory for a positive VoltmeterProbeNode
+     *
+     * @param {Voltmeter} voltmeter
+     * @param {CLBModelViewTransform3D} modelViewTransform
+     * @param {Tandem} tandem
+     * @public
+     */
     createNegativeVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
       return new VoltmeterProbeNode( blackVoltmeterProbeImage,
         voltmeter.negativeProbeLocationProperty, modelViewTransform, voltmeter.dragBounds, tandem );

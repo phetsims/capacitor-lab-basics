@@ -2,8 +2,9 @@
 
 /**
  *
- * The bar meter node is composed of a rectangular bar graph and a value node.  The composite parts are added to layout
- * boxes in the BarMeterPanel so that alignment can be perfectly set.
+ * The bar meter node is composed of a rectangular bar graph and a value node.
+ * The composite parts are added to layout boxes in the BarMeterPanel so that
+ * alignment can be perfectly set.
  *
  * @author Jesse Greenberg
  */
@@ -15,9 +16,6 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-
-  // phet-io modules
-  // var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
 
   // constants
   var BASE_LINE_LENGTH = 25;
@@ -40,9 +38,10 @@ define( function( require ) {
 
     assert && assert( value >= 0, 'value must be >= 0 : ' + value );
 
+    // @public
     this.value = value;
     this.maxValue = maxValue;
-    this.barSize = BAR_SIZE; // @public
+    this.barSize = BAR_SIZE;
 
     Rectangle.call( this, 0, 0, BAR_SIZE.width, BAR_SIZE.height, {
       fill: barColor,
@@ -58,6 +57,12 @@ define( function( require ) {
 
   return inherit( Rectangle, BarNode, {
 
+    /**
+     * Set bar value
+     *
+     * @param {number} value
+     * @public
+     */
     setValue: function( value ) {
 
       assert && assert( value >= 0, 'value must be >= 0 : ' + value );
@@ -68,6 +73,10 @@ define( function( require ) {
       }
     },
 
+    /**
+     * Update the bar
+     * @public
+     */
     update: function() {
       var percent = Math.min( 1, Math.abs( this.value ) / this.maxValue );
       var x = ( 1 - percent ) * BAR_SIZE.width;

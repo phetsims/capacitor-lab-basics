@@ -4,8 +4,9 @@
  * Abstract base class for all bar meter nodes.
  * Origin is at the center-left of the vertical track at the base of the bar.
  *
- * The bar meter node is composed of a rectangular bar graph and a value node.  The composite parts are added to layout
- * boxes in the BarMeterPanel so that alignment can be perfectly set.
+ * The bar meter node is composed of a rectangular bar graph and a value node.
+ * The composite parts are added to layout boxes in the BarMeterPanel so that
+ * alignment can be perfectly set.
  *
  * @author Jesse Greenberg
  * @author Andrew Adare
@@ -118,6 +119,7 @@ define( function( require ) {
      * Sets the color used to fill the bar and the overload indicator arrow.
      *
      * @param color
+     * @public
      */
     setBarColor: function( color ) {
       this.barNode.fill = color;
@@ -129,6 +131,7 @@ define( function( require ) {
      * Updates the bar and the value below the meter.
      *
      * @param {number} value
+     * @public
      */
     setValue: function( value ) {
 
@@ -153,6 +156,7 @@ define( function( require ) {
 
     /**
      * Update the overload indicator arrow visibility and position.
+     * @public
      */
     updateArrow: function() {
       // update position
@@ -162,6 +166,10 @@ define( function( require ) {
       this.arrowNode.visible = Math.abs( this.meter.valueProperty.get() ) > this.maxValue;
     },
 
+    /**
+     * Update the layout
+     * @public
+     */
     updateLayout: function() {
       this.barNode.leftCenter = this.axisLine.leftCenter;
       this.valueTextNode.leftCenter = this.axisLine.leftCenter.minusXY( VALUE_MAX_WIDTH, 0 );
