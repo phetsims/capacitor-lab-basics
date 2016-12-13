@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Panel which holds the bar meters and associated check boxes which control bar meter visibility.
