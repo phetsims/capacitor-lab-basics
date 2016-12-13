@@ -33,6 +33,7 @@ define( function( require ) {
   /**
    * Draw a positive charge with canvas.  'Plus' sign is painted with two
    * overlapping rectangles around a center location.
+   * @private
    *
    * @param {Vector2} location - center location of the charge in view space
    * @param {CanvasRenderingContext2D} context - context for the canvas methods
@@ -49,6 +50,7 @@ define( function( require ) {
   /**
    * Draw a negative charge with canvas.  'Minus' sign is painted with a single
    * rectangle around a center location.
+   * @private
    *
    * @param {Vector2} location
    * @param {CanvasRenderingContext2D} context
@@ -114,6 +116,7 @@ define( function( require ) {
 
     /**
      * Charge on the portion of the plate that this node handles.
+     * @public
      */
     getPlateCharge: function() {
       assert && assert( false, 'getPlateCharge function should be implemented in descendant classes.' );
@@ -122,6 +125,7 @@ define( function( require ) {
     /**
      * X offset of the portion of the plate that this node handles.
      * This is relative to the plate's origin, and specified in model coordinates.
+     * @public
      */
     getContactXOrigin: function() {
       assert && assert( false, 'getContactXOrigin must be overridden  in descendant classes. ' );
@@ -130,11 +134,18 @@ define( function( require ) {
     /**
      * Width of the portion of the plate that this node handles.
      * Specified in model coordinates.
+     * @public
      */
     getContactWidth: function() {
       assert && assert( false, 'getContactWidth should be overridden in descendant classes.' );
     },
 
+    /**
+     * Returns true if plate is positively charged
+     *
+     * @return {Boolean}
+     * @public
+     */
     isPositivelyCharged: function() {
       return ( this.getPlateCharge() >= 0 && this.polarity === CLBConstants.POLARITY.POSITIVE ) ||
         ( this.getPlateCharge() < 0 && this.polarity === CLBConstants.POLARITY.NEGATIVE );
@@ -144,6 +155,7 @@ define( function( require ) {
      * Update the node when it becomes visible.
      *
      * @param {boolean} visible
+     * @public
      */
     setVisible: function( visible ) {
       CanvasNode.prototype.setVisible.call( this, visible );
@@ -156,6 +168,7 @@ define( function( require ) {
      * Updates the view to match the model.  Charges are arranged in a grid.
      *
      * @param {CanvasRenderingContext2D} context
+     * @public
      */
     paintCanvas: function( context ) {
 
@@ -216,6 +229,7 @@ define( function( require ) {
      * @param {number} plateCharge
      * @param {number} maxPlateCharge
      * @returns {number} numberOfCharges
+     * @public
      */
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
       var absCharge = Math.abs( plateCharge );
