@@ -1,10 +1,11 @@
-// Copyright 2014-2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Visual representation of a wire.
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -29,7 +30,7 @@ define( function( require ) {
   function WireNode( wire ) {
 
     Node.call( this );
-    this.wire = wire;
+    this.wire = wire; // @private
 
     // create the wire fill.  Unstroked path so that the acute stroked path is covered.
     // See https://github.com/phetsims/kite/issues/49

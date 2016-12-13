@@ -20,8 +20,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
-  // capacitor plates
-  var PLATE_COLOR = new Color( 245, 245, 245 );
+  var PLATE_COLOR = new Color( 245, 245, 245 );  // capacitor plates
 
   function PlateNode( capacitor, modelViewTransform, polarity, maxPlateCharge ) {
 
@@ -49,6 +48,7 @@ define( function( require ) {
      * Make the charges on this plate visible.
      *
      * @param {boolean} visible
+     * @public
      */
     setChargeVisible: function( visible ) {
       this.vacuumPlateChargeNode.visible = visible;
@@ -58,6 +58,7 @@ define( function( require ) {
      * Get bounds for a plate with maximum width.  Useful for layout and bounds calculations.
      *
      * @returns {Bounds3}
+     * @public
      */
     getMaxBoxNodeBounds: function() {
       var maxWidthBoxNode = new BoxNode(
@@ -79,7 +80,7 @@ define( function( require ) {
      * @param {Capacitor} capacitor
      * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {number} maxPlateCharge
-     * @constructor
+     * @public
      */
     createTopPlateNode: function( capacitor, modelViewTransform, maxPlateCharge ) {
       return new PlateNode( capacitor, modelViewTransform, CLBConstants.POLARITY.POSITIVE, maxPlateCharge );

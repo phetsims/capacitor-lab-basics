@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Visual representation of a switch.  A switch consists of a line that connects a hinge point and at least two other
@@ -26,7 +26,6 @@ define( function( require ) {
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
   var TandemButtonListener = require( 'TANDEM/scenery/input/TandemButtonListener' );
   var Vector2 = require( 'DOT/Vector2' );
-  // var Vector3 = require( 'DOT/Vector3' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
 
   // phet-io modules
@@ -57,10 +56,11 @@ define( function( require ) {
 
     Node.call( this );
     var self = this;
-    this.circuitSwitch = circuitSwitch;
-    this.modelViewTransform = modelViewTransform;
+    this.circuitSwitch = circuitSwitch; // @public
+    this.modelViewTransform = modelViewTransform; // @private
 
     // add the switch as a wire node
+    // @private
     this.wireSwitchNode = new WireNode( circuitSwitch.switchWire, tandem.createTandem( 'wireSwitchNode' ) );
     this.wireSwitchNode.cursor = 'pointer';
 
@@ -96,6 +96,7 @@ define( function( require ) {
     this.connectionPointNodes = [];
     var connectionListeners = [];
 
+    // prefixes for tandem IDs
     var connectionLabels = [ 'battery', 'open', 'lightBulb' ];
 
     circuitSwitch.connections.forEach( function( connection, index ) {
@@ -124,14 +125,14 @@ define( function( require ) {
     // Circuit connection change listener
     circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
 
-      // Endpoint, hinge point, and a vector from hp -> ep
-      var ep = circuitSwitch.switchSegment.endPointProperty.get();
-      var hp = circuitSwitch.switchSegment.hingePoint;
-      var v = ep.minus( hp ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
+      // Endpoint, hinge point, and a vector between them
+      var endPoint = circuitSwitch.switchSegment.endPointProperty.get();
+      var hingePoint = circuitSwitch.switchSegment.hingePoint;
+      var delta = endPoint.minus( hingePoint ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
 
       // Make sure that the shaded sphere snaps to the correct position when connection property changes.
-      shadedSphereNode.translation = modelViewTransform.modelToViewPosition( hp.plus( v ) );
-      tipCircle.translation = modelViewTransform.modelToViewPosition( hp.plus( v ) );
+      shadedSphereNode.translation = modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
+      tipCircle.translation = modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
 
       // Solder joint visibility
       if ( circuitConnection === CircuitState.SWITCH_IN_TRANSIT ||

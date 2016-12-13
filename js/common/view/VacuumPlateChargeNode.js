@@ -4,6 +4,7 @@
  * Portion of the plate charge area facing the vacuum gap
  *
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 
 define( function( require ) {
@@ -27,13 +28,23 @@ define( function( require ) {
 
   return inherit( PlateChargeNode, VacuumPlateChargeNode, {
 
-    // Gets the portion of the plate charge due to air.
+    /**
+     * Get plate charge from capacitor in the model
+     *
+     * @return {number} charge
+     * @public
+     */
     getPlateCharge: function() {
       return this.capacitor.plateChargeProperty.value;
     },
 
-    // Gets the x offset (relative to the plate origin) of the portion of the
-    // plate that is facing the vacuum gap
+
+    /**
+     * Gets the x offset (relative to the plate origin) of the portion of the plate that is facing the vacuum gap
+     *
+     * @return {number} offset
+     * @public
+     */
     getContactXOrigin: function() {
       return -this.capacitor.plateSizeProperty.value.width / 2;
     },
@@ -42,6 +53,7 @@ define( function( require ) {
      * Gets the width of the portion of the plate that is in contact with air.
      *
      * @returns {number}
+     * @public
      */
     getContactWidth: function() {
       return this.capacitor.plateSizeProperty.value.width;
