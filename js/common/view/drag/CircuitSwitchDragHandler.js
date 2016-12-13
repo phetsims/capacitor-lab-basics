@@ -21,11 +21,10 @@ define( function( require ) {
   var Range = require( 'DOT/Range' );
   var TandemSimpleDragHandler = require( 'TANDEM/scenery/input/TandemSimpleDragHandler' );
 
-  // Compute the distance (in radians) between angles a and b, using an inlined dot product
+  // Compute the difference (in radians) between angles a and b, using an inlined dot product
   // (inlined to remove allocations)
   var angleDifference = function( a, b ) {
-    var dotProduct = Math.cos( a ) * Math.cos( b ) + Math.sin( a ) * Math.sin( b );
-    return Math.acos( dotProduct );
+    return Math.acos( Math.cos( a ) * Math.cos( b ) + Math.sin( a ) * Math.sin( b ) );
   };
 
   /**
@@ -46,8 +45,10 @@ define( function( require ) {
     var angle = 0;
 
     // Customization for PhET-iO applications
+    // @private
     this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
+    // @private
     this.snapRange = {
       right: new Range( 0, 3 * Math.PI / 8 ),
       center: new Range( 3 * Math.PI / 8, 5 * Math.PI / 8 ),
@@ -70,7 +71,9 @@ define( function( require ) {
 
         var hingePoint = circuitSwitch.hingePoint.toVector2(); // in model coordinates
         initialEndPoint = circuitSwitch.getSwitchEndPoint(); // in model coordinates
-        angleOffset = initialEndPoint.minus( hingePoint ).toVector2().angle(); // angle of switch segment with the horizontal
+
+        // angle of switch segment with the horizontal
+        angleOffset = initialEndPoint.minus( hingePoint ).toVector2().angle();
         lastAngle = angleOffset;
 
         circuitSwitch.circuitConnectionProperty.set( CircuitState.SWITCH_IN_TRANSIT );
@@ -78,8 +81,11 @@ define( function( require ) {
       },
       drag: function( event ) {
 
-        var pMouse = switchNode.globalToParentPoint( event.pointer.point ); // mouse in view coordinates
-        var transformedPMouse = switchNode.modelViewTransform.viewToModelPosition( pMouse ).toVector2(); // mouse in model coordinates
+        // mouse in view coordinates
+        var pMouse = switchNode.globalToParentPoint( event.pointer.point );
+
+        // mouse in model coordinates
+        var transformedPMouse = switchNode.modelViewTransform.viewToModelPosition( pMouse ).toVector2();
 
         var hingePoint = circuitSwitch.hingePoint.toVector2(); // in model coordinates
         angle = transformedPMouse.minus( hingePoint ).angle();
@@ -102,13 +108,12 @@ define( function( require ) {
 
         // make sure that the switch does not snap to connection points if the user drags beyond limiting angles
         if ( Math.abs( angleDifference( currentAngle, lastAngle ) ) >= Math.PI / 4 ) {
-          // noop
+          // no-op
         }
         else {
           circuitSwitch.angleProperty.set( angle - angleOffset );
           lastAngle = currentAngle;
         }
-
       },
       end: function( event ) {
 

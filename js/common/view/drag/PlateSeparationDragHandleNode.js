@@ -124,6 +124,7 @@ define( function( require ) {
 
     /**
      * Synchronizes the value display with the model.
+     * @public
      */
     updateValueDisplay: function() {
       var millimeters = UnitsUtils.metersToMillimeters( this.capacitor.plateSeparationProperty.value );
@@ -132,6 +133,7 @@ define( function( require ) {
 
     /**
      * Attach drag handle to top capacitor plate, in center the plate's top face.
+     * @public
      */
     updateOffset: function() {
       var width = this.capacitor.plateSizeProperty.value.width;

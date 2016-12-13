@@ -15,7 +15,6 @@ define( function( require ) {
 
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
-  //var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
   var LinearFunction = require( 'DOT/LinearFunction' );
@@ -71,6 +70,7 @@ define( function( require ) {
      *
      * @param {Vector2} pMouse
      * return {number}
+     * @public
      */
     getPlateWidth: function( pMouse ) {
       // pick any 2 view values
@@ -92,6 +92,7 @@ define( function( require ) {
      * @param {Vector2} pMouse
      * @param {number} samplePlateWidth
      * @returns {number}
+     * @public
      */
     getModelX: function( pMouse, samplePlateWidth ) {
       var pBackRightCorner = this.modelViewTransform.modelToViewXYZ( samplePlateWidth / 2, 0, samplePlateWidth / 2 );

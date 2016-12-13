@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Drag handle for changing the plate area.
@@ -7,6 +7,7 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -65,7 +66,6 @@ define( function( require ) {
     this.addInputListener( new PlateAreaDragHandler( arrowNode, capacitor, modelViewTransform, valueRange,
       tandem.createTandem( 'inputListener' ) ) );
 
-    // this.touchArea = arrowNode.bounds;
     this.cursor = 'pointer';
 
     // line
@@ -129,13 +129,20 @@ define( function( require ) {
 
   return inherit( Node, PlateAreaDragHandleNode, {
 
-    // synchronizes the value display with the model
+
+    /**
+     * Synchronizes the value display with the model.
+     * @public
+     */
     updateDisplay: function() {
       var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( this.capacitor.getPlateArea() );
       this.valueNode.setValue( millimetersSquared, 0 ); // Zero decimal places
     },
 
-    // Attach drag handle to capacitor's top plate, at back-irght corner of top face.
+    /**
+     * Attach drag handle to capacitor's top plate, at back-right corner of top face.
+     * @public
+     */
     updateOffset: function() {
       var plateSize = this.capacitor.plateSizeProperty.value;
       var x = this.capacitor.location.x + ( plateSize.width / 2 );

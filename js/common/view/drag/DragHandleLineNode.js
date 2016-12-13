@@ -48,7 +48,7 @@ define( function( require ) {
   }
 
   capacitorLabBasics.register( 'DragHandleLineNode', DragHandleLineNode );
-  
+
   return inherit( Node, DragHandleLineNode );
 
 } );

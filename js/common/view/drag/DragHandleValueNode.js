@@ -68,6 +68,7 @@ define( function( require ) {
      * Set the value of the value node, formatting the number and the units to the pattern.
      *
      * @param value
+     * @public
      */
     setValue: function( value, decimalPlaces ) {
       var formattedValue = Util.toFixed( value, decimalPlaces /* one decimal place */ );

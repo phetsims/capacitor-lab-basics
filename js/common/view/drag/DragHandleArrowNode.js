@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Double arrow used for drag handles.
@@ -29,7 +29,7 @@ define( function( require ) {
    * @constructor
    */
   function DragHandleArrowNode( pStart, pEnd, tandem ) {
-    var self = this; // extend scope for input listener callbacks
+    var self = this;
 
     // calculate the parameter for head and tail width and height.
     var length = Math.abs( pStart.distance( pEnd ) );
