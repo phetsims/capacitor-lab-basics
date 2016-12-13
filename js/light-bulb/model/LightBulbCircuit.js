@@ -157,7 +157,6 @@ define( function( require ) {
       return (
         this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
         this.shapeTouchesWireGroup( shape, this.topCapacitorWires ) ||
-        this.shapeTouchesWireGroup( shape, this.topSwitchWires ) ||
         this.capacitor.intersectsTopPlate( shape ) ||
         this.lightBulb.intersectsBulbBase( shape )
       );
@@ -180,7 +179,6 @@ define( function( require ) {
       return (
         this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ||
         this.shapeTouchesWireGroup( shape, this.bottomCapacitorWires ) ||
-        this.shapeTouchesWireGroup( shape, this.bottomSwitchWires ) ||
         this.capacitor.intersectsBottomPlate( shape ) ||
         this.lightBulb.intersectsBulbBase( shape )
       );

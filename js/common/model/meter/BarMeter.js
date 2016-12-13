@@ -19,7 +19,7 @@ define( function( require ) {
    *
    * @param {ParallelCircuit} circuit
    * @param {Property.<boolean>} visibleProperty - model property that determines if the entire meter is visible.
-   * @param {Property.<number>} valueProperty - property containing model quantity to display
+   * @param {DerivedProperty.<number>} valueProperty - property containing model quantity to display
    * @param {Tandem} tandem
    * @constructor
    */
@@ -41,7 +41,6 @@ define( function( require ) {
      * @public
      */
     reset: function() {
-      this.valueProperty.reset();
       this.visibleProperty.reset();
     }
 
