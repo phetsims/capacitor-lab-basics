@@ -77,6 +77,7 @@ define( function( require ) {
 
     /**
      * Update the geometry of the capacitor plates.
+     * @public
      */
     updateGeometry: function() {
       // geometry
@@ -96,6 +97,7 @@ define( function( require ) {
     /**
      * Get the bound of the capacitor from the plates.  Allows for bounds to be passed into the canvas node before the
      * children are added to the view.
+     * @public
      *
      * @returns {Bounds2}
      */

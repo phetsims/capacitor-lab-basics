@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Visual representation of the effective E-field (E_effective) between the capacitor plates.
@@ -20,7 +20,6 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
 
   // constants
-  // var ARROW_SIZE = new Dimension2( 8, 10 );
   var ARROW_SIZE = new Dimension2( 6, 7 );
   var LINE_WIDTH = 1;
   var ARROW_COLOR = 'black';
@@ -29,7 +28,7 @@ define( function( require ) {
   var SPACING_CONSTANT = 0.0258;
 
   /**
-   * Draw an EField line using with canvas.
+   * Draw one EField line with the provided parameters using HTML5 Canvas
    *
    * @param {Vector2} position - origin, at the center of the line
    * @param {number} length length of the line in view coordinates
@@ -68,7 +67,6 @@ define( function( require ) {
     else {
       assert && assert( false, 'EFieldLine must be of orientation UP or DOWN' );
     }
-
   }
 
   /**
@@ -101,7 +99,6 @@ define( function( require ) {
         self.invalidatePaint();
       }
     } );
-
   }
 
   capacitorLabBasics.register( 'EFieldNode', EFieldNode );
@@ -110,6 +107,7 @@ define( function( require ) {
 
     /**
      * Update the node when it becomes visible.  Overrides setVisible in Node.
+     * @public
      */
     setVisible: function( visible ) {
       Node.prototype.setVisible.call( this, visible );
@@ -118,6 +116,12 @@ define( function( require ) {
       }
     },
 
+    /**
+     * Rendering function
+     * @public
+     *
+     * @param  {CanvasRenderingContext2D} context
+     */
     paintCanvas: function( context ) {
 
       // compute density (spacing) of field lines
@@ -171,8 +175,9 @@ define( function( require ) {
     },
 
     /**
-     * Gets the spacing of E-field lines. Higher E-field results in higher density, therefore lower spacing. Density is
-     * computed for the minimum plate size.
+     * Gets the spacing of E-field lines. Higher E-field results in higher density,
+     * therefore lower spacing. Density is computed for the minimum plate size.
+     * @public
      *
      * @param {number} effectiveEField
      * @returns {number} spacing, in model coordinates
@@ -182,7 +187,8 @@ define( function( require ) {
         return 0;
       }
       else {
-        var spacing = SPACING_CONSTANT / Math.sqrt( Math.abs( effectiveEField ) ); // sqrt looks best for a square plate
+        // sqrt looks best for a square plate
+        var spacing = SPACING_CONSTANT / Math.sqrt( Math.abs( effectiveEField ) );
         return spacing;
       }
     }

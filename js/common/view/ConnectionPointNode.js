@@ -1,10 +1,11 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Visual representation of a connection point on the circuit.  This is a black circle with input handling.  Clicking
  * on a connection point will set the circuit connection.
  *
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -42,8 +43,9 @@ define( function( require ) {
       self.stroke = CLBConstants.DISCONNECTED_POINT_STROKE;
     }
 
-    // link pin style properties to the circuit connection. Needs to be done in addition to the button listener so that
-    // all connection points update when a single connection point is interacted with.
+    // Link the switch pin style properties to the circuit connection.
+    // Needed along with the button listener so that all connection
+    // points update when a single connection point is interacted with.
     circuitConnectionProperty.link( function( circuitConnection ) {
       resetPinColors();
     } );
@@ -68,6 +70,5 @@ define( function( require ) {
   capacitorLabBasics.register( 'ConnectionPointNode', ConnectionPointNode );
 
   return inherit( Circle, ConnectionPointNode, {} );
-
 } );
 

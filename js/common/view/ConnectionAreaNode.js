@@ -1,10 +1,11 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Triangular area that extends from the switch hinge point to a connection point.  The user can click anywhere in this
  * area to set the circuit connection.
  *
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -84,6 +85,5 @@ define( function( require ) {
   capacitorLabBasics.register( 'ConnectionAreaNode', ConnectionAreaNode );
 
   return inherit( Node, ConnectionAreaNode );
-
 } );
 

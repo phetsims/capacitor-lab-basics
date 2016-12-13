@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Arrow and electron that indicates the direction of current flow. Visibility of this node is handled via its
@@ -10,6 +10,7 @@
  *
  * @author Chris Malley (cmalley@pixelzoom.com)
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -121,6 +122,7 @@ define( function( require ) {
 
     /**
      * Start the animation, canceling the animation if it is in progress
+     * @public
      */
     startAnimation: function() {
 
