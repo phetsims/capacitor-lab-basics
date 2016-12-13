@@ -171,13 +171,12 @@ define( function( require ) {
 
     // Add the switch wires to the capacitor wires arrays
     this.circuitSwitches.forEach( function( circuitSwitch ) {
+
       var wire = circuitSwitch.switchWire;
+
       if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_TOP ) {
         self.topCapacitorWires.push( wire );
       }
-    } );
-    this.circuitSwitches.forEach( function( circuitSwitch ) {
-      var wire = circuitSwitch.switchWire;
       if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_BOTTOM ) {
         self.bottomCapacitorWires.push( wire );
       }
