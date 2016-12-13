@@ -168,20 +168,18 @@ define( function( require ) {
     // @public
     this.topWires = this.topBatteryWires.concat( this.topLightBulbWires ).concat( this.topCapacitorWires );
     this.bottomWires = this.bottomBatteryWires.concat( this.bottomLightBulbWires ).concat( this.bottomCapacitorWires );
-    this.topSwitchWires = [];
-    this.bottomSwitchWires = [];
 
+    // Add the switch wires to the capacitor wires arrays
     this.circuitSwitches.forEach( function( circuitSwitch ) {
       var wire = circuitSwitch.switchWire;
       if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_TOP ) {
-        self.topSwitchWires.push( wire );
+        self.topCapacitorWires.push( wire );
       }
     } );
-
     this.circuitSwitches.forEach( function( circuitSwitch ) {
       var wire = circuitSwitch.switchWire;
       if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_BOTTOM ) {
-        self.bottomSwitchWires.push( wire );
+        self.bottomCapacitorWires.push( wire );
       }
     } );
 
@@ -403,7 +401,6 @@ define( function( require ) {
 
       return (
         this.shapeTouchesWireGroup( shape, this.topCapacitorWires ) ||
-        this.shapeTouchesWireGroup( shape, this.topSwitchWires ) ||
         this.capacitor.intersectsTopPlate( shape )
       );
     },
@@ -424,7 +421,6 @@ define( function( require ) {
 
       return (
         this.shapeTouchesWireGroup( shape, this.bottomCapacitorWires ) ||
-        this.shapeTouchesWireGroup( shape, this.bottomSwitchWires ) ||
         this.capacitor.intersectsBottomPlate( shape )
       );
     },
@@ -466,9 +462,7 @@ define( function( require ) {
         return false;
       }
 
-      return (
-        this.shapeTouchesWireGroup( shape, this.bottomBatteryWires )
-      );
+      return this.shapeTouchesWireGroup( shape, this.bottomBatteryWires );
     },
 
     /**
@@ -487,8 +481,7 @@ define( function( require ) {
           this.batteryConnected() &&
           (
             this.capacitor.intersectsTopPlate( shape ) ||
-            this.shapeTouchesWireGroup( shape, this.topCapacitorWires ) ||
-            this.shapeTouchesWireGroup( shape, this.topSwitchWires )
+            this.shapeTouchesWireGroup( shape, this.topCapacitorWires )
           )
         )
       );
@@ -511,8 +504,7 @@ define( function( require ) {
           this.batteryConnected() &&
           (
             this.capacitor.intersectsBottomPlate( shape ) ||
-            this.shapeTouchesWireGroup( shape, this.bottomCapacitorWires ) ||
-            this.shapeTouchesWireGroup( shape, this.bottomSwitchWires )
+            this.shapeTouchesWireGroup( shape, this.bottomCapacitorWires )
           )
         )
       );
