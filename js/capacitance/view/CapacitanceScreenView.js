@@ -77,9 +77,10 @@ define( function( require ) {
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
 
-    // debug shapes for probe collision testing, to be removed soon
+    // debug shapes for probe collision testing
     if ( DEBUG_SHAPES ) {
-      var topTerminalNode = new Path( model.circuit.battery.shapeCreator.createPositiveTerminalShapeBody( model.circuit.battery.location ), {
+      var topTerminalNode = new Path(
+        model.circuit.battery.shapeCreator.createPositiveTerminalShapeBody( model.circuit.battery.location ), {
         fill: 'rgba( 1, 0, 0, 0.5 )'
       } );
       this.addChild( topTerminalNode );

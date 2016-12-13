@@ -46,6 +46,7 @@ define( function( require ) {
      *
      * @param  {string} circuitConnection - OPEN_CIRCUIT || BATTERY_CONNECTED
      * @param  {boolean} currentIndicatorsVisible
+     * @public
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
 
