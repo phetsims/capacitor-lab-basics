@@ -156,18 +156,26 @@ define( function( require ) {
       } );
     }
 
-    // Get collections of wires electrically connected to various parts of the circuit
-    // @public
-    this.topBatteryWires = selectWires( CircuitLocation.BATTERY_TOP );
-    this.bottomBatteryWires = selectWires( CircuitLocation.BATTERY_BOTTOM );
-    this.topLightBulbWires = selectWires( CircuitLocation.LIGHT_BULB_TOP );
-    this.bottomLightBulbWires = selectWires( CircuitLocation.LIGHT_BULB_BOTTOM );
-    this.topCapacitorWires = selectWires( CircuitLocation.CAPACITOR_TOP );
-    this.bottomCapacitorWires = selectWires( CircuitLocation.CAPACITOR_BOTTOM );
+    // Create wire groups that are electrically connected to various parts of the circuit.
+    // These arrays are hashed to a location key for efficient connectivity checking.
+    // @protected
+    this.wireGroup = {};
+    [ CircuitLocation.BATTERY_TOP,
+      CircuitLocation.BATTERY_BOTTOM,
+      CircuitLocation.LIGHT_BULB_TOP,
+      CircuitLocation.LIGHT_BULB_BOTTOM,
+      CircuitLocation.CAPACITOR_TOP,
+      CircuitLocation.CAPACITOR_BOTTOM ].forEach( function( location ) {
+      self.wireGroup[ location ] = selectWires( location );
+    } );
 
     // @public
-    this.topWires = this.topBatteryWires.concat( this.topLightBulbWires ).concat( this.topCapacitorWires );
-    this.bottomWires = this.bottomBatteryWires.concat( this.bottomLightBulbWires ).concat( this.bottomCapacitorWires );
+    this.topWires = this.wireGroup[ CircuitLocation.BATTERY_TOP ]
+      .concat( this.wireGroup[ CircuitLocation.LIGHT_BULB_TOP ] )
+      .concat( this.wireGroup[ CircuitLocation.CAPACITOR_TOP ] );
+    this.bottomWires = this.wireGroup[ CircuitLocation.BATTERY_BOTTOM ]
+      .concat( this.wireGroup[ CircuitLocation.LIGHT_BULB_BOTTOM ] )
+      .concat( this.wireGroup[ CircuitLocation.CAPACITOR_BOTTOM ] );
 
     // Add the switch wires to the capacitor wires arrays
     this.circuitSwitches.forEach( function( circuitSwitch ) {
@@ -175,10 +183,10 @@ define( function( require ) {
       var wire = circuitSwitch.switchWire;
 
       if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_TOP ) {
-        self.topCapacitorWires.push( wire );
+        self.wireGroup[ CircuitLocation.CAPACITOR_TOP ].push( wire );
       }
       if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_BOTTOM ) {
-        self.bottomCapacitorWires.push( wire );
+        self.wireGroup[ CircuitLocation.CAPACITOR_BOTTOM ].push( wire );
       }
     } );
 
@@ -357,7 +365,9 @@ define( function( require ) {
      *
      * @return {boolean}
      */
-    shapeTouchesWireGroup: function( shape, wires ) {
+    shapeTouchesWireGroup: function( shape, location ) {
+      var wires = this.wireGroup[ location ];
+      assert && assert( wires, 'No wires at location ' + location );
       return _.some( wires, function( wire ) {
         return wire.shapeProperty.value.intersectsBounds( shape.bounds );
       } );
@@ -399,7 +409,7 @@ define( function( require ) {
       }
 
       return (
-        this.shapeTouchesWireGroup( shape, this.topCapacitorWires ) ||
+        this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_TOP ) ||
         this.capacitor.intersectsTopPlate( shape )
       );
     },
@@ -419,7 +429,7 @@ define( function( require ) {
       }
 
       return (
-        this.shapeTouchesWireGroup( shape, this.bottomCapacitorWires ) ||
+        this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_BOTTOM ) ||
         this.capacitor.intersectsBottomPlate( shape )
       );
     },
@@ -441,7 +451,7 @@ define( function( require ) {
 
       return (
         this.battery.intersectsTopTerminal( shape ) ||
-        this.shapeTouchesWireGroup( shape, this.topBatteryWires )
+        this.shapeTouchesWireGroup( shape, CircuitLocation.BATTERY_TOP )
       );
     },
 
@@ -461,7 +471,7 @@ define( function( require ) {
         return false;
       }
 
-      return this.shapeTouchesWireGroup( shape, this.bottomBatteryWires );
+      return this.shapeTouchesWireGroup( shape, CircuitLocation.BATTERY_BOTTOM );
     },
 
     /**
@@ -474,13 +484,13 @@ define( function( require ) {
      */
     connectedToBatteryTop: function( shape ) {
       return (
-        this.shapeTouchesWireGroup( shape, this.topBatteryWires ) ||
+        this.shapeTouchesWireGroup( shape, CircuitLocation.BATTERY_TOP ) ||
         this.battery.intersectsTopTerminal( shape ) ||
         (
           this.batteryConnected() &&
           (
             this.capacitor.intersectsTopPlate( shape ) ||
-            this.shapeTouchesWireGroup( shape, this.topCapacitorWires )
+            this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_TOP )
           )
         )
       );
@@ -498,12 +508,12 @@ define( function( require ) {
      */
     connectedToBatteryBottom: function( shape ) {
       return (
-        this.shapeTouchesWireGroup( shape, this.bottomBatteryWires ) ||
+        this.shapeTouchesWireGroup( shape, CircuitLocation.BATTERY_BOTTOM ) ||
         (
           this.batteryConnected() &&
           (
             this.capacitor.intersectsBottomPlate( shape ) ||
-            this.shapeTouchesWireGroup( shape, this.bottomCapacitorWires )
+            this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_BOTTOM )
           )
         )
       );
@@ -530,8 +540,8 @@ define( function( require ) {
           voltage = 0;
         }
         else if (
-          this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
-          this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ) {
+          this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_TOP ) ||
+          this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_BOTTOM ) ) {
           voltage = 0;
         }
       }
@@ -567,8 +577,8 @@ define( function( require ) {
           voltage = 0;
         }
         else if (
-          this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
-          this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ) {
+          this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_TOP ) ||
+          this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_BOTTOM ) ) {
           voltage = 0;
         }
       }

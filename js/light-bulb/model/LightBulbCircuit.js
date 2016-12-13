@@ -28,6 +28,7 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -155,8 +156,8 @@ define( function( require ) {
       }
 
       return (
-        this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
-        this.shapeTouchesWireGroup( shape, this.topCapacitorWires ) ||
+        this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_TOP ) ||
+        this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_TOP ) ||
         this.capacitor.intersectsTopPlate( shape ) ||
         this.lightBulb.intersectsBulbBase( shape )
       );
@@ -177,8 +178,8 @@ define( function( require ) {
       }
 
       return (
-        this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ||
-        this.shapeTouchesWireGroup( shape, this.bottomCapacitorWires ) ||
+        this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_BOTTOM ) ||
+        this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_BOTTOM ) ||
         this.capacitor.intersectsBottomPlate( shape ) ||
         this.lightBulb.intersectsBulbBase( shape )
       );
@@ -199,7 +200,7 @@ define( function( require ) {
         return false;
       }
       return (
-        this.shapeTouchesWireGroup( shape, this.topLightBulbWires ) ||
+        this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_TOP ) ||
         this.lightBulb.intersectsBulbBase( shape )
       );
     },
@@ -220,7 +221,7 @@ define( function( require ) {
       }
 
       return (
-        this.shapeTouchesWireGroup( shape, this.bottomLightBulbWires ) ||
+        this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_BOTTOM ) ||
         this.lightBulb.intersectsBulbBase( shape )
       );
     },
