@@ -13,6 +13,7 @@ define( function( require ) {
   // modules
   var BooleanProperty = require( 'AXON/BooleanProperty' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
@@ -94,19 +95,19 @@ define( function( require ) {
 
     //REVIEW: https://github.com/phetsims/capacitor-lab-basics/issues/174 should help with duplication here
 
-    var touchingFreePlate = function( probeShape ) {
-      return ( self.circuit.connectedToDisconnectedCapacitorTop( probeShape ) ||
-        self.circuit.connectedToDisconnectedCapacitorBottom( probeShape ) );
+    var touchingFreePlate = function( probe ) {
+      return ( self.circuit.connectedToDisconnectedCapacitorTop( probe ) ||
+        self.circuit.connectedToDisconnectedCapacitorBottom( probe ) );
     };
 
-    var touchingFreeLightBulb = function( probeShape ) {
-      return ( self.circuit.connectedToDisconnectedLightBulbTop( probeShape ) ||
-        self.circuit.connectedToDisconnectedLightBulbBottom( probeShape ) );
+    var touchingFreeLightBulb = function( probe ) {
+      return ( self.circuit.disconnectedLightBulbContacts( probe, CircuitLocation.LIGHT_BULB_TOP ) ||
+        self.circuit.disconnectedLightBulbContacts( probe, CircuitLocation.LIGHT_BULB_BOTTOM ) );
     };
 
-    var touchingFreeBattery = function( probeShape ) {
-      return ( self.circuit.connectedToDisconnectedBatteryTop( probeShape ) ||
-        self.circuit.connectedToDisconnectedBatteryBottom( probeShape ) );
+    var touchingFreeBattery = function( probe ) {
+      return ( self.circuit.connectedToDisconnectedBatteryTop( probe ) ||
+        self.circuit.connectedToDisconnectedBatteryBottom( probe ) );
     };
 
     /**
