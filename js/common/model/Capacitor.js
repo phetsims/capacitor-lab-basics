@@ -26,6 +26,7 @@ define( function( require ) {
   var Bounds3 = require( 'DOT/Bounds3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CapacitorShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/CapacitorShapeCreator' );
+  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
@@ -141,8 +142,10 @@ define( function( require ) {
     this.bottomCircuitSwitch = CircuitSwitch.BOTTOM( config, circuitConnectionProperty,
       tandem.createTandem( 'bottomCircuitSwitch' ) );
 
-    this.topPlateFaces = this.shapeCreator.createTopPlateShape();
-    this.bottomPlateFaces = this.shapeCreator.createBottomPlateShape();
+    // @private
+    this.plateFaces = {};
+    this.plateFaces[ CircuitLocation.CAPACITOR_TOP ] = this.shapeCreator.createTopPlateShape();
+    this.plateFaces[ CircuitLocation.CAPACITOR_BOTTOM ] = this.shapeCreator.createBottomPlateShape();
 
     // link the top and bottom circuit switches together so that they rotate together
     // as the user drags
@@ -213,35 +216,24 @@ define( function( require ) {
     },
 
     /**
-     * Does a Shape intersect the top plate shape?  Assumes that a shape is much smaller than the
-     * top plate.  This is sufficient in the case of probes.
+     * Check for intersection between a voltmeter probe and the plate faces at either the top or
+     * bottom plate locations, as specified by the location parameter. Assumes that the probe shape
+     * is much smaller than the top plate. Kite does not support finding the intersection between
+     * two shapes, and checking for intersection of shape bounds is too inacurate in this case
+     * because of the 3D perspective. Determining containment of the probe shape's center by the
+     * plate shape bounds is most accurate, assuming the probe shape is small relative to the plate.
      * @public
      *
-     * @param {Shape} shape
+     * @param {Shape} probe
+     * @param {CircuitLocation} location - CircuitLocation.CAPACITOR_TOP or CircuitLocation.CAPACITOR_BOTTOM
      * @returns {boolean}
      */
-    intersectsTopPlate: function( shape ) {
+    contacts: function ( probe, location ) {
 
-      // kite does not support finding the intersection between two shapes and checking for
-      // intersection of shape bounds is too inacurate in this case because of the 3d perspective.
-      // Determining if center of shape bounds is most accurate assuming the shape is small relative
-      // to the plate
-      return _.some( this.topPlateFaces, function( plateShape ) {
-        plateShape.containsPoint( shape.bounds.center );
-      } );
-    },
+      assert && assert( this.plateFaces.hasOwnProperty( location ), 'Invalid capacitor location: ' + location );
 
-    /**
-     * Does a shape intersect the bottom plate shape?  Assumes that the shape is small relative
-     * to the plate shape.
-     * @public
-     *
-     * @param {Shape} shape
-     * @returns {boolean}
-     */
-    intersectsBottomPlate: function( shape ) {
-      return _.some( this.bottomPlateFaces, function( plateShape ) {
-        plateShape.containsPoint( shape.bounds.center );
+      return _.some( this.plateFaces[ location ], function( plateShape ) {
+        return plateShape.containsPoint( probe.bounds.center );
       } );
     },
 
