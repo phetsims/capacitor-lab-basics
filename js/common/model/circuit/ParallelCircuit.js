@@ -551,10 +551,10 @@ define( function( require ) {
 
       // Closed circuit between light bulb and capacitor
       else if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-        if ( this.connectedToLightBulbTop( shape ) ) {
+        if ( this.connectedLightBulbContacts( shape, CircuitLocation.LIGHT_BULB_TOP ) ) {
           voltage = this.getCapacitorPlateVoltage();
         }
-        else if ( this.connectedToLightBulbBottom( shape ) ) {
+        else if ( this.connectedLightBulbContacts( shape, CircuitLocation.LIGHT_BULB_BOTTOM ) ) {
           voltage = 0;
         }
         else if ( this.connectedToBatteryTop( shape ) ) {
