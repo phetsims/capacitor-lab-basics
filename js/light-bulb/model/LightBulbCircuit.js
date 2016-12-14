@@ -158,7 +158,7 @@ define( function( require ) {
       return (
         this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_TOP ) ||
         this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_TOP ) ||
-        this.capacitor.intersectsTopPlate( shape ) ||
+        this.capacitor.contacts( shape, CircuitLocation.CAPACITOR_TOP ) ||
         this.lightBulb.intersectsBulbBase( shape )
       );
     },
@@ -180,7 +180,7 @@ define( function( require ) {
       return (
         this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_BOTTOM ) ||
         this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_BOTTOM ) ||
-        this.capacitor.intersectsBottomPlate( shape ) ||
+        this.capacitor.contacts( shape, CircuitLocation.CAPACITOR_BOTTOM ) ||
         this.lightBulb.intersectsBulbBase( shape )
       );
     },

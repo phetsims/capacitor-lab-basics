@@ -16,8 +16,10 @@ define( function( require ) {
   // modules
   var Battery = require( 'CAPACITOR_LAB_BASICS/common/model/Battery' );
   var BatteryToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/BatteryToSwitchWire' );
+  var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CapacitorToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/CapacitorToSwitchWire' );
+  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -25,8 +27,6 @@ define( function( require ) {
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var Range = require( 'DOT/Range' );
-  var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
-  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
@@ -147,8 +147,8 @@ define( function( require ) {
     /**
      * Return the subset of wires connected to the provided location
      * @private
-     * @param  {string} location - One of the constants in CircuitLocation
-     * @return {Wire[]}
+     * @param  {CircuitLocation} location
+     * @returns {Wire[]}
      */
     function selectWires( location ) {
       return self.wires.filter( function( wire ) {
@@ -366,8 +366,11 @@ define( function( require ) {
      * @return {boolean}
      */
     shapeTouchesWireGroup: function( shape, location ) {
+
+      assert && assert( this.wireGroup.hasOwnProperty( location ), 'Invalid location: ' + location );
+
       var wires = this.wireGroup[ location ];
-      assert && assert( wires, 'No wires at location ' + location );
+
       return _.some( wires, function( wire ) {
         return wire.shapeProperty.value.intersectsBounds( shape.bounds );
       } );
@@ -410,7 +413,7 @@ define( function( require ) {
 
       return (
         this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_TOP ) ||
-        this.capacitor.intersectsTopPlate( shape )
+        this.capacitor.contacts( shape, CircuitLocation.CAPACITOR_TOP )
       );
     },
 
@@ -430,7 +433,7 @@ define( function( require ) {
 
       return (
         this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_BOTTOM ) ||
-        this.capacitor.intersectsBottomPlate( shape )
+        this.capacitor.contacts( shape, CircuitLocation.CAPACITOR_BOTTOM )
       );
     },
 
@@ -489,7 +492,7 @@ define( function( require ) {
         (
           this.batteryConnected() &&
           (
-            this.capacitor.intersectsTopPlate( shape ) ||
+            this.capacitor.contacts( shape, CircuitLocation.CAPACITOR_TOP ) ||
             this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_TOP )
           )
         )
@@ -512,7 +515,7 @@ define( function( require ) {
         (
           this.batteryConnected() &&
           (
-            this.capacitor.intersectsBottomPlate( shape ) ||
+            this.capacitor.contacts( shape, CircuitLocation.CAPACITOR_BOTTOM ) ||
             this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_BOTTOM )
           )
         )
