@@ -106,8 +106,8 @@ define( function( require ) {
     };
 
     var touchingFreeBattery = function( probe ) {
-      return ( self.circuit.connectedToDisconnectedBatteryTop( probe ) ||
-        self.circuit.connectedToDisconnectedBatteryBottom( probe ) );
+      return ( self.circuit.disconnectedBatteryContacts( probe, CircuitLocation.BATTERY_TOP ) ||
+        self.circuit.disconnectedBatteryContacts( probe, CircuitLocation.BATTERY_BOTTOM ) );
     };
 
     /**
