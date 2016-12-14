@@ -108,14 +108,16 @@ define( function( require ) {
     },
 
     /**
-     * Determine if the shape intersects with the top battery terminal.
+     * Determine if the probe tip shape contacts a battery terminal.
+     * Since the bottom terminal is hidden in the 3D perspective, there is only
+     * one contact region to check, which is the top terminal.
      * @public
      *
-     * @param shape
+     * @param {Shape} probe - voltmeter probe tip shape
      * @returns {boolean}
      */
-    intersectsTopTerminal: function( shape ) {
-      return shape.intersectsBounds( this.topTerminalShape );
+    contacts: function( probe ) {
+      return probe.intersectsBounds( this.topTerminalShape );
     },
 
     /**

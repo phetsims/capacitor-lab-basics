@@ -453,7 +453,7 @@ define( function( require ) {
       }
 
       return (
-        this.battery.intersectsTopTerminal( shape ) ||
+        this.battery.contacts( shape ) ||
         this.shapeTouchesWireGroup( shape, CircuitLocation.BATTERY_TOP )
       );
     },
@@ -488,7 +488,7 @@ define( function( require ) {
     connectedToBatteryTop: function( shape ) {
       return (
         this.shapeTouchesWireGroup( shape, CircuitLocation.BATTERY_TOP ) ||
-        this.battery.intersectsTopTerminal( shape ) ||
+        this.battery.contacts( shape ) ||
         (
           this.batteryConnected() &&
           (
