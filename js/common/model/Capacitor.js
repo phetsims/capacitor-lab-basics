@@ -233,7 +233,7 @@ define( function( require ) {
       assert && assert( this.plateFaces.hasOwnProperty( location ), 'Invalid capacitor location: ' + location );
 
       return _.some( this.plateFaces[ location ], function( plateShape ) {
-        plateShape.containsPoint( probe.bounds.center );
+        return plateShape.containsPoint( probe.bounds.center );
       } );
     },
 
