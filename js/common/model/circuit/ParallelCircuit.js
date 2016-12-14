@@ -397,6 +397,15 @@ define( function( require ) {
       return this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED;
     },
 
+    /**
+     * Check to see if shape connects any wires that are connected to the capacitor
+     * top when the circuit is open.
+     * @public
+     *
+     * @param {Shape} probe
+     * @param {CircuitLocation} location - capacitor top or bottom
+     * @returns {boolean}
+     */
     disconnectedCapacitorContacts: function( probe, location ) {
 
       if ( !( location === CircuitLocation.CAPACITOR_TOP || location === CircuitLocation.CAPACITOR_BOTTOM ) ) {
@@ -409,47 +418,6 @@ define( function( require ) {
 
       return ( this.shapeTouchesWireGroup( probe, location ) || this.capacitor.contacts( probe, location ) );
     },
-
-    /**
-     * Check to see if shape connects any wires that are connected to the capacitor
-     * top when the circuit is open.
-     * @public
-     *
-     * @param {shape}
-     * @returns {boolean}
-     */
-    connectedToDisconnectedCapacitorTop: function( shape ) {
-
-      if ( !this.isOpen() ) {
-        return false;
-      }
-
-      return (
-        this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_TOP ) ||
-        this.capacitor.contacts( shape, CircuitLocation.CAPACITOR_TOP )
-      );
-    },
-
-    /**
-     * Check to see if shape connects any wires that are connected to the capacitor
-     * bottom when the circuit is open.
-     * @public
-     *
-     * @param {shape}
-     * @returns {boolean}
-     */
-    connectedToDisconnectedCapacitorBottom: function( shape ) {
-
-      if ( !this.isOpen() ) {
-        return false;
-      }
-
-      return (
-        this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_BOTTOM ) ||
-        this.capacitor.contacts( shape, CircuitLocation.CAPACITOR_BOTTOM )
-      );
-    },
-
 
     /**
      * Check to see if shape connects any wires that are connected to the battery
@@ -580,10 +548,10 @@ define( function( require ) {
 
       // Open Circuit
       else if ( this.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
-        if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
+        if ( this.disconnectedCapacitorContacts( shape, CircuitLocation.CAPACITOR_TOP ) ) {
           voltage = this.getCapacitorPlateVoltage();
         }
-        else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
+        else if ( this.disconnectedCapacitorContacts( shape, CircuitLocation.CAPACITOR_BOTTOM ) ) {
           voltage = 0;
         }
         else if ( this.connectedToBatteryTop( shape ) ) {
@@ -607,10 +575,10 @@ define( function( require ) {
         else if ( this.connectedToBatteryBottom( shape ) ) {
           voltage = 0;
         }
-        else if ( this.connectedToDisconnectedCapacitorTop( shape ) ) {
+        else if (  this.disconnectedCapacitorContacts( shape, CircuitLocation.CAPACITOR_TOP ) ) {
           voltage = this.getCapacitorPlateVoltage();
         }
-        else if ( this.connectedToDisconnectedCapacitorBottom( shape ) ) {
+        else if (  this.disconnectedCapacitorContacts( shape, CircuitLocation.CAPACITOR_BOTTOM ) ) {
           voltage = 0;
         }
       }
