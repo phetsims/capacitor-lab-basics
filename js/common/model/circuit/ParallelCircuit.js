@@ -397,6 +397,19 @@ define( function( require ) {
       return this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED;
     },
 
+    disconnectedCapacitorContacts: function( probe, location ) {
+
+      if ( !( location === CircuitLocation.CAPACITOR_TOP || location === CircuitLocation.CAPACITOR_BOTTOM ) ) {
+        return false;
+      }
+
+      if ( !this.isOpen() ) {
+        return false;
+      }
+
+      return ( this.shapeTouchesWireGroup( probe, location ) || this.capacitor.contacts( probe, location ) );
+    },
+
     /**
      * Check to see if shape connects any wires that are connected to the capacitor
      * top when the circuit is open.
