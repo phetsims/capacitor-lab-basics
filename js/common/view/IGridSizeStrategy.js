@@ -11,9 +11,10 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Dimension2 = require( 'DOT/Dimension2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Dimension2 = require( 'DOT/Dimension2' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Util = require( 'DOT/Util' );
 
   function IGridSizeStrategy() {}
 
@@ -71,11 +72,11 @@ define( function( require ) {
       if ( numberOfObjects > 0 ) {
 
         var alpha = Math.sqrt( numberOfObjects / width / height );
-        columns = Math.round( width * alpha );
+        columns = Util.roundSymmetric( width * alpha );
 
         // compute rows 2 ways, choose the best fit
-        var rows1 = Math.round( height * alpha );
-        var rows2 = Math.round( numberOfObjects / columns );
+        var rows1 = Util.roundSymmetric( height * alpha );
+        var rows2 = Util.roundSymmetric( numberOfObjects / columns );
         if ( rows1 !== rows2 ) {
           var error1 = Math.abs( numberOfObjects - ( rows1 * columns ) );
           var error2 = Math.abs( numberOfObjects - ( rows2 * columns ) );
