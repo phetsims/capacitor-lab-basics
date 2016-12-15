@@ -142,78 +142,60 @@ define( function( require ) {
     },
 
     /**
-     * True if shape is touching top of capacitor-to-light bulb circuit
+     * Assert that location is either CircuitLocation.LIGHT_BULB_TOP or BOTTOM.
+     * @private
+     *
+     * @param  {CircuitLocation} location
+     */
+    validateLocation: function( location ) {
+
+      assert && assert( location === CircuitLocation.LIGHT_BULB_TOP || location === CircuitLocation.LIGHT_BULB_BOTTOM,
+        'location should be LIGHT_BULB_TOP or LIGHT_BULB_BOTTOM, received ' + location );
+    },
+
+    /**
+     * True if light bulb is connected to circuit and the probe is electrically
+     * contacting the light bulb at the top or bottom, as specified by the
+     * location parameter.
      * @public
      *
      * @param {Shape} shape
+     * @param {CircuitLocation} location - light bulb top or bottom only
      * @returns {boolean}
      */
-    connectedToLightBulbTop: function( shape ) {
+    connectedLightBulbContacts: function( probe, location ) {
+
+      this.validateLocation( location );
 
       // Light bulb must be connected
       if ( this.circuitConnectionProperty.value !== CircuitState.LIGHT_BULB_CONNECTED ) {
         return false;
       }
 
+      var capacitorSide = location === CircuitLocation.LIGHT_BULB_TOP ?
+        CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
+
       return (
-        this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_TOP ) ||
-        this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_TOP ) ||
-        this.capacitor.contacts( shape, CircuitLocation.CAPACITOR_TOP ) ||
-        this.lightBulb.intersectsBulbBase( shape )
+        this.shapeTouchesWireGroup( probe, location ) ||
+        this.shapeTouchesWireGroup( probe, capacitorSide ) ||
+        this.capacitor.contacts( probe, capacitorSide ) ||
+        this.lightBulb.intersectsBulbBase( probe )
       );
     },
 
     /**
-     * True if shape is touching top of capacitor-to-light bulb circuit
+     * True if light bulb is disconnected from circuit and the probe is electrically
+     * contacting the light bulb at the top or bottom, as specified by the
+     * location parameter.
      * @public
      *
      * @param {Shape} shape
+     * @param {CircuitLocation} location - light bulb top or bottom only
      * @returns {boolean}
      */
-    connectedToLightBulbBottom: function( shape ) {
+    disconnectedLightBulbContacts: function( probe, location ) {
 
-      // Light bulb must be connected
-      if ( this.circuitConnectionProperty.value !== CircuitState.LIGHT_BULB_CONNECTED ) {
-        return false;
-      }
-
-      return (
-        this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_BOTTOM ) ||
-        this.shapeTouchesWireGroup( shape, CircuitLocation.CAPACITOR_BOTTOM ) ||
-        this.capacitor.contacts( shape, CircuitLocation.CAPACITOR_BOTTOM ) ||
-        this.lightBulb.intersectsBulbBase( shape )
-      );
-    },
-
-    /**
-     * Determine if the shape is connected to the top of the lightbulb when it
-     * is disconnected from the circuit.
-     * @public
-     *
-     * @param  {Shape} shape - shape of the element connected to the light bulb
-     * @returns {boolean}
-     */
-    connectedToDisconnectedLightBulbTop: function( shape ) {
-
-      // Light bulb must be disconnected
-      if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-        return false;
-      }
-      return (
-        this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_TOP ) ||
-        this.lightBulb.intersectsBulbBase( shape )
-      );
-    },
-
-    /**
-     * Determine if the shape is connected to the top of the lightbulb when it
-     * is disconnected from the circuit.
-     * @public
-     *
-     * @param  {Shape} shape - shape of the element connected to the light bulb
-     * @returns {boolean}
-     */
-    connectedToDisconnectedLightBulbBottom: function( shape ) {
+      this.validateLocation( location );
 
       // Light bulb must be disconnected
       if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
@@ -221,8 +203,8 @@ define( function( require ) {
       }
 
       return (
-        this.shapeTouchesWireGroup( shape, CircuitLocation.LIGHT_BULB_BOTTOM ) ||
-        this.lightBulb.intersectsBulbBase( shape )
+        this.shapeTouchesWireGroup( probe, location ) ||
+        this.lightBulb.intersectsBulbBase( probe )
       );
     },
 
