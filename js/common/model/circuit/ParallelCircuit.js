@@ -418,7 +418,7 @@ define( function( require ) {
      *
      * @param {Shape} probe
      * @param {CircuitLocation} location - battery top or bottom
-     * @param {boolean} isolated - specifies whether contact is with a component that is disconnected from the circuit
+     * @param {boolean} isolated - if true, check for contact with a component that is disconnected from the circuit
      * @returns {boolean}
      */
     probeContactsComponent: function( probe, location, isolated ) {
