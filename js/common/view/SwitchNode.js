@@ -82,10 +82,12 @@ define( function( require ) {
     shadedSphereNode.mouseArea = shadedSphereNode.bounds.dilated( 2 );  // px
     shadedSphereNode.touchArea = shadedSphereNode.bounds.dilated( 15 ); // px
 
-    shadedSphereNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPointProperty.value );
+    var endPoint = circuitSwitch.switchSegment.endPointProperty.value;
+
+    shadedSphereNode.translation = modelViewTransform.modelToViewPosition( endPoint );
     this.wireSwitchNode.addChild( shadedSphereNode );
 
-    tipCircle.translation = modelViewTransform.modelToViewPosition( circuitSwitch.switchSegment.endPointProperty.value );
+    tipCircle.translation = modelViewTransform.modelToViewPosition( endPoint );
     this.wireSwitchNode.addChild( tipCircle );
 
     // add the the hinge
@@ -94,7 +96,7 @@ define( function( require ) {
 
     // create connection points and clickable areas
     this.connectionPointNodes = [];
-    var connectionListeners = [];
+    var connectionAreaNodes = [];
 
     // prefixes for tandem IDs
     var connectionLabels = [ 'battery', 'open', 'lightBulb' ];
@@ -110,7 +112,7 @@ define( function( require ) {
         connectionPointNode, modelViewTransform, tandem.createTandem( connectionLabels[ index ] + 'ConnectionAreaNode' ) );
 
       self.connectionPointNodes.push( connectionPointNode );
-      connectionListeners.push( connectionAreaNode );
+      connectionAreaNodes.push( connectionAreaNode );
     } );
 
     this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( self, tandem.createTandem( 'inputListener' ) ) );
@@ -175,14 +177,34 @@ define( function( require ) {
     this.addChild( switchCueArrow );
 
     // rendering order important for behavior of click areas and drag handlers
-    _.each( connectionListeners, function( connectionListener ) {
-      self.addChild( connectionListener );
+    _.each( connectionAreaNodes, function( connectionAreaNode ) {
+      self.addChild( connectionAreaNode );
     } );
     _.each( self.connectionPointNodes, function( connectionPointNode ) {
       self.addChild( connectionPointNode );
     } );
     this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );
+
+    // Introduced for #180, so tipCircle highlights consistently at the center position
+    // as for the left and right contact points.
+    connectionAreaNodes[ 1 ].addInputListener( new TandemButtonListener( {
+      tandem: tandem.createTandem( 'connectionAreaNodeListener' ),
+      over: function( event ) {
+        if ( circuitSwitch.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
+          tipCircle.fill = HIGHLIGHT_COLOR;
+        }
+      },
+      up: function( event ) {
+        tipCircle.fill = 'none';
+      },
+      out: function( event ) {
+        tipCircle.fill = 'none';
+      },
+      down: function( event ) {
+        tipCircle.fill = 'none';
+      }
+    } ) );
 
     // Since the switch wire occludes the drag area, the highlight color disappears
     // when hovering over the switch wire. To correct this, add a listener to

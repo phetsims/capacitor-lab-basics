@@ -39,7 +39,8 @@ define( function( require ) {
     var hingePoint = circuitSwitch.hingePoint.toVector2();
 
     Node.call( this );
-    var connectionVector = connection.location.toVector2().minus( hingePoint ).withMagnitude( CLBConstants.SWITCH_WIRE_LENGTH * 3 / 2 );
+    var connectionVector = connection.location.toVector2().minus( hingePoint )
+      .withMagnitude( CLBConstants.SWITCH_WIRE_LENGTH * 3 / 2 );
     var triangleShape = new Shape().moveToPoint( hingePoint );
     triangleShape.lineToPoint( hingePoint.plus( connectionVector.rotated( BOUNDING_ANGLE ) ) );
     triangleShape.lineToPoint( hingePoint.plus( connectionVector.rotated( -BOUNDING_ANGLE ) ) );
@@ -79,11 +80,9 @@ define( function( require ) {
     } ) );
 
     this.addChild( triangleNode );
-
   }
 
   capacitorLabBasics.register( 'ConnectionAreaNode', ConnectionAreaNode );
 
   return inherit( Node, ConnectionAreaNode );
 } );
-
