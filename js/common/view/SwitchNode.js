@@ -97,6 +97,7 @@ define( function( require ) {
     // create connection points and clickable areas
     this.connectionPointNodes = [];
     var connectionAreaNodes = [];
+    var openConnectionArea = null;
 
     // prefixes for tandem IDs
     var connectionLabels = [ 'battery', 'open', 'lightBulb' ];
@@ -110,6 +111,10 @@ define( function( require ) {
       // add the clickable area for the connection point
       var connectionAreaNode = new ConnectionAreaNode( connection, circuitSwitch,
         connectionPointNode, modelViewTransform, tandem.createTandem( connectionLabels[ index ] + 'ConnectionAreaNode' ) );
+
+      if ( connection.connectionType === CircuitState.OPEN_CIRCUIT ) {
+        openConnectionArea = connectionAreaNode;
+      }
 
       self.connectionPointNodes.push( connectionPointNode );
       connectionAreaNodes.push( connectionAreaNode );
@@ -188,7 +193,7 @@ define( function( require ) {
 
     // Introduced for #180, so tipCircle highlights consistently at the center position
     // as for the left and right contact points.
-    connectionAreaNodes[ 1 ].addInputListener( new TandemButtonListener( {
+    openConnectionArea.addInputListener( new TandemButtonListener( {
       tandem: tandem.createTandem( 'connectionAreaNodeListener' ),
       over: function( event ) {
         if ( circuitSwitch.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
