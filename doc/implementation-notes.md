@@ -26,7 +26,7 @@ in the code, like 0.005 meters for plate separation.
 
  - This sim uses a pseudo-3D perspective, essentially a projection with no vanishing point.
 See CLModelViewTransform3D to familiarize yourself with the orientation of the coordinate system.
-Turning 3D descriptions into 2D projections is handled in BoxShapeFactory.
+Turning 3D descriptions into 2D projections is handled in BoxShapeCreator.
 
  - Measurement of voltage and E-field is done via intersection of shapes. (For example, does the shape of the
 positive voltmeter probe intersect the top terminal of the battery?) The shapes for circuit components are created
