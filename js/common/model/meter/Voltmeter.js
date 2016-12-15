@@ -96,8 +96,8 @@ define( function( require ) {
     //REVIEW: https://github.com/phetsims/capacitor-lab-basics/issues/174 should help with duplication here
 
     var touchingFreePlate = function( probe ) {
-      return ( self.circuit.disconnectedCapacitorContacts( probe, CircuitLocation.CAPACITOR_TOP ) ||
-        self.circuit.disconnectedCapacitorContacts( probe, CircuitLocation.CAPACITOR_BOTTOM ) );
+      return ( self.circuit.probeContactsComponent( probe, CircuitLocation.CAPACITOR_TOP, true ) ||
+        self.circuit.probeContactsComponent( probe, CircuitLocation.CAPACITOR_BOTTOM, true ) );
     };
 
     var touchingFreeLightBulb = function( probe ) {
@@ -106,8 +106,8 @@ define( function( require ) {
     };
 
     var touchingFreeBattery = function( probe ) {
-      return ( self.circuit.disconnectedBatteryContacts( probe, CircuitLocation.BATTERY_TOP ) ||
-        self.circuit.disconnectedBatteryContacts( probe, CircuitLocation.BATTERY_BOTTOM ) );
+      return ( self.circuit.probeContactsComponent( probe, CircuitLocation.BATTERY_TOP, true ) ||
+        self.circuit.probeContactsComponent( probe, CircuitLocation.BATTERY_BOTTOM, true ) );
     };
 
     /**
