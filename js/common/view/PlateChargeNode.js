@@ -7,7 +7,7 @@
  *
  * All model coordinates are relative to the capacitor's local coordinate frame.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

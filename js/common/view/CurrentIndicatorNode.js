@@ -8,7 +8,7 @@
  * By default, the arrow points to the left. Origin is at the geometric center, so that this node can be easily rotated
  * when current changes direction.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

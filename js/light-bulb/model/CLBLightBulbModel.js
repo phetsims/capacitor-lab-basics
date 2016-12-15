@@ -3,7 +3,7 @@
 /**
  * The main model for the "Light Bulb" screen of Capacitor Lab: Basics.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

@@ -4,7 +4,7 @@
  * Creates 2D projections of shapes that are related to the 3D voltmeter model.
  * Shapes are in the global view coordinate frame.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

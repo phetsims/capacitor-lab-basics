@@ -5,7 +5,7 @@
  * Shapes are in the view coordinate frame, everything else is in model coordinates.
  * Shapes for all faces corresponds to a box with its origin in the center of the top face.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

@@ -5,7 +5,7 @@
  * construct wire segments for each of the circuit components, since segments will need unique functions to update
  * their geometry depending on the components they connect.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

@@ -8,7 +8,7 @@
  * topic.  But we thought it best to keep those units when implementing the model, so that the implementation matches
  * the specification.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  */
 

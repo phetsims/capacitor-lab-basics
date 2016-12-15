@@ -4,7 +4,7 @@
  * Visual representation of a DC battery, with a control for setting its voltage. Image flips when the polarity of the
  * voltage changes. Origin is at center of this node's bounding rectangle.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

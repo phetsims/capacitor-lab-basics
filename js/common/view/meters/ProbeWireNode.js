@@ -4,7 +4,7 @@
  * Wire that connects a probe to the body of a meter.
  * The wire is a cubic curve.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  */
 define( function( require ) {
