@@ -3,7 +3,7 @@
 /**
  * Visual representation of the effective E-field (E_effective) between the capacitor plates.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Emily Randal
  * @author Jesse Greenberg
  */

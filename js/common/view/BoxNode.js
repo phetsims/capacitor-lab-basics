@@ -5,7 +5,7 @@
  * right side.  The top and right-side faces are foreshortened to give the illusion of distance between front and back
  * planes. Origin is at the center of the top face.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

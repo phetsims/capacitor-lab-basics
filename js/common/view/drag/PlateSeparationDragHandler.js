@@ -5,7 +5,7 @@
  * Origin is at the end of the dashed line that is farthest from the arrow.
  * Attached to the top capacitor plate, in the center of the plate's top face.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  */
 define( function( require ) {

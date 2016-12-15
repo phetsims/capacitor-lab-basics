@@ -3,7 +3,7 @@
 /**
  * Interface for all strategies used to determine the size of the grid used to cover a 2D surface with objects.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Sam Reid
  */

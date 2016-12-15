@@ -7,7 +7,7 @@
  * Note that strict connectivity of the wire segments is not required. In fact, you'll notice that segment endpoints
  * are often adjusted to accommodate the creation of wire shapes that look convincing in the view.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

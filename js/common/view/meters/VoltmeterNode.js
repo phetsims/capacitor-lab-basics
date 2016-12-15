@@ -5,7 +5,7 @@
  * This node is designed to be located at (0,0), so that we don't need to deal with
  * coordinate frame issues when the voltmeter's components move.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

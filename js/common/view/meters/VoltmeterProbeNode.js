@@ -4,7 +4,7 @@
  * Class for voltmeter probes in the view.  Static functions create each of the
  * positive and negative nodes.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

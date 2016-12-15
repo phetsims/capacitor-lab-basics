@@ -4,7 +4,7 @@
  * Configuration information for a circuit. This is purely a data structure, whose purpose is to reduce the number of
  * parameters required in constructors and creation methods.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

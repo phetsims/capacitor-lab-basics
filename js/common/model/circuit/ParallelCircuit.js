@@ -5,7 +5,7 @@
  * The layout of the circuit assumes that the battery is on the left
  * hand side of the circuit, while the circuit components are to the right.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

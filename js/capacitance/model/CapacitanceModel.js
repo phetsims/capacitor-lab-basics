@@ -4,7 +4,7 @@
  * Capacitance model for Capacitor Lab: Basics.  This model has a battery connected in parallel to a capacitor, and
  * allows the user to modify capacitor plate geometry to illustrate relationships with capacitance.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */

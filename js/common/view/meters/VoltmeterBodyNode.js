@@ -3,7 +3,7 @@
 /**
  * Body of the voltmeter.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @autor Jesse Greenberg
  */
 define( function( require ) {

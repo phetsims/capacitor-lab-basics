@@ -3,7 +3,7 @@
 /**
  * Node for the capacitance circuit.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  */
 define( function( require ) {

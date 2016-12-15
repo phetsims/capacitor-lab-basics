@@ -4,7 +4,7 @@
  * Value displayed on a drag handle.
  * The value is formatted, and its presentation is localizable.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  */
 define( function( require ) {

@@ -5,7 +5,7 @@
  * of pseudo-3D boxes. These shapes are subtracted using constructive area geometry to account for occlusion that
  * occurs in our pseudo-3D view. Shapes are in the global view coordinate frame.
  *
- * @author Chris Malley (cmalley@pixelzoom.com)
+ * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg
  * @author Andrew Adare
  */
