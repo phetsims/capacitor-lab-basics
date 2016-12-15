@@ -1,10 +1,11 @@
-// Copyright 2014-2015, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
 
 /**
  * Main entry point for the sim.
  *
  * @author Emily Randall
  * @author Jesse Greenberg
+ * @author Andrew Adare
  */
 define( function( require ) {
   'use strict';
@@ -25,12 +26,11 @@ define( function( require ) {
 
   var simOptions = {
     credits: {
-      //TODO fill in proper credits, all of these fields are optional, see joist.AboutDialog
-      leadDesign: '',
-      softwareDevelopment: '',
-      team: '',
-      qualityAssurance: '',
-      graphicArts: '',
+      leadDesign: 'Amy Rouinfar',
+      softwareDevelopment: 'Andrew Adare, Jesse Greenberg, Chris Malley',
+      team: 'Ariel Paul, Kathy Perkins',
+      qualityAssurance: 'Steele Dalton, Amanda Davis, Bryce Griebenow, Elise Morgan, Oliver Orejola, Ben Roberts, Bryan Yoelin',
+      graphicArts: 'Amy Hanson, Amy Rouinfar',
       thanks: ''
     }
   };
