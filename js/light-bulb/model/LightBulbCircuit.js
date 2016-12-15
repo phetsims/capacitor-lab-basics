@@ -6,13 +6,13 @@
  * the battery, but not both at the same time.  The capacitor can also be entirely disconnected from the circuit. This
  * is illustrated in the following diagram:
  *
- * |-----|------|
+ * +---+ + +----+
  * |      /     |
  * |     |      |
  * B     C      Z
  * |     |      |
  * |      \     |
- * |-----|------|
+ * +---+ + +----+
  *
  * B = Battery
  * C = Capacitor, connected in parallel through switches
