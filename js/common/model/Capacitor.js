@@ -142,11 +142,6 @@ define( function( require ) {
     this.bottomCircuitSwitch = CircuitSwitch.BOTTOM( config, circuitConnectionProperty,
       tandem.createTandem( 'bottomCircuitSwitch' ) );
 
-    // @private
-    this.plateFaces = {};
-    this.plateFaces[ CircuitLocation.CAPACITOR_TOP ] = this.shapeCreator.createTopPlateShape();
-    this.plateFaces[ CircuitLocation.CAPACITOR_BOTTOM ] = this.shapeCreator.createBottomPlateShape();
-
     // link the top and bottom circuit switches together so that they rotate together
     // as the user drags
     var self = this;
@@ -230,10 +225,21 @@ define( function( require ) {
      */
     contacts: function ( probe, location ) {
 
-      assert && assert( this.plateFaces.hasOwnProperty( location ), 'Invalid capacitor location: ' + location );
+      assert && assert( location === CircuitLocation.CAPACITOR_TOP || location === CircuitLocation.CAPACITOR_BOTTOM,
+        'Invalid capacitor location: ' + location );
 
-      return _.some( this.plateFaces[ location ], function( plateShape ) {
-        return plateShape.containsPoint( probe.bounds.center );
+      var faces = null;
+      if ( location === CircuitLocation.CAPACITOR_TOP ) {
+        faces = this.shapeCreator.createTopPlateShape();
+      }
+      else if ( location === CircuitLocation.CAPACITOR_BOTTOM ) {
+        faces = this.shapeCreator.createBottomPlateShape();
+      }
+
+      assert && assert( faces, 'Plate face shapes were not created for ' + location );
+
+      return _.some( faces, function( face ) {
+        return face.containsPoint( probe.bounds.center );
       } );
     },
 
