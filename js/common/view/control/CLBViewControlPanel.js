@@ -105,7 +105,8 @@
       Panel.call( this, viewVisibilityControlBox, {
         xMargin: 10,
         yMargin: 10,
-        fill: CLBConstants.METER_PANEL_FILL
+        fill: CLBConstants.METER_PANEL_FILL,
+        tandem: tandem
       } );
 
       // Register with tandem.  No need to handle dispose/removeInstance since the CLBViewControlPanel exists for the

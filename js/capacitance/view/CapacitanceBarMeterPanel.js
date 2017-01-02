@@ -79,7 +79,8 @@ define( function( require ) {
       fill: CLBConstants.METER_PANEL_FILL,
       xMargin: 15,
       yMargin: 15,
-      resize: false
+      resize: false,
+      tandem: tandem
     } );
 
     // link visibility of this panel to the checkbox

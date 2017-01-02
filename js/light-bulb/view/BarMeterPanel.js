@@ -138,7 +138,8 @@ define( function( require ) {
       align: 'left',
       xMargin: 10,
       yMargin: 10,
-      resize: false
+      resize: false,
+      tandem: tandem
     } );
 
     // link visibility to the model property

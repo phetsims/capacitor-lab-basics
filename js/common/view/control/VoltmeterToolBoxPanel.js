@@ -31,7 +31,7 @@ define( function( require ) {
    * @param {Tandem} tandem
    */
   function VoltmeterToolBoxPanel( voltmeterNode, modelViewTransform, inUserControlProperty, voltmeterVisibleProperty,
-    tandem ) {
+                                  tandem ) {
 
     var self = this;
     this.voltmeterNode = voltmeterNode; // @private
@@ -64,7 +64,8 @@ define( function( require ) {
     this.addChild( new Panel( voltmeterIconNode, {
       xMargin: 15,
       yMargin: 15,
-      fill: CLBConstants.METER_PANEL_FILL
+      fill: CLBConstants.METER_PANEL_FILL,
+      tandem: tandem.createTandem( 'voltmeterIconNodePanel' )
     } ) );
 
     voltmeterVisibleProperty.link( function( voltmeterVisible ) {
