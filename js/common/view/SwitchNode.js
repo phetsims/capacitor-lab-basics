@@ -201,13 +201,13 @@ define( function( require ) {
         }
       },
       up: function( event ) {
-        tipCircle.fill = 'none';
+        tipCircle.fill = null;
       },
       out: function( event ) {
-        tipCircle.fill = 'none';
+        tipCircle.fill = null;
       },
       down: function( event ) {
-        tipCircle.fill = 'none';
+        tipCircle.fill = null;
       }
     } ) );
 
@@ -220,13 +220,13 @@ define( function( require ) {
         tipCircle.fill = HIGHLIGHT_COLOR;
       },
       up: function( event ) {
-        tipCircle.fill = 'none';
+        tipCircle.fill = null;
       },
       out: function( event ) {
-        tipCircle.fill = 'none';
+        tipCircle.fill = null;
       },
       down: function( event ) {
-        tipCircle.fill = 'none';
+        tipCircle.fill = null;
       }
     } ) );
 
