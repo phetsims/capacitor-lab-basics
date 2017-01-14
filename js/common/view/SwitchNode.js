@@ -39,7 +39,7 @@ define( function( require ) {
   var SWITCH_CUE_ARROW_OFFSET = new Vector2( -80, -250 ); // View coords
   var HIGHLIGHT_COLOR = 'yellow';
   var SWITCH_CIRCLE_SMALL_RADIUS = CLBConstants.CONNECTION_POINT_RADIUS;
-  var SWITCH_CIRCLE_LARGE_RADIUS = 1.2*SWITCH_CIRCLE_SMALL_RADIUS;
+  var SWITCH_CIRCLE_LARGE_RADIUS = 1.2 * SWITCH_CIRCLE_SMALL_RADIUS;
 
   /**
    * Constructor for a SwitchNode.
@@ -65,7 +65,7 @@ define( function( require ) {
     this.wireSwitchNode.cursor = 'pointer';
 
     // add a shaded sphere to the end of the wire node to represent a connection point at the end of the switch.
-    var shadedSphereNode = new ShadedSphereNode( 2*SWITCH_CIRCLE_LARGE_RADIUS ); // Diameter
+    var shadedSphereNode = new ShadedSphereNode( 2 * SWITCH_CIRCLE_LARGE_RADIUS ); // Diameter
 
     // Dashed circle on tip of switch used as a contact indicator
     var tipCircle = new Circle( SWITCH_CIRCLE_LARGE_RADIUS, {
