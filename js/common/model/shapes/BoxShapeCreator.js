@@ -24,10 +24,6 @@ define( function( require ) {
    * @constructor
    */
   function BoxShapeCreator( modelViewTransform ) {
-
-    assert && assert( modelViewTransform.constructor.name === 'CLBModelViewTransform3D',
-      'Expected a CLBModelViewTransform3D, got: ' + modelViewTransform.constructor.name );
-
     this.modelViewTransform = modelViewTransform; // @public
   }
 

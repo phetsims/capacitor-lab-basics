@@ -23,10 +23,6 @@ define( function( require ) {
    * @param {CLBModelViewTransform3D} modelViewTransform
    */
   function WireShapeCreator( wire, modelViewTransform ) {
-
-    assert && assert( modelViewTransform.constructor.name === 'CLBModelViewTransform3D',
-      'Expected a CLBModelViewTransform3D, got: ' + modelViewTransform.constructor.name );
-
     // @private
     this.wire = wire;
     this.modelViewTransform = modelViewTransform;

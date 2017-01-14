@@ -25,10 +25,6 @@ define( function( require ) {
    * @param {CLBModelViewTransform3D} modelViewTransform
    */
   function BatteryShapeCreator( battery, modelViewTransform ) {
-
-    assert && assert( modelViewTransform.constructor.name === 'CLBModelViewTransform3D',
-      'Expected a CLBModelViewTransform3D, got: ' + modelViewTransform.constructor.name );
-
     this.battery = battery; // @public
     this.modelViewTransform = modelViewTransform; // @private
   }

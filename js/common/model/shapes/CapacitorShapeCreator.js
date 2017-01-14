@@ -25,10 +25,6 @@ define( function( require ) {
    * @constructor
    */
   function CapacitorShapeCreator( capacitor, modelViewTransform ) {
-
-    assert && assert( modelViewTransform.constructor.name === 'CLBModelViewTransform3D',
-      'Expected a CLBModelViewTransform3D, got: ' + modelViewTransform.constructor.name );
-
     // @private
     this.capacitor = capacitor;
     this.boxShapeCreator = new BoxShapeCreator( modelViewTransform );
