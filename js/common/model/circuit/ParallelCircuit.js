@@ -196,9 +196,9 @@ define( function( require ) {
 
     // Update start and end points of each wire segment
     function updateSegments() {
-      self.wires.forEach( function( wire ) {
-        wire.update();
-      } );
+      for ( var i = 0; i < self.wires.length; i++ ) {
+        self.wires[ i ].update();
+      }
     }
 
     // Update all segments, disconnected plate charge, and plate voltages when the connection property changes
