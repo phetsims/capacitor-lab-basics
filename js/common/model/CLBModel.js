@@ -38,33 +38,27 @@ define( function( require ) {
     this.modelViewTransform = modelViewTransform; // @public (read-only)
 
     this.plateChargesVisibleProperty = new BooleanProperty( true, {
-      tandem: tandem.createTandem( 'plateChargesVisibleProperty' ),
-      phetioValueType: TBoolean
+      tandem: tandem.createTandem( 'plateChargesVisibleProperty' )
     } );
 
     this.eFieldVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'eFieldVisibleProperty' ),
-      phetioValueType: TBoolean
+      tandem: tandem.createTandem( 'eFieldVisibleProperty' )
     } );
 
     this.capacitanceMeterVisibleProperty = new BooleanProperty( true, {
-      tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
-      phetioValueType: TBoolean
+      tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' )
     } );
 
     this.barGraphsVisibleProperty = new BooleanProperty( true, {
-      tandem: tandem.createTandem( 'barGraphsVisibleProperty' ),
-      phetioValueType: TBoolean
+      tandem: tandem.createTandem( 'barGraphsVisibleProperty' )
     } );
 
     this.voltmeterVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'voltmeterVisibleProperty' ),
-      phetioValueType: TBoolean
+      tandem: tandem.createTandem( 'voltmeterVisibleProperty' )
     } );
 
     this.currentVisibleProperty = new BooleanProperty( true, {
-      tandem: tandem.createTandem( 'currentVisibleProperty' ),
-      phetioValueType: TBoolean
+      tandem: tandem.createTandem( 'currentVisibleProperty' )
     } );
 
     this.worldBounds = CANVAS_RENDERING_SIZE.toBounds(); // @private

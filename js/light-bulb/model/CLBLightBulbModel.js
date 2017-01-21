@@ -71,13 +71,11 @@ define( function( require ) {
     CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
 
     this.plateChargeMeterVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' ),
-      phetioValueType: TBoolean
+      tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' )
     } );
 
     this.storedEnergyMeterVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
-      phetioValueType: TBoolean
+      tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' )
     } );
 
     var circuit = this.circuit;

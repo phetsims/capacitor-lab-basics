@@ -51,14 +51,12 @@ define( function( require ) {
 
     // @public
     this.visibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'visibleProperty' ),
-      phetioValueType: TBoolean
+      tandem: tandem.createTandem( 'visibleProperty' )
     } );
 
     // @public
     this.inUserControlProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'inUserControlProperty' ),
-      phetioValueType: TBoolean
+      tandem: tandem.createTandem( 'inUserControlProperty' )
     } );
 
     // @public
