@@ -19,9 +19,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
 
-  // phet-io modules
-  var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
-
   // constants
   // reference coordinate frame size for world nodes
   var CANVAS_RENDERING_SIZE = new Dimension2( 1024, 618 );

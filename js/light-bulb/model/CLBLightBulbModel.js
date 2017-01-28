@@ -23,9 +23,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
 
-  // phet-io modules
-  var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
-
   // constants
   var CAPACITOR_X_SPACING = 0.0180; // meters
   var CAPACITOR_Y_SPACING = 0.0010; // meters
