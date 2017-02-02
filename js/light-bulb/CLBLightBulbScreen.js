@@ -19,7 +19,6 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Property = require( 'AXON/Property' );
-  var Color = require( 'SCENERY/util/Color' );
 
   // strings
   var lightBulbTitleString = require( 'string!CAPACITOR_LAB_BASICS/lightBulb.title' );
@@ -39,7 +38,7 @@ define( function( require ) {
 
     var options = {
       name: lightBulbTitleString,
-      backgroundColorProperty: new Property( Color.toColor( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ) ),
+      backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
       homeScreenIcon: icon,
       tandem: tandem
     };
