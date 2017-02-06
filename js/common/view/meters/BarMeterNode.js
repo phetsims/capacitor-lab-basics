@@ -21,7 +21,7 @@ define( function( require ) {
   var Line = require( 'SCENERY/nodes/Line' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var TandemText = require( 'TANDEM/scenery/nodes/TandemText' );
+  var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -73,7 +73,7 @@ define( function( require ) {
     this.barNode = new BarNode( barColor, meter.valueProperty.get(), this.maxValue );
 
     // @public value with hundredths precision and units, set in setValue()
-    this.valueTextNode = new TandemText( '', {
+    this.valueTextNode = new Text( '', {
       font: VALUE_FONT,
       fill: VALUE_COLOR,
       maxWidth: VALUE_MAX_WIDTH,

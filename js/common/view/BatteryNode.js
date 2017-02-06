@@ -20,7 +20,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var TandemText = require( 'TANDEM/scenery/nodes/TandemText' );
+  var Text = require( 'SCENERY/nodes/Text' );
   var Vector2 = require( 'DOT/Vector2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
@@ -79,7 +79,7 @@ define( function( require ) {
 
     // function to create the tick mark labels using a string pattern.
     var createTickLabels = function( value, textFill, tandem ) {
-      var labelText = new TandemText( StringUtils.format( pattern0Value1UnitsString, value, unitsVoltsString ), {
+      var labelText = new Text( StringUtils.format( pattern0Value1UnitsString, value, unitsVoltsString ), {
         font: LABEL_FONT,
         fill: textFill,
         cursor: 'arrow',
