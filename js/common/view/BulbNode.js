@@ -19,7 +19,7 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var TandemNode = require( 'TANDEM/scenery/nodes/TandemNode' );
+  var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var RadialGradient = require( 'SCENERY/util/RadialGradient' );
   var Shape = require( 'KITE/Shape' );
@@ -53,7 +53,7 @@ define( function( require ) {
    */
   function BulbNode( lightBulb, voltageProperty, circuitConnectionProperty, tandem, options ) {
 
-    TandemNode.call( this, {
+    Node.call( this, {
       tandem: tandem
     } );
     var self = this;
@@ -102,7 +102,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'BulbNode', BulbNode );
 
-  inherit( TandemNode, BulbNode, {}, {
+  inherit( Node, BulbNode, {}, {
 
     /**
      * Create a bulb node icon.  This creates a node that is not linked to any model properties.
