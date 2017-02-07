@@ -25,9 +25,6 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
-  // phet-io modules
-  var TPanel = require( 'ifphetio!PHET_IO/types/sun/TPanel' );
-
   // constants
   var CHECKBOX_VERTICAL_SPACING = 28;
   var VALUE_FONT = new PhetFont( 16 );
@@ -121,7 +118,7 @@ define( function( require ) {
     storedEnergyCheckBox.translation = new Vector2( 0, 2 * CHECKBOX_VERTICAL_SPACING );
 
     // The BarMeterNodes have a common x-coordinate
-    x = 0.44*minWidth;
+    x = 0.44 * minWidth;
 
     y = capacitanceCheckBox.centerY + 2;
     capacitanceMeterNode.axisLine.translation = new Vector2( x, y );
@@ -146,12 +143,9 @@ define( function( require ) {
     model.barGraphsVisibleProperty.link( function( barGraphsPanelVisible ) {
       self.visible = barGraphsPanelVisible;
     } );
-
-    tandem.addInstance( this, TPanel );
   }
 
   capacitorLabBasics.register( 'BarMeterPanel', BarMeterPanel );
 
   return inherit( Panel, BarMeterPanel );
-
 } );

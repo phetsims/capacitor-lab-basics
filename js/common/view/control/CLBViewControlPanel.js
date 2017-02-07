@@ -1,120 +1,113 @@
-  // Copyright 2016, University of Colorado Boulder
+// Copyright 2016, University of Colorado Boulder
+
+/**
+ * Control panel for view elements in Capacitor Lab: Basics.  Controls the visibility of plate charges, current
+ * indicators, electric field and values.  This set of controls is used in both the 'light-bulb' and 'capacitance'
+ * screens.
+ *
+ * @author Jesse Greenberg
+ * @author Andrew Adare
+ */
+define( function( require ) {
+  'use strict';
+
+  // modules
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Panel = require( 'SUN/Panel' );
+  var VerticalCheckBoxGroup = require( 'SUN/VerticalCheckBoxGroup' );
+  var Text = require( 'SCENERY/nodes/Text' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
+  var VStrut = require( 'SCENERY/nodes/VStrut' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+
+  // constants
+  var PANEL_TITLE_FONT = new PhetFont( {
+    weight: 'bold',
+    size: 18
+  } );
+  var CHECK_BOX_FONT = new PhetFont( 16 );
+  var TITLE_VERTICAL_SPACE = 10;
+
+  // strings
+  var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
+  var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
+  var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
+  var currentDirectionString = require( 'string!CAPACITOR_LAB_BASICS/currentDirection' );
+  var barGraphString = require( 'string!CAPACITOR_LAB_BASICS/barGraph' );
+  var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
 
   /**
-   * Control panel for view elements in Capacitor Lab: Basics.  Controls the visibility of plate charges, current
-   * indicators, electric field and values.  This set of controls is used in both the 'light-bulb' and 'capacitance'
-   * screens.
+   * Constructor.
+   * @constructor
    *
-   * @author Jesse Greenberg
-   * @author Andrew Adare
+   * @param {CLBModel} model
+   * @param {Tandem} tandem
+   * @param {Object} options
    */
-  define( function( require ) {
-    'use strict';
+  function CLBViewControlPanel( model, tandem, options ) {
 
-    // modules
-    var inherit = require( 'PHET_CORE/inherit' );
-    var Panel = require( 'SUN/Panel' );
-    var VerticalCheckBoxGroup = require( 'SUN/VerticalCheckBoxGroup' );
-    var Text = require( 'SCENERY/nodes/Text' );
-    var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-    var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
-    var VStrut = require( 'SCENERY/nodes/VStrut' );
-    var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-    var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+    options = _.extend( {
+      numberOfBarGraphs: 1,
+      maxTextWidth: 250
+    }, options );
 
-    // phet-io modules
-    var TPanel = require( 'ifphetio!PHET_IO/types/sun/TPanel' );
+    var checkBoxItems = [ {
+      string: plateChargesString,
+      property: model.plateChargesVisibleProperty,
+      tandemName: 'plateChargesCheckBox'
+    }, {
+      string: options.numberOfBarGraphs > 1 ? barGraphsString : barGraphString,
+      property: model.barGraphsVisibleProperty,
+      tandemName: 'barGraphsCheckBox'
+    }, {
+      string: eFieldString,
+      property: model.eFieldVisibleProperty,
+      tandemName: 'eFieldCheckBox'
+    }, {
+      string: currentDirectionString,
+      property: model.currentVisibleProperty,
+      tandemName: 'currentCheckBox'
+    } ];
 
-    // constants
-    var PANEL_TITLE_FONT = new PhetFont( {
-      weight: 'bold',
-      size: 18
+    var viewCheckBoxItems = checkBoxItems.map( function( asset ) {
+      return {
+        content: new Text( asset.string, {
+          font: CHECK_BOX_FONT,
+          maxWidth: options.maxTextWidth
+        } ),
+        property: asset.property,
+        label: asset.string,
+        tandemName: asset.tandemName
+      };
     } );
-    var CHECK_BOX_FONT = new PhetFont( 16 );
-    var TITLE_VERTICAL_SPACE = 10;
 
-    // strings
-    var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
-    var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
-    var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
-    var currentDirectionString = require( 'string!CAPACITOR_LAB_BASICS/currentDirection' );
-    var barGraphString = require( 'string!CAPACITOR_LAB_BASICS/barGraph' );
-    var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
+    var verticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems, {
+      tandem: tandem.createTandem( 'verticalCheckBoxGroup' )
+    } );
 
-    /**
-     * Constructor.
-     * @constructor
-     *
-     * @param {CLBModel} model
-     * @param {Tandem} tandem
-     * @param {Object} options
-     */
-    function CLBViewControlPanel( model, tandem, options ) {
+    var viewVisibilityControlBox = new LayoutBox( {
+      children: [
+        new Text( viewString, {
+          font: PANEL_TITLE_FONT,
+          maxWidth: 300
+        } ),
+        new VStrut( TITLE_VERTICAL_SPACE ),
+        verticalCheckBoxGroup
+      ],
+      align: 'left'
+    } );
 
-      options = _.extend( {
-        numberOfBarGraphs: 1,
-        maxTextWidth: 250
-      }, options );
+    Panel.call( this, viewVisibilityControlBox, {
+      xMargin: 10,
+      yMargin: 10,
+      fill: CLBConstants.METER_PANEL_FILL,
+      tandem: tandem
+    } );
+  }
 
-      var checkBoxItems = [ {
-        string: plateChargesString,
-        property: model.plateChargesVisibleProperty,
-        tandemName: 'plateChargesCheckBox'
-      }, {
-        string: options.numberOfBarGraphs > 1 ? barGraphsString : barGraphString,
-        property: model.barGraphsVisibleProperty,
-        tandemName: 'barGraphsCheckBox'
-      }, {
-        string: eFieldString,
-        property: model.eFieldVisibleProperty,
-        tandemName: 'eFieldCheckBox'
-      }, {
-        string: currentDirectionString,
-        property: model.currentVisibleProperty,
-        tandemName: 'currentCheckBox'
-      } ];
+  capacitorLabBasics.register( 'CLBViewControlPanel', CLBViewControlPanel );
 
-      var viewCheckBoxItems = checkBoxItems.map( function( asset ) {
-        return {
-          content: new Text( asset.string, {
-            font: CHECK_BOX_FONT,
-            maxWidth: options.maxTextWidth
-          } ),
-          property: asset.property,
-          label: asset.string,
-          tandemName: asset.tandemName
-        };
-      } );
-
-      var verticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems, {
-        tandem: tandem.createTandem( 'verticalCheckBoxGroup' )
-      } );
-
-      var viewVisibilityControlBox = new LayoutBox( {
-        children: [
-          new Text( viewString, {
-            font: PANEL_TITLE_FONT,
-            maxWidth: 300
-          } ),
-          new VStrut( TITLE_VERTICAL_SPACE ),
-          verticalCheckBoxGroup
-        ],
-        align: 'left'
-      } );
-
-      Panel.call( this, viewVisibilityControlBox, {
-        xMargin: 10,
-        yMargin: 10,
-        fill: CLBConstants.METER_PANEL_FILL,
-        tandem: tandem
-      } );
-
-      // Register with tandem.  No need to handle dispose/removeInstance since the CLBViewControlPanel exists for the
-      // lifetime of the simulation.
-      tandem.addInstance( this, TPanel );
-    }
-
-    capacitorLabBasics.register( 'CLBViewControlPanel', CLBViewControlPanel );
-
-    return inherit( Panel, CLBViewControlPanel );
-  } );
+  return inherit( Panel, CLBViewControlPanel );
+} );

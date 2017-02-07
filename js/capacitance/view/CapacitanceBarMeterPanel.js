@@ -22,9 +22,6 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
-  // phet-io modules
-  var TPanel = require( 'ifphetio!PHET_IO/types/sun/TPanel' );
-
   // constants
   var VALUE_FONT = new PhetFont( 15 );
   var VALUE_COLOR = 'black';
@@ -87,8 +84,6 @@ define( function( require ) {
     model.barGraphsVisibleProperty.link( function( barGraphsPanelVisible ) {
       self.visible = barGraphsPanelVisible;
     } );
-
-    tandem.addInstance( this, TPanel );
   }
 
   capacitorLabBasics.register( 'CapacitanceBarMeterPanel', CapacitanceBarMeterPanel );
