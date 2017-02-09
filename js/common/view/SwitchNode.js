@@ -191,9 +191,10 @@ define( function( require ) {
     this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );
 
-    // Introduced for #180, so tipCircle highlights consistently at the center position
-    // as for the left and right contact points.
-    openConnectionArea.addInputListener( new TandemButtonListener( {
+    // Introduced for #180, so tipCircle highlights consistently at the center position as for the left and right
+    // contact points.
+    // In the classroom activity, the openConnectionArea is null on startup
+    openConnectionArea && openConnectionArea.addInputListener( new TandemButtonListener( {
       tandem: tandem.createTandem( 'connectionAreaNodeListener' ),
       over: function( event ) {
         if ( circuitSwitch.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
