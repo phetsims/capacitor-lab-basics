@@ -24,7 +24,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
-  var TandemButtonListener = require( 'TANDEM/scenery/input/TandemButtonListener' );
+  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var Vector2 = require( 'DOT/Vector2' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
 
@@ -194,7 +194,7 @@ define( function( require ) {
     // Introduced for #180, so tipCircle highlights consistently at the center position as for the left and right
     // contact points.
     // In the classroom activity, the openConnectionArea is null on startup
-    openConnectionArea && openConnectionArea.addInputListener( new TandemButtonListener( {
+    openConnectionArea && openConnectionArea.addInputListener( new ButtonListener( {
       tandem: tandem.createTandem( 'connectionAreaNodeListener' ),
       over: function( event ) {
         if ( circuitSwitch.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
@@ -215,7 +215,7 @@ define( function( require ) {
     // Since the switch wire occludes the drag area, the highlight color disappears
     // when hovering over the switch wire. To correct this, add a listener to
     // the swittch node itself and emulate the behavior. See #145.
-    this.wireSwitchNode.addInputListener( new TandemButtonListener( {
+    this.wireSwitchNode.addInputListener( new ButtonListener( {
       tandem: tandem.createTandem( 'wireSwitchListener' ),
       over: function( event ) {
         tipCircle.fill = HIGHLIGHT_COLOR;

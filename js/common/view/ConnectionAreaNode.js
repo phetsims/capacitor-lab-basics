@@ -14,7 +14,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Shape = require( 'KITE/Shape' );
   var Path = require( 'SCENERY/nodes/Path' );
-  var TandemButtonListener = require( 'TANDEM/scenery/input/TandemButtonListener' );
+  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var Node = require( 'SCENERY/nodes/Node' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -64,7 +64,7 @@ define( function( require ) {
     } );
 
     // Add input listener to set circuit state.
-    this.addInputListener( new TandemButtonListener( {
+    this.addInputListener( new ButtonListener( {
 
       tandem: tandem.createTandem( 'buttonListener' ),
 
