@@ -22,9 +22,7 @@ define( function( require ) {
   var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-
-  // phet-io modules
-  var TNode = require('ifphetio!PHET_IO/types/scenery/nodes/TNode');
+  var TNode = require( 'SCENERY/nodes/TNode' );
 
   /**
    * Constructor for a CLBCircuitNode.

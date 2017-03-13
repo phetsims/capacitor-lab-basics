@@ -24,9 +24,7 @@ define( function( require ) {
   var PlateAreaDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandler' );
   var UnitsUtils = require( 'CAPACITOR_LAB_BASICS/common/model/util/UnitsUtils' );
   var Vector2 = require( 'DOT/Vector2' );
-
-  // phet-io modules
-  var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
+  var TNode = require( 'SCENERY/nodes/TNode' );
 
   // constants
   // endpoints for a vertical double-headed arrow, this will be rotated to point along the plate's pseudo-3D diagonal

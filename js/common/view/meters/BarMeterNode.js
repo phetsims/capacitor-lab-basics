@@ -25,9 +25,7 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-
-  // phet-io modules
-  var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
+  var TNode = require( 'SCENERY/nodes/TNode' );
 
   // constants
   var BASE_LINE_LENGTH = 25; // Length of vertical line at the origin (left end) of the bar

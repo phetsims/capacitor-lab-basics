@@ -18,9 +18,7 @@ define( function( require ) {
   var Bounds2 = require( 'DOT/Bounds2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Property = require( 'AXON/Property' );
-
-  // phet-io modules
-  var TNode = require( 'ifphetio!PHET_IO/types/scenery/nodes/TNode' );
+  var TNode = require( 'SCENERY/nodes/TNode' );
 
   /**
    * Constructor for a CapacitorNode.
