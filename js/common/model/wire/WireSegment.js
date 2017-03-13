@@ -17,9 +17,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
-
-  // phet-io modules
-  var TVector3 = require( 'ifphetio!PHET_IO/types/dot/TVector3' );
+  var TVector3 = require( 'DOT/TVector3' );
 
   /**
    * @param {Vector3} startPoint

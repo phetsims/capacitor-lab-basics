@@ -19,10 +19,10 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
+  var TVector3 = require( 'DOT/TVector3' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
-  var TVector3 = require( 'ifphetio!PHET_IO/types/dot/TVector3' );
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files

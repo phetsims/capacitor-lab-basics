@@ -34,9 +34,9 @@ define( function( require ) {
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
+  var TBounds3 = require( 'DOT/TBounds3' );
 
   // phet-io modules
-  var TBounds3 = require( 'ifphetio!PHET_IO/types/dot/TBounds3' );
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
 
   /**
