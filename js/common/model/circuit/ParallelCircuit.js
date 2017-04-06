@@ -363,7 +363,7 @@ define( function( require ) {
      * @param  {Shape} shape
      * @param  {Wire[]} wires
      *
-     * @return {boolean}
+     * @returns {boolean}
      */
     shapeTouchesWireGroup: function( shape, location ) {
 
@@ -380,7 +380,7 @@ define( function( require ) {
      * Returns true if the switch is open or in transit
      * @public
      *
-     * @return {boolean}
+     * @returns {boolean}
      */
     isOpen: function() {
       var connection = this.circuitConnectionProperty.value;

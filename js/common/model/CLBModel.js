@@ -100,7 +100,7 @@ define( function( require ) {
      * where A is the plate area, d is the plate separation, and V is the battery voltage.
      * @public
      *
-     * @return {number} E-field in V/m
+     * @returns {number} E-field in V/m
      */
     getMaxEffectiveEField: function() {
 

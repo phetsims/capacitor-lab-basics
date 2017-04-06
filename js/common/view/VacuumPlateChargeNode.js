@@ -31,7 +31,7 @@ define( function( require ) {
     /**
      * Get plate charge from capacitor in the model
      *
-     * @return {number} charge
+     * @returns {number} charge
      * @public
      */
     getPlateCharge: function() {
@@ -42,7 +42,7 @@ define( function( require ) {
     /**
      * Gets the x offset (relative to the plate origin) of the portion of the plate that is facing the vacuum gap
      *
-     * @return {number} offset
+     * @returns {number} offset
      * @public
      */
     getContactXOrigin: function() {

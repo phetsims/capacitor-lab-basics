@@ -104,7 +104,7 @@ define( function( require ) {
     /**
      * Create an icon of the voltmeter, to be used in the toolbox panel.
      *
-     * @return {VoltmeterIconNode}
+     * @returns {VoltmeterIconNode}
      * @public
      */
     createVoltmeterIconNode: function() {

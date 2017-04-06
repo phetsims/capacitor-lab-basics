@@ -70,7 +70,7 @@ define( function( require ) {
      * @public
      *
      * @param {Vector3} modelPoint
-     * @return {Vector3}
+     * @returns {Vector3}
      */
     modelToViewPosition: function( modelPoint ) {
 
@@ -124,7 +124,7 @@ define( function( require ) {
      * @public
      *
      * @param {Shape} modelShape
-     * @return {Shape}
+     * @returns {Shape}
      */
     modelToViewShape: function( modelShape ) {
       return this.modelToViewTransform2D.transformShape( modelShape );
@@ -151,7 +151,7 @@ define( function( require ) {
      * @public
      *
      * @param {Vector2} pView
-     * @return {Vector3}
+     * @returns {Vector3}
      */
     viewToModelPosition: function( pView ) {
       return this.modelToViewTransform2D.inversePosition2( pView ).toVector3();
@@ -163,7 +163,7 @@ define( function( require ) {
      *
      * @param {number} x
      * @param {number} y
-     * @return {Vector3}
+     * @returns {Vector3}
      */
     viewToModelXY: function( x, y ) {
       return this.viewToModelPosition( scratchVector2.setXY( x, y ) );
@@ -174,7 +174,7 @@ define( function( require ) {
      * @public
      *
      * @param {Vector2} delta
-     * @return {Vector3}
+     * @returns {Vector3}
      */
     viewToModelDelta: function( delta ) {
       var origin = this.viewToModelPosition( scratchVector2.setXY( 0, 0 ) );
@@ -188,7 +188,7 @@ define( function( require ) {
      *
      * @param {number} xDelta
      * @param {number} yDelta
-     * @return {Vector3}
+     * @returns {Vector3}
      */
     viewToModelDeltaXY: function( xDelta, yDelta ) {
       return this.viewToModelDelta( new Vector2( xDelta, yDelta ) );

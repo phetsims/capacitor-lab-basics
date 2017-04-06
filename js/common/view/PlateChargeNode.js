@@ -143,7 +143,7 @@ define( function( require ) {
     /**
      * Returns true if plate is positively charged
      *
-     * @return {Boolean}
+     * @returns {Boolean}
      * @public
      */
     isPositivelyCharged: function() {
