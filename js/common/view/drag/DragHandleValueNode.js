@@ -16,7 +16,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var SubSupText = require( 'SCENERY_PHET/SubSupText' );
+  var RichText = require( 'SCENERY_PHET/RichText' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -49,7 +49,7 @@ define( function( require ) {
     var labelNode = new Text( label, { font: LABEL_FONT, maxWidth: LABEL_MAX_WIDTH } );
     this.addChild( labelNode );
 
-    this.valueNode = new SubSupText( '', { font: VALUE_FONT, maxWidth: VALUE_MAX_WIDTH } ); // @private
+    this.valueNode = new RichText( '', { font: VALUE_FONT, maxWidth: VALUE_MAX_WIDTH } ); // @private
     this.addChild( this.valueNode );
 
     // layout: value below label, left-justified
