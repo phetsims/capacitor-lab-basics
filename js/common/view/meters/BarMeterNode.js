@@ -152,6 +152,7 @@ define( function( require ) {
       }
     },
 
+    //REVIEW is this really @public?
     /**
      * Update the overload indicator arrow visibility and position.
      * @public
@@ -164,6 +165,7 @@ define( function( require ) {
       this.arrowNode.visible = Math.abs( this.meter.valueProperty.get() ) > this.maxValue;
     },
 
+    //REVIEW is this really @public?
     /**
      * Update the layout
      * @public

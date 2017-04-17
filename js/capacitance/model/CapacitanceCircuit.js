@@ -36,6 +36,7 @@ define( function( require ) {
    */
   function CapacitanceCircuit( config, tandem ) {
 
+    //REVIEW missing visibility annotation
     this.lightBulb = null; // There is no light bulb in the first screen
 
     ParallelCircuit.call( this, config, tandem );

@@ -73,6 +73,7 @@ define( function( require ) {
 
   return inherit( Node, CapacitorNode, {
 
+    //REVIEW is this really @public?
     /**
      * Update the geometry of the capacitor plates.
      * @public

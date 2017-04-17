@@ -108,6 +108,7 @@ define( function( require ) {
     /**
      * Update the node when it becomes visible.  Overrides setVisible in Node.
      * @public
+     * @override
      */
     setVisible: function( visible ) {
       Node.prototype.setVisible.call( this, visible );
@@ -187,6 +188,7 @@ define( function( require ) {
         return 0;
       }
       else {
+        //REVIEW variable is redundant
         // sqrt looks best for a square plate
         var spacing = SPACING_CONSTANT / Math.sqrt( Math.abs( effectiveEField ) );
         return spacing;

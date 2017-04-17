@@ -34,26 +34,32 @@ define( function( require ) {
     this.switchUsedProperty = switchUsedProperty; // @public
     this.modelViewTransform = modelViewTransform; // @public (read-only)
 
+    //REVIEW missing visibility annotation
     this.plateChargesVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'plateChargesVisibleProperty' )
     } );
 
+    //REVIEW missing visibility annotation
     this.eFieldVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'eFieldVisibleProperty' )
     } );
 
+    //REVIEW missing visibility annotation
     this.capacitanceMeterVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' )
     } );
 
+    //REVIEW missing visibility annotation
     this.barGraphsVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'barGraphsVisibleProperty' )
     } );
 
+    //REVIEW missing visibility annotation
     this.voltmeterVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'voltmeterVisibleProperty' )
     } );
 
+    //REVIEW missing visibility annotation
     this.currentVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'currentVisibleProperty' )
     } );

@@ -41,6 +41,7 @@ define( function( require ) {
     // single-pole double-throw switch for the light-bulb circuit instead of
     // the default three-position version (phet-io/569).
     // Enable with the switch=twoState query parameter.
+    //REVIEW simplify to ( CLBQueryParameters.switch === 'twoState' )
     var useTwoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
     var twoState = [
@@ -100,6 +101,7 @@ define( function( require ) {
     /**
      * Reset function for this model.
      * @public
+     * @override
      */
     reset: function() {
       CLBModel.prototype.reset.call( this );

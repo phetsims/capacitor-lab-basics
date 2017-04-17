@@ -35,6 +35,7 @@ define( function( require ) {
      *
      * @param {number} value
      * @public
+     * @override
      */
     setValue: function( value ) {
       BarMeterNode.prototype.setValue.call( this, Math.abs( value ) );

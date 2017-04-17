@@ -1,5 +1,6 @@
 // Copyright 2015, University of Colorado Boulder
 
+//REVIEW this doesn't need to have a constructor or use inherit
 /**
  * Utilities for converting between different units.  These are the common conversions required when going between model
  * and view.

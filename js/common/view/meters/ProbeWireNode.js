@@ -68,6 +68,7 @@ define( function( require ) {
 
   return inherit( Path, ProbeWireNode, {
 
+    //REVIEW is this really @public?
     /**
      * Update the wire path.
      * @public

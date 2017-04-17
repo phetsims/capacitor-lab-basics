@@ -156,6 +156,7 @@ define( function( require ) {
      *
      * @param {boolean} visible
      * @public
+     * @override
      */
     setVisible: function( visible ) {
       CanvasNode.prototype.setVisible.call( this, visible );

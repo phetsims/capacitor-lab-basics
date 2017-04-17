@@ -30,8 +30,8 @@ define( function( require ) {
    * at upper left of track.
    *
    * @param {string} barColor
-   * @param {number} maxValue
    * @param {number} value
+   * @param {number} maxValue
    * @constructor
    */
   function BarNode( barColor, value, maxValue ) {
@@ -73,6 +73,7 @@ define( function( require ) {
       }
     },
 
+    //REVIEW is this really @public?
     /**
      * Update the bar
      * @public

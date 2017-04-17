@@ -89,6 +89,7 @@ define( function( require ) {
     /**
      * LightBulbCircuit model update function
      * @public
+     * @override
      *
      * @param  {number} dt time step in seconds
      */

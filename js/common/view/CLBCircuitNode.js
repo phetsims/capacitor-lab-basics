@@ -151,6 +151,7 @@ define( function( require ) {
 
   return inherit( Node, CLBCircuitNode, {
 
+    //REVIEW is this really @public, or should it be @protected?
     /**
      * Update the visibility of the current indicator nodes, implemented in
      * each of the circuit sub types.

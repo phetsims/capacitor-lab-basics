@@ -49,6 +49,7 @@ define( function( require ) {
     /**
      * Reset function for this model.
      * @public
+     * @override
      */
     reset: function() {
       CLBModel.prototype.reset.call( this );

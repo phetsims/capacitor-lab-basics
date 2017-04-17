@@ -61,6 +61,7 @@ define( function( require ) {
 
     parentNode.children = [ capacitanceMeterNode, capacitanceTitle ];
 
+    //REVIEW redundant variable initializer
     // layout
     var x = 0;
     var y = 0;

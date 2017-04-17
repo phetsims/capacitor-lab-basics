@@ -61,7 +61,7 @@ define( function( require ) {
   inherit( Object, CCKStrategyWithRounding, {
     /**
      * @param  {number} numberOfObjects [description]
-     * @param  {number}} width
+     * @param  {number} width
      * @param  {number} height
      * @returns {Dimension2}
      * @private
