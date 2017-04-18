@@ -55,7 +55,7 @@ define( function( require ) {
       phetioValueType: TNumber( {
         units: 'amperes'
       } ),
-      phetioInstanceDocumentation: 'currentAmplitudeProperty is updated by the model and should not be set by users'
+      phetioInstanceDocumentation: 'currentAmplitudeProperty is updated by the model and should not be set by users. Beware that the current is calculated in the model time step, so if dQ is zero for a step the current could transiently appear as zero.'
     } );
 
     /**
