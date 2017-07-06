@@ -22,7 +22,6 @@ define( function( require ) {
   var PlateSeparationDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandler' );
   var UnitsUtils = require( 'CAPACITOR_LAB_BASICS/common/model/util/UnitsUtils' );
   var Vector2 = require( 'DOT/Vector2' );
-  var TNode = require( 'SCENERY/nodes/TNode' );
 
   // constants
   // endpoints for vertical double-headed arrow
@@ -113,7 +112,10 @@ define( function( require ) {
       self.updateOffset();
     } );
 
-    tandem.addInstance( this, TNode );
+    // tandem support
+    this.mutate( {
+      tandem: tandem
+    } );
   }
 
   capacitorLabBasics.register( 'PlateSeparationDragHandleNode', PlateSeparationDragHandleNode );

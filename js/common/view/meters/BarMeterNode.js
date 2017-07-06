@@ -25,7 +25,6 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var TNode = require( 'SCENERY/nodes/TNode' );
 
   // constants
   var BASE_LINE_LENGTH = 25; // Length of vertical line at the origin (left end) of the bar
@@ -104,9 +103,10 @@ define( function( require ) {
 
     this.updateLayout();
 
-    // Register with tandem.  No need to handle dispose/removeInstance since this
-    // exists for the lifetime of the simulation.
-    tandem.addInstance( this, TNode );
+    // tandem support
+    this.mutate( {
+      tandem: tandem
+    } );
   }
 
   capacitorLabBasics.register( 'BarMeterNode', BarMeterNode );

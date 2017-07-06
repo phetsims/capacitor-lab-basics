@@ -24,7 +24,6 @@ define( function( require ) {
   var PlateAreaDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandler' );
   var UnitsUtils = require( 'CAPACITOR_LAB_BASICS/common/model/util/UnitsUtils' );
   var Vector2 = require( 'DOT/Vector2' );
-  var TNode = require( 'SCENERY/nodes/TNode' );
 
   // constants
   // endpoints for a vertical double-headed arrow, this will be rotated to point along the plate's pseudo-3D diagonal
@@ -120,8 +119,10 @@ define( function( require ) {
       self.updateOffset();
     } );
 
-    tandem.addInstance( this, TNode );
-  }
+    // tandem support
+    this.mutate( {
+      tandem: tandem
+    } );  }
 
   capacitorLabBasics.register( 'PlateAreaDragHandleNode', PlateAreaDragHandleNode );
 

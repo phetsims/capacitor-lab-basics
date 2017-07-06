@@ -23,7 +23,6 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Vector2 = require( 'DOT/Vector2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var TNode = require( 'SCENERY/nodes/TNode' );
 
   // constants
   var LABEL_FONT = new PhetFont( 12 );
@@ -114,9 +113,10 @@ define( function( require ) {
       }
     } );
 
-    // Register with tandem.  No need to handle dispose/removeInstance since this
-    // exists for the lifetime of the simulation.
-    tandem.addInstance( this, TNode );
+    // tandem support
+    this.mutate( {
+      tandem: tandem
+    } );
   }
 
   capacitorLabBasics.register( 'BatteryNode', BatteryNode );

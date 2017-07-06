@@ -27,7 +27,6 @@ define( function( require ) {
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var Vector2 = require( 'DOT/Vector2' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
-  var TNode = require( 'SCENERY/nodes/TNode' );
 
   // Images
   var switchCueArrowImage = require( 'image!CAPACITOR_LAB_BASICS/switch_cue_arrow.png' );
@@ -229,9 +228,10 @@ define( function( require ) {
       }
     } ) );
 
-    // Register with tandem.  No need to handle dispose/removeInstance since this
-    // exists for the lifetime of the simulation.
-    tandem.addInstance( this, TNode );
+    // tandem support
+    this.mutate( {
+      tandem: tandem
+    } );
   }
 
   capacitorLabBasics.register( 'SwitchNode', SwitchNode );

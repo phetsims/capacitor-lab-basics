@@ -27,7 +27,6 @@ define( function( require ) {
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var TNode = require( 'SCENERY/nodes/TNode' );
 
   // strings
   var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
@@ -92,9 +91,10 @@ define( function( require ) {
       } ) );
     }
 
-    // Register with tandem.  No need to handle dispose/removeInstance since this
-    // exists for the lifetime of the simulation.
-    tandem.addInstance( this, TNode );
+    // tandem support
+    this.mutate( {
+      tandem: tandem
+    } );
   }
 
   capacitorLabBasics.register( 'VoltmeterNode', VoltmeterNode );

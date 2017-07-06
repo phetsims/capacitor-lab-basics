@@ -17,7 +17,6 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var TNode = require( 'SCENERY/nodes/TNode' );
 
   /**
    * @constructor
@@ -78,9 +77,10 @@ define( function( require ) {
       }
     } );
 
-    // Register with tandem.  No need to handle dispose/removeInstance since this
-    // exists for the lifetime of the simulation.
-    tandem.addInstance( this, TNode );
+    // tandem support
+    this.mutate( {
+      tandem: tandem
+    } );
   }
 
   capacitorLabBasics.register( 'VoltmeterToolBoxPanel', VoltmeterToolBoxPanel );

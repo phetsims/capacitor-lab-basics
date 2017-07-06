@@ -18,7 +18,6 @@ define( function( require ) {
   var Bounds2 = require( 'DOT/Bounds2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Property = require( 'AXON/Property' );
-  var TNode = require( 'SCENERY/nodes/TNode' );
 
   /**
    * Constructor for a CapacitorNode.
@@ -64,9 +63,10 @@ define( function( require ) {
       eFieldNode.setVisible( visible );
     } );
 
-    // Register with tandem.  No need to handle dispose/removeInstance since this
-    // exists for the lifetime of the simulation.
-    tandem.addInstance( this, TNode );
+    // tandem support
+    this.mutate( {
+      tandem: tandem
+    } );
   }
 
   capacitorLabBasics.register( 'CapacitorNode', CapacitorNode );
