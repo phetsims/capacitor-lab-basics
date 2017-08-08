@@ -14,7 +14,7 @@ define( function( require ) {
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var TandemSimpleDragHandler = require( 'TANDEM/scenery/input/TandemSimpleDragHandler' );
+  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
 
@@ -40,7 +40,7 @@ define( function( require ) {
     this.valueRange = valueRange;
     this.clickYOffset = new Vector2( 0, 0 );
 
-    TandemSimpleDragHandler.call( this, {
+    SimpleDragHandler.call( this, {
       tandem: tandem,
       start: function( event, trail ) {
         var pMouse = event.pointer.point;
@@ -62,6 +62,6 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'PlateSeparationDragHandler', PlateSeparationDragHandler );
 
-  return inherit( TandemSimpleDragHandler, PlateSeparationDragHandler );
+  return inherit( SimpleDragHandler, PlateSeparationDragHandler );
 } );
 

@@ -19,7 +19,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var LinearFunction = require( 'DOT/LinearFunction' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var TandemSimpleDragHandler = require( 'TANDEM/scenery/input/TandemSimpleDragHandler' );
+  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
   /**
    * Constructor.
@@ -40,7 +40,7 @@ define( function( require ) {
     this.valueRange = valueRange;
     this.clickXOffset = new Vector2( 0, 0 );
 
-    TandemSimpleDragHandler.call( this, {
+    SimpleDragHandler.call( this, {
       tandem: tandem,
       start: function( event ) {
         var width = capacitor.plateSizeProperty.value.width;
@@ -63,7 +63,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'PlateAreaDragHandler', PlateAreaDragHandler );
 
-  return inherit( TandemSimpleDragHandler, PlateAreaDragHandler, {
+  return inherit( SimpleDragHandler, PlateAreaDragHandler, {
 
     /**
      * Determines the plateWidth for a specific mouse position.  This effectively accounts for the z-axis dimension.
