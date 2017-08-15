@@ -11,11 +11,11 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Circle = require( 'SCENERY/nodes/Circle' );
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Circle = require( 'SCENERY/nodes/Circle' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var inherit = require( 'PHET_CORE/inherit' );
 
   /**
    * Constructor for the ConnectionPointNode.

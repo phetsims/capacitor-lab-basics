@@ -33,8 +33,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
-  var Vector3 = require( 'DOT/Vector3' );
   var TBounds3 = require( 'DOT/TBounds3' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );

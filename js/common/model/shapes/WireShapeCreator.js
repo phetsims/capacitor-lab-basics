@@ -11,10 +11,10 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Shape = require( 'KITE/Shape' );
-  var LineStyles = require( 'KITE/util/LineStyles' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var LineStyles = require( 'KITE/util/LineStyles' );
+  var Shape = require( 'KITE/Shape' );
 
   /**
    * Constructor for WireShapeCreator.

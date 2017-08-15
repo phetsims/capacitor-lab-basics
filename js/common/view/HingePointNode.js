@@ -10,17 +10,17 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Circle = require( 'SCENERY/nodes/Circle' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Circle = require( 'SCENERY/nodes/Circle' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var inherit = require( 'PHET_CORE/inherit' );
 
   // constants
   var HINGE_POINT_RADIUS = 8;
   var PIN_RADIUS = 5;
 
   /**
-   * Constructor for the ConnectionPointNode.
+   * Constructor for the HingePointNode.
    *
    * @param {Object} options
    * @constructor

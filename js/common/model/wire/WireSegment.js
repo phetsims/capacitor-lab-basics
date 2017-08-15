@@ -16,8 +16,8 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
-  var Vector3 = require( 'DOT/Vector3' );
   var TVector3 = require( 'DOT/TVector3' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   /**
    * @param {Vector3} startPoint

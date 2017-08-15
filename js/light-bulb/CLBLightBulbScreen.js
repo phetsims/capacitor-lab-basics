@@ -9,16 +9,16 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBLightBulbModel = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/CLBLightBulbModel' );
   var CLBLightBulbScreenView = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/CLBLightBulbScreenView' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Property = require( 'AXON/Property' );
   var Screen = require( 'JOIST/Screen' );
   var ScreenIcon = require( 'JOIST/ScreenIcon' );
-  var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var Property = require( 'AXON/Property' );
 
   // strings
   var lightBulbTitleString = require( 'string!CAPACITOR_LAB_BASICS/lightBulb.title' );

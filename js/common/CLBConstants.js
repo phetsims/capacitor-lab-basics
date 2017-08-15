@@ -11,10 +11,10 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var RangeWithValue = require( 'DOT/RangeWithValue' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var RangeWithValue = require( 'DOT/RangeWithValue' );
   var Vector3 = require( 'DOT/Vector3' );
 
   var CLBConstants = {

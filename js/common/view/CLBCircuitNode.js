@@ -10,19 +10,19 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
   var BatteryNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryNode' );
-  var CapacitorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CapacitorNode' );
-  var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
-  var SwitchNode = require( 'CAPACITOR_LAB_BASICS/common/view/SwitchNode' );
-  var CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
-  var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CapacitorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CapacitorNode' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
+  var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
+  var SwitchNode = require( 'CAPACITOR_LAB_BASICS/common/view/SwitchNode' );
   var TNode = require( 'SCENERY/nodes/TNode' );
+  var Vector2 = require( 'DOT/Vector2' );
+  var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
 
   /**
    * Constructor for a CLBCircuitNode.

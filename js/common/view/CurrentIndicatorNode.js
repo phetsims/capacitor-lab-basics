@@ -16,16 +16,16 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
-  var MinusNode = require( 'SCENERY_PHET/MinusNode' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
-  var Color = require( 'SCENERY/util/Color' );
-  var OpacityTo = require( 'TWIXT/OpacityTo' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Color = require( 'SCENERY/util/Color' );
+  var Dimension2 = require( 'DOT/Dimension2' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var MinusNode = require( 'SCENERY_PHET/MinusNode' );
+  var Node = require( 'SCENERY/nodes/Node' );
+  var OpacityTo = require( 'TWIXT/OpacityTo' );
+  var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   // constants
   // arrow properties
