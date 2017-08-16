@@ -30,11 +30,12 @@ define( function( require ) {
   /**
    * Constructor for the CircuitSwitchDragHandler.
    * @param {SwitchNode} switchNode
+   * @param {Property.<boolean>} switchLockedProperty
    * @param {Property.<boolean>} userControlledProperty
    * @param {Tandem} tandem
    * @constructor
    */
-  function CircuitSwitchDragHandler( switchNode, userControlledProperty, tandem ) {
+  function CircuitSwitchDragHandler( switchNode, switchLockedProperty, userControlledProperty, tandem ) {
 
     var circuitSwitch = switchNode.circuitSwitch; // for readability
 
@@ -69,6 +70,7 @@ define( function( require ) {
       allowTouchSnag: false,
 
       start: function( event ) {
+        switchLockedProperty.value = true;
         userControlledProperty.value = true;
 
         var hingePoint = circuitSwitch.hingePoint.toVector2(); // in model coordinates
@@ -118,6 +120,7 @@ define( function( require ) {
         }
       },
       end: function( event ) {
+        switchLockedProperty.value = false;
         userControlledProperty.value = false;
 
         // snap the switch to the nearest connection point and set the active connection

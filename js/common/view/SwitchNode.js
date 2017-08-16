@@ -11,6 +11,7 @@ define( function( require ) {
   'use strict';
 
   // Modules
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Circle = require( 'SCENERY/nodes/Circle' );
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
@@ -38,11 +39,11 @@ define( function( require ) {
    *
    * @param {CircuitSwitch} circuitSwitch
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Property.<boolean>} userControlledProperty
+   * @param {Property.<boolean>} switchLockedProperty
    * @param {Tandem} tandem
    * @constructor
    */
-  function SwitchNode( circuitSwitch, modelViewTransform, userControlledProperty, tandem ) {
+  function SwitchNode( circuitSwitch, modelViewTransform, switchLockedProperty, tandem ) {
 
     assert && assert( circuitSwitch.connections.length === 2 || circuitSwitch.connections.length === 3,
       'circuitSwitch should have 2 or three connections only' );
@@ -82,11 +83,13 @@ define( function( require ) {
     // create connection points and clickable areas
     var connectionAreaNodes = [];
 
+    var userControlledProperty = new BooleanProperty( false );
+
     userControlledProperty.link( function( controlled ) {
       tipCircle.fill = controlled ? 'yellow' : null;
     } );
 
-    var dragHandler = new CircuitSwitchDragHandler( self, userControlledProperty, tandem.createTandem( 'dragHandler' ) );
+    var dragHandler = new CircuitSwitchDragHandler( self, switchLockedProperty, userControlledProperty, tandem.createTandem( 'dragHandler' ) );
 
     // prefixes for tandem IDs
     var connectionLabels = [ 'battery', 'open', 'lightBulb' ];
@@ -95,7 +98,7 @@ define( function( require ) {
       var connectionTandem = tandem.createTandem( connectionLabels[ index ] + 'ConnectionNode' );
 
       // add the clickable area for the connection point
-      connectionAreaNodes.push( new ConnectionNode( connection, circuitSwitch, modelViewTransform, connectionTandem, dragHandler, userControlledProperty ) );
+      connectionAreaNodes.push( new ConnectionNode( connection, circuitSwitch, modelViewTransform, connectionTandem, dragHandler, switchLockedProperty ) );
     } );
 
     // changes visual position as the user drags the switch.
