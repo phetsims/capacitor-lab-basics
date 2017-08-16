@@ -11,6 +11,7 @@ define( function( require ) {
 
   // modules
   var BatteryNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryNode' );
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CapacitorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CapacitorNode' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
@@ -66,12 +67,15 @@ define( function( require ) {
     tandem.createTandem( 'topWireNode' ).addInstance( this.topWireNode, TNode );
     tandem.createTandem( 'bottomWireNode' ).addInstance( this.bottomWireNode, TNode );
 
+    // Don't allow both switches to be controlled at once
+    var switchControlledProperty = new BooleanProperty( false );
+
     // @private
     this.circuitSwitchNodes = [];
     self.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 0 ], model.modelViewTransform,
-      tandem.createTandem( 'topSwitchNode' ) ) );
+      switchControlledProperty, tandem.createTandem( 'topSwitchNode' ) ) );
     self.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 1 ], model.modelViewTransform,
-      tandem.createTandem( 'bottomSwitchNode' ) ) );
+      switchControlledProperty, tandem.createTandem( 'bottomSwitchNode' ) ) );
 
     // Once the circuit has been built, if the circuit connection has changed, the switch has been used.
     this.circuitSwitchNodes.forEach( function( switchNode ) {

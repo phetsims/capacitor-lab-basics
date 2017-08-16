@@ -11,7 +11,6 @@ define( function( require ) {
   'use strict';
 
   // Modules
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Circle = require( 'SCENERY/nodes/Circle' );
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
@@ -39,10 +38,11 @@ define( function( require ) {
    *
    * @param {CircuitSwitch} circuitSwitch
    * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {Property.<boolean>} userControlledProperty
    * @param {Tandem} tandem
    * @constructor
    */
-  function SwitchNode( circuitSwitch, modelViewTransform, tandem ) {
+  function SwitchNode( circuitSwitch, modelViewTransform, userControlledProperty, tandem ) {
 
     assert && assert( circuitSwitch.connections.length === 2 || circuitSwitch.connections.length === 3,
       'circuitSwitch should have 2 or three connections only' );
@@ -82,7 +82,6 @@ define( function( require ) {
     // create connection points and clickable areas
     var connectionAreaNodes = [];
 
-    var userControlledProperty = new BooleanProperty( false );
     userControlledProperty.link( function( controlled ) {
       tipCircle.fill = controlled ? 'yellow' : null;
     } );
