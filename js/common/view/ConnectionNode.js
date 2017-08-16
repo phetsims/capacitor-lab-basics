@@ -17,16 +17,10 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
-  // constants
-  //TODO: remove or figure out a better way before production? (e.g. look for query parameter)
-  var DEBUG = false; // shows the triangular bounding areas
-
   var BOUNDING_ANGLE = Math.PI / 8;
-  var AREA_FILL = DEBUG ? 'rgba( 1, 1, 1, 0.65 )' : null;
 
   /**
    * Constructor for the ConnectionNode.
@@ -71,8 +65,6 @@ define( function( require ) {
     // transform the shape
     triangleShape = modelViewTransform.modelToViewShape( triangleShape );
 
-    var triangleNode = new Path( triangleShape, { fill: AREA_FILL } );
-
     // TODO: Do visibility instead?
     function resetPinColors() {
       self.highlightNode.fill = null;
@@ -86,8 +78,9 @@ define( function( require ) {
 
     Node.call( this, {
       cursor: 'pointer',
+      mouseArea: triangleShape,
+      touchArea: triangleShape,
       children: [
-        triangleNode,
         pointNode
       ]
     } );
