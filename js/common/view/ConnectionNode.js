@@ -19,6 +19,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
+  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
   // constants
   //TODO: remove or figure out a better way before production? (e.g. look for query parameter)
@@ -34,9 +35,10 @@ define( function( require ) {
    * @param {CircuitSwitch} circuitSwitch
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
+   * @param {CircuitSwitchDragHandler} dragHandler
    * @constructor
    */
-  function ConnectionNode( connection, circuitSwitch, modelViewTransform, tandem ) {
+  function ConnectionNode( connection, circuitSwitch, modelViewTransform, tandem, dragHandler ) {
 
     var self = this;
 
@@ -59,7 +61,6 @@ define( function( require ) {
     } );
 
     var hingePoint = circuitSwitch.hingePoint.toVector2();
-
     var connectionVector = connection.location.toVector2().minus( hingePoint )
       .withMagnitude( CLBConstants.SWITCH_WIRE_LENGTH * 3 / 2 );
     var triangleShape = new Shape().moveToPoint( hingePoint );
@@ -91,6 +92,15 @@ define( function( require ) {
       ]
     } );
 
+    this.addInputListener( SimpleDragHandler.createForwardingListener( function( event ) {
+      if ( circuitSwitch.circuitConnectionProperty.value === connectionType ) {
+        dragHandler.startDrag( event );
+      }
+      else {
+        circuitSwitch.circuitConnectionProperty.set( connectionType );
+      }
+    } ) );
+
     // Add input listener to set circuit state.
     this.addInputListener( new ButtonListener( {
       tandem: tandem.createTandem( 'buttonListener' ),
@@ -101,9 +111,6 @@ define( function( require ) {
       },
       up: function( event ) {
         resetPinColors();
-      },
-      down: function( event ) {
-        circuitSwitch.circuitConnectionProperty.set( connectionType );
       }
     } ) );
   }

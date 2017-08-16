@@ -46,8 +46,7 @@ define( function( require ) {
 
     // Customization for PhET-iO applications
     // @private
-    //REVIEW simplify to ( CLBQueryParameters.switch === 'twoState' )
-    this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
+    this.twoStateSwitch = CLBQueryParameters.switch === 'twoState';
 
     // @private
     this.snapRange = {

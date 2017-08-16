@@ -11,7 +11,6 @@ define( function( require ) {
   'use strict';
 
   // Modules
-  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Circle = require( 'SCENERY/nodes/Circle' );
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
@@ -22,7 +21,6 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -34,9 +32,6 @@ define( function( require ) {
   // Constants
   var SWITCH_CUE_ARROW_WIDTH = 25;
   var SWITCH_CUE_ARROW_OFFSET = new Vector2( -80, -250 ); // View coords
-  var HIGHLIGHT_COLOR = 'yellow';
-  var SWITCH_CIRCLE_SMALL_RADIUS = CLBConstants.CONNECTION_POINT_RADIUS;
-  var SWITCH_CIRCLE_LARGE_RADIUS = 1.2 * SWITCH_CIRCLE_SMALL_RADIUS;
 
   /**
    * Constructor for a SwitchNode.
@@ -62,22 +57,14 @@ define( function( require ) {
     this.wireSwitchNode.cursor = 'pointer';
 
     // add a shaded sphere to the end of the wire node to represent a connection point at the end of the switch.
-    var shadedSphereNode = new ShadedSphereNode( 2 * SWITCH_CIRCLE_LARGE_RADIUS ); // Diameter
+    var shadedSphereNode = new ShadedSphereNode( 2 * CLBConstants.CONNECTION_POINT_RADIUS ); // Diameter
 
     // Dashed circle on tip of switch used as a contact indicator
-    var tipCircle = new Circle( SWITCH_CIRCLE_LARGE_RADIUS, {
+    var tipCircle = new Circle( CLBConstants.CONNECTION_POINT_RADIUS, {
       lineWidth: 2,
       lineDash: [ 3, 3 ],
       stroke: PhetColorScheme.RED_COLORBLIND
     } );
-    tipCircle.mouseArea = tipCircle.bounds.dilated( 2 );  // px
-    tipCircle.touchArea = tipCircle.bounds.dilated( 15 ); // px
-
-    // Dilate the touch area so that it is easier to drag.
-    // The mouse area is only slightly dilated so the highlight cue only appears
-    // when the mouse pointer is very close to the switch end (see #144).
-    shadedSphereNode.mouseArea = shadedSphereNode.bounds.dilated( 2 );  // px
-    shadedSphereNode.touchArea = shadedSphereNode.bounds.dilated( 15 ); // px
 
     var endPoint = circuitSwitch.switchSegment.endPointProperty.value;
 
@@ -93,7 +80,8 @@ define( function( require ) {
 
     // create connection points and clickable areas
     var connectionAreaNodes = [];
-    var openConnectionArea = null;
+
+    var dragHandler = new CircuitSwitchDragHandler( self, tandem.createTandem( 'dragHandler' ) );
 
     // prefixes for tandem IDs
     var connectionLabels = [ 'battery', 'open', 'lightBulb' ];
@@ -102,16 +90,8 @@ define( function( require ) {
       var connectionTandem = tandem.createTandem( connectionLabels[ index ] + 'ConnectionNode' );
 
       // add the clickable area for the connection point
-      var connectionAreaNode = new ConnectionNode( connection, circuitSwitch, modelViewTransform, connectionTandem );
-
-      if ( connection.connectionType === CircuitState.OPEN_CIRCUIT ) {
-        openConnectionArea = connectionAreaNode;
-      }
-
-      connectionAreaNodes.push( connectionAreaNode );
+      connectionAreaNodes.push( new ConnectionNode( connection, circuitSwitch, modelViewTransform, connectionTandem, dragHandler ) );
     } );
-
-    this.wireSwitchNode.addInputListener( new CircuitSwitchDragHandler( self, tandem.createTandem( 'inputListener' ) ) );
 
     // changes visual position as the user drags the switch.
     circuitSwitch.angleProperty.link( function( angle ) {
@@ -136,11 +116,11 @@ define( function( require ) {
       if ( circuitConnection === CircuitState.SWITCH_IN_TRANSIT ||
            circuitConnection === CircuitState.OPEN_CIRCUIT ) {
         shadedSphereNode.setVisible( false );
-        tipCircle.radius = SWITCH_CIRCLE_SMALL_RADIUS;
+        tipCircle.radius = CLBConstants.CONNECTION_POINT_RADIUS;
       }
       else {
         shadedSphereNode.setVisible( true );
-        tipCircle.radius = SWITCH_CIRCLE_LARGE_RADIUS;
+        tipCircle.radius = CLBConstants.CONNECTION_POINT_RADIUS;
       }
 
       // Connection circle color
@@ -181,57 +161,6 @@ define( function( require ) {
     _.each( connectionAreaNodes, function( connectionAreaNode ) {
       self.addChild( connectionAreaNode.highlightNode );
     } );
-
-    var overCountProperty = new NumberProperty( 0 );
-    overCountProperty.link( function( count ) {
-      tipCircle.fill = count > 0 ? HIGHLIGHT_COLOR : null;
-    } );
-
-    //TODO: duplication of things going on here
-    // Introduced for #180, so tipCircle highlights consistently at the center position as for the left and right
-    // contact points.
-    // In the classroom activity, the openConnectionArea is null on startup
-    openConnectionArea && openConnectionArea.addInputListener( new ButtonListener( {
-      tandem: tandem.createTandem( 'connectionAreaNodeListener' ),
-      over: function( event ) {
-        overCountProperty.value++;
-        // if ( circuitSwitch.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
-        //   tipCircle.fill = HIGHLIGHT_COLOR;
-        // }
-      },
-      // up: function( event ) {
-      //   tipCircle.fill = null;
-      // },
-      out: function( event ) {
-        overCountProperty.value--;
-        // tipCircle.fill = null;
-      },
-      // down: function( event ) {
-      //   tipCircle.fill = null;
-      // }
-    } ) );
-
-    //TODO: duplication of things going on here
-    // Since the switch wire occludes the drag area, the highlight color disappears
-    // when hovering over the switch wire. To correct this, add a listener to
-    // the swittch node itself and emulate the behavior. See #145.
-    this.wireSwitchNode.addInputListener( new ButtonListener( {
-      tandem: tandem.createTandem( 'wireSwitchListener' ),
-      over: function( event ) {
-        overCountProperty.value++;
-        // tipCircle.fill = HIGHLIGHT_COLOR;
-      },
-      // up: function( event ) {
-      //   tipCircle.fill = null;
-      // },
-      out: function( event ) {
-        overCountProperty.value--;
-        // tipCircle.fill = null;
-      },
-      // down: function( event ) {
-      //   tipCircle.fill = null;
-      // }
-    } ) );
 
     // tandem support
     this.mutate( {
