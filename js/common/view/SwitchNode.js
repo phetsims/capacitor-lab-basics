@@ -17,12 +17,12 @@ define( function( require ) {
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var ConnectionAreaNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionAreaNode' );
-  var ConnectionPointNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionPointNode' );
+  var ConnectionNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionNode' );
   var HingePointNode = require( 'CAPACITOR_LAB_BASICS/common/view/HingePointNode' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -92,7 +92,6 @@ define( function( require ) {
     hingeNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint );
 
     // create connection points and clickable areas
-    this.connectionPointNodes = [];
     var connectionAreaNodes = [];
     var openConnectionArea = null;
 
@@ -100,20 +99,15 @@ define( function( require ) {
     var connectionLabels = [ 'battery', 'open', 'lightBulb' ];
 
     circuitSwitch.connections.forEach( function( connection, index ) {
-      // add the connection point node
-      var connectionPointNode = new ConnectionPointNode( connection.connectionType,
-        circuitSwitch.circuitConnectionProperty, tandem.createTandem( connectionLabels[ index ] + 'ConnectionPointNode' ) );
-      connectionPointNode.translation = modelViewTransform.modelToViewPosition( connection.location );
+      var connectionTandem = tandem.createTandem( connectionLabels[ index ] + 'ConnectionNode' );
 
       // add the clickable area for the connection point
-      var connectionAreaNode = new ConnectionAreaNode( connection, circuitSwitch,
-        connectionPointNode, modelViewTransform, tandem.createTandem( connectionLabels[ index ] + 'ConnectionAreaNode' ) );
+      var connectionAreaNode = new ConnectionNode( connection, circuitSwitch, modelViewTransform, connectionTandem );
 
       if ( connection.connectionType === CircuitState.OPEN_CIRCUIT ) {
         openConnectionArea = connectionAreaNode;
       }
 
-      self.connectionPointNodes.push( connectionPointNode );
       connectionAreaNodes.push( connectionAreaNode );
     } );
 
@@ -182,50 +176,61 @@ define( function( require ) {
     _.each( connectionAreaNodes, function( connectionAreaNode ) {
       self.addChild( connectionAreaNode );
     } );
-    _.each( self.connectionPointNodes, function( connectionPointNode ) {
-      self.addChild( connectionPointNode );
-    } );
     this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );
+    _.each( connectionAreaNodes, function( connectionAreaNode ) {
+      self.addChild( connectionAreaNode.highlightNode );
+    } );
 
+    var overCountProperty = new NumberProperty( 0 );
+    overCountProperty.link( function( count ) {
+      tipCircle.fill = count > 0 ? HIGHLIGHT_COLOR : null;
+    } );
+
+    //TODO: duplication of things going on here
     // Introduced for #180, so tipCircle highlights consistently at the center position as for the left and right
     // contact points.
     // In the classroom activity, the openConnectionArea is null on startup
     openConnectionArea && openConnectionArea.addInputListener( new ButtonListener( {
       tandem: tandem.createTandem( 'connectionAreaNodeListener' ),
       over: function( event ) {
-        if ( circuitSwitch.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
-          tipCircle.fill = HIGHLIGHT_COLOR;
-        }
+        overCountProperty.value++;
+        // if ( circuitSwitch.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
+        //   tipCircle.fill = HIGHLIGHT_COLOR;
+        // }
       },
-      up: function( event ) {
-        tipCircle.fill = null;
-      },
+      // up: function( event ) {
+      //   tipCircle.fill = null;
+      // },
       out: function( event ) {
-        tipCircle.fill = null;
+        overCountProperty.value--;
+        // tipCircle.fill = null;
       },
-      down: function( event ) {
-        tipCircle.fill = null;
-      }
+      // down: function( event ) {
+      //   tipCircle.fill = null;
+      // }
     } ) );
 
+    //TODO: duplication of things going on here
     // Since the switch wire occludes the drag area, the highlight color disappears
     // when hovering over the switch wire. To correct this, add a listener to
     // the swittch node itself and emulate the behavior. See #145.
     this.wireSwitchNode.addInputListener( new ButtonListener( {
       tandem: tandem.createTandem( 'wireSwitchListener' ),
       over: function( event ) {
-        tipCircle.fill = HIGHLIGHT_COLOR;
+        overCountProperty.value++;
+        // tipCircle.fill = HIGHLIGHT_COLOR;
       },
-      up: function( event ) {
-        tipCircle.fill = null;
-      },
+      // up: function( event ) {
+      //   tipCircle.fill = null;
+      // },
       out: function( event ) {
-        tipCircle.fill = null;
+        overCountProperty.value--;
+        // tipCircle.fill = null;
       },
-      down: function( event ) {
-        tipCircle.fill = null;
-      }
+      // down: function( event ) {
+      //   tipCircle.fill = null;
+      // }
     } ) );
 
     // tandem support

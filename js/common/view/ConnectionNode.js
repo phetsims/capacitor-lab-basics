@@ -13,6 +13,7 @@ define( function( require ) {
   // modules
   var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var Circle = require( 'SCENERY/nodes/Circle' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -20,25 +21,45 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
 
   // constants
+  //TODO: remove or figure out a better way before production? (e.g. look for query parameter)
   var DEBUG = false; // shows the triangular bounding areas
 
   var BOUNDING_ANGLE = Math.PI / 8;
   var AREA_FILL = DEBUG ? 'rgba( 1, 1, 1, 0.65 )' : null;
 
   /**
-   * Constructor for the ConnectionAreaNode.
+   * Constructor for the ConnectionNode.
    *
-   * @param {Object} connection
+   * @param {Object} connection TODO: Just an Object???
    * @param {CircuitSwitch} circuitSwitch
-   * @param {ConnectionPointNode} connectionPointNode
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
    * @constructor
    */
-  function ConnectionAreaNode( connection, circuitSwitch, connectionPointNode, modelViewTransform, tandem ) {
+  function ConnectionNode( connection, circuitSwitch, modelViewTransform, tandem ) {
+
+    var self = this;
+
+    // @public {Circle}
+    this.highlightNode = new Circle( {
+      radius: CLBConstants.CONNECTION_POINT_RADIUS,
+      lineWidth: 2,
+      lineDash: [ 3, 3 ],
+      pickable: false,
+      translation: modelViewTransform.modelToViewPosition( connection.location )
+    } );
+
+    var pointNode = new Circle( {
+      radius: CLBConstants.CONNECTION_POINT_RADIUS,
+      lineWidth: 2,
+      lineDash: [ 3, 3 ],
+      fill: CLBConstants.DISCONNECTED_POINT_COLOR,
+      stroke: CLBConstants.DISCONNECTED_POINT_STROKE,
+      translation: modelViewTransform.modelToViewPosition( connection.location )
+    } );
+
     var hingePoint = circuitSwitch.hingePoint.toVector2();
 
-    Node.call( this );
     var connectionVector = connection.location.toVector2().minus( hingePoint )
       .withMagnitude( CLBConstants.SWITCH_WIRE_LENGTH * 3 / 2 );
     var triangleShape = new Shape().moveToPoint( hingePoint );
@@ -50,12 +71,11 @@ define( function( require ) {
     triangleShape = modelViewTransform.modelToViewShape( triangleShape );
 
     var triangleNode = new Path( triangleShape, { fill: AREA_FILL } );
-    triangleNode.touchArea = triangleShape;
-    triangleNode.cursor = 'pointer';
 
+    // TODO: Do visibility instead?
     function resetPinColors() {
-      connectionPointNode.fill = CLBConstants.DISCONNECTED_POINT_COLOR;
-      connectionPointNode.stroke = CLBConstants.DISCONNECTED_POINT_STROKE;
+      self.highlightNode.fill = null;
+      self.highlightNode.stroke = null;
     }
 
     var connectionType = connection.connectionType; // for readability
@@ -63,13 +83,21 @@ define( function( require ) {
       resetPinColors();
     } );
 
+    Node.call( this, {
+      cursor: 'pointer',
+      children: [
+        triangleNode,
+        pointNode
+      ]
+    } );
+
     // Add input listener to set circuit state.
     this.addInputListener( new ButtonListener( {
-
       tandem: tandem.createTandem( 'buttonListener' ),
 
       over: function( event ) {
-        connectionPointNode.fill = CLBConstants.CONNECTION_POINT_HIGHLIGHTED;
+        self.highlightNode.fill = CLBConstants.CONNECTION_POINT_HIGHLIGHTED;
+        self.highlightNode.stroke = 'black';
       },
       up: function( event ) {
         resetPinColors();
@@ -78,11 +106,9 @@ define( function( require ) {
         circuitSwitch.circuitConnectionProperty.set( connectionType );
       }
     } ) );
-
-    this.addChild( triangleNode );
   }
 
-  capacitorLabBasics.register( 'ConnectionAreaNode', ConnectionAreaNode );
+  capacitorLabBasics.register( 'ConnectionNode', ConnectionNode );
 
-  return inherit( Node, ConnectionAreaNode );
+  return inherit( Node, ConnectionNode );
 } );
