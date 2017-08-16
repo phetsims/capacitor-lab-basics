@@ -11,6 +11,7 @@ define( function( require ) {
   'use strict';
 
   // Modules
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Circle = require( 'SCENERY/nodes/Circle' );
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
@@ -81,7 +82,12 @@ define( function( require ) {
     // create connection points and clickable areas
     var connectionAreaNodes = [];
 
-    var dragHandler = new CircuitSwitchDragHandler( self, tandem.createTandem( 'dragHandler' ) );
+    var userControlledProperty = new BooleanProperty( false );
+    userControlledProperty.link( function( controlled ) {
+      tipCircle.fill = controlled ? 'yellow' : null;
+    } );
+
+    var dragHandler = new CircuitSwitchDragHandler( self, userControlledProperty, tandem.createTandem( 'dragHandler' ) );
 
     // prefixes for tandem IDs
     var connectionLabels = [ 'battery', 'open', 'lightBulb' ];
@@ -90,7 +96,7 @@ define( function( require ) {
       var connectionTandem = tandem.createTandem( connectionLabels[ index ] + 'ConnectionNode' );
 
       // add the clickable area for the connection point
-      connectionAreaNodes.push( new ConnectionNode( connection, circuitSwitch, modelViewTransform, connectionTandem, dragHandler ) );
+      connectionAreaNodes.push( new ConnectionNode( connection, circuitSwitch, modelViewTransform, connectionTandem, dragHandler, userControlledProperty ) );
     } );
 
     // changes visual position as the user drags the switch.

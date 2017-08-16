@@ -11,12 +11,13 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Circle = require( 'SCENERY/nodes/Circle' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
+  var Property = require( 'AXON/Property' );
   var Shape = require( 'KITE/Shape' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
@@ -30,9 +31,10 @@ define( function( require ) {
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
    * @param {CircuitSwitchDragHandler} dragHandler
+   * @param {Property.<boolean>}
    * @constructor
    */
-  function ConnectionNode( connection, circuitSwitch, modelViewTransform, tandem, dragHandler ) {
+  function ConnectionNode( connection, circuitSwitch, modelViewTransform, tandem, dragHandler, userControlledProperty ) {
 
     var self = this;
 
@@ -42,6 +44,8 @@ define( function( require ) {
       lineWidth: 2,
       lineDash: [ 3, 3 ],
       pickable: false,
+      fill: CLBConstants.CONNECTION_POINT_HIGHLIGHTED,
+      stroke: 'black',
       translation: modelViewTransform.modelToViewPosition( connection.location )
     } );
 
@@ -63,16 +67,7 @@ define( function( require ) {
     // transform the shape
     triangleShape = modelViewTransform.modelToViewShape( triangleShape );
 
-    // TODO: Do visibility instead?
-    function resetPinColors() {
-      self.highlightNode.fill = null;
-      self.highlightNode.stroke = null;
-    }
-
     var connectionType = connection.connectionType; // for readability
-    circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
-      resetPinColors();
-    } );
 
     Node.call( this, {
       cursor: 'pointer',
@@ -92,18 +87,20 @@ define( function( require ) {
       }
     } ) );
 
-    // Add input listener to set circuit state.
-    this.addInputListener( new ButtonListener( {
-      tandem: tandem.createTandem( 'buttonListener' ),
+    var overCountProperty = new NumberProperty( 0 );
+    Property.multilink( [ overCountProperty, userControlledProperty ], function( over, userControlled ) {
+      self.highlightNode.visible = over > 0 && !userControlled;
+    } );
 
-      over: function( event ) {
-        self.highlightNode.fill = CLBConstants.CONNECTION_POINT_HIGHLIGHTED;
-        self.highlightNode.stroke = 'black';
+    // Add input listener to set circuit state.
+    this.addInputListener( {
+      enter: function( event ) {
+        overCountProperty.value++;
       },
-      up: function( event ) {
-        resetPinColors();
+      exit: function( event ) {
+        overCountProperty.value--;
       }
-    } ) );
+    } );
   }
 
   capacitorLabBasics.register( 'ConnectionNode', ConnectionNode );
