@@ -39,7 +39,7 @@ define( function( require ) {
    * Constructor for a BatteryNode.
    *
    * @param {Battery} battery
-   * @param {Range} voltageRange
+   * @param {RangeWithValue} voltageRange
    * @param {Tandem} tandem
    * @constructor
    */
