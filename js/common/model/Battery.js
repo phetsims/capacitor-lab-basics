@@ -21,7 +21,6 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
 
   // phet-io modules
-  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
   var TString = require( 'ifphetio!PHET_IO/types/TString' );
 
   // constants
@@ -59,9 +58,7 @@ define( function( require ) {
     // @public
     this.voltageProperty = new NumberProperty( voltage, {
       tandem: tandem.createTandem( 'voltageProperty' ),
-      phetioValueType: TNumber( {
-        units: 'volts'
-      } )
+      units: 'volts'
     } );
 
     // Value type: enumeration (string)

@@ -24,9 +24,6 @@ define( function( require ) {
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
-  // phet-io modules
-  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
-
   // constants
   var SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point
 
@@ -63,15 +60,13 @@ define( function( require ) {
     // @public
     this.angleProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'angleProperty' ),
-      phetioValueType: TNumber( {
-        units: 'radians'
-      } )
+      units: 'radians'
     } );
 
     // Assign string identifying connection point
     var connectionName = ( positionLabel === 'top' ) ?
-      CircuitLocation.CIRCUIT_SWITCH_TOP :
-      CircuitLocation.CIRCUIT_SWITCH_BOTTOM;
+                         CircuitLocation.CIRCUIT_SWITCH_TOP :
+                         CircuitLocation.CIRCUIT_SWITCH_BOTTOM;
 
     // Add the switch wire that spans two connection points. Default connection is to the battery.
     this.switchSegment = new WireSegment( this.hingePoint,

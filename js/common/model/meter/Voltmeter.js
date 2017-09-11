@@ -12,14 +12,14 @@ define( function( require ) {
 
   // modules
   var BooleanProperty = require( 'AXON/BooleanProperty' );
+  var Property = require( 'AXON/Property' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Property = require( 'AXON/Property' );
   var TVector3 = require( 'DOT/TVector3' );
   var Vector3 = require( 'DOT/Vector3' );
-  var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
+  var inherit = require( 'PHET_CORE/inherit' );
 
   // phet-io modules
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
@@ -76,14 +76,13 @@ define( function( require ) {
       phetioValueType: TVector3
     } );
 
-    // By design, the voltmeter reads "?" for disconnected contacts, which is
-    // represented internally by a null assignment value.
+    // By design, the voltmeter reads "?" for disconnected contacts, which is represented internally by a null
+    // assignment value.
     // @public
     this.measuredVoltageProperty = new Property( null, {
       tandem: tandem.createTandem( 'measuredVoltageProperty' ),
-      phetioValueType: TNumber( {
-        units: 'volts'
-      } )
+      units: 'volts',
+      phetioValueType: TNumber
     } );
 
     var self = this;
@@ -94,17 +93,17 @@ define( function( require ) {
 
     var touchingFreePlate = function( probe ) {
       return ( self.circuit.probeContactsComponent( probe, CircuitLocation.CAPACITOR_TOP, true ) ||
-        self.circuit.probeContactsComponent( probe, CircuitLocation.CAPACITOR_BOTTOM, true ) );
+               self.circuit.probeContactsComponent( probe, CircuitLocation.CAPACITOR_BOTTOM, true ) );
     };
 
     var touchingFreeLightBulb = function( probe ) {
       return ( self.circuit.disconnectedLightBulbContacts( probe, CircuitLocation.LIGHT_BULB_TOP ) ||
-        self.circuit.disconnectedLightBulbContacts( probe, CircuitLocation.LIGHT_BULB_BOTTOM ) );
+               self.circuit.disconnectedLightBulbContacts( probe, CircuitLocation.LIGHT_BULB_BOTTOM ) );
     };
 
     var touchingFreeBattery = function( probe ) {
       return ( self.circuit.probeContactsComponent( probe, CircuitLocation.BATTERY_TOP, true ) ||
-        self.circuit.probeContactsComponent( probe, CircuitLocation.BATTERY_BOTTOM, true ) );
+               self.circuit.probeContactsComponent( probe, CircuitLocation.BATTERY_BOTTOM, true ) );
     };
 
     /**

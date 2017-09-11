@@ -81,19 +81,15 @@ define( function( require ) {
     // @public
     this.plateSeparationProperty = new NumberProperty( options.plateSeparation, {
       tandem: tandem.createTandem( 'plateSeparationProperty' ),
-      phetioValueType: TNumber( {
-        units: 'meters',
-        range: CLBConstants.PLATE_SEPARATION_RANGE
-      } )
+      units: 'meters',
+      range: CLBConstants.PLATE_SEPARATION_RANGE
     } );
 
     // zero until it's connected into a circuit
     // @public
     this.plateVoltageProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'plateVoltageProperty' ),
-      phetioValueType: TNumber( {
-        units: 'volts'
-      } )
+      units: 'volts'
     } );
 
     // @public
@@ -103,7 +99,8 @@ define( function( require ) {
         return CLBConstants.EPSILON_0 * plateSize.width * plateSize.depth / plateSeparation;
       }, {
         tandem: tandem.createTandem( 'capacitanceProperty' ),
-        phetioValueType: TNumber( { units: 'farads' } )
+        units: 'farads',
+        phetioValueType: TNumber
       } );
 
     // Charge on top plate of capacitor
@@ -119,7 +116,8 @@ define( function( require ) {
         return charge;
       }, {
         tandem: tandem.createTandem( 'plateChargeProperty' ),
-        phetioValueType: TNumber( { units: 'coulombs' } )
+        units: 'coulombs',
+        phetioValueType: TNumber
       } );
 
     // @public
@@ -128,7 +126,8 @@ define( function( require ) {
         return 0.5 * capacitance * voltage * voltage;
       }, {
         tandem: tandem.createTandem( 'storedEnergyProperty' ),
-        phetioValueType: TNumber( { units: 'joules' } )
+        units: 'joules',
+        phetioValueType: TNumber
       } );
 
     // Track the previous capacitance to adjust the inital voltage when discharging, see
@@ -223,7 +222,7 @@ define( function( require ) {
      * @param {CircuitLocation} location - CircuitLocation.CAPACITOR_TOP or CircuitLocation.CAPACITOR_BOTTOM
      * @returns {boolean}
      */
-    contacts: function ( probe, location ) {
+    contacts: function( probe, location ) {
 
       assert && assert( location === CircuitLocation.CAPACITOR_TOP || location === CircuitLocation.CAPACITOR_BOTTOM,
         'Invalid capacitor location: ' + location );

@@ -29,7 +29,6 @@ define( function( require ) {
   var Range = require( 'DOT/Range' );
 
   // phet-io modules
-  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
   var TString = require( 'ifphetio!PHET_IO/types/TString' );
 
   /**
@@ -52,9 +51,7 @@ define( function( require ) {
      */
     this.currentAmplitudeProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
-      phetioValueType: TNumber( {
-        units: 'amperes'
-      } ),
+      units: 'amperes',
       phetioInstanceDocumentation: 'currentAmplitudeProperty is updated by the model and should not be set by users. Beware that the current is calculated in the model time step, so if dQ is zero for a step the current could transiently appear as zero.'
     } );
 
@@ -77,10 +74,8 @@ define( function( require ) {
      */
     this.disconnectedPlateChargeProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'disconnectedPlateChargeProperty' ),
-      phetioValueType: TNumber( {
-        units: 'coulombs',
-        range: new Range( -CLBConstants.PLATE_CHARGE_METER_MAX_VALUE, CLBConstants.PLATE_CHARGE_METER_MAX_VALUE )
-      } )
+      units: 'coulombs',
+      range: new Range( -CLBConstants.PLATE_CHARGE_METER_MAX_VALUE, CLBConstants.PLATE_CHARGE_METER_MAX_VALUE )
     } );
 
     // Utility variable for current calculation
@@ -399,17 +394,17 @@ define( function( require ) {
     batteryContacts: function( probe, location ) {
 
       assert && assert( location === CircuitLocation.BATTERY_TOP || location === CircuitLocation.BATTERY_BOTTOM,
-      'Invalid battery location: ' + location );
+        'Invalid battery location: ' + location );
 
       var capacitorSide = location === CircuitLocation.BATTERY_TOP ?
-        CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
+                          CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
 
       return (
         this.shapeTouchesWireGroup( probe, location ) ||
         this.battery.contacts( probe ) || (
           this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED && (
-            this.capacitor.contacts( probe, capacitorSide ) ||
-            this.shapeTouchesWireGroup( probe, capacitorSide ) ) ) );
+          this.capacitor.contacts( probe, capacitorSide ) ||
+          this.shapeTouchesWireGroup( probe, capacitorSide ) ) ) );
     },
 
     /**
@@ -433,13 +428,13 @@ define( function( require ) {
         }
         else {
           var capacitorSide = location === CircuitLocation.BATTERY_TOP ?
-            CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
+                              CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
           return (
             this.shapeTouchesWireGroup( probe, location ) ||
             this.battery.contacts( probe ) || (
               this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED && (
-                this.capacitor.contacts( probe, capacitorSide ) ||
-                this.shapeTouchesWireGroup( probe, capacitorSide ) ) ) );
+              this.capacitor.contacts( probe, capacitorSide ) ||
+              this.shapeTouchesWireGroup( probe, capacitorSide ) ) ) );
         }
       }
 
