@@ -28,8 +28,8 @@ define( function( require ) {
   var LABEL_FONT = new PhetFont( 12 );
 
   // images
-  var batteryUpImage = require( 'image!CAPACITOR_LAB_BASICS/battery.png' );
   var batteryDownImage = require( 'image!CAPACITOR_LAB_BASICS/battery_upside-down.png' );
+  var batteryUpImage = require( 'image!CAPACITOR_LAB_BASICS/battery.png' );
 
   // strings
   var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );

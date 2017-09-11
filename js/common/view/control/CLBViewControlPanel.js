@@ -31,12 +31,12 @@ define( function( require ) {
   var TITLE_VERTICAL_SPACE = 10;
 
   // strings
-  var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
-  var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
-  var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
-  var currentDirectionString = require( 'string!CAPACITOR_LAB_BASICS/currentDirection' );
-  var barGraphString = require( 'string!CAPACITOR_LAB_BASICS/barGraph' );
   var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
+  var barGraphString = require( 'string!CAPACITOR_LAB_BASICS/barGraph' );
+  var currentDirectionString = require( 'string!CAPACITOR_LAB_BASICS/currentDirection' );
+  var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
+  var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
+  var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
 
   /**
    * Constructor.

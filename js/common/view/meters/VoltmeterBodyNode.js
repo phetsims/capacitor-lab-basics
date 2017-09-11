@@ -32,10 +32,10 @@ define( function( require ) {
   } );
 
   // strings
+  var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
   var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
   var voltsUnknownString = require( 'string!CAPACITOR_LAB_BASICS/volts.unknown' );
-  var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
 
   // images
   var voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
