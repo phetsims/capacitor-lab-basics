@@ -34,7 +34,7 @@ define( function( require ) {
    */
   function CapacitanceScreenView( model, tandem ) {
 
-    ScreenView.call( this );
+    ScreenView.call( this, { tandem: tandem } );
 
     // @private
     this.modelViewTransform = model.modelViewTransform;
@@ -55,7 +55,7 @@ define( function( require ) {
     viewControlPanel.translation = this.layoutBounds.rightTop.minusXY( viewControlPanel.width + 10, -10 );
     voltmeterToolBoxPanel.rightTop = viewControlPanel.rightBottom.plusXY( 0, 20 );
 
-    var capacitanceBarMeterPanel = new CapacitanceBarMeterPanel( model, 0.75*capacitanceCircuitNode.width,
+    var capacitanceBarMeterPanel = new CapacitanceBarMeterPanel( model, 0.75 * capacitanceCircuitNode.width,
       tandem.createTandem( 'capacitanceBarMeterPanel' ) );
     capacitanceBarMeterPanel.leftBottom = capacitanceCircuitNode.topWireNode.leftTop.minus( BAR_METER_PANEL_OFFSET );
 
@@ -81,8 +81,8 @@ define( function( require ) {
     if ( DEBUG_SHAPES ) {
       var topTerminalNode = new Path(
         model.circuit.battery.shapeCreator.createPositiveTerminalShapeBody( model.circuit.battery.location ), {
-        fill: 'rgba( 1, 0, 0, 0.5 )'
-      } );
+          fill: 'rgba( 1, 0, 0, 0.5 )'
+        } );
       this.addChild( topTerminalNode );
       // add a shape at the tip of the probe for debugging probe tip collisions.
       this.addChild( new Path( model.voltmeter.shapeCreator.getPositiveProbeTipShape(), {

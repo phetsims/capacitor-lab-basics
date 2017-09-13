@@ -33,7 +33,7 @@ define( function( require ) {
    */
   function CLBLightBulbScreenView( model, tandem ) {
 
-    ScreenView.call( this );
+    ScreenView.call( this, { tandem: tandem } );
 
     this.modelViewTransform = model.modelViewTransform; // @private
     this.model = model; // @private
@@ -42,7 +42,7 @@ define( function( require ) {
     var lightBulbCircuitNode = new LightBulbCircuitNode( model, tandem.createTandem( 'lightBulbCircuitNode' ) );
 
     // meters
-    var barMeterPanelWidth = lightBulbCircuitNode.topWireNode.width + 2*BAR_METER_PANEL_OFFSET.x;
+    var barMeterPanelWidth = lightBulbCircuitNode.topWireNode.width + 2 * BAR_METER_PANEL_OFFSET.x;
     var barMeterPanel = new BarMeterPanel( model, barMeterPanelWidth, tandem.createTandem( 'barMeterPanel' ) );
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty,
       tandem.createTandem( 'voltmeterNode' ) );
