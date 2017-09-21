@@ -1,4 +1,4 @@
-// Copyright 2016, University of Colorado Boulder
+// Copyright 2015-2017, University of Colorado Boulder
 
 /**
  * Control panel for view elements in Capacitor Lab: Basics.  Controls the visibility of plate charges, current

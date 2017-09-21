@@ -1,4 +1,4 @@
-// Copyright 2016, University of Colorado Boulder
+// Copyright 2015-2016, University of Colorado Boulder
 
 /**
  * Model of a lightBulb, used in the Capacitor Lab: Basics sim. In order for the current to decay at a rate slow

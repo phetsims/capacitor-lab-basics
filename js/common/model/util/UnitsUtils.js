@@ -1,4 +1,4 @@
-// Copyright 2015, University of Colorado Boulder
+// Copyright 2015-2017, University of Colorado Boulder
 
 //REVIEW this doesn't need to have a constructor or use inherit
 /**
