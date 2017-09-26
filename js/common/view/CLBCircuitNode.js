@@ -21,7 +21,6 @@ define( function( require ) {
   var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
   var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
   var SwitchNode = require( 'CAPACITOR_LAB_BASICS/common/view/SwitchNode' );
-  var TNode = require( 'SCENERY/nodes/TNode' );
   var Vector2 = require( 'DOT/Vector2' );
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
 
@@ -64,9 +63,6 @@ define( function( require ) {
       self.bottomWireNode.addChild( new WireNode( bottomWire ) );
     } );
 
-    tandem.createTandem( 'topWireNode' ).addInstance( this.topWireNode, TNode );
-    tandem.createTandem( 'bottomWireNode' ).addInstance( this.bottomWireNode, TNode );
-
     // Don't allow both switches to be controlled at once
     var switchControlledProperty = new BooleanProperty( false );
 
@@ -100,9 +96,9 @@ define( function( require ) {
 
     // current indicators
     this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( this.circuit.currentAmplitudeProperty, 0,
-    tandem.createTandem( 'batteryTopCurrentIndicatorNode' ) );
+      tandem.createTandem( 'batteryTopCurrentIndicatorNode' ) );
     this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode( this.circuit.currentAmplitudeProperty, Math.PI,
-    tandem.createTandem( 'batteryBottomCurrentIndicatorNode' ) );
+      tandem.createTandem( 'batteryBottomCurrentIndicatorNode' ) );
 
     // rendering order
     this.addChild( this.bottomWireNode );
@@ -117,8 +113,6 @@ define( function( require ) {
     this.addChild( this.circuitSwitchNodes[ 1 ] );
 
     // layout
-    var x = 0;
-    var y = 0;
 
     // battery
     this.batteryNode.center = model.modelViewTransform.modelToViewPosition( this.circuit.battery.location );
@@ -127,11 +121,11 @@ define( function( require ) {
     capacitorNode.center = model.modelViewTransform.modelToViewPosition( this.circuit.capacitor.location );
 
     // top current indicator
-    x = this.batteryNode.right + ( this.circuitSwitchNodes[ 0 ].left - this.batteryNode.right ) / 2;
+    var x = this.batteryNode.right + (this.circuitSwitchNodes[ 0 ].left - this.batteryNode.right) / 2;
 
     // current indicator offset
     var indicatorOffset = 7 / 2;
-    y = this.topWireNode.bounds.minY + indicatorOffset;
+    var y = this.topWireNode.bounds.minY + indicatorOffset;
     this.batteryTopCurrentIndicatorNode.translate( x, y );
 
     // bottom current indicator
@@ -148,7 +142,6 @@ define( function( require ) {
       self.batteryTopCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
       self.batteryBottomCurrentIndicatorNode.setVisible( currentIndicatorsVisible );
     } );
-
   }
 
   capacitorLabBasics.register( 'CLBCircuitNode', CLBCircuitNode );
@@ -165,7 +158,7 @@ define( function( require ) {
      * @param  {Property.<boolean>} currentIndicatorsVisible
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
-      assert && assert(false, 'updateCurrentVisibility should be implemented in descendant types' );
+      assert && assert( false, 'updateCurrentVisibility should be implemented in descendant types' );
     }
 
   } );
