@@ -196,22 +196,11 @@ define( function( require ) {
      * @returns {boolean}
      */
     probesAreTouching: function() {
-      //REVIEW: Use https://github.com/phetsims/capacitor-lab-basics/issues/175 instead (assigned to JO)
-      var touching = false;
       var posShape = this.shapeCreator.getPositiveProbeTipShape();
       var negShape = this.shapeCreator.getNegativeProbeTipShape();
-      posShape.subpaths.forEach( function( subpath ) {
-        subpath.points.forEach( function( point ) {
-          if ( negShape.containsPoint( point ) ) {
-            touching = true;
-            return;
-          }
-        } );
-        if ( touching ) {
-          return;
-        } // For efficiency
-      } );
-      return touching;
+
+      return posShape.bounds.intersectsBounds( negShape.bounds ) &&
+             posShape.shapeIntersection( negShape ).getNonoverlappingArea() > 0;
     },
 
     // @public
