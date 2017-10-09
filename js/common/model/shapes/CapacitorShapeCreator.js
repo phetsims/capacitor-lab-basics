@@ -41,7 +41,7 @@ define( function( require ) {
      * Top plate, unoccluded.
      * @public
      *
-     * @returns {createBoxShape()}
+     * @returns {Shape}
      */
     createTopPlateShape: function() {
       var x = this.capacitor.location.x;
@@ -56,7 +56,7 @@ define( function( require ) {
      * Bottom plate, unoccluded.
      * @public
      *
-     * @returns {createBoxShape()}
+     * @returns {Shape}
      */
     createBottomPlateShape: function() {
       var x = this.capacitor.location.x;
@@ -74,12 +74,12 @@ define( function( require ) {
     /**
      * Create an array of planar shapes that form a box.
      * @public
-     * @param x
-     * @param y
-     * @param z
-     * @param size
      *
-     * @returns {BoxShapeCreator.createBoxShape()}
+     * @param {number} x
+     * @param {number} y
+     * @param {number} z
+     * @param {number} size
+     * @returns {Shape}
      */
     createBoxShape: function( x, y, z, size ) {
       return this.boxShapeCreator.createBoxShape( x, y, z, size.width, size.height, size.depth );

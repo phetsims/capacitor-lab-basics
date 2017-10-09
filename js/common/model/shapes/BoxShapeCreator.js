@@ -156,9 +156,6 @@ define( function( require ) {
      * A complete box, relative to a specific origin.
      * @public
      *
-     * Previously, this was built up using constructional area geometry.  For the port, we return an array that
-     * can be added to the scene in parts.
-     *
      * @param {number} x
      * @param {number} y
      * @param {number} z
@@ -171,7 +168,7 @@ define( function( require ) {
       var topShape = this.createTopFace( x, y, z, width, height, depth );
       var frontShape = this.createFrontFace( x, y, z, width, height, depth );
       var sideShape = this.createRightSideFace( x, y, z, width, height, depth );
-      return [ topShape, frontShape, sideShape ];
+      return Shape.union( [ topShape, frontShape, sideShape ] );
     },
 
     /**

@@ -227,19 +227,17 @@ define( function( require ) {
       assert && assert( location === CircuitLocation.CAPACITOR_TOP || location === CircuitLocation.CAPACITOR_BOTTOM,
         'Invalid capacitor location: ' + location );
 
-      var faces = null;
+      var shape = null;
       if ( location === CircuitLocation.CAPACITOR_TOP ) {
-        faces = this.shapeCreator.createTopPlateShape();
+        shape = this.shapeCreator.createTopPlateShape();
       }
       else if ( location === CircuitLocation.CAPACITOR_BOTTOM ) {
-        faces = this.shapeCreator.createBottomPlateShape();
+        shape = this.shapeCreator.createBottomPlateShape();
       }
 
-      assert && assert( faces, 'Plate face shapes were not created for ' + location );
+      assert && assert( shape, 'Shape was not created for ' + location );
 
-      return _.some( faces, function( face ) {
-        return face.containsPoint( probe.bounds.center );
-      } );
+      return shape.containsPoint( probe.bounds.center );
     },
 
     /**
