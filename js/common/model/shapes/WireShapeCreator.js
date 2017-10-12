@@ -41,6 +41,7 @@ define( function( require ) {
      * @returns {Shape}
      */
     createWireShape: function() {
+      var self = this;
 
       // stroke styles for the wire shapes.
       var strokeStyles = new LineStyles( {
@@ -48,27 +49,12 @@ define( function( require ) {
         lineCap: 'round',
         lineJoin: 'round'
       } );
-      var wireShape = new Shape();
 
-      // Move to the start point of the first wire segment.
-      var segment = this.wire.segments[ 0 ];
-
-      // Model coords are 3D; view is in 2D
-      var startPoint = segment.startPointProperty.value.toVector2();
-      var endPoint = segment.endPointProperty.value.toVector2();
-
-      wireShape.moveToPoint( startPoint ).lineToPoint( endPoint );
-
-      // go through the points 'tip to tail', assuming they are in the desired order
-      for ( var i = 1; i < this.wire.segments.length; i++ ) {
-        var currentSegment = this.wire.segments[ i ];
-        wireShape.lineToPoint( currentSegment.endPointProperty.value.toVector2() );
-      }
-
-      // return a transformed shape defined by the stroke styles.
-      wireShape = this.modelViewTransform.modelToViewShape( wireShape );
-      wireShape = wireShape.getStrokedShape( strokeStyles );
-      return wireShape;
+      var shapes = this.wire.segments.map( function( segment ) {
+        var shape = Shape.lineSegment( segment.startPointProperty.value.toVector2(), segment.endPointProperty.value.toVector2() );
+        return self.modelViewTransform.modelToViewShape( shape ).getStrokedShape( strokeStyles );
+      } );
+      return Shape.union( shapes );
     }
   } );
 } );
