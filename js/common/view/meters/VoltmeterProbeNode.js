@@ -88,19 +88,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'VoltmeterProbeNode', VoltmeterProbeNode );
 
-  return inherit( Node, VoltmeterProbeNode, {
-
-    /**
-     * Gets the point, relative to the probe, where the wire connects to the probe.
-     * Returns a new Vector2.
-     *
-     * @returns {Vector2}
-     * @public
-     */
-    getConnectionOffset: function() {
-      return this.connectionOffset.copy();
-    }
-  }, {
+  return inherit( Node, VoltmeterProbeNode, {}, {
 
     /**
      * Factory for a positive VoltmeterProbeNode

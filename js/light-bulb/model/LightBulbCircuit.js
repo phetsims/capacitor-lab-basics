@@ -210,22 +210,6 @@ define( function( require ) {
     },
 
     /**
-     * Sets the value used for plate charge when the battery is disconnected.
-     * (design doc symbol: Q_total)
-     * @public
-     *
-     * @param {number} disconnectedPlateCharge Coulombs
-     */
-    setDisconnectedPlateCharge: function( disconnectedPlateCharge ) {
-      if ( disconnectedPlateCharge !== this.disconnectedPlateChargeProperty.value ) {
-        this.disconnectedPlateChargeProperty.value = disconnectedPlateCharge;
-        if ( this.circuitConnectionProperty.value !== CircuitState.BATTERY_CONNECTED ) {
-          this.updatePlateVoltages();
-        }
-      }
-    },
-
-    /**
      * Update the current amplitude depending on the circuit connection.  If the capacitor is connected to the light
      * bulb, find the current by I = V / R.  Otherwise, current is found by dQ/dT.
      * @public

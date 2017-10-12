@@ -60,14 +60,6 @@ define( function( require ) {
       this.segments.forEach( function( segment ) {
         segment.update();
       } );
-    },
-
-    /**
-     * Reset wire
-     * @public
-     */
-    reset: function() {
-      this.shapeProperty.reset();
     }
   } );
 } );

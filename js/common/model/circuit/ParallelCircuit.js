@@ -283,16 +283,6 @@ define( function( require ) {
     },
 
     /**
-     * Get the total capacitance in the circuit
-     * @public
-     *
-     * @returns {number}
-     */
-    getTotalCapacitance: function() {
-      return this.capacitor.capacitanceProperty.value;
-    },
-
-    /**
      * Since the default is a connected battery, the total voltage is the battery voltage.
      * @public
      *
@@ -321,16 +311,6 @@ define( function( require ) {
      */
     getCapacitorPlateVoltage: function() {
       return this.capacitor.plateVoltageProperty.value;
-    },
-
-    /**
-     * Gets the energy stored in the circuit. (design doc symbol: U)
-     * @public
-     *
-     * @returns {number}
-     */
-    getStoredEnergy: function() {
-      return this.capacitor.storedEnergyProperty.value;
     },
 
     /**
@@ -378,31 +358,6 @@ define( function( require ) {
     isOpen: function() {
       var connection = this.circuitConnectionProperty.value;
       return connection === CircuitState.OPEN_CIRCUIT || connection === CircuitState.SWITCH_IN_TRANSIT;
-    },
-
-    /**
-     * True if shape is touching part of the circuit that is connected to one of
-     * the battery's terminals.
-     * @public
-     *
-     * @param {Shape} shape
-     * @param {CircuitLocation} location - battery top or bottom
-     * @returns {boolean}
-     */
-    batteryContacts: function( probe, location ) {
-
-      assert && assert( location === CircuitLocation.BATTERY_TOP || location === CircuitLocation.BATTERY_BOTTOM,
-        'Invalid battery location: ' + location );
-
-      var capacitorSide = location === CircuitLocation.BATTERY_TOP ?
-                          CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
-
-      return (
-        this.shapeTouchesWireGroup( probe, location ) ||
-        this.battery.contacts( probe ) || (
-          this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED && (
-          this.capacitor.contacts( probe, capacitorSide ) ||
-          this.shapeTouchesWireGroup( probe, capacitorSide ) ) ) );
     },
 
     /**
