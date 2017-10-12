@@ -25,6 +25,13 @@ define( function( require ) {
   var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
 
   var CircuitConfig = {
+    /**
+     * Returns the default circuit config, overridden with any options.
+     * @public
+     *
+     * @param {Object}
+     * @returns {Object}
+     */
     create: function( options ) {
 
       return _.extend( {

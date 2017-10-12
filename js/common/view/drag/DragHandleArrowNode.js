@@ -22,12 +22,11 @@ define( function( require ) {
   var LINE_WIDTH = 1;
 
   /**
-   * Constructor for the DragHandleArrowNode.
+   * @constructor
    *
    * @param {Vector2} pStart
    * @param {Vector2} pEnd
    * @param {Tandem} tandem
-   * @constructor
    */
   function DragHandleArrowNode( pStart, pEnd, tandem ) {
     var self = this;

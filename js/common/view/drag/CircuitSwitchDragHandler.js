@@ -28,12 +28,12 @@ define( function( require ) {
   };
 
   /**
-   * Constructor for the CircuitSwitchDragHandler.
+   * @constructor
+   *
    * @param {SwitchNode} switchNode
    * @param {Property.<boolean>} switchLockedProperty
    * @param {Property.<boolean>} userControlledProperty
    * @param {Tandem} tandem
-   * @constructor
    */
   function CircuitSwitchDragHandler( switchNode, switchLockedProperty, userControlledProperty, tandem ) {
 

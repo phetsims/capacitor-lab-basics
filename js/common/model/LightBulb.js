@@ -31,20 +31,19 @@ define( function( require ) {
    */
   function LightBulb( location, modelViewTransform ) {
 
-    // @public (read-only)
+    // @public {Vector3} (read-only)
     this.location = location;
+
+    // @public {number} (read-only)
     this.resistance = CLBConstants.LIGHT_BULB_RESISTANCE;
 
-    // Size of the bulb base.
-    // Type: Dimension2
-    // @public (read-only)
+    // @public {Dimension2} (read-only) - Size of the bulb base.
     this.bulbBaseSize = BULB_BASE_SIZE;
 
-    // Width of the top of the conductor which is part of the light bulb base
-    // Type: number
-    // @public (read-only)
+    // @public {number} (read-only) - Width of the top of the conductor which is part of the light bulb base
     this.topBaseConductorWidth = BULB_BASE_SIZE.width * 3 / 7;
 
+    // @public {LightBulbShapeCreator}
     this.shapeCreator = new LightBulbShapeCreator( this, modelViewTransform );
   }
 
@@ -56,7 +55,7 @@ define( function( require ) {
      * Does the base shape intersect the shape of the bulb base?
      * @public
      *
-     * @param  {Vector3} point
+     * @param {Vector3} point
      * @returns {boolean}
      */
     intersectsBulbBase: function( shape ) {
@@ -66,6 +65,7 @@ define( function( require ) {
     /**
      * The top connection point is the top center of light bulb
      * @public
+     *
      * @returns {Vector3}
      */
     getTopConnectionPoint: function() {
@@ -76,6 +76,7 @@ define( function( require ) {
      * The bottom tip of the light bulb base is its leftmost point, since the bulb
      * is rotated 90 degrees clockwise from vertical.
      * @public
+     *
      * @returns {Vector3}
      */
     getBottomConnectionPoint: function() {
@@ -86,7 +87,7 @@ define( function( require ) {
      * Calculate the current flowing through this lightbulb using Ohm's Law, V = I R
      * @public
      *
-     * @param {number} voltage voltage accrose the resistor
+     * @param {number} voltage - voltage across the resistor
      * @returns {number}
      */
     getCurrent: function( voltage ) {

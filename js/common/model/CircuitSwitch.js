@@ -29,7 +29,7 @@ define( function( require ) {
   var SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point
 
   /**
-   * Constructor for a CircuitSwitch.
+   * @constructor
    *
    * @param {string} positionLabel - 'top' or 'bottom'
    * @param {CircuitConfig} config
@@ -44,21 +44,19 @@ define( function( require ) {
     assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
       'Unsupported positionLabel: ' + positionLabel );
 
-    // Removes the 'open circuit' option when a capacitor and light bulb exist
-    // @private
+    // @private {boolean} - Removes the 'open circuit' option when a capacitor and light bulb exist
     this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
 
-    // Type: Vector3
-    // @public
+    // @public {Vector3}
     this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
 
+    // @public {Property.<CircuitState>}
     this.circuitConnectionProperty = circuitConnectionProperty;
 
     // @private {Array.<Connection>}
     this.connections = this.getSwitchConnections( positionLabel, this.hingePoint.toVector2(), config.circuitConnections );
 
-    // Switch angle with respect to the vertical ( open switch )
-    // @public
+    // @public {Property.<number>} - Switch angle with respect to the vertical ( open switch )
     this.angleProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'angleProperty' ),
       units: 'radians'
@@ -75,8 +73,7 @@ define( function( require ) {
       tandem.createTandem( 'switchSegment' ) );
     this.switchSegment.hingePoint = this.hingePoint;
 
-    // Wire between the hinge point and end point
-    // @public
+    // @public {Wire} - Wire between the hinge point and end point
     this.switchWire = new Wire( config.modelViewTransform, [ this.switchSegment ], connectionName );
 
     // set active connection whenever circuit connection type changes.
@@ -142,10 +139,10 @@ define( function( require ) {
      *
      * @param  {string} positionLabel - 'top' or 'bottom'
      * @param  {Vector2} hingeXY - Location of switch hinge
-     * @param  {CircuitConfig} config - Class containing circuit geometry and properties
+     * @param  {Array.<CircuitState>} circuitStates
      * @returns {Array.<Connection>}
      */
-    getSwitchConnections: function( positionLabel, hingeXY, circuitConnections ) {
+    getSwitchConnections: function( positionLabel, hingeXY, circuitStates ) {
       // Projection of switch wire vector to its components (angle is from a vertical wire)
       var length = CLBConstants.SWITCH_WIRE_LENGTH;
       var dx = length * Math.sin( SWITCH_ANGLE );
@@ -172,15 +169,15 @@ define( function( require ) {
       }
 
       var connections = [];
-      circuitConnections.forEach( function( circuitSwitchConnection ) {
-        if ( circuitSwitchConnection === CircuitState.OPEN_CIRCUIT ) {
-          connections.push( new Connection( topPoint.toVector3(), circuitSwitchConnection ) );
+      circuitStates.forEach( function( circuitState ) {
+        if ( circuitState === CircuitState.OPEN_CIRCUIT ) {
+          connections.push( new Connection( topPoint.toVector3(), circuitState ) );
         }
-        else if ( circuitSwitchConnection === CircuitState.BATTERY_CONNECTED ) {
-          connections.push( new Connection( leftPoint.toVector3(), circuitSwitchConnection ) );
+        else if ( circuitState === CircuitState.BATTERY_CONNECTED ) {
+          connections.push( new Connection( leftPoint.toVector3(), circuitState ) );
         }
-        else if ( circuitSwitchConnection === CircuitState.LIGHT_BULB_CONNECTED ) {
-          connections.push( new Connection( rightPoint.toVector3(), circuitSwitchConnection ) );
+        else if ( circuitState === CircuitState.LIGHT_BULB_CONNECTED ) {
+          connections.push( new Connection( rightPoint.toVector3(), circuitState ) );
         }
         else {
           assert && assert( false, 'attempting to create switch conection which is not supported' );

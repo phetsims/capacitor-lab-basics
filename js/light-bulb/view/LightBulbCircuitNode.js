@@ -19,11 +19,10 @@ define( function( require ) {
   var Vector3 = require( 'DOT/Vector3' );
 
   /**
-   * Constructor for a CircuitNode.
+   * @constructor
    *
    * @param {CLBLightBulbModel} model
    * @param {Tandem} tandem
-   * @constructor
    */
   function LightBulbCircuitNode( model, tandem ) {
 

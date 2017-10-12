@@ -22,7 +22,8 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   /**
-   * Constructor.
+   * @constructor
+   *
    * @param {DragHandleArrowNode} dragNode
    * @param {Capacitor} capacitor
    * @param {CLModelViewTransform3D} modelViewTransform
@@ -38,6 +39,8 @@ define( function( require ) {
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
     this.valueRange = valueRange;
+
+    // @private {Vector2}
     this.clickXOffset = new Vector2( 0, 0 );
 
     SimpleDragHandler.call( this, {

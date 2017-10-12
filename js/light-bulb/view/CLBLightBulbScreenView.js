@@ -27,9 +27,10 @@ define( function( require ) {
   var VOLTMETER_PANEL_OFFSET = new Vector2( 0, 20 );
 
   /**
+   * @constructor
+   *
    * @param {CLBLightBulbModel} model
    * @param {Tandem} tandem
-   * @constructor
    */
   function CLBLightBulbScreenView( model, tandem ) {
 

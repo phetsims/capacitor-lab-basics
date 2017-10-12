@@ -35,15 +35,17 @@ define( function( require ) {
 
     var self = this;
 
-    // @private
+    // @private {VoltmeterBodyNode}
     this.bodyNode = bodyNode;
+
+    // @private {VoltmeterProbeNode}
     this.probeNode = probeNode;
 
-    // @private
+    // @private {Vector2}
     this.bodyControlPointOffset = BODY_CONTROL_POINT_OFFSET;
     this.probeControlPointOffset = PROBE_CONTROL_POINT_OFFSET;
 
-    // @private
+    // @private {Vector2}
     this.bodyConnectionOffset = isPositive ? bodyNode.positiveConnectionOffset : bodyNode.negativeConnectionOffset;
     this.probeConnectionOffset = probeNode.connectionOffset;
 
@@ -68,7 +70,6 @@ define( function( require ) {
 
   return inherit( Path, ProbeWireNode, {
 
-    //REVIEW is this really @public?
     /**
      * Update the wire path.
      * @public
@@ -91,16 +92,15 @@ define( function( require ) {
     /**
      * Get the connection point for either the voltmeter body or probe.  Adds the node location to the offset connection
      * point vector for a given node.
+     * @public
      *
-     * @param {VoltmeterBodyNode||VoltmeterProbeNode} node
+     * @param {VoltmeterBodyNode|VoltmeterProbeNode} node
      * @param {Vector2} connectionOffset
      * @returns {Vector2}
-     * @public
      */
     getConnectionPoint: function( node, connectionOffset ) {
       return node.translation.plus( connectionOffset );
     }
-
   } );
 } );
 

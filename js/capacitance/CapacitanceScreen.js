@@ -26,9 +26,10 @@ define( function( require ) {
   var capacitorIconImage = require( 'image!CAPACITOR_LAB_BASICS/capacitance_screen_icon.png' );
 
   /**
+   * @constructor
+   *
    * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
    * @param {Tandem} tandem
-   * @constructor
    */
   function CapacitanceScreen( switchUsedProperty, tandem ) {
 

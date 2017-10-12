@@ -39,7 +39,6 @@ define( function( require ) {
   var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
 
   /**
-   * Constructor.
    * @constructor
    *
    * @param {CLBModel} model

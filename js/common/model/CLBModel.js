@@ -24,52 +24,58 @@ define( function( require ) {
   var CANVAS_RENDERING_SIZE = new Dimension2( 1024, 618 );
 
   /**
+   * @constructor
+   *
    * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
-   * @constructor
    */
   function CLBModel( switchUsedProperty, modelViewTransform, tandem ) {
 
-    this.switchUsedProperty = switchUsedProperty; // @public
-    this.modelViewTransform = modelViewTransform; // @public (read-only)
+    // @public {Property.<boolean>}
+    this.switchUsedProperty = switchUsedProperty;
 
-    //REVIEW missing visibility annotation
+    // @public {CLBModelViewTransform3D} (read-only)
+    this.modelViewTransform = modelViewTransform;
+
+    // @public {Property.<boolean>}
     this.plateChargesVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'plateChargesVisibleProperty' )
     } );
 
-    //REVIEW missing visibility annotation
+    // @public {Property.<boolean>}
     this.eFieldVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'eFieldVisibleProperty' )
     } );
 
-    //REVIEW missing visibility annotation
+    // @public {Property.<boolean>}
     this.capacitanceMeterVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' )
     } );
 
-    //REVIEW missing visibility annotation
+    // @public {Property.<boolean>}
     this.barGraphsVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'barGraphsVisibleProperty' )
     } );
 
-    //REVIEW missing visibility annotation
+    // @public {Property.<boolean>}
     this.voltmeterVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'voltmeterVisibleProperty' )
     } );
 
-    //REVIEW missing visibility annotation
+    // @public {Property.<boolean>}
     this.currentVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'currentVisibleProperty' )
     } );
 
-    this.worldBounds = CANVAS_RENDERING_SIZE.toBounds(); // @private
+    // @private {Bounds2}
+    this.worldBounds = CANVAS_RENDERING_SIZE.toBounds();
 
-    // @public
+    // @public {Voltmeter}
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
 
-    this.tandem = tandem; // @protected
+    // @protected {Tandem}
+    this.tandem = tandem;
 
     this.circuit.maxPlateCharge = this.getMaxPlateCharge();
     this.circuit.maxEffectiveEField = this.getMaxEffectiveEField();

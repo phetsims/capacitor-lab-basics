@@ -27,7 +27,6 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
 
-
   // Scratch variable for performance
   // @private
   var scratchVector2 = new Vector2();
@@ -47,13 +46,13 @@ define( function( require ) {
       yaw: CLBConstants.MVT_YAW // rotation about the vertical (y) axis, sign determined using the right-hand rule (radians)
     }, options );
 
-    // @private
+    // @private {Transform3}
     this.modelToViewTransform2D = new Transform3( Matrix3.scaling( options.scale ) );
 
-    // @private
+    // @private {number}
     this.pitch = options.pitch;
 
-    // @public (read-only)
+    // @public {number} (read-only)
     this.yaw = options.yaw;
   }
 

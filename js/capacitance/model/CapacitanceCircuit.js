@@ -29,14 +29,13 @@ define( function( require ) {
 
   /**
    * Constructor for the Single Capacitor Circuit.
+   * @constructor
    *
    * @param {CircuitConfig} config
    * @param {Tandem} tandem
-   * @constructor
    */
   function CapacitanceCircuit( config, tandem ) {
 
-    //REVIEW missing visibility annotation
     this.lightBulb = null; // There is no light bulb in the first screen
 
     ParallelCircuit.call( this, config, tandem );

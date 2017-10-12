@@ -21,13 +21,13 @@ define( function( require ) {
   /**
    * Constructor for the PlateSeparationDragHandler.  This is the drag handler for the capacitor plate separation
    * property. Plate separation is a vertical quantity, so we're dragging along the y axis. Other axes are ignored.
+   * @constructor
    *
    * @param {PlateSeparationDragHandleNode} dragNode
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Range} valueRange
    * @param {Tandem} tandem
-   * @constructor
    */
   function PlateSeparationDragHandler( dragNode, capacitor, modelViewTransform, valueRange, tandem ) {
 
@@ -38,6 +38,8 @@ define( function( require ) {
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
     this.valueRange = valueRange;
+
+    // @private {Vector2}
     this.clickYOffset = new Vector2( 0, 0 );
 
     SimpleDragHandler.call( this, {

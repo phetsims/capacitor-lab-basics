@@ -31,12 +31,11 @@ define( function( require ) {
   var unitsPicoFaradsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoFarads' );
 
   /**
-   * Constructor.
+   * @constructor
    *
    * @param {BarMeter} model
-   * @param {Property.<boolean>} minWidth
+   * @param {number} minWidth
    * @param {Tandem} tandem
-   * @constructor
    */
   function CapacitanceBarMeterPanel( model, minWidth, tandem ) {
 
@@ -61,15 +60,8 @@ define( function( require ) {
 
     parentNode.children = [ capacitanceMeterNode, capacitanceTitle ];
 
-    //REVIEW redundant variable initializer
-    // layout
-    var x = 0;
-    var y = 0;
-
     // Position the left edge (x) and vertical center (y) of BarMeterNode
-    x = 0.45 * minWidth;
-    y = capacitanceTitle.centerY + 1;
-    capacitanceMeterNode.translation = new Vector2( x, y );
+    capacitanceMeterNode.translation = new Vector2( 0.45 * minWidth, capacitanceTitle.centerY + 1 );
 
     Panel.call( this, parentNode, {
       minWidth: minWidth,

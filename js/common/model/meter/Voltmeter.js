@@ -36,13 +36,12 @@ define( function( require ) {
   var NEGATIVE_PROBE_LOCATION = new Vector3( 0.0707, 0.0329, 0 );
 
   /**
-   * Constructor for a Voltmeter.
+   * @constructor
    *
    * @param {ParallelCircuit} circuit
    * @param {Bounds2} dragBounds
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
-   * @constructor
    */
   function Voltmeter( circuit, dragBounds, modelViewTransform, tandem ) {
     assert && assert( circuit instanceof ParallelCircuit );

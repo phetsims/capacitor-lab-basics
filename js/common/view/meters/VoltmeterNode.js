@@ -45,7 +45,7 @@ define( function( require ) {
   var DEBUG_BOUNDS = false;
 
   /**
-   * Constructor.
+   * @constructor
    *
    * @param {Voltmeter} voltmeter - the voltmeter model
    * @param {CLBModelViewTransform3D} modelViewTransform
@@ -57,11 +57,13 @@ define( function( require ) {
     var self = this;
 
     // construct all parts of the probe
-    // @public
+    // @public {VoltmeterBodyNode}
     this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty,
       tandem.createTandem( 'voltmeterBodyNode' ) );
+    // @public {VoltmeterProbeNode}
     this.positiveProbeNode = VoltmeterProbeNode.createPositiveVoltmeterProbeNode( voltmeter, modelViewTransform,
       tandem.createTandem( 'positiveProbeNode' ) );
+    // @public {VoltmeterProbeNode}
     this.negativeProbeNode = VoltmeterProbeNode.createNegativeVoltmeterProbeNode( voltmeter, modelViewTransform,
       tandem.createTandem( 'negativeProbeNode' ) );
 

@@ -17,13 +17,12 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
 
   /**
-   * Constructor for a BarMeter.
+   * @constructor
    *
    * @param {ParallelCircuit} circuit
    * @param {Property.<boolean>} visibleProperty - model property that determines if the entire meter is visible.
    * @param {Property.<number>} valueProperty - property containing model quantity to display
    * @param {Tandem} tandem
-   * @constructor
    */
   function BarMeter( circuit, visibleProperty, valueProperty, tandem ) {
     assert && assert( circuit instanceof ParallelCircuit );

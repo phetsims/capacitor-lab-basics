@@ -33,18 +33,18 @@ define( function( require ) {
   var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
 
   /**
-   * Constructor for the DragHandleValueNode.
+   * @constructor
    *
    * @param {string} label
    * @param {number} value
    * @param {string} units
-   * @constructor
    */
   function DragHandleValueNode( label, value, units ) {
 
     Node.call( this );
 
-    this.units = units; // @private
+    // @private {string}
+    this.units = units;
 
     var labelNode = new Text( label, { font: LABEL_FONT, maxWidth: LABEL_MAX_WIDTH } );
     this.addChild( labelNode );
@@ -66,9 +66,10 @@ define( function( require ) {
 
     /**
      * Set the value of the value node, formatting the number and the units to the pattern.
-     *
-     * @param value
      * @public
+     *
+     * @param {number} value
+     * @param {number} decimalPlaces
      */
     setValue: function( value, decimalPlaces ) {
       var formattedValue = Util.toFixed( value, decimalPlaces /* one decimal place */ );

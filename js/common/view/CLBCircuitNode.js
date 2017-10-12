@@ -25,11 +25,10 @@ define( function( require ) {
   var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
 
   /**
-   * Constructor for a CLBCircuitNode.
+   * @constructor
    *
    * @param {CLBModel} model
    * @param {Tandem} tandem
-   * @constructor
    */
 
   function CLBCircuitNode( model, tandem ) {

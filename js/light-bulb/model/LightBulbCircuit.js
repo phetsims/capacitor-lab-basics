@@ -41,11 +41,10 @@ define( function( require ) {
   var MIN_VOLTAGE = 1e-3; // Volts. Minimum readable value on voltmeter.
 
   /**
-   * Constructor for the Single Capacitor Circuit.
+   * @constructor
    *
    * @param {CircuitConfig} config
    * @param {Tandem} tandem
-   * @constructor
    */
   function LightBulbCircuit( config, tandem ) {
 

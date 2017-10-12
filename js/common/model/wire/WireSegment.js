@@ -20,10 +20,11 @@ define( function( require ) {
   var Vector3 = require( 'DOT/Vector3' );
 
   /**
+   * @constructor
+   *
    * @param {Vector3} startPoint
    * @param {Vector3} endPoint
    * @param {Tandem} tandem
-   * @constructor
    */
   function WireSegment( startPoint, endPoint, tandem ) {
 

@@ -48,10 +48,11 @@ define( function( require ) {
   /**
    * Constructor. Rotation angles should be set such that +dV/dt indicates current flow towards the positive terminal
    * of the battery.
+   * @constructor
    *
    * @param {CurrentIndicator} currentIndicator
    * @param {number} positiveOrientation
-   * @constructor
+   * @param {Tandem} tandem
    */
   function CurrentIndicatorNode( currentAmplitudeProperty, positiveOrientation, tandem ) {
 

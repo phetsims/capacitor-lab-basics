@@ -18,12 +18,13 @@ define( function( require ) {
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   /**
+   * @constructor
+   *
    * @param {CircuitLocation} connectionPoint
    * @param {CircuitConfig} config
    * @param {Battery} battery
    * @param {CircuitSwitch} circuitSwitch
-   * @param {Tandem|null} tandem - null if this is part of a temporary circuit used for calculations
-   * @constructor
+   * @param {Tandem} tandem
    */
   function BatteryToSwitchWire( connectionPoint, config, battery, circuitSwitch, tandem ) {
     assert && assert( _.includes( CircuitLocation.VALUES, connectionPoint ) );

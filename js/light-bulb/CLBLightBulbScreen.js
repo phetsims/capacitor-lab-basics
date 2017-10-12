@@ -24,9 +24,10 @@ define( function( require ) {
   var lightBulbTitleString = require( 'string!CAPACITOR_LAB_BASICS/lightBulb.title' );
 
   /**
+   * @constructor
+   *
    * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
    * @param {Tandem} tandem
-   * @constructor
    */
   function CLBLightBulbScreen( switchUsedProperty, tandem ) {
 

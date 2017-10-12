@@ -39,10 +39,11 @@ define( function( require ) {
   var unitsPicoJoulesString = require( 'string!CAPACITOR_LAB_BASICS/units.picoJoules' );
 
   /**
+   * @constructor
+   *
    * @param {BarMeter[]} model
    * @param {Property.<boolean>} minWidth - minimum width of the whole panel
    * @param {Tandem} tandem
-   * @constructor
    */
   function BarMeterPanel( model, minWidth, tandem ) {
 

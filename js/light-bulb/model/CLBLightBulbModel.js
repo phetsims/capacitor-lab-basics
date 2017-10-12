@@ -30,10 +30,11 @@ define( function( require ) {
   var PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
 
   /**
+   * @constructor
+   *
    * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
-   * @constructor
    */
   function CLBLightBulbModel( switchUsedProperty, modelViewTransform, tandem ) {
 

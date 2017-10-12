@@ -32,12 +32,10 @@ define( function( require ) {
   var TString = require( 'ifphetio!PHET_IO/types/TString' );
 
   /**
-   * Constructor for a Parallel Circuit.
+   * @constructor
    *
    * @param {CircuitConfig} config
    * @param {Tandem} tandem
-   *
-   * @constructor
    */
   function ParallelCircuit( config, tandem ) {
 

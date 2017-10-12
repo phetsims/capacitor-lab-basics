@@ -36,12 +36,11 @@ define( function( require ) {
   var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
 
   /**
-   * Constructor for a BatteryNode.
+   * @constructor
    *
    * @param {Battery} battery
    * @param {RangeWithValue} voltageRange
    * @param {Tandem} tandem
-   * @constructor
    */
   function BatteryNode( battery, voltageRange, tandem ) {
 

@@ -25,10 +25,10 @@ define( function( require ) {
   var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
 
   /**
-   * Constructor.
+   * @constructor
    *
    * @param {Image} image image of the probe
-   * @param {Property} locationProperty property to observer for the probe's location
+   * @param {Property.<Vector3>} locationProperty property to observer for the probe's location
    * @param {CLBModelViewTransform3D} modelViewTransform model-view transform
    * @param {Bounds2} dragBounds Node bounds in model coordinates
    * @param {Tandem} tandem
@@ -37,16 +37,17 @@ define( function( require ) {
 
     Node.call( this );
     var self = this;
-    this.locationProperty = locationProperty; // @public
+
+    // @public {Property.<Vector3>}
+    this.locationProperty = locationProperty;
 
     var imageNode = new Image( image, {
       scale: 0.25
     } );
     this.addChild( imageNode );
-    var x = -imageNode.bounds.width / 2;
-    var y = 0;
-    imageNode.translate( x, y );
+    imageNode.translate( -imageNode.bounds.width / 2, 0 );
 
+    // @public {Vector2}
     this.connectionOffset = imageNode.centerBottom; // @public connect wire to bottom center
 
     // image is vertical, rotate into pseudo-3D perspective after computing the connection offset
@@ -92,11 +93,11 @@ define( function( require ) {
 
     /**
      * Factory for a positive VoltmeterProbeNode
+     * @public
      *
      * @param {Voltmeter} voltmeter
      * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {Tandem} tandem
-     * @public
      */
     createPositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
       return new VoltmeterProbeNode( redVoltmeterProbeImage,
@@ -105,18 +106,16 @@ define( function( require ) {
 
     /**
      * Factory for a positive VoltmeterProbeNode
+     * @public
      *
      * @param {Voltmeter} voltmeter
      * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {Tandem} tandem
-     * @public
      */
     createNegativeVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
       return new VoltmeterProbeNode( blackVoltmeterProbeImage,
         voltmeter.negativeProbeLocationProperty, modelViewTransform, voltmeter.dragBounds, tandem );
     }
-
   } );
-
 } );
 

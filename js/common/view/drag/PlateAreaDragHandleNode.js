@@ -40,21 +40,22 @@ define( function( require ) {
   var LINE_END_LOCATION = new Vector2( 0, LINE_LENGTH );
 
   /**
-   * Constructor.
+   * @constructor
    *
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Range} valueRange
    * @param {Tandem} tandem
-   * @constructor
    */
   function PlateAreaDragHandleNode( capacitor, modelViewTransform, valueRange, tandem ) {
 
     Node.call( this );
     var self = this;
 
-    // @private
+    // @private {Capacitor}
     this.capacitor = capacitor;
+
+    // @private {CLBModelViewTransform3D}
     this.modelViewTransform = modelViewTransform;
 
     // arrow
@@ -70,7 +71,8 @@ define( function( require ) {
 
     // value
     var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
-    // @private
+
+    // @private {DragHandleValueNode}
     this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, unitsMillimetersString + '<sup>' + 2 + '</sup>' );
 
     // Make text part of the draggable area
@@ -127,7 +129,6 @@ define( function( require ) {
   capacitorLabBasics.register( 'PlateAreaDragHandleNode', PlateAreaDragHandleNode );
 
   return inherit( Node, PlateAreaDragHandleNode, {
-
 
     /**
      * Synchronizes the value display with the model.

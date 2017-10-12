@@ -28,16 +28,18 @@ define( function( require ) {
   var DEBUG_SHAPES = false;
 
   /**
+   * @constructor
    * @param {CLBModel} model
    * @param {Tandem} tandem
-   * @constructor
    */
   function CapacitanceScreenView( model, tandem ) {
 
     ScreenView.call( this, { tandem: tandem } );
 
-    // @private
+    // @private {CLBModelViewTransform3D}
     this.modelViewTransform = model.modelViewTransform;
+
+    // @private {CLBModel}
     this.model = model;
 
     // circuit
@@ -98,4 +100,3 @@ define( function( require ) {
 
   return inherit( ScreenView, CapacitanceScreenView );
 } );
-

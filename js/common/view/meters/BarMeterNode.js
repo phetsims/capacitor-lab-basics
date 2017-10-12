@@ -41,35 +41,41 @@ define( function( require ) {
   var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
 
   /**
-   * Constructor.
+   * @constructor
    *
    * @param {BarMeter} meter
    * @param {string} barColor - fill color of the BarMeter
    * @param {number} maxValue - model value at which the bar has max length
    * @param {string} unitsString - string representing units
    * @param {string} titleString - title string for the bar graph
-   * @constructor
+   * @param {Tandem} tandem
    */
   function BarMeterNode( meter, barColor, maxValue, unitsString, titleString, tandem ) {
 
     var self = this;
 
+    // @public {number}
     this.maxValue = maxValue;
 
-    this.meter = meter; // @private
-    this.unitsString = unitsString; // @private
-    this.titleString = titleString; // @public
+    // @private {BarMeter}
+    this.meter = meter;
 
-    // @private vertical line that represents the base of this bar meter
+    // @private {string}
+    this.unitsString = unitsString;
+
+    // @public {string}
+    this.titleString = titleString;
+
+    // @private {Line} - vertical line that represents the base of this bar meter
     this.axisLine = new Line( 0, -BASE_LINE_LENGTH / 2, 0, BASE_LINE_LENGTH / 2, {
       stroke: BAR_STROKE_COLOR,
       lineWidth: BAR_LINE_WIDTH
     } );
 
-    // @private bar node which represents the magnitude of the meter
+    // @private {BarNode} - bar node which represents the magnitude of the meter
     this.barNode = new BarNode( barColor, meter.valueProperty.get(), this.maxValue );
 
-    // @public value with hundredths precision and units, set in setValue()
+    // @public {Text} - value with hundredths precision and units, set in setValue()
     this.valueTextNode = new Text( '', {
       font: VALUE_FONT,
       fill: VALUE_COLOR,
@@ -77,7 +83,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'valueText' )
     } );
 
-    // @public arrow node used to indicate when the value has gone beyond the scale of this meter
+    // @public {ArrowNode} - arrow node used to indicate when the value has gone beyond the scale of this meter
     this.arrowNode = new ArrowNode( 0, 0, this.barNode.barSize.height + 2, 0, {
       fill: barColor,
       headWidth: this.barNode.barSize.height + 5,
@@ -115,9 +121,9 @@ define( function( require ) {
 
     /**
      * Sets the color used to fill the bar and the overload indicator arrow.
-     *
-     * @param color
      * @public
+     *
+     * @param {string} color
      */
     setBarColor: function( color ) {
       this.barNode.fill = color;
@@ -127,9 +133,9 @@ define( function( require ) {
     /**
      * Sets the value displayed by the meter.
      * Updates the bar and the value below the meter.
+     * @public
      *
      * @param {number} value
-     * @public
      */
     setValue: function( value ) {
 
@@ -148,14 +154,14 @@ define( function( require ) {
         this.valueTextNode.setText( unitsFormatString );
 
         // layout
+        //REVIEW: Try removing this in its own commit to see if something breaks
         this.updateLayout;
       }
     },
 
-    //REVIEW is this really @public?
     /**
      * Update the overload indicator arrow visibility and position.
-     * @public
+     * @private
      */
     updateArrow: function() {
       // update position
@@ -165,10 +171,9 @@ define( function( require ) {
       this.arrowNode.visible = Math.abs( this.meter.valueProperty.get() ) > this.maxValue;
     },
 
-    //REVIEW is this really @public?
     /**
      * Update the layout
-     * @public
+     * @private
      */
     updateLayout: function() {
       this.barNode.leftCenter = this.axisLine.leftCenter;

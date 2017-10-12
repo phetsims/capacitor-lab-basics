@@ -22,7 +22,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
 
   /**
-   * Constructor for the CapacitanceModel.
+   * @constructor
+   *
    * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
@@ -32,11 +33,13 @@ define( function( require ) {
     var circuitConfig = CircuitConfig.create( {
       circuitConnections: [ CircuitState.BATTERY_CONNECTED, CircuitState.OPEN_CIRCUIT ]
     } );
+
+    // @public {CapacitanceCircuit}
     this.circuit = new CapacitanceCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
 
     CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
 
-    // @public
+    // @public {BarMeter}
     this.capacitanceMeter = new BarMeter( this.circuit, this.capacitanceMeterVisibleProperty,
       this.circuit.capacitor.capacitanceProperty,
       tandem.createTandem( 'capacitanceMeter' ) );
@@ -57,6 +60,5 @@ define( function( require ) {
       this.voltmeter.reset();
       this.circuit.reset();
     }
-
   } );
 } );

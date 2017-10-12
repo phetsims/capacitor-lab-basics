@@ -17,12 +17,13 @@ define( function( require ) {
   var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   /**
-   * @param {string} connectionPoint - enumeration constant from CircuitLocation
+   * @constructor
+   *
+   * @param {CircuitLocation} connectionPoint
    * @param {CircuitConfig} config
    * @param {Capacitor} capacitor
    * @param {CircuitSwitch} circuitSwitch
    * @param {Tandem} tandem
-   * @constructor
    */
   function CapacitorToSwitchWire( connectionPoint, config, capacitor, circuitSwitch, tandem ) {
 

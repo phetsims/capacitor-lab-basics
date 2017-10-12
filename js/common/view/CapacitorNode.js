@@ -20,14 +20,13 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
 
   /**
-   * Constructor for a CapacitorNode.
+   * @constructor
    *
    * @param {ParallelCircuit} circuit
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property} plateChargeVisibleProperty
    * @param {Property} eFieldVisibleProperty
    * @param {Tandem} tandem
-   * @constructor
    */
   function CapacitorNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, tandem ) {
 

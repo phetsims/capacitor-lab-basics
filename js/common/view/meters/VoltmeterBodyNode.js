@@ -41,7 +41,7 @@ define( function( require ) {
   var voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
 
   /**
-   * Constructor
+   * @constructor
    *
    * @param {Voltmeter} voltmeter - the voltmeter model
    * @param {CLBModelViewTransform3D} modelViewTransform
@@ -55,7 +55,8 @@ define( function( require ) {
 
     this.cursor = 'pointer';
 
-    this.bodyLocationProperty = voltmeter.bodyLocationProperty; // @public
+     // @public {Property.<Vector3>]}
+    this.bodyLocationProperty = voltmeter.bodyLocationProperty;
 
     // body of the meter
     var imageNode = new Image( voltmeterBodyImage, {

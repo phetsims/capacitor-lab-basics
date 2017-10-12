@@ -35,13 +35,12 @@ define( function( require ) {
   var SWITCH_CUE_ARROW_OFFSET = new Vector2( -80, -250 ); // View coords
 
   /**
-   * Constructor for a SwitchNode.
+   * @constructor
    *
    * @param {CircuitSwitch} circuitSwitch
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property.<boolean>} switchLockedProperty
    * @param {Tandem} tandem
-   * @constructor
    */
   function SwitchNode( circuitSwitch, modelViewTransform, switchLockedProperty, tandem ) {
 

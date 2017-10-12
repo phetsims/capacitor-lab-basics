@@ -21,12 +21,13 @@ define( function( require ) {
   var COUNTER = 0;
 
   /**
-   * @param {string} connectionPoint - enumeration constant from CircuitLocation
+   * @constructor
+   *
+   * @param {CircuitLocation} connectionPoint
    * @param {CircuitConfig} config
    * @param {LightBulb} lightBulb
    * @param {CircuitSwitch} circuitSwitch
-   * @param {Tandem|null} tandem - null if this is a temporary circuit used for calculations
-   * @constructor
+   * @param {Tandem} tandem
    */
   function LightBulbToSwitchWire( connectionPoint, config, lightBulb, circuitSwitch, tandem ) {
     var segments = [];

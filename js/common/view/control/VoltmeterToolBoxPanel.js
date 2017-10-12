@@ -31,7 +31,9 @@ define( function( require ) {
                                   tandem ) {
 
     var self = this;
-    this.voltmeterNode = voltmeterNode; // @private
+
+    // @private {VoltmeterNode}
+    this.voltmeterNode = voltmeterNode;
 
     // create the icon for the toolbox.
     var voltmeterIconNode = VoltmeterNode.createVoltmeterIconNode();

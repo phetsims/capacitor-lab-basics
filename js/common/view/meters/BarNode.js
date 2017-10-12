@@ -26,13 +26,13 @@ define( function( require ) {
 
 
   /**
-   * Constructor for a BarNode. The bar which indicates the magnitude of the value being read by the meter. Origin is
+   * The bar which indicates the magnitude of the value being read by the meter. Origin is
    * at upper left of track.
+   * @constructor
    *
    * @param {string} barColor
    * @param {number} value
    * @param {number} maxValue
-   * @constructor
    */
   function BarNode( barColor, value, maxValue ) {
 
@@ -59,9 +59,9 @@ define( function( require ) {
 
     /**
      * Set bar value
+     * @public
      *
      * @param {number} value
-     * @public
      */
     setValue: function( value ) {
 
@@ -73,7 +73,6 @@ define( function( require ) {
       }
     },
 
-    //REVIEW is this really @public?
     /**
      * Update the bar
      * @public
@@ -84,6 +83,5 @@ define( function( require ) {
       var width = BAR_SIZE.width - x;
       this.setRect( 0, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, width, BAR_SIZE.height );
     }
-
   } );
 } );

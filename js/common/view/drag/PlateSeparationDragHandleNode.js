@@ -38,13 +38,12 @@ define( function( require ) {
   var unitsMillimetersString = require( 'string!CAPACITOR_LAB_BASICS/units.millimeters' );
 
   /**
-   * Constructor for the PlateSeparationDragHandlerNode.
+   * @constructor
    *
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Range} valueRange
    * @param {Tandem} tandem
-   * @constructor
    */
   function PlateSeparationDragHandleNode( capacitor, modelViewTransform, valueRange, tandem ) {
 

@@ -16,11 +16,10 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
 
   /**
-   * Constructor for a CircuitNode.
+   * @constructor
    *
    * @param {CapacitanceModel} model
    * @param {Tandem} tandem
-   * @constructor
    */
   function CapacitanceCircuitNode( model, tandem ) {
 
@@ -43,13 +42,12 @@ define( function( require ) {
 
     /**
      * Updates the visibility of the current indicators.
-     *
-     * @param  {string} circuitConnection - OPEN_CIRCUIT || BATTERY_CONNECTED
-     * @param  {boolean} currentIndicatorsVisible
      * @public
+     *
+     * @param {CircuitState} circuitConnection - OPEN_CIRCUIT || BATTERY_CONNECTED
+     * @param {boolean} currentIndicatorsVisible
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
-
       var isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
 
       this.batteryTopCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
