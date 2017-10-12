@@ -27,7 +27,7 @@ define( function( require ) {
   var simOptions = {
     credits: {
       leadDesign: 'Amy Rouinfar',
-      softwareDevelopment: 'Andrew Adare, Jesse Greenberg, Chris Malley, Emily Randall',
+      softwareDevelopment: 'Andrew Adare, Jesse Greenberg, Chris Malley, Emily Randall, Jonathan Olson',
       team: 'Emily Moore, Ariel Paul, Kathy Perkins, Emily Randall',
       qualityAssurance: 'Steele Dalton, Amanda Davis, Bryce Griebenow, Elise Morgan, Oliver Orejola, Ben Roberts, Bryan Yoelin',
     }
