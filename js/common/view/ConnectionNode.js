@@ -26,7 +26,7 @@ define( function( require ) {
   /**
    * Constructor for the ConnectionNode.
    *
-   * @param {Object} connection TODO: Just an Object???
+   * @param {Connection} connection
    * @param {CircuitSwitch} circuitSwitch
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
@@ -67,7 +67,7 @@ define( function( require ) {
     // transform the shape
     triangleShape = modelViewTransform.modelToViewShape( triangleShape );
 
-    var connectionType = connection.connectionType; // for readability
+    var connectionType = connection.type; // for readability
 
     Node.call( this, {
       cursor: 'pointer',

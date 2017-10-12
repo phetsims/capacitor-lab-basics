@@ -17,6 +17,7 @@ define( function( require ) {
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
+  var Connection = require( 'CAPACITOR_LAB_BASICS/common/model/Connection' );
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -53,7 +54,7 @@ define( function( require ) {
 
     this.circuitConnectionProperty = circuitConnectionProperty;
 
-    // @private
+    // @private {Array.<Connection>}
     this.connections = this.getSwitchConnections( positionLabel, this.hingePoint.toVector2(), config.circuitConnections );
 
     // Switch angle with respect to the vertical ( open switch )
@@ -68,7 +69,7 @@ define( function( require ) {
                          CircuitLocation.CIRCUIT_SWITCH_TOP :
                          CircuitLocation.CIRCUIT_SWITCH_BOTTOM;
 
-    // Add the switch wire that spans two connection points. Default connection is to the battery.
+    // @public {WireSegment} Add the switch wire that spans two connection points. Default connection is to the battery.
     this.switchSegment = new WireSegment( this.hingePoint,
       this.getConnection( circuitConnectionProperty.value ).location,
       tandem.createTandem( 'switchSegment' ) );
@@ -142,29 +143,9 @@ define( function( require ) {
      * @param  {string} positionLabel - 'top' or 'bottom'
      * @param  {Vector2} hingeXY - Location of switch hinge
      * @param  {CircuitConfig} config - Class containing circuit geometry and properties
-     * @returns {Object[]} - Array of objects like { location: Vector3, connectionType: CircuitState }
+     * @returns {Array.<Connection>}
      */
     getSwitchConnections: function( positionLabel, hingeXY, circuitConnections ) {
-      /* REVIEW: Simplification and avoid branches, should be able to replace this entire function:
-      // at constants
-      var SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point
-      var CONNECTION_ANGLE_MAP = {}; // maps {CircuitState} => additional angle offset for connection type {number}
-      CONNECTION_ANGLE_MAP[ CircuitState.OPEN_CIRCUIT ] = 0;
-      CONNECTION_ANGLE_MAP[ CircuitState.BATTERY_CONNECTED ] = SWITCH_ANGLE;
-      CONNECTION_ANGLE_MAP[ CircuitState.LIGHT_BULB_CONNECTED ] = -SWITCH_ANGLE;
-      // ...
-      var topSign = ( position === CircuitSwitch.TOP ) ? -1 : 1;
-      return circuitConnections.filter( function( circuitSwitchConnection ) {
-        return circuitSwitchConnection !== CircuitState.SWITCH_IN_TRANSIT;
-      } ).map( function( circuitSwitchConnection ) {
-        var angle = topSign * ( Math.PI + CONNECTION_ANGLE_MAP[ circuitSwitchConnection ] );
-        return {
-          location: hingeXY.plus( Vector2.createPolar( CLBConstants.SWITCH_WIRE_LENGTH, angle ) ).toVector3(),
-          connectionType: circuitSwitchConnection
-        };
-      } );
-      */
-
       // Projection of switch wire vector to its components (angle is from a vertical wire)
       var length = CLBConstants.SWITCH_WIRE_LENGTH;
       var dx = length * Math.sin( SWITCH_ANGLE );
@@ -193,22 +174,13 @@ define( function( require ) {
       var connections = [];
       circuitConnections.forEach( function( circuitSwitchConnection ) {
         if ( circuitSwitchConnection === CircuitState.OPEN_CIRCUIT ) {
-          connections.push( {
-            location: topPoint.toVector3(),
-            connectionType: circuitSwitchConnection
-          } );
+          connections.push( new Connection( topPoint.toVector3(), circuitSwitchConnection ) );
         }
         else if ( circuitSwitchConnection === CircuitState.BATTERY_CONNECTED ) {
-          connections.push( {
-            location: leftPoint.toVector3(),
-            connectionType: circuitSwitchConnection
-          } );
+          connections.push( new Connection( leftPoint.toVector3(), circuitSwitchConnection ) );
         }
         else if ( circuitSwitchConnection === CircuitState.LIGHT_BULB_CONNECTED ) {
-          connections.push( {
-            location: rightPoint.toVector3(),
-            connectionType: circuitSwitchConnection
-          } );
+          connections.push( new Connection( rightPoint.toVector3(), circuitSwitchConnection ) );
         }
         else {
           assert && assert( false, 'attempting to create switch conection which is not supported' );
@@ -222,13 +194,13 @@ define( function( require ) {
      * Get the desired connection from the connection type.
      * @public
      *
-     * @param connectionType
-     * @returns {Object} returnConnection - with format { location: Vector3, connectionType: CircuitState }
+     * @param {CircuitState} connectionType
+     * @returns {Connection}
      */
     getConnection: function( connectionType ) {
 
       var returnConnection = _.find( this.connections, function( connection ) {
-        return connection.connectionType === connectionType;
+        return connection.type === connectionType;
       } );
 
       assert && assert( returnConnection, 'No connection type for this circuit named ' + connectionType );
@@ -242,6 +214,7 @@ define( function( require ) {
      * @public
      *
      * @param {CircuitState} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
+     * @returns {Vector3}
      */
     getConnectionPoint: function( connectionType ) {
       assert && assert( connectionType !== CircuitState.SWITCH_IN_TRANSIT,
