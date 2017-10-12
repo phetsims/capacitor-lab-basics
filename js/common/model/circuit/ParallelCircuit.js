@@ -26,7 +26,6 @@ define( function( require ) {
   var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
-  var Range = require( 'DOT/Range' );
 
   // phet-io modules
   var TString = require( 'ifphetio!PHET_IO/types/TString' );
@@ -74,8 +73,7 @@ define( function( require ) {
      */
     this.disconnectedPlateChargeProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'disconnectedPlateChargeProperty' ),
-      units: 'coulombs',
-      range: new Range( -CLBConstants.PLATE_CHARGE_METER_MAX_VALUE, CLBConstants.PLATE_CHARGE_METER_MAX_VALUE )
+      units: 'coulombs'
     } );
 
     // Utility variable for current calculation
