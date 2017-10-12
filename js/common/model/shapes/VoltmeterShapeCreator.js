@@ -29,8 +29,10 @@ define( function( require ) {
    */
   function VoltmeterShapeCreator( voltmeter, modelViewTransform ) {
 
-    // @private
+    // @private {Voltmeter}
     this.voltmeter = voltmeter;
+
+    // @private {CLBModelViewTransform3D}
     this.modelViewTransform = modelViewTransform;
   }
 
@@ -64,11 +66,13 @@ define( function( require ) {
      * Get the shape of a probe tip relative to some specified origin.
      * @public
      *
-     * @param {Vector3} origin
+     * @param {Vector2|Vector3} origin
      * @param {number} theta - rotation of modelViewTransform for 3D perspective
      * @returns {Shape}
      */
     getProbeTipShape: function( origin, theta ) {
+      assert && assert( typeof theta === 'number' );
+
       var size = this.voltmeter.probeTipSizeReference;
       var width = size.width;
       var height = size.height;

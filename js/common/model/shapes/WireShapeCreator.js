@@ -23,8 +23,10 @@ define( function( require ) {
    * @param {CLBModelViewTransform3D} modelViewTransform
    */
   function WireShapeCreator( wire, modelViewTransform ) {
-    // @private
+    // @private {Wire}
     this.wire = wire;
+
+    // @private {CLBModelViewTransform3D}
     this.modelViewTransform = modelViewTransform;
   }
 

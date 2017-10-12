@@ -14,9 +14,11 @@ define( function( require ) {
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'DOT/Rectangle' );
   var Shape = require( 'KITE/Shape' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   /**
    * Constructor for a BatteryShapeCreator.
@@ -25,8 +27,13 @@ define( function( require ) {
    * @param {CLBModelViewTransform3D} modelViewTransform
    */
   function BatteryShapeCreator( battery, modelViewTransform ) {
-    this.battery = battery; // @public
-    this.modelViewTransform = modelViewTransform; // @private
+    assert && assert( modelViewTransform instanceof CLBModelViewTransform3D );
+
+    // @public {Battery}
+    this.battery = battery;
+
+    // @public {CLBModelViewTransform3D}
+    this.modelViewTransform = modelViewTransform;
   }
 
   capacitorLabBasics.register( 'BatteryShapeCreator', BatteryShapeCreator );
@@ -58,6 +65,7 @@ define( function( require ) {
      * @returns {Shape}
      */
     createPositiveTerminalShapeBody: function( origin ) {
+      assert && assert( origin instanceof Vector3 );
 
       // Create the height of the top ellipse of this cylinder.  This is needed to draw the body outline.
       var ellipseHeight = this.createPositiveTerminalShapeTop( origin ).bounds.height;
@@ -87,6 +95,8 @@ define( function( require ) {
      * @returns {Shape} ellipse for top of terminal
      */
     createPositiveTerminalShapeTop: function( origin ) {
+      assert && assert( origin instanceof Vector3 );
+
       var ellipseWidth = this.battery.positiveTerminalEllipseSize.width;
       var ellipseHeight = this.battery.positiveTerminalEllipseSize.height;
       var ellipseY = origin.y + this.battery.getTopTerminalYOffset();
@@ -101,6 +111,8 @@ define( function( require ) {
      * @returns {Shape}
      */
     createNegativeTerminalShape: function( origin ) {
+      assert && assert( origin instanceof Vector3 );
+
       var width = this.battery.negativeTerminalEllipseSize.width;
       var height = this.battery.negativeTerminalEllipseSize.height;
       var y = origin.y + this.battery.getTopTerminalYOffset();

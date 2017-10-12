@@ -12,6 +12,7 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Matrix3 = require( 'DOT/Matrix3' );
   var Shape = require( 'KITE/Shape' );
@@ -23,14 +24,18 @@ define( function( require ) {
    * @param {CLModelViewTransform3D} modelViewTransform
    */
   function LightBulbShapeCreator( lightBulb, modelViewTransform ) {
-    this.lightBulb = lightBulb; // @public
-    this.modelViewTransform = modelViewTransform; // @private
+    assert && assert( modelViewTransform instanceof CLBModelViewTransform3D );
+
+    // @public {LightBulb} lightBulb
+    this.lightBulb = lightBulb;
+
+    // @private {CLBModelViewTransform3D}
+    this.modelViewTransform = modelViewTransform;
   }
 
   capacitorLabBasics.register( 'LightBulbShapeCreator', LightBulbShapeCreator );
 
   return inherit( Object, LightBulbShapeCreator, {
-
 
     /**
      * Gets the shape of the light bulb base in the world coordinate frame.  Origin at the top center.

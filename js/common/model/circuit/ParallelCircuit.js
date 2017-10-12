@@ -26,6 +26,7 @@ define( function( require ) {
   var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
+  var Shape = require( 'KITE/Shape' );
 
   // phet-io modules
   var TString = require( 'ifphetio!PHET_IO/types/TString' );
@@ -42,62 +43,43 @@ define( function( require ) {
 
     var self = this;
 
-    /**
-     * Signed current through circuit. Used to update arrows
-     *
-     * @type {NumberProperty}
-     * @public
-     */
+    // @public {NumberProperty} - Signed current through circuit. Used to update arrows
     this.currentAmplitudeProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
       units: 'amperes',
       phetioInstanceDocumentation: 'currentAmplitudeProperty is updated by the model and should not be set by users. Beware that the current is calculated in the model time step, so if dQ is zero for a step the current could transiently appear as zero.'
     } );
 
-    /**
-     * Property tracking the state of the switch
-     *
-     * @type {Property.<CircuitState>}
-     * @public
-     */
+    // @public {Property.<CircuitState>} - Property tracking the state of the switch
     this.circuitConnectionProperty = new Property( CircuitState.BATTERY_CONNECTED, {
       tandem: tandem.createTandem( 'circuitConnectionProperty' ),
       phetioValueType: TString
     } );
 
-    /**
-     * Property tracking the signed charge value on the upper plate
-     *
-     * @type {NumberProperty}
-     * @public
-     */
+    // @public {NumberProperty} - Property tracking the signed charge value on the upper plate
     this.disconnectedPlateChargeProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'disconnectedPlateChargeProperty' ),
       units: 'coulombs'
     } );
 
-    // Utility variable for current calculation
-    // @protected
+    // @protected {number}
     this.previousTotalCharge = 0;
 
-    // Overwrite in concrete instances
-    // @protected
+    // @protected {number} - Overwritten in subtypes
     this.maxPlateCharge = Infinity;
     this.maxEffectiveEField = Infinity;
 
-    // @public
+    // @public {Battery}
     this.battery = new Battery( CLBConstants.BATTERY_LOCATION, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue,
       config.modelViewTransform, tandem.createTandem( 'battery' ) );
 
-    // @public
+    // @public {Capacitor}
     this.capacitor = new Capacitor( config, this.circuitConnectionProperty, tandem.createTandem( 'capacitor' ) );
 
-    // Array of CircuitSwitch instances
-    // @public
+    // @public {Array.<CircuitSwitch>}
     this.circuitSwitches = [ this.capacitor.topCircuitSwitch, this.capacitor.bottomCircuitSwitch ];
 
-    // Create array of Wire instances. Assumes the capacitor is to the left of the lightbulb.
-    // @public
+    // @public {Array.<Wire>} - Assumes the capacitor is to the left of the lightbulb.
     this.wires = [
       BatteryToSwitchWire.createBatteryToSwitchWireTop(
         config,
@@ -139,8 +121,8 @@ define( function( require ) {
 
     /**
      * Return the subset of wires connected to the provided location
-     * @private
-     * @param  {CircuitLocation} location
+     *
+     * @param {CircuitLocation} location
      * @returns {Wire[]}
      */
     function selectWires( location ) {
@@ -151,7 +133,7 @@ define( function( require ) {
 
     // Create wire groups that are electrically connected to various parts of the circuit.
     // These arrays are hashed to a location key for efficient connectivity checking.
-    // @protected
+    // @protected {Object} - Maps {CircuitLocation} => {Array.<Wire>}
     this.wireGroup = {};
     [ CircuitLocation.BATTERY_TOP,
       CircuitLocation.BATTERY_BOTTOM,
@@ -162,10 +144,11 @@ define( function( require ) {
       self.wireGroup[ location ] = selectWires( location );
     } );
 
-    // @public
+    // @public {Array.<Wire>}
     this.topWires = this.wireGroup[ CircuitLocation.BATTERY_TOP ]
       .concat( this.wireGroup[ CircuitLocation.LIGHT_BULB_TOP ] )
       .concat( this.wireGroup[ CircuitLocation.CAPACITOR_TOP ] );
+    // @public {Array.<Wire>}
     this.bottomWires = this.wireGroup[ CircuitLocation.BATTERY_BOTTOM ]
       .concat( this.wireGroup[ CircuitLocation.LIGHT_BULB_BOTTOM ] )
       .concat( this.wireGroup[ CircuitLocation.CAPACITOR_BOTTOM ] );
@@ -263,6 +246,8 @@ define( function( require ) {
      * @param {number} dt
      */
     step: function( dt ) {
+      assert && assert( typeof dt === 'number' );
+
       this.updateCurrentAmplitude( dt );
     },
 
@@ -274,6 +259,8 @@ define( function( require ) {
      * @param {number} dt
      */
     updateCurrentAmplitude: function( dt ) {
+      assert && assert( typeof dt === 'number' );
+
       var Q = this.getTotalCharge();
       if ( this.previousTotalCharge !== -1 ) {
         var dQ = Q - this.previousTotalCharge;
@@ -323,6 +310,9 @@ define( function( require ) {
      * return {number}
      */
     getVoltageBetween: function( positiveShape, negativeShape ) {
+      assert && assert( positiveShape instanceof Shape );
+      assert && assert( negativeShape instanceof Shape );
+
       var vPlus = this.getVoltageAt( positiveShape );
       var vMinus = this.getVoltageAt( negativeShape );
 
@@ -333,12 +323,13 @@ define( function( require ) {
      * Check if shape intersects any wire in the array, stopping to return if true.
      * @public
      *
-     * @param  {Shape} shape
-     * @param  {Wire[]} wires
-     *
+     * @param {Shape} shape
+     * @param {CircuitLocation} location
      * @returns {boolean}
      */
     shapeTouchesWireGroup: function( shape, location ) {
+      assert && assert( shape instanceof Shape );
+      assert && assert( _.includes( CircuitLocation.VALUES, location ) );
 
       assert && assert( this.wireGroup.hasOwnProperty( location ), 'Invalid location: ' + location );
 
@@ -370,6 +361,9 @@ define( function( require ) {
      * @returns {boolean}
      */
     probeContactsComponent: function( probe, location, isolated ) {
+      assert && assert( probe instanceof Shape );
+      assert && assert( _.includes( CircuitLocation.VALUES, location ) );
+      assert && assert( typeof isolated === 'boolean' );
 
       // Battery
       if ( location === CircuitLocation.BATTERY_TOP || location === CircuitLocation.BATTERY_BOTTOM ) {
@@ -416,15 +410,17 @@ define( function( require ) {
     },
 
     /**
-     * Gets the voltage at a probe location, with respect to ground. Returns
-     * null if the Shape is not connected to the circuit.
+     * Gets the voltage at a probe location, with respect to ground. Returns null if the Shape is not connected to the
+     * circuit.
+     * @override
      * @public
      *
      * @param {Shape} probe - voltmeter probe shape
-     * @returns {number} voltage
-     * @override
+     * @returns {number|null} voltage
      */
     getVoltageAt: function( probe ) {
+      assert && assert( probe instanceof Shape );
+
       var voltage = null;
 
       var probeBatteryTop = this.probeContactsComponent( probe, CircuitLocation.BATTERY_TOP, false );
@@ -506,7 +502,6 @@ define( function( require ) {
 
       return voltage;
     }
-
   } );
 
   return ParallelCircuit;

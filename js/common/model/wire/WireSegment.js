@@ -30,13 +30,13 @@ define( function( require ) {
     assert && assert( startPoint instanceof Vector3 );
     assert && assert( endPoint instanceof Vector3 );
 
-    // @public
+    // @public {Property.<Vector3>}
     this.startPointProperty = new Property( startPoint, {
       tandem: tandem.createTandem( 'startPointProperty' ),
       phetioValueType: TVector3
     } );
 
-    // @public
+    // @public {Property.<Vector3>}
     this.endPointProperty = new Property( endPoint, {
       tandem: tandem.createTandem( 'endPointProperty' ),
       phetioValueType: TVector3

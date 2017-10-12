@@ -49,50 +49,51 @@ define( function( require ) {
    */
   function Capacitor( config, circuitConnectionProperty, tandem, options ) {
 
-    var location = new Vector3(
-      CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing,
-      CLBConstants.BATTERY_LOCATION.y + config.capacitorYSpacing,
-      CLBConstants.BATTERY_LOCATION.z );
-
     // options that populate the capacitor with various geometric properties
     options = _.extend( {
       plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
       plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.max,
     }, options );
 
-    // @public
+    // @public {number}
     this.transientTime = 0; // model time updated when the switch is closed and while the capacitor is discharging
     this.voltageAtSwitchClose = 0; // voltage of the plates when the bulb switch is initially closed
-    this.modelViewTransform = config.modelViewTransform;
-    this.location = location;
 
-    // @private
+    // @public {CLBModelViewTransform3D}
+    this.modelViewTransform = config.modelViewTransform;
+
+    // @public {Vector3}
+    this.location = new Vector3(
+      CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing,
+      CLBConstants.BATTERY_LOCATION.y + config.capacitorYSpacing,
+      CLBConstants.BATTERY_LOCATION.z );
+
+    // @private {CapacitorShapeCreator}
     this.shapeCreator = new CapacitorShapeCreator( this, config.modelViewTransform );
 
     // Square plates.
     var plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth );
 
-    // @public
+    // @public {Property.<Bounds3>}
     this.plateSizeProperty = new Property( plateBounds, {
       tandem: tandem.createTandem( 'plateSizeProperty' ),
       phetioValueType: TBounds3
     } );
 
-    // @public
+    // @public {Property.<number>}
     this.plateSeparationProperty = new NumberProperty( options.plateSeparation, {
       tandem: tandem.createTandem( 'plateSeparationProperty' ),
       units: 'meters',
       range: CLBConstants.PLATE_SEPARATION_RANGE
     } );
 
-    // zero until it's connected into a circuit
-    // @public
+    // @public {Property.<number>} - zero until it's connected into a circuit
     this.plateVoltageProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'plateVoltageProperty' ),
       units: 'volts'
     } );
 
-    // @public
+    // @public {Property.<number>}
     this.capacitanceProperty = new DerivedProperty( [ this.plateSeparationProperty, this.plateSizeProperty ],
       function( plateSeparation, plateSize ) {
         assert && assert( plateSeparation > 0, 'Plate separation is ' + plateSeparation );
@@ -103,8 +104,7 @@ define( function( require ) {
         phetioValueType: TNumber
       } );
 
-    // Charge on top plate of capacitor
-    // @public
+    // @public {Property.<number} Charge on top plate of capacitor
     this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty ],
       function( capacitance, voltage ) {
         var charge = capacitance * voltage;
@@ -120,7 +120,7 @@ define( function( require ) {
         phetioValueType: TNumber
       } );
 
-    // @public
+    // @public {Property.<number>}
     this.storedEnergyProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty ],
       function( capacitance, voltage ) {
         return 0.5 * capacitance * voltage * voltage;
@@ -132,12 +132,14 @@ define( function( require ) {
 
     // Track the previous capacitance to adjust the inital voltage when discharging, see
     // updateDischargeParameters() below.
-    // @private
+    // @private {number}
     this.previousCapacitance = this.capacitanceProperty.value;
 
-    // @public
+    // @public {CircuitSwitch}
     this.topCircuitSwitch = CircuitSwitch.TOP( config, circuitConnectionProperty,
       tandem.createTandem( 'topCircuitSwitch' ) );
+
+    // @public {CircuitSwitch}
     this.bottomCircuitSwitch = CircuitSwitch.BOTTOM( config, circuitConnectionProperty,
       tandem.createTandem( 'bottomCircuitSwitch' ) );
 

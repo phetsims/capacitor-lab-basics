@@ -15,6 +15,7 @@ define( function( require ) {
   // modules
   var BoxShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BoxShapeCreator' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
 
   /**
@@ -25,8 +26,12 @@ define( function( require ) {
    * @constructor
    */
   function CapacitorShapeCreator( capacitor, modelViewTransform ) {
-    // @private
+    assert && assert( modelViewTransform instanceof CLBModelViewTransform3D );
+
+    // @private {Capacitor}
     this.capacitor = capacitor;
+
+    // @private {CLBModelViewTransform3D}
     this.boxShapeCreator = new BoxShapeCreator( modelViewTransform );
   }
 

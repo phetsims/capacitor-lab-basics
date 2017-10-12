@@ -19,6 +19,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
   var TString = require( 'ifphetio!PHET_IO/types/TString' );
@@ -54,15 +55,16 @@ define( function( require ) {
    * @constructor
    */
   function Battery( location, voltage, modelViewTransform, tandem ) {
+    assert && assert( location instanceof Vector3 );
 
-    // @public
+    // @public {Property.<number>}
     this.voltageProperty = new NumberProperty( voltage, {
       tandem: tandem.createTandem( 'voltageProperty' ),
       units: 'volts'
     } );
 
     // Value type: enumeration (string)
-    // @public
+    // @public {Property.<string>} - 'POSITIVE' or 'NEGATIVE'
     this.polarityProperty = new Property( CLBConstants.POLARITY.POSITIVE, {
       tandem: tandem.createTandem( 'polarityProperty' ),
       phetioValueType: TString
@@ -70,17 +72,18 @@ define( function( require ) {
 
     var self = this;
 
-    // @public
+    // @public {Dimension2}
     this.positiveTerminalEllipseSize = POSITIVE_TERMINAL_ELLIPSE_SIZE;
-    // @public
     this.negativeTerminalEllipseSize = NEGATIVE_TERMINAL_ELLIPSE_SIZE;
-    // @public
+
+    // @public {number}
     this.positiveTerminalCylinderHeight = POSITIVE_TERMINAL_CYLINDER_HEIGHT;
 
+    // @public {Vector3}
     this.location = location; // @public (read-only)
     this.shapeCreator = new BatteryShapeCreator( this, modelViewTransform ); // @private
 
-    // @private
+    // @private {Shape}
     this.topTerminalShape = this.shapeCreator.createTopTerminalShape();
 
     this.voltageProperty.link( function() {
@@ -95,10 +98,10 @@ define( function( require ) {
 
     /**
      * Convenience function to get the polarity from the object literal based on the voltage.
+     * @private
      *
      * @param {number} voltage
      * @returns {string}
-     * @private
      */
     getPolarity: function( voltage ) {
       return ( voltage >= 0 ) ? CLBConstants.POLARITY.POSITIVE : CLBConstants.POLARITY.NEGATIVE;
@@ -121,6 +124,8 @@ define( function( require ) {
      * Gets the offset of the bottom terminal from the battery's origin, in model coordinates (meters).
      * We don't need to account for the polarity since the bottom terminal is never visible.
      * @public
+     *
+     * @return {number}
      */
     getBottomTerminalYOffset: function() {
       return BODY_SIZE.height / 2;
@@ -130,6 +135,8 @@ define( function( require ) {
      * Gets the offset of the top terminal from the battery's origin, in model coordinates (meters).
      * This offset depends on the polarity.
      * @public
+     *
+     * @returns {Dimension2}
      */
     getTopTerminalYOffset: function() {
       if ( this.polarityProperty.value === CLBConstants.POLARITY.POSITIVE ) {

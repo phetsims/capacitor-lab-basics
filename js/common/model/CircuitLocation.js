@@ -21,6 +21,18 @@ define( function( require ) {
     CIRCUIT_SWITCH_BOTTOM: 'CIRCUIT_SWITCH_BOTTOM'
   };
 
+  // @public {Array.<CircuitLocation>}
+  CircuitLocation.VALUES = [
+    CircuitLocation.BATTERY_TOP,
+    CircuitLocation.BATTERY_BOTTOM,
+    CircuitLocation.LIGHT_BULB_TOP,
+    CircuitLocation.LIGHT_BULB_BOTTOM,
+    CircuitLocation.CAPACITOR_TOP,
+    CircuitLocation.CAPACITOR_BOTTOM,
+    CircuitLocation.CIRCUIT_SWITCH_TOP,
+    CircuitLocation.CIRCUIT_SWITCH_BOTTOM
+  ];
+
   // Verify that enum is immutable without runtime penalty in production code
   if ( assert ) {
     Object.freeze( CircuitLocation );

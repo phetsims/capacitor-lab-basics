@@ -23,7 +23,7 @@ define( function( require ) {
   /**
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {WireSegment[]} segments
-   * @param {string} connectionPoint
+   * @param {CircuitLocation} connectionPoint
    *
    * @constructor
    */

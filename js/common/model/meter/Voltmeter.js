@@ -12,10 +12,13 @@ define( function( require ) {
 
   // modules
   var BooleanProperty = require( 'AXON/BooleanProperty' );
+  var Bounds2 = require( 'DOT/Bounds2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
   var Property = require( 'AXON/Property' );
   var TVector3 = require( 'DOT/TVector3' );
   var Vector3 = require( 'DOT/Vector3' );
@@ -42,35 +45,45 @@ define( function( require ) {
    * @constructor
    */
   function Voltmeter( circuit, dragBounds, modelViewTransform, tandem ) {
+    assert && assert( circuit instanceof ParallelCircuit );
+    assert && assert( dragBounds instanceof Bounds2 );
+    assert && assert( modelViewTransform instanceof CLBModelViewTransform3D );
 
-    this.circuit = circuit; // @private
-    this.dragBounds = dragBounds; // @public (read-only)
-    this.modelViewTransform = modelViewTransform; // @private
-    this.probeTipSizeReference = PROBE_TIP_SIZE; // @public (read-only)
+    // @private {ParallelCircuit}
+    this.circuit = circuit;
 
-    // @public
+    // @public {Bounds2} (read-only)
+    this.dragBounds = dragBounds;
+
+    // @private {CLBModelViewTransform3D}
+    this.modelViewTransform = modelViewTransform;
+
+    // @public {Dimension2} (read-only)
+    this.probeTipSizeReference = PROBE_TIP_SIZE;
+
+    // @public {Property.<boolean>}
     this.visibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'visibleProperty' )
     } );
 
-    // @public
+    // @public {Property.<boolean>}
     this.inUserControlProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'inUserControlProperty' )
     } );
 
-    // @public
+    // @public {Property.<Vector3>}
     this.bodyLocationProperty = new Property( new Vector3(), {
       tandem: tandem.createTandem( 'bodyLocationProperty' ),
       phetioValueType: TVector3
     } );
 
-    // @public
+    // @public {Property.<Vector3>}
     this.positiveProbeLocationProperty = new Property( POSITIVE_PROBE_LOCATION, {
       tandem: tandem.createTandem( 'positiveProbeLocationProperty' ),
       phetioValueType: TVector3
     } );
 
-    // @public
+    // @public {Property.<Vector3>}
     this.negativeProbeLocationProperty = new Property( NEGATIVE_PROBE_LOCATION, {
       tandem: tandem.createTandem( 'negativeProbeLocationProperty' ),
       phetioValueType: TVector3
@@ -78,7 +91,7 @@ define( function( require ) {
 
     // By design, the voltmeter reads "?" for disconnected contacts, which is represented internally by a null
     // assignment value.
-    // @public
+    // @public {Property.<number|null>}
     this.measuredVoltageProperty = new Property( null, {
       tandem: tandem.createTandem( 'measuredVoltageProperty' ),
       units: 'volts',
@@ -87,7 +100,8 @@ define( function( require ) {
 
     var self = this;
 
-    this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform ); // @public (read-only)
+    // @public {VoltmeterShapeCreator} (read-only)
+    this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform );
 
     //REVIEW: https://github.com/phetsims/capacitor-lab-basics/issues/174 should help with duplication here
 
@@ -109,7 +123,7 @@ define( function( require ) {
     /**
      * Compute voltage reading for meter, called when many different properties change
      * Null values correspond to a ? on the voltmeter.
-     * @private
+     *
      * @returns {number} - voltage difference between probes
      */
     var computeValue = function() {
