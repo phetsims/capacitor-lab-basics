@@ -188,10 +188,8 @@ define( function( require ) {
         return 0;
       }
       else {
-        //REVIEW variable is redundant
         // sqrt looks best for a square plate
-        var spacing = SPACING_CONSTANT / Math.sqrt( Math.abs( effectiveEField ) );
-        return spacing;
+        return SPACING_CONSTANT / Math.sqrt( Math.abs( effectiveEField ) );
       }
     }
 

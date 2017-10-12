@@ -78,7 +78,6 @@ define( function( require ) {
 
   return inherit( CLBCircuitNode, LightBulbCircuitNode, {
 
-    //REVIEW is this really @public?
     /**
      * Updates the visibility of the current indicators.
      *

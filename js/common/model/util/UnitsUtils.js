@@ -1,6 +1,5 @@
 // Copyright 2015-2017, University of Colorado Boulder
 
-//REVIEW this doesn't need to have a constructor or use inherit
 /**
  * Utilities for converting between different units.  These are the common conversions required when going between model
  * and view.
@@ -18,21 +17,11 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var inherit = require( 'PHET_CORE/inherit' );
 
   // constants
   var MILLIMETERS_PER_METER = 1000;
 
-  /**
-   * Constructor for UnitsUtils.
-   * @constructor
-   */
-  function UnitsUtils() {}
-
-  capacitorLabBasics.register( 'UnitsUtils', UnitsUtils );
-
-  return inherit( Object, UnitsUtils, {}, {
-
+  var UnitsUtils = {
     /**
      * Utility function to convert from meters to millimeters.
      * @public
@@ -54,5 +43,9 @@ define( function( require ) {
     metersSquaredToMillimetersSquared: function( d ) {
       return d * ( MILLIMETERS_PER_METER * MILLIMETERS_PER_METER );
     }
-  } );
+  };
+
+  capacitorLabBasics.register( 'UnitsUtils', UnitsUtils );
+
+  return UnitsUtils;
 } );

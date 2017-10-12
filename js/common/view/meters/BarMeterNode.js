@@ -154,8 +154,7 @@ define( function( require ) {
         this.valueTextNode.setText( unitsFormatString );
 
         // layout
-        //REVIEW: Try removing this in its own commit to see if something breaks
-        this.updateLayout;
+        this.updateLayout();
       }
     },
 

@@ -102,8 +102,6 @@ define( function( require ) {
     // @public {VoltmeterShapeCreator} (read-only)
     this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform );
 
-    //REVIEW: https://github.com/phetsims/capacitor-lab-basics/issues/174 should help with duplication here
-
     var touchingFreePlate = function( probe ) {
       return ( self.circuit.probeContactsComponent( probe, CircuitLocation.CAPACITOR_TOP, true ) ||
                self.circuit.probeContactsComponent( probe, CircuitLocation.CAPACITOR_BOTTOM, true ) );
