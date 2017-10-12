@@ -52,7 +52,6 @@ define( function( require ) {
         return new CLBLightBulbScreenView( model, tandem.createTandem( 'view' ) );
       },
       options );
-
   }
 
   capacitorLabBasics.register( 'CLBLightBulbScreen', CLBLightBulbScreen );

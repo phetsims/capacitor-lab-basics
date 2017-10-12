@@ -27,9 +27,9 @@ define( function( require ) {
      * The number of cells in the grid may be more or less than numberOfObjects.
      * @private
      *
-     * @param numberOfObjects number of objects to put on the plate
-     * @param width           width of the plate
-     * @param height          height of the plate
+     * @param {number} numberOfObjects number of objects to put on the plate
+     * @param {number}width width of the plate
+     * @param {number}height height of the plate
      */
     getGridSize: function( numberOfObjects, width, height ) {
       assert && assert( false, 'getGridSize should be overridden by descendant classes.' );
@@ -60,11 +60,12 @@ define( function( require ) {
 
   inherit( Object, CCKStrategyWithRounding, {
     /**
-     * @param  {number} numberOfObjects [description]
-     * @param  {number} width
-     * @param  {number} height
-     * @returns {Dimension2}
      * @private
+     *
+     * @param {number} numberOfObjects [description]
+     * @param {number} width
+     * @param {number} height
+     * @returns {Dimension2}
      */
     getGridSize: function( numberOfObjects, width, height ) {
       var columns = 0;

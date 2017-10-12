@@ -64,31 +64,34 @@ define( function( require ) {
       plateSeparation: PLATE_SEPARATION
     } );
 
+    // @public {LightBulbCircuit}
     this.circuit = new LightBulbCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
 
     CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
 
+    // @public {Property.<boolean>}
     this.plateChargeMeterVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' )
     } );
 
+    // @public {Property.<boolean>}
     this.storedEnergyMeterVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' )
     } );
 
     var circuit = this.circuit;
 
-    // @public
+    // @public {BarMeter}
     this.capacitanceMeter = new BarMeter( this.circuit, this.capacitanceMeterVisibleProperty,
       circuit.capacitor.capacitanceProperty,
       tandem.createTandem( 'capacitanceMeter' ) );
 
-    // @public
+    // @public {BarMeter}
     this.plateChargeMeter = new BarMeter( this.circuit, this.plateChargeMeterVisibleProperty,
       circuit.capacitor.plateChargeProperty,
       tandem.createTandem( 'plateChargeMeter' ) );
 
-    // @public
+    // @public {BarMeter}
     this.storedEnergyMeter = new BarMeter( this.circuit, this.storedEnergyMeterVisibleProperty,
       circuit.capacitor.storedEnergyProperty,
       tandem.createTandem( 'storedEnergyMeter' ) );
@@ -97,7 +100,6 @@ define( function( require ) {
   capacitorLabBasics.register( 'CLBLightBulbModel', CLBLightBulbModel );
 
   return inherit( CLBModel, CLBLightBulbModel, {
-
     /**
      * Reset function for this model.
      * @public
@@ -114,6 +116,5 @@ define( function( require ) {
       this.voltmeter.reset();
       this.circuit.reset();
     }
-
   } );
 } );

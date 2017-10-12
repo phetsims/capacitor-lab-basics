@@ -86,9 +86,10 @@ define( function( require ) {
   } );
 
   /**
-   * Constructor for ComponentTopWireSegment.  This is a wire segment whose start point is connected to the top
+   * This is a wire segment whose start point is connected to the top
    * connection point of a component.  Adjusts the wire geometry when the component changes geometry or orientation.
    * @public
+   * @constructor
    *
    * @param {Capacitor|LightBulb} component
    * @param {Vector3} endPoint
@@ -115,8 +116,10 @@ define( function( require ) {
   } );
 
   /**
-   * Constructor for ComponentBottomWireSegment.  Wire segment whose start point is connected to the bottom connection
+   * Wire segment whose start point is connected to the bottom connection
    * point of a component.  Adjusts the start point when the component geometry changes.
+   * @public
+   * @constructor
    *
    * @param {Capacitor|LightBulb} component
    * @param {Vector3} endPoint

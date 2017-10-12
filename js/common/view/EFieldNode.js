@@ -70,13 +70,12 @@ define( function( require ) {
   }
 
   /**
-   * Constructor for the EFieldNode.
+   * @constructor
    *
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {number} maxEffectiveEField
    * @param {Bounds2} canvasBounds
-   * @constructor
    */
   function EFieldNode( capacitor, modelViewTransform, maxEffectiveEField, canvasBounds ) {
 
@@ -121,7 +120,7 @@ define( function( require ) {
      * Rendering function
      * @public
      *
-     * @param  {CanvasRenderingContext2D} context
+     * @param {CanvasRenderingContext2D} context
      */
     paintCanvas: function( context ) {
 

@@ -15,10 +15,11 @@ define( function( require ) {
   var PlateChargeNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateChargeNode' );
 
   /**
+   * @constructor
+   *
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Object} options - See options for PlateChargeNode
-   * @constructor
+   * @param {Object} [options] - See options for PlateChargeNode
    */
   function VacuumPlateChargeNode( capacitor, modelViewTransform, options ) {
     PlateChargeNode.call( this, capacitor, modelViewTransform, options );
@@ -30,9 +31,9 @@ define( function( require ) {
 
     /**
      * Get plate charge from capacitor in the model
+     * @public
      *
      * @returns {number} charge
-     * @public
      */
     getPlateCharge: function() {
       return this.capacitor.plateChargeProperty.value;
@@ -41,9 +42,9 @@ define( function( require ) {
 
     /**
      * Gets the x offset (relative to the plate origin) of the portion of the plate that is facing the vacuum gap
+     * @public
      *
      * @returns {number} offset
-     * @public
      */
     getContactXOrigin: function() {
       return -this.capacitor.plateSizeProperty.value.width / 2;
@@ -51,9 +52,9 @@ define( function( require ) {
 
     /**
      * Gets the width of the portion of the plate that is in contact with air.
+     * @public
      *
      * @returns {number}
-     * @public
      */
     getContactWidth: function() {
       return this.capacitor.plateSizeProperty.value.width;

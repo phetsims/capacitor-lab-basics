@@ -24,8 +24,8 @@ define( function( require ) {
    *
    * @param {ParallelCircuit} circuit
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Property} plateChargeVisibleProperty
-   * @param {Property} eFieldVisibleProperty
+   * @param {Property.<boolean>} plateChargeVisibleProperty
+   * @param {Property.<boolean>} eFieldVisibleProperty
    * @param {Tandem} tandem
    */
   function CapacitorNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, tandem ) {
@@ -36,6 +36,8 @@ define( function( require ) {
     // @private
     this.capacitor = circuit.capacitor;
     this.modelViewTransform = modelViewTransform;
+
+    // @private {PlateNode}
     this.topPlateNode = PlateNode.createTopPlateNode( this.capacitor, modelViewTransform, circuit.maxPlateCharge );
     this.bottomPlateNode = PlateNode.createBottomPlateNode( this.capacitor, modelViewTransform, circuit.maxPlateCharge );
 

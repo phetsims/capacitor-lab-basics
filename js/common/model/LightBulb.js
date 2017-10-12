@@ -23,11 +23,10 @@ define( function( require ) {
   var BULB_BASE_SIZE = new Dimension2( 0.0050, 0.0035 );
 
   /**
-   * Constructor for the light bulb.
+   * @constructor
    *
    * @param {Vector3} location
    * @param {CLModelViewTransform3D} modelViewTransform
-   * @constructor
    */
   function LightBulb( location, modelViewTransform ) {
 

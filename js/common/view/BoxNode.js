@@ -24,36 +24,37 @@ define( function( require ) {
   var STROKE = 'black';
 
   /**
-   * Constructor for the BoxNode.
+   * @constructor
    *
    * @param {CLModelViewTransform3} modelViewTransform
    * @param {Color} color
    * @param {Bounds3} size
-   * @constructor
    */
   function BoxNode( modelViewTransform, color, size ) {
 
     Node.call( this );
 
-    // @private
+    // @private {BoxShapeCreator}
     this.shapeCreator = new BoxShapeCreator( modelViewTransform );
+
+    // @private {Bounds3}
     this.size = size;
 
-    // @private
+    // @private {Path}
     this.topNode = new Path( this.shapeCreator.createTopFaceBounds3( size ), {
       fill: this.getTopColor( color ),
       lineWidth: LINE_WIDTH,
       stroke: STROKE
     } );
 
-    // @private
+    // @private {Path}
     this.frontNode = new Path( this.shapeCreator.createFrontFaceBounds3( size ), {
       fill: this.getFrontColor( color ),
       lineWidth: LINE_WIDTH,
       stroke: STROKE
     } );
 
-    // @private
+    // @private {Path}
     this.rightSideNode = new Path( this.shapeCreator.createRightSideFaceBounds3( size ), {
       fill: this.getSideColor( color ),
       lineWidth: LINE_WIDTH,
@@ -96,7 +97,7 @@ define( function( require ) {
      * @public
      *
      * @param {Color} baseColor
-     *
+     * @returns {Color}
      */
     getSideColor: function( baseColor ) {
       return baseColor.darkerColor().darkerColor();

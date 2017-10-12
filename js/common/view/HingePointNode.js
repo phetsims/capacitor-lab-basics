@@ -20,10 +20,9 @@ define( function( require ) {
   var PIN_RADIUS = 5;
 
   /**
-   * Constructor for the HingePointNode.
-   *
-   * @param {Object} options
    * @constructor
+   *
+   * @param {Object} [options]
    */
   function HingePointNode( options ) {
 

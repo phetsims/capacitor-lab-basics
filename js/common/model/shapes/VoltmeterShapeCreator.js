@@ -21,11 +21,10 @@ define( function( require ) {
   var PROBE_TIP_OFFSET = new Vector3( 0.0003, 0, 0 );
 
   /**
-   * Constructor for a VoltmeterShapeCreator.
+   * @constructor
    *
    * @param {Voltmeter} voltmeter
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @constructor
    */
   function VoltmeterShapeCreator( voltmeter, modelViewTransform ) {
 

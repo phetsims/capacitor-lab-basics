@@ -22,12 +22,11 @@ define( function( require ) {
   var DOT_RADIUS = 2;
 
   /**
-   * Constructor for the DragHandleLineNode.  This is a string of circles that connects the capacitor plate to the
-   * drag handler node.
+   * This is a string of circles that connects the capacitor plate to the drag handler node.
+   * @constructor
    *
    * @param {Vector2} pStart
    * @param {Vector2} pEnd
-   * @constructor
    */
   function DragHandleLineNode( pStart, pEnd ) {
 

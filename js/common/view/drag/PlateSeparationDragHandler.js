@@ -19,7 +19,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   /**
-   * Constructor for the PlateSeparationDragHandler.  This is the drag handler for the capacitor plate separation
+   * This is the drag handler for the capacitor plate separation
    * property. Plate separation is a vertical quantity, so we're dragging along the y axis. Other axes are ignored.
    * @constructor
    *

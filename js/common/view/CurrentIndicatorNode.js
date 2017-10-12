@@ -46,7 +46,7 @@ define( function( require ) {
   var ELECTRON_MINUS_SIZE = new Dimension2( 0.6 * ELECTRON_DIAMETER, 0.1 * ELECTRON_DIAMETER );
 
   /**
-   * Constructor. Rotation angles should be set such that +dV/dt indicates current flow towards the positive terminal
+   * Rotation angles should be set such that +dV/dt indicates current flow towards the positive terminal
    * of the battery.
    * @constructor
    *
@@ -58,7 +58,9 @@ define( function( require ) {
 
     Node.call( this, { opacity: 0 } );
     var self = this;
-    this.positiveOrientation = positiveOrientation; // @private
+
+    // @private {number}
+    this.positiveOrientation = positiveOrientation;
 
     var arrowNode = new ArrowNode( ARROW_TAIL_LOCATION.x, ARROW_TAIL_LOCATION.y, ARROW_TIP_LOCATION.x, ARROW_TIP_LOCATION.y, {
       headHeight: ARROW_HEAD_HEIGHT,
@@ -96,7 +98,7 @@ define( function( require ) {
     electronNode.translate( x, y );
     minusNode.center = electronNode.center;
 
-    // @private - {OpacityTo} animation that will fade out the node
+    // @private {OpacityTo} - animation that will fade out the node
     this.animation = null;
 
     // observe current to determine rotation and opacity

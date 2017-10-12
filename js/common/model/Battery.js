@@ -46,7 +46,6 @@ define( function( require ) {
   var NEGATIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.0005; // center of negative terminal when at the top
 
   /**
-   * Constructor for a Battery.
    * @constructor
    *
    * @param {Vector3} location

@@ -41,8 +41,8 @@ define( function( require ) {
   /**
    * @constructor
    *
-   * @param {BarMeter[]} model
-   * @param {Property.<boolean>} minWidth - minimum width of the whole panel
+   * @param {CLBLightBulbModel} model
+   * @param {number} minWidth - minimum width of the whole panel
    * @param {Tandem} tandem
    */
   function BarMeterPanel( model, minWidth, tandem ) {

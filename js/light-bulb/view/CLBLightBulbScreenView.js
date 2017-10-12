@@ -36,8 +36,11 @@ define( function( require ) {
 
     ScreenView.call( this, { tandem: tandem } );
 
-    this.modelViewTransform = model.modelViewTransform; // @private
-    this.model = model; // @private
+    // @private {CLBModelViewTransform3D}
+    this.modelViewTransform = model.modelViewTransform;
+
+    // @private {CLBLightBulbModel}
+    this.model = model;
 
     // Circuit
     var lightBulbCircuitNode = new LightBulbCircuitNode( model, tandem.createTandem( 'lightBulbCircuitNode' ) );

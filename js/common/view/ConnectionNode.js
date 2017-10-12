@@ -24,15 +24,14 @@ define( function( require ) {
   var BOUNDING_ANGLE = Math.PI / 8;
 
   /**
-   * Constructor for the ConnectionNode.
+   * @constructor
    *
    * @param {Connection} connection
    * @param {CircuitSwitch} circuitSwitch
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Tandem} tandem
    * @param {CircuitSwitchDragHandler} dragHandler
-   * @param {Property.<boolean>}
-   * @constructor
+   * @param {Property.<boolean>} userControlledProperty
    */
   function ConnectionNode( connection, circuitSwitch, modelViewTransform, tandem, dragHandler, userControlledProperty ) {
 

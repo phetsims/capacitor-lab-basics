@@ -64,35 +64,43 @@ define( function( require ) {
   }
 
   /**
-   * Constructor for a PlateChargeNode.
+   * @constructor
    *
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Object} options
-   * @constructor
    */
   function PlateChargeNode( capacitor, modelViewTransform, options ) {
 
-    var defaultOptions = {
+    options = _.extend( {
+      // {string} - 'POSITIVE' or 'NEGATIVE'
       polarity: CLBConstants.POLARITY.POSITIVE,
       maxPlateCharge: Infinity,
       opacity: 1.0,
-      canvasBounds: null // Bounds2
-    };
-
-    options = _.extend( {}, defaultOptions, options );
+      canvasBounds: null // Bounds2|null
+    }, options );
 
     CanvasNode.call( this, {
       canvasBounds: options.canvasBounds
     } );
     var self = this; // extend scope for nested callbacks
 
-    // @private
+    // @private {Capacitor}
     this.capacitor = capacitor;
+
+    // @private {CLBModelViewTransform3D}
     this.modelViewTransform = modelViewTransform;
+
+    // @private {string} - 'POSITIVE' or 'NEGATIVE'
     this.polarity = options.polarity;
+
+    // @private {number}
     this.maxPlateCharge = options.maxPlateCharge;
+
+    // @private {IGridSizeStrategy}
     this.gridSizeStrategy = IGridSizeStrategy.createStrategy();
+
+    // @private {number}
     this.opacity = options.opacity;
 
     this.parentNode = new Node(); // @private parent node for charges
@@ -226,11 +234,11 @@ define( function( require ) {
     /**
      * Computes number of charges, linearly proportional to plate charge.  If plate charge is less than half of an
      * electron charge, number of charges is zero.
+     * @public
      *
      * @param {number} plateCharge
      * @param {number} maxPlateCharge
-     * @returns {number} numberOfCharges
-     * @public
+     * @returns {number}
      */
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
       var absCharge = Math.abs( plateCharge );

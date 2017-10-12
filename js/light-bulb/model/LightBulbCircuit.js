@@ -56,7 +56,7 @@ define( function( require ) {
       CLBConstants.BATTERY_LOCATION.z
     );
 
-    // @public
+    // @public {LightBulb}
     this.lightBulb = new LightBulb( bulbLocation, config.modelViewTransform );
 
     ParallelCircuit.call( this, config, tandem );
@@ -90,7 +90,7 @@ define( function( require ) {
      * @public
      * @override
      *
-     * @param  {number} dt time step in seconds
+     * @param {number} dt time step in seconds
      */
     step: function( dt ) {
 
@@ -145,7 +145,7 @@ define( function( require ) {
      * Assert that location is either CircuitLocation.LIGHT_BULB_TOP or BOTTOM.
      * @private
      *
-     * @param  {CircuitLocation} location
+     * @param {CircuitLocation} location
      */
     validateLocation: function( location ) {
 
@@ -159,7 +159,7 @@ define( function( require ) {
      * location parameter.
      * @public
      *
-     * @param {Shape} shape
+     * @param {Shape} probe
      * @param {CircuitLocation} location - light bulb top or bottom only
      * @returns {boolean}
      */
@@ -189,7 +189,7 @@ define( function( require ) {
      * location parameter.
      * @public
      *
-     * @param {Shape} shape
+     * @param {Shape} probe
      * @param {CircuitLocation} location - light bulb top or bottom only
      * @returns {boolean}
      */

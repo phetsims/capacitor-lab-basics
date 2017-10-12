@@ -18,7 +18,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
 
   /**
-   * Constructor.
+   * @constructor
    *
    * @param {LightBulb} lightBulb
    * @param {CLModelViewTransform3D} modelViewTransform

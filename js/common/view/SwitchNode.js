@@ -49,11 +49,14 @@ define( function( require ) {
 
     Node.call( this );
     var self = this;
-    this.circuitSwitch = circuitSwitch; // @public
-    this.modelViewTransform = modelViewTransform; // @private
 
-    // add the switch as a wire node
-    // @private
+    // @public {CircuitSwitch}
+    this.circuitSwitch = circuitSwitch;
+
+    // @private {CLBModelViewTransform3D}
+    this.modelViewTransform = modelViewTransform;
+
+    // @private {WireNode}
     this.wireSwitchNode = new WireNode( circuitSwitch.switchWire, tandem.createTandem( 'wireSwitchNode' ) );
     this.wireSwitchNode.cursor = 'pointer';
 
@@ -155,6 +158,7 @@ define( function( require ) {
     // offset conveniently moves the top arrow up and the bottom arrow down.
     switchCueArrow.translate( SWITCH_CUE_ARROW_OFFSET );
 
+    // @public {Image}
     this.switchCueArrow = switchCueArrow;
 
     this.addChild( switchCueArrow );

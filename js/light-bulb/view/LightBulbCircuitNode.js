@@ -80,10 +80,10 @@ define( function( require ) {
 
     /**
      * Updates the visibility of the current indicators.
-     *
-     * @param  {string} circuitConnection - LIGHT_BULB_CONNECTED || OPEN_CIRCUIT || BATTERY_CONNECTED
-     * @param  {boolean} currentIndicatorsVisible
      * @public
+     *
+     * @param {CircuitState} circuitConnection - LIGHT_BULB_CONNECTED || OPEN_CIRCUIT || BATTERY_CONNECTED
+     * @param {boolean} currentIndicatorsVisible
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
       var isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );

@@ -41,14 +41,13 @@ define( function( require ) {
   var DEBUG_SHAPES = false;
 
   /**
-   * Constructor for a BulbNode.
+   * @constructor
    *
    * @param {LightBulb} lightBulb
-   * @param voltageProperty - voltage across the terminals of the lightbulb, determines brightness
-   * @param {Property.<string>} circuitConnectionProperty
+   * @param {Property.<number>} voltageProperty - voltage across the terminals of the lightbulb, determines brightness
+   * @param {Property.<CircuitState>} circuitConnectionProperty
    * @param {Tandem} tandem
    * @param {Object} [options]
-   * @constructor
    */
   function BulbNode( lightBulb, voltageProperty, circuitConnectionProperty, tandem, options ) {
 
@@ -57,7 +56,8 @@ define( function( require ) {
     } );
     var self = this;
 
-    this.bulb = drawBulbNode( options ); // @private
+    // @private {LightBulb}
+    this.bulb = drawBulbNode( options );
     this.addChild( this.bulb );
 
     // NOTE: this map deviates from the the bulb in faradays-law
@@ -108,6 +108,7 @@ define( function( require ) {
      * @public
      *
      * @param {Object} options
+     * @returns {Node}
      */
     createBulbIcon: function( options ) {
       return drawBulbNode( options );
@@ -118,10 +119,10 @@ define( function( require ) {
    * Create the visual components for a bulbNode with a base, bulb, filament and halo.
    * The halo is made public so that the BulbNode can change its size as a representation
    * of brightness.
-   *
-   * @param  {Object} options
-   * @returns {Node}
    * @private
+   *
+   * @param {Object} options
+   * @returns {Node}
    */
   function drawBulbNode( options ) {
 

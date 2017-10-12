@@ -22,15 +22,16 @@ define( function( require ) {
   var WIRE_FILL = 'rgb( 170, 170, 170 )';
 
   /**
-   * Constructor for the wire node.
+   * @constructor
    *
    * @param {Wire} wire
-   * @constructor
    */
   function WireNode( wire ) {
 
     Node.call( this );
-    this.wire = wire; // @private
+
+    // @private {Wire}
+    this.wire = wire;
 
     // create the wire fill.  Unstroked path so that the acute stroked path is covered.
     // See https://github.com/phetsims/kite/issues/49

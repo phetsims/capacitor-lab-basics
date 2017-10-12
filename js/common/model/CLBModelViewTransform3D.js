@@ -33,10 +33,9 @@ define( function( require ) {
   var scratchVector3 = new Vector3();
 
   /**
-   * Constructor for the CLBModelViewTransform3D.
+   * @constructor
    *
    * @param {Object} [options]
-   * @constructor
    */
   function CLBModelViewTransform3D( options ) {
 

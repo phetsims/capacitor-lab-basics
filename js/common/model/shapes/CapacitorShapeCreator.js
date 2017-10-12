@@ -19,11 +19,10 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
 
   /**
-   * Constructor for a CapacitorShapeCreator.
+   * @constructor
    *
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @constructor
    */
   function CapacitorShapeCreator( capacitor, modelViewTransform ) {
     assert && assert( modelViewTransform instanceof CLBModelViewTransform3D );

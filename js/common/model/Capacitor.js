@@ -40,12 +40,12 @@ define( function( require ) {
   var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
 
   /**
-   * Constructor for the Capacitor.
+   * @constructor
+   *
    * @param {CircuitConfig} config
    * @param {Property.<CircuitState>} circuitConnectionProperty
    * @param {Tandem} tandem
    * @param {Object} [options]
-   * @constructor
    */
   function Capacitor( config, circuitConnectionProperty, tandem, options ) {
 

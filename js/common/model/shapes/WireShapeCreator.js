@@ -17,7 +17,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
 
   /**
-   * Constructor for WireShapeCreator.
+   * @constructor
    *
    * @param {Wire} wire
    * @param {CLBModelViewTransform3D} modelViewTransform

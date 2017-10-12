@@ -40,18 +40,19 @@ define( function( require ) {
     Node.call( this );
     var self = this;
 
-    this.circuit = model.circuit; // @public
+    // @public {Circuit}
+    this.circuit = model.circuit;
 
     // circuit components
 
-    // @private
+    // @private {BatteryNode}
     this.batteryNode = new BatteryNode( this.circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE,
       tandem.createTandem( 'batteryNode' ) );
 
     var capacitorNode = new CapacitorNode( this.circuit, model.modelViewTransform, model.plateChargesVisibleProperty,
       model.eFieldVisibleProperty, tandem.createTandem( 'capacitorNode' ) );
 
-    // @public
+    // @public {Node}
     this.topWireNode = new Node();
     this.bottomWireNode = new Node();
 
@@ -65,7 +66,7 @@ define( function( require ) {
     // Don't allow both switches to be controlled at once
     var switchControlledProperty = new BooleanProperty( false );
 
-    // @private
+    // @private {Array.<SwitchNode>}
     this.circuitSwitchNodes = [];
     self.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 0 ], model.modelViewTransform,
       switchControlledProperty, tandem.createTandem( 'topSwitchNode' ) ) );

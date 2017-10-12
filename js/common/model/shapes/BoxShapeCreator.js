@@ -19,10 +19,9 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
 
   /**
-   * Constructor for a BoxShapeCreator.
+   * @constructor
    *
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @constructor
    */
   function BoxShapeCreator( modelViewTransform ) {
     assert && assert( modelViewTransform instanceof CLBModelViewTransform3D );

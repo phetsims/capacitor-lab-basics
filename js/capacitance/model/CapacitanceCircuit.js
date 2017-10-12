@@ -28,7 +28,6 @@ define( function( require ) {
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
 
   /**
-   * Constructor for the Single Capacitor Circuit.
    * @constructor
    *
    * @param {CircuitConfig} config
