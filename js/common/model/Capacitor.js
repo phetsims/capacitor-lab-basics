@@ -25,7 +25,7 @@ define( function( require ) {
   // modules
   var Bounds3 = require( 'DOT/Bounds3' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CapacitorShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/CapacitorShapeCreator' );
+  var BoxShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BoxShapeCreator' );
   var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
@@ -68,8 +68,8 @@ define( function( require ) {
       CLBConstants.BATTERY_LOCATION.y + config.capacitorYSpacing,
       CLBConstants.BATTERY_LOCATION.z );
 
-    // @private {CapacitorShapeCreator}
-    this.shapeCreator = new CapacitorShapeCreator( this, config.modelViewTransform );
+    // @private {BoxShapeCreator}
+    this.shapeCreator = new BoxShapeCreator( config.modelViewTransform );
 
     // Square plates.
     var plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth );
@@ -229,17 +229,14 @@ define( function( require ) {
       assert && assert( location === CircuitLocation.CAPACITOR_TOP || location === CircuitLocation.CAPACITOR_BOTTOM,
         'Invalid capacitor location: ' + location );
 
-      var shape = null;
+      var size = this.plateSizeProperty.value;
+      var point = probe.bounds.center;
       if ( location === CircuitLocation.CAPACITOR_TOP ) {
-        shape = this.shapeCreator.createTopPlateShape();
+        return this.shapeCreator.boxShapeContainsPoint( this.location.x, this.getTopConnectionPoint().y, this.location.z, size.width, size.height, size.depth, point );
       }
       else if ( location === CircuitLocation.CAPACITOR_BOTTOM ) {
-        shape = this.shapeCreator.createBottomPlateShape();
+        return this.shapeCreator.boxShapeContainsPoint( this.location.x, this.location.y + this.plateSeparationProperty.value / 2, this.location.z, size.width, size.height, size.depth, point );
       }
-
-      assert && assert( shape, 'Shape was not created for ' + location );
-
-      return shape.containsPoint( probe.bounds.center );
     },
 
     /**

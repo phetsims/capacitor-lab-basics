@@ -133,13 +133,6 @@ define( function( require ) {
         var positiveProbe = self.shapeCreator.getPositiveProbeTipShape();
         var negativeProbe = self.shapeCreator.getNegativeProbeTipShape();
 
-        // Booleans representing electrical contact between probes and circuit components.
-        // Compute once for performance
-        var positiveToBattery = touchingFreeBattery( positiveProbe );
-        var negativeToBattery = touchingFreeBattery( negativeProbe );
-        var positiveToPlate = touchingFreePlate( positiveProbe );
-        var negativeToPlate = touchingFreePlate( negativeProbe );
-
         if ( self.circuit.lightBulb ) {
           var positiveToLight = touchingFreeLightBulb( positiveProbe );
           var negativeToLight = touchingFreeLightBulb( negativeProbe );
@@ -153,12 +146,19 @@ define( function( require ) {
           if ( ( positiveToLight && !negativeToLight ) || ( !positiveToLight && negativeToLight ) ) {
             return null;
           }
-
-          // Set voltage to null when one (and only one) probe is on a disconnected battery
-          else if ( ( positiveToBattery && !negativeToBattery ) || ( !positiveToBattery && negativeToBattery ) ) {
-            return null;
+          else {
+            var positiveToBattery = touchingFreeBattery( positiveProbe );
+            var negativeToBattery = touchingFreeBattery( negativeProbe );
+            // Set voltage to null when one (and only one) probe is on a disconnected battery
+            if ( ( positiveToBattery && !negativeToBattery ) || ( !positiveToBattery && negativeToBattery ) ) {
+              return null;
+            }
           }
         }
+
+        // Booleans representing electrical contact between probes and circuit components.
+        var positiveToPlate = touchingFreePlate( positiveProbe );
+        var negativeToPlate = touchingFreePlate( negativeProbe );
 
         // Set voltage to null when one (and only one) probe is on a disconnected plate.
         if ( ( positiveToPlate && !negativeToPlate ) || ( !positiveToPlate && negativeToPlate ) ) {
