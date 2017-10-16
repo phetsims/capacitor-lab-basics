@@ -106,7 +106,6 @@ define( function( require ) {
      * @override
      */
     reset: function() {
-      CLBModel.prototype.reset.call( this );
       this.plateChargesVisibleProperty.reset();
       this.plateChargeMeterVisibleProperty.reset();
       this.storedEnergyMeterVisibleProperty.reset();
@@ -115,6 +114,7 @@ define( function( require ) {
       this.storedEnergyMeter.reset();
       this.voltmeter.reset();
       this.circuit.reset();
+      CLBModel.prototype.reset.call( this );
     }
   } );
 } );
