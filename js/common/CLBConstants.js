@@ -61,7 +61,7 @@ define( function( require ) {
     //----------------------------------------------------------------------------
 
     // colors used by ConnectionNode
-    DISCONNECTED_POINT_COLOR: 'rgb( 151, 208, 255 )',
+    DISCONNECTED_POINT_COLOR: 'rgb( 200, 230, 255 )',
     DISCONNECTED_POINT_STROKE: PhetColorScheme.RED_COLORBLIND,
     CONNECTION_POINT_HIGHLIGHTED: 'yellow',
 
@@ -107,7 +107,7 @@ define( function( require ) {
     METER_PANEL_FILL: 'rgb( 255, 245, 237)',
     CONNECTION_POINT_COLOR: 'black',
     PIN_COLOR: 'lightgray',
-    SCREEN_VIEW_BACKGROUND_COLOR: 'rgb( 194, 227, 255 )'
+    SCREEN_VIEW_BACKGROUND_COLOR: 'rgb( 151, 208, 255 )'
 
   };
 
