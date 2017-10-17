@@ -81,10 +81,10 @@ define( function( require ) {
       var t = Matrix3.rotationAround( theta, x, y );
 
       return Shape.polygon( [
-        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x, y ) ) ),
-        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width, y ) ) ),
-        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width, y + height ) ) ),
-        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x, y + height ) ) )
+        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x, y ) ).toVector3() ),
+        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width, y ) ).toVector3() ),
+        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width, y + height ) ).toVector3() ),
+        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x, y + height ) ).toVector3() )
       ] );
     }
   } );
