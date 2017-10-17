@@ -111,7 +111,10 @@ define( function( require ) {
      * @public
      */
     update: function() {
-      this.startPointProperty.set( this.component.getTopConnectionPoint() );
+      var connectionPoint = this.component.getTopConnectionPoint();
+      if ( !this.startPointProperty.value.equals( connectionPoint ) ) {
+        this.startPointProperty.value = connectionPoint;
+      }
     }
   } );
 
@@ -141,7 +144,10 @@ define( function( require ) {
      * @public
      */
     update: function() {
-      this.startPointProperty.set( this.component.getBottomConnectionPoint() );
+      var connectionPoint = this.component.getBottomConnectionPoint();
+      if ( !this.startPointProperty.value.equals( connectionPoint ) ) {
+        this.startPointProperty.value = connectionPoint;
+      }
     }
   } );
 

@@ -16,6 +16,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Matrix3 = require( 'DOT/Matrix3' );
   var Shape = require( 'KITE/Shape' );
+  var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
 
   var PROBE_TIP_OFFSET = new Vector3( 0.0003, 0, 0 );
@@ -77,9 +78,14 @@ define( function( require ) {
       var height = size.height;
       var x = origin.x;
       var y = origin.y;
-      var rec = Shape.rectangle( x, y, width, height );
       var t = Matrix3.rotationAround( theta, x, y );
-      return this.modelViewTransform.modelToViewShape( rec.transformed( t ) );
+
+      return Shape.polygon( [
+        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x, y ) ) ),
+        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width, y ) ) ),
+        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width, y + height ) ) ),
+        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x, y + height ) ) )
+      ] );
     }
   } );
 } );

@@ -46,7 +46,9 @@ define( function( require ) {
 
       verticalSegment.update = function() {
         var point = new Vector3( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), 0 );
-        this.startPointProperty.set( point );
+        if ( !this.startPointProperty.value.equals( point ) ) {
+          this.startPointProperty.set( point );
+        }
       };
 
     }
@@ -58,7 +60,9 @@ define( function( require ) {
 
       verticalSegment.update = function() {
         var point = new Vector3( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset(), 0 );
-        this.startPointProperty.set( point );
+        if ( !this.startPointProperty.value.equals( point ) ) {
+          this.startPointProperty.set( point );
+        }
       };
     }
 
