@@ -63,7 +63,6 @@ define( function( require ) {
 
     // @public {Property.<boolean>}
     this.visibleProperty = voltmeterVisibleProperty;
-    this.visibleProperty.link( function( visible ) { console.log( visible ); } );
 
     // @public {Property.<boolean>}
     this.inUserControlProperty = new BooleanProperty( false, {
