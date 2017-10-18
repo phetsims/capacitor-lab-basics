@@ -1,11 +1,11 @@
 {
-  "comment": "# capacitor-lab-basics 1.0.0-dev.39 Tue Oct 17 2017 01:37:07 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# capacitor-lab-basics 1.0.0-dev.40 Wed Oct 18 2017 10:17:22 GMT-0600 (MDT)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "master"
   },
   "axon": {
-    "sha": "ebf4b349173a353586f6e89e00eb251ef802eca6",
+    "sha": "8a8ff7d28951f8cbe7c5fbb044831db76e9aa4b6",
     "branch": "master"
   },
   "brand": {
@@ -13,7 +13,7 @@
     "branch": "master"
   },
   "capacitor-lab-basics": {
-    "sha": "43d7a6d81833716f1e6ee28b5a304d3e45424cf2",
+    "sha": "212948fb6e0783001b6540b7ce2ff61a61658165",
     "branch": "master"
   },
   "chipper": {
@@ -25,7 +25,7 @@
     "branch": "master"
   },
   "joist": {
-    "sha": "92b186e2a13469b624fa57fd2e56f2a7791755bc",
+    "sha": "e5c2e67326ca1713d74dadbb0f5c9bac7798ecff",
     "branch": "master"
   },
   "kite": {
