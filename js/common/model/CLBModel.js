@@ -72,7 +72,7 @@ define( function( require ) {
     this.worldBounds = CANVAS_RENDERING_SIZE.toBounds();
 
     // @public {Voltmeter}
-    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, tandem.createTandem( 'voltmeter' ) );
+    this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, this.voltmeterVisibleProperty, tandem.createTandem( 'voltmeter' ) );
 
     // @protected {Tandem}
     this.tandem = tandem;

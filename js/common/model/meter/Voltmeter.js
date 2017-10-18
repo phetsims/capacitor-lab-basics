@@ -41,9 +41,10 @@ define( function( require ) {
    * @param {ParallelCircuit} circuit
    * @param {Bounds2} dragBounds
    * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {Property.<boolean>} voltmeterVisibleProperty
    * @param {Tandem} tandem
    */
-  function Voltmeter( circuit, dragBounds, modelViewTransform, tandem ) {
+  function Voltmeter( circuit, dragBounds, modelViewTransform, voltmeterVisibleProperty, tandem ) {
     assert && assert( circuit instanceof ParallelCircuit );
     assert && assert( dragBounds instanceof Bounds2 );
     assert && assert( modelViewTransform instanceof CLBModelViewTransform3D );
@@ -61,9 +62,8 @@ define( function( require ) {
     this.probeTipSizeReference = PROBE_TIP_SIZE;
 
     // @public {Property.<boolean>}
-    this.visibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'visibleProperty' )
-    } );
+    this.visibleProperty = voltmeterVisibleProperty;
+    this.visibleProperty.link( function( visible ) { console.log( visible ); } );
 
     // @public {Property.<boolean>}
     this.inUserControlProperty = new BooleanProperty( false, {
@@ -174,14 +174,23 @@ define( function( require ) {
      * Update the value of the meter. Called when many different properties change.
      */
     var updateValue = function() {
-      self.measuredVoltageProperty.set( computeValue() );
+      if ( self.visibleProperty.value ) {
+        self.measuredVoltageProperty.value = computeValue();
+      }
+      else {
+        self.measuredVoltageProperty.value = null;
+      }
     };
+    updateValue();
+
+    // Since we don't update when not visible,
+    this.visibleProperty.lazyLink( updateValue );
 
     // Update voltage reading if plate voltage changes
-    circuit.capacitor.plateVoltageProperty.link( updateValue );
+    circuit.capacitor.plateVoltageProperty.lazyLink( updateValue );
 
     // Update reading when the probes move
-    Property.multilink( [ self.negativeProbeLocationProperty, self.positiveProbeLocationProperty ], updateValue );
+    Property.lazyMultilink( [ self.negativeProbeLocationProperty, self.positiveProbeLocationProperty ], updateValue );
 
     // Update all segments and the plate voltages when capacitor plate geometry changes. Capacitor may not exist yet.
     circuit.capacitor.plateSeparationProperty.lazyLink( updateValue );
@@ -190,10 +199,10 @@ define( function( require ) {
     circuit.capacitor.plateSizeProperty.lazyLink( updateValue );
 
     // update the value when the circuit connection property changes
-    circuit.circuitConnectionProperty.link( updateValue );
+    circuit.circuitConnectionProperty.lazyLink( updateValue );
 
     // Update when battery voltage changes
-    circuit.battery.voltageProperty.link( updateValue );
+    circuit.battery.voltageProperty.lazyLink( updateValue );
   }
 
   capacitorLabBasics.register( 'Voltmeter', Voltmeter );
@@ -216,7 +225,6 @@ define( function( require ) {
 
     // @public
     reset: function() {
-      this.visibleProperty.reset();
       this.inUserControlProperty.reset();
       this.bodyLocationProperty.reset();
       this.positiveProbeLocationProperty.reset();
