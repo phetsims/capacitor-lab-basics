@@ -14,6 +14,7 @@ define( function( require ) {
   var BooleanProperty = require( 'AXON/BooleanProperty' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CapacitorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CapacitorNode' );
+  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -76,7 +77,10 @@ define( function( require ) {
     // Once the circuit has been built, if the circuit connection has changed, the switch has been used.
     this.circuitSwitchNodes.forEach( function( switchNode ) {
       switchNode.circuitSwitch.circuitConnectionProperty.lazyLink( function( connection ) {
-        model.switchUsedProperty.set( true );
+        if ( connection !== switchNode.circuitSwitch.circuitConnectionProperty.initialValue &&
+             connection !== CircuitState.SWITCH_IN_TRANSIT ) {
+          model.switchUsedProperty.set( true );
+        }
       } );
     } );
 
