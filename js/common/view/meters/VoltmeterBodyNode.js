@@ -102,8 +102,9 @@ define( function( require ) {
     // offsets for connection points of wires that attach probes to body, determined by visual inspection.  If the
     // voltmeter body images ever changes, these will have to be changed as well.
     var imageBounds = imageNode.bounds;
-    this.positiveConnectionOffset = new Vector2( 0.455 * imageBounds.width, 0.875 * imageBounds.maxY ); // @public bottom left
-    this.negativeConnectionOffset = new Vector2( 0.565 * imageBounds.width, 0.875 * imageBounds.maxY ); // @public bottom right
+    var probeOffset = 0.056;
+    this.positiveConnectionOffset = new Vector2( ( 0.5 - probeOffset ) * imageBounds.width, 0.875 * imageBounds.maxY ); // @public bottom left
+    this.negativeConnectionOffset = new Vector2( ( 0.5 + probeOffset ) * imageBounds.width, 0.875 * imageBounds.maxY ); // @public bottom right
 
     // update value
     voltmeter.measuredVoltageProperty.link( function( value ) {
