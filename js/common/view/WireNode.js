@@ -33,26 +33,17 @@ define( function( require ) {
     // @private {Wire}
     this.wire = wire;
 
-    // create the wire fill.  Unstroked path so that the acute stroked path is covered.
-    // See https://github.com/phetsims/kite/issues/49
-    var wireNodeFill = new Path( wire.shapeCreator.createWireShape(), {
-      fill: WIRE_FILL
-    } );
-
     // the stroked wire node.
     var wireNode = new Path( wire.shapeCreator.createWireShape(), {
-      lineWidth: WIRE_LINE_WIDTH,
-      stroke: WIRE_STROKE,
-      fill: WIRE_FILL
+      fill: WIRE_FILL,
+      lineWidth: WIRE_LINE_WIDTH / 2,
+      stroke: WIRE_STROKE
     } );
 
-    // layout order - fill covers stroked shape
     this.addChild( wireNode );
-    this.addChild( wireNodeFill );
 
     wire.shapeProperty.link( function( shape ) {
       wireNode.setShape( shape );
-      wireNodeFill.setShape( shape );
     } );
 
   }
