@@ -131,11 +131,12 @@ define( function( require ) {
     var voltmeterImageNode = new Image( voltmeterBodyImage, {
       scale: 0.17
     } );
+    var offset = 8;
     var labelText = new Text( voltageString, {
       font: TITLE_FONT,
       maxWidth: voltmeterImageNode.width / 2
     } );
-    labelText.center = new Vector2( voltmeterImageNode.width / 2, voltmeterImageNode.height / 3 );
+    labelText.center = new Vector2( voltmeterImageNode.width / 2, voltmeterImageNode.height / 3 + offset );
     var readoutRectangle = new Rectangle( 0, 0, voltmeterImageNode.width / 2, labelText.height + 8, 2, 2, {
       lineWidth: 0.75,
       fill: 'white',
@@ -155,7 +156,7 @@ define( function( require ) {
     } );
 
     // layout - must be done before wire bezier calculations
-    readoutRectangle.center = voltmeterImageNode.center;
+    readoutRectangle.center = new Vector2( voltmeterImageNode.center.x, voltmeterImageNode.center.y + offset );
     redProbeImage.centerBottom = voltmeterImageNode.centerBottom.minusXY( 40, 15 );
     blackProbeImage.centerBottom = voltmeterImageNode.centerBottom.minusXY( -40, 15 );
 

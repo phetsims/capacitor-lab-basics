@@ -58,6 +58,8 @@ define( function( require ) {
      // @public {Property.<Vector3>]}
     this.bodyLocationProperty = voltmeter.bodyLocationProperty;
 
+    var readoutAdjustmentY = 15;
+
     // body of the meter
     var imageNode = new Image( voltmeterBodyImage, {
       scale: 0.336
@@ -69,7 +71,7 @@ define( function( require ) {
       font: TITLE_FONT,
       maxWidth: imageNode.width / 2
     } );
-    labelText.center = new Vector2( imageNode.width / 2, imageNode.height / 3 );
+    labelText.center = new Vector2( imageNode.width / 2, imageNode.height / 3 + readoutAdjustmentY );
     this.addChild( labelText );
 
     var valueString = StringUtils.format(
@@ -91,9 +93,9 @@ define( function( require ) {
       fill: 'white',
       stroke: 'black'
     } );
-
-    backgroundRect.center = this.center;
-    valueText.center = this.center;
+    var textCenter = new Vector2( this.center.x, this.center.y + readoutAdjustmentY );
+    backgroundRect.center = textCenter;
+    valueText.center = textCenter;
     this.addChild( backgroundRect );
     this.addChild( valueText );
 
