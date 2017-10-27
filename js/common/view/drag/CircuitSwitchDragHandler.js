@@ -20,12 +20,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Range = require( 'DOT/Range' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
-
-  // Compute the difference (in radians) between angles a and b, using an inlined dot product
-  // (inlined to remove allocations)
-  var angleDifference = function( a, b ) {
-    return Math.acos( Math.cos( a ) * Math.cos( b ) + Math.sin( a ) * Math.sin( b ) );
-  };
+  var Util = require( 'DOT/Util' );
 
   /**
    * @constructor
@@ -41,8 +36,6 @@ define( function( require ) {
 
     var self = this;
     var initialEndPoint;
-    var lastAngle = 0;
-    var currentAngle = 0;
     var angleOffset = 0;
     var angle = 0;
 
@@ -78,7 +71,6 @@ define( function( require ) {
 
         // angle of switch segment with the horizontal
         angleOffset = initialEndPoint.minus( hingePoint ).toVector2().angle();
-        lastAngle = angleOffset;
 
         circuitSwitch.circuitConnectionProperty.set( CircuitState.SWITCH_IN_TRANSIT );
 
@@ -100,24 +92,13 @@ define( function( require ) {
         // get the max and min angles, which depend on circuit switch orientation
         var maxAngle = Math.max( leftLimitAngle, rightLimitAngle );
         var minAngle = Math.min( leftLimitAngle, rightLimitAngle );
+        var middleAngle = ( maxAngle + minAngle ) / 2;
 
-        // restrict the angle so that it cannot be dragged beyond limits
-        if ( angle < minAngle ) {
-          angle = minAngle;
-        }
-        if ( angle > maxAngle ) {
-          angle = maxAngle;
-        }
-        currentAngle = angle;
+        // Spread the angle out around our min/max, so that clamping makes sense.
+        // Restrict the angle so that it cannot be dragged beyond limits
+        angle = Util.clamp( Util.moduloBetweenDown( angle, middleAngle - Math.PI, middleAngle + Math.PI ), minAngle, maxAngle );
 
-        // make sure that the switch does not snap to connection points if the user drags beyond limiting angles
-        if ( Math.abs( angleDifference( currentAngle, lastAngle ) ) >= Math.PI / 4 ) {
-          // no-op
-        }
-        else {
-          circuitSwitch.angleProperty.set( angle - angleOffset );
-          lastAngle = currentAngle;
-        }
+        circuitSwitch.angleProperty.set( angle - angleOffset );
       },
       end: function( event ) {
         switchLockedProperty.value = false;
