@@ -96,7 +96,12 @@ define( function( require ) {
 
         // Spread the angle out around our min/max, so that clamping makes sense.
         // Restrict the angle so that it cannot be dragged beyond limits
-        angle = Util.clamp( Util.moduloBetweenDown( angle, middleAngle - Math.PI, middleAngle + Math.PI ), minAngle, maxAngle );
+        // If the user's cursor is on the opposite side of the hinge point, flip our angle.
+        if ( angle * leftLimitAngle < 0 ) {
+          angle = -angle;
+        }
+        angle = Util.moduloBetweenDown( angle, middleAngle - Math.PI, middleAngle + Math.PI );
+        angle = Util.clamp( angle, minAngle, maxAngle );
 
         circuitSwitch.angleProperty.set( angle - angleOffset );
       },
