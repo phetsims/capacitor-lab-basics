@@ -12,11 +12,11 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var BatteryGraphicNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryGraphicNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var HSlider = require( 'SUN/HSlider' );
-  var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -26,10 +26,6 @@ define( function( require ) {
 
   // constants
   var LABEL_FONT = new PhetFont( 12 );
-
-  // images
-  var batteryDownImage = require( 'image!CAPACITOR_LAB_BASICS/battery_upside-down.png' );
-  var batteryUpImage = require( 'image!CAPACITOR_LAB_BASICS/battery.png' );
 
   // strings
   var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
@@ -47,13 +43,14 @@ define( function( require ) {
     Node.call( this );
 
     // battery image, scaled to match model dimensions
-    var imageNode = new Image( batteryUpImage, {
-      scale: 0.30
+    var graphicNode = new Node( {
+      scale: 0.30,
+      children: [ BatteryGraphicNode.POSITIVE_UP ]
     } );
-    this.addChild( imageNode );
+    this.addChild( graphicNode );
 
     // voltage slider
-    var trackLength = 0.55 * imageNode.bounds.height;
+    var trackLength = 0.55 * graphicNode.bounds.height;
     var sliderNode = new HSlider( battery.voltageProperty, voltageRange, {
       trackSize: new Dimension2( trackLength, 8 ),
       thumbSize: new Dimension2( 20, 35 ),
@@ -79,7 +76,7 @@ define( function( require ) {
         font: LABEL_FONT,
         fill: textFill,
         cursor: 'arrow',
-        maxWidth: imageNode.width * 0.5,
+        maxWidth: graphicNode.width * 0.5,
         tandem: tandem
       } );
       labelText.rotate( Math.PI / 2 ); // rotate label to match rotation of the slider.
@@ -97,16 +94,16 @@ define( function( require ) {
     this.addChild( sliderNode );
 
     // layout, set by visual inspection, depends on battery image.
-    sliderNode.center = new Vector2( imageNode.center.x + 5, imageNode.center.y + 12 ); // sort of centered.
+    sliderNode.center = new Vector2( graphicNode.center.x + 5, graphicNode.center.y + 12 ); // sort of centered.
 
     // when battery polarity changes, change the battery image
     battery.polarityProperty.link( function( polarity ) {
       if ( polarity === CLBConstants.POLARITY.POSITIVE ) {
-        imageNode.image = batteryUpImage;
+        graphicNode.children = [ BatteryGraphicNode.POSITIVE_UP ];
         minTick.fill = 'white';
         maxTick.fill = 'black';
       } else {
-        imageNode.image = batteryDownImage;
+        graphicNode.children = [ BatteryGraphicNode.POSITIVE_DOWN ];
         minTick.fill = 'black';
         maxTick.fill = 'white';
       }

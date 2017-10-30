@@ -1,20 +1,4 @@
 {
-  "battery.png": {
-    "text": [
-      "Copyright 2002-2015 University of Colorado Boulder"
-    ],
-    "projectURL": "http://phet.colorado.edu",
-    "license": "contact phethelp@colorado.edu",
-    "notes": "created by Amy Rouinfar"
-  },
-  "battery_upside-down.png": {
-    "text": [
-      "Copyright 2002-2015 University of Colorado Boulder"
-    ],
-    "projectURL": "http://phet.colorado.edu",
-    "license": "contact phethelp@colorado.edu",
-    "notes": "created by Amy Rouinfar"
-  },
   "capacitance_screen_icon.png": {
     "text": [
       "Copyright 2002-2015 University of Colorado Boulder"

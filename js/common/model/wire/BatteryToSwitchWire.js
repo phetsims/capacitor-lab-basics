@@ -55,7 +55,7 @@ define( function( require ) {
     else {
       // Slightly lower the bottom wire start point so we can't probe into the battery.
       // See https://github.com/phetsims/capacitor-lab-basics/issues/197
-      var bottomOffset = 0.00053;
+      var bottomOffset = 0.00065;
       startPoint = new Vector3( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() + bottomOffset, 0 );
 
       verticalSegment = new WireSegment( startPoint, leftCorner, tandem.createTandem( 'batteryBottomWireSegment' ) );

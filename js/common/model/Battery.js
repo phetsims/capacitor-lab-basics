@@ -35,7 +35,7 @@ define( function( require ) {
    */
   var POSITIVE_TERMINAL_ELLIPSE_SIZE = new Dimension2( 0.0025, 0.0005 );
   var POSITIVE_TERMINAL_CYLINDER_HEIGHT = 0.0009;
-  var POSITIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) - 0.0002;
+  var POSITIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) - 0.00012;
 
   /*
    * Negative terminal is part of the image file.
@@ -43,7 +43,7 @@ define( function( require ) {
    * The origin of the terminal is at the center of the ellipse.
    */
   var NEGATIVE_TERMINAL_ELLIPSE_SIZE = new Dimension2( 0.0035, 0.0009 ); // Ellipse axes defining the negative terminal
-  var NEGATIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.0005; // center of negative terminal when at the top
+  var NEGATIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.0006; // center of negative terminal when at the top
 
   /**
    * @constructor

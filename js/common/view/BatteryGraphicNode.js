@@ -16,16 +16,16 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var Path = require( 'SCENERY/nodes/Path' );
   var Shape = require( 'KITE/Shape' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   var BATTERY_PERSPECTIVE_RATIO = 0.304;
   var BATTERY_MAIN_HEIGHT = 511;
   var BATTERY_MAIN_RADIUS = 158;
   var BATTERY_SECONDARY_RADIUS = BATTERY_MAIN_RADIUS * BATTERY_PERSPECTIVE_RATIO;
   var BATTERY_POSITIVE_TERMINAL_RADIUS = 55;
-  var BATTERY_POSITIVE_TERMINAL_HEIGHT = 32;
+  var BATTERY_POSITIVE_TERMINAL_HEIGHT = 26;
   var BATTERY_POSITIVE_SIDE_HEIGHT = 152;
   var BATTERY_NEGATIVE_TERMINAL_RADIUS = 81;
-  var BATTERY_POSITIVE_TERMINAL_Y_OFFSET = 8; // It's slightly lower than would be expected
 
   var POSITIVE_COLOR = new Color( 251, 176, 59 );
   var POSITIVE_HIGHLIGHT_COLOR = Color.WHITE;
@@ -77,9 +77,11 @@ define( function( require ) {
   function BatteryGraphicNode( isPositiveDown, options ) {
     Node.call( this );
 
+    // @private {boolean}
+    this.isPositiveDown = isPositiveDown;
+
     var middleY = isPositiveDown ? ( BATTERY_MAIN_HEIGHT - BATTERY_POSITIVE_SIDE_HEIGHT ) : BATTERY_POSITIVE_SIDE_HEIGHT;
-    var terminalTopY = isPositiveDown ? 0 : BATTERY_POSITIVE_TERMINAL_Y_OFFSET - BATTERY_POSITIVE_TERMINAL_HEIGHT;
-    var terminalBottomY = BATTERY_POSITIVE_TERMINAL_Y_OFFSET;
+    var terminalTopY = isPositiveDown ? 0 : -BATTERY_POSITIVE_TERMINAL_HEIGHT;
     var terminalRadius = isPositiveDown ? BATTERY_NEGATIVE_TERMINAL_RADIUS : BATTERY_POSITIVE_TERMINAL_RADIUS;
 
     var bottomSideShape = new Shape().ellipticalArc( 0, middleY, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI, false )
@@ -91,7 +93,7 @@ define( function( require ) {
     var topShape = new Shape().ellipticalArc( 0, 0, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI * 2, false ).close();
     var terminalTopShape = new Shape().ellipticalArc( 0, terminalTopY, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, 0, Math.PI * 2, false ).close();
     var terminalSideShape = new Shape().ellipticalArc( 0, terminalTopY, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, 0, Math.PI, false )
-                                     .ellipticalArc( 0, terminalBottomY, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, Math.PI, 0, true )
+                                     .ellipticalArc( 0, 0, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, Math.PI, 0, true )
                                      .close();
 
     var bottomSide = new Path( bottomSideShape, {
@@ -132,5 +134,21 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'BatteryGraphicNode', BatteryGraphicNode );
 
-  return inherit( Node, BatteryGraphicNode );
+  inherit( Node, BatteryGraphicNode, {
+    /**
+     * Returns (in the local coordinate frame) the location of the center-top of the top terminal.
+     * @public
+     *
+     * @returns {Vector2}
+     */
+    getTopLocation: function() {
+      return new Vector2( 0, this.isPositiveDown ? 0 : -BATTERY_POSITIVE_TERMINAL_HEIGHT );
+    }
+  } );
+
+  // @public {Node}
+  BatteryGraphicNode.POSITIVE_UP = new BatteryGraphicNode( false );
+  BatteryGraphicNode.POSITIVE_DOWN = new BatteryGraphicNode( true );
+
+  return BatteryGraphicNode;
 } );
