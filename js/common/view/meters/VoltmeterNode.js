@@ -14,7 +14,6 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -78,30 +77,6 @@ define( function( require ) {
     voltmeterVisibleProperty.link( function( voltmeterVisible ) {
       self.visible = voltmeterVisible;
     } );
-
-    if ( CLBQueryParameters.showDebugAreas ) {
-      var positiveDebug = new Node();
-      this.addChild( positiveDebug );
-      var negativeDebug = new Node();
-      this.addChild( negativeDebug );
-      var Path = require( 'SCENERY/nodes/Path' );
-      voltmeter.positiveProbeLocationProperty.link( function() {
-        positiveDebug.children = [
-          new Path( voltmeter.shapeCreator.getPositiveProbeTipShape(), {
-            stroke: 'blue',
-            lineWidth: 1
-          } )
-        ];
-      } );
-      voltmeter.negativeProbeLocationProperty.link( function() {
-        negativeDebug.children = [
-          new Path( voltmeter.shapeCreator.getNegativeProbeTipShape(), {
-            stroke: 'blue',
-            lineWidth: 1
-          } )
-        ];
-      } );
-    }
 
     // tandem support
     this.mutate( {

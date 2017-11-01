@@ -13,6 +13,7 @@ define( function( require ) {
   var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/BarMeterPanel' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
+  var DebugLayer = require( 'CAPACITOR_LAB_BASICS/common/view/DebugLayer' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbCircuitNode = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/LightBulbCircuitNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
@@ -83,7 +84,7 @@ define( function( require ) {
     this.addChild( voltmeterToolbox );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
-
+    this.addChild( new DebugLayer( model ) );
   }
 
   capacitorLabBasics.register( 'CLBLightBulbScreenView', CLBLightBulbScreenView );

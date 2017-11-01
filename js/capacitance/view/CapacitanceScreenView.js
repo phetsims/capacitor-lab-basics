@@ -15,6 +15,7 @@ define( function( require ) {
   var CapacitanceCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceCircuitNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
+  var DebugLayer = require( 'CAPACITOR_LAB_BASICS/common/view/DebugLayer' );
   var inherit = require( 'PHET_CORE/inherit' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
@@ -78,6 +79,7 @@ define( function( require ) {
     this.addChild( voltmeterToolBoxPanel );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
+    this.addChild( new DebugLayer( model ) );
   }
 
   capacitorLabBasics.register( 'CapacitanceScreenView', CapacitanceScreenView );
