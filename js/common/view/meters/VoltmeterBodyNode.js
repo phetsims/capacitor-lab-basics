@@ -87,9 +87,9 @@ define( function( require ) {
     // add the display to the
     // display area for the value
     var backgroundRectWidth = imageNode.width / 2;
-    var backgroundRectHeight = valueText.height + 10;
+    var backgroundRectHeight = valueText.height + 5;
     var backgroundRect = new Rectangle( new Bounds2( 0, 0, backgroundRectWidth, backgroundRectHeight ), 5, 5, {
-      lineWidth: 2,
+      lineWidth: 1,
       fill: 'white',
       stroke: 'black'
     } );
