@@ -37,9 +37,6 @@ define( function( require ) {
   var NUM_FILAMENT_ZIG_ZAGS = 8;
   var FILAMENT_ZIG_ZAG_SPAN = 8;
 
-  // debugging
-  var DEBUG_SHAPES = false;
-
   /**
    * @constructor
    *
@@ -91,12 +88,6 @@ define( function( require ) {
     circuitConnectionProperty.link( function( circuitConnection ) {
       updateBrightnessScale( voltageProperty.value );
     } );
-
-    if ( DEBUG_SHAPES ) {
-      // for debugging, visualize the shape of the base
-      var bulbShape = new Path( lightBulb.shapeCreator.createBaseShape(), { stroke: 'red', lineWidth: 2 } );
-      this.addChild( bulbShape );
-    }
   }
 
   capacitorLabBasics.register( 'BulbNode', BulbNode );

@@ -29,7 +29,7 @@ define( function( require ) {
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
-  var PROBE_TIP_SIZE = new Dimension2( 0.0005, 0.0015 ); // meters
+  var PROBE_TIP_SIZE = new Dimension2( 0.0003, 0.0013 ); // meters
 
   // Initial locations when dragged out of toolbox
   var POSITIVE_PROBE_LOCATION = new Vector3( 0.0669, 0.0298, 0 );

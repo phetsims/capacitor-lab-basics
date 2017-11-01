@@ -16,7 +16,6 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Path = require( 'SCENERY/nodes/Path' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -25,7 +24,6 @@ define( function( require ) {
 
   // constants
   var BAR_METER_PANEL_OFFSET = new Vector2( 0, 60 ); // Sign of x offset is reversed
-  var DEBUG_SHAPES = false;
 
   /**
    * @constructor
@@ -47,6 +45,7 @@ define( function( require ) {
 
     // meters
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
+    window.voltmeterNode = voltmeterNode;
     var voltmeterToolBoxPanel = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform,
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
 
@@ -79,22 +78,6 @@ define( function( require ) {
     this.addChild( voltmeterToolBoxPanel );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
-
-    // debug shapes for probe collision testing
-    if ( DEBUG_SHAPES ) {
-      var topTerminalNode = new Path(
-        model.circuit.battery.shapeCreator.createPositiveTerminalShapeBody( model.circuit.battery.location ), {
-          fill: 'rgba( 1, 0, 0, 0.5 )'
-        } );
-      this.addChild( topTerminalNode );
-      // add a shape at the tip of the probe for debugging probe tip collisions.
-      this.addChild( new Path( model.voltmeter.shapeCreator.getPositiveProbeTipShape(), {
-        fill: 'rgba( 1, 0, 0, 0.5 )'
-      } ) );
-      this.addChild( new Path( model.voltmeter.shapeCreator.getNegativeProbeTipShape(), {
-        fill: 'rgba( 1, 0, 0, 0.5 )'
-      } ) );
-    }
   }
 
   capacitorLabBasics.register( 'CapacitanceScreenView', CapacitanceScreenView );

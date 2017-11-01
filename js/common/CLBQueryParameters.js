@@ -19,6 +19,10 @@ define( function( require ) {
       type: 'string',
       validValues: [ 'twoState', 'threeState' ],
       defaultValue: 'threeState'
+    },
+
+    showDebugAreas: {
+      type: 'flag'
     }
 
   } );

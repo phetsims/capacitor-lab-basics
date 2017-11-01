@@ -26,7 +26,6 @@ define( function( require ) {
   var Util = require( 'DOT/Util' );
 
   // constants
-  var DEBUG_OUTPUT_ENABLED = false; // developer tool for debugging
   var POSITIVE_CHARGE_COLOR = PhetColorScheme.RED_COLORBLIND.computeCSS(); // CSS passed into context fillStyle
   var NEGATIVE_CHARGE_COLOR = 'blue';
 
@@ -222,11 +221,6 @@ define( function( require ) {
               addPositiveCharge( centerPosition, context ) : addNegativeCharge( centerPosition, context );
 
           }
-        }
-
-        // debug output
-        if ( DEBUG_OUTPUT_ENABLED ) {
-          console.log( numberOfCharges + ' charges computed, ' + ( rows * columns ) + ' charges displayed' );
         }
       }
     },

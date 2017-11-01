@@ -14,6 +14,7 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -40,9 +41,6 @@ define( function( require ) {
   var blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_black.png' );
   var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
   var voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
-
-  // For a quick check of the probe tip bounds. Doesn't follow probes if dragged
-  var DEBUG_BOUNDS = false;
 
   /**
    * @constructor
@@ -81,16 +79,28 @@ define( function( require ) {
       self.visible = voltmeterVisible;
     } );
 
-    if ( DEBUG_BOUNDS ) {
+    if ( CLBQueryParameters.showDebugAreas ) {
+      var positiveDebug = new Node();
+      this.addChild( positiveDebug );
+      var negativeDebug = new Node();
+      this.addChild( negativeDebug );
       var Path = require( 'SCENERY/nodes/Path' );
-      this.addChild( new Path( voltmeter.shapeCreator.getPositiveProbeTipShape(), {
-        stroke: 'red',
-        lineWidth: 2
-      } ) );
-      this.addChild( new Path( voltmeter.shapeCreator.getNegativeProbeTipShape(), {
-        stroke: 'black',
-        lineWidth: 2
-      } ) );
+      voltmeter.positiveProbeLocationProperty.link( function() {
+        positiveDebug.children = [
+          new Path( voltmeter.shapeCreator.getPositiveProbeTipShape(), {
+            stroke: 'blue',
+            lineWidth: 1
+          } )
+        ];
+      } );
+      voltmeter.negativeProbeLocationProperty.link( function() {
+        negativeDebug.children = [
+          new Path( voltmeter.shapeCreator.getNegativeProbeTipShape(), {
+            stroke: 'blue',
+            lineWidth: 1
+          } )
+        ];
+      } );
     }
 
     // tandem support

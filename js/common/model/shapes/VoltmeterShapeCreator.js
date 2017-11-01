@@ -19,7 +19,8 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
 
-  var PROBE_TIP_OFFSET = new Vector3( 0.0003, 0, 0 );
+  // var PROBE_TIP_OFFSET = new Vector3( 0.00045, 0, 0 );
+  var PROBE_TIP_OFFSET = new Vector3( 0.00018, 0.00025, 0 );
 
   /**
    * @constructor
@@ -79,10 +80,12 @@ define( function( require ) {
       var x = origin.x;
       var y = origin.y;
       var t = Matrix3.rotationAround( theta, x, y );
+      var midRatio = 0.5;
 
       return Shape.polygon( [
-        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x, y ) ).toVector3() ),
-        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width, y ) ).toVector3() ),
+        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x, y + height * midRatio ) ).toVector3() ),
+        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width / 2, y ) ).toVector3() ),
+        this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width, y + height * midRatio ) ).toVector3() ),
         this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width, y + height ) ).toVector3() ),
         this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x, y + height ) ).toVector3() )
       ] );
