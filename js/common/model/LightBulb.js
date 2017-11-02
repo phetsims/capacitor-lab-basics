@@ -36,12 +36,6 @@ define( function( require ) {
     // @public {number} (read-only)
     this.resistance = CLBConstants.LIGHT_BULB_RESISTANCE;
 
-    // @public {Dimension2} (read-only) - Size of the bulb base.
-    this.bulbBaseSize = BULB_BASE_SIZE;
-
-    // @public {number} (read-only) - Width of the top of the conductor which is part of the light bulb base
-    this.topBaseConductorWidth = BULB_BASE_SIZE.width * 3 / 7;
-
     // @public {LightBulbShapeCreator}
     this.shapeCreator = new LightBulbShapeCreator( this, modelViewTransform );
   }
