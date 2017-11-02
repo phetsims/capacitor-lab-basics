@@ -214,10 +214,7 @@ define( function( require ) {
     /**
      * Check for intersection between a voltmeter probe and the plate faces at either the top or
      * bottom plate locations, as specified by the location parameter. Assumes that the probe shape
-     * is much smaller than the top plate. Kite does not support finding the intersection between
-     * two shapes, and checking for intersection of shape bounds is too inacurate in this case
-     * because of the 3D perspective. Determining containment of the probe shape's center by the
-     * plate shape bounds is most accurate, assuming the probe shape is small relative to the plate.
+     * is much smaller than the top plate.
      * @public
      *
      * @param {Shape} probe
@@ -238,8 +235,17 @@ define( function( require ) {
         shape = this.shapeCreator.createBoxShape( this.location.x, this.location.y + this.plateSeparationProperty.value / 2, this.location.z, size.width, size.height, size.depth );
       }
 
-      return probe.bounds.intersectsBounds( shape.bounds ) &&
-             probe.shapeIntersection( shape ).getNonoverlappingArea() > 0;
+      var contacts = probe.bounds.intersectsBounds( shape.bounds ) &&
+                     probe.shapeIntersection( shape ).getNonoverlappingArea() > 0;
+
+      if ( !contacts && location === CircuitLocation.CAPACITOR_TOP ) {
+        contacts = this.topCircuitSwitch.contacts( probe );
+      }
+      else if ( !contacts && location === CircuitLocation.CAPACITOR_BOTTOM ) {
+        contacts = this.bottomCircuitSwitch.contacts( probe );
+      }
+
+      return contacts;
     },
 
     /**
