@@ -35,8 +35,6 @@ define( function( require ) {
     var circuitSwitch = switchNode.circuitSwitch; // for readability
 
     var self = this;
-    var initialEndPoint;
-    var angleOffset = 0;
     var angle = 0;
 
     // Customization for PhET-iO applications
@@ -65,12 +63,6 @@ define( function( require ) {
       start: function( event ) {
         switchLockedProperty.value = true;
         userControlledProperty.value = true;
-
-        var hingePoint = circuitSwitch.hingePoint.toVector2(); // in model coordinates
-        initialEndPoint = circuitSwitch.getSwitchEndPoint(); // in model coordinates
-
-        // angle of switch segment with the horizontal
-        angleOffset = initialEndPoint.minus( hingePoint ).toVector2().angle();
 
         circuitSwitch.circuitConnectionProperty.set( CircuitState.SWITCH_IN_TRANSIT );
 
@@ -103,16 +95,14 @@ define( function( require ) {
         angle = Util.moduloBetweenDown( angle, middleAngle - Math.PI, middleAngle + Math.PI );
         angle = Util.clamp( angle, minAngle, maxAngle );
 
-        circuitSwitch.angleProperty.set( angle - angleOffset );
+        circuitSwitch.angleProperty.set( angle );
       },
       end: function( event ) {
         switchLockedProperty.value = false;
         userControlledProperty.value = false;
 
         // snap the switch to the nearest connection point and set the active connection
-        var absAngle = Math.abs( circuitSwitch.angleProperty.get() + angleOffset );
-        angle = 0;
-        angleOffset = 0;
+        var absAngle = Math.abs( circuitSwitch.angleProperty.value );
 
         var connection = null;
         if ( self.snapRange.right.contains( absAngle ) ) {
@@ -127,8 +117,6 @@ define( function( require ) {
         assert && assert( connection, 'No snap region found for switch angle: ' + absAngle );
 
         circuitSwitch.circuitConnectionProperty.set( connection );
-
-        circuitSwitch.angleProperty.set( angle );
       }
     } );
   }

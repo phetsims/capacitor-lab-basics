@@ -60,7 +60,7 @@ define( function( require ) {
     // @private {Array.<Connection>}
     this.connections = this.getSwitchConnections( positionLabel, this.hingePoint.toVector2(), config.circuitConnections );
 
-    // @public {Property.<number>} - Switch angle with respect to the vertical ( open switch )
+    // @public {Property.<number>} - Angle of the switch
     this.angleProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'angleProperty' ),
       units: 'radians'
@@ -80,6 +80,13 @@ define( function( require ) {
     // @public {Wire} - Wire between the hinge point and end point
     this.switchWire = new Wire( config.modelViewTransform, [ this.switchSegment ], connectionName );
 
+    this.angleProperty.link( function( angle ) {
+      var hingePoint = self.switchSegment.hingePoint;
+
+      // Shorten the switch wire (requested in #140)
+      self.switchSegment.endPointProperty.value = hingePoint.plus( Vector2.createPolar( 0.9 * CLBConstants.SWITCH_WIRE_LENGTH, angle ).toVector3() );
+    } );
+
     // set active connection whenever circuit connection type changes.
     circuitConnectionProperty.link( function( circuitConnection ) {
 
@@ -88,16 +95,9 @@ define( function( require ) {
         return;
       }
 
-      self.switchSegment.endPointProperty.set( self.getConnection( circuitConnection ).location );
-
-      // Shorten the switch wire (requested in #140)
-      var endPoint = self.switchSegment.endPointProperty.get();
-      var hingePoint = self.switchSegment.hingePoint;
-      var delta = endPoint.minus( hingePoint );
-      delta.setMagnitude( 0.9 * CLBConstants.SWITCH_WIRE_LENGTH );
-      self.switchSegment.endPointProperty.set( hingePoint.plus( delta ) );
+      var wireDelta = self.getConnection( circuitConnection ).location.minus( self.switchSegment.hingePoint );
+      self.angleProperty.value = wireDelta.toVector2().angle();
     } );
-
   }
 
   capacitorLabBasics.register( 'CircuitSwitch', CircuitSwitch );
