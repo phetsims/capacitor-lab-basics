@@ -14,7 +14,6 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Matrix3 = require( 'DOT/Matrix3' );
   var Shape = require( 'KITE/Shape' );
 
   /**
@@ -46,19 +45,22 @@ define( function( require ) {
      * @returns {Shape}
      */
     createBaseShape: function() {
-
-      var height = this.lightBulb.bulbBaseSize.height;
-      var topConductorWidth = this.lightBulb.topBaseConductorWidth;
-
-      var baseShape = Shape.rect( -height / 2, -topConductorWidth / 2, 3 * topConductorWidth / 4, 3 * height / 4 );
-
-      // transform to the location of the bulb
-      baseShape = baseShape.transformed( new Matrix3.translation(
-        this.lightBulb.location.x + topConductorWidth / 2,
-        this.lightBulb.location.y
-      ) );
-
-      return this.modelViewTransform.modelToViewShape( baseShape );
+      var location = this.lightBulb.location;
+      var smallLeft = location.x - 0.00343;
+      var smallRight = smallLeft + 0.00063;
+      var smallTop = location.y - 0.00113;
+      var smallBottom = smallTop + 0.00228;
+      var shape = new Shape().rect( location.x - 0.0013, location.y - 0.00175, 0.00225, 0.0035 )
+                             .moveTo( smallLeft, ( smallTop + smallBottom ) / 2 )
+                             .cubicCurveTo( smallLeft, smallTop * 0.8 + smallBottom * 0.2,
+                                            smallLeft * 0.6 + smallRight * 0.4, smallTop * 0.85 + smallBottom * 0.15,
+                                            smallRight, smallTop )
+                             .lineTo( smallRight, smallBottom )
+                             .cubicCurveTo( smallLeft * 0.6 + smallRight * 0.4, smallBottom * 0.85 + smallTop * 0.15,
+                                            smallLeft, smallBottom * 0.8 + smallTop * 0.2,
+                                            smallLeft, ( smallTop + smallBottom ) / 2 )
+                             .close();
+      return this.modelViewTransform.modelToViewShape( shape );
     }
   } );
 
