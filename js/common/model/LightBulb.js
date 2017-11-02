@@ -58,7 +58,9 @@ define( function( require ) {
      * @returns {boolean}
      */
     intersectsBulbBase: function( shape ) {
-      return this.shapeCreator.createBaseShape().bounds.intersectsBounds( shape.bounds );
+      var bulbBaseShape = this.shapeCreator.createBaseShape();
+      return shape.bounds.intersectsBounds( bulbBaseShape.bounds ) &&
+             shape.shapeIntersection( bulbBaseShape ).getNonoverlappingArea() > 0;
     },
 
     /**
