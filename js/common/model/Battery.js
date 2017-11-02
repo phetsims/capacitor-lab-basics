@@ -83,7 +83,8 @@ define( function( require ) {
     this.shapeCreator = new BatteryShapeCreator( this, modelViewTransform ); // @private
 
     // @private {Shape}
-    this.topTerminalShape = this.shapeCreator.createTopTerminalShape();
+    this.positiveTerminalShape = this.shapeCreator.createPositiveTerminalShape();
+    this.negativeTerminalShape = this.shapeCreator.createNegativeTerminalShape();
 
     this.voltageProperty.link( function() {
       self.polarityProperty.set( self.getPolarity( self.voltageProperty.value ) );
@@ -116,8 +117,15 @@ define( function( require ) {
      * @returns {boolean}
      */
     contacts: function( probe ) {
-      return probe.bounds.intersectsBounds( this.topTerminalShape.bounds ) &&
-             probe.shapeIntersection( this.topTerminalShape ).getNonoverlappingArea() > 0;
+      var shape;
+      if ( this.polarityProperty.value === CLBConstants.POLARITY.POSITIVE ) {
+        shape = this.positiveTerminalShape;
+      }
+      else {
+        shape = this.negativeTerminalShape;
+      }
+      return probe.bounds.intersectsBounds( shape.bounds ) &&
+             probe.shapeIntersection( shape ).getNonoverlappingArea() > 0;
     },
 
     /**

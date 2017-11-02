@@ -193,6 +193,17 @@ define( function( require ) {
     },
 
     /**
+     * Model shapes are all in the 2D xy plane, and have no depth.
+     * @public
+     *
+     * @param {Shape} viewShape
+     * @returns {Shape}
+     */
+    viewToModelShape: function( viewShape ) {
+      return this.modelToViewTransform2D.inverseShape( viewShape );
+    },
+
+    /**
      * Transforms 2D view bounds to 2D model bounds since bounds have no depth.
      * @public
      *

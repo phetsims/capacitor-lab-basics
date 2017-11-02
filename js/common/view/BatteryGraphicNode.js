@@ -96,6 +96,9 @@ define( function( require ) {
                                      .ellipticalArc( 0, 0, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, Math.PI, 0, true )
                                      .close();
 
+    // @public {Shape}
+    this.terminalShape = terminalTopShape;
+
     var bottomSide = new Path( bottomSideShape, {
       fill: isPositiveDown ? POSITIVE_GRADIENT : NEGATIVE_GRADIENT,
       stroke: STROKE_COLOR,
@@ -118,6 +121,7 @@ define( function( require ) {
     } );
 
     if ( !isPositiveDown ) {
+      this.terminalShape = this.terminalShape.shapeUnion( terminalSideShape );
       terminal.addChild( new Path( terminalSideShape, {
         fill: TERMINAL_GRADIENT,
         stroke: STROKE_COLOR,
