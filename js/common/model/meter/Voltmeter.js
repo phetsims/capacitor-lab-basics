@@ -202,6 +202,9 @@ define( function( require ) {
 
     // Update when battery voltage changes
     circuit.battery.voltageProperty.lazyLink( updateValue );
+
+    // Update when the switch is moving. NOTE: only listening to the top, since both get activated at the same time.
+    circuit.capacitor.topCircuitSwitch.angleProperty.lazyLink( updateValue );
   }
 
   capacitorLabBasics.register( 'Voltmeter', Voltmeter );
