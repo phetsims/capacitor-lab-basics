@@ -334,7 +334,8 @@ define( function( require ) {
       var wires = this.wireGroup[ location ];
 
       return _.some( wires, function( wire ) {
-        return wire.shapeProperty.value.intersectsBounds( shape.bounds );
+        return shape.bounds.intersectsBounds( wire.shapeProperty.value.bounds ) &&
+               shape.shapeIntersection( wire.shapeProperty.value ).getNonoverlappingArea() > 0;
       } );
     },
 

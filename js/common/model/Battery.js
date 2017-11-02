@@ -116,7 +116,8 @@ define( function( require ) {
      * @returns {boolean}
      */
     contacts: function( probe ) {
-      return probe.intersectsBounds( this.topTerminalShape );
+      return probe.bounds.intersectsBounds( this.topTerminalShape.bounds ) &&
+             probe.shapeIntersection( this.topTerminalShape ).getNonoverlappingArea() > 0;
     },
 
     /**
