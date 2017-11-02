@@ -229,14 +229,17 @@ define( function( require ) {
       assert && assert( location === CircuitLocation.CAPACITOR_TOP || location === CircuitLocation.CAPACITOR_BOTTOM,
         'Invalid capacitor location: ' + location );
 
+      var shape;
       var size = this.plateSizeProperty.value;
-      var point = probe.bounds.center;
       if ( location === CircuitLocation.CAPACITOR_TOP ) {
-        return this.shapeCreator.boxShapeContainsPoint( this.location.x, this.getTopConnectionPoint().y, this.location.z, size.width, size.height, size.depth, point );
+        shape = this.shapeCreator.createBoxShape( this.location.x, this.getTopConnectionPoint().y, this.location.z, size.width, size.height, size.depth );
       }
       else if ( location === CircuitLocation.CAPACITOR_BOTTOM ) {
-        return this.shapeCreator.boxShapeContainsPoint( this.location.x, this.location.y + this.plateSeparationProperty.value / 2, this.location.z, size.width, size.height, size.depth, point );
+        shape = this.shapeCreator.createBoxShape( this.location.x, this.location.y + this.plateSeparationProperty.value / 2, this.location.z, size.width, size.height, size.depth );
       }
+
+      return probe.bounds.intersectsBounds( shape.bounds ) &&
+             probe.shapeIntersection( shape ).getNonoverlappingArea() > 0;
     },
 
     /**
