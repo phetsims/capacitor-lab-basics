@@ -103,24 +103,20 @@ define( function( require ) {
       connectionAreaNodes.push( new ConnectionNode( connection, circuitSwitch, modelViewTransform, connectionTandem, dragHandler, switchLockedProperty ) );
     } );
 
-    // changes visual position as the user drags the switch.
     circuitSwitch.angleProperty.link( function( angle ) {
-      self.wireSwitchNode.resetTransform();
-      self.wireSwitchNode.translate( circuitSwitch.hingePoint.x, circuitSwitch.hingePoint.y );
-      self.wireSwitchNode.rotateAround( modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint ), angle );
-    } );
-
-    // Circuit connection change listener
-    circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
 
       // Endpoint, hinge point, and a vector between them
-      var endPoint = circuitSwitch.switchSegment.endPointProperty.get();
       var hingePoint = circuitSwitch.switchSegment.hingePoint;
-      var delta = endPoint.minus( hingePoint ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
+      var delta = Vector2.createPolar( CLBConstants.SWITCH_WIRE_LENGTH, angle ).toVector3();
 
       // Make sure that the shaded sphere snaps to the correct position when connection property changes.
       shadedSphereNode.translation = modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
       tipCircle.translation = modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
+
+    } );
+
+    // Circuit connection change listener
+    circuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
 
       // Solder joint visibility
       if ( circuitConnection === CircuitState.SWITCH_IN_TRANSIT ||
@@ -140,7 +136,6 @@ define( function( require ) {
       else {
         tipCircle.stroke = 'rgb(0,0,0)'; // black when not in transit
       }
-
     } );
 
     // Add arrow for a visual cue
