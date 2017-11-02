@@ -11,6 +11,7 @@ define( function( require ) {
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -78,9 +79,16 @@ define( function( require ) {
       ];
     } );
 
-    this.addChild( new Path( model.circuit.battery.shapeCreator.createTopTerminalShape(), {
-      stroke: 'blue'
-    } ) );
+    var terminalContainer = new Node();
+    this.addChild( terminalContainer );
+    var battery = model.circuit.battery;
+    battery.polarityProperty.link( function( polarity ) {
+      terminalContainer.children = [
+        new Path( polarity === CLBConstants.POLARITY.POSITIVE ? battery.shapeCreator.createPositiveTerminalShape() : battery.shapeCreator.createNegativeTerminalShape(), {
+          stroke: 'blue'
+        } )
+      ];
+    } );
 
     if ( model.circuit.lightBulb ) {
       this.addChild( new Path( model.circuit.lightBulb.shapeCreator.createBaseShape(), {
