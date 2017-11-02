@@ -20,6 +20,7 @@ define( function( require ) {
   var Connection = require( 'CAPACITOR_LAB_BASICS/common/model/Connection' );
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
+  var Shape = require( 'KITE/Shape' );
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
   var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
@@ -49,6 +50,9 @@ define( function( require ) {
 
     // @public {Vector3}
     this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
+
+    // @private {CLBModelViewTransform3D}
+    this.modelViewTransform = config.modelViewTransform;
 
     // @public {Property.<CircuitState>}
     this.circuitConnectionProperty = circuitConnectionProperty;
@@ -268,6 +272,25 @@ define( function( require ) {
       } ] ) );
 
       return leftMost.location.minus( this.hingePoint ).toVector2().angle();
+    },
+
+    contacts: function( probe ) {
+      var connection = this.circuitConnectionProperty.value;
+
+      // No connection point if it isn't connected
+      if ( connection === CircuitState.SWITCH_IN_TRANSIT || connection === CircuitState.OPEN_CIRCUIT ) {
+        return false;
+      }
+
+      var endPoint = this.switchSegment.endPointProperty.value;
+      var hingePoint = this.switchSegment.hingePoint;
+      var delta = endPoint.minus( hingePoint ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
+      var point = this.modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
+      var circle = Shape.circle( point.x, point.y, CLBConstants.CONNECTION_POINT_RADIUS );
+
+      return probe.bounds.intersectsBounds( circle.bounds ) &&
+             probe.shapeIntersection( circle ).getNonoverlappingArea() > 0;
+
     }
   }, {
 
