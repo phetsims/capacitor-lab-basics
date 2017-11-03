@@ -31,10 +31,10 @@ define( function( require ) {
   var BAR_STROKE_COLOR = 'black';
   var BAR_LINE_WIDTH = 1;
   var VALUE_METER_SPACING = 7; // between right side of value text and left side of bar
-  var VALUE_MAX_WIDTH = 60; // max width of value string for i18n
+  var VALUE_MAX_WIDTH = 67; // max width of value string for i18n
 
   // value display
-  var VALUE_FONT = new PhetFont( 14 );
+  var VALUE_FONT = new PhetFont( 16 );
   var VALUE_COLOR = 'black';
 
   // strings

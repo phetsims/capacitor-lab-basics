@@ -53,7 +53,7 @@ define( function( require ) {
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
     voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
 
-    var capacitanceBarMeterPanel = new CapacitanceBarMeterPanel( model, 0.75 * capacitanceCircuitNode.width,
+    var capacitanceBarMeterPanel = new CapacitanceBarMeterPanel( model, 0.85 * capacitanceCircuitNode.width,
       tandem.createTandem( 'capacitanceBarMeterPanel' ) );
     capacitanceBarMeterPanel.left = capacitanceCircuitNode.topWireNode.left;
     capacitanceBarMeterPanel.top = this.layoutBounds.top + 10;

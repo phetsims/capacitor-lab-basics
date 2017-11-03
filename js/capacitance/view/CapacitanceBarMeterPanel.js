@@ -23,7 +23,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   // constants
-  var VALUE_FONT = new PhetFont( 15 );
+  var VALUE_FONT = new PhetFont( 16 );
   var VALUE_COLOR = 'black';
 
   // strings
@@ -61,7 +61,7 @@ define( function( require ) {
     parentNode.children = [ capacitanceMeterNode, capacitanceTitle ];
 
     // Position the left edge (x) and vertical center (y) of BarMeterNode
-    capacitanceMeterNode.translation = new Vector2( 0.45 * minWidth, capacitanceTitle.centerY + 1 );
+    capacitanceMeterNode.translation = new Vector2( 0.45 * minWidth, capacitanceTitle.centerY );
 
     Panel.call( this, parentNode, {
       minWidth: minWidth,
