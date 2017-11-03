@@ -121,13 +121,13 @@ define( function( require ) {
     // The BarMeterNodes have a common x-coordinate
     x = 0.44 * minWidth;
 
-    y = capacitanceCheckBox.centerY + 2;
+    y = capacitanceCheckBox.centerY;
     capacitanceMeterNode.axisLine.translation = new Vector2( x, y );
 
-    y = plateChargeCheckBox.centerY + 2;
+    y = plateChargeCheckBox.centerY;
     plateChargeMeterNode.axisLine.translation = new Vector2( x, y );
 
-    y = storedEnergyCheckBox.centerY + 2;
+    y = storedEnergyCheckBox.centerY;
     storedEnergyMeterNode.axisLine.translation = new Vector2( x, y );
 
     Panel.call( this, parentNode, {
