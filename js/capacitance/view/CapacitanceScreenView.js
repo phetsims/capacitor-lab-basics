@@ -46,16 +46,15 @@ define( function( require ) {
 
     // meters
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
-    window.voltmeterNode = voltmeterNode;
-    var voltmeterToolBoxPanel = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform,
+    var voltmeterToolbox = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform,
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
 
     // control
     var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
       maxTextWidth: this.layoutBounds.width - capacitanceCircuitNode.right
     } );
-    viewControlPanel.translation = this.layoutBounds.rightTop.minusXY( viewControlPanel.width + 10, -10 );
-    voltmeterToolBoxPanel.rightTop = viewControlPanel.rightBottom.plusXY( 0, 20 );
+    viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
+    voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
 
     var capacitanceBarMeterPanel = new CapacitanceBarMeterPanel( model, 0.75 * capacitanceCircuitNode.width,
       tandem.createTandem( 'capacitanceBarMeterPanel' ) );
@@ -76,7 +75,7 @@ define( function( require ) {
     this.addChild( capacitanceCircuitNode );
     this.addChild( capacitanceBarMeterPanel );
     this.addChild( viewControlPanel );
-    this.addChild( voltmeterToolBoxPanel );
+    this.addChild( voltmeterToolbox );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
     this.addChild( new DebugLayer( model ) );

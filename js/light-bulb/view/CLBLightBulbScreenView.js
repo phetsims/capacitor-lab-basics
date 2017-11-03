@@ -23,9 +23,7 @@ define( function( require ) {
   var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
 
   // Panel offsets (wrt various references) in model coordinates.
-  var VIEW_PANEL_OFFSET = new Vector2( -10, 10 );
   var BAR_METER_PANEL_OFFSET = new Vector2( 40, 30 ); // Sign of x offset is reversed
-  var VOLTMETER_PANEL_OFFSET = new Vector2( 0, 20 );
 
   /**
    * @constructor
@@ -60,8 +58,8 @@ define( function( require ) {
       numberOfBarGraphs: 3,
       maxTextWidth: viewControlPanelWidth
     } );
-    viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( VIEW_PANEL_OFFSET );
-    voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( VOLTMETER_PANEL_OFFSET );
+    viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
+    voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
 
     // Circuit bar meter panel
     barMeterPanel.leftBottom = lightBulbCircuitNode.topWireNode.leftTop.minus( BAR_METER_PANEL_OFFSET );
