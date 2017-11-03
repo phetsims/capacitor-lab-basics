@@ -62,7 +62,8 @@ define( function( require ) {
     voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
 
     // Circuit bar meter panel
-    barMeterPanel.leftBottom = lightBulbCircuitNode.topWireNode.leftTop.minus( BAR_METER_PANEL_OFFSET );
+    barMeterPanel.left = lightBulbCircuitNode.topWireNode.left - 40;
+    barMeterPanel.top = this.layoutBounds.top + 10;
 
     var resetAllButton = new ResetAllButton( {
       listener: function() {

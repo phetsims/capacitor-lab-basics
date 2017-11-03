@@ -23,9 +23,6 @@ define( function( require ) {
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
 
-  // constants
-  var BAR_METER_PANEL_OFFSET = new Vector2( 0, 60 ); // Sign of x offset is reversed
-
   /**
    * @constructor
    * @param {CLBModel} model
@@ -58,7 +55,8 @@ define( function( require ) {
 
     var capacitanceBarMeterPanel = new CapacitanceBarMeterPanel( model, 0.75 * capacitanceCircuitNode.width,
       tandem.createTandem( 'capacitanceBarMeterPanel' ) );
-    capacitanceBarMeterPanel.leftBottom = capacitanceCircuitNode.topWireNode.leftTop.minus( BAR_METER_PANEL_OFFSET );
+    capacitanceBarMeterPanel.left = capacitanceCircuitNode.topWireNode.left;
+    capacitanceBarMeterPanel.top = this.layoutBounds.top + 10;
 
     var resetAllButton = new ResetAllButton( {
       listener: function() {
