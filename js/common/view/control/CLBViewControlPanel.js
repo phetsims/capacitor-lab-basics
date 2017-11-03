@@ -75,7 +75,8 @@ define( function( require ) {
     } );
 
     var verticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems, {
-      tandem: tandem.createTandem( 'verticalCheckBoxGroup' )
+      tandem: tandem.createTandem( 'verticalCheckBoxGroup' ),
+      boxWidth: viewCheckBoxItems[ 0 ].content.height
     } );
 
     Panel.call( this, verticalCheckBoxGroup, {
