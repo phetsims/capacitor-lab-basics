@@ -15,20 +15,13 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var LayoutBox = require( 'SCENERY/nodes/LayoutBox' );
   var Panel = require( 'SUN/Panel' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
   var VerticalCheckBoxGroup = require( 'SUN/VerticalCheckBoxGroup' );
-  var VStrut = require( 'SCENERY/nodes/VStrut' );
 
   // constants
-  var PANEL_TITLE_FONT = new PhetFont( {
-    weight: 'bold',
-    size: 18
-  } );
   var CHECK_BOX_FONT = new PhetFont( 16 );
-  var TITLE_VERTICAL_SPACE = 10;
 
   // strings
   var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
@@ -36,7 +29,6 @@ define( function( require ) {
   var currentDirectionString = require( 'string!CAPACITOR_LAB_BASICS/currentDirection' );
   var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
   var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
-  var viewString = require( 'string!CAPACITOR_LAB_BASICS/view' );
 
   /**
    * @constructor
@@ -86,19 +78,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'verticalCheckBoxGroup' )
     } );
 
-    var viewVisibilityControlBox = new LayoutBox( {
-      children: [
-        new Text( viewString, {
-          font: PANEL_TITLE_FONT,
-          maxWidth: 300
-        } ),
-        new VStrut( TITLE_VERTICAL_SPACE ),
-        verticalCheckBoxGroup
-      ],
-      align: 'left'
-    } );
-
-    Panel.call( this, viewVisibilityControlBox, {
+    Panel.call( this, verticalCheckBoxGroup, {
       xMargin: 10,
       yMargin: 10,
       fill: CLBConstants.METER_PANEL_FILL,
