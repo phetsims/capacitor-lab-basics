@@ -64,7 +64,8 @@ define( function( require ) {
       }
     } );
 
-    var adjustedViewBounds = new Bounds2( 0, 0, dragBounds.maxX - imageNode.width, dragBounds.maxY - 0.4 * imageNode.height );
+    // Don't allow pushing the probes too far to the left, see https://github.com/phetsims/capacitor-lab-basics/issues/202
+    var adjustedViewBounds = new Bounds2( 40, 0, dragBounds.maxX - imageNode.width, dragBounds.maxY - 0.4 * imageNode.height );
 
     // Drag handler accounting for boundaries
     this.movableDragHandler = new MovableDragHandler( locationProperty, {
