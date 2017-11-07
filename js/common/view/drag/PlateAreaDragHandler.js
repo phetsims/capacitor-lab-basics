@@ -15,9 +15,9 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var DragListener = require( 'SCENERY/listeners/DragListener' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LinearFunction = require( 'DOT/LinearFunction' );
-  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
 
@@ -40,7 +40,7 @@ define( function( require ) {
     // @private {Vector2}
     this.clickXOffset = new Vector2( 0, 0 );
 
-    SimpleDragHandler.call( this, {
+    DragListener.call( this, {
       tandem: tandem,
       start: function( event ) {
         var width = capacitor.plateSizeProperty.value.width;
@@ -54,7 +54,7 @@ define( function( require ) {
 
         // Discretize the plate area to round values by scaling m -> mm, rounding, then scaling back.
         // Plate area drags should then snap only in steps of 10 mm^2.
-        var plateArea = Util.roundSymmetric( 1e5 * plateWidth*plateWidth ) / 1e5;
+        var plateArea = Util.roundSymmetric( 1e5 * plateWidth * plateWidth ) / 1e5;
         capacitor.setPlateWidth( Math.sqrt( plateArea ) );
       }
     } );
@@ -63,7 +63,7 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'PlateAreaDragHandler', PlateAreaDragHandler );
 
-  return inherit( SimpleDragHandler, PlateAreaDragHandler, {
+  return inherit( DragListener, PlateAreaDragHandler, {
 
     /**
      * Determines the plateWidth for a specific mouse position.  This effectively accounts for the z-axis dimension.

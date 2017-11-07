@@ -53,11 +53,13 @@ define( function( require ) {
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
 
+    var dragListener = new PlateSeparationDragHandler( capacitor, modelViewTransform, valueRange,
+      tandem.createTandem( 'inputListener' ) );
+    this.addInputListener( dragListener );
+
     // arrow
-    var arrowNode = new DragHandleArrowNode( ARROW_START_LOCATION, ARROW_END_LOCATION,
+    var arrowNode = new DragHandleArrowNode( ARROW_START_LOCATION, ARROW_END_LOCATION, dragListener.isHighlightedProperty,
       tandem.createTandem( 'arrowNode' ) );
-    this.addInputListener( new PlateSeparationDragHandler( capacitor, modelViewTransform, valueRange,
-      tandem.createTandem( 'inputListener' ) ) );
 
     this.cursor = 'pointer';
 

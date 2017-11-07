@@ -57,11 +57,13 @@ define( function( require ) {
     // @private {CLBModelViewTransform3D}
     this.modelViewTransform = modelViewTransform;
 
+    var dragListener = new PlateAreaDragHandler( capacitor, modelViewTransform, valueRange,
+      tandem.createTandem( 'inputListener' ) );
+    this.addInputListener( dragListener );
+
     // arrow
-    var arrowNode = new DragHandleArrowNode( ARROW_TIP_LOCATION, ARROW_TAIL_LOCATION,
+    var arrowNode = new DragHandleArrowNode( ARROW_TIP_LOCATION, ARROW_TAIL_LOCATION, dragListener.isHighlightedProperty,
       tandem.createTandem( 'arrowNode' ) );
-    this.addInputListener( new PlateAreaDragHandler( capacitor, modelViewTransform, valueRange,
-      tandem.createTandem( 'inputListener' ) ) );
 
     this.cursor = 'pointer';
 

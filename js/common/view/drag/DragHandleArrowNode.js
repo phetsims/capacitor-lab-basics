@@ -13,7 +13,6 @@ define( function( require ) {
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var PressListener = require( 'SCENERY/listeners/PressListener' );
 
   // constants
   var NORMAL_COLOR = 'rgb( 61, 179, 79 )';
@@ -26,9 +25,10 @@ define( function( require ) {
    *
    * @param {Vector2} pStart
    * @param {Vector2} pEnd
+   * @param {Property.<boolean>} isHighlightedProperty
    * @param {Tandem} tandem
    */
-  function DragHandleArrowNode( pStart, pEnd, tandem ) {
+  function DragHandleArrowNode( pStart, pEnd, isHighlightedProperty, tandem ) {
     var self = this;
 
     // calculate the parameter for head and tail width and height.
@@ -52,11 +52,7 @@ define( function( require ) {
     this.touchArea = this.bounds.dilated( 10 );
 
     // highlight the arrow on pointer over
-    var pressListener = new PressListener( {
-      attach: false
-    } );
-    this.addInputListener( pressListener );
-    pressListener.isHighlightedProperty.link( function( highlighted ) {
+    isHighlightedProperty.link( function( highlighted ) {
       self.fill = highlighted ? HIGHLIGHT_COLOR : NORMAL_COLOR;
     } );
   }
