@@ -179,7 +179,9 @@ define( function( require ) {
         this.shapeTouchesWireGroup( probe, location ) ||
         this.shapeTouchesWireGroup( probe, capacitorSide ) ||
         this.capacitor.contacts( probe, capacitorSide ) ||
-        this.lightBulb.intersectsBulbBase( probe )
+        ( location === CircuitLocation.LIGHT_BULB_TOP ?
+          this.lightBulb.intersectsBulbTopBase( probe ) :
+          this.lightBulb.intersectsBulbBottomBase( probe ) )
       );
     },
 
@@ -204,7 +206,9 @@ define( function( require ) {
 
       return (
         this.shapeTouchesWireGroup( probe, location ) ||
-        this.lightBulb.intersectsBulbBase( probe )
+        ( location === CircuitLocation.LIGHT_BULB_TOP ?
+          this.lightBulb.intersectsBulbTopBase( probe ) :
+          this.lightBulb.intersectsBulbBottomBase( probe ) )
       );
     },
 

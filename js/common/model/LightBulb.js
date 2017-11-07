@@ -45,14 +45,27 @@ define( function( require ) {
   return inherit( Object, LightBulb, {
 
     /**
-     * Does the base shape intersect the shape of the bulb base?
+     * Does the base shape intersect the top shape of the bulb base?
      * @public
      *
      * @param {Vector3} point
      * @returns {boolean}
      */
-    intersectsBulbBase: function( shape ) {
-      var bulbBaseShape = this.shapeCreator.createBaseShape();
+    intersectsBulbTopBase: function( shape ) {
+      var bulbBaseShape = this.shapeCreator.createTopBaseShape();
+      return shape.bounds.intersectsBounds( bulbBaseShape.bounds ) &&
+             shape.shapeIntersection( bulbBaseShape ).getNonoverlappingArea() > 0;
+    },
+
+    /**
+     * Does the base shape intersect the bottom shape of the bulb base?
+     * @public
+     *
+     * @param {Vector3} point
+     * @returns {boolean}
+     */
+    intersectsBulbBottomBase: function( shape ) {
+      var bulbBaseShape = this.shapeCreator.createBottomBaseShape();
       return shape.bounds.intersectsBounds( bulbBaseShape.bounds ) &&
              shape.shapeIntersection( bulbBaseShape ).getNonoverlappingArea() > 0;
     },
