@@ -16,10 +16,9 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
+  var PressListener = require( 'SCENERY/listeners/PressListener' );
   var Property = require( 'AXON/Property' );
   var Shape = require( 'KITE/Shape' );
-  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
   var BOUNDING_ANGLE = Math.PI / 8;
 
@@ -77,28 +76,21 @@ define( function( require ) {
       ]
     } );
 
-    this.addInputListener( SimpleDragHandler.createForwardingListener( function( event ) {
-      if ( circuitSwitch.circuitConnectionProperty.value === connectionType ) {
-        dragHandler.startDrag( event );
+    var pressListener = new PressListener( {
+      attach: false,
+      press: function( event ) {
+        if ( circuitSwitch.circuitConnectionProperty.value === connectionType ) {
+          dragHandler.press( event );
+        }
+        else {
+          circuitSwitch.circuitConnectionProperty.set( connectionType );
+        }
       }
-      else {
-        circuitSwitch.circuitConnectionProperty.set( connectionType );
-      }
-    } ) );
-
-    var overCountProperty = new NumberProperty( 0 );
-    Property.multilink( [ overCountProperty, userControlledProperty ], function( over, userControlled ) {
-      self.highlightNode.visible = over > 0 && !userControlled;
     } );
+    this.addInputListener( pressListener );
 
-    // Add input listener to set circuit state.
-    this.addInputListener( {
-      enter: function( event ) {
-        overCountProperty.value++;
-      },
-      exit: function( event ) {
-        overCountProperty.value--;
-      }
+    Property.multilink( [ pressListener.isHoveringProperty, userControlledProperty ], function( hovering, userControlled ) {
+      self.highlightNode.visible = hovering && !userControlled;
     } );
   }
 

@@ -17,9 +17,9 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
+  var DragListener = require( 'SCENERY/listeners/DragListener' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Range = require( 'DOT/Range' );
-  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Util = require( 'DOT/Util' );
 
   /**
@@ -56,9 +56,8 @@ define( function( require ) {
       };
     }
 
-    SimpleDragHandler.call( this, {
+    DragListener.call( this, {
       tandem: tandem,
-      allowTouchSnag: false,
 
       start: function( event ) {
         switchLockedProperty.value = true;
@@ -123,6 +122,6 @@ define( function( require ) {
 
   capacitorLabBasics.register( 'CircuitSwitchDragHandler', CircuitSwitchDragHandler );
 
-  return inherit( SimpleDragHandler, CircuitSwitchDragHandler );
+  return inherit( DragListener, CircuitSwitchDragHandler );
 
 } );
