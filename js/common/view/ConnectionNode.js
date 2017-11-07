@@ -77,6 +77,7 @@ define( function( require ) {
     } );
 
     var pressListener = new PressListener( {
+      tandem: tandem.createTandem( 'pressListener' ),
       attach: false,
       press: function( event ) {
         if ( circuitSwitch.circuitConnectionProperty.value === connectionType ) {
