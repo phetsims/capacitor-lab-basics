@@ -34,7 +34,6 @@ define( function( require ) {
     var self = this;
 
     // @private
-    this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
     this.valueRange = valueRange;
 
