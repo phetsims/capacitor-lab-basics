@@ -47,12 +47,18 @@ define( function( require ) {
       translation: modelViewTransform.modelToViewPosition( connection.location )
     } );
 
-    var pointNode = new Circle( {
+    // @public {Circle}
+    this.backStrokeNode = new Circle( {
       radius: CLBConstants.CONNECTION_POINT_RADIUS,
       lineWidth: 2,
       lineDash: [ 3, 3 ],
-      fill: CLBConstants.DISCONNECTED_POINT_COLOR,
       stroke: CLBConstants.DISCONNECTED_POINT_STROKE,
+      translation: modelViewTransform.modelToViewPosition( connection.location )
+    } );
+
+    var pointNode = new Circle( {
+      radius: CLBConstants.CONNECTION_POINT_RADIUS,
+      fill: CLBConstants.DISCONNECTED_POINT_COLOR,
       translation: modelViewTransform.modelToViewPosition( connection.location )
     } );
 

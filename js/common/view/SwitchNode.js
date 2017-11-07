@@ -159,6 +159,9 @@ define( function( require ) {
     this.addChild( switchCueArrow );
 
     // rendering order important for behavior of click areas and drag handlers
+    _.each( this.connectionAreaNodes, function( connectionAreaNode ) {
+      self.addChild( connectionAreaNode.backStrokeNode );
+    } );
     this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );
     _.each( this.connectionAreaNodes, function( connectionAreaNode ) {
