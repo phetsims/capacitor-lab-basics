@@ -15,6 +15,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Panel = require( 'SUN/Panel' );
+  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Vector2 = require( 'DOT/Vector2' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
 
@@ -39,23 +40,21 @@ define( function( require ) {
     var voltmeterIconNode = VoltmeterNode.createVoltmeterIconNode();
     voltmeterIconNode.cursor = 'pointer';
 
-    voltmeterIconNode.addInputListener( {
-      down: function( event ) {
-        voltmeterVisibleProperty.set( true );
+    voltmeterIconNode.addInputListener( SimpleDragHandler.createForwardingListener( function( event ) {
+      voltmeterVisibleProperty.set( true );
 
-        // initial position of the pointer in the screenView coordinates
-        var initialPosition = self.globalToParentPoint( event.pointer.point );
+      // initial position of the pointer in the screenView coordinates
+      var initialPosition = self.globalToParentPoint( event.pointer.point );
 
-        // make sure that the center of the voltmeter body is offset by the body dimensions
-        var offsetPosition = new Vector2( -voltmeterNode.bodyNode.width / 2, -voltmeterNode.bodyNode.height / 2 );
+      // make sure that the center of the voltmeter body is offset by the body dimensions
+      var offsetPosition = new Vector2( -voltmeterNode.bodyNode.width / 2, -voltmeterNode.bodyNode.height / 2 );
 
-        var voltmeterBodyPosition = initialPosition.plus( offsetPosition );
-        voltmeterNode.bodyNode.bodyLocationProperty.set( modelViewTransform.viewToModelPosition( voltmeterBodyPosition ) );
+      var voltmeterBodyPosition = initialPosition.plus( offsetPosition );
+      voltmeterNode.bodyNode.bodyLocationProperty.set( modelViewTransform.viewToModelPosition( voltmeterBodyPosition ) );
 
-        // start drag from the body node's movable drag handler
-        voltmeterNode.bodyNode.movableDragHandler.startDrag( event );
-      }
-    } );
+      // start drag from the body node's movable drag handler
+      voltmeterNode.bodyNode.movableDragHandler.startDrag( event );
+    } ) );
 
     // wrap all off this content inside of a node that will hold the input element and its descriptions
     Node.call( this );
