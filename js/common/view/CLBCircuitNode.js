@@ -105,6 +105,11 @@ define( function( require ) {
       tandem.createTandem( 'batteryBottomCurrentIndicatorNode' ) );
 
     // rendering order
+    this.circuitSwitchNodes.forEach( function( switchNode ) {
+      switchNode.connectionAreaNodes.forEach( function( connectionAreaNode ) {
+        self.addChild( connectionAreaNode );
+      } );
+    } );
     this.addChild( this.bottomWireNode );
     this.addChild( this.batteryNode );
     this.addChild( capacitorNode );

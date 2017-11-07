@@ -82,8 +82,8 @@ define( function( require ) {
     var hingeNode = new HingePointNode();
     hingeNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint );
 
-    // create connection points and clickable areas
-    var connectionAreaNodes = [];
+    // @public {Node} create connection points and clickable areas
+    this.connectionAreaNodes = [];
 
     var userControlledProperty = new BooleanProperty( false );
 
@@ -100,7 +100,7 @@ define( function( require ) {
       var connectionTandem = tandem.createTandem( connectionLabels[ index ] + 'ConnectionNode' );
 
       // add the clickable area for the connection point
-      connectionAreaNodes.push( new ConnectionNode( connection, circuitSwitch, modelViewTransform, connectionTandem, dragHandler, switchLockedProperty ) );
+      self.connectionAreaNodes.push( new ConnectionNode( connection, circuitSwitch, modelViewTransform, connectionTandem, dragHandler, switchLockedProperty ) );
     } );
 
     circuitSwitch.angleProperty.link( function( angle ) {
@@ -159,12 +159,9 @@ define( function( require ) {
     this.addChild( switchCueArrow );
 
     // rendering order important for behavior of click areas and drag handlers
-    _.each( connectionAreaNodes, function( connectionAreaNode ) {
-      self.addChild( connectionAreaNode );
-    } );
     this.addChild( this.wireSwitchNode );
     this.addChild( hingeNode );
-    _.each( connectionAreaNodes, function( connectionAreaNode ) {
+    _.each( this.connectionAreaNodes, function( connectionAreaNode ) {
       self.addChild( connectionAreaNode.highlightNode );
     } );
 
