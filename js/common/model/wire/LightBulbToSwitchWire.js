@@ -56,8 +56,10 @@ define( function( require ) {
     // connect lightbulb to switch connection point.
     var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.LIGHT_BULB_CONNECTED );
 
+    var separationOffset = new Vector3( 0.0006, 0, 0 );
+
     // Tandem IDs must be unique, so append a counter index
-    segments.push( new WireSegment( rightCorner, switchConnectionPoint,
+    segments.push( new WireSegment( rightCorner, switchConnectionPoint.plus( separationOffset ),
       tandem.createTandem( 'lightBulbSwitchWireSegment' + COUNTER ) ) );
     COUNTER++;
 

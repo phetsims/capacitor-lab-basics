@@ -73,15 +73,16 @@ define( function( require ) {
     // connect battery to switch connection point.
     var switchSegment;
     var switchConnectionPoint;
+    var separationOffset = new Vector3( -0.0006, 0, 0 );
 
     if ( connectionPoint === CircuitLocation.BATTERY_TOP ) {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED );
-      switchSegment = new WireSegment( leftCorner, switchConnectionPoint,
+      switchSegment = new WireSegment( leftCorner, switchConnectionPoint.plus( separationOffset ),
         tandem.createTandem( 'batteryTopToSwitchSegment' ) );
     }
     else {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED );
-      switchSegment = new WireSegment( leftCorner, switchConnectionPoint,
+      switchSegment = new WireSegment( leftCorner, switchConnectionPoint.plus( separationOffset ),
         tandem.createTandem( 'batteryBottomToSwitchSegment' ) );
     }
 
