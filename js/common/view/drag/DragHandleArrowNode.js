@@ -11,9 +11,9 @@ define( function( require ) {
 
   // modules
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
-  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var PressListener = require( 'SCENERY/listeners/PressListener' );
 
   // constants
   var NORMAL_COLOR = 'rgb( 61, 179, 79 )';
@@ -52,14 +52,13 @@ define( function( require ) {
     this.touchArea = this.bounds.dilated( 10 );
 
     // highlight the arrow on pointer over
-    this.addInputListener( new ButtonListener( {
-      over: function( event ) {
-        self.fill = HIGHLIGHT_COLOR;
-      },
-      up: function( event ) {
-        self.fill = NORMAL_COLOR;
-      }
-    } ) );
+    var pressListener = new PressListener( {
+      attach: false
+    } );
+    this.addInputListener( pressListener );
+    pressListener.isHighlightedProperty.link( function( highlighted ) {
+      self.fill = highlighted ? HIGHLIGHT_COLOR : NORMAL_COLOR;
+    } );
   }
 
   capacitorLabBasics.register( 'DragHandleArrowNode', DragHandleArrowNode );

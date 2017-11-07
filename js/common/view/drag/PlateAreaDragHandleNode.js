@@ -13,7 +13,6 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var ButtonListener = require( 'SCENERY/input/ButtonListener' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var DragHandleArrowNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleArrowNode' );
@@ -78,16 +77,6 @@ define( function( require ) {
     // Make text part of the draggable area
     this.valueNode.mouseArea = this.valueNode.bounds.dilated( 0 );
     this.valueNode.touchArea = this.valueNode.bounds.dilated( 0 );
-
-    // Highlight the arrow on pointer over text
-    this.valueNode.addInputListener( new ButtonListener( {
-      over: function( event ) {
-        arrowNode.fill = arrowNode.highlightColor;
-      },
-      up: function( event ) {
-        arrowNode.fill = arrowNode.normalColor;
-      }
-    } ) );
 
     // rendering order
     this.addChild( lineNode );
