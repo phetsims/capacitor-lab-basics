@@ -23,18 +23,16 @@ define( function( require ) {
    * property. Plate separation is a vertical quantity, so we're dragging along the y axis. Other axes are ignored.
    * @constructor
    *
-   * @param {PlateSeparationDragHandleNode} dragNode
    * @param {Capacitor} capacitor
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Range} valueRange
    * @param {Tandem} tandem
    */
-  function PlateSeparationDragHandler( dragNode, capacitor, modelViewTransform, valueRange, tandem ) {
+  function PlateSeparationDragHandler( capacitor, modelViewTransform, valueRange, tandem ) {
 
     var self = this;
 
     // @private
-    this.dragNode = dragNode;
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
     this.valueRange = valueRange;

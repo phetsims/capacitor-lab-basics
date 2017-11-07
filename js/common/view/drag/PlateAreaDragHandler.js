@@ -24,18 +24,16 @@ define( function( require ) {
   /**
    * @constructor
    *
-   * @param {DragHandleArrowNode} dragNode
    * @param {Capacitor} capacitor
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {Range} valueRange
    * @param {Tandem} tandem
    */
-  function PlateAreaDragHandler( dragNode, capacitor, modelViewTransform, valueRange, tandem ) {
+  function PlateAreaDragHandler( capacitor, modelViewTransform, valueRange, tandem ) {
 
     var self = this;
 
     // @private
-    this.dragNode = dragNode;
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
     this.valueRange = valueRange;

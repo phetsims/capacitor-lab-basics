@@ -57,7 +57,7 @@ define( function( require ) {
     // arrow
     var arrowNode = new DragHandleArrowNode( ARROW_START_LOCATION, ARROW_END_LOCATION,
       tandem.createTandem( 'arrowNode' ) );
-    this.addInputListener( new PlateSeparationDragHandler( arrowNode, capacitor, modelViewTransform, valueRange,
+    this.addInputListener( new PlateSeparationDragHandler( capacitor, modelViewTransform, valueRange,
       tandem.createTandem( 'inputListener' ) ) );
 
     this.cursor = 'pointer';
