@@ -53,10 +53,9 @@ define( function( require ) {
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
 
     // View control panel and voltmeter panel
-    var viewControlPanelWidth = 200;
     var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
       numberOfBarGraphs: 3,
-      maxTextWidth: viewControlPanelWidth
+      maxTextWidth: 200
     } );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
     voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );

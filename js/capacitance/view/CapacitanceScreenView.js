@@ -48,7 +48,7 @@ define( function( require ) {
 
     // control
     var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
-      maxTextWidth: this.layoutBounds.width - capacitanceCircuitNode.right
+      maxTextWidth: 200
     } );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
     voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
