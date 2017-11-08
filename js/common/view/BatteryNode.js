@@ -76,7 +76,7 @@ define( function( require ) {
         font: LABEL_FONT,
         fill: textFill,
         cursor: 'arrow',
-        maxWidth: graphicNode.width * 0.5,
+        maxWidth: graphicNode.width * 0.3,
         tandem: tandem
       } );
       labelText.rotate( Math.PI / 2 ); // rotate label to match rotation of the slider.
