@@ -127,7 +127,10 @@ define( function( require ) {
     } );
 
     if ( model.circuit.lightBulb ) {
-      this.addChild( new Path( model.circuit.lightBulb.shapeCreator.createBaseShape(), {
+      this.addChild( new Path( model.circuit.lightBulb.shapeCreator.createTopBaseShape(), {
+        stroke: 'blue'
+      } ) );
+      this.addChild( new Path( model.circuit.lightBulb.shapeCreator.createBottomBaseShape(), {
         stroke: 'blue'
       } ) );
     }
