@@ -20,7 +20,7 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
 
   // strings
-  var capacitanceTitleString = require( 'string!CAPACITOR_LAB_BASICS/capacitance.title' );
+  var screenCapacitanceString = require( 'string!CAPACITOR_LAB_BASICS/screen.capacitance' );
 
   // images
   var capacitorIconImage = require( 'image!CAPACITOR_LAB_BASICS/capacitance_screen_icon.png' );
@@ -36,7 +36,7 @@ define( function( require ) {
     var icon = new Image( capacitorIconImage );
 
     var options = {
-      name: capacitanceTitleString,
+      name: screenCapacitanceString,
       backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
       homeScreenIcon: icon,
       tandem: tandem

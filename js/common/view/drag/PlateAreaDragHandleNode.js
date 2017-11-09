@@ -31,7 +31,7 @@ define( function( require ) {
 
   // strings
   var plateAreaString = require( 'string!CAPACITOR_LAB_BASICS/plateArea' );
-  var unitsMillimetersString = require( 'string!CAPACITOR_LAB_BASICS/units.millimeters' );
+  var millimetersSquaredPatternString = require( 'string!CAPACITOR_LAB_BASICS/millimetersSquaredPattern' );
 
   // endpoints for a vertical line, this will be rotated to point along the plate's pseudo-3D diagonal
   var LINE_LENGTH = 22;
@@ -74,7 +74,7 @@ define( function( require ) {
     var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
 
     // @private {DragHandleValueNode}
-    this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, unitsMillimetersString + '<sup>' + 2 + '</sup>' );
+    this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, millimetersSquaredPatternString );
 
     // Make text part of the draggable area
     this.valueNode.mouseArea = this.valueNode.bounds.dilated( 0 );
