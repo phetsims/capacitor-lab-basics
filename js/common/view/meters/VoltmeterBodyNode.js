@@ -32,8 +32,7 @@ define( function( require ) {
   } );
 
   // strings
-  var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
-  var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
+  var voltsPatternString = require( 'string!CAPACITOR_LAB_BASICS/voltsPattern' );
   var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
   var voltsUnknownString = require( 'string!CAPACITOR_LAB_BASICS/volts.unknown' );
 
@@ -74,10 +73,9 @@ define( function( require ) {
     labelText.center = new Vector2( imageNode.width / 2, imageNode.height / 3 + readoutAdjustmentY );
     this.addChild( labelText );
 
-    var valueString = StringUtils.format(
-      pattern0Value1UnitsString,
-      voltmeter.measuredVoltageProperty.get(),
-      unitsVoltsString );
+    var valueString = StringUtils.fillIn( voltsPatternString, {
+      value: voltmeter.measuredVoltageProperty.value
+    } );
 
     var valueText = new Text( valueString, {
       font: DISPLAY_FONT,
@@ -162,11 +160,11 @@ define( function( require ) {
      */
     setValueText: function( valueText, value ) {
       if ( value === null ) {
-        valueText.setText( StringUtils.format( pattern0Value1UnitsString, voltsUnknownString, unitsVoltsString ) );
+        valueText.setText( StringUtils.fillIn( voltsPatternString, { value: voltsUnknownString } ) );
       }
       else {
         var fixedValue = Util.toFixed( value, 3 );
-        valueText.setText( StringUtils.format( pattern0Value1UnitsString, fixedValue, unitsVoltsString ) );
+        valueText.setText( StringUtils.fillIn( voltsPatternString, { value: fixedValue } ) );
       }
     }
   } );

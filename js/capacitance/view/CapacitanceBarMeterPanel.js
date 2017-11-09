@@ -28,7 +28,7 @@ define( function( require ) {
 
   // strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
-  var unitsPicoFaradsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoFarads' );
+  var picoFaradsPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoFaradsPattern' );
 
   /**
    * @constructor
@@ -46,7 +46,7 @@ define( function( require ) {
       model.capacitanceMeter,
       CLBConstants.CAPACITANCE_COLOR,
       CLBConstants.CAPACITANCE_METER_MAX_VALUE,
-      unitsPicoFaradsString,
+      picoFaradsPatternString,
       capacitanceString,
       tandem.createTandem( 'capacitanceMeterNode' ) );
 

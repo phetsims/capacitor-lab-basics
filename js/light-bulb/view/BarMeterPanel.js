@@ -32,11 +32,11 @@ define( function( require ) {
 
   // strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
-  var plateChargeString = require( 'string!CAPACITOR_LAB_BASICS/plateCharge' );
+  var topPlateChargeString = require( 'string!CAPACITOR_LAB_BASICS/topPlateCharge' );
   var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
-  var unitsPicoCoulombsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoCoulombs' );
-  var unitsPicoFaradsString = require( 'string!CAPACITOR_LAB_BASICS/units.picoFarads' );
-  var unitsPicoJoulesString = require( 'string!CAPACITOR_LAB_BASICS/units.picoJoules' );
+  var picoCoulombsPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoCoulombsPattern' );
+  var picoFaradsPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoFaradsPattern' );
+  var picoJoulesPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoJoulesPattern' );
 
   /**
    * @constructor
@@ -58,7 +58,7 @@ define( function( require ) {
       model.capacitanceMeter,
       CLBConstants.CAPACITANCE_COLOR,
       CLBConstants.CAPACITANCE_METER_MAX_VALUE,
-      unitsPicoFaradsString,
+      picoFaradsPatternString,
       capacitanceString,
       tandem.createTandem( 'capacitanceMeterNode' ) );
 
@@ -66,15 +66,15 @@ define( function( require ) {
       model.plateChargeMeter,
       CLBConstants.POSITIVE_CHARGE_COLOR,
       CLBConstants.PLATE_CHARGE_METER_MAX_VALUE,
-      unitsPicoCoulombsString,
-      plateChargeString,
+      picoCoulombsPatternString,
+      topPlateChargeString,
       tandem.createTandem( 'plateChargeMeterNode' ) );
 
     var storedEnergyMeterNode = new BarMeterNode(
       model.storedEnergyMeter,
       CLBConstants.STORED_ENERGY_COLOR,
       CLBConstants.STORED_ENERGY_METER_MAX_VALUE,
-      unitsPicoJoulesString,
+      picoJoulesPatternString,
       storedEnergyString,
       tandem.createTandem( 'storedEnergyMeterNode' ) );
 
@@ -95,7 +95,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'capacitanceMeterCheckBox' )
     } );
 
-    var plateChargeTitle = new Text( plateChargeString, fontOptions );
+    var plateChargeTitle = new Text( topPlateChargeString, fontOptions );
     var plateChargeCheckBox = new CheckBox( plateChargeTitle, model.plateChargeMeterVisibleProperty, {
       tandem: tandem.createTandem( 'plateChargeMeterCheckBox' )
     } );

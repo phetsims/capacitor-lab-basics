@@ -14,22 +14,19 @@
   "capacitor-lab-basics.title": {
     "value": "Capacitor Lab: Basics"
   },
-  "capacitance.title": {
+  "screen.capacitance": {
     "value": "Capacitance"
   },
-  "lightBulb.title": {
+  "screen.lightBulb": {
     "value": "Light Bulb"
   },
-  "eField": {
+  "electricField": {
     "value": "Electric Field"
-  },
-  "units.millimeters": {
-    "value": " mm"
   },
   "plateArea": {
     "value": "Plate Area"
   },
-  "plateCharge": {
+  "topPlateCharge": {
     "value": "Top Plate Charge"
   },
   "plateCharges": {
@@ -44,22 +41,25 @@
   "voltage": {
     "value": "Voltage"
   },
-  "units.volts": {
-    "value": "V"
+  "voltsPattern": {
+    "value": "{{value}} V"
   },
-  "units.picoJoules": {
-    "value": "pJ"
+  "millimetersPattern": {
+    "value": "{{value}} mm"
   },
-  "units.picoFarads": {
-    "value": "pF"
+  "millimetersSquaredPattern": {
+    "value": "{{value}} mm<sup>2</sup>"
   },
-  "units.picoCoulombs": {
-    "value": "pC"
+  "picoJoulesPattern": {
+    "value": "{{value}} pJ"
+  },
+  "picoFaradsPattern": {
+    "value": "{{value}} pF"
+  },
+  "picoCoulombsPattern": {
+    "value": "{{value}} pC"
   },
   "volts.unknown": {
     "value": "?"
-  },
-  "pattern.0value.1units": {
-    "value": "{0} {1}"
   }
 }

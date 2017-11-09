@@ -21,7 +21,7 @@ define( function( require ) {
   var ScreenIcon = require( 'JOIST/ScreenIcon' );
 
   // strings
-  var lightBulbTitleString = require( 'string!CAPACITOR_LAB_BASICS/lightBulb.title' );
+  var screenLightBulbString = require( 'string!CAPACITOR_LAB_BASICS/screen.lightBulb' );
 
   /**
    * @constructor
@@ -38,7 +38,7 @@ define( function( require ) {
     } );
 
     var options = {
-      name: lightBulbTitleString,
+      name: screenLightBulbString,
       backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
       homeScreenIcon: icon,
       tandem: tandem

@@ -27,7 +27,7 @@ define( function( require ) {
   var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
   var barGraphString = require( 'string!CAPACITOR_LAB_BASICS/barGraph' );
   var currentDirectionString = require( 'string!CAPACITOR_LAB_BASICS/currentDirection' );
-  var eFieldString = require( 'string!CAPACITOR_LAB_BASICS/eField' );
+  var electricFieldString = require( 'string!CAPACITOR_LAB_BASICS/electricField' );
   var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
 
   /**
@@ -53,7 +53,7 @@ define( function( require ) {
       property: model.barGraphsVisibleProperty,
       tandemName: 'barGraphsCheckBox'
     }, {
-      string: eFieldString,
+      string: electricFieldString,
       property: model.eFieldVisibleProperty,
       tandemName: 'eFieldCheckBox'
     }, {

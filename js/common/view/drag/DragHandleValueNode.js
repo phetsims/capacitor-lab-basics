@@ -29,22 +29,19 @@ define( function( require ) {
   var LABEL_MAX_WIDTH = 100;
   var VALUE_MAX_WIDTH = 80;
 
-  // strings
-  var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
-
   /**
    * @constructor
    *
    * @param {string} label
    * @param {number} value
-   * @param {string} units
+   * @param {string} unitsPattern
    */
-  function DragHandleValueNode( label, value, units ) {
+  function DragHandleValueNode( label, value, unitsPattern ) {
 
     Node.call( this );
 
     // @private {string}
-    this.units = units;
+    this.unitsPattern = unitsPattern;
 
     var labelNode = new Text( label, { font: LABEL_FONT, maxWidth: LABEL_MAX_WIDTH } );
     this.addChild( labelNode );
@@ -73,7 +70,9 @@ define( function( require ) {
      */
     setValue: function( value, decimalPlaces ) {
       var formattedValue = Util.toFixed( value, decimalPlaces /* one decimal place */ );
-      this.valueNode.setText( StringUtils.format( pattern0Value1UnitsString, formattedValue, this.units ) );
+      this.valueNode.setText( StringUtils.fillIn( this.unitsPattern, {
+        value: formattedValue
+      } ) );
     }
 
   } );

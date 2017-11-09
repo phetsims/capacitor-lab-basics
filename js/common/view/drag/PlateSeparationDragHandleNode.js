@@ -34,7 +34,7 @@ define( function( require ) {
 
   // strings
   var separationString = require( 'string!CAPACITOR_LAB_BASICS/separation' );
-  var unitsMillimetersString = require( 'string!CAPACITOR_LAB_BASICS/units.millimeters' );
+  var millimetersPatternString = require( 'string!CAPACITOR_LAB_BASICS/millimetersPattern' );
 
   /**
    * @constructor
@@ -68,7 +68,7 @@ define( function( require ) {
 
     // value
     var millimeters = UnitsUtils.metersToMillimeters( capacitor.plateSeparationProperty.value );
-    this.valueNode = new DragHandleValueNode( separationString, millimeters, unitsMillimetersString );
+    this.valueNode = new DragHandleValueNode( separationString, millimeters, millimetersPatternString );
 
     // Make text part of the draggable area
     this.valueNode.mouseArea = this.valueNode.bounds.dilated( 0 );

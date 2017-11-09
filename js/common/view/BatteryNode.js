@@ -28,8 +28,7 @@ define( function( require ) {
   var LABEL_FONT = new PhetFont( 12 );
 
   // strings
-  var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
-  var unitsVoltsString = require( 'string!CAPACITOR_LAB_BASICS/units.volts' );
+  var voltsPatternString = require( 'string!CAPACITOR_LAB_BASICS/voltsPattern' );
 
   /**
    * @constructor
@@ -72,7 +71,7 @@ define( function( require ) {
 
     // function to create the tick mark labels using a string pattern.
     var createTickLabels = function( value, textFill, tandem ) {
-      var labelText = new Text( StringUtils.format( pattern0Value1UnitsString, value, unitsVoltsString ), {
+      var labelText = new Text( StringUtils.fillIn( voltsPatternString, { value: value } ), {
         font: LABEL_FONT,
         fill: textFill,
         cursor: 'arrow',

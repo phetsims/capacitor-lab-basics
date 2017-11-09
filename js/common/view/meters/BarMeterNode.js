@@ -37,20 +37,17 @@ define( function( require ) {
   var VALUE_FONT = new PhetFont( 16 );
   var VALUE_COLOR = 'black';
 
-  // strings
-  var pattern0Value1UnitsString = require( 'string!CAPACITOR_LAB_BASICS/pattern.0value.1units' );
-
   /**
    * @constructor
    *
    * @param {BarMeter} meter
    * @param {string} barColor - fill color of the BarMeter
    * @param {number} maxValue - model value at which the bar has max length
-   * @param {string} unitsString - string representing units
+   * @param {string} unitsPattern - string representing units
    * @param {string} titleString - title string for the bar graph
    * @param {Tandem} tandem
    */
-  function BarMeterNode( meter, barColor, maxValue, unitsString, titleString, tandem ) {
+  function BarMeterNode( meter, barColor, maxValue, unitsPattern, titleString, tandem ) {
 
     var self = this;
 
@@ -61,7 +58,7 @@ define( function( require ) {
     this.meter = meter;
 
     // @private {string}
-    this.unitsString = unitsString;
+    this.unitsPattern = unitsPattern;
 
     // @public {string}
     this.titleString = titleString;
@@ -150,7 +147,7 @@ define( function( require ) {
 
         // all meters read in pico units, compensate by multiplying by 10^12
         var meterValue = Util.toFixed( Math.pow( 10, 12 ) * value, 2 );
-        var unitsFormatString = StringUtils.format( pattern0Value1UnitsString, meterValue, this.unitsString );
+        var unitsFormatString = StringUtils.fillIn( this.unitsPattern, { value: meterValue } );
         this.valueTextNode.setText( unitsFormatString );
       }
     },
