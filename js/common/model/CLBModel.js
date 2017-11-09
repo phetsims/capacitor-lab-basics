@@ -74,9 +74,6 @@ define( function( require ) {
     // @public {Voltmeter}
     this.voltmeter = new Voltmeter( this.circuit, this.worldBounds, modelViewTransform, this.voltmeterVisibleProperty, tandem.createTandem( 'voltmeter' ) );
 
-    // @protected {Tandem}
-    this.tandem = tandem;
-
     this.circuit.maxPlateCharge = this.getMaxPlateCharge();
     this.circuit.maxEffectiveEField = this.getMaxEffectiveEField();
   }
