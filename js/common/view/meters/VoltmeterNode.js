@@ -127,6 +127,10 @@ define( function( require ) {
       fill: 'white',
       stroke: 'black'
     } );
+    readoutRectangle.addChild( new Text( '?', {
+      font: new PhetFont( { size: 9 } ),
+      center: readoutRectangle.center
+    } ) );
 
     var imageBounds = voltmeterImageNode.bounds;
     var positiveConnectionOffset = new Vector2( 3 * imageBounds.width / 7, imageBounds.maxY * 7 / 8 );

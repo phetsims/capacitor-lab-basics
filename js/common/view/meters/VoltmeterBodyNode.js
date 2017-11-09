@@ -160,7 +160,7 @@ define( function( require ) {
      */
     setValueText: function( valueText, value ) {
       if ( value === null ) {
-        valueText.setText( StringUtils.fillIn( voltsPatternString, { value: voltsUnknownString } ) );
+        valueText.setText( voltsUnknownString );
       }
       else {
         var fixedValue = Util.toFixed( value, 3 );
