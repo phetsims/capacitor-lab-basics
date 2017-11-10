@@ -1,4 +1,4 @@
-// Copyright 2014-2017, University of Colorado Boulder
+// Copyright 2017, University of Colorado Boulder
 
 /**
  * Nodes for displaying a battery (either positive end up or down)
