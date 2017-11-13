@@ -45,7 +45,8 @@ define( function( require ) {
     this.currentAmplitudeProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
       units: 'amperes',
-      phetioInstanceDocumentation: 'currentAmplitudeProperty is updated by the model and should not be set by users. Beware that the current is calculated in the model time step, so if dQ is zero for a step the current could transiently appear as zero.'
+      phetioInstanceDocumentation: 'Beware that the current is calculated in the model time step, so if dQ is zero for a step the current could transiently appear as zero.',
+      phetioReadOnly: true
     } );
 
     // @public {Property.<CircuitState>} - Property tracking the state of the switch
