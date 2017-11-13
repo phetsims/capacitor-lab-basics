@@ -1,71 +1,71 @@
 {
-  "comment": "# capacitor-lab-basics 1.5.0-rc.1 Tue Nov 07 2017 17:07:25 GMT-0700 (Mountain Standard Time)",
+  "comment": "# capacitor-lab-basics 1.5.0-rc.1 Mon Nov 13 2017 10:48:17 GMT-0700 (MST)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "axon": {
     "sha": "63a66772f915d3529978695fdf3890fe0bfafe5e",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "brand": {
     "sha": "53cf227b60ee16af67b771f9f76ca8c896bda99b",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "fc8bbb1817b391df41cd4ccce6d763862175a851",
+    "sha": "c02a4059caa6cc1f19f8c937dbccade97bb36234",
     "branch": "1.5"
   },
   "chipper": {
     "sha": "05dcc77d6432b1995c4574b34c2cccadaa2949fc",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "4a1ddd12ee5254fd54530fbc1f1be9fbb7672558",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "joist": {
     "sha": "58528a770dc355c41f73ed8c6800a61ee324eaae",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "e4c0b7731e725dcc654c431b09e1fe543b0dea58",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "phet-core": {
     "sha": "ad21faf36ecd4356246171192264df8899bfb4f7",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "phetcommon": {
     "sha": "d957aefc0a5e4b905677a7e4501c7e3d40d77481",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "query-string-machine": {
     "sha": "c74e454ec68033a9546b8181d4d962eb8ceef81f",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "scenery": {
-    "sha": "e4328b73b7af6e8cfca78ec2532875726ef273a0",
-    "branch": "master"
+    "sha": "ca0b29311a70af795a45d1c4c4f257540883f46d",
+    "branch": "capacitor-lab-basics-1.5"
   },
   "scenery-phet": {
     "sha": "70e077d6791722048785fb95f0dd137e4d2c6c5b",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "sherpa": {
     "sha": "5079b2657df9853aa6262b24d549ec874f4a5dd6",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "sun": {
     "sha": "432da6da015483cec7a0e6244951ab5c093926e0",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "tandem": {
     "sha": "e53e93b6abd1b93497a1aa2d54f5cf8cd8902c2f",
-    "branch": "master"
+    "branch": "HEAD"
   },
   "twixt": {
     "sha": "1390557778f63fde0ca8a59948339730d01b9e6d",
-    "branch": "master"
+    "branch": "HEAD"
   }
 }
