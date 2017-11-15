@@ -26,7 +26,7 @@ define( function( require ) {
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
   // phet-io modules
-  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
+  var NumberIO = require( 'ifphetio!PHET_IO/types/NumberIO' );
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
@@ -94,7 +94,7 @@ define( function( require ) {
     this.measuredVoltageProperty = new Property( null, {
       tandem: tandem.createTandem( 'measuredVoltageProperty' ),
       units: 'volts',
-      phetioType: PropertyIO( TNumber )
+      phetioType: PropertyIO( NumberIO )
     } );
 
     var self = this;

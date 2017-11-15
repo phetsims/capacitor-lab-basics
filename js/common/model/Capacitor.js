@@ -39,7 +39,7 @@ define( function( require ) {
   var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
-  var TNumber = require( 'ifphetio!PHET_IO/types/TNumber' );
+  var NumberIO = require( 'ifphetio!PHET_IO/types/NumberIO' );
 
   /**
    * @constructor
@@ -103,7 +103,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'capacitanceProperty' ),
         units: 'farads',
-        phetioType: DerivedPropertyIO( TNumber )
+        phetioType: DerivedPropertyIO( NumberIO )
       } );
 
     // @public {Property.<number} Charge on top plate of capacitor
@@ -119,7 +119,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'plateChargeProperty' ),
         units: 'coulombs',
-        phetioType: DerivedPropertyIO( TNumber )
+        phetioType: DerivedPropertyIO( NumberIO )
       } );
 
     // @public {Property.<number>}
@@ -129,7 +129,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'storedEnergyProperty' ),
         units: 'joules',
-        phetioType: DerivedPropertyIO( TNumber )
+        phetioType: DerivedPropertyIO( NumberIO )
       } );
 
     // Track the previous capacitance to adjust the inital voltage when discharging, see
