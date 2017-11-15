@@ -34,7 +34,7 @@ define( function( require ) {
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var TBounds3 = require( 'DOT/TBounds3' );
-  var TDerivedProperty = require( 'AXON/TDerivedProperty' );
+  var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
   var PropertyIO = require( 'AXON/PropertyIO' );
   var Vector3 = require( 'DOT/Vector3' );
 
@@ -103,7 +103,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'capacitanceProperty' ),
         units: 'farads',
-        phetioType: TDerivedProperty( TNumber )
+        phetioType: DerivedPropertyIO( TNumber )
       } );
 
     // @public {Property.<number} Charge on top plate of capacitor
@@ -119,7 +119,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'plateChargeProperty' ),
         units: 'coulombs',
-        phetioType: TDerivedProperty( TNumber )
+        phetioType: DerivedPropertyIO( TNumber )
       } );
 
     // @public {Property.<number>}
@@ -129,7 +129,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'storedEnergyProperty' ),
         units: 'joules',
-        phetioType: TDerivedProperty( TNumber )
+        phetioType: DerivedPropertyIO( TNumber )
       } );
 
     // Track the previous capacitance to adjust the inital voltage when discharging, see
