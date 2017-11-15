@@ -21,7 +21,7 @@ define( function( require ) {
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
-  var TVector3 = require( 'DOT/TVector3' );
+  var Vector3IO = require( 'DOT/Vector3IO' );
   var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
@@ -73,19 +73,19 @@ define( function( require ) {
     // @public {Property.<Vector3>}
     this.bodyLocationProperty = new Property( new Vector3(), {
       tandem: tandem.createTandem( 'bodyLocationProperty' ),
-      phetioType: PropertyIO( TVector3 )
+      phetioType: PropertyIO( Vector3IO )
     } );
 
     // @public {Property.<Vector3>}
     this.positiveProbeLocationProperty = new Property( POSITIVE_PROBE_LOCATION, {
       tandem: tandem.createTandem( 'positiveProbeLocationProperty' ),
-      phetioType: PropertyIO( TVector3 )
+      phetioType: PropertyIO( Vector3IO )
     } );
 
     // @public {Property.<Vector3>}
     this.negativeProbeLocationProperty = new Property( NEGATIVE_PROBE_LOCATION, {
       tandem: tandem.createTandem( 'negativeProbeLocationProperty' ),
-      phetioType: PropertyIO( TVector3 )
+      phetioType: PropertyIO( Vector3IO )
     } );
 
     // By design, the voltmeter reads "?" for disconnected contacts, which is represented internally by a null

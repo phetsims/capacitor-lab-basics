@@ -17,7 +17,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
-  var TVector3 = require( 'DOT/TVector3' );
+  var Vector3IO = require( 'DOT/Vector3IO' );
   var Vector3 = require( 'DOT/Vector3' );
 
   /**
@@ -35,13 +35,13 @@ define( function( require ) {
     // @public {Property.<Vector3>}
     this.startPointProperty = new Property( startPoint, {
       tandem: tandem.createTandem( 'startPointProperty' ),
-      phetioType: PropertyIO( TVector3 )
+      phetioType: PropertyIO( Vector3IO )
     } );
 
     // @public {Property.<Vector3>}
     this.endPointProperty = new Property( endPoint, {
       tandem: tandem.createTandem( 'endPointProperty' ),
-      phetioType: PropertyIO( TVector3 )
+      phetioType: PropertyIO( Vector3IO )
     } );
   }
 
