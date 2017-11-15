@@ -24,8 +24,8 @@ define( function( require ) {
 
   // modules
   var Bounds3 = require( 'DOT/Bounds3' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var BoxShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BoxShapeCreator' );
+  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
@@ -34,6 +34,8 @@ define( function( require ) {
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var TBounds3 = require( 'DOT/TBounds3' );
+  var TDerivedProperty = require( 'AXON/TDerivedProperty' );
+  var TProperty = require( 'AXON/TProperty' );
   var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
@@ -52,7 +54,7 @@ define( function( require ) {
     // options that populate the capacitor with various geometric properties
     options = _.extend( {
       plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
-      plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.max,
+      plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.max
     }, options );
 
     // @public {number}
@@ -77,7 +79,7 @@ define( function( require ) {
     // @public {Property.<Bounds3>}
     this.plateSizeProperty = new Property( plateBounds, {
       tandem: tandem.createTandem( 'plateSizeProperty' ),
-      phetioValueType: TBounds3
+      phetioType: TProperty( TBounds3 )
     } );
 
     // @public {Property.<number>}
@@ -101,7 +103,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'capacitanceProperty' ),
         units: 'farads',
-        phetioValueType: TNumber
+        phetioType: TDerivedProperty( TNumber )
       } );
 
     // @public {Property.<number} Charge on top plate of capacitor
@@ -117,7 +119,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'plateChargeProperty' ),
         units: 'coulombs',
-        phetioValueType: TNumber
+        phetioType: TDerivedProperty( TNumber )
       } );
 
     // @public {Property.<number>}
@@ -127,7 +129,7 @@ define( function( require ) {
       }, {
         tandem: tandem.createTandem( 'storedEnergyProperty' ),
         units: 'joules',
-        phetioValueType: TNumber
+        phetioType: TDerivedProperty( TNumber )
       } );
 
     // Track the previous capacitance to adjust the inital voltage when discharging, see

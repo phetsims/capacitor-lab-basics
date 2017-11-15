@@ -19,6 +19,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
+  var TProperty = require( 'AXON/TProperty' );
   var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
@@ -66,7 +67,7 @@ define( function( require ) {
     // @public {Property.<string>} - 'POSITIVE' or 'NEGATIVE'
     this.polarityProperty = new Property( CLBConstants.POLARITY.POSITIVE, {
       tandem: tandem.createTandem( 'polarityProperty' ),
-      phetioValueType: TString
+      phetioType: TProperty( TString )
     } );
 
     var self = this;
