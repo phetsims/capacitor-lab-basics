@@ -23,7 +23,7 @@ define( function( require ) {
   var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
-  var TString = require( 'ifphetio!PHET_IO/types/TString' );
+  var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
 
   // constants
   // size of the associated image file, determined by visual inspection
@@ -67,7 +67,7 @@ define( function( require ) {
     // @public {Property.<string>} - 'POSITIVE' or 'NEGATIVE'
     this.polarityProperty = new Property( CLBConstants.POLARITY.POSITIVE, {
       tandem: tandem.createTandem( 'polarityProperty' ),
-      phetioType: PropertyIO( TString )
+      phetioType: PropertyIO( StringIO )
     } );
 
     var self = this;

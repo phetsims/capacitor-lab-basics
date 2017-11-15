@@ -30,7 +30,7 @@ define( function( require ) {
   var PropertyIO = require( 'AXON/PropertyIO' );
 
   // phet-io modules
-  var TString = require( 'ifphetio!PHET_IO/types/TString' );
+  var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
 
   /**
    * @constructor
@@ -53,7 +53,7 @@ define( function( require ) {
     // @public {Property.<CircuitState>} - Property tracking the state of the switch
     this.circuitConnectionProperty = new Property( CircuitState.BATTERY_CONNECTED, {
       tandem: tandem.createTandem( 'circuitConnectionProperty' ),
-      phetioType: PropertyIO( TString )
+      phetioType: PropertyIO( StringIO )
     } );
 
     // @public {NumberProperty} - Property tracking the signed charge value on the upper plate
