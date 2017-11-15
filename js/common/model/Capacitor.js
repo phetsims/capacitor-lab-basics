@@ -35,7 +35,7 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var TBounds3 = require( 'DOT/TBounds3' );
   var TDerivedProperty = require( 'AXON/TDerivedProperty' );
-  var TProperty = require( 'AXON/TProperty' );
+  var PropertyIO = require( 'AXON/PropertyIO' );
   var Vector3 = require( 'DOT/Vector3' );
 
   // phet-io modules
@@ -79,7 +79,7 @@ define( function( require ) {
     // @public {Property.<Bounds3>}
     this.plateSizeProperty = new Property( plateBounds, {
       tandem: tandem.createTandem( 'plateSizeProperty' ),
-      phetioType: TProperty( TBounds3 )
+      phetioType: PropertyIO( TBounds3 )
     } );
 
     // @public {Property.<number>}

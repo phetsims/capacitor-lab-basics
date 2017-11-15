@@ -16,7 +16,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
-  var TProperty = require( 'AXON/TProperty' );
+  var PropertyIO = require( 'AXON/PropertyIO' );
   var TVector3 = require( 'DOT/TVector3' );
   var Vector3 = require( 'DOT/Vector3' );
 
@@ -35,13 +35,13 @@ define( function( require ) {
     // @public {Property.<Vector3>}
     this.startPointProperty = new Property( startPoint, {
       tandem: tandem.createTandem( 'startPointProperty' ),
-      phetioType: TProperty( TVector3 )
+      phetioType: PropertyIO( TVector3 )
     } );
 
     // @public {Property.<Vector3>}
     this.endPointProperty = new Property( endPoint, {
       tandem: tandem.createTandem( 'endPointProperty' ),
-      phetioType: TProperty( TVector3 )
+      phetioType: PropertyIO( TVector3 )
     } );
   }
 
