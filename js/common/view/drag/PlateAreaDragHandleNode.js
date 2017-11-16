@@ -30,8 +30,8 @@ define( function( require ) {
   var ARROW_TAIL_LOCATION = new Vector2( 0, CLBConstants.DRAG_HANDLE_ARROW_LENGTH );
 
   // strings
-  var plateAreaString = require( 'string!CAPACITOR_LAB_BASICS/plateArea' );
   var millimetersSquaredPatternString = require( 'string!CAPACITOR_LAB_BASICS/millimetersSquaredPattern' );
+  var plateAreaString = require( 'string!CAPACITOR_LAB_BASICS/plateArea' );
 
   // endpoints for a vertical line, this will be rotated to point along the plate's pseudo-3D diagonal
   var LINE_LENGTH = 22;

@@ -33,8 +33,8 @@ define( function( require ) {
   var LINE_END_LOCATION = new Vector2( 0, -LINE_LENGTH );
 
   // strings
-  var separationString = require( 'string!CAPACITOR_LAB_BASICS/separation' );
   var millimetersPatternString = require( 'string!CAPACITOR_LAB_BASICS/millimetersPattern' );
+  var separationString = require( 'string!CAPACITOR_LAB_BASICS/separation' );
 
   /**
    * @constructor

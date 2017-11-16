@@ -21,8 +21,8 @@ define( function( require ) {
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
-  var Vector3IO = require( 'DOT/Vector3IO' );
   var Vector3 = require( 'DOT/Vector3' );
+  var Vector3IO = require( 'DOT/Vector3IO' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
   // phet-io modules

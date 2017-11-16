@@ -17,8 +17,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
-  var Vector3IO = require( 'DOT/Vector3IO' );
   var Vector3 = require( 'DOT/Vector3' );
+  var Vector3IO = require( 'DOT/Vector3IO' );
 
   /**
    * @constructor

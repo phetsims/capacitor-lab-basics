@@ -32,11 +32,11 @@ define( function( require ) {
 
   // strings
   var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
-  var topPlateChargeString = require( 'string!CAPACITOR_LAB_BASICS/topPlateCharge' );
-  var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
   var picoCoulombsPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoCoulombsPattern' );
   var picoFaradsPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoFaradsPattern' );
   var picoJoulesPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoJoulesPattern' );
+  var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
+  var topPlateChargeString = require( 'string!CAPACITOR_LAB_BASICS/topPlateCharge' );
 
   /**
    * @constructor

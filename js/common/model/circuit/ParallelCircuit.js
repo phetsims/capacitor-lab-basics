@@ -26,8 +26,8 @@ define( function( require ) {
   var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
-  var Shape = require( 'KITE/Shape' );
   var PropertyIO = require( 'AXON/PropertyIO' );
+  var Shape = require( 'KITE/Shape' );
 
   // phet-io modules
   var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );

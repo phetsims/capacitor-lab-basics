@@ -32,8 +32,8 @@ define( function( require ) {
   } );
 
   // strings
-  var voltsPatternString = require( 'string!CAPACITOR_LAB_BASICS/voltsPattern' );
   var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
+  var voltsPatternString = require( 'string!CAPACITOR_LAB_BASICS/voltsPattern' );
   var voltsUnknownString = require( 'string!CAPACITOR_LAB_BASICS/volts.unknown' );
 
   // images
