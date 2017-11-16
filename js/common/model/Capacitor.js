@@ -33,7 +33,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
-  var TBounds3 = require( 'DOT/TBounds3' );
+  var Bounds3IO = require( 'DOT/Bounds3IO' );
   var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
   var PropertyIO = require( 'AXON/PropertyIO' );
   var Vector3 = require( 'DOT/Vector3' );
@@ -79,7 +79,7 @@ define( function( require ) {
     // @public {Property.<Bounds3>}
     this.plateSizeProperty = new Property( plateBounds, {
       tandem: tandem.createTandem( 'plateSizeProperty' ),
-      phetioType: PropertyIO( TBounds3 )
+      phetioType: PropertyIO( Bounds3IO )
     } );
 
     // @public {Property.<number>}
