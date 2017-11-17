@@ -18,6 +18,7 @@ define( function( require ) {
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var NullableIO = require( 'ifphetio!PHET_IO/types/NullableIO' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
@@ -94,7 +95,7 @@ define( function( require ) {
     this.measuredVoltageProperty = new Property( null, {
       tandem: tandem.createTandem( 'measuredVoltageProperty' ),
       units: 'volts',
-      phetioType: PropertyIO( NumberIO )
+      phetioType: PropertyIO( NullableIO( NumberIO ) )
     } );
 
     var self = this;
