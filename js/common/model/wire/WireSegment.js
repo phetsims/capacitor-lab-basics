@@ -18,7 +18,7 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
   var Vector3 = require( 'DOT/Vector3' );
-  var Vector3IO = require( 'DOT/Vector3IO' );
+  var CLBVector3IO = require( 'CAPACITOR_LAB_BASICS/common/model/CLBVector3IO' );
 
   /**
    * @constructor
@@ -35,13 +35,13 @@ define( function( require ) {
     // @public {Property.<Vector3>}
     this.startPointProperty = new Property( startPoint, {
       tandem: tandem.createTandem( 'startPointProperty' ),
-      phetioType: PropertyIO( Vector3IO )
+      phetioType: PropertyIO( CLBVector3IO )
     } );
 
     // @public {Property.<Vector3>}
     this.endPointProperty = new Property( endPoint, {
       tandem: tandem.createTandem( 'endPointProperty' ),
-      phetioType: PropertyIO( Vector3IO )
+      phetioType: PropertyIO( CLBVector3IO )
     } );
   }
 
@@ -53,7 +53,7 @@ define( function( require ) {
      * No-op function to provide a uniform interface for all descendants
      * @public
      */
-    update: function() {},
+    update: function() {}
 
   }, {
 
