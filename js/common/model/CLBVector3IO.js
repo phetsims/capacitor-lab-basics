@@ -48,6 +48,8 @@ define( function( require ) {
      * @returns {Object}
      */
     toStateObject: function( vector3 ) {
+
+      // The difference between this file and Vector3IO is that there is no type check here.
       return { x: vector3.x, y: vector3.y, z: vector3.z };
     }
   } );
