@@ -20,9 +20,8 @@ define( function( require ) {
   var ObjectIO = require( 'ifphetio!PHET_IO/types/ObjectIO' );
 
   /**
-   * Wrapper type for phet/dot's Vector3
-   * @param vector3
-   * @param phetioID
+   * @param {Vector3} vector3
+   * @param {string} phetioID
    * @constructor
    */
   function CLBVector3IO( vector3, phetioID ) {
