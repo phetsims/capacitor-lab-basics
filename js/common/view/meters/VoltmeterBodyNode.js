@@ -12,11 +12,13 @@ define( function( require ) {
   // modules
   var Bounds2 = require( 'DOT/Bounds2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var DynamicProperty = require( 'AXON/DynamicProperty' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var Property = require( 'AXON/Property' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   var Text = require( 'SCENERY/nodes/Text' );
@@ -125,19 +127,18 @@ define( function( require ) {
     var adjustedViewBounds = new Bounds2( 0, 0, voltmeter.dragBounds.maxX - imageNode.width, voltmeter.dragBounds.maxY - imageNode.height );
     var bodyDragBounds = modelViewTransform.viewToModelBounds( adjustedViewBounds );
 
-    this.movableDragHandler = new MovableDragHandler( voltmeter.bodyLocationProperty, {
+    var body2DProperty = new DynamicProperty( new Property( voltmeter.bodyLocationProperty ), {
+      bidirectional: true,
+      useDeepEquality: true,
+      map: function( vector3 ) { return vector3.toVector2(); },
+      inverseMap: function( vector2 ) { return vector2.toVector3(); }
+    } );
+    this.movableDragHandler = new MovableDragHandler( body2DProperty, {
       tandem: tandem.createTandem( 'inputListener' ),
       dragBounds: bodyDragBounds,
-      modelViewTransform: modelViewTransform,
+      modelViewTransform: modelViewTransform.modelToViewTransform2D,
       startDrag: function() {
         inUserControlProperty.set( true );
-      },
-      onDrag: function() {
-        // if the user tried to drag the voltmeter out of bounds, MovableDragHandler converted location
-        // to a Vector2.  In this case, we need to make sure that the location is a vector3.
-        if ( !voltmeter.bodyLocationProperty.value.isVector3 ) {
-          voltmeter.bodyLocationProperty.set( voltmeter.bodyLocationProperty.value.toVector3() );
-        }
       },
       endDrag: function() {
         inUserControlProperty.set( false );

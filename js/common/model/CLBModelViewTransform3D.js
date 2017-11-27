@@ -23,7 +23,7 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Matrix3 = require( 'DOT/Matrix3' );
-  var Transform3 = require( 'DOT/Transform3' );
+  var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
 
@@ -45,8 +45,8 @@ define( function( require ) {
       yaw: CLBConstants.MVT_YAW // rotation about the vertical (y) axis, sign determined using the right-hand rule (radians)
     }, options );
 
-    // @private {Transform3}
-    this.modelToViewTransform2D = new Transform3( Matrix3.scaling( options.scale ) );
+    // @private {ModelViewTransform2}
+    this.modelToViewTransform2D = new ModelViewTransform2( Matrix3.scaling( options.scale ) );
 
     // @private {number}
     this.pitch = options.pitch;

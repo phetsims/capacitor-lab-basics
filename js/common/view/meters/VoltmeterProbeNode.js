@@ -14,10 +14,12 @@ define( function( require ) {
   // modules
   var Bounds2 = require( 'DOT/Bounds2' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var DynamicProperty = require( 'AXON/DynamicProperty' );
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var Property = require( 'AXON/Property' );
   var Vector2 = require( 'DOT/Vector2' );
 
   // images
@@ -67,19 +69,19 @@ define( function( require ) {
     // Don't allow pushing the probes too far to the left, see https://github.com/phetsims/capacitor-lab-basics/issues/202
     var adjustedViewBounds = new Bounds2( 40, 0, dragBounds.maxX - imageNode.width, dragBounds.maxY - 0.4 * imageNode.height );
 
+    var location2DProperty = new DynamicProperty( new Property( locationProperty ), {
+      bidirectional: true,
+      useDeepEquality: true,
+      map: function( vector3 ) { return vector3.toVector2(); },
+      inverseMap: function( vector2 ) { return vector2.toVector3(); }
+    } );
+
     // Drag handler accounting for boundaries
-    this.movableDragHandler = new MovableDragHandler( locationProperty, {
+    this.movableDragHandler = new MovableDragHandler( location2DProperty, {
       tandem: tandem.createTandem( 'inputListener' ),
       dragBounds: modelViewTransform.viewToModelBounds( adjustedViewBounds ),
-      modelViewTransform: modelViewTransform,
-      onDrag: function() {
-        // MovableDragHandler converts location to a Vector2 if node is dragged
-        // out of bounds, so make sure that the location remains a vector3.
-        if ( !self.locationProperty.get().isVector3 ) {
-          self.locationProperty.set( self.locationProperty.get().toVector3() );
-        }
-      }
-
+      modelViewTransform: modelViewTransform.modelToViewTransform2D,
+      useDeepEquality: true
     } );
     this.addInputListener( this.movableDragHandler );
 
