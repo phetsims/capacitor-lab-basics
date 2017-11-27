@@ -69,6 +69,7 @@ define( function( require ) {
     // Don't allow pushing the probes too far to the left, see https://github.com/phetsims/capacitor-lab-basics/issues/202
     var adjustedViewBounds = new Bounds2( 40, 0, dragBounds.maxX - imageNode.width, dragBounds.maxY - 0.4 * imageNode.height );
 
+    // Convert the 3d property to a 2d property for use in the MovableDragHandler
     var location2DProperty = new DynamicProperty( new Property( locationProperty ), {
       bidirectional: true,
       useDeepEquality: true,
