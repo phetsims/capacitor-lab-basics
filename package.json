@@ -16,6 +16,12 @@
     ],
     "phetLibs": [
       "twixt"
-    ]
+    ],
+    "runnable": true,
+    "supportedBrands": [
+      "phet",
+      "phet-io"
+    ],
+    "simulation": true
   }
 }
