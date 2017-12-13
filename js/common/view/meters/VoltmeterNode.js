@@ -50,7 +50,7 @@ define( function( require ) {
    */
   function VoltmeterNode( voltmeter, modelViewTransform, voltmeterVisibleProperty, tandem ) {
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
     var self = this;
 
     // construct all parts of the probe
@@ -76,11 +76,6 @@ define( function( require ) {
 
     voltmeterVisibleProperty.link( function( voltmeterVisible ) {
       self.visible = voltmeterVisible;
-    } );
-
-    // tandem support
-    this.mutate( {
-      tandem: tandem
     } );
   }
 

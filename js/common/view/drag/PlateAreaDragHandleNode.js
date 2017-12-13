@@ -48,7 +48,7 @@ define( function( require ) {
    */
   function PlateAreaDragHandleNode( capacitor, modelViewTransform, valueRange, tandem ) {
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
     var self = this;
 
     // @private {Capacitor}
@@ -111,11 +111,7 @@ define( function( require ) {
     capacitor.plateSeparationProperty.link( function() {
       self.updateOffset();
     } );
-
-    // tandem support
-    this.mutate( {
-      tandem: tandem
-    } );  }
+  }
 
   capacitorLabBasics.register( 'PlateAreaDragHandleNode', PlateAreaDragHandleNode );
 

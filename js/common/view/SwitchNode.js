@@ -47,7 +47,7 @@ define( function( require ) {
     assert && assert( circuitSwitch.connections.length === 2 || circuitSwitch.connections.length === 3,
       'circuitSwitch should have 2 or three connections only' );
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
     var self = this;
 
     // @public {CircuitSwitch}
@@ -166,11 +166,6 @@ define( function( require ) {
     this.addChild( hingeNode );
     _.each( this.connectionAreaNodes, function( connectionAreaNode ) {
       self.addChild( connectionAreaNode.highlightNode );
-    } );
-
-    // tandem support
-    this.mutate( {
-      tandem: tandem
     } );
   }
 

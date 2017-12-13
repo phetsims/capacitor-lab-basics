@@ -30,7 +30,7 @@ define( function( require ) {
    */
   function CapacitorNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, tandem ) {
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
     var self = this; // extend scope for nested callbacks
 
     // @private
@@ -62,11 +62,6 @@ define( function( require ) {
 
     eFieldVisibleProperty.link( function( visible ) {
       eFieldNode.setVisible( visible );
-    } );
-
-    // tandem support
-    this.mutate( {
-      tandem: tandem
     } );
   }
 

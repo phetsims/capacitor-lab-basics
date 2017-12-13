@@ -89,7 +89,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'arrowNode' )
     } );
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
     this.axisLine.children = [ this.valueTextNode, this.barNode, this.arrowNode ];
     this.addChild( this.axisLine );
 
@@ -105,11 +105,6 @@ define( function( require ) {
     } );
 
     this.updateLayout();
-
-    // tandem support
-    this.mutate( {
-      tandem: tandem
-    } );
   }
 
   capacitorLabBasics.register( 'BarMeterNode', BarMeterNode );

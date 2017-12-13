@@ -39,7 +39,7 @@ define( function( require ) {
    */
   function BatteryNode( battery, voltageRange, tandem ) {
 
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
 
     // battery image, scaled to match model dimensions
     var graphicNode = new Node( {
@@ -101,16 +101,12 @@ define( function( require ) {
         graphicNode.children = [ BatteryGraphicNode.POSITIVE_UP ];
         minTick.fill = 'white';
         maxTick.fill = 'black';
-      } else {
+      }
+      else {
         graphicNode.children = [ BatteryGraphicNode.POSITIVE_DOWN ];
         minTick.fill = 'black';
         maxTick.fill = 'white';
       }
-    } );
-
-    // tandem support
-    this.mutate( {
-      tandem: tandem
     } );
   }
 

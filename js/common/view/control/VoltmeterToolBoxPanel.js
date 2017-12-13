@@ -57,7 +57,7 @@ define( function( require ) {
     } ) );
 
     // wrap all off this content inside of a node that will hold the input element and its descriptions
-    Node.call( this );
+    Node.call( this, { tandem: tandem } );
 
     this.addChild( new Panel( voltmeterIconNode, {
       xMargin: 15,
@@ -76,11 +76,6 @@ define( function( require ) {
       if ( !inUserControl && self.bounds.intersectsBounds( voltmeterNode.bodyNode.bounds.eroded( 40 ) ) ) {
         voltmeterVisibleProperty.set( false );
       }
-    } );
-
-    // tandem support
-    this.mutate( {
-      tandem: tandem
     } );
   }
 
