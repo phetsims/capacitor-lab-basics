@@ -16,6 +16,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
+  var CLBVector3IO = require( 'CAPACITOR_LAB_BASICS/common/model/CLBVector3IO' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var NullableIO = require( 'ifphetio!PHET_IO/types/NullableIO' );
@@ -23,7 +24,6 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
   var Vector3 = require( 'DOT/Vector3' );
-  var CLBVector3IO = require( 'CAPACITOR_LAB_BASICS/common/model/CLBVector3IO' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
   // phet-io modules
