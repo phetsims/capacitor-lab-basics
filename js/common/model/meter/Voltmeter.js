@@ -73,18 +73,21 @@ define( function( require ) {
 
     // @public {Property.<Vector3>}
     this.bodyLocationProperty = new Property( new Vector3(), {
+      useDeepEquality: true,
       tandem: tandem.createTandem( 'bodyLocationProperty' ),
       phetioType: PropertyIO( CLBVector3IO )
     } );
 
     // @public {Property.<Vector3>}
     this.positiveProbeLocationProperty = new Property( POSITIVE_PROBE_LOCATION, {
+      useDeepEquality: true,
       tandem: tandem.createTandem( 'positiveProbeLocationProperty' ),
       phetioType: PropertyIO( CLBVector3IO )
     } );
 
     // @public {Property.<Vector3>}
     this.negativeProbeLocationProperty = new Property( NEGATIVE_PROBE_LOCATION, {
+      useDeepEquality: true,
       tandem: tandem.createTandem( 'negativeProbeLocationProperty' ),
       phetioType: PropertyIO( CLBVector3IO )
     } );
