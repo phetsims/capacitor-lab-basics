@@ -3,7 +3,7 @@
 /**
  * Capacitor Lab Basics uses Vector3 for the model, but MovableDragHandler only supports Vector2 and PhET-iO
  * types Vector2IO and CLBVector3IO cannot be mixed.  This file is a workaround for https://github.com/phetsims/capacitor-lab-basics/issues/215
- * and supports Vector2 and Vector3
+ * and supports Vector2 and Vector3. Can this file be deleted?  Let's investigate in https://github.com/phetsims/capacitor-lab-basics/issues/217
  *
  * @author Sam Reid (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
