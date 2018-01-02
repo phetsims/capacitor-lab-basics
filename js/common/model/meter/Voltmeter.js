@@ -16,7 +16,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
-  var CLBVector3IO = require( 'CAPACITOR_LAB_BASICS/common/model/CLBVector3IO' );
+  var Vector3IO = require( 'DOT/Vector3IO' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var NullableIO = require( 'ifphetio!PHET_IO/types/NullableIO' );
@@ -75,21 +75,21 @@ define( function( require ) {
     this.bodyLocationProperty = new Property( new Vector3(), {
       useDeepEquality: true,
       tandem: tandem.createTandem( 'bodyLocationProperty' ),
-      phetioType: PropertyIO( CLBVector3IO )
+      phetioType: PropertyIO( Vector3IO )
     } );
 
     // @public {Property.<Vector3>}
     this.positiveProbeLocationProperty = new Property( POSITIVE_PROBE_LOCATION, {
       useDeepEquality: true,
       tandem: tandem.createTandem( 'positiveProbeLocationProperty' ),
-      phetioType: PropertyIO( CLBVector3IO )
+      phetioType: PropertyIO( Vector3IO )
     } );
 
     // @public {Property.<Vector3>}
     this.negativeProbeLocationProperty = new Property( NEGATIVE_PROBE_LOCATION, {
       useDeepEquality: true,
       tandem: tandem.createTandem( 'negativeProbeLocationProperty' ),
-      phetioType: PropertyIO( CLBVector3IO )
+      phetioType: PropertyIO( Vector3IO )
     } );
 
     // By design, the voltmeter reads "?" for disconnected contacts, which is represented internally by a null

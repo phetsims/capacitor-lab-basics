@@ -14,11 +14,11 @@ define( function( require ) {
 
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBVector3IO = require( 'CAPACITOR_LAB_BASICS/common/model/CLBVector3IO' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
   var Vector3 = require( 'DOT/Vector3' );
+  var Vector3IO = require( 'DOT/Vector3IO' );
 
   /**
    * @constructor
@@ -35,13 +35,13 @@ define( function( require ) {
     // @public {Property.<Vector3>}
     this.startPointProperty = new Property( startPoint, {
       tandem: tandem.createTandem( 'startPointProperty' ),
-      phetioType: PropertyIO( CLBVector3IO )
+      phetioType: PropertyIO( Vector3IO )
     } );
 
     // @public {Property.<Vector3>}
     this.endPointProperty = new Property( endPoint, {
       tandem: tandem.createTandem( 'endPointProperty' ),
-      phetioType: PropertyIO( CLBVector3IO )
+      phetioType: PropertyIO( Vector3IO )
     } );
   }
 
