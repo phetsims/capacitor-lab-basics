@@ -8,8 +8,8 @@
  * are often adjusted to accommodate the creation of wire shapes that look convincing in the view.
  *
  * @author Chris Malley (PixelZoom, Inc.)
- * @author Jesse Greenberg
- * @author Andrew Adare
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

@@ -3,9 +3,9 @@
 /**
  * Main entry point for the sim.
  *
- * @author Emily Randall
- * @author Jesse Greenberg
- * @author Andrew Adare
+ * @author Emily Randall (PhET Interactive Simulations)
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

@@ -5,7 +5,6 @@
  *
  * @author Jonathan Olson <jonathan.olson@colorado.edu>
  */
-
 define( function( require ) {
   'use strict';
 

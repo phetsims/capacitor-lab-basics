@@ -5,8 +5,8 @@
  * indicators, electric field and values.  This set of controls is used in both the 'light-bulb' and 'capacitance'
  * screens.
  *
- * @author Jesse Greenberg
- * @author Andrew Adare
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

@@ -3,9 +3,8 @@
 /**
  * Creates a wire that connects a light bulb to a circuit switch.
  *
- * @author Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-
 define( function( require ) {
   'use strict';
 

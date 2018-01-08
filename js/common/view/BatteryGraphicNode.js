@@ -3,7 +3,7 @@
 /**
  * Nodes for displaying a battery (either positive end up or down)
  *
- * @author Jonathan Olson <jonathan.olson@colorado.edu>
+ * @author Jonathan Olson (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

@@ -3,8 +3,8 @@
 /**
  * Creates a wire that connects a capacitor to a circuit switch.
  *
- * @author  Jesse Greenberg
- * @author Andrew Adare
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

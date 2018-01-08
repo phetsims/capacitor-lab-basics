@@ -4,9 +4,9 @@
  * Base model for Capacitor Lab: Basics.  This gets extended by CLBLightBulbModel and CapacitanceModel.
  * This base model holds high level view properties that are shared by both screens.
  *
- * @author Chris Malley
- * @author Jesse Greenberg
- * @author Andrew Adare
+ * @author Chris Malley (PixelZoom, Inc.)
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

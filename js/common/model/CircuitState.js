@@ -6,7 +6,7 @@
  * components, and the switch is connected to teh 'open' point.  'SWITCH_IN_TRANSIT' means that the capacitor
  * is disconnected from all other components, which is the case while dragging the switch.
  *
- * @author Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

@@ -4,8 +4,8 @@
  * Visual representation of the effective E-field (E_effective) between the capacitor plates.
  *
  * @author Chris Malley (PixelZoom, Inc.)
- * @author Emily Randal
- * @author Jesse Greenberg
+ * @author Emily Randall (PhET Interactive Simulations)
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

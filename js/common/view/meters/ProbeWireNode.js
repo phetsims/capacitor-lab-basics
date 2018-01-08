@@ -1,11 +1,10 @@
 // Copyright 2015-2017, University of Colorado Boulder
 
 /**
- * Wire that connects a probe to the body of a meter.
- * The wire is a cubic curve.
+ * Wire that connects a probe to the body of a meter. The wire is a cubic curve.
  *
  * @author Chris Malley (PixelZoom, Inc.)
- * @author Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

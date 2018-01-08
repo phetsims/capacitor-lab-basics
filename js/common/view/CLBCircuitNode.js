@@ -4,7 +4,7 @@
  * Base type for the circuit nodes in Capacitor Lab: Basics.
  *
  * @author Chris Malley (PixelZoom, Inc.)
- * @author Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

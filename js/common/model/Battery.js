@@ -4,10 +4,9 @@
  * Simple model of a DC battery.  Origin is at the geometric center of the battery's body.
  *
  * @author Chris Malley (PixelZoom, Inc.)
- * @author Jesse Greenberg
- * @author Andrew Adare
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
-
 define( function( require ) {
   'use strict';
 

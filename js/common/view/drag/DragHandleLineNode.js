@@ -4,7 +4,7 @@
  * Dashed line used to connect a drag handle to the thing that it's dragging. This is a string of circles between two
  * points because some browsers do not support dashed lines.
  *
- * @author Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

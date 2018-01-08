@@ -4,7 +4,7 @@
  * Body of the voltmeter.
  *
  * @author Chris Malley (PixelZoom, Inc.)
- * @autor Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

@@ -6,7 +6,7 @@
  * Attached to the top capacitor plate, in the center of the plate's top face.
  *
  * @author Chris Malley (PixelZoom, Inc.)
- * @author Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

@@ -4,8 +4,8 @@
  * Triangular area that extends from the switch hinge point to a connection point.  The user can click anywhere in this
  * area to set the circuit connection.
  *
- * @author Jesse Greenberg
- * @author Andrew Adare
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

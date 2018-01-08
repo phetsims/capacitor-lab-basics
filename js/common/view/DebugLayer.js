@@ -3,7 +3,7 @@
 /**
  * Handles displaying debugging information for showDebugAreas (where the voltmeter tips will intersect things)
  *
- * @author Jonathan Olson <jonathan.olson@colorado.edu>
+ * @author Jonathan Olson (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

@@ -6,7 +6,7 @@
  * The composite parts are added to layout boxes in the BarMeterPanel so that
  * alignment can be perfectly set.
  *
- * @author Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

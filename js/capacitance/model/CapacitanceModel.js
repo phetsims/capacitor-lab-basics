@@ -5,10 +5,9 @@
  * allows the user to modify capacitor plate geometry to illustrate relationships with capacitance.
  *
  * @author Chris Malley (PixelZoom, Inc.)
- * @author Jesse Greenberg
- * @author Andrew Adare
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
-
 define( function( require ) {
   'use strict';
 

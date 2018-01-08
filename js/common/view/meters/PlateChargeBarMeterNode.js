@@ -2,8 +2,9 @@
 
 /**
  * BarMeterNode subclass that implements a custom setValue method
- * @author Jesse Greenberg
- * @author Andrew Adare
+ *
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

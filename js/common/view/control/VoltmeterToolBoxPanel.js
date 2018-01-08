@@ -4,7 +4,7 @@
  * Tool box that contains a voltmeter.  The user can drag the voltmeter out of the toolbox for
  * use.
  *
- * @author Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

@@ -8,8 +8,8 @@
  * https://github.com/phetsims/scenery-phet/issues/170.
  *
  * @author Vasily Shakhov (MLearner)
- * @author John Blanco
- * @author Jesse Greenberg
+ * @author John Blanco (PhET Interactive Simulations)
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

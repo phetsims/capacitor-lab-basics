@@ -3,7 +3,7 @@
 /**
  * Query parameters specific to Capacitor Lab: Basics
  *
- * @author Andrew Adare
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

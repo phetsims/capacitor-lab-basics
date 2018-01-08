@@ -5,7 +5,7 @@
  * The value is formatted, and its presentation is localizable.
  *
  * @author Chris Malley (PixelZoom, Inc.)
- * @author Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

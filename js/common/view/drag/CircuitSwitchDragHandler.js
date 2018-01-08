@@ -7,8 +7,8 @@
  * The user can drag the switch anywhere within the limiting bounds of the circuit switch.
  * On drag end, the switch snaps to the cloest connection point.
  *
- * @author Jesse Greenberg
- * @author Andrew Adare
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

@@ -4,7 +4,7 @@
  * Visual representation of a hinge point for the switch.  This is a black circle with an inner black circle that
  * represents the ability to the user that the switch can be rotated about the hinge point.
  *
- * @author Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

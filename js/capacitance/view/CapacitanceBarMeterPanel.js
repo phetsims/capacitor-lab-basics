@@ -6,7 +6,7 @@
  * This panel uses several layout boxes to achieve the desired alignment.  The meter value nodes are aligned to the
  * right while the bar meters are aligned to the left.  The checkboxes are also aligned to the left.
  *
- * @author Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

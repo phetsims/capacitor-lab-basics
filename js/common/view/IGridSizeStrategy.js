@@ -4,8 +4,8 @@
  * Interface for all strategies used to determine the size of the grid used to cover a 2D surface with objects.
  *
  * @author Chris Malley (PixelZoom, Inc.)
- * @author Jesse Greenberg
- * @author Sam Reid
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Sam Reid (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';
@@ -52,7 +52,7 @@ define( function( require ) {
    * right if we show some (or one) of the columns having different numbers of charges than the others, but then
    * it may look nonuniform (and would require more extensive changes to the sim).
    *
-   * @author Sam Reid
+   * @author Sam Reid (PhET Interactive Simulations)
    */
   function CCKStrategyWithRounding() {}
 

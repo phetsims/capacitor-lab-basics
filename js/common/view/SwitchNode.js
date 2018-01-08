@@ -4,8 +4,8 @@
  * Visual representation of a switch.  A switch consists of a line that connects a hinge point and at least two other
  * connection points.
  *
- * @author Jesse Greenberg
- * @author Andrew Adare
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

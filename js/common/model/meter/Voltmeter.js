@@ -4,8 +4,8 @@
  * Voltmeter model.
  *
  * @author Chris Malley (PixelZoom, Inc.)
- * @author Jesse Greenberg
- * @author Andrew Adare
+ * @author Jesse Greenberg (PhET Interactive Simulations)
+ * @author Andrew Adare (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';

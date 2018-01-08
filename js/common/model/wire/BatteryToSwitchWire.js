@@ -3,7 +3,7 @@
 /**
  * Creates a wire that connects a battery to a circuit switch.
  *
- * @author Jesse Greenberg
+ * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 define( function( require ) {
   'use strict';
