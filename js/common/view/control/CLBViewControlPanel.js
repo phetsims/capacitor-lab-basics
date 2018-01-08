@@ -54,8 +54,8 @@ define( function( require ) {
       tandemName: 'barGraphsCheckBox'
     }, {
       string: electricFieldString,
-      property: model.eFieldVisibleProperty,
-      tandemName: 'eFieldCheckBox'
+      property: model.electricFieldVisibleProperty,
+      tandemName: 'electricFieldCheckBox'
     }, {
       string: currentDirectionString,
       property: model.currentVisibleProperty,

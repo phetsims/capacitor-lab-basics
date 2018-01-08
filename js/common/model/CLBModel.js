@@ -44,8 +44,8 @@ define( function( require ) {
     } );
 
     // @public {Property.<boolean>}
-    this.eFieldVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'eFieldVisibleProperty' )
+    this.electricFieldVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'electricFieldVisibleProperty' )
     } );
 
     // @public {Property.<boolean>}
@@ -132,7 +132,7 @@ define( function( require ) {
     // @public
     reset: function() {
       this.plateChargesVisibleProperty.reset();
-      this.eFieldVisibleProperty.reset();
+      this.electricFieldVisibleProperty.reset();
       this.capacitanceMeterVisibleProperty.reset();
       this.barGraphsVisibleProperty.reset();
       this.voltmeterVisibleProperty.reset();

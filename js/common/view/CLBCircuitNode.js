@@ -51,7 +51,7 @@ define( function( require ) {
       tandem.createTandem( 'batteryNode' ) );
 
     var capacitorNode = new CapacitorNode( this.circuit, model.modelViewTransform, model.plateChargesVisibleProperty,
-      model.eFieldVisibleProperty, tandem.createTandem( 'capacitorNode' ) );
+      model.electricFieldVisibleProperty, tandem.createTandem( 'capacitorNode' ) );
 
     // @public {Node}
     this.topWireNode = new Node();

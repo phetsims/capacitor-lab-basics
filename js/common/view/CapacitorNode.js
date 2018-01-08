@@ -25,10 +25,10 @@ define( function( require ) {
    * @param {ParallelCircuit} circuit
    * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property.<boolean>} plateChargeVisibleProperty
-   * @param {Property.<boolean>} eFieldVisibleProperty
+   * @param {Property.<boolean>} electricFieldVisibleProperty
    * @param {Tandem} tandem
    */
-  function CapacitorNode( circuit, modelViewTransform, plateChargeVisibleProperty, eFieldVisibleProperty, tandem ) {
+  function CapacitorNode( circuit, modelViewTransform, plateChargeVisibleProperty, electricFieldVisibleProperty, tandem ) {
 
     Node.call( this, { tandem: tandem } );
     var self = this; // extend scope for nested callbacks
@@ -60,7 +60,7 @@ define( function( require ) {
       self.bottomPlateNode.setChargeVisible( visible );
     } );
 
-    eFieldVisibleProperty.link( function( visible ) {
+    electricFieldVisibleProperty.link( function( visible ) {
       eFieldNode.setVisible( visible );
     } );
   }
