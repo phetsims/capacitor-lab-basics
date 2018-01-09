@@ -74,7 +74,9 @@ define( function( require ) {
     var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
 
     // @private {DragHandleValueNode}
-    this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, millimetersSquaredPatternString );
+    this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, millimetersSquaredPatternString, {
+      tandem: tandem.createTandem( 'valueNode' )
+    } );
 
     // Make text part of the draggable area
     this.valueNode.mouseArea = this.valueNode.bounds.dilated( 0 );

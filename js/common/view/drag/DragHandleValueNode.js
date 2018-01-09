@@ -17,6 +17,7 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var RichText = require( 'SCENERY/nodes/RichText' );
   var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  var Tandem = require( 'TANDEM/Tandem' );
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -35,8 +36,11 @@ define( function( require ) {
    * @param {string} label
    * @param {number} value
    * @param {string} unitsPattern
+   * @param {Object} [options]
    */
-  function DragHandleValueNode( label, value, unitsPattern ) {
+  function DragHandleValueNode( label, value, unitsPattern, options ) {
+
+    options = _.extend( { tandem: Tandem.optional }, options );
 
     Node.call( this );
 
@@ -46,7 +50,12 @@ define( function( require ) {
     var labelNode = new Text( label, { font: LABEL_FONT, maxWidth: LABEL_MAX_WIDTH } );
     this.addChild( labelNode );
 
-    this.valueNode = new RichText( '', { font: VALUE_FONT, maxWidth: VALUE_MAX_WIDTH } ); // @private
+    // @private
+    this.valueNode = new RichText( '', {
+      font: VALUE_FONT,
+      maxWidth: VALUE_MAX_WIDTH,
+      tandem: options.tandem.createTandem( 'valueNode' )
+    } );
     this.addChild( this.valueNode );
 
     // layout: value below label, left-justified
@@ -54,7 +63,7 @@ define( function( require ) {
     this.valueNode.translation = new Vector2( 0, labelNode.bottom + 15 );
 
     this.setValue( value );
-
+    this.mutate( options );
   }
 
   capacitorLabBasics.register( 'DragHandleValueNode', DragHandleValueNode );

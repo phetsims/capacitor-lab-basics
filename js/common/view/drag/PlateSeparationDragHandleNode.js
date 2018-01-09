@@ -68,7 +68,9 @@ define( function( require ) {
 
     // value
     var millimeters = UnitsUtils.metersToMillimeters( capacitor.plateSeparationProperty.value );
-    this.valueNode = new DragHandleValueNode( separationString, millimeters, millimetersPatternString );
+    this.valueNode = new DragHandleValueNode( separationString, millimeters, millimetersPatternString, {
+      tandem: tandem.createTandem( 'valueNode' )
+    } );
 
     // Make text part of the draggable area
     this.valueNode.mouseArea = this.valueNode.bounds.dilated( 0 );
