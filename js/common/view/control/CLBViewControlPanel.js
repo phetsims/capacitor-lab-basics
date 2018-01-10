@@ -44,22 +44,24 @@ define( function( require ) {
       maxTextWidth: 250
     }, options );
 
+    var verticalCheckBoxGroupTandem = tandem.createTandem( 'verticalCheckBoxGroup' );
+
     var checkBoxItems = [ {
       string: plateChargesString,
       property: model.plateChargesVisibleProperty,
-      tandemName: 'plateChargesCheckBox'
+      tandem: verticalCheckBoxGroupTandem.createTandem( 'plateChargesCheckBox' )
     }, {
       string: options.numberOfBarGraphs > 1 ? barGraphsString : barGraphString,
       property: model.barGraphsVisibleProperty,
-      tandemName: 'barGraphsCheckBox'
+      tandem: verticalCheckBoxGroupTandem.createTandem( 'barGraphsCheckBox' )
     }, {
       string: electricFieldString,
       property: model.electricFieldVisibleProperty,
-      tandemName: 'electricFieldCheckBox'
+      tandem: verticalCheckBoxGroupTandem.createTandem( 'electricFieldCheckBox' )
     }, {
       string: currentDirectionString,
       property: model.currentVisibleProperty,
-      tandemName: 'currentCheckBox'
+      tandem: verticalCheckBoxGroupTandem.createTandem( 'currentCheckBox' )
     } ];
 
     var viewCheckBoxItems = checkBoxItems.map( function( asset ) {
@@ -75,7 +77,7 @@ define( function( require ) {
     } );
 
     var verticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems, {
-      tandem: tandem.createTandem( 'verticalCheckBoxGroup' ),
+      tandem: verticalCheckBoxGroupTandem,
       boxWidth: viewCheckBoxItems[ 0 ].content.height
     } );
 
