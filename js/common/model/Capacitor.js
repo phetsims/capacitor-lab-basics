@@ -52,8 +52,8 @@ define( function( require ) {
 
     // options that populate the capacitor with various geometric properties
     options = _.extend( {
-      plateWidth: CLBConstants.PLATE_WIDTH_RANGE.min,
-      plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.max
+      plateWidth: CLBConstants.PLATE_WIDTH_RANGE.defaultValue,
+      plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.defaultValue
     }, options );
 
     // @public {number}

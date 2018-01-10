@@ -37,9 +37,9 @@ define( function( require ) {
     },
 
     // capacitor
-    PLATE_WIDTH_RANGE: new RangeWithValue( 0.01, 0.02, 0.01 ), // meters
+    PLATE_WIDTH_RANGE: new RangeWithValue( 0.01, 0.02, Math.sqrt( 200 / 1000 / 1000 ) ), // meters, with default value at 200 mm^2
     PLATE_HEIGHT: 0.0005, // meters
-    PLATE_SEPARATION_RANGE: new RangeWithValue( 0.002, 0.01, 0.01 ), // meters
+    PLATE_SEPARATION_RANGE: new RangeWithValue( 0.002, 0.01, 0.006 ), // meters
     CAPACITANCE_RANGE: new RangeWithValue( 1E-13, 3E-13 ), // Farads
 
     LIGHT_BULB_X_SPACING: 0.023, // meters
