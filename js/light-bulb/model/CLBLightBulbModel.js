@@ -69,8 +69,8 @@ define( function( require ) {
     CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
 
     // @public {Property.<boolean>}
-    this.plateChargeMeterVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'plateChargeMeterVisibleProperty' )
+    this.topPlateChargeMeterVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'topPlateChargeMeterVisibleProperty' )
     } );
 
     // @public {Property.<boolean>}
@@ -86,7 +86,7 @@ define( function( require ) {
       tandem.createTandem( 'capacitanceMeter' ) );
 
     // @public {BarMeter}
-    this.plateChargeMeter = new BarMeter( this.circuit, this.plateChargeMeterVisibleProperty,
+    this.plateChargeMeter = new BarMeter( this.circuit, this.topPlateChargeMeterVisibleProperty,
       circuit.capacitor.plateChargeProperty,
       tandem.createTandem( 'plateChargeMeter' ) );
 
@@ -106,7 +106,7 @@ define( function( require ) {
      */
     reset: function() {
       this.plateChargesVisibleProperty.reset();
-      this.plateChargeMeterVisibleProperty.reset();
+      this.topPlateChargeMeterVisibleProperty.reset();
       this.storedEnergyMeterVisibleProperty.reset();
       this.capacitanceMeter.reset();
       this.plateChargeMeter.reset();
