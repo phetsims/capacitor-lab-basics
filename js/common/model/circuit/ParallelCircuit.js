@@ -50,6 +50,7 @@ define( function( require ) {
     } );
 
     // @public {Property.<CircuitState>} - Property tracking the state of the switch
+    // TODO: add validvalues.  Is this PhET-iO read-only?
     this.circuitConnectionProperty = new Property( CircuitState.BATTERY_CONNECTED, {
       tandem: tandem.createTandem( 'circuitConnectionProperty' ),
       phetioType: PropertyIO( StringIO )
@@ -69,8 +70,12 @@ define( function( require ) {
     this.maxEffectiveEField = Infinity;
 
     // @public {Battery}
-    this.battery = new Battery( CLBConstants.BATTERY_LOCATION, CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue,
-      config.modelViewTransform, tandem.createTandem( 'battery' ) );
+    this.battery = new Battery(
+      CLBConstants.BATTERY_LOCATION,
+      CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue,
+      config.modelViewTransform,
+      tandem.createTandem( 'battery' )
+    );
 
     // @public {Capacitor}
     this.capacitor = new Capacitor( config, this.circuitConnectionProperty, tandem.createTandem( 'capacitor' ) );
@@ -84,22 +89,26 @@ define( function( require ) {
         config,
         this.battery,
         this.capacitor.topCircuitSwitch,
-        tandem.createTandem( 'batteryToSwitchWireTop' ) ),
+        tandem.createTandem( 'batteryToSwitchWireTop' )
+      ),
       BatteryToSwitchWire.createBatteryToSwitchWireBottom(
         config,
         this.battery,
         this.capacitor.bottomCircuitSwitch,
-        tandem.createTandem( 'batteryToSwitchWireBottom' ) ),
+        tandem.createTandem( 'batteryToSwitchWireBottom' )
+      ),
       CapacitorToSwitchWire.createCapacitorToSwitchWireTop(
         config,
         this.capacitor,
         this.capacitor.topCircuitSwitch,
-        tandem ),
+        tandem
+      ),
       CapacitorToSwitchWire.createCapacitorToSwitchWireBottom(
         config,
         this.capacitor,
         this.capacitor.bottomCircuitSwitch,
-        tandem )
+        tandem
+      )
     ];
 
     // If there is a light bulb in the circuit, wire it up

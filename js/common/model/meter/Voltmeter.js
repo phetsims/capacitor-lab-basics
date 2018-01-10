@@ -68,14 +68,14 @@ define( function( require ) {
 
     // @public {Property.<boolean>}
     this.inUserControlProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'inUserControlProperty' )
+      tandem: tandem.createTandem( 'inUserControlProperty' ) // TODO: standardize name?
     } );
 
     // @public {Property.<Vector3>}
     this.bodyLocationProperty = new Property( new Vector3(), {
       useDeepEquality: true,
       tandem: tandem.createTandem( 'bodyLocationProperty' ),
-      phetioType: PropertyIO( Vector3IO )
+      phetioType: PropertyIO( Vector3IO ) // TODO: check for read only properties
     } );
 
     // @public {Property.<Vector3>}

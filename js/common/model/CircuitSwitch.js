@@ -72,9 +72,11 @@ define( function( require ) {
                          CircuitLocation.CIRCUIT_SWITCH_BOTTOM;
 
     // @public {WireSegment} Add the switch wire that spans two connection points. Default connection is to the battery.
-    this.switchSegment = new WireSegment( this.hingePoint,
+    this.switchSegment = new WireSegment(
+      this.hingePoint,
       this.getConnection( circuitConnectionProperty.value ).location,
-      tandem.createTandem( 'switchSegment' ) );
+      tandem.createTandem( 'switchSegment' )
+    );
     this.switchSegment.hingePoint = this.hingePoint;
 
     // @public {Wire} - Wire between the hinge point and end point

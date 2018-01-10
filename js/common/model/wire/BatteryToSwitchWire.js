@@ -39,27 +39,22 @@ define( function( require ) {
     var verticalSegment;
     var startPoint;
     if ( connectionPoint === CircuitLocation.BATTERY_TOP ) {
-
       startPoint = new Vector3( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), 0 );
-
       verticalSegment = new WireSegment( startPoint, leftCorner, tandem.createTandem( 'batteryTopWireSegment' ) );
-
       verticalSegment.update = function() {
         var point = new Vector3( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), 0 );
         if ( !this.startPointProperty.value.equals( point ) ) {
           this.startPointProperty.set( point );
         }
       };
-
     }
     else {
+
       // Slightly lower the bottom wire start point so we can't probe into the battery.
       // See https://github.com/phetsims/capacitor-lab-basics/issues/197
       var bottomOffset = 0.00065;
       startPoint = new Vector3( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() + bottomOffset, 0 );
-
       verticalSegment = new WireSegment( startPoint, leftCorner, tandem.createTandem( 'batteryBottomWireSegment' ) );
-
       verticalSegment.update = function() {
         var point = new Vector3( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() + bottomOffset, 0 );
         if ( !this.startPointProperty.value.equals( point ) ) {
@@ -77,13 +72,19 @@ define( function( require ) {
 
     if ( connectionPoint === CircuitLocation.BATTERY_TOP ) {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED );
-      switchSegment = new WireSegment( leftCorner, switchConnectionPoint.plus( separationOffset ),
-        tandem.createTandem( 'batteryTopToSwitchSegment' ) );
+      switchSegment = new WireSegment(
+        leftCorner,
+        switchConnectionPoint.plus( separationOffset ),
+        tandem.createTandem( 'batteryTopToSwitchSegment' )
+      );
     }
     else {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED );
-      switchSegment = new WireSegment( leftCorner, switchConnectionPoint.plus( separationOffset ),
-        tandem.createTandem( 'batteryBottomToSwitchSegment' ) );
+      switchSegment = new WireSegment(
+        leftCorner,
+        switchConnectionPoint.plus( separationOffset ),
+        tandem.createTandem( 'batteryBottomToSwitchSegment' ) // TODO: should this include the text "wire segment" instead of just segment?
+      );
     }
 
     segments.push( switchSegment );

@@ -43,8 +43,13 @@ define( function( require ) {
 
     // meters
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
-    var voltmeterToolbox = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform,
-      model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
+    var voltmeterToolbox = new VoltmeterToolBoxPanel(
+      voltmeterNode,
+      this.modelViewTransform,
+      model.voltmeter.inUserControlProperty,
+      model.voltmeterVisibleProperty,
+      tandem.createTandem( 'voltmeterToolBox' )
+    );
 
     // control
     var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
@@ -53,8 +58,11 @@ define( function( require ) {
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
     voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
 
-    var capacitanceBarMeterPanel = new CapacitanceBarMeterPanel( model, 0.85 * capacitanceCircuitNode.width,
-      tandem.createTandem( 'capacitanceBarMeterPanel' ) );
+    var capacitanceBarMeterPanel = new CapacitanceBarMeterPanel(
+      model,
+      0.85 * capacitanceCircuitNode.width,
+      tandem.createTandem( 'capacitanceBarMeterPanel' )
+    );
     capacitanceBarMeterPanel.left = capacitanceCircuitNode.topWireNode.left;
     capacitanceBarMeterPanel.top = this.layoutBounds.top + 10;
 

@@ -44,11 +44,18 @@ define( function( require ) {
     // add the vertical segment.
     var verticalSegment;
     if ( isTop ) {
-      verticalSegment = WireSegment.createComponentTopWireSegment( lightBulb, rightCorner,
-        tandem.createTandem( 'lightBulbComponentTopWireSegment' ) );
-    } else {
-      verticalSegment = WireSegment.createComponentBottomWireSegment( lightBulb, rightCorner,
-        tandem.createTandem( 'lightBulbComponentBottomWireSegment' ) );
+      verticalSegment = WireSegment.createComponentTopWireSegment(
+        lightBulb,
+        rightCorner,
+        tandem.createTandem( 'lightBulbComponentTopWireSegment' )
+      );
+    }
+    else {
+      verticalSegment = WireSegment.createComponentBottomWireSegment(
+        lightBulb,
+        rightCorner,
+        tandem.createTandem( 'lightBulbComponentBottomWireSegment' )
+      );
     }
     segments.push( verticalSegment );
 
@@ -58,8 +65,12 @@ define( function( require ) {
     var separationOffset = new Vector3( 0.0006, 0, 0 );
 
     // Tandem IDs must be unique, so append a counter index
-    segments.push( new WireSegment( rightCorner, switchConnectionPoint.plus( separationOffset ),
-      tandem.createTandem( 'lightBulbSwitchWireSegment' + COUNTER ) ) );
+    var wireSegment = new WireSegment(
+      rightCorner,
+      switchConnectionPoint.plus( separationOffset ),
+      tandem.createTandem( 'lightBulbSwitchWireSegment' + COUNTER )
+    );
+    segments.push( wireSegment );
     COUNTER++;
 
     Wire.call( this, config.modelViewTransform, segments, connectionPoint );

@@ -31,12 +31,18 @@ define( function( require ) {
     var switchConnectionPoint = circuitSwitch.hingePoint;
     var segment;
     if ( connectionPoint === CircuitLocation.CAPACITOR_TOP ) {
-      segment = WireSegment.createComponentTopWireSegment( capacitor, switchConnectionPoint,
-        tandem.createTandem( 'capacitorComponentTopWireSegment' ) );
+      segment = WireSegment.createComponentTopWireSegment(
+        capacitor,
+        switchConnectionPoint,
+        tandem.createTandem( 'capacitorComponentTopWireSegment' )
+      );
     }
     else {
-      segment = WireSegment.createComponentBottomWireSegment( capacitor, switchConnectionPoint,
-        tandem.createTandem( 'capacitorComponentBottomWireSegment' ) );
+      segment = WireSegment.createComponentBottomWireSegment(
+        capacitor,
+        switchConnectionPoint,
+        tandem.createTandem( 'capacitorComponentBottomWireSegment' )
+      );
     }
 
     Wire.call( this, config.modelViewTransform, [ segment ], connectionPoint );

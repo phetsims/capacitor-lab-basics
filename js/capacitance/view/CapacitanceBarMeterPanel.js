@@ -48,7 +48,8 @@ define( function( require ) {
       CLBConstants.CAPACITANCE_METER_MAX_VALUE,
       picoFaradsPatternString,
       capacitanceString,
-      tandem.createTandem( 'capacitanceMeterNode' ) );
+      tandem.createTandem( 'capacitanceMeterNode' )
+    );
 
     // title for capacitance meter
     var fontOptions = {
