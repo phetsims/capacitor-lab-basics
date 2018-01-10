@@ -44,40 +44,37 @@ define( function( require ) {
       maxTextWidth: 250
     }, options );
 
-    var verticalCheckBoxGroupTandem = tandem.createTandem( 'verticalCheckBoxGroup' );
-
     var checkBoxItems = [ {
       string: plateChargesString,
       property: model.plateChargesVisibleProperty,
-      tandem: verticalCheckBoxGroupTandem.createTandem( 'plateChargesCheckBox' )
+      tandem: tandem.createTandem( 'plateChargesCheckBox' )
     }, {
       string: options.numberOfBarGraphs > 1 ? barGraphsString : barGraphString,
       property: model.barGraphsVisibleProperty,
-      tandem: verticalCheckBoxGroupTandem.createTandem( 'barGraphsCheckBox' )
+      tandem: tandem.createTandem( 'barGraphsCheckBox' )
     }, {
       string: electricFieldString,
       property: model.electricFieldVisibleProperty,
-      tandem: verticalCheckBoxGroupTandem.createTandem( 'electricFieldCheckBox' )
+      tandem: tandem.createTandem( 'electricFieldCheckBox' )
     }, {
       string: currentDirectionString,
       property: model.currentVisibleProperty,
-      tandem: verticalCheckBoxGroupTandem.createTandem( 'currentCheckBox' )
+      tandem: tandem.createTandem( 'currentCheckBox' )
     } ];
 
-    var viewCheckBoxItems = checkBoxItems.map( function( asset ) {
+    var viewCheckBoxItems = checkBoxItems.map( function( item ) {
       return {
-        content: new Text( asset.string, {
+        content: new Text( item.string, {
           font: CHECK_BOX_FONT,
           maxWidth: options.maxTextWidth
         } ),
-        property: asset.property,
-        label: asset.string,
-        tandemName: asset.tandemName
+        property: item.property,
+        label: item.string,
+        tandem: item.tandem
       };
     } );
 
     var verticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems, {
-      tandem: verticalCheckBoxGroupTandem,
       boxWidth: viewCheckBoxItems[ 0 ].content.height
     } );
 
