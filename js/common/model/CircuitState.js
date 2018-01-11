@@ -20,6 +20,8 @@ define( function( require ) {
     SWITCH_IN_TRANSIT: 'SWITCH_IN_TRANSIT'
   };
 
+  CircuitState.VALUES = _.keys( CircuitState );
+
   // verify that enum is immutable, without the runtime penalty in production code
   if ( assert ) { Object.freeze( CircuitState ); }
 

@@ -50,10 +50,10 @@ define( function( require ) {
     } );
 
     // @public {Property.<CircuitState>} - Property tracking the state of the switch
-    // TODO: add validvalues.  Is this PhET-iO read-only?
     this.circuitConnectionProperty = new Property( CircuitState.BATTERY_CONNECTED, {
       tandem: tandem.createTandem( 'circuitConnectionProperty' ),
-      phetioType: PropertyIO( StringIO )
+      phetioType: PropertyIO( StringIO ),
+      validValues: CircuitState.VALUES
     } );
 
     // @public {NumberProperty} - Property tracking the signed charge value on the upper plate
