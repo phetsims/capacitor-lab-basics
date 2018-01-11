@@ -28,7 +28,7 @@ define( function( require ) {
    * @param {Property.<boolean>} voltmeterVisibleProperty
    * @param {Tandem} tandem
    */
-  function VoltmeterToolBoxPanel( voltmeterNode, modelViewTransform, isDraggedProperty, voltmeterVisibleProperty,
+  function VoltmeterToolboxPanel( voltmeterNode, modelViewTransform, isDraggedProperty, voltmeterVisibleProperty,
                                   tandem ) {
 
     var self = this;
@@ -79,7 +79,7 @@ define( function( require ) {
     } );
   }
 
-  capacitorLabBasics.register( 'VoltmeterToolBoxPanel', VoltmeterToolBoxPanel );
+  capacitorLabBasics.register( 'VoltmeterToolboxPanel', VoltmeterToolboxPanel );
 
-  return inherit( Node, VoltmeterToolBoxPanel );
+  return inherit( Node, VoltmeterToolboxPanel );
 } );

@@ -21,7 +21,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var Vector2 = require( 'DOT/Vector2' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
-  var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
+  var VoltmeterToolboxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolboxPanel' );
 
   /**
    * @constructor
@@ -43,12 +43,12 @@ define( function( require ) {
 
     // meters
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
-    var voltmeterToolbox = new VoltmeterToolBoxPanel(
+    var voltmeterToolbox = new VoltmeterToolboxPanel(
       voltmeterNode,
       this.modelViewTransform,
       model.voltmeter.isDraggedProperty,
       model.voltmeterVisibleProperty,
-      tandem.createTandem( 'voltmeterToolBox' )
+      tandem.createTandem( 'voltmeterToolbox' )
     );
 
     // control

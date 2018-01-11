@@ -20,7 +20,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var Vector2 = require( 'DOT/Vector2' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
-  var VoltmeterToolBoxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolBoxPanel' );
+  var VoltmeterToolboxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolboxPanel' );
 
   // Panel offsets (wrt various references) in model coordinates.
   var BAR_METER_PANEL_OFFSET = new Vector2( 40, 30 ); // Sign of x offset is reversed
@@ -49,8 +49,8 @@ define( function( require ) {
     var barMeterPanel = new BarMeterPanel( model, barMeterPanelWidth, tandem.createTandem( 'barMeterPanel' ) );
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty,
       tandem.createTandem( 'voltmeterNode' ) );
-    var voltmeterToolBox = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform, // TODO: is B supposed to be capitalized?
-      model.voltmeter.isDraggedProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
+    var voltmeterToolbox = new VoltmeterToolboxPanel( voltmeterNode, this.modelViewTransform, // TODO: is B supposed to be capitalized?
+      model.voltmeter.isDraggedProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolbox' ) );
 
     // View control panel and voltmeter panel
     var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
@@ -58,7 +58,7 @@ define( function( require ) {
       maxTextWidth: 200
     } );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
-    voltmeterToolBox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
+    voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
 
     // Circuit bar meter panel
     barMeterPanel.left = lightBulbCircuitNode.topWireNode.left - 40;
@@ -79,7 +79,7 @@ define( function( require ) {
     this.addChild( lightBulbCircuitNode );
     this.addChild( barMeterPanel );
     this.addChild( viewControlPanel );
-    this.addChild( voltmeterToolBox );
+    this.addChild( voltmeterToolbox );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
     this.addChild( new DebugLayer( model ) );
