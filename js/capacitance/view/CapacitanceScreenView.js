@@ -46,7 +46,7 @@ define( function( require ) {
     var voltmeterToolbox = new VoltmeterToolBoxPanel(
       voltmeterNode,
       this.modelViewTransform,
-      model.voltmeter.inUserControlProperty,
+      model.voltmeter.isDraggedProperty,
       model.voltmeterVisibleProperty,
       tandem.createTandem( 'voltmeterToolBox' )
     );

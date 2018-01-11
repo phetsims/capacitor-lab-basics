@@ -50,7 +50,7 @@ define( function( require ) {
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty,
       tandem.createTandem( 'voltmeterNode' ) );
     var voltmeterToolBox = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform, // TODO: is B supposed to be capitalized?
-      model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
+      model.voltmeter.isDraggedProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
 
     // View control panel and voltmeter panel
     var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {

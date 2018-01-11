@@ -67,8 +67,8 @@ define( function( require ) {
     this.visibleProperty = voltmeterVisibleProperty;
 
     // @public {Property.<boolean>}
-    this.inUserControlProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'inUserControlProperty' ) // TODO: standardize name?
+    this.isDraggedProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'isDraggedProperty' )
     } );
 
     // @public {Property.<Vector3>}
@@ -232,7 +232,7 @@ define( function( require ) {
 
     // @public
     reset: function() {
-      this.inUserControlProperty.reset();
+      this.isDraggedProperty.reset();
       this.bodyLocationProperty.reset();
       this.positiveProbeLocationProperty.reset();
       this.negativeProbeLocationProperty.reset();

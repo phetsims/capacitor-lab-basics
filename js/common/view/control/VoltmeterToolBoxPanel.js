@@ -24,11 +24,11 @@ define( function( require ) {
    *
    * @param {VoltmeterNode} voltmeterNode
    * @param {CLModelViewTransform3D} modelViewTransform
-   * @param {Property.<boolean>} inUserControlProperty
+   * @param {Property.<boolean>} isDraggedProperty
    * @param {Property.<boolean>} voltmeterVisibleProperty
    * @param {Tandem} tandem
    */
-  function VoltmeterToolBoxPanel( voltmeterNode, modelViewTransform, inUserControlProperty, voltmeterVisibleProperty,
+  function VoltmeterToolBoxPanel( voltmeterNode, modelViewTransform, isDraggedProperty, voltmeterVisibleProperty,
                                   tandem ) {
 
     var self = this;
@@ -72,8 +72,8 @@ define( function( require ) {
 
     // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide
     // panel exists for lifetime of sim, no need for dispose
-    inUserControlProperty.link( function( inUserControl ) {
-      if ( !inUserControl && self.bounds.intersectsBounds( voltmeterNode.bodyNode.bounds.eroded( 40 ) ) ) {
+    isDraggedProperty.link( function( isDragged ) {
+      if ( !isDragged && self.bounds.intersectsBounds( voltmeterNode.bodyNode.bounds.eroded( 40 ) ) ) {
         voltmeterVisibleProperty.set( false );
       }
     } );

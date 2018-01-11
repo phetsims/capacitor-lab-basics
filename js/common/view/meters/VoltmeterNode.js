@@ -55,7 +55,7 @@ define( function( require ) {
 
     // construct all parts of the probe
     // @public {VoltmeterBodyNode}
-    this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.inUserControlProperty,
+    this.bodyNode = new VoltmeterBodyNode( voltmeter, modelViewTransform, voltmeter.isDraggedProperty,
       tandem.createTandem( 'bodyNode' ) );
 
     // @public {VoltmeterProbeNode}

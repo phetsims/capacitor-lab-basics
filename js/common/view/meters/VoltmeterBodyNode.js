@@ -46,10 +46,10 @@ define( function( require ) {
    *
    * @param {Voltmeter} voltmeter - the voltmeter model
    * @param {CLBModelViewTransform3D} modelViewTransform
-   * @param {Property.<boolean>} inUserControlProperty
+   * @param {Property.<boolean>} isDraggedProperty
    * @param {Tandem} tandem
    */
-  function VoltmeterBodyNode( voltmeter, modelViewTransform, inUserControlProperty, tandem ) {
+  function VoltmeterBodyNode( voltmeter, modelViewTransform, isDraggedProperty, tandem ) {
 
     Node.call( this );
     var self = this;
@@ -138,10 +138,10 @@ define( function( require ) {
       dragBounds: bodyDragBounds,
       modelViewTransform: modelViewTransform.modelToViewTransform2D,
       startDrag: function() {
-        inUserControlProperty.set( true );
+        isDraggedProperty.set( true );
       },
       endDrag: function() {
-        inUserControlProperty.set( false );
+        isDraggedProperty.set( false );
       }
     } );
     self.addInputListener( this.movableDragHandler );
