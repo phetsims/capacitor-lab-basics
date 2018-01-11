@@ -110,18 +110,15 @@ define( function( require ) {
     parentNode.children = [ checkBoxNodes, meterNodes ];
 
     // layout
-    var x = 0; // TODO: are these variables used?
-    var y = 0;
-
     // check boxes aligned vertically, centered left
     capacitanceCheckBox.translation = new Vector2( 0, 0 );
     topPlateChargeCheckBox.translation = new Vector2( 0, CHECKBOX_VERTICAL_SPACING );
     storedEnergyCheckBox.translation = new Vector2( 0, 2 * CHECKBOX_VERTICAL_SPACING );
 
     // The BarMeterNodes have a common x-coordinate
-    x = 0.44 * minWidth;
+    var x = 0.44 * minWidth;
 
-    y = capacitanceCheckBox.centerY;
+    var y = capacitanceCheckBox.centerY;
     capacitanceMeterNode.axisLine.translation = new Vector2( x, y );
 
     y = topPlateChargeCheckBox.centerY;
