@@ -13,6 +13,7 @@ define( function( require ) {
 
   // modules
   // TODO: Reverse the shapes so they are in the model?
+  // TODO: Did you mean invert the shapes?
   var BatteryGraphicNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryGraphicNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );

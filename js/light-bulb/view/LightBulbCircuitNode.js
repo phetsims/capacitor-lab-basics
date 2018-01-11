@@ -38,25 +38,21 @@ define( function( require ) {
 
     // @private current indicators
     this.bulbTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, 0,
-    tandem.createTandem( 'bulbTopCurrentIndicatorNode' ) );
+      tandem.createTandem( 'bulbTopCurrentIndicatorNode' ) );
     this.bulbBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, Math.PI,
-    tandem.createTandem( 'bulbBottomCurrentIndicatorNode' ) );
+      tandem.createTandem( 'bulbBottomCurrentIndicatorNode' ) );
 
     // rendering order
     this.addChild( lightBulbNode );
     this.addChild( this.bulbTopCurrentIndicatorNode );
     this.addChild( this.bulbBottomCurrentIndicatorNode );
 
-    var x = 0; // TODO: are these unused?3
-    var y = 0;
-
     // LightBulb - translate so that center is the center of the base.
-    lightBulbNode.center = model.modelViewTransform.modelToViewPosition(
-      circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
+    lightBulbNode.center = model.modelViewTransform.modelToViewPosition( circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
 
     // top right current indicator
-    x = this.circuitSwitchNodes[ 0 ].right + ( lightBulbNode.left - this.circuitSwitchNodes[ 0 ].right ) / 2;
-    y = this.topWireNode.bounds.minY + ( 7 / 2 );
+    var x = this.circuitSwitchNodes[ 0 ].right + ( lightBulbNode.left - this.circuitSwitchNodes[ 0 ].right ) / 2;
+    var y = this.topWireNode.bounds.minY + ( 7 / 2 );
     this.bulbTopCurrentIndicatorNode.translate( x, y );
 
     // bottom right current indicator
@@ -71,7 +67,6 @@ define( function( require ) {
     model.currentVisibleProperty.link( function( currentIndicatorsVisible ) {
       self.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
     } );
-
   }
 
   capacitorLabBasics.register( 'LightBulbCircuitNode', LightBulbCircuitNode );
