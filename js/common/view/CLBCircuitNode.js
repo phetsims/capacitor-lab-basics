@@ -47,11 +47,15 @@ define( function( require ) {
     // circuit components
 
     // @private {BatteryNode}
-    this.batteryNode = new BatteryNode( this.circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE,
-      tandem.createTandem( 'batteryNode' ) );
+    this.batteryNode = new BatteryNode( this.circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE, tandem.createTandem( 'batteryNode' ) );
 
-    var capacitorNode = new CapacitorNode( this.circuit, model.modelViewTransform, model.plateChargesVisibleProperty,
-      model.electricFieldVisibleProperty, tandem.createTandem( 'capacitorNode' ) );
+    var capacitorNode = new CapacitorNode(
+      this.circuit,
+      model.modelViewTransform,
+      model.plateChargesVisibleProperty,
+      model.electricFieldVisibleProperty,
+      tandem.createTandem( 'capacitorNode' )
+    );
 
     // @public {Node}
     this.topWireNode = new Node();
@@ -69,10 +73,18 @@ define( function( require ) {
 
     // @private {Array.<SwitchNode>}
     this.circuitSwitchNodes = [];
-    self.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 0 ], model.modelViewTransform,
-      switchControlledProperty, tandem.createTandem( 'topSwitchNode' ) ) );
-    self.circuitSwitchNodes.push( new SwitchNode( this.circuit.circuitSwitches[ 1 ], model.modelViewTransform,
-      switchControlledProperty, tandem.createTandem( 'bottomSwitchNode' ) ) );
+    self.circuitSwitchNodes.push( new SwitchNode(
+      this.circuit.circuitSwitches[ 0 ],
+      model.modelViewTransform,
+      switchControlledProperty,
+      tandem.createTandem( 'topSwitchNode' )
+    ) );
+    self.circuitSwitchNodes.push( new SwitchNode(
+      this.circuit.circuitSwitches[ 1 ],
+      model.modelViewTransform,
+      switchControlledProperty,
+      tandem.createTandem( 'bottomSwitchNode' )
+    ) );
 
     // Once the circuit has been built, if the circuit connection has changed, the switch has been used.
     this.circuitSwitchNodes.forEach( function( switchNode ) {
@@ -130,7 +142,7 @@ define( function( require ) {
     capacitorNode.center = model.modelViewTransform.modelToViewPosition( this.circuit.capacitor.location );
 
     // top current indicator
-    var x = this.batteryNode.right + (this.circuitSwitchNodes[ 0 ].left - this.batteryNode.right) / 2;
+    var x = this.batteryNode.right + ( this.circuitSwitchNodes[ 0 ].left - this.batteryNode.right ) / 2;
 
     // current indicator offset
     var indicatorOffset = 7 / 2;

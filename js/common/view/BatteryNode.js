@@ -70,7 +70,7 @@ define( function( require ) {
     } );
 
     // function to create the tick mark labels using a string pattern.
-    var createTickLabels = function( value, textFill, tandem ) {
+    var createTickLabel = function( value, textFill, tandem ) {
       var labelText = new Text( StringUtils.fillIn( voltsPatternString, { value: value } ), {
         font: LABEL_FONT,
         fill: textFill,
@@ -82,12 +82,12 @@ define( function( require ) {
       return labelText;
     };
     // add the tick marks
-    var maxTick = createTickLabels( voltageRange.max, 'black', tandem.createTandem( 'maximumTickLabel' ) );
-    var defaultTick = createTickLabels( voltageRange.defaultValue, 'white', tandem.createTandem( 'defaultTickLabel' ) );
-    var minTick = createTickLabels( voltageRange.min, 'white', tandem.createTandem( 'minimumTickLabel' ) );
-    sliderNode.addMajorTick( voltageRange.max, maxTick );
-    sliderNode.addMajorTick( voltageRange.defaultValue, defaultTick );
-    sliderNode.addMajorTick( voltageRange.min, minTick );
+    var maximumTickLabel = createTickLabel( voltageRange.max, 'black', tandem.createTandem( 'maximumTickLabel' ) );
+    var defaultTickLabel = createTickLabel( voltageRange.defaultValue, 'white', tandem.createTandem( 'defaultTickLabel' ) );
+    var minimumTickLabel = createTickLabel( voltageRange.min, 'white', tandem.createTandem( 'minimumTickLabel' ) );
+    sliderNode.addMajorTick( voltageRange.max, maximumTickLabel );
+    sliderNode.addMajorTick( voltageRange.defaultValue, defaultTickLabel );
+    sliderNode.addMajorTick( voltageRange.min, minimumTickLabel );
 
     sliderNode.rotate( -Math.PI / 2 );
     this.addChild( sliderNode );
@@ -99,13 +99,13 @@ define( function( require ) {
     battery.polarityProperty.link( function( polarity ) {
       if ( polarity === CLBConstants.POLARITY.POSITIVE ) {
         graphicNode.children = [ BatteryGraphicNode.POSITIVE_UP ];
-        minTick.fill = 'white';
-        maxTick.fill = 'black';
+        minimumTickLabel.fill = 'white';
+        maximumTickLabel.fill = 'black';
       }
       else {
         graphicNode.children = [ BatteryGraphicNode.POSITIVE_DOWN ];
-        minTick.fill = 'black';
-        maxTick.fill = 'white';
+        minimumTickLabel.fill = 'black';
+        maximumTickLabel.fill = 'white';
       }
     } );
   }

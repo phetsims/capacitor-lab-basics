@@ -73,7 +73,7 @@ define( function( require ) {
     this.barNode = new BarNode( barColor, meter.valueProperty.get(), this.maxValue );
 
     // @public {Text} - value with hundredths precision and units, set in setValue()
-    this.valueTextNode = new Text( '', {
+    this.valueTextNode = new Text( '', { // TODO: rename to match tandem
       font: VALUE_FONT,
       fill: VALUE_COLOR,
       maxWidth: VALUE_MAX_WIDTH,

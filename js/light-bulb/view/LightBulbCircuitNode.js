@@ -47,7 +47,7 @@ define( function( require ) {
     this.addChild( this.bulbTopCurrentIndicatorNode );
     this.addChild( this.bulbBottomCurrentIndicatorNode );
 
-    var x = 0;
+    var x = 0; // TODO: are these unused?3
     var y = 0;
 
     // LightBulb - translate so that center is the center of the base.

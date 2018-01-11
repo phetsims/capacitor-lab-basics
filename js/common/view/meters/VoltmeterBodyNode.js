@@ -134,7 +134,7 @@ define( function( require ) {
       inverseMap: function( vector2 ) { return vector2.toVector3(); }
     } );
     this.movableDragHandler = new MovableDragHandler( body2DProperty, {
-      tandem: tandem.createTandem( 'inputListener' ),
+      tandem: tandem.createTandem( 'dragHandler' ),
       dragBounds: bodyDragBounds,
       modelViewTransform: modelViewTransform.modelToViewTransform2D,
       startDrag: function() {

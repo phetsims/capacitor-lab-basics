@@ -79,7 +79,7 @@ define( function( require ) {
 
     // Drag handler accounting for boundaries
     this.movableDragHandler = new MovableDragHandler( location2DProperty, {
-      tandem: tandem.createTandem( 'inputListener' ),
+      tandem: tandem.createTandem( 'dragHandler' ),
       dragBounds: modelViewTransform.viewToModelBounds( adjustedViewBounds ),
       modelViewTransform: modelViewTransform.modelToViewTransform2D,
       useDeepEquality: true

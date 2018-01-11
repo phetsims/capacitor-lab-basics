@@ -49,7 +49,7 @@ define( function( require ) {
     var barMeterPanel = new BarMeterPanel( model, barMeterPanelWidth, tandem.createTandem( 'barMeterPanel' ) );
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty,
       tandem.createTandem( 'voltmeterNode' ) );
-    var voltmeterToolbox = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform,
+    var voltmeterToolBox = new VoltmeterToolBoxPanel( voltmeterNode, this.modelViewTransform, // TODO: is B supposed to be capitalized?
       model.voltmeter.inUserControlProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolBox' ) );
 
     // View control panel and voltmeter panel
@@ -58,7 +58,7 @@ define( function( require ) {
       maxTextWidth: 200
     } );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
-    voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
+    voltmeterToolBox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
 
     // Circuit bar meter panel
     barMeterPanel.left = lightBulbCircuitNode.topWireNode.left - 40;
@@ -79,7 +79,7 @@ define( function( require ) {
     this.addChild( lightBulbCircuitNode );
     this.addChild( barMeterPanel );
     this.addChild( viewControlPanel );
-    this.addChild( voltmeterToolbox );
+    this.addChild( voltmeterToolBox );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
     this.addChild( new DebugLayer( model ) );

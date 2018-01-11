@@ -90,32 +90,32 @@ define( function( require ) {
       maxWidth: 120
     };
 
-    var capacitanceTitle = new Text( capacitanceString, fontOptions );
-    var capacitanceCheckBox = new CheckBox( capacitanceTitle, model.capacitanceMeterVisibleProperty, {
+    var capacitanceLabel = new Text( capacitanceString, fontOptions );
+    var capacitanceCheckBox = new CheckBox( capacitanceLabel, model.capacitanceMeterVisibleProperty, {
       tandem: tandem.createTandem( 'capacitanceCheckBox' )
     } );
 
-    var plateChargeTitle = new Text( topPlateChargeString, fontOptions );
-    var plateChargeCheckBox = new CheckBox( plateChargeTitle, model.topPlateChargeMeterVisibleProperty, {
+    var topPlateChargeLabel = new Text( topPlateChargeString, fontOptions );
+    var topPlateChargeCheckBox = new CheckBox( topPlateChargeLabel, model.topPlateChargeMeterVisibleProperty, {
       tandem: tandem.createTandem( 'topPlateChargeCheckBox' )
     } );
 
-    var storedEnergyTitle = new Text( storedEnergyString, fontOptions );
-    var storedEnergyCheckBox = new CheckBox( storedEnergyTitle, model.storedEnergyMeterVisibleProperty, {
+    var storedEnergyLabel = new Text( storedEnergyString, fontOptions );
+    var storedEnergyCheckBox = new CheckBox( storedEnergyLabel, model.storedEnergyMeterVisibleProperty, {
       tandem: tandem.createTandem( 'storedEnergyCheckBox' )
     } );
 
-    checkBoxNodes.children = [ capacitanceCheckBox, plateChargeCheckBox, storedEnergyCheckBox ];
+    checkBoxNodes.children = [ capacitanceCheckBox, topPlateChargeCheckBox, storedEnergyCheckBox ];
 
     parentNode.children = [ checkBoxNodes, meterNodes ];
 
     // layout
-    var x = 0;
+    var x = 0; // TODO: are these variables used?
     var y = 0;
 
     // check boxes aligned vertically, centered left
     capacitanceCheckBox.translation = new Vector2( 0, 0 );
-    plateChargeCheckBox.translation = new Vector2( 0, CHECKBOX_VERTICAL_SPACING );
+    topPlateChargeCheckBox.translation = new Vector2( 0, CHECKBOX_VERTICAL_SPACING );
     storedEnergyCheckBox.translation = new Vector2( 0, 2 * CHECKBOX_VERTICAL_SPACING );
 
     // The BarMeterNodes have a common x-coordinate
@@ -124,7 +124,7 @@ define( function( require ) {
     y = capacitanceCheckBox.centerY;
     capacitanceMeterNode.axisLine.translation = new Vector2( x, y );
 
-    y = plateChargeCheckBox.centerY;
+    y = topPlateChargeCheckBox.centerY;
     plateChargeMeterNode.axisLine.translation = new Vector2( x, y );
 
     y = storedEnergyCheckBox.centerY;

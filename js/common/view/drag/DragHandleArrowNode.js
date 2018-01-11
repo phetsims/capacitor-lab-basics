@@ -42,7 +42,7 @@ define( function( require ) {
       headHeight: length,
       headWidth: length / 2,
       tailWidth: length / 5,
-      tandem: tandem.createTandem( 'arrowNode' )
+      tandem: tandem // TODO: make sure call sites are using appropriate tandem
     } );
 
     this.normalColor = NORMAL_COLOR;
