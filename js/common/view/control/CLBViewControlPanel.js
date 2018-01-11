@@ -75,6 +75,8 @@ define( function( require ) {
     } );
 
     var verticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems, {
+
+      // The box is as wide as the largest item is tall
       boxWidth: viewCheckBoxItems[ 0 ].content.height
     } );
 

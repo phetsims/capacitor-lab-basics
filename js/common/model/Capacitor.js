@@ -78,7 +78,8 @@ define( function( require ) {
     // @public {Property.<Bounds3>}
     this.plateSizeProperty = new Property( plateBounds, {
       tandem: tandem.createTandem( 'plateSizeProperty' ),
-      phetioType: PropertyIO( Bounds3IO )
+      phetioType: PropertyIO( Bounds3IO ),
+      phetioReadOnly: true
     } );
 
     // @public {Property.<number>}
@@ -91,7 +92,8 @@ define( function( require ) {
     // @public {Property.<number>} - zero until it's connected into a circuit
     this.plateVoltageProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'plateVoltageProperty' ),
-      units: 'volts'
+      units: 'volts',
+      phetioReadOnly: true
     } );
 
     // @public {Property.<number>}

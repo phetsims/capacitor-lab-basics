@@ -68,14 +68,15 @@ define( function( require ) {
 
     // @public {Property.<boolean>}
     this.isDraggedProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'isDraggedProperty' )
+      tandem: tandem.createTandem( 'isDraggedProperty' ),
+      phetioInstanceDocumentation: 'Indicates whether the user is currently dragging the voltmeter'
     } );
 
     // @public {Property.<Vector3>}
     this.bodyLocationProperty = new Property( new Vector3(), {
       useDeepEquality: true,
       tandem: tandem.createTandem( 'bodyLocationProperty' ),
-      phetioType: PropertyIO( Vector3IO ) // TODO: check for read only properties
+      phetioType: PropertyIO( Vector3IO )
     } );
 
     // @public {Property.<Vector3>}

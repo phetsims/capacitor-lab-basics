@@ -65,6 +65,7 @@ define( function( require ) {
     // Value type: enumeration (string)
     // @public {Property.<string>} - 'POSITIVE' or 'NEGATIVE'
     this.polarityProperty = new Property( CLBConstants.POLARITY.POSITIVE, {
+      validValues: CLBConstants.POLARITY.VALUES,
       tandem: tandem.createTandem( 'polarityProperty' ),
       phetioType: PropertyIO( StringIO )
     } );

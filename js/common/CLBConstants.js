@@ -17,6 +17,8 @@ define( function( require ) {
   var RangeWithValue = require( 'DOT/RangeWithValue' );
   var Vector3 = require( 'DOT/Vector3' );
 
+  var NEGATIVE = 'NEGATIVE';
+  var POSITIVE = 'POSITIVE';
   var CLBConstants = {
 
     //----------------------------------------------------------------------------
@@ -31,9 +33,12 @@ define( function( require ) {
     // battery
     BATTERY_VOLTAGE_RANGE: new RangeWithValue( -1.5, 1.5, 0 ), // Volts
     BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD: 0.15, // Volts
+
+    // TODO: Convert to enum
     POLARITY: {
-      POSITIVE: 'POSITIVE',
-      NEGATIVE: 'NEGATIVE'
+      POSITIVE: POSITIVE,
+      NEGATIVE: NEGATIVE,
+      VALUES: [ POSITIVE, NEGATIVE ]
     },
 
     // capacitor

@@ -59,7 +59,8 @@ define( function( require ) {
     // @public {NumberProperty} - Property tracking the signed charge value on the upper plate
     this.disconnectedPlateChargeProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'disconnectedPlateChargeProperty' ),
-      units: 'coulombs'
+      units: 'coulombs',
+      phetioReadOnly: true
     } );
 
     // @protected {number}
