@@ -1,7 +1,7 @@
 // Copyright 2015-2017, University of Colorado Boulder
 
 /**
- * Tool box that contains a voltmeter.  The user can drag the voltmeter out of the toolbox for
+ * Toolbox that contains a voltmeter.  The user can drag the voltmeter out of the toolbox for
  * use.
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
@@ -70,7 +70,7 @@ define( function( require ) {
       voltmeterIconNode.visible = !voltmeterVisible;
     } );
 
-    // track user control of the voltmeter and place the voltmeter back in the tool box if bounds collide
+    // track user control of the voltmeter and place the voltmeter back in the toolbox if bounds collide
     // panel exists for lifetime of sim, no need for dispose
     isDraggedProperty.link( function( isDragged ) {
       if ( !isDragged && self.bounds.intersectsBounds( voltmeterNode.bodyNode.bounds.eroded( 40 ) ) ) {
