@@ -15,7 +15,7 @@ define( function( require ) {
   // modules
   var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CheckBox = require( 'SUN/CheckBox' );
+  var Checkbox = require( 'SUN/Checkbox' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
@@ -81,7 +81,7 @@ define( function( require ) {
     meterNodes.children = [ capacitanceMeterNode, plateChargeMeterNode, storedEnergyMeterNode ];
 
     // create checkboxes for each meter node
-    var checkBoxNodes = new Node();
+    var checkboxNodes = new Node();
 
     // Settings for title strings
     var fontOptions = {
@@ -91,40 +91,40 @@ define( function( require ) {
     };
 
     var capacitanceLabel = new Text( capacitanceString, fontOptions );
-    var capacitanceCheckBox = new CheckBox( capacitanceLabel, model.capacitanceMeterVisibleProperty, {
-      tandem: tandem.createTandem( 'capacitanceCheckBox' )
+    var capacitanceCheckbox = new Checkbox( capacitanceLabel, model.capacitanceMeterVisibleProperty, {
+      tandem: tandem.createTandem( 'capacitanceCheckbox' )
     } );
 
     var topPlateChargeLabel = new Text( topPlateChargeString, fontOptions );
-    var topPlateChargeCheckBox = new CheckBox( topPlateChargeLabel, model.topPlateChargeMeterVisibleProperty, {
-      tandem: tandem.createTandem( 'topPlateChargeCheckBox' )
+    var topPlateChargeCheckbox = new Checkbox( topPlateChargeLabel, model.topPlateChargeMeterVisibleProperty, {
+      tandem: tandem.createTandem( 'topPlateChargeCheckbox' )
     } );
 
     var storedEnergyLabel = new Text( storedEnergyString, fontOptions );
-    var storedEnergyCheckBox = new CheckBox( storedEnergyLabel, model.storedEnergyMeterVisibleProperty, {
-      tandem: tandem.createTandem( 'storedEnergyCheckBox' )
+    var storedEnergyCheckbox = new Checkbox( storedEnergyLabel, model.storedEnergyMeterVisibleProperty, {
+      tandem: tandem.createTandem( 'storedEnergyCheckbox' )
     } );
 
-    checkBoxNodes.children = [ capacitanceCheckBox, topPlateChargeCheckBox, storedEnergyCheckBox ];
+    checkboxNodes.children = [ capacitanceCheckbox, topPlateChargeCheckbox, storedEnergyCheckbox ];
 
-    parentNode.children = [ checkBoxNodes, meterNodes ];
+    parentNode.children = [ checkboxNodes, meterNodes ];
 
     // layout
     // check boxes aligned vertically, centered left
-    capacitanceCheckBox.translation = new Vector2( 0, 0 );
-    topPlateChargeCheckBox.translation = new Vector2( 0, CHECKBOX_VERTICAL_SPACING );
-    storedEnergyCheckBox.translation = new Vector2( 0, 2 * CHECKBOX_VERTICAL_SPACING );
+    capacitanceCheckbox.translation = new Vector2( 0, 0 );
+    topPlateChargeCheckbox.translation = new Vector2( 0, CHECKBOX_VERTICAL_SPACING );
+    storedEnergyCheckbox.translation = new Vector2( 0, 2 * CHECKBOX_VERTICAL_SPACING );
 
     // The BarMeterNodes have a common x-coordinate
     var x = 0.44 * minWidth;
 
-    var y = capacitanceCheckBox.centerY;
+    var y = capacitanceCheckbox.centerY;
     capacitanceMeterNode.axisLine.translation = new Vector2( x, y );
 
-    y = topPlateChargeCheckBox.centerY;
+    y = topPlateChargeCheckbox.centerY;
     plateChargeMeterNode.axisLine.translation = new Vector2( x, y );
 
-    y = storedEnergyCheckBox.centerY;
+    y = storedEnergyCheckbox.centerY;
     storedEnergyMeterNode.axisLine.translation = new Vector2( x, y );
 
     Panel.call( this, parentNode, {

@@ -18,7 +18,7 @@ define( function( require ) {
   var Panel = require( 'SUN/Panel' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var VerticalCheckBoxGroup = require( 'SUN/VerticalCheckBoxGroup' );
+  var VerticalCheckboxGroup = require( 'SUN/VerticalCheckboxGroup' );
 
   // constants
   var CHECK_BOX_FONT = new PhetFont( 16 );
@@ -44,25 +44,25 @@ define( function( require ) {
       maxTextWidth: 250
     }, options );
 
-    var checkBoxItems = [ {
+    var checkboxItems = [ {
       string: plateChargesString,
       property: model.plateChargesVisibleProperty,
-      tandem: tandem.createTandem( 'plateChargesCheckBox' )
+      tandem: tandem.createTandem( 'plateChargesCheckbox' )
     }, {
       string: options.numberOfBarGraphs > 1 ? barGraphsString : barGraphString,
       property: model.barGraphsVisibleProperty,
-      tandem: tandem.createTandem( 'barGraphsCheckBox' )
+      tandem: tandem.createTandem( 'barGraphsCheckbox' )
     }, {
       string: electricFieldString,
       property: model.electricFieldVisibleProperty,
-      tandem: tandem.createTandem( 'electricFieldCheckBox' )
+      tandem: tandem.createTandem( 'electricFieldCheckbox' )
     }, {
       string: currentDirectionString,
       property: model.currentVisibleProperty,
-      tandem: tandem.createTandem( 'currentCheckBox' )
+      tandem: tandem.createTandem( 'currentCheckbox' )
     } ];
 
-    var viewCheckBoxItems = checkBoxItems.map( function( item ) {
+    var viewCheckboxItems = checkboxItems.map( function( item ) {
       return {
         content: new Text( item.string, {
           font: CHECK_BOX_FONT,
@@ -74,13 +74,13 @@ define( function( require ) {
       };
     } );
 
-    var verticalCheckBoxGroup = new VerticalCheckBoxGroup( viewCheckBoxItems, {
+    var verticalCheckboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
 
       // The box is as wide as the largest item is tall
-      boxWidth: viewCheckBoxItems[ 0 ].content.height
+      boxWidth: viewCheckboxItems[ 0 ].content.height
     } );
 
-    Panel.call( this, verticalCheckBoxGroup, {
+    Panel.call( this, verticalCheckboxGroup, {
       xMargin: 10,
       yMargin: 10,
       fill: CLBConstants.METER_PANEL_FILL,
