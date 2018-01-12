@@ -145,7 +145,6 @@ define( function( require ) {
       }
     } );
     self.addInputListener( this.movableDragHandler );
-
   }
 
   capacitorLabBasics.register( 'VoltmeterBodyNode', VoltmeterBodyNode );

@@ -98,7 +98,6 @@ define( function( require ) {
     // statics for dimensions of the voltmeter body image
     VOLTMETER_BODY_HEIGHT: voltmeterBodyImage.height,
     VOLTMETER_BODY_WIDTH: voltmeterBodyImage.width
-
   } );
 
   /**
@@ -186,7 +185,6 @@ define( function( require ) {
     this.children = [ voltmeterImageNode, labelText, readoutRectangle, blackProbeImage, redProbeImage, redWirePath,
       blackWirePath
     ];
-
   }
 
   capacitorLabBasics.register( 'VoltmeterIconNode', VoltmeterIconNode );

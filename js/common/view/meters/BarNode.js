@@ -24,7 +24,6 @@ define( function( require ) {
   var BAR_STROKE_COLOR = 'black';
   var BAR_LINE_WIDTH = 1;
 
-
   /**
    * The bar which indicates the magnitude of the value being read by the meter. Origin is
    * at upper left of track.
@@ -50,7 +49,6 @@ define( function( require ) {
     } );
 
     this.update();
-
   }
 
   capacitorLabBasics.register( 'BarNode', BarNode );

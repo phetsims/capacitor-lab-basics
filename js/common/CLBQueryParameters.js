@@ -24,7 +24,6 @@ define( function( require ) {
     showDebugAreas: {
       type: 'flag'
     }
-
   } );
 
   capacitorLabBasics.register( 'CLBQueryParameters', CLBQueryParameters );

@@ -62,7 +62,6 @@ define( function( require ) {
     bodyNode.bodyLocationProperty.link( function( location ) {
       self.update();
     } );
-
   }
 
   capacitorLabBasics.register( 'ProbeWireNode', ProbeWireNode );
@@ -82,10 +81,7 @@ define( function( require ) {
       var ctrl1 = new Vector2( pBody.x + this.bodyControlPointOffset.x, pBody.y + this.bodyControlPointOffset.y );
       var ctrl2 = new Vector2( pProbe.x + this.probeControlPointOffset.x, pProbe.y + this.probeControlPointOffset.y );
 
-      var newWireShape = new Shape()
-        .moveToPoint( pBody )
-        .cubicCurveToPoint( ctrl1, ctrl2, pProbe );
-      this.setShape( newWireShape );
+      this.setShape( new Shape().moveToPoint( pBody ).cubicCurveToPoint( ctrl1, ctrl2, pProbe ) );
     },
 
     /**
