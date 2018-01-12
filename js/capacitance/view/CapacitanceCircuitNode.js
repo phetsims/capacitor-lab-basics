@@ -27,6 +27,7 @@ define( function( require ) {
     var self = this;
 
     // current indicator observers
+    // TODO: use multilink to cover both links?
     model.circuit.circuitConnectionProperty.link( function( circuitConnection ) {
       self.updateCurrentVisibility( circuitConnection, model.currentVisibleProperty.value );
     } );
@@ -44,7 +45,7 @@ define( function( require ) {
      * Updates the visibility of the current indicators.
      * @public
      *
-     * @param {CircuitState} circuitConnection - OPEN_CIRCUIT || BATTERY_CONNECTED
+     * @param {CircuitState} circuitConnection - OPEN_CIRCUIT | BATTERY_CONNECTED
      * @param {boolean} currentIndicatorsVisible
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
@@ -53,7 +54,5 @@ define( function( require ) {
       this.batteryTopCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
       this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
     }
-
   } );
 } );
-

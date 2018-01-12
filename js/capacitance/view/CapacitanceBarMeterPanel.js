@@ -40,7 +40,6 @@ define( function( require ) {
   function CapacitanceBarMeterPanel( model, minWidth, tandem ) {
 
     var self = this;
-    var parentNode = new Node();
 
     var capacitanceMeterNode = new BarMeterNode(
       model.capacitanceMeter,
@@ -59,12 +58,14 @@ define( function( require ) {
     };
     var capacitanceTitle = new Text( capacitanceString, fontOptions );
 
-    parentNode.children = [ capacitanceMeterNode, capacitanceTitle ];
-
     // Position the left edge (x) and vertical center (y) of BarMeterNode
     capacitanceMeterNode.translation = new Vector2( 0.45 * minWidth, capacitanceTitle.centerY );
 
-    Panel.call( this, parentNode, {
+    var content = new Node( {
+      children: [ capacitanceMeterNode, capacitanceTitle ]
+    } );
+
+    Panel.call( this, content, {
       minWidth: minWidth,
       align: 'left',
       fill: CLBConstants.METER_PANEL_FILL,
@@ -83,5 +84,4 @@ define( function( require ) {
   capacitorLabBasics.register( 'CapacitanceBarMeterPanel', CapacitanceBarMeterPanel );
 
   return inherit( Panel, CapacitanceBarMeterPanel );
-
 } );

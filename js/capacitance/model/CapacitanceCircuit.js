@@ -44,23 +44,26 @@ define( function( require ) {
   return inherit( ParallelCircuit, CapacitanceCircuit, {
 
     /**
-     * Updates the plate voltage, depending on whether the battery is connected. Null check required because superclass
-     * calls this method from its constructor.
+     * Updates the plate voltage, depending on whether the battery is connected.
      * @public
      */
     updatePlateVoltages: function() {
+
+      // Undefined check required because superclass calls this method from its constructor.
       if ( this.circuitConnectionProperty !== undefined ) {
+
         // if the battery is connected, the voltage is equal to the battery voltage
         if ( this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
           this.capacitor.plateVoltageProperty.value = this.battery.voltageProperty.value;
         }
-        // otherwise, the voltage can be found by V=Q/C
+
         else {
+
+          // otherwise, the voltage can be found by V=Q/C
           this.capacitor.plateVoltageProperty.value =
             this.disconnectedPlateChargeProperty.value / this.capacitor.capacitanceProperty.value;
         }
       }
     }
-
   } );
 } );

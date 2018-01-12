@@ -34,7 +34,7 @@ define( function( require ) {
     } );
 
     // @public {CapacitanceCircuit}
-    this.circuit = new CapacitanceCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
+    this.circuit = new CapacitanceCircuit( circuitConfig, tandem.createTandem( 'circuit' ) );
 
     CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
 

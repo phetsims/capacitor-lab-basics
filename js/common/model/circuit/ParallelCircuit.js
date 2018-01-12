@@ -144,12 +144,8 @@ define( function( require ) {
     // These arrays are hashed to a location key for efficient connectivity checking.
     // @protected {Object} - Maps {CircuitLocation} => {Array.<Wire>}
     this.wireGroup = {};
-    [ CircuitLocation.BATTERY_TOP,
-      CircuitLocation.BATTERY_BOTTOM,
-      CircuitLocation.LIGHT_BULB_TOP,
-      CircuitLocation.LIGHT_BULB_BOTTOM,
-      CircuitLocation.CAPACITOR_TOP,
-      CircuitLocation.CAPACITOR_BOTTOM ].forEach( function( location ) {
+    var locations = [ CircuitLocation.BATTERY_TOP, CircuitLocation.BATTERY_BOTTOM, CircuitLocation.LIGHT_BULB_TOP, CircuitLocation.LIGHT_BULB_BOTTOM, CircuitLocation.CAPACITOR_TOP, CircuitLocation.CAPACITOR_BOTTOM ];
+    locations.forEach( function( location ) {
       self.wireGroup[ location ] = selectWires( location );
     } );
 
@@ -157,6 +153,7 @@ define( function( require ) {
     this.topWires = this.wireGroup[ CircuitLocation.BATTERY_TOP ]
       .concat( this.wireGroup[ CircuitLocation.LIGHT_BULB_TOP ] )
       .concat( this.wireGroup[ CircuitLocation.CAPACITOR_TOP ] );
+
     // @public {Array.<Wire>}
     this.bottomWires = this.wireGroup[ CircuitLocation.BATTERY_BOTTOM ]
       .concat( this.wireGroup[ CircuitLocation.LIGHT_BULB_BOTTOM ] )
@@ -164,9 +161,7 @@ define( function( require ) {
 
     // Add the switch wires to the capacitor wires arrays
     this.circuitSwitches.forEach( function( circuitSwitch ) {
-
       var wire = circuitSwitch.switchWire;
-
       if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_TOP ) {
         self.wireGroup[ CircuitLocation.CAPACITOR_TOP ].push( wire );
       }
@@ -188,13 +183,13 @@ define( function( require ) {
 
     // Update all segments, disconnected plate charge, and plate voltages when the connection property changes
     this.circuitConnectionProperty.lazyLink( function( circuitConnection ) {
+
       // When disconnecting the battery, set the disconnected plate charge to whatever the total plate charge was with
       // the battery connected.  Need to do this before changing the plate voltages property.
       if ( circuitConnection !== CircuitState.BATTERY_CONNECTED ) {
         self.disconnectedPlateChargeProperty.set( self.getTotalCharge() );
       }
       self.updatePlateVoltages();
-
       updateSegments();
     } );
 
@@ -325,7 +320,7 @@ define( function( require ) {
       var vPlus = this.getVoltageAt( positiveShape );
       var vMinus = this.getVoltageAt( negativeShape );
 
-      return ( vPlus === null || vMinus === null ) ? null : vPlus - vMinus;
+      return ( vPlus === null || vMinus === null ) ? null : ( vPlus - vMinus );
     },
 
     /**

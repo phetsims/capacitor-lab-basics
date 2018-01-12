@@ -33,12 +33,10 @@ define( function( require ) {
    */
   function CapacitanceScreen( switchUsedProperty, tandem ) {
 
-    var icon = new Image( capacitorIconImage );
-
     var options = {
       name: screenCapacitanceString,
       backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
-      homeScreenIcon: icon,
+      homeScreenIcon: new Image( capacitorIconImage ),
       tandem: tandem
     };
 
