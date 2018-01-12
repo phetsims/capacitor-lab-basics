@@ -32,7 +32,7 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
-  var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/circuit/ParallelCircuit' );
+  var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/ParallelCircuit' );
   var Vector3 = require( 'DOT/Vector3' );
 
   // During exponential voltage drop, circuit voltage crosses this threshold,
