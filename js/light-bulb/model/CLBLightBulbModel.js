@@ -81,19 +81,13 @@ define( function( require ) {
     var circuit = this.circuit;
 
     // @public {BarMeter}
-    this.capacitanceMeter = new BarMeter( this.circuit, this.capacitanceMeterVisibleProperty,
-      circuit.capacitor.capacitanceProperty,
-      tandem.createTandem( 'capacitanceMeter' ) );
+    this.capacitanceMeter = new BarMeter( this.capacitanceMeterVisibleProperty, circuit.capacitor.capacitanceProperty );
 
     // @public {BarMeter}
-    this.plateChargeMeter = new BarMeter( this.circuit, this.topPlateChargeMeterVisibleProperty,
-      circuit.capacitor.plateChargeProperty,
-      tandem.createTandem( 'plateChargeMeter' ) );
+    this.plateChargeMeter = new BarMeter( this.topPlateChargeMeterVisibleProperty, circuit.capacitor.plateChargeProperty );
 
     // @public {BarMeter}
-    this.storedEnergyMeter = new BarMeter( this.circuit, this.storedEnergyMeterVisibleProperty,
-      circuit.capacitor.storedEnergyProperty,
-      tandem.createTandem( 'storedEnergyMeter' ) );
+    this.storedEnergyMeter = new BarMeter( this.storedEnergyMeterVisibleProperty, circuit.capacitor.storedEnergyProperty );
   }
 
   capacitorLabBasics.register( 'CLBLightBulbModel', CLBLightBulbModel );

@@ -13,19 +13,15 @@ define( function( require ) {
   // modules
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/ParallelCircuit' );
   var Property = require( 'AXON/Property' );
 
   /**
    * @constructor
    *
-   * @param {ParallelCircuit} circuit
    * @param {Property.<boolean>} visibleProperty - model property that determines if the entire meter is visible.
    * @param {Property.<number>} valueProperty - property containing model quantity to display
-   * @param {Tandem} tandem
    */
-  function BarMeter( circuit, visibleProperty, valueProperty, tandem ) {
-    assert && assert( circuit instanceof ParallelCircuit );
+  function BarMeter( visibleProperty, valueProperty ) {
     assert && assert( visibleProperty instanceof Property );
     assert && assert( valueProperty instanceof Property );
 
@@ -47,6 +43,5 @@ define( function( require ) {
     reset: function() {
       this.visibleProperty.reset();
     }
-
   } );
 } );

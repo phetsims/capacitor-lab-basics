@@ -39,12 +39,7 @@ define( function( require ) {
     CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
 
     // @public {BarMeter}
-    this.capacitanceMeter = new BarMeter(
-      this.circuit,
-      this.capacitanceMeterVisibleProperty,
-      this.circuit.capacitor.capacitanceProperty,
-      tandem.createTandem( 'capacitanceMeter' )
-    );
+    this.capacitanceMeter = new BarMeter( this.capacitanceMeterVisibleProperty, this.circuit.capacitor.capacitanceProperty );
   }
 
   capacitorLabBasics.register( 'CapacitanceModel', CapacitanceModel );
