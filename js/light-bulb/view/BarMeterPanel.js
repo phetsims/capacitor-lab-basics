@@ -1,7 +1,7 @@
 // Copyright 2015-2017, University of Colorado Boulder
 
 /**
- * Panel which holds the bar meters and associated check boxes which control bar meter visibility.
+ * Panel which holds the bar meters and associated checkboxes which control bar meter visibility.
  *
  * This panel uses several layout boxes to achieve the desired alignment.  The meter value nodes are aligned to the
  * right while the bar meters are aligned to the left.  The checkboxes are also aligned to the left.
@@ -49,7 +49,7 @@ define( function( require ) {
 
     var self = this;
 
-    var parentNode = new Node(); // node that will contain all check boxes and bar meter nodes
+    var parentNode = new Node(); // node that will contain all checkboxes and bar meter nodes
 
     // create the bar meter nodes with their text values.
     var meterNodes = new Node();
@@ -110,7 +110,7 @@ define( function( require ) {
     parentNode.children = [ checkboxNodes, meterNodes ];
 
     // layout
-    // check boxes aligned vertically, centered left
+    // checkboxes aligned vertically, centered left
     capacitanceCheckbox.translation = new Vector2( 0, 0 );
     topPlateChargeCheckbox.translation = new Vector2( 0, CHECKBOX_VERTICAL_SPACING );
     storedEnergyCheckbox.translation = new Vector2( 0, 2 * CHECKBOX_VERTICAL_SPACING );

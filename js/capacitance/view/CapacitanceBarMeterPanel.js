@@ -1,7 +1,7 @@
 // Copyright 2015-2017, University of Colorado Boulder
 
 /**
- * Panel which holds the bar meter and check box for visibility of the Capacitance Graph.
+ * Panel which holds the bar meter and checkbox for visibility of the Capacitance Graph.
  *
  * This panel uses several layout boxes to achieve the desired alignment.  The meter value nodes are aligned to the
  * right while the bar meters are aligned to the left.  The checkboxes are also aligned to the left.
