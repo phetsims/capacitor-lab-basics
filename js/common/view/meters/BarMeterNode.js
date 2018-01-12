@@ -73,11 +73,11 @@ define( function( require ) {
     this.barNode = new BarNode( barColor, meter.valueProperty.get(), this.maxValue );
 
     // @public {Text} - value with hundredths precision and units, set in setValue()
-    this.valueTextNode = new Text( '', { // TODO: rename to match tandem, I'm unsure whether to go with node suffix or not
+    this.valueTextNode = new Text( '', {
       font: VALUE_FONT,
       fill: VALUE_COLOR,
       maxWidth: VALUE_MAX_WIDTH,
-      tandem: tandem.createTandem( 'valueText' )
+      tandem: tandem.createTandem( 'valueTextNode' )
     } );
 
     // @public {ArrowNode} - arrow node used to indicate when the value has gone beyond the scale of this meter

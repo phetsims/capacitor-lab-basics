@@ -49,8 +49,13 @@ define( function( require ) {
     var barMeterPanel = new BarMeterPanel( model, barMeterPanelWidth, tandem.createTandem( 'barMeterPanel' ) );
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty,
       tandem.createTandem( 'voltmeterNode' ) );
-    var voltmeterToolbox = new VoltmeterToolboxPanel( voltmeterNode, this.modelViewTransform, // TODO: is B supposed to be capitalized?
-      model.voltmeter.isDraggedProperty, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterToolbox' ) );
+    var voltmeterToolbox = new VoltmeterToolboxPanel(
+      voltmeterNode,
+      this.modelViewTransform,
+      model.voltmeter.isDraggedProperty,
+      model.voltmeterVisibleProperty,
+      tandem.createTandem( 'voltmeterToolbox' )
+    );
 
     // View control panel and voltmeter panel
     var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {

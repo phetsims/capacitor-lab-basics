@@ -75,7 +75,7 @@ define( function( require ) {
       switchSegment = new WireSegment(
         leftCorner,
         switchConnectionPoint.plus( separationOffset ),
-        tandem.createTandem( 'batteryTopToSwitchSegment' )
+        tandem.createTandem( 'batteryTopToSwitchWireSegment' )
       );
     }
     else {
@@ -84,9 +84,8 @@ define( function( require ) {
         leftCorner,
         switchConnectionPoint.plus( separationOffset ),
 
-        // TODO: should this include the text "wire segment" instead of just segment?
-        // TODO: upon reflection, hopefully these tandems will be deleted in the stable PhET-iO design
-        tandem.createTandem( 'batteryBottomToSwitchSegment' )
+        // TODO: Hopefully these tandems will be deleted in the stable PhET-iO design
+        tandem.createTandem( 'batteryBottomToSwitchWireSegment' )
       );
     }
 

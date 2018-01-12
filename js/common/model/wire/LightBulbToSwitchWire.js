@@ -59,7 +59,7 @@ define( function( require ) {
     }
     segments.push( verticalSegment );
 
-    // connect lightbulb to switch connection point.
+    // connect light bulb to switch connection point.
     var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.LIGHT_BULB_CONNECTED );
 
     var separationOffset = new Vector3( 0.0006, 0, 0 );
