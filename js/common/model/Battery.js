@@ -59,7 +59,8 @@ define( function( require ) {
     // @public {Property.<number>}
     this.voltageProperty = new NumberProperty( voltage, {
       tandem: tandem.createTandem( 'voltageProperty' ),
-      units: 'volts'
+      units: 'volts',
+      range: CLBConstants.BATTERY_VOLTAGE_RANGE
     } );
 
     // Value type: enumeration (string)
