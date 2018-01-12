@@ -158,7 +158,6 @@ define( function( require ) {
     this.bottomCircuitSwitch.angleProperty.link( function( angle ) {
       self.topCircuitSwitch.angleProperty.set( -angle );
     } );
-
   }
 
   capacitorLabBasics.register( 'Capacitor', Capacitor );
@@ -331,6 +330,5 @@ define( function( require ) {
       this.plateSeparationProperty.reset();
       this.plateVoltageProperty.reset();
     }
-
   } );
 } );

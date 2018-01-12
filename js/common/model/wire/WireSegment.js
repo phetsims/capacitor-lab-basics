@@ -78,7 +78,7 @@ define( function( require ) {
      * @param {Capacitor|LightBulb} component
      * @param {Vector3} endPoint
      * @param {Tandem} tandem
-     * @returns {WireSegment}
+     * @returns {ComponentBottomWireSegment}
      */
     createComponentBottomWireSegment: function( component, endPoint, tandem ) {
       return new ComponentBottomWireSegment( component, endPoint, tandem );

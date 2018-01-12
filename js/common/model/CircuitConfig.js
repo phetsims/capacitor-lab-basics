@@ -25,11 +25,12 @@ define( function( require ) {
   var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
 
   var CircuitConfig = {
+
     /**
      * Returns the default circuit config, overridden with any options.
      * @public
      *
-     * @param {Object}
+     * @param {Object} [options]
      * @returns {Object}
      */
     create: function( options ) {
@@ -56,5 +57,4 @@ define( function( require ) {
   capacitorLabBasics.register( 'CircuitConfig', CircuitConfig );
 
   return CircuitConfig;
-
 } );

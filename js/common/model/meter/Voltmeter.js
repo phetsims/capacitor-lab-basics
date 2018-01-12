@@ -126,7 +126,7 @@ define( function( require ) {
      * Compute voltage reading for meter, called when many different properties change
      * Null values correspond to a ? on the voltmeter.
      *
-     * @returns {number} - voltage difference between probes
+     * @returns {number|null} - voltage difference between probes
      */
     var computeValue = function() {
 

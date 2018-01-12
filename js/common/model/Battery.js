@@ -90,7 +90,6 @@ define( function( require ) {
     this.voltageProperty.link( function() {
       self.polarityProperty.set( self.getPolarity( self.voltageProperty.value ) );
     } );
-
   }
 
   capacitorLabBasics.register( 'Battery', Battery );
@@ -145,7 +144,7 @@ define( function( require ) {
      * This offset depends on the polarity.
      * @public
      *
-     * @returns {Dimension2}
+     * @returns {number}
      */
     getTopTerminalYOffset: function() {
       if ( this.polarityProperty.value === CLBConstants.POLARITY.POSITIVE ) {

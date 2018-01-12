@@ -88,7 +88,7 @@ define( function( require ) {
      * @param {LightBulb} lightBulb
      * @param {CircuitSwitch} circuitSwitch
      * @param {Tandem} tandem
-     * @returns {Wire}
+     * @returns {LightBulbToSwitchWire}
      */
     createLightBulbToSwitchWireBottom: function( config, lightBulb, circuitSwitch, tandem ) {
       return new LightBulbToSwitchWire( CircuitLocation.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch, tandem );
@@ -102,7 +102,7 @@ define( function( require ) {
      * @param {LightBulb} lightBulb
      * @param {CircuitSwitch} circuitSwitch
      * @param {Tandem} tandem
-     * @returns {Wire}
+     * @returns {LightBulbToSwitchWire}
      */
     createLightBulbToSwitchWireTop: function( config, lightBulb, circuitSwitch, tandem ) {
       return new LightBulbToSwitchWire( CircuitLocation.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch, tandem );

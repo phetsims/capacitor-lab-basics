@@ -74,5 +74,4 @@ define( function( require ) {
       return shape;
     }
   } );
-
 } );

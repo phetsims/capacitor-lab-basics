@@ -106,11 +106,10 @@ define( function( require ) {
      * @param {Battery} battery
      * @param {CircuitSwitch} circuitSwitch
      * @param {Tandem} tandem
-     * @returns {Wire}
+     * @returns {BatteryToSwitchWire}
      */
     createBatteryToSwitchWireBottom: function( config, battery, circuitSwitch, tandem ) {
-      return new BatteryToSwitchWire( CircuitLocation.BATTERY_BOTTOM, config, battery, circuitSwitch,
-        tandem );
+      return new BatteryToSwitchWire( CircuitLocation.BATTERY_BOTTOM, config, battery, circuitSwitch, tandem );
     },
 
     /**
@@ -121,11 +120,10 @@ define( function( require ) {
      * @param {Battery} battery
      * @param {CircuitSwitch} circuitSwitch
      * @param {Tandem} tandem
-     * @returns {Wire}
+     * @returns {BatteryToSwitchWire}
      */
     createBatteryToSwitchWireTop: function( config, battery, circuitSwitch, tandem ) {
-      return new BatteryToSwitchWire( CircuitLocation.BATTERY_TOP, config, battery, circuitSwitch,
-        tandem );
+      return new BatteryToSwitchWire( CircuitLocation.BATTERY_TOP, config, battery, circuitSwitch, tandem );
     }
   } );
 } );

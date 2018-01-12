@@ -47,7 +47,7 @@ define( function( require ) {
      * Does the base shape intersect the top shape of the bulb base?
      * @public
      *
-     * @param {Vector3} point
+     * @param {Shape} shape
      * @returns {boolean}
      */
     intersectsBulbTopBase: function( shape ) {
@@ -60,7 +60,7 @@ define( function( require ) {
      * Does the base shape intersect the bottom shape of the bulb base?
      * @public
      *
-     * @param {Vector3} point
+     * @param {Shape} shape
      * @returns {boolean}
      */
     intersectsBulbBottomBase: function( shape ) {

@@ -34,9 +34,7 @@ define( function( require ) {
     this.shapeCreator = new WireShapeCreator( this, modelViewTransform ); // @private
 
     // @public
-    this.shapeProperty = new Property( this.shapeCreator.createWireShape(), {
-      // Wire is not currently instrumented
-    } );
+    this.shapeProperty = new Property( this.shapeCreator.createWireShape() );
 
     var self = this;
 

@@ -60,7 +60,7 @@ define( function( require ) {
      * @param {Capacitor} capacitor
      * @param {CircuitSwitch} circuitSwitch
      * @param {Tandem} tandem
-     * @returns CapacitorToSwitchWire
+     * @returns {CapacitorToSwitchWire}
      */
     createCapacitorToSwitchWireTop: function( config, capacitor, circuitSwitch, tandem ) {
       return new CapacitorToSwitchWire( CircuitLocation.CAPACITOR_TOP, config, capacitor, circuitSwitch, tandem );
@@ -74,7 +74,7 @@ define( function( require ) {
      * @param {Capacitor} capacitor
      * @param {CircuitSwitch} circuitSwitch
      * @param {Tandem} tandem
-     * @returns CapacitorToSwitchWire
+     * @returns {CapacitorToSwitchWire}
      */
     createCapacitorToSwitchWireBottom: function( config, capacitor, circuitSwitch, tandem ) {
       return new CapacitorToSwitchWire( CircuitLocation.CAPACITOR_BOTTOM, config, capacitor, circuitSwitch, tandem );
