@@ -62,6 +62,7 @@ define( function( require ) {
 
     // @public {Property.<number>} - Angle of the switch
     this.angleProperty = new NumberProperty( 0, {
+      // TODO: Add range
       tandem: tandem.createTandem( 'angleProperty' ),
       units: 'radians'
     } );
