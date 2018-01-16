@@ -1,11 +1,11 @@
 {
-  "comment": "# capacitor-lab-basics 1.6.0-dev.2 Thu Jan 11 2018 11:25:19 GMT-0700 (MST)",
+  "comment": "# capacitor-lab-basics 1.6.0-dev.3 Tue Jan 16 2018 16:34:23 GMT-0700 (MST)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "master"
   },
   "axon": {
-    "sha": "104f3dcfcb3741a7444b8a31bc4605692801ac25",
+    "sha": "a8c2e77044151202688d0837c9315ed95eb4f52a",
     "branch": "master"
   },
   "brand": {
@@ -13,12 +13,12 @@
     "branch": "master"
   },
   "capacitor-lab-basics": {
-    "sha": "ceb508ad4807b0d1f8e2c929b07fc05f5bbaff79",
+    "sha": "ed692a6a79ab52118c0ec7635d003f0e52644528",
     "branch": "master"
   },
   "chipper": {
-    "sha": "c52ae6cbd6ef2901263a6595fe93c8841e3dd234",
-    "branch": "2.0"
+    "sha": "8465a264b48e603486e46dc63b7d003dca552ad3",
+    "branch": "master"
   },
   "dot": {
     "sha": "ee4d0e25e4e21f798e94275623885a09f50e1831",
@@ -37,11 +37,11 @@
     "branch": "master"
   },
   "phet-io": {
-    "sha": "e31dae9ab43d89d85e8cd6fd61ccd931a994371d",
+    "sha": "2fa3d2d9f77424360dc01023e33c004be66ddf82",
     "branch": "master"
   },
   "phet-io-website": {
-    "sha": "7440f48bc119da7b537d01fd7c7319249b79bb0c",
+    "sha": "01a51846d9a9cbcd7d331b61ff875b2909be1684",
     "branch": "master"
   },
   "phet-io-wrapper-classroom-activity": {
@@ -49,16 +49,16 @@
     "branch": "master"
   },
   "phet-io-wrapper-lab-book": {
-    "sha": "d128352deaaa8f7455cd4ce801251fc66516f7a5",
+    "sha": "ebf7c7dc298be156c107f44ab4f7b8aa0cc95ba2",
     "branch": "master"
   },
   "phet-io-wrapper-sonification": {
-    "sha": "fe4c6314b43ab67d62b90994353ba34a3236d45b",
+    "sha": "a8ed79cbc1e5dd4458394b5546ea189185b3ce7c",
     "branch": "master"
   },
   "phet-io-wrappers": {
-    "sha": "f844c39e0fa5006c03772123bbb6b3e862e3a3d8",
-    "branch": "chipper2.0"
+    "sha": "7b8b1c04a5cb0cfaa26df758e2e971cd5a385965",
+    "branch": "master"
   },
   "phetcommon": {
     "sha": "85d7262630dc9daca6d79e3453dde266dfa7c69b",
@@ -69,11 +69,11 @@
     "branch": "master"
   },
   "scenery": {
-    "sha": "f72ac66f68f02b16628dc93c8d93b1f59f3d20d7",
+    "sha": "972ca6d79a0e853d0fda62b3f49a0ccedc59c03c",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "7f2ddfbf9e8e30e7cb4708ae81124277d0e27000",
+    "sha": "3ee0858182545169c3d236c86712efd5295b8c80",
     "branch": "master"
   },
   "sherpa": {
@@ -81,11 +81,11 @@
     "branch": "master"
   },
   "sun": {
-    "sha": "97f5c0aedf809757a03e5e5113adbb2bc1cb7113",
+    "sha": "720214f9f3cfe94907c931824ae6a6e08bef63ea",
     "branch": "master"
   },
   "tandem": {
-    "sha": "b77a8102d75b942892447d30cec963fb7585972c",
+    "sha": "2d911666efb73d2c7ed9cbe4a732b0602b299faa",
     "branch": "master"
   },
   "twixt": {
