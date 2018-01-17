@@ -92,7 +92,6 @@ define( function( require ) {
     // @public {Property.<number>} - zero until it's connected into a circuit
     // TODO: shouldn't this be derived from the battery voltage and hence a derived property?
     this.plateVoltageProperty = new NumberProperty( 0, {
-      range: CLBConstants.BATTERY_VOLTAGE_RANGE,
       tandem: tandem.createTandem( 'plateVoltageProperty' ),
       units: 'volts',
       phetioReadOnly: true
