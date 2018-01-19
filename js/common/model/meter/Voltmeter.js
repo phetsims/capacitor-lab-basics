@@ -21,8 +21,10 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var NullableIO = require( 'ifphetio!PHET_IO/types/NullableIO' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/ParallelCircuit' );
+  var ProbeTarget = require( 'CAPACITOR_LAB_BASICS/common/model/ProbeTarget' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
+  var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
   var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
@@ -102,6 +104,19 @@ define( function( require ) {
       phetioType: PropertyIO( NullableIO( NumberIO ) )
     } );
 
+    // TODO: factor out shared code for positive/negative probe
+    // @public {Property.<ProbeTarget>} - What the positive probe is currently touching. Updated from within computeValue below.
+    this.positiveProbeTargetProperty = new Property( ProbeTarget.NONE, {
+      tandem: tandem.createTandem( 'positiveProbeTarget' ),
+      phetioType: PropertyIO( StringIO )
+    } );
+
+    // @public {Property.<ProbeTarget>} - What the negative probe is currently touching. Updated from within computeValue below.
+    this.negativeProbeTargetProperty = new Property( ProbeTarget.NONE, {
+      tandem: tandem.createTandem( 'negativeProbeTarget' ),
+      phetioType: PropertyIO( StringIO )
+    } );
+
     var self = this;
 
     // @public {VoltmeterShapeCreator} (read-only)
@@ -122,6 +137,69 @@ define( function( require ) {
                self.circuit.probeContactsComponent( probe, CircuitLocation.BATTERY_BOTTOM, true ) );
     };
 
+    var getProbeTarget = function( probe ) {
+      /* TODO use these to call
+        var positiveProbe = self.shapeCreator.getPositiveProbeTipShape();
+        var negativeProbe = self.shapeCreator.getNegativeProbeTipShape();
+*/
+      if ( self.circuit.lightBulb ) {
+        if ( self.circuit.lightBulb.intersectsBulbTopBase( probe ) ) {
+          return ProbeTarget.LIGHT_BULB_TOP;
+        }
+        if ( self.circuit.lightBulb.intersectsBulbBottomBase( probe ) ) {
+          return ProbeTarget.LIGHT_BULB_BOTTOM;
+        }
+      }
+      if ( self.circuit.battery.contacts( probe ) ) {
+        return ProbeTarget.BATTERY_TOP_TERMINAL;
+      }
+
+      if ( self.circuit.capacitor.topCircuitSwitch.contacts( probe ) ) {
+        return ProbeTarget.SWITCH_CONNECTION_TOP;
+      }
+      if ( self.circuit.capacitor.bottomCircuitSwitch.contacts( probe ) ) {
+        return ProbeTarget.SWITCH_CONNECTION_BOTTOM;
+      }
+
+      // NOTE: Capacitor checks include the switch connections, so those need to be checked first
+      if ( self.circuit.capacitor.contacts( probe, CircuitLocation.CAPACITOR_TOP ) ) {
+        return ProbeTarget.CAPACITOR_TOP;
+      }
+      if ( self.circuit.capacitor.contacts( probe, CircuitLocation.CAPACITOR_BOTTOM ) ) {
+        return ProbeTarget.CAPACITOR_BOTTOM;
+      }
+
+      // Check circuit switch wires first here, since they are included as part of CircuitLocation.CAPACITOR_X
+      if ( self.circuit.capacitor.topCircuitSwitch.switchWire.contacts( probe ) ) {
+        return ProbeTarget.WIRE_SWITCH_TOP;
+      }
+      if ( self.circuit.capacitor.bottomCircuitSwitch.switchWire.contacts( probe ) ) {
+        return ProbeTarget.WIRE_SWITCH_BOTTOM;
+      }
+
+      // Check for wire intersections last
+      if ( self.circuit.shapeTouchesWireGroup( probe, CircuitLocation.CAPACITOR_TOP ) ) {
+        return ProbeTarget.WIRE_CAPACITOR_TOP;
+      }
+      if ( self.circuit.shapeTouchesWireGroup( probe, CircuitLocation.CAPACITOR_BOTTOM ) ) {
+        return ProbeTarget.WIRE_CAPACITOR_BOTTOM;
+      }
+      if ( self.circuit.shapeTouchesWireGroup( probe, CircuitLocation.BATTERY_TOP ) ) {
+        return ProbeTarget.WIRE_BATTERY_TOP;
+      }
+      if ( self.circuit.shapeTouchesWireGroup( probe, CircuitLocation.BATTERY_BOTTOM ) ) {
+        return ProbeTarget.WIRE_BATTERY_BOTTOM;
+      }
+      if ( self.circuit.shapeTouchesWireGroup( probe, CircuitLocation.LIGHT_BULB_TOP ) ) {
+        return ProbeTarget.WIRE_LIGHT_BULB_TOP;
+      }
+      if ( self.circuit.shapeTouchesWireGroup( probe, CircuitLocation.LIGHT_BULB_BOTTOM ) ) {
+        return ProbeTarget.WIRE_LIGHT_BULB_BOTTOM;
+      }
+
+      return ProbeTarget.NONE;
+    };
+
     /**
      * Compute voltage reading for meter, called when many different properties change
      * Null values correspond to a ? on the voltmeter.
@@ -131,6 +209,8 @@ define( function( require ) {
     var computeValue = function() {
 
       if ( self.probesAreTouching() ) {
+        self.positiveProbeTargetProperty.value = ProbeTarget.OTHER_PROBE;
+        self.negativeProbeTargetProperty.value = ProbeTarget.OTHER_PROBE;
         return 0;
       }
       else {
@@ -180,7 +260,10 @@ define( function( require ) {
      */
     var updateValue = function() {
       if ( self.visibleProperty.value ) {
+        self.positiveProbeTargetProperty.value = getProbeTarget( self.shapeCreator.getPositiveProbeTipShape() );
+        self.negativeProbeTargetProperty.value = getProbeTarget( self.shapeCreator.getNegativeProbeTipShape() );
         self.measuredVoltageProperty.value = computeValue();
+        console.log( self.positiveProbeTargetProperty.value, self.negativeProbeTargetProperty.value );
       }
       else {
         self.measuredVoltageProperty.value = null;

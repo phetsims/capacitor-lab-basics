@@ -58,6 +58,17 @@ define( function( require ) {
       this.segments.forEach( function( segment ) {
         segment.update();
       } );
+    },
+
+    /**
+     * Whether the given shape intersects with the wire.
+     * @public
+     *
+     * @param {Shape} shape
+     */
+    contacts: function( shape ) {
+      return shape.bounds.intersectsBounds( this.shapeProperty.value.bounds ) &&
+             shape.shapeIntersection( this.shapeProperty.value ).getNonoverlappingArea() > 0;
     }
   } );
 } );
