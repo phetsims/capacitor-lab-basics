@@ -107,13 +107,13 @@ define( function( require ) {
     // TODO: factor out shared code for positive/negative probe
     // @public {Property.<ProbeTarget>} - What the positive probe is currently touching. Updated from within computeValue below.
     this.positiveProbeTargetProperty = new Property( ProbeTarget.NONE, {
-      tandem: tandem.createTandem( 'positiveProbeTarget' ),
+      tandem: tandem.createTandem( 'positiveProbeTargetProperty' ),
       phetioType: PropertyIO( StringIO )
     } );
 
     // @public {Property.<ProbeTarget>} - What the negative probe is currently touching. Updated from within computeValue below.
     this.negativeProbeTargetProperty = new Property( ProbeTarget.NONE, {
-      tandem: tandem.createTandem( 'negativeProbeTarget' ),
+      tandem: tandem.createTandem( 'negativeProbeTargetProperty' ),
       phetioType: PropertyIO( StringIO )
     } );
 
