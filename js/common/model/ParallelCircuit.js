@@ -24,6 +24,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
   var NumberProperty = require( 'AXON/NumberProperty' );
+  var ProbeTarget = require( 'CAPACITOR_LAB_BASICS/common/model/ProbeTarget' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
   var Shape = require( 'KITE/Shape' );
@@ -334,6 +335,72 @@ define( function( require ) {
     isOpen: function() {
       var connection = this.circuitConnectionProperty.value;
       return connection === CircuitState.OPEN_CIRCUIT || connection === CircuitState.SWITCH_IN_TRANSIT;
+    },
+
+    /**
+     * Returns the probe target (what part of the circuit the probe is over/touching) given a probe shape.
+     * @public
+     *
+     * @param {Shape} probe
+     * @returns {ProbeTarget}
+     */
+    getProbeTarget: function( probe ) {
+      if ( this.lightBulb ) {
+        if ( this.lightBulb.intersectsBulbTopBase( probe ) ) {
+          return ProbeTarget.LIGHT_BULB_TOP;
+        }
+        if ( this.lightBulb.intersectsBulbBottomBase( probe ) ) {
+          return ProbeTarget.LIGHT_BULB_BOTTOM;
+        }
+      }
+      if ( this.battery.contacts( probe ) ) {
+        return ProbeTarget.BATTERY_TOP_TERMINAL;
+      }
+
+      if ( this.capacitor.topCircuitSwitch.contacts( probe ) ) {
+        return ProbeTarget.SWITCH_CONNECTION_TOP;
+      }
+      if ( this.capacitor.bottomCircuitSwitch.contacts( probe ) ) {
+        return ProbeTarget.SWITCH_CONNECTION_BOTTOM;
+      }
+
+      // NOTE: Capacitor checks include the switch connections, so those need to be checked first
+      if ( this.capacitor.contacts( probe, CircuitLocation.CAPACITOR_TOP ) ) {
+        return ProbeTarget.CAPACITOR_TOP;
+      }
+      if ( this.capacitor.contacts( probe, CircuitLocation.CAPACITOR_BOTTOM ) ) {
+        return ProbeTarget.CAPACITOR_BOTTOM;
+      }
+
+      // Check circuit switch wires first here, since they are included as part of CircuitLocation.CAPACITOR_X
+      if ( this.capacitor.topCircuitSwitch.switchWire.contacts( probe ) ) {
+        return ProbeTarget.WIRE_SWITCH_TOP;
+      }
+      if ( this.capacitor.bottomCircuitSwitch.switchWire.contacts( probe ) ) {
+        return ProbeTarget.WIRE_SWITCH_BOTTOM;
+      }
+
+      // Check for wire intersections last
+      if ( this.shapeTouchesWireGroup( probe, CircuitLocation.CAPACITOR_TOP ) ) {
+        return ProbeTarget.WIRE_CAPACITOR_TOP;
+      }
+      if ( this.shapeTouchesWireGroup( probe, CircuitLocation.CAPACITOR_BOTTOM ) ) {
+        return ProbeTarget.WIRE_CAPACITOR_BOTTOM;
+      }
+      if ( this.shapeTouchesWireGroup( probe, CircuitLocation.BATTERY_TOP ) ) {
+        return ProbeTarget.WIRE_BATTERY_TOP;
+      }
+      if ( this.shapeTouchesWireGroup( probe, CircuitLocation.BATTERY_BOTTOM ) ) {
+        return ProbeTarget.WIRE_BATTERY_BOTTOM;
+      }
+      if ( this.shapeTouchesWireGroup( probe, CircuitLocation.LIGHT_BULB_TOP ) ) {
+        return ProbeTarget.WIRE_LIGHT_BULB_TOP;
+      }
+      if ( this.shapeTouchesWireGroup( probe, CircuitLocation.LIGHT_BULB_BOTTOM ) ) {
+        return ProbeTarget.WIRE_LIGHT_BULB_BOTTOM;
+      }
+
+      return ProbeTarget.NONE;
     }
   } );
 

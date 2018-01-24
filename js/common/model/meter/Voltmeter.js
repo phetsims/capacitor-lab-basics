@@ -123,166 +123,15 @@ define( function( require ) {
     // @public {VoltmeterShapeCreator} (read-only)
     this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform );
 
-    var getProbeTarget = function( probe ) {
-      if ( self.probesAreTouching() ) {
-        return ProbeTarget.OTHER_PROBE;
-      }
-      if ( self.circuit.lightBulb ) {
-        if ( self.circuit.lightBulb.intersectsBulbTopBase( probe ) ) {
-          return ProbeTarget.LIGHT_BULB_TOP;
-        }
-        if ( self.circuit.lightBulb.intersectsBulbBottomBase( probe ) ) {
-          return ProbeTarget.LIGHT_BULB_BOTTOM;
-        }
-      }
-      if ( self.circuit.battery.contacts( probe ) ) {
-        return ProbeTarget.BATTERY_TOP_TERMINAL;
-      }
-
-      if ( self.circuit.capacitor.topCircuitSwitch.contacts( probe ) ) {
-        return ProbeTarget.SWITCH_CONNECTION_TOP;
-      }
-      if ( self.circuit.capacitor.bottomCircuitSwitch.contacts( probe ) ) {
-        return ProbeTarget.SWITCH_CONNECTION_BOTTOM;
-      }
-
-      // NOTE: Capacitor checks include the switch connections, so those need to be checked first
-      if ( self.circuit.capacitor.contacts( probe, CircuitLocation.CAPACITOR_TOP ) ) {
-        return ProbeTarget.CAPACITOR_TOP;
-      }
-      if ( self.circuit.capacitor.contacts( probe, CircuitLocation.CAPACITOR_BOTTOM ) ) {
-        return ProbeTarget.CAPACITOR_BOTTOM;
-      }
-
-      // Check circuit switch wires first here, since they are included as part of CircuitLocation.CAPACITOR_X
-      if ( self.circuit.capacitor.topCircuitSwitch.switchWire.contacts( probe ) ) {
-        return ProbeTarget.WIRE_SWITCH_TOP;
-      }
-      if ( self.circuit.capacitor.bottomCircuitSwitch.switchWire.contacts( probe ) ) {
-        return ProbeTarget.WIRE_SWITCH_BOTTOM;
-      }
-
-      // Check for wire intersections last
-      if ( self.circuit.shapeTouchesWireGroup( probe, CircuitLocation.CAPACITOR_TOP ) ) {
-        return ProbeTarget.WIRE_CAPACITOR_TOP;
-      }
-      if ( self.circuit.shapeTouchesWireGroup( probe, CircuitLocation.CAPACITOR_BOTTOM ) ) {
-        return ProbeTarget.WIRE_CAPACITOR_BOTTOM;
-      }
-      if ( self.circuit.shapeTouchesWireGroup( probe, CircuitLocation.BATTERY_TOP ) ) {
-        return ProbeTarget.WIRE_BATTERY_TOP;
-      }
-      if ( self.circuit.shapeTouchesWireGroup( probe, CircuitLocation.BATTERY_BOTTOM ) ) {
-        return ProbeTarget.WIRE_BATTERY_BOTTOM;
-      }
-      if ( self.circuit.shapeTouchesWireGroup( probe, CircuitLocation.LIGHT_BULB_TOP ) ) {
-        return ProbeTarget.WIRE_LIGHT_BULB_TOP;
-      }
-      if ( self.circuit.shapeTouchesWireGroup( probe, CircuitLocation.LIGHT_BULB_BOTTOM ) ) {
-        return ProbeTarget.WIRE_LIGHT_BULB_BOTTOM;
-      }
-
-      return ProbeTarget.NONE;
-    };
-
-    // NOTE: does not use CIRCUIT_SWITCH locations, only CAPACITOR ones (since they are always connected)
-    var getCircuitLocation = function( probeTarget ) {
-      switch ( probeTarget ) {
-        case ProbeTarget.BATTERY_TOP_TERMINAL: return CircuitLocation.BATTERY_TOP;
-        case ProbeTarget.LIGHT_BULB_TOP: return CircuitLocation.LIGHT_BULB_TOP;
-        case ProbeTarget.LIGHT_BULB_BOTTOM: return CircuitLocation.LIGHT_BULB_BOTTOM;
-        case ProbeTarget.CAPACITOR_TOP: return CircuitLocation.CAPACITOR_TOP;
-        case ProbeTarget.CAPACITOR_BOTTOM: return CircuitLocation.CAPACITOR_BOTTOM;
-        case ProbeTarget.SWITCH_TOP: return CircuitLocation.CAPACITOR_TOP;
-        case ProbeTarget.SWITCH_BOTTOM: return CircuitLocation.CAPACITOR_BOTTOM;
-        case ProbeTarget.SWITCH_CONNECTION_TOP: return CircuitLocation.CAPACITOR_TOP;
-        case ProbeTarget.SWITCH_CONNECTION_BOTTOM: return CircuitLocation.CAPACITOR_BOTTOM;
-        case ProbeTarget.WIRE_CAPACITOR_TOP: return CircuitLocation.CAPACITOR_TOP;
-        case ProbeTarget.WIRE_CAPACITOR_BOTTOM: return CircuitLocation.CAPACITOR_BOTTOM;
-        case ProbeTarget.WIRE_BATTERY_TOP: return CircuitLocation.BATTERY_TOP;
-        case ProbeTarget.WIRE_BATTERY_BOTTOM: return CircuitLocation.BATTERY_BOTTOM;
-        case ProbeTarget.WIRE_LIGHT_BULB_TOP: return CircuitLocation.LIGHT_BULB_TOP;
-        case ProbeTarget.WIRE_LIGHT_BULB_BOTTOM: return CircuitLocation.LIGHT_BULB_BOTTOM;
-        case ProbeTarget.WIRE_SWITCH_TOP: return CircuitLocation.CAPACITOR_TOP;
-        case ProbeTarget.WIRE_SWITCH_BOTTOM: return CircuitLocation.CAPACITOR_BOTTOM;
-        default: throw new Error( 'Unsupported probe target (no circuit location for it): ' + probeTarget );
-      }
-    };
-
-    /**
-     * Compute voltage reading for meter, called when many different properties change
-     * Null values correspond to a ? on the voltmeter.
-     *
-     * @returns {number|null} - voltage difference between probes
-     */
-    var computeValue = function() {
-      var positiveProbeTarget = self.positiveProbeTargetProperty.value;
-      var negativeProbeTarget = self.negativeProbeTargetProperty.value;
-
-      // If one probe is disconnected, return null.
-      if ( positiveProbeTarget === ProbeTarget.NONE || negativeProbeTarget === ProbeTarget.NONE ) {
-        return null;
-      }
-
-      // Sanity check for both as "other probe"
-      if ( positiveProbeTarget === ProbeTarget.OTHER_PROBE || negativeProbeTarget === ProbeTarget.OTHER_PROBE ) {
-        return 0;
-      }
-
-      var positiveCircuitLocation = getCircuitLocation( positiveProbeTarget );
-      var negativeCircuitLocation = getCircuitLocation( negativeProbeTarget );
-
-      // If the probes are touching the same location, there should be no voltage change
-      if ( positiveCircuitLocation === negativeCircuitLocation ) {
-        return 0;
-      }
-
-      // Closed circuit between battery and capacitor
-      if ( self.circuit.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
-        if ( CircuitLocation.isCapacitor( positiveCircuitLocation ) ) {
-          positiveCircuitLocation = CircuitLocation.isTop( positiveCircuitLocation ) ? CircuitLocation.BATTERY_TOP : CircuitLocation.BATTERY_BOTTOM;
-        }
-        if ( CircuitLocation.isCapacitor( negativeCircuitLocation ) ) {
-          negativeCircuitLocation = CircuitLocation.isTop( negativeCircuitLocation ) ? CircuitLocation.BATTERY_TOP : CircuitLocation.BATTERY_BOTTOM;
-        }
-      }
-      // Closed circuit between light bulb and capacitor
-      else if ( self.circuit.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-        if ( CircuitLocation.isLightBulb( positiveCircuitLocation ) ) {
-          positiveCircuitLocation = CircuitLocation.isTop( positiveCircuitLocation ) ? CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
-        }
-        if ( CircuitLocation.isLightBulb( negativeCircuitLocation ) ) {
-          negativeCircuitLocation = CircuitLocation.isTop( negativeCircuitLocation ) ? CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
-        }
-      }
-
-      // If the probes are touching the same location, there should be no voltage change
-      if ( positiveCircuitLocation === negativeCircuitLocation ) {
-        return 0;
-      }
-      else if ( CircuitLocation.isBattery( positiveCircuitLocation ) && CircuitLocation.isBattery( negativeCircuitLocation ) ) {
-        return ( CircuitLocation.isTop( positiveCircuitLocation ) ? 1 : -1 ) * self.circuit.getTotalVoltage();
-      }
-      else if ( CircuitLocation.isCapacitor( positiveCircuitLocation ) && CircuitLocation.isCapacitor( negativeCircuitLocation ) ) {
-        return ( CircuitLocation.isTop( positiveCircuitLocation ) ? 1 : -1 ) * self.circuit.getCapacitorPlateVoltage();
-      }
-      else if ( CircuitLocation.isLightBulb( positiveCircuitLocation ) && CircuitLocation.isLightBulb( negativeCircuitLocation ) ) {
-        return 0;
-      }
-      else {
-        return null;
-      }
-
-    };
-
     /**
      * Update the value of the meter. Called when many different properties change.
      */
     var updateValue = function() {
       if ( self.visibleProperty.value ) {
-        self.positiveProbeTargetProperty.value = getProbeTarget( self.shapeCreator.getPositiveProbeTipShape() );
-        self.negativeProbeTargetProperty.value = getProbeTarget( self.shapeCreator.getNegativeProbeTipShape() );
-        self.measuredVoltageProperty.value = computeValue();
+        var probesTouching = self.probesAreTouching();
+        self.positiveProbeTargetProperty.value = probesTouching ? ProbeTarget.OTHER_PROBE : self.circuit.getProbeTarget( self.shapeCreator.getPositiveProbeTipShape() );
+        self.negativeProbeTargetProperty.value = probesTouching ? ProbeTarget.OTHER_PROBE : self.circuit.getProbeTarget( self.shapeCreator.getNegativeProbeTipShape() );
+        self.measuredVoltageProperty.value = self.computeValue();
       }
       else {
         self.measuredVoltageProperty.value = null;
@@ -318,6 +167,76 @@ define( function( require ) {
   capacitorLabBasics.register( 'Voltmeter', Voltmeter );
 
   return inherit( Object, Voltmeter, {
+    /**
+     * Computes the voltage reading for this voltmeter (null corresponds to a ? on the voltmeter)
+     * @private
+     *
+     * @returns {number|null} - voltage difference between probes
+     */
+    computeValue: function() {
+      var positiveProbeTarget = this.positiveProbeTargetProperty.value;
+      var negativeProbeTarget = this.negativeProbeTargetProperty.value;
+
+      // If one probe is disconnected, return null.
+      if ( positiveProbeTarget === ProbeTarget.NONE || negativeProbeTarget === ProbeTarget.NONE ) {
+        return null;
+      }
+
+      // Sanity check for both as "other probe"
+      if ( positiveProbeTarget === ProbeTarget.OTHER_PROBE || negativeProbeTarget === ProbeTarget.OTHER_PROBE ) {
+        return 0;
+      }
+
+      var positiveCircuitLocation = ProbeTarget.getCircuitLocation( positiveProbeTarget );
+      var negativeCircuitLocation = ProbeTarget.getCircuitLocation( negativeProbeTarget );
+
+      // If the probes are touching the same location, there should be no voltage change
+      if ( positiveCircuitLocation === negativeCircuitLocation ) {
+        return 0;
+      }
+
+      // Closed circuit between battery and capacitor
+      if ( this.circuit.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
+        // Shift capacitor locations to battery locations (since we use the total voltage for anything connected to the capacitor)
+        if ( CircuitLocation.isCapacitor( positiveCircuitLocation ) ) {
+          positiveCircuitLocation = CircuitLocation.isTop( positiveCircuitLocation ) ? CircuitLocation.BATTERY_TOP : CircuitLocation.BATTERY_BOTTOM;
+        }
+        if ( CircuitLocation.isCapacitor( negativeCircuitLocation ) ) {
+          negativeCircuitLocation = CircuitLocation.isTop( negativeCircuitLocation ) ? CircuitLocation.BATTERY_TOP : CircuitLocation.BATTERY_BOTTOM;
+        }
+      }
+      // Closed circuit between light bulb and capacitor
+      else if ( this.circuit.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
+        // Shift light bulb locations to capacitor locations (since we use the capacitor plate voltage for anything connected to the light bulb)
+        if ( CircuitLocation.isLightBulb( positiveCircuitLocation ) ) {
+          positiveCircuitLocation = CircuitLocation.isTop( positiveCircuitLocation ) ? CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
+        }
+        if ( CircuitLocation.isLightBulb( negativeCircuitLocation ) ) {
+          negativeCircuitLocation = CircuitLocation.isTop( negativeCircuitLocation ) ? CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
+        }
+      }
+
+      // If the probes are touching the same location, there should be no voltage change
+      if ( positiveCircuitLocation === negativeCircuitLocation ) {
+        return 0;
+      }
+      // If probes are on opposite sides of the battery
+      else if ( CircuitLocation.isBattery( positiveCircuitLocation ) && CircuitLocation.isBattery( negativeCircuitLocation ) ) {
+        return ( CircuitLocation.isTop( positiveCircuitLocation ) ? 1 : -1 ) * this.circuit.getTotalVoltage();
+      }
+      // If probes are on opposite sides of the capacitor (and can't be connected to the battery, see above)
+      else if ( CircuitLocation.isCapacitor( positiveCircuitLocation ) && CircuitLocation.isCapacitor( negativeCircuitLocation ) ) {
+        return ( CircuitLocation.isTop( positiveCircuitLocation ) ? 1 : -1 ) * this.circuit.getCapacitorPlateVoltage();
+      }
+      // If probes are on opposite sides of the light bulb (and can't be connected to the capacitor, see above)
+      else if ( CircuitLocation.isLightBulb( positiveCircuitLocation ) && CircuitLocation.isLightBulb( negativeCircuitLocation ) ) {
+        return 0;
+      }
+      // Probes are not touching a connected component
+      else {
+        return null;
+      }
+    },
 
     /**
      * Probes are touching if their tips intersect.
