@@ -57,7 +57,9 @@ define( function( require ) {
     ProbeTarget.WIRE_BATTERY_TOP,
     ProbeTarget.WIRE_BATTERY_BOTTOM,
     ProbeTarget.WIRE_LIGHT_BULB_TOP,
-    ProbeTarget.WIRE_LIGHT_BULB_BOTTOM
+    ProbeTarget.WIRE_LIGHT_BULB_BOTTOM,
+    ProbeTarget.WIRE_SWITCH_TOP,
+    ProbeTarget.WIRE_SWITCH_BOTTOM
   ];
 
   // Verify that enum is immutable without runtime penalty in production code

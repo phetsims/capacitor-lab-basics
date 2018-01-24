@@ -33,6 +33,32 @@ define( function( require ) {
     CircuitLocation.CIRCUIT_SWITCH_BOTTOM
   ];
 
+  CircuitLocation.isTop = function( circuitLocation ) {
+    assert && assert( _.includes( CircuitLocation.VALUES, circuitLocation ) );
+    return circuitLocation === CircuitLocation.BATTERY_TOP ||
+           circuitLocation === CircuitLocation.LIGHT_BULB_TOP ||
+           circuitLocation === CircuitLocation.CAPACITOR_TOP ||
+           circuitLocation === CircuitLocation.CIRCUIT_SWITCH_TOP;
+  };
+
+  CircuitLocation.isBattery = function( circuitLocation ) {
+    assert && assert( _.includes( CircuitLocation.VALUES, circuitLocation ) );
+    return circuitLocation === CircuitLocation.BATTERY_TOP ||
+           circuitLocation === CircuitLocation.BATTERY_BOTTOM;
+  };
+
+  CircuitLocation.isLightBulb = function( circuitLocation ) {
+    assert && assert( _.includes( CircuitLocation.VALUES, circuitLocation ) );
+    return circuitLocation === CircuitLocation.LIGHT_BULB_TOP ||
+           circuitLocation === CircuitLocation.LIGHT_BULB_BOTTOM;
+  };
+
+  CircuitLocation.isCapacitor = function( circuitLocation ) {
+    assert && assert( _.includes( CircuitLocation.VALUES, circuitLocation ) );
+    return circuitLocation === CircuitLocation.CAPACITOR_TOP ||
+           circuitLocation === CircuitLocation.CAPACITOR_BOTTOM;
+  };
+
   // Verify that enum is immutable without runtime penalty in production code
   if ( assert ) {
     Object.freeze( CircuitLocation );
