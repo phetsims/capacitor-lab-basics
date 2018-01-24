@@ -138,10 +138,9 @@ define( function( require ) {
     };
 
     var getProbeTarget = function( probe ) {
-      /* TODO use these to call
-        var positiveProbe = self.shapeCreator.getPositiveProbeTipShape();
-        var negativeProbe = self.shapeCreator.getNegativeProbeTipShape();
-*/
+      if ( self.probesAreTouching() ) {
+        return ProbeTarget.OTHER_PROBE;
+      }
       if ( self.circuit.lightBulb ) {
         if ( self.circuit.lightBulb.intersectsBulbTopBase( probe ) ) {
           return ProbeTarget.LIGHT_BULB_TOP;
@@ -207,52 +206,50 @@ define( function( require ) {
      * @returns {number|null} - voltage difference between probes
      */
     var computeValue = function() {
+      var positiveProbeTarget = self.positiveProbeTargetProperty.value;
+      var negativeProbeTarget = self.negativeProbeTargetProperty.value;
 
-      if ( self.probesAreTouching() ) {
-        self.positiveProbeTargetProperty.value = ProbeTarget.OTHER_PROBE;
-        self.negativeProbeTargetProperty.value = ProbeTarget.OTHER_PROBE;
+      if ( positiveProbeTarget === ProbeTarget.OTHER_PROBE || negativeProbeTarget === ProbeTarget.OTHER_PROBE ) {
         return 0;
       }
-      else {
 
-        var positiveProbe = self.shapeCreator.getPositiveProbeTipShape();
-        var negativeProbe = self.shapeCreator.getNegativeProbeTipShape();
+      var positiveProbe = self.shapeCreator.getPositiveProbeTipShape();
+      var negativeProbe = self.shapeCreator.getNegativeProbeTipShape();
 
-        if ( self.circuit.lightBulb ) {
-          var positiveToLight = touchingFreeLightBulb( positiveProbe );
-          var negativeToLight = touchingFreeLightBulb( negativeProbe );
+      if ( self.circuit.lightBulb ) {
+        var positiveToLight = touchingFreeLightBulb( positiveProbe );
+        var negativeToLight = touchingFreeLightBulb( negativeProbe );
 
-          // Set voltage to zero when both probes are touching the disconnected lightbulb
-          if ( positiveToLight && negativeToLight ) {
-            return 0;
-          }
-
-          // Set voltage to null when one (and only one) probe is on a disconnected lightbulb
-          if ( ( positiveToLight && !negativeToLight ) || ( !positiveToLight && negativeToLight ) ) {
-            return null;
-          }
-          else {
-            var positiveToBattery = touchingFreeBattery( positiveProbe );
-            var negativeToBattery = touchingFreeBattery( negativeProbe );
-            // Set voltage to null when one (and only one) probe is on a disconnected battery
-            if ( ( positiveToBattery && !negativeToBattery ) || ( !positiveToBattery && negativeToBattery ) ) {
-              return null;
-            }
-          }
+        // Set voltage to zero when both probes are touching the disconnected lightbulb
+        if ( positiveToLight && negativeToLight ) {
+          return 0;
         }
 
-        // Booleans representing electrical contact between probes and circuit components.
-        var positiveToPlate = touchingFreePlate( positiveProbe );
-        var negativeToPlate = touchingFreePlate( negativeProbe );
-
-        // Set voltage to null when one (and only one) probe is on a disconnected plate.
-        if ( ( positiveToPlate && !negativeToPlate ) || ( !positiveToPlate && negativeToPlate ) ) {
+        // Set voltage to null when one (and only one) probe is on a disconnected lightbulb
+        if ( ( positiveToLight && !negativeToLight ) || ( !positiveToLight && negativeToLight ) ) {
           return null;
         }
-
-        // Handle all other cases
-        return self.circuit.getVoltageBetween( positiveProbe, negativeProbe );
+        else {
+          var positiveToBattery = touchingFreeBattery( positiveProbe );
+          var negativeToBattery = touchingFreeBattery( negativeProbe );
+          // Set voltage to null when one (and only one) probe is on a disconnected battery
+          if ( ( positiveToBattery && !negativeToBattery ) || ( !positiveToBattery && negativeToBattery ) ) {
+            return null;
+          }
+        }
       }
+
+      // Booleans representing electrical contact between probes and circuit components.
+      var positiveToPlate = touchingFreePlate( positiveProbe );
+      var negativeToPlate = touchingFreePlate( negativeProbe );
+
+      // Set voltage to null when one (and only one) probe is on a disconnected plate.
+      if ( ( positiveToPlate && !negativeToPlate ) || ( !positiveToPlate && negativeToPlate ) ) {
+        return null;
+      }
+
+      // Handle all other cases
+      return self.circuit.getVoltageBetween( positiveProbe, negativeProbe );
     };
 
     /**
@@ -263,7 +260,6 @@ define( function( require ) {
         self.positiveProbeTargetProperty.value = getProbeTarget( self.shapeCreator.getPositiveProbeTipShape() );
         self.negativeProbeTargetProperty.value = getProbeTarget( self.shapeCreator.getNegativeProbeTipShape() );
         self.measuredVoltageProperty.value = computeValue();
-        console.log( self.positiveProbeTargetProperty.value, self.negativeProbeTargetProperty.value );
       }
       else {
         self.measuredVoltageProperty.value = null;
