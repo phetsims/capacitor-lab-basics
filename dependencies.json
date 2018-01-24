@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.6.0-dev.6 Tue Jan 23 2018 21:33:56 GMT-0700 (MST)",
+  "comment": "# capacitor-lab-basics 1.6.0-rc.0 Wed Jan 24 2018 13:18:20 GMT-0700 (MST)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "master"
@@ -13,8 +13,8 @@
     "branch": "master"
   },
   "capacitor-lab-basics": {
-    "sha": "0e248ee666ca1c6681cb43d039a513919088f55f",
-    "branch": "master"
+    "sha": "bf8e379ff77793eed2f8ca679ba8d410c4bc8097",
+    "branch": "1.6"
   },
   "chipper": {
     "sha": "9796dff452fa206944ea1dac557f0d53ce525f87",
@@ -37,7 +37,7 @@
     "branch": "master"
   },
   "phet-io": {
-    "sha": "03a86729f2f42ec84c5e91c6f4123647f4714da1",
+    "sha": "b9d570020b23f532ffb367cfbd707ab93525c73d",
     "branch": "master"
   },
   "phet-io-website": {
@@ -61,7 +61,7 @@
     "branch": "master"
   },
   "phet-io-wrappers": {
-    "sha": "1f32282f576cf81d3dd840163e62e5d178c9aab0",
+    "sha": "eb4b33ba71c8992ed76923d188f188a40fdf1a64",
     "branch": "master"
   },
   "phetcommon": {
@@ -73,11 +73,11 @@
     "branch": "master"
   },
   "scenery": {
-    "sha": "5ddc18a2010b9228cf2d61962de14b1db778acfd",
+    "sha": "9350f22d11b893ac322df50602a3bf47aa3e6609",
     "branch": "master"
   },
   "scenery-phet": {
-    "sha": "a22423523a62116681bf175de32ca8705a9d60ab",
+    "sha": "42b94b4fa2b32cb84f416653abf0a4f83854e628",
     "branch": "master"
   },
   "sherpa": {
