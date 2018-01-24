@@ -12,7 +12,6 @@ define( function( require ) {
 
   // modules
   var BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
@@ -68,26 +67,14 @@ define( function( require ) {
 
     CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
 
-    // @public {Property.<boolean>}
-    this.topPlateChargeMeterVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'topPlateChargeMeterVisibleProperty' )
-    } );
-
-    // @public {Property.<boolean>}
-    this.storedEnergyMeterVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' )
-    } );
-
-    var circuit = this.circuit;
+    // @public {BarMeter}
+    this.capacitanceMeter = new BarMeter( this.capacitanceMeterVisibleProperty, this.circuit.capacitor.capacitanceProperty );
 
     // @public {BarMeter}
-    this.capacitanceMeter = new BarMeter( this.capacitanceMeterVisibleProperty, circuit.capacitor.capacitanceProperty );
+    this.plateChargeMeter = new BarMeter( this.topPlateChargeMeterVisibleProperty, this.circuit.capacitor.plateChargeProperty );
 
     // @public {BarMeter}
-    this.plateChargeMeter = new BarMeter( this.topPlateChargeMeterVisibleProperty, circuit.capacitor.plateChargeProperty );
-
-    // @public {BarMeter}
-    this.storedEnergyMeter = new BarMeter( this.storedEnergyMeterVisibleProperty, circuit.capacitor.storedEnergyProperty );
+    this.storedEnergyMeter = new BarMeter( this.storedEnergyMeterVisibleProperty, this.circuit.capacitor.storedEnergyProperty );
   }
 
   capacitorLabBasics.register( 'CLBLightBulbModel', CLBLightBulbModel );

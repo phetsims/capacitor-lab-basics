@@ -40,6 +40,12 @@ define( function( require ) {
 
     // @public {BarMeter}
     this.capacitanceMeter = new BarMeter( this.capacitanceMeterVisibleProperty, this.circuit.capacitor.capacitanceProperty );
+
+    // @public {BarMeter}
+    this.plateChargeMeter = new BarMeter( this.topPlateChargeMeterVisibleProperty, this.circuit.capacitor.plateChargeProperty );
+
+    // @public {BarMeter}
+    this.storedEnergyMeter = new BarMeter( this.storedEnergyMeterVisibleProperty, this.circuit.capacitor.storedEnergyProperty );
   }
 
   capacitorLabBasics.register( 'CapacitanceModel', CapacitanceModel );
@@ -53,6 +59,8 @@ define( function( require ) {
      */
     reset: function() {
       this.capacitanceMeter.reset();
+      this.plateChargeMeter.reset();
+      this.storedEnergyMeter.reset();
       this.voltmeter.reset();
       this.circuit.reset();
       CLBModel.prototype.reset.call( this );

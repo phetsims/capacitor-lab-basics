@@ -42,12 +42,13 @@ define( function( require ) {
    * @constructor
    *
    * @param {CLBLightBulbModel} model
-   * @param {number} minWidth - minimum width of the whole panel
    * @param {Tandem} tandem
    */
-  function BarMeterPanel( model, minWidth, tandem ) {
+  function BarMeterPanel( model, tandem ) {
 
     var self = this;
+
+    var minWidth = 580;
 
     var parentNode = new Node(); // node that will contain all checkboxes and bar meter nodes
 

@@ -54,6 +54,16 @@ define( function( require ) {
     } );
 
     // @public {Property.<boolean>}
+    this.topPlateChargeMeterVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'topPlateChargeMeterVisibleProperty' )
+    } );
+
+    // @public {Property.<boolean>}
+    this.storedEnergyMeterVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' )
+    } );
+
+    // @public {Property.<boolean>}
     this.barGraphsVisibleProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'barGraphsVisibleProperty' )
     } );
