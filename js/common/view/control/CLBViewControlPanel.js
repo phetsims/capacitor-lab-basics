@@ -25,7 +25,6 @@ define( function( require ) {
 
   // strings
   var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
-  var barGraphString = require( 'string!CAPACITOR_LAB_BASICS/barGraph' );
   var currentDirectionString = require( 'string!CAPACITOR_LAB_BASICS/currentDirection' );
   var electricFieldString = require( 'string!CAPACITOR_LAB_BASICS/electricField' );
   var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
@@ -40,7 +39,6 @@ define( function( require ) {
   function CLBViewControlPanel( model, tandem, options ) {
 
     options = _.extend( {
-      numberOfBarGraphs: 1,
       maxTextWidth: 250
     }, options );
 
@@ -49,7 +47,7 @@ define( function( require ) {
       property: model.plateChargesVisibleProperty,
       tandem: tandem.createTandem( 'plateChargesCheckbox' )
     }, {
-      string: options.numberOfBarGraphs > 1 ? barGraphsString : barGraphString,
+      string: barGraphsString,
       property: model.barGraphsVisibleProperty,
       tandem: tandem.createTandem( 'barGraphsCheckbox' )
     }, {
