@@ -10,7 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var CapacitanceBarMeterPanel = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceBarMeterPanel' );
+  var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/common/view/BarMeterPanel' );
   var CapacitanceCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceCircuitNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
@@ -57,12 +57,11 @@ define( function( require ) {
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
     voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
 
-    var capacitanceBarMeterPanel = new CapacitanceBarMeterPanel(
+    var capacitanceBarMeterPanel = new BarMeterPanel(
       model,
-      0.85 * capacitanceCircuitNode.width,
-      tandem.createTandem( 'capacitanceBarMeterPanel' )
+      tandem.createTandem( 'barMeterPanel' )
     );
-    capacitanceBarMeterPanel.left = capacitanceCircuitNode.topWireNode.left;
+    capacitanceBarMeterPanel.left = capacitanceCircuitNode.topWireNode.left - 40;
     capacitanceBarMeterPanel.top = this.layoutBounds.top + 10;
 
     var resetAllButton = new ResetAllButton( {

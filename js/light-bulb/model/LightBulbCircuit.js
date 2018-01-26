@@ -153,65 +153,6 @@ define( function( require ) {
     },
 
     /**
-     * True if light bulb is connected to circuit and the probe is electrically
-     * contacting the light bulb at the top or bottom, as specified by the
-     * location parameter.
-     * @public
-     *
-     * @param {Shape} probe
-     * @param {CircuitLocation} location - light bulb top or bottom only
-     * @returns {boolean}
-     */
-    connectedLightBulbContacts: function( probe, location ) {
-
-      this.validateLocation( location );
-
-      // Light bulb must be connected
-      if ( this.circuitConnectionProperty.value !== CircuitState.LIGHT_BULB_CONNECTED ) {
-        return false;
-      }
-
-      var capacitorSide = location === CircuitLocation.LIGHT_BULB_TOP ?
-        CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
-
-      return (
-        this.shapeTouchesWireGroup( probe, location ) ||
-        this.shapeTouchesWireGroup( probe, capacitorSide ) ||
-        this.capacitor.contacts( probe, capacitorSide ) ||
-        ( location === CircuitLocation.LIGHT_BULB_TOP ?
-          this.lightBulb.intersectsBulbTopBase( probe ) :
-          this.lightBulb.intersectsBulbBottomBase( probe ) )
-      );
-    },
-
-    /**
-     * True if light bulb is disconnected from circuit and the probe is electrically
-     * contacting the light bulb at the top or bottom, as specified by the
-     * location parameter.
-     * @public
-     *
-     * @param {Shape} probe
-     * @param {CircuitLocation} location - light bulb top or bottom only
-     * @returns {boolean}
-     */
-    disconnectedLightBulbContacts: function( probe, location ) {
-
-      this.validateLocation( location );
-
-      // Light bulb must be disconnected
-      if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-        return false;
-      }
-
-      return (
-        this.shapeTouchesWireGroup( probe, location ) ||
-        ( location === CircuitLocation.LIGHT_BULB_TOP ?
-          this.lightBulb.intersectsBulbTopBase( probe ) :
-          this.lightBulb.intersectsBulbBottomBase( probe ) )
-      );
-    },
-
-    /**
      * Update the current amplitude depending on the circuit connection.  If the capacitor is connected to the light
      * bulb, find the current by I = V / R.  Otherwise, current is found by dQ/dT.
      * @public
@@ -237,7 +178,5 @@ define( function( require ) {
         ParallelCircuit.prototype.updateCurrentAmplitude.call( this, dt );
       }
     }
-
   } );
-
 } );

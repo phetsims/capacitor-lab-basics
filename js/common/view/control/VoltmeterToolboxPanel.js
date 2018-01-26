@@ -18,6 +18,7 @@ define( function( require ) {
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Vector2 = require( 'DOT/Vector2' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
+  var VoltmeterToolboxPanelIO = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolboxPanelIO' );
 
   /**
    * @constructor
@@ -41,6 +42,7 @@ define( function( require ) {
     voltmeterIconNode.cursor = 'pointer';
 
     voltmeterIconNode.addInputListener( SimpleDragHandler.createForwardingListener( function( event ) {
+      self.startEvent( 'user', 'dragged' );
       voltmeterVisibleProperty.set( true );
 
       // initial position of the pointer in the screenView coordinates
@@ -54,10 +56,14 @@ define( function( require ) {
 
       // start drag from the body node's movable drag handler
       voltmeterNode.bodyNode.movableDragHandler.startDrag( event );
+      self.endEvent();
     } ) );
 
     // wrap all off this content inside of a node that will hold the input element and its descriptions
-    Node.call( this, { tandem: tandem } );
+    Node.call( this, {
+      tandem: tandem,
+      phetioType: VoltmeterToolboxPanelIO
+    } );
 
     this.addChild( new Panel( voltmeterIconNode, {
       xMargin: 15,

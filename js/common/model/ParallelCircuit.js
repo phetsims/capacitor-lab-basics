@@ -24,6 +24,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
   var NumberProperty = require( 'AXON/NumberProperty' );
+  var ProbeTarget = require( 'CAPACITOR_LAB_BASICS/common/model/ProbeTarget' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
   var Shape = require( 'KITE/Shape' );
@@ -305,25 +306,6 @@ define( function( require ) {
     },
 
     /**
-     * Gets the voltage between 2 Shapes. The shapes are in world coordinates.
-     * Returns null if the 2 Shapes are not both connected to the circuit.
-     * @public
-     *
-     * @param {Shape} positiveShape
-     * @param {Shape} negativeShape
-     * return {number}
-     */
-    getVoltageBetween: function( positiveShape, negativeShape ) {
-      assert && assert( positiveShape instanceof Shape );
-      assert && assert( negativeShape instanceof Shape );
-
-      var vPlus = this.getVoltageAt( positiveShape );
-      var vMinus = this.getVoltageAt( negativeShape );
-
-      return ( vPlus === null || vMinus === null ) ? null : ( vPlus - vMinus );
-    },
-
-    /**
      * Check if shape intersects any wire in the array, stopping to return if true.
      * @public
      *
@@ -356,155 +338,69 @@ define( function( require ) {
     },
 
     /**
-     * Determine if the probe tip is electrically connected to a circuit component at location.
+     * Returns the probe target (what part of the circuit the probe is over/touching) given a probe shape.
      * @public
      *
      * @param {Shape} probe
-     * @param {CircuitLocation} location - battery top or bottom
-     * @param {boolean} isolated - if true, check for contact with a component that is disconnected from the circuit
-     * @returns {boolean}
+     * @returns {ProbeTarget}
      */
-    probeContactsComponent: function( probe, location, isolated ) {
-      assert && assert( probe instanceof Shape );
-      assert && assert( _.includes( CircuitLocation.VALUES, location ) );
-      assert && assert( typeof isolated === 'boolean' );
-
-      // Battery
-      if ( location === CircuitLocation.BATTERY_TOP || location === CircuitLocation.BATTERY_BOTTOM ) {
-        if ( isolated ) {
-          if ( this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
-            return false;
-          }
-          return ( this.battery.contacts( probe ) || this.shapeTouchesWireGroup( probe, location ) );
+    getProbeTarget: function( probe ) {
+      if ( this.lightBulb ) {
+        if ( this.lightBulb.intersectsBulbTopBase( probe ) ) {
+          return ProbeTarget.LIGHT_BULB_TOP;
         }
-        else {
-          var capacitorSide = location === CircuitLocation.BATTERY_TOP ?
-                              CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
-          return (
-            this.shapeTouchesWireGroup( probe, location ) ||
-            this.battery.contacts( probe ) || (
-              this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED && (
-              this.capacitor.contacts( probe, capacitorSide ) ||
-              this.shapeTouchesWireGroup( probe, capacitorSide ) ) ) );
+        if ( this.lightBulb.intersectsBulbBottomBase( probe ) ) {
+          return ProbeTarget.LIGHT_BULB_BOTTOM;
         }
       }
-
-      // Capacitor
-      else if ( location === CircuitLocation.CAPACITOR_TOP || location === CircuitLocation.CAPACITOR_BOTTOM ) {
-        if ( isolated ) {
-          if ( !this.isOpen() ) {
-            return false;
-          }
-          return ( this.shapeTouchesWireGroup( probe, location ) || this.capacitor.contacts( probe, location ) );
-        }
+      if ( this.battery.contacts( probe ) ) {
+        return ProbeTarget.BATTERY_TOP_TERMINAL;
       }
 
-      // Light bulb
-      else if ( location === CircuitLocation.LIGHT_BULB_TOP || location === CircuitLocation.LIGHT_BULB_BOTTOM ) {
-        if ( isolated ) {
-          return this.disconnectedLightBulbContacts( probe, location );
-        }
-        return this.connectedLightBulbContacts( probe, location );
+      if ( this.capacitor.topCircuitSwitch.contacts( probe ) ) {
+        return ProbeTarget.SWITCH_CONNECTION_TOP;
+      }
+      if ( this.capacitor.bottomCircuitSwitch.contacts( probe ) ) {
+        return ProbeTarget.SWITCH_CONNECTION_BOTTOM;
       }
 
-      // Fall-through error case
-      else {
-        assert && assert( false, 'Location is not on Battery, Capacitor or LightBulb: ' + location );
+      // NOTE: Capacitor checks include the switch connections, so those need to be checked first
+      if ( this.capacitor.contacts( probe, CircuitLocation.CAPACITOR_TOP ) ) {
+        return ProbeTarget.CAPACITOR_TOP;
       }
-    },
-
-    /**
-     * Gets the voltage at a probe location, with respect to ground. Returns null if the Shape is not connected to the
-     * circuit.
-     * @override
-     * @public
-     *
-     * @param {Shape} probe - voltmeter probe shape
-     * @returns {number|null} voltage
-     */
-    getVoltageAt: function( probe ) {
-      assert && assert( probe instanceof Shape );
-
-      var voltage = null;
-
-      var probeBatteryTop = this.probeContactsComponent( probe, CircuitLocation.BATTERY_TOP, false );
-      var probeBatteryBottom = this.probeContactsComponent( probe, CircuitLocation.BATTERY_BOTTOM, false );
-      var probeCapacitorTop = this.probeContactsComponent( probe, CircuitLocation.CAPACITOR_TOP, true );
-      var probeCapacitorBottom = this.probeContactsComponent( probe, CircuitLocation.CAPACITOR_BOTTOM, true );
-      var probeLightBulb = this.shapeTouchesWireGroup( probe, CircuitLocation.LIGHT_BULB_TOP ) ||
-                           this.shapeTouchesWireGroup( probe, CircuitLocation.LIGHT_BULB_BOTTOM );
-
-      // Closed circuit between battery and capacitor
-      if ( this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
-        if ( probeBatteryTop ) {
-          voltage = this.getTotalVoltage();
-        }
-        else if ( probeBatteryBottom ) {
-          voltage = 0;
-        }
-        else if ( probeLightBulb ) {
-          voltage = 0;
-        }
+      if ( this.capacitor.contacts( probe, CircuitLocation.CAPACITOR_BOTTOM ) ) {
+        return ProbeTarget.CAPACITOR_BOTTOM;
       }
 
-      // Closed circuit between light bulb and capacitor
-      else if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-        if ( this.connectedLightBulbContacts( probe, CircuitLocation.LIGHT_BULB_TOP ) ) {
-          voltage = this.getCapacitorPlateVoltage();
-        }
-        else if ( this.connectedLightBulbContacts( probe, CircuitLocation.LIGHT_BULB_BOTTOM ) ) {
-          voltage = 0;
-        }
-        else if ( probeBatteryTop ) {
-          voltage = this.getTotalVoltage();
-        }
-        else if ( probeBatteryBottom ) {
-          voltage = 0;
-        }
+      // Check circuit switch wires first here, since they are included as part of CircuitLocation.CAPACITOR_X
+      if ( this.capacitor.topCircuitSwitch.switchWire.contacts( probe ) ) {
+        return ProbeTarget.WIRE_SWITCH_TOP;
+      }
+      if ( this.capacitor.bottomCircuitSwitch.switchWire.contacts( probe ) ) {
+        return ProbeTarget.WIRE_SWITCH_BOTTOM;
       }
 
-      // Open Circuit
-      else if ( this.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
-        if ( probeCapacitorTop ) {
-          voltage = this.getCapacitorPlateVoltage();
-        }
-        else if ( probeCapacitorBottom ) {
-          voltage = 0;
-        }
-        else if ( probeBatteryTop ) {
-          voltage = this.getTotalVoltage();
-        }
-        else if ( probeBatteryBottom ) {
-          voltage = 0;
-        }
-        else if ( probeLightBulb ) {
-          voltage = 0;
-        }
+      // Check for wire intersections last
+      if ( this.shapeTouchesWireGroup( probe, CircuitLocation.CAPACITOR_TOP ) ) {
+        return ProbeTarget.WIRE_CAPACITOR_TOP;
+      }
+      if ( this.shapeTouchesWireGroup( probe, CircuitLocation.CAPACITOR_BOTTOM ) ) {
+        return ProbeTarget.WIRE_CAPACITOR_BOTTOM;
+      }
+      if ( this.shapeTouchesWireGroup( probe, CircuitLocation.BATTERY_TOP ) ) {
+        return ProbeTarget.WIRE_BATTERY_TOP;
+      }
+      if ( this.shapeTouchesWireGroup( probe, CircuitLocation.BATTERY_BOTTOM ) ) {
+        return ProbeTarget.WIRE_BATTERY_BOTTOM;
+      }
+      if ( this.shapeTouchesWireGroup( probe, CircuitLocation.LIGHT_BULB_TOP ) ) {
+        return ProbeTarget.WIRE_LIGHT_BULB_TOP;
+      }
+      if ( this.shapeTouchesWireGroup( probe, CircuitLocation.LIGHT_BULB_BOTTOM ) ) {
+        return ProbeTarget.WIRE_LIGHT_BULB_BOTTOM;
       }
 
-      // On switch drag, provide a voltage readout if probes are connected to the battery
-      else if ( this.circuitConnectionProperty.value === CircuitState.SWITCH_IN_TRANSIT ) {
-        if ( probeBatteryTop ) {
-          voltage = this.getTotalVoltage();
-        }
-        else if ( probeBatteryBottom ) {
-          voltage = 0;
-        }
-        else if ( probeCapacitorTop ) {
-          voltage = this.getCapacitorPlateVoltage();
-        }
-        else if ( probeCapacitorBottom ) {
-          voltage = 0;
-        }
-      }
-
-      // Error case
-      else {
-        assert && assert( false,
-          'Unsupported circuit connection property value: ' + this.circuitConnectionProperty.get() );
-      }
-
-      return voltage;
+      return ProbeTarget.NONE;
     }
   } );
 
