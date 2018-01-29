@@ -259,6 +259,8 @@ define( function( require ) {
       this.positiveProbeLocationProperty.reset();
       this.negativeProbeLocationProperty.reset();
       this.measuredVoltageProperty.reset();
+      this.positiveProbeTargetProperty.reset();
+      this.negativeProbeTargetProperty.reset();
     }
   } );
 } );
