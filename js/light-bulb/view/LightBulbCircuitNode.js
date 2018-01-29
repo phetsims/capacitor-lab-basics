@@ -16,6 +16,7 @@ define( function( require ) {
   var CLBCircuitNode = require( 'CAPACITOR_LAB_BASICS/common/view/CLBCircuitNode' );
   var CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
 
   /**
@@ -59,37 +60,20 @@ define( function( require ) {
     y = this.bottomWireNode.bounds.maxY - ( 7 / 2 );
     this.bulbBottomCurrentIndicatorNode.translate( x, y );
 
-    // current indicator observers, no need for disposal since they persist for the lifetime of the sim
-    circuit.circuitConnectionProperty.link( function( circuitConnection ) {
-      self.updateCurrentVisibility( circuitConnection, model.currentVisibleProperty.value );
-    } );
+    // current indicator observer, no need for disposal since they persist for the lifetime of the sim
+    Property.multilink( [ circuit.circuitConnectionProperty, model.currentVisibleProperty ], function( circuitConnection, currentVisible ) {
+      var isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
+      var isLightBulbConnected = ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED );
 
-    model.currentVisibleProperty.link( function( currentIndicatorsVisible ) {
-      self.updateCurrentVisibility( circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
+      self.batteryTopCurrentIndicatorNode.adjustVisibility( isBatteryConnected && currentVisible );
+      self.batteryBottomCurrentIndicatorNode.adjustVisibility( isBatteryConnected && currentVisible );
+
+      self.bulbTopCurrentIndicatorNode.adjustVisibility( isLightBulbConnected && currentVisible );
+      self.bulbBottomCurrentIndicatorNode.adjustVisibility( isLightBulbConnected && currentVisible );
     } );
   }
 
   capacitorLabBasics.register( 'LightBulbCircuitNode', LightBulbCircuitNode );
 
-  return inherit( CLBCircuitNode, LightBulbCircuitNode, {
-
-    /**
-     * Updates the visibility of the current indicators.
-     * @public
-     *
-     * @param {CircuitState} circuitConnection - LIGHT_BULB_CONNECTED || OPEN_CIRCUIT || BATTERY_CONNECTED
-     * @param {boolean} currentIndicatorsVisible
-     */
-    updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
-      var isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
-      var isLightBulbConnected = ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED );
-
-      this.batteryTopCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
-      this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
-
-      this.bulbTopCurrentIndicatorNode.setVisible( isLightBulbConnected && currentIndicatorsVisible );
-      this.bulbBottomCurrentIndicatorNode.setVisible( isLightBulbConnected && currentIndicatorsVisible );
-    }
-  } );
-
+  return inherit( CLBCircuitNode, LightBulbCircuitNode );
 } );
