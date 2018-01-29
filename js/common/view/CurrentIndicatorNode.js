@@ -128,9 +128,7 @@ define( function( require ) {
      * @public
      */
     startAnimation: function() {
-
-      // stop animation if it's already running
-      this.animation && this.animation.stop();
+      this.stopAnimation();
 
       // start animation, show symbol and gradually fade out by modulating opacity
       var self = this;
@@ -144,6 +142,29 @@ define( function( require ) {
         }
       } );
       this.animation.start( phet.joist.elapsedTime );
+    },
+
+    /**
+     * Stops the animation
+     * @public
+     */
+    stopAnimation: function() {
+      // stop animation if it's already running
+      this.animation && this.animation.stop();
+    },
+
+    /**
+     * Hook for changing visibility that can also handle canceling the animation when necessary (since OpacityTo changes visibility).
+     * @public
+     *
+     * @param {boolean} visible
+     */
+    adjustVisibility: function( visible ) {
+      if ( this.visible && !visible ) {
+        this.stopAnimation();
+      }
+
+      this.visible = visible;
     }
   } );
 } );
