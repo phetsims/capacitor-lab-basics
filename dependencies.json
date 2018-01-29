@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.7.0-dev.2 Fri Jan 26 2018 09:56:38 GMT-0700 (Mountain Standard Time)",
+  "comment": "# capacitor-lab-basics 1.7.0-dev.3 Mon Jan 29 2018 11:07:01 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "master"
@@ -13,7 +13,7 @@
     "branch": "master"
   },
   "capacitor-lab-basics": {
-    "sha": "3bf5eb6ee4a2e4b4e2ee4888220c9eb58478ac30",
+    "sha": "5045de14102c2656b3958e0fa71e30eb01a3f5ba",
     "branch": "master"
   },
   "chipper": {
@@ -53,15 +53,15 @@
     "branch": "master"
   },
   "phet-io-wrapper-sonification": {
-    "sha": "a3d5056ce1a28f9e972f2770fccff645ecf88346",
+    "sha": "0394a0193b9149d75c884ee12ac64825903afea1",
     "branch": "master"
   },
   "phet-io-wrapper-visualizing-engagement": {
-    "sha": "83ca1fe39c4f9b25bee48309dce494bea7254f25",
+    "sha": "4c8a16f18fec4bb39d8041b234ad386a736e6d29",
     "branch": "master"
   },
   "phet-io-wrappers": {
-    "sha": "3753cb49b924fe63aab9a5742b8d42c6acaa7e28",
+    "sha": "d11aebf69543136a4bc26bc9993f2cec586b7998",
     "branch": "master"
   },
   "phetcommon": {
@@ -81,7 +81,7 @@
     "branch": "master"
   },
   "sherpa": {
-    "sha": "d59690f0f6c46384e532496fa7e9156ea0724f46",
+    "sha": "8764ff9729b92ddaf4b3e27701c4ad2334f178cc",
     "branch": "master"
   },
   "sun": {
