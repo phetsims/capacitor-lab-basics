@@ -151,6 +151,7 @@ define( function( require ) {
     stopAnimation: function() {
       // stop animation if it's already running
       this.animation && this.animation.stop();
+      this.opacity = 0;
     },
 
     /**
