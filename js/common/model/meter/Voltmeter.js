@@ -106,13 +106,13 @@ define( function( require ) {
     } );
 
     // TODO: factor out shared code for positive/negative probe
-    // @public {Property.<ProbeTarget>} - What the positive probe is currently touching. Updated from within computeValue below.
+    // @private {Property.<ProbeTarget>} - What the positive probe is currently touching. Updated from within computeValue below.
     this.positiveProbeTargetProperty = new Property( ProbeTarget.NONE, {
       tandem: tandem.createTandem( 'positiveProbeTargetProperty' ),
       phetioType: PropertyIO( StringIO )
     } );
 
-    // @public {Property.<ProbeTarget>} - What the negative probe is currently touching. Updated from within computeValue below.
+    // @private {Property.<ProbeTarget>} - What the negative probe is currently touching. Updated from within computeValue below.
     this.negativeProbeTargetProperty = new Property( ProbeTarget.NONE, {
       tandem: tandem.createTandem( 'negativeProbeTargetProperty' ),
       phetioType: PropertyIO( StringIO )
@@ -190,7 +190,8 @@ define( function( require ) {
       var positiveCircuitLocation = ProbeTarget.getCircuitLocation( positiveProbeTarget );
       var negativeCircuitLocation = ProbeTarget.getCircuitLocation( negativeProbeTarget );
 
-      // If the probes are touching the same location, there should be no voltage change
+      // If the probes are touching the same location, there should be no voltage change. We check here first so we can
+      // bail out and avoid any more work (even though we do a very similar check below).
       if ( positiveCircuitLocation === negativeCircuitLocation ) {
         return 0;
       }
@@ -216,7 +217,8 @@ define( function( require ) {
         }
       }
 
-      // If the probes are touching the same location, there should be no voltage change
+      // If the probes are touching the same location, there should be no voltage change. This is different from the
+      // above check (with the same code) since we have potentially remapped some of the circuit locations.
       if ( positiveCircuitLocation === negativeCircuitLocation ) {
         return 0;
       }
