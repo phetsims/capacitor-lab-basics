@@ -20,17 +20,17 @@ define( function( require ) {
   var Vector3IO = require( 'DOT/Vector3IO' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var NullableIO = require( 'ifphetio!PHET_IO/types/NullableIO' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/ParallelCircuit' );
   var ProbeTarget = require( 'CAPACITOR_LAB_BASICS/common/model/ProbeTarget' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
-  var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
   var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
   // phet-io modules
+  var NullableIO = require( 'ifphetio!PHET_IO/types/NullableIO' );
   var NumberIO = require( 'ifphetio!PHET_IO/types/NumberIO' );
+  var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
