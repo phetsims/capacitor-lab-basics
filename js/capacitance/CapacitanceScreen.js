@@ -23,7 +23,7 @@ define( function( require ) {
   var screenCapacitanceString = require( 'string!CAPACITOR_LAB_BASICS/screen.capacitance' );
 
   // images
-  var capacitorIconImage = require( 'image!CAPACITOR_LAB_BASICS/capacitance_screen_icon.png' );
+  var capacitorIconImage = require( 'mipmap!CAPACITOR_LAB_BASICS/capacitance_screen_icon.png' );
 
   /**
    * @constructor
