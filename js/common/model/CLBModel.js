@@ -78,6 +78,16 @@ define( function( require ) {
       tandem: tandem.createTandem( 'currentVisibleProperty' )
     } );
 
+    // @public {Property.<boolean>}
+    this.isPlayingProperty = new BooleanProperty( true, {
+      tandem: tandem.createTandem( 'isPlayingProperty' )
+    } );
+
+    // @public {Property.<boolean>}
+    this.isSlowMotionProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'isSlowMotionProperty' )
+    } );
+
     // @private {Bounds2}
     this.worldBounds = CANVAS_RENDERING_SIZE.toBounds();
 
@@ -134,9 +144,20 @@ define( function( require ) {
      * @public
      *
      * @param {number} dt
+     * @param {boolean} isManual
      */
-    step: function( dt ) {
-      this.circuit.step( dt );
+    step: function( dt, isManual ) {
+      if ( this.isPlayingProperty.value || isManual ) {
+        this.circuit.step( dt * ( this.isSlowMotionProperty.value ? 0.125 : 1 ) );
+      }
+    },
+
+    /**
+     * Manually steps forward in time.
+     * @public
+     */
+    manualStep: function() {
+      this.step( 0.2, true );
     },
 
     // @public
@@ -148,6 +169,8 @@ define( function( require ) {
       this.voltmeterVisibleProperty.reset();
       this.currentVisibleProperty.reset();
       this.switchUsedProperty.reset();
+      this.isPlayingProperty.reset();
+      this.isSlowMotionProperty.reset();
     }
   } );
 } );

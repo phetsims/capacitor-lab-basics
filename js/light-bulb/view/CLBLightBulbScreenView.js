@@ -14,10 +14,12 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
   var DebugLayer = require( 'CAPACITOR_LAB_BASICS/common/view/DebugLayer' );
+  var HBox = require( 'SCENERY/nodes/HBox' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbCircuitNode = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/LightBulbCircuitNode' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
+  var TimeControlNode = require( 'SCENERY_PHET/TimeControlNode' );
   var Vector2 = require( 'DOT/Vector2' );
   var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   var VoltmeterToolboxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolboxPanel' );
@@ -64,12 +66,17 @@ define( function( require ) {
     barMeterPanel.left = lightBulbCircuitNode.topWireNode.left - 40;
     barMeterPanel.top = this.layoutBounds.top + 10;
 
+    var timeControlNode = new TimeControlNode( model.isPlayingProperty, model.isSlowMotionProperty, {
+      stepCallback: function() {
+        model.manualStep();
+      },
+      tandem: tandem.createTandem( 'timeControlNode' )
+    } );
+
     var resetAllButton = new ResetAllButton( {
       listener: function() {
         model.reset();
       },
-      bottom: this.layoutBounds.bottom - 20,
-      right: this.layoutBounds.right - 30,
       radius: 25,
       touchAreaDilation: 20,
       tandem: tandem.createTandem( 'resetAllButton' )
@@ -81,7 +88,15 @@ define( function( require ) {
     this.addChild( viewControlPanel );
     this.addChild( voltmeterToolbox );
     this.addChild( voltmeterNode );
-    this.addChild( resetAllButton );
+    this.addChild( new HBox( {
+      children: [
+        timeControlNode,
+        resetAllButton
+      ],
+      spacing: 50,
+      bottom: this.layoutBounds.bottom - 20,
+      right: this.layoutBounds.right - 30,
+    } ) );
     this.addChild( new DebugLayer( model ) );
   }
 
