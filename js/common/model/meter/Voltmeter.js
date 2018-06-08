@@ -27,7 +27,7 @@ define( function( require ) {
   var Vector3 = require( 'DOT/Vector3' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
-  // phet-io modules
+  // ifphetio
   var NullableIO = require( 'ifphetio!PHET_IO/types/NullableIO' );
   var NumberIO = require( 'ifphetio!PHET_IO/types/NumberIO' );
   var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );

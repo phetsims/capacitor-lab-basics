@@ -37,7 +37,7 @@ define( function( require ) {
   var PropertyIO = require( 'AXON/PropertyIO' );
   var Vector3 = require( 'DOT/Vector3' );
 
-  // phet-io modules
+  // ifphetio
   var NumberIO = require( 'ifphetio!PHET_IO/types/NumberIO' );
 
   /**

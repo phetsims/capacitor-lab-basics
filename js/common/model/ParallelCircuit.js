@@ -29,7 +29,7 @@ define( function( require ) {
   var PropertyIO = require( 'AXON/PropertyIO' );
   var Shape = require( 'KITE/Shape' );
 
-  // phet-io modules
+  // ifphetio
   var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
 
   /**
