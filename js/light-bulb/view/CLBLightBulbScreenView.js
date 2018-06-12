@@ -95,7 +95,7 @@ define( function( require ) {
       ],
       spacing: 50,
       bottom: this.layoutBounds.bottom - 20,
-      right: this.layoutBounds.right - 30,
+      right: this.layoutBounds.right - 30
     } ) );
     this.addChild( new DebugLayer( model ) );
   }
