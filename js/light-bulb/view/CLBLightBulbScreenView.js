@@ -12,11 +12,13 @@ define( function( require ) {
   // modules
   var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/common/view/BarMeterPanel' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
   var DebugLayer = require( 'CAPACITOR_LAB_BASICS/common/view/DebugLayer' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulbCircuitNode = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/LightBulbCircuitNode' );
+  var Panel = require( 'SUN/Panel' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   var ScreenView = require( 'JOIST/ScreenView' );
   var TimeControlNode = require( 'SCENERY_PHET/TimeControlNode' );
@@ -66,11 +68,17 @@ define( function( require ) {
     barMeterPanel.left = lightBulbCircuitNode.topWireNode.left - 40;
     barMeterPanel.top = this.layoutBounds.top + 10;
 
-    var timeControlNode = new TimeControlNode( model.isPlayingProperty, model.isSlowMotionProperty, {
-      stepCallback: function() {
-        model.manualStep();
-      },
-      tandem: tandem.createTandem( 'timeControlNode' )
+    var timeControlPanel = new Panel( new TimeControlNode( model.isPlayingProperty, model.isSlowMotionProperty, {
+        stepCallback: function() {
+          model.manualStep();
+        },
+        tandem: tandem.createTandem( 'timeControlNode' )
+      }
+    ), {
+      xMargin: 15,
+      yMargin: 15,
+      fill: CLBConstants.METER_PANEL_FILL,
+      tandem: tandem.createTandem( 'timeControlPanel' )
     } );
 
     var resetAllButton = new ResetAllButton( {
@@ -90,7 +98,7 @@ define( function( require ) {
     this.addChild( voltmeterNode );
     this.addChild( new HBox( {
       children: [
-        timeControlNode,
+        timeControlPanel,
         resetAllButton
       ],
       spacing: 50,

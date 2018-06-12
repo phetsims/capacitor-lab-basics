@@ -9,8 +9,8 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var NodeIO = require( 'SCENERY/nodes/NodeIO' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  var NodeIO = require( 'SCENERY/nodes/NodeIO' );
 
   // ifphetio
   var assertInstanceOf = require( 'ifphetio!PHET_IO/assertInstanceOf' );
