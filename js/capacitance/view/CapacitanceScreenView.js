@@ -46,7 +46,7 @@ define( function( require ) {
 
     // @public {DraggableTimerNode}
     var draggableTimerNode = new DraggableTimerNode(
-      this.visibleBoundsProperty.get(),
+      this.layoutBounds,
       Vector2.ZERO,
       model.secondsProperty,
       model.isRunningProperty,
