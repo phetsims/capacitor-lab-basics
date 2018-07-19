@@ -14,6 +14,7 @@ define( function( require ) {
   var CapacitanceCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceCircuitNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
+  var DraggableTimerNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DraggableTimerNode' );
   var DebugLayer = require( 'CAPACITOR_LAB_BASICS/common/view/DebugLayer' );
   var inherit = require( 'PHET_CORE/inherit' );
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
@@ -42,12 +43,36 @@ define( function( require ) {
 
     // meters
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
-    var voltmeterToolbox = new VoltmeterToolboxPanel(
+
+    // @public {DraggableTimerNode}
+    var draggableTimerNode = new DraggableTimerNode(
+      this.visibleBoundsProperty.get(),
+      Vector2.ZERO,
+      model.secondsProperty,
+      model.isRunningProperty,
+      model.timerVisibleProperty,
+      function() {
+
+        // When a node is released, check if it is over the toolbox.  If so, drop it in.
+        if ( toolboxPanel.bounds.intersectsBounds( draggableTimerNode.bounds ) ) {
+          model.timerVisibleProperty.set( false );
+          model.secondsProperty.reset();
+          model.isRunningProperty.reset();
+        }
+      },
+      tandem.createTandem( 'timerNode' )
+    );
+    this.addChild( draggableTimerNode );
+
+    var toolboxPanel = new VoltmeterToolboxPanel(
+      this.layoutBounds,
+      draggableTimerNode,
       voltmeterNode,
       this.modelViewTransform,
       model.voltmeter.isDraggedProperty,
+      model.timerVisibleProperty,
       model.voltmeterVisibleProperty,
-      tandem.createTandem( 'voltmeterToolbox' )
+      tandem.createTandem( 'ToolboxPanel' )
     );
 
     // control
@@ -55,7 +80,7 @@ define( function( require ) {
       maxTextWidth: 200
     } );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
-    voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
+    toolboxPanel.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
 
     var capacitanceBarMeterPanel = new BarMeterPanel(
       model,
@@ -79,7 +104,7 @@ define( function( require ) {
     this.addChild( capacitanceCircuitNode );
     this.addChild( capacitanceBarMeterPanel );
     this.addChild( viewControlPanel );
-    this.addChild( voltmeterToolbox );
+    this.addChild( toolboxPanel );
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
     this.addChild( new DebugLayer( model ) );

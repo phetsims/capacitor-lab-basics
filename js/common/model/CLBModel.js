@@ -17,6 +17,7 @@ define( function( require ) {
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var NumberProperty = require( 'AXON/NumberProperty' );
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
 
   // constants
@@ -79,8 +80,23 @@ define( function( require ) {
     } );
 
     // @public {Property.<boolean>}
+    this.timerVisibleProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'currentVisibleProperty' )
+    } );
+
+    // @public {Property.<boolean>}
     this.isPlayingProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'isPlayingProperty' )
+    } );
+
+    // @public {Property.<boolean>}
+    this.secondsProperty = new NumberProperty( 0, {
+      tandem: tandem.createTandem( 'secondsProperty' )
+    } );
+
+    // Create timer to be turned into icon
+    this.isRunningProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'isRunningProperty' )
     } );
 
     // @public {Property.<boolean>}
@@ -149,6 +165,9 @@ define( function( require ) {
     step: function( dt, isManual ) {
       if ( this.isPlayingProperty.value || isManual ) {
         this.circuit.step( dt * ( this.isSlowMotionProperty.value ? 0.125 : 1 ) );
+        if ( this.isRunningProperty.value ) {
+          this.secondsProperty.set( this.secondsProperty.value + dt );
+        }
       }
     },
 

@@ -106,7 +106,7 @@ define( function( require ) {
    */
   function VoltmeterIconNode() {
 
-    Node.call( this );
+    Node.call( this,{scale: .60} );
 
     // body of the voltmeter icon
     var voltmeterImageNode = new Image( voltmeterBodyImage, {

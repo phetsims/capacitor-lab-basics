@@ -11,6 +11,7 @@ define( function( require ) {
 
   // modules
   var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/common/view/BarMeterPanel' );
+  var DraggableTimerNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DraggableTimerNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
@@ -49,12 +50,36 @@ define( function( require ) {
     var barMeterPanel = new BarMeterPanel( model, tandem.createTandem( 'barMeterPanel' ) );
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty,
       tandem.createTandem( 'voltmeterNode' ) );
-    var voltmeterToolbox = new VoltmeterToolboxPanel(
+
+    // @public {DraggableTimerNode}
+    var draggableTimerNode = new DraggableTimerNode(
+      this.visibleBoundsProperty.get(),
+      Vector2.ZERO,
+      model.secondsProperty,
+      model.isRunningProperty,
+      model.timerVisibleProperty,
+      function() {
+
+        // When a node is released, check if it is over the toolbox.  If so, drop it in.
+        if ( toolboxPanel.bounds.intersectsBounds( draggableTimerNode.bounds ) ) {
+          model.timerVisibleProperty.set( false );
+          model.secondsProperty.reset();
+          model.isRunningProperty.reset();
+        }
+      },
+      tandem.createTandem( 'timerNode' )
+    );
+    this.addChild( draggableTimerNode );
+
+    var toolboxPanel = new VoltmeterToolboxPanel(
+      this.layoutBounds,
+      draggableTimerNode,
       voltmeterNode,
       this.modelViewTransform,
       model.voltmeter.isDraggedProperty,
+      model.timerVisibleProperty,
       model.voltmeterVisibleProperty,
-      tandem.createTandem( 'voltmeterToolbox' )
+      tandem.createTandem( 'ToolboxPanel' )
     );
 
     // View control panel and voltmeter panel
@@ -62,7 +87,7 @@ define( function( require ) {
       maxTextWidth: 200
     } );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
-    voltmeterToolbox.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
+    toolboxPanel.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
 
     // Circuit bar meter panel
     barMeterPanel.left = lightBulbCircuitNode.topWireNode.left - 40;
@@ -94,7 +119,7 @@ define( function( require ) {
     this.addChild( lightBulbCircuitNode );
     this.addChild( barMeterPanel );
     this.addChild( viewControlPanel );
-    this.addChild( voltmeterToolbox );
+    this.addChild( toolboxPanel );
     this.addChild( voltmeterNode );
     this.addChild( new HBox( {
       children: [
