@@ -1,7 +1,7 @@
 // Copyright 2015-2017, University of Colorado Boulder
 
 /**
- * Toolbox that contains a voltmeter.  The user can drag the voltmeter out of the toolbox for
+ * Toolbox that contains a voltmeter and timer.  The user can drag the voltmeter out of the toolbox for
  * use.
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
@@ -28,7 +28,7 @@ define( function( require ) {
    * @constructor
    *
    * @param {Bounds2} dragBounds
-   * @param {TimerNode} timer
+   * @param {TimerNode} timerNode
    * @param {VoltmeterNode} voltmeterNode
    * @param {CLModelViewTransform3D} modelViewTransform
    * @param {Property.<boolean>} isDraggedProperty
