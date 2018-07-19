@@ -190,6 +190,9 @@ define( function( require ) {
       this.switchUsedProperty.reset();
       this.isPlayingProperty.reset();
       this.isSlowMotionProperty.reset();
+      this.timerVisibleProperty.reset();
+      this.secondsProperty.reset();
+      this.isRunningProperty.reset();
     }
   } );
 } );
