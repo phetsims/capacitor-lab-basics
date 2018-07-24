@@ -81,7 +81,7 @@ define( function( require ) {
 
     // @public {Property.<boolean>}
     this.timerVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'currentVisibleProperty' )
+      tandem: tandem.createTandem( 'timerVisibleProperty' )
     } );
 
     // @public {Property.<boolean>}
