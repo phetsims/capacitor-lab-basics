@@ -80,6 +80,11 @@ define( function( require ) {
     } );
 
     // @public {Property.<boolean>}
+    this.currentOrientation = new NumberProperty( 0, {
+      tandem: tandem.createTandem( 'currentVisibleProperty' )
+    } );
+
+    // @public {Property.<boolean>}
     this.timerVisibleProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'timerVisibleProperty' )
     } );

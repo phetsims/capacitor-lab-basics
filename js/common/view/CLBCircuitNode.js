@@ -111,9 +111,9 @@ define( function( require ) {
       CLBConstants.PLATE_WIDTH_RANGE, tandem.createTandem( 'plateAreaDragHandleNode' ) );
 
     // current indicators
-    this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( this.circuit.currentAmplitudeProperty, 0,
+    this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( this.circuit.currentAmplitudeProperty, model.currentOrientation,
       tandem.createTandem( 'batteryTopCurrentIndicatorNode' ) );
-    this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode( this.circuit.currentAmplitudeProperty, Math.PI,
+    this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode( this.circuit.currentAmplitudeProperty, model.currentOrientation,
       tandem.createTandem( 'batteryBottomCurrentIndicatorNode' ) );
 
     // rendering order

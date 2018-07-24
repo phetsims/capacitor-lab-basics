@@ -38,9 +38,9 @@ define( function( require ) {
       circuit.circuitConnectionProperty, tandem.createTandem( 'lightBulbNode' ), {} );
 
     // @private current indicators
-    this.bulbTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, 0,
+    this.bulbTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, model.currentOrientation,
       tandem.createTandem( 'bulbTopCurrentIndicatorNode' ) );
-    this.bulbBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, Math.PI,
+    this.bulbBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, model.currentOrientation,
       tandem.createTandem( 'bulbBottomCurrentIndicatorNode' ) );
 
     // rendering order

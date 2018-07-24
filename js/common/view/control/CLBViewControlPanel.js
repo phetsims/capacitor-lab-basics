@@ -15,10 +15,13 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Node = require( 'SCENERY/nodes/Node' );
   var Panel = require( 'SUN/Panel' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
   var VerticalCheckboxGroup = require( 'SUN/VerticalCheckboxGroup' );
+  var VerticalAquaRadioButtonGroup = require( 'SUN/VerticalAquaRadioButtonGroup' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   // constants
   var CHECK_BOX_FONT = new PhetFont( 16 );
@@ -72,13 +75,36 @@ define( function( require ) {
       };
     } );
 
+    var currentOrientationRadioGroup = new VerticalAquaRadioButtonGroup( [
+      {
+        node: new Text( 'electrons' ),
+        property: model.currentOrientation,
+        value: 0
+        // label: noneString
+      },
+      {
+        node: new Text( 'conventional' ),
+        property: model.currentOrientation,
+        value: Math.PI
+        // label: rulersString
+      }
+    ], {
+      radius: 6,
+      touchAreaXDilation: 5
+    } );
+
     var verticalCheckboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
 
       // The box is as wide as the largest item is tall
       boxWidth: viewCheckboxItems[ 0 ].content.height
     } );
 
-    Panel.call( this, verticalCheckboxGroup, {
+    var optionsNode = new Node( { children: [ verticalCheckboxGroup, currentOrientationRadioGroup ] } );
+
+    currentOrientationRadioGroup.leftTop = new Vector2(verticalCheckboxGroup.left + 10, verticalCheckboxGroup.bottom + 10 );
+
+
+    Panel.call( this, optionsNode, {
       xMargin: 10,
       yMargin: 10,
       fill: CLBConstants.METER_PANEL_FILL,

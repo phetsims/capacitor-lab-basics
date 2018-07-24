@@ -51,16 +51,16 @@ define( function( require ) {
    * @constructor
    *
    * @param {CurrentIndicator} currentIndicator
-   * @param {number} positiveOrientation
+   * @param {NumberProperty.<Number>} positiveOrientationProperty
    * @param {Tandem} tandem
    */
-  function CurrentIndicatorNode( currentAmplitudeProperty, positiveOrientation, tandem ) {
+  function CurrentIndicatorNode( currentAmplitudeProperty, positiveOrientationProperty, tandem ) {
 
     Node.call( this, { opacity: 0 } );
     var self = this;
 
     // @private {number}
-    this.positiveOrientation = positiveOrientation;
+    this.positiveOrientation = positiveOrientationProperty.value;
 
     var arrowNode = new ArrowNode( ARROW_TAIL_LOCATION.x, ARROW_TAIL_LOCATION.y, ARROW_TIP_LOCATION.x, ARROW_TIP_LOCATION.y, {
       headHeight: ARROW_HEAD_HEIGHT,
@@ -111,10 +111,10 @@ define( function( require ) {
 
       // update the orientation of the indicator
       if ( currentAmplitude > 0 ) {
-        self.rotation = positiveOrientation;
+        self.rotation = positiveOrientationProperty.value;
       }
       else if ( currentAmplitude < 0 ) {
-        self.rotation = positiveOrientation + Math.PI;
+        self.rotation = positiveOrientationProperty.value + Math.PI;
       }
     } );
   }
