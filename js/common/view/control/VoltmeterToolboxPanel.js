@@ -37,7 +37,10 @@ define( function( require ) {
    * @param {Tandem} tandem
    */
   function VoltmeterToolboxPanel( dragBounds, timerNode, voltmeterNode, modelViewTransform, isDraggedProperty,
-                                  timerVisibleProperty, voltmeterVisibleProperty, tandem ) {
+                                  timerVisibleProperty, voltmeterVisibleProperty, tandem, options ) {
+    options = _.extend( {
+      includeTimer: true
+    }, options );
 
     var self = this;
 
@@ -45,7 +48,8 @@ define( function( require ) {
     this.voltmeterNode = voltmeterNode;
 
     // create the icon for the toolbox.
-    var voltmeterIconNode = VoltmeterNode.createVoltmeterIconNode();
+    var voltmeterScale = options.includeTimer === true ? 0.6 : 1;
+    var voltmeterIconNode = VoltmeterNode.createVoltmeterIconNode( voltmeterScale );
     voltmeterIconNode.cursor = 'pointer';
 
     voltmeterIconNode.addInputListener( SimpleDragHandler.createForwardingListener( function( event ) {
@@ -119,12 +123,20 @@ define( function( require ) {
       phetioType: VoltmeterToolboxPanelIO
     } );
 
-    var toolbox = new HBox( { children: [ voltmeterIconNode, timerIconNode ], spacing: 30, align: 'center' } );
+    var toolbox = new HBox( { spacing: 30, align: 'center', xMargin: 0 } );
+    if ( options.includeTimer ) {
+      toolbox.addChild( voltmeterIconNode );
+      toolbox.addChild( timerIconNode );
+    }
+    else {
+      toolbox.addChild( voltmeterIconNode );
+    }
 
     this.addChild( new Panel( toolbox, {
       xMargin: 15,
       yMargin: 15,
-      minWidth:175,
+      align:'center',
+      minWidth: 125,
       fill: CLBConstants.METER_PANEL_FILL,
       tandem: tandem.createTandem( 'voltmeterIconNodePanel' )
     } ) );

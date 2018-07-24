@@ -72,7 +72,9 @@ define( function( require ) {
       model.voltmeter.isDraggedProperty,
       model.timerVisibleProperty,
       model.voltmeterVisibleProperty,
-      tandem.createTandem( 'ToolboxPanel' )
+      tandem.createTandem( 'ToolboxPanel' ), {
+        includeTimer: false
+      }
     );
 
     // control
