@@ -104,10 +104,10 @@ define( function( require ) {
 
     positiveOrientationProperty.link( function( value ) {
       if ( value === 0 ) {
-        colorProperty.set( new Color( 83, 200, 236 ) )
+        colorProperty.set( new Color( 83, 200, 236 ) );
       }
       else if ( value === Math.PI ) {
-        colorProperty.set( new Color( PhetColorScheme.RED_COLORBLIND ) )
+        colorProperty.set( new Color( PhetColorScheme.RED_COLORBLIND ) );
       }
     } );
 
