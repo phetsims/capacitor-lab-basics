@@ -28,8 +28,10 @@ define( function( require ) {
 
   // strings
   var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
+  var conventionalString = require( 'string!CAPACITOR_LAB_BASICS/conventional' );
   var currentDirectionString = require( 'string!CAPACITOR_LAB_BASICS/currentDirection' );
   var electricFieldString = require( 'string!CAPACITOR_LAB_BASICS/electricField' );
+  var electronsString = require( 'string!CAPACITOR_LAB_BASICS/electrons' );
   var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
 
   /**
@@ -77,19 +79,24 @@ define( function( require ) {
 
     var currentOrientationRadioGroup = new VerticalAquaRadioButtonGroup( [
       {
-        node: new Text( 'electrons' ),
+        node: new Text( electronsString, {
+          font: CHECK_BOX_FONT,
+          maxWidth: options.maxTextWidth
+        } ),
         property: model.currentOrientation,
         value: 0
-        // label: noneString
       },
       {
-        node: new Text( 'conventional' ),
+        node: new Text( conventionalString, {
+          font: CHECK_BOX_FONT,
+          maxWidth: options.maxTextWidth
+        } ),
         property: model.currentOrientation,
         value: Math.PI
-        // label: rulersString
       }
     ], {
-      radius: 6,
+      radius: 7,
+      spacing:5,
       touchAreaXDilation: 5
     } );
 
@@ -101,7 +108,7 @@ define( function( require ) {
 
     var optionsNode = new Node( { children: [ verticalCheckboxGroup, currentOrientationRadioGroup ] } );
 
-    currentOrientationRadioGroup.leftTop = new Vector2(verticalCheckboxGroup.left + 10, verticalCheckboxGroup.bottom + 10 );
+    currentOrientationRadioGroup.leftTop = new Vector2( verticalCheckboxGroup.left + 10, verticalCheckboxGroup.bottom + 10 );
 
 
     Panel.call( this, optionsNode, {

@@ -2,6 +2,9 @@
   "capacitance": {
     "value": "Capacitance"
   },
+  "conventional": {
+    "value": "Conventional"
+  },
   "currentDirection": {
     "value": "Current Direction"
   },
@@ -19,6 +22,9 @@
   },
   "electricField": {
     "value": "Electric Field"
+  },
+  "electrons": {
+    "value": "Electrons"
   },
   "plateArea": {
     "value": "Plate Area"
