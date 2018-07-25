@@ -50,11 +50,12 @@ define( function( require ) {
    * @constructor
    *
    * @param {CurrentIndicator} currentIndicator
-   * @param {NumberProperty.<Number>} positiveOrientationProperty
+   * @param {number} startingOrientation
+   * @param {NumberProperty.<number>} positiveOrientationProperty
    * @param {Color} colorProperty
    * @param {Tandem} tandem
    */
-  function CurrentIndicatorNode( currentAmplitudeProperty, positiveOrientationProperty, colorProperty, tandem ) {
+  function CurrentIndicatorNode( currentAmplitudeProperty, startingOrientation, positiveOrientationProperty, colorProperty, tandem ) {
 
     Node.call( this, { opacity: 0 } );
     var self = this;
@@ -106,7 +107,7 @@ define( function( require ) {
         colorProperty.set( new Color( 83, 200, 236 ) )
       }
       else if ( value === Math.PI ) {
-        colorProperty.set( new Color( PhetColorScheme.RED_COLORBLIND) )
+        colorProperty.set( new Color( PhetColorScheme.RED_COLORBLIND ) )
       }
     } );
 
@@ -120,13 +121,13 @@ define( function( require ) {
 
       // update the orientation of the indicator
       if ( currentAmplitude > 0 ) {
-        self.rotation = positiveOrientationProperty.value;
+        self.rotation = startingOrientation + positiveOrientationProperty.value;
         arrowNode.fill = colorProperty.value;
         electronNode.mainColor = colorProperty.value;
         electronNode.fill = colorProperty.value;
       }
       else if ( currentAmplitude < 0 ) {
-        self.rotation = positiveOrientationProperty.value + Math.PI;
+        self.rotation = startingOrientation + positiveOrientationProperty.value + Math.PI;
         arrowNode.fill = colorProperty.value;
         electronNode.mainColor = colorProperty.value;
         electronNode.fill = colorProperty.value;
