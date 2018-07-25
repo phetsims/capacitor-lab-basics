@@ -112,9 +112,9 @@ define( function( require ) {
 
     // current indicators
     this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode( this.circuit.currentAmplitudeProperty, model.currentOrientation,
-      tandem.createTandem( 'batteryTopCurrentIndicatorNode' ) );
+      model.arrowColorProperty, tandem.createTandem( 'batteryTopCurrentIndicatorNode' ) );
     this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode( this.circuit.currentAmplitudeProperty, model.currentOrientation,
-      tandem.createTandem( 'batteryBottomCurrentIndicatorNode' ) );
+      model.arrowColorProperty, tandem.createTandem( 'batteryBottomCurrentIndicatorNode' ) );
 
     // rendering order
     this.circuitSwitchNodes.forEach( function( switchNode ) {

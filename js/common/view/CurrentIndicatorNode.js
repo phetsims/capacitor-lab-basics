@@ -24,6 +24,7 @@ define( function( require ) {
   var MinusNode = require( 'SCENERY_PHET/MinusNode' );
   var Node = require( 'SCENERY/nodes/Node' );
   var OpacityTo = require( 'TWIXT/OpacityTo' );
+  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
   var Vector2 = require( 'DOT/Vector2' );
 
@@ -35,11 +36,9 @@ define( function( require ) {
   var ARROW_TAIL_WIDTH = 0.4 * ARROW_HEAD_WIDTH;
   var ARROW_TIP_LOCATION = new Vector2( 0, 0 ); // origin at the tip
   var ARROW_TAIL_LOCATION = new Vector2( ARROW_LENGTH, 0 );
-  var ARROW_COLOR = new Color( 83, 200, 236 );
 
   // electron properties
   var ELECTRON_DIAMETER = 0.8 * ARROW_TAIL_WIDTH;
-  var ELECTRON_FILL_COLOR = ARROW_COLOR;
   var ELECTRON_LINE_WIDTH = 1;
   var ELECTRON_STROKE_COLOR = 'black';
   var ELECTRON_MINUS_COLOR = 'black';
@@ -52,9 +51,10 @@ define( function( require ) {
    *
    * @param {CurrentIndicator} currentIndicator
    * @param {NumberProperty.<Number>} positiveOrientationProperty
+   * @param {Color} colorProperty
    * @param {Tandem} tandem
    */
-  function CurrentIndicatorNode( currentAmplitudeProperty, positiveOrientationProperty, tandem ) {
+  function CurrentIndicatorNode( currentAmplitudeProperty, positiveOrientationProperty, colorProperty, tandem ) {
 
     Node.call( this, { opacity: 0 } );
     var self = this;
@@ -66,17 +66,17 @@ define( function( require ) {
       headHeight: ARROW_HEAD_HEIGHT,
       headWidth: ARROW_HEAD_WIDTH,
       tailWidth: ARROW_TAIL_WIDTH,
-      fill: ARROW_COLOR,
+      fill: colorProperty.value,
       tandem: tandem.createTandem( 'arrowNode' )
     } );
 
     this.addChild( arrowNode );
 
     var electronNode = new ShadedSphereNode( ELECTRON_DIAMETER, {
-      fill: ELECTRON_FILL_COLOR,
+      fill: colorProperty.value,
       stroke: ELECTRON_STROKE_COLOR,
       lineWidth: ELECTRON_LINE_WIDTH,
-      mainColor: ARROW_COLOR,
+      mainColor: colorProperty.value,
       highlightXOffset: 0,
       highlightYOffset: 0
     } );
@@ -101,6 +101,15 @@ define( function( require ) {
     // @private {OpacityTo} - animation that will fade out the node
     this.animation = null;
 
+    positiveOrientationProperty.link( function( value ) {
+      if ( value === 0 ) {
+        colorProperty.set( new Color( 83, 200, 236 ) )
+      }
+      else if ( value === Math.PI ) {
+        colorProperty.set( new Color( PhetColorScheme.RED_COLORBLIND) )
+      }
+    } );
+
     // observe current to determine rotation and opacity
     currentAmplitudeProperty.lazyLink( function( currentAmplitude ) {
 
@@ -112,9 +121,15 @@ define( function( require ) {
       // update the orientation of the indicator
       if ( currentAmplitude > 0 ) {
         self.rotation = positiveOrientationProperty.value;
+        arrowNode.fill = colorProperty.value;
+        electronNode.mainColor = colorProperty.value;
+        electronNode.fill = colorProperty.value;
       }
       else if ( currentAmplitude < 0 ) {
         self.rotation = positiveOrientationProperty.value + Math.PI;
+        arrowNode.fill = colorProperty.value;
+        electronNode.mainColor = colorProperty.value;
+        electronNode.fill = colorProperty.value;
       }
     } );
   }
