@@ -53,7 +53,7 @@ define( function( require ) {
     voltmeterIconNode.cursor = 'pointer';
 
     voltmeterIconNode.addInputListener( SimpleDragHandler.createForwardingListener( function( event ) {
-      self.startEvent( 'user', 'dragged' );
+      self.phetioStartEvent( 'user', 'dragged' );
       voltmeterVisibleProperty.set( true );
 
       // initial position of the pointer in the screenView coordinates
@@ -67,7 +67,7 @@ define( function( require ) {
 
       // start drag from the body node's movable drag handler
       voltmeterNode.bodyNode.movableDragHandler.startDrag( event );
-      self.endEvent();
+      self.phetioEndEvent();
     } ) );
 
     // Create timer to be turned into icon
