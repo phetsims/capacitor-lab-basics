@@ -83,12 +83,12 @@ define( function( require ) {
 
     // @public {Property.<boolean>}
     this.currentOrientation = new NumberProperty( 0, {
-      tandem: tandem.createTandem( 'currentVisibleProperty' )
+      tandem: tandem.createTandem( 'currentOrientationProperty' )
     } );
 
     // @public {Property.<Color>}
     this.arrowColorProperty = new Property( new Color( 83, 200, 236 ), {
-      tandem: tandem.createTandem( 'currentVisibleProperty' )
+      tandem: tandem.createTandem( 'arrowColorProperty' )
     } );
 
     // @public {Property.<boolean>}
