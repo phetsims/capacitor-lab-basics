@@ -53,7 +53,7 @@ define( function( require ) {
     voltmeterIconNode.cursor = 'pointer';
 
     voltmeterIconNode.addInputListener( SimpleDragHandler.createForwardingListener( function( event ) {
-      self.phetioStartEvent( 'user', 'dragged' );
+      self.phetioStartEvent( 'dragged' );
       voltmeterVisibleProperty.set( true );
 
       // initial position of the pointer in the screenView coordinates
@@ -120,7 +120,8 @@ define( function( require ) {
     // wrap all off this content inside of a node that will hold the input element and its descriptions
     Node.call( this, {
       tandem: tandem,
-      phetioType: VoltmeterToolboxPanelIO
+      phetioType: VoltmeterToolboxPanelIO,
+      phetioEventType: 'user'
     } );
 
     var toolbox = new HBox( { spacing: 30, align: 'center', xMargin: 0 } );
@@ -135,7 +136,7 @@ define( function( require ) {
     this.addChild( new Panel( toolbox, {
       xMargin: 15,
       yMargin: 15,
-      align:'center',
+      align: 'center',
       minWidth: 125,
       fill: CLBConstants.METER_PANEL_FILL,
       tandem: tandem.createTandem( 'voltmeterIconNodePanel' )
