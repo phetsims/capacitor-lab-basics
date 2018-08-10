@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.3.6-phetio Fri Aug 10 2018 01:50:12 GMT-0600 (MDT)",
+  "comment": "# capacitor-lab-basics 1.3.7-phetiorc.1 Fri Aug 10 2018 03:15:06 GMT-0600 (MDT)",
   "assert": {
     "sha": "845be6b591cb746b0b05b7023208aef2e49a8855",
     "branch": "HEAD"
@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "f95347cc397d0925ec39eb9f5d94260f556517e9",
+    "sha": "d069aea479ec7996a2f63647c945147dc28d2fe7",
     "branch": "1.3-phetio"
   },
   "chipper": {
@@ -46,7 +46,7 @@
   },
   "phetcommon": {
     "sha": "f3cb5b587be5f89c9fed27baf3a2712e521fa507",
-    "branch": "capacitor-lab-basics-1.3-phetio"
+    "branch": "HEAD"
   },
   "query-string-machine": {
     "sha": "53531ef190ec03d090c8eb123833b20d976b0a04",
