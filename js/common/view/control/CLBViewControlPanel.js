@@ -67,7 +67,7 @@ define( function( require ) {
 
     var viewCheckboxItems = checkboxItems.map( function( item ) {
       return {
-        content: new Text( item.string, {
+        node: new Text( item.string, {
           font: CHECK_BOX_FONT,
           maxWidth: options.maxTextWidth
         } ),
@@ -103,7 +103,7 @@ define( function( require ) {
     var verticalCheckboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
 
       // The box is as wide as the largest item is tall
-      boxWidth: viewCheckboxItems[ 0 ].content.height
+      boxWidth: viewCheckboxItems[ 0 ].node.height
     } );
 
     var optionsNode = new Node( { children: [ verticalCheckboxGroup, currentOrientationRadioGroup ] } );
