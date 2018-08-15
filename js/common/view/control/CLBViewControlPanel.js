@@ -95,7 +95,6 @@ define( function( require ) {
         value: Math.PI
       }
     ], {
-      radius: 7,
       spacing:5,
       touchAreaXDilation: 5
     } );
