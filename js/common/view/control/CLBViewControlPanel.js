@@ -100,9 +100,10 @@ define( function( require ) {
     } );
 
     var verticalCheckboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
-
-      // The box is as wide as the largest item is tall
-      boxWidth: viewCheckboxItems[ 0 ].node.height
+      checkboxOptions: {
+        // The box is as wide as the largest item is tall
+        boxWidth: viewCheckboxItems[ 0 ].node.height
+      }
     } );
 
     var optionsNode = new Node( { children: [ verticalCheckboxGroup, currentOrientationRadioGroup ] } );
