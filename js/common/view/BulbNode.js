@@ -57,7 +57,7 @@ define( function( require ) {
     this.bulb = drawBulbNode( options );
     this.addChild( this.bulb );
 
-    // NOTE: this map deviates from the the bulb in faradays-law
+    // NOTE: this map deviates from the bulb in faradays-law
     var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 300, true );
 
     var updateBrightnessScale = function( voltage ) {

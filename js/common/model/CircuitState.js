@@ -2,7 +2,7 @@
 
 /**
  * Circuit connection types for Capacitor Lab: Basics. Circuit connection names correspond to what element is
- * connected to the the capacitor.  'OPEN_CIRCUIT' means that the capacitor is disconnected from circuit
+ * connected to the capacitor.  'OPEN_CIRCUIT' means that the capacitor is disconnected from circuit
  * components, and the switch is connected to teh 'open' point.  'SWITCH_IN_TRANSIT' means that the capacitor
  * is disconnected from all other components, which is the case while dragging the switch.
  *

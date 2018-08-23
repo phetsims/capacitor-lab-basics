@@ -78,7 +78,7 @@ define( function( require ) {
     tipCircle.translation = modelViewTransform.modelToViewPosition( endPoint );
     this.wireSwitchNode.addChild( tipCircle );
 
-    // add the the hinge
+    // add the hinge
     var hingeNode = new HingePointNode();
     hingeNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint );
 
