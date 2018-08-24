@@ -1,4 +1,4 @@
-// Copyright 2015-2017, University of Colorado Boulder
+// Copyright 2018, University of Colorado Boulder
 
 /**
  * Arrow and electron that indicates the direction of current flow. Visibility of this node is handled via its
@@ -16,14 +16,15 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var Animation = require( 'TWIXT/Animation' );
   var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Color = require( 'SCENERY/util/Color' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var Easing = require( 'TWIXT/Easing' );
   var inherit = require( 'PHET_CORE/inherit' );
   var MinusNode = require( 'SCENERY_PHET/MinusNode' );
   var Node = require( 'SCENERY/nodes/Node' );
-  var OpacityTo = require( 'TWIXT/OpacityTo' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -99,7 +100,7 @@ define( function( require ) {
     electronNode.translate( x, y );
     minusNode.center = electronNode.center;
 
-    // @private {OpacityTo} - animation that will fade out the node
+    // @private {Animation} animation that will fade out the node
     this.animation = null;
 
     positiveOrientationProperty.link( function( value ) {
@@ -144,20 +145,29 @@ define( function( require ) {
      * @public
      */
     startAnimation: function() {
+
+      var self = this;
+
       this.stopAnimation();
 
-      // start animation, show symbol and gradually fade out by modulating opacity
-      var self = this;
-      this.animation = new OpacityTo( this, {
-        startOpacity: 0.75,
-        endOpacity: 0,
-        duration: 1500, // fade out time, ms
-        easing: TWEEN.Easing.Quartic.In, // most of opacity change happens at end of duration
-        onComplete: function() {
-          self.animation = null;
-        }
+      // show symbol and gradually fade out by modulating opacity
+      this.animation = new Animation( {
+        stepper: 'timer', // animation is controlled by the global phet-core Timer
+        duration: 1.5, // seconds
+        easing: Easing.QUARTIC_IN,
+        setValue: function( value ) { self.opacity = value; },
+        getValue: function() { return self.opacity; },
+        from: 0.75,
+        to: 0
       } );
-      this.animation.start( phet.joist.elapsedTime );
+
+      this.animation.endedEmitter.addListener( function endedListener() {
+        self.opacity = 0; // in case it was stopped prematurely
+        self.animation.endedEmitter.removeListener( endedListener );
+        self.animation = null;
+      } );
+
+      this.animation.start();
     },
 
     /**
