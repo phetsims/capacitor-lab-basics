@@ -155,8 +155,8 @@ define( function( require ) {
         stepper: 'timer', // animation is controlled by the global phet-core Timer
         duration: 1.5, // seconds
         easing: Easing.QUARTIC_IN,
-        setValue: function( value ) { self.opacity = value; },
-        getValue: function() { return self.opacity; },
+        object: this,
+        attribute: 'opacity',
         from: 0.75,
         to: 0
       } );
