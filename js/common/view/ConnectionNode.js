@@ -83,7 +83,7 @@ define( function( require ) {
     } );
 
     var pressListener = new PressListener( {
-      tandem: tandem.createTandem( 'pressListener' ),
+      tandem: tandem,
       phetioInstanceDocumentation: 'Connects and disconnects the circuit',
       attach: false,
       press: function( event ) {
