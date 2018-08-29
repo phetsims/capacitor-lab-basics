@@ -12,14 +12,16 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var PropertyIO = require( 'AXON/PropertyIO' );
   var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var Property = require( 'AXON/Property' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Color = require( 'SCENERY/util/Color' );
+  var ColorIO = require( 'SCENERY/util/ColorIO' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
+  var Property = require( 'AXON/Property' );
   var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
 
   // constants
@@ -88,7 +90,8 @@ define( function( require ) {
 
     // @public {Property.<Color>}
     this.arrowColorProperty = new Property( new Color( 83, 200, 236 ), {
-      tandem: tandem.createTandem( 'arrowColorProperty' )
+      tandem: tandem.createTandem( 'arrowColorProperty' ),
+      phetioType: PropertyIO( ColorIO )
     } );
 
     // @public {Property.<boolean>}
