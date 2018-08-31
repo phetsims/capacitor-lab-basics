@@ -1,4 +1,4 @@
-// Copyright 2014-2017, University of Colorado Boulder
+// Copyright 2018, University of Colorado Boulder
 
 /**
  * Visual representation of a DC battery, with a control for setting its voltage. Image flips when the polarity of the
@@ -16,7 +16,6 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var HSlider = require( 'SUN/HSlider' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -24,6 +23,7 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var Util = require( 'DOT/Util' );
   var Vector2 = require( 'DOT/Vector2' );
+  var VSlider = require( 'SUN/VSlider' );
 
   // constants
   var LABEL_FONT = new PhetFont( 12 );
@@ -51,7 +51,7 @@ define( function( require ) {
 
     // voltage slider
     var trackLength = 0.55 * graphicNode.bounds.height;
-    var sliderNode = new HSlider( battery.voltageProperty, voltageRange, {
+    var sliderNode = new VSlider( battery.voltageProperty, voltageRange, {
       trackSize: new Dimension2( trackLength, 8 ),
       thumbSize: new Dimension2( 20, 35 ),
       thumbTouchAreaXDilation: 11,
@@ -83,7 +83,6 @@ define( function( require ) {
         maxWidth: graphicNode.width * 0.3,
         tandem: tandem
       } );
-      labelText.rotate( Math.PI / 2 ); // rotate label to match rotation of the slider.
       return labelText;
     };
     // add the tick marks
@@ -94,7 +93,6 @@ define( function( require ) {
     sliderNode.addMajorTick( voltageRange.defaultValue, defaultTickLabel );
     sliderNode.addMajorTick( voltageRange.min, minimumTickLabel );
 
-    sliderNode.rotate( -Math.PI / 2 );
     this.addChild( sliderNode );
 
     // layout, set by visual inspection, depends on battery image.
