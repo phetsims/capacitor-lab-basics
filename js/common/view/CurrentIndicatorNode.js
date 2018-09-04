@@ -152,7 +152,7 @@ define( function( require ) {
 
       // show symbol and gradually fade out by modulating opacity
       this.animation = new Animation( {
-        stepper: 'timer', // animation is controlled by the global phet-core Timer
+        stepper: 'timer', // animation is controlled by the global phet-core timer
         duration: 1.5, // seconds
         easing: Easing.QUARTIC_IN,
         object: this,
