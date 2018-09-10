@@ -79,7 +79,8 @@ define( function( require ) {
       tandem: tandem.createTandem( 'isRunningProperty' )
     } );
     var timer = new TimerNode( secondsProperty, isRunningProperty, {
-      scale: .60
+      scale: .60,
+      tandem: tandem.createTandem( 'timerNode' )
     } );
 
     // {Node} Create timer icon. Visible option is used only for reset() in ToolboxPanel.js

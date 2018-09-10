@@ -77,14 +77,15 @@ define( function( require ) {
       };
     } );
 
-    var currentOrientationRadioGroup = new VerticalAquaRadioButtonGroup( [
+    var currentTypeRadioButtonGroup = new VerticalAquaRadioButtonGroup( [
       {
         node: new Text( electronsString, {
           font: CHECK_BOX_FONT,
           maxWidth: options.maxTextWidth
         } ),
         property: model.currentOrientation,
-        value: 0
+        value: 0,
+        tandemName: 'electronsRadioButton'
       },
       {
         node: new Text( conventionalString, {
@@ -92,11 +93,13 @@ define( function( require ) {
           maxWidth: options.maxTextWidth
         } ),
         property: model.currentOrientation,
-        value: Math.PI
+        value: Math.PI,
+        tandemName: 'conventionalRadioButton'
       }
     ], {
-      spacing:5,
-      touchAreaXDilation: 5
+      spacing: 5,
+      touchAreaXDilation: 5,
+      tandem: tandem.createTandem( 'currentTypeRadioButtonGroup' )
     } );
 
     var verticalCheckboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
@@ -106,9 +109,9 @@ define( function( require ) {
       }
     } );
 
-    var optionsNode = new Node( { children: [ verticalCheckboxGroup, currentOrientationRadioGroup ] } );
+    var optionsNode = new Node( { children: [ verticalCheckboxGroup, currentTypeRadioButtonGroup ] } );
 
-    currentOrientationRadioGroup.leftTop = new Vector2( verticalCheckboxGroup.left + 10, verticalCheckboxGroup.bottom + 10 );
+    currentTypeRadioButtonGroup.leftTop = new Vector2( verticalCheckboxGroup.left + 10, verticalCheckboxGroup.bottom + 10 );
 
 
     Panel.call( this, optionsNode, {
