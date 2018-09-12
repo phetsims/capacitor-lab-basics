@@ -112,8 +112,7 @@ define( function( require ) {
     METER_PANEL_FILL: 'rgb( 255, 245, 237)',
     CONNECTION_POINT_COLOR: 'black',
     PIN_COLOR: 'lightgray',
-    SCREEN_VIEW_BACKGROUND_COLOR: 'rgb( 151, 208, 255 )'
-
+    SCREEN_VIEW_BACKGROUND_COLOR: 'rgb( 153, 193, 255 )'
   };
 
   capacitorLabBasics.register( 'CLBConstants', CLBConstants );
