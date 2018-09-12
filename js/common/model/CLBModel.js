@@ -179,9 +179,10 @@ define( function( require ) {
      */
     step: function( dt, isManual ) {
       if ( this.isPlayingProperty.value || isManual ) {
-        this.circuit.step( dt * ( this.isSlowMotionProperty.value ? 0.125 : 1 ) );
+        var adjustedDt = dt * ( this.isSlowMotionProperty.value ? 0.125 : 1 );
+        this.circuit.step( adjustedDt );
         if ( this.isRunningProperty.value ) {
-          this.secondsProperty.set( this.secondsProperty.value + dt );
+          this.secondsProperty.set( this.secondsProperty.value + adjustedDt );
         }
       }
     },
