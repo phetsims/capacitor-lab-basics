@@ -54,9 +54,10 @@ define( function( require ) {
    * @param {number} startingOrientation
    * @param {NumberProperty.<number>} positiveOrientationProperty
    * @param {Color} colorProperty
+   * @param {Property.<boolean>} isPlayingProperty
    * @param {Tandem} tandem
    */
-  function CurrentIndicatorNode( currentAmplitudeProperty, startingOrientation, positiveOrientationProperty, colorProperty, tandem ) {
+  function CurrentIndicatorNode( currentAmplitudeProperty, startingOrientation, positiveOrientationProperty, colorProperty, isPlayingProperty  ,tandem ) {
 
     Node.call( this, { opacity: 0 } );
     var self = this;

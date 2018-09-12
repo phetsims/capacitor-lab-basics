@@ -99,7 +99,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'timerVisibleProperty' )
     } );
 
-    // @public {Property.<boolean>}
+    // @public {Property.<boolean>} Whether the sim is paused
     this.isPlayingProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'isPlayingProperty' )
     } );

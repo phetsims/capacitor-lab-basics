@@ -38,10 +38,20 @@ define( function( require ) {
       circuit.circuitConnectionProperty, tandem.createTandem( 'lightBulbNode' ), {} );
 
     // @private current indicators
-    this.bulbTopCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, 0,
-      model.currentOrientation, model.arrowColorProperty, tandem.createTandem( 'bulbTopCurrentIndicatorNode' ) );
-    this.bulbBottomCurrentIndicatorNode = new CurrentIndicatorNode( circuit.currentAmplitudeProperty, Math.PI,
-      model.currentOrientation, model.arrowColorProperty, tandem.createTandem( 'bulbBottomCurrentIndicatorNode' ) );
+    this.bulbTopCurrentIndicatorNode = new CurrentIndicatorNode(
+      circuit.currentAmplitudeProperty,
+      0,
+      model.currentOrientation,
+      model.arrowColorProperty,
+      model.isPlayingProperty,
+      tandem.createTandem( 'bulbTopCurrentIndicatorNode' ) );
+    this.bulbBottomCurrentIndicatorNode = new CurrentIndicatorNode(
+      circuit.currentAmplitudeProperty,
+      Math.PI,
+      model.currentOrientation,
+      model.arrowColorProperty,
+      model.isPlayingProperty,
+      tandem.createTandem( 'bulbBottomCurrentIndicatorNode' ) );
 
     // rendering order
     this.addChild( lightBulbNode );
@@ -61,16 +71,17 @@ define( function( require ) {
     this.bulbBottomCurrentIndicatorNode.translate( x, y );
 
     // current indicator observer, no need for disposal since they persist for the lifetime of the sim
-    Property.multilink( [ circuit.circuitConnectionProperty, model.currentVisibleProperty ], function( circuitConnection, currentVisible ) {
-      var isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
-      var isLightBulbConnected = ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED );
+    Property.multilink( [ circuit.circuitConnectionProperty, model.currentVisibleProperty, model.isPlayingProperty ],
+      function( circuitConnection, currentVisible, isPlaying ) {
+        var isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
+        var isLightBulbConnected = ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED );
 
-      self.batteryTopCurrentIndicatorNode.adjustVisibility( isBatteryConnected && currentVisible );
-      self.batteryBottomCurrentIndicatorNode.adjustVisibility( isBatteryConnected && currentVisible );
+        self.batteryTopCurrentIndicatorNode.adjustVisibility( isBatteryConnected && currentVisible && isPlaying );
+        self.batteryBottomCurrentIndicatorNode.adjustVisibility( isBatteryConnected && currentVisible && isPlaying );
 
-      self.bulbTopCurrentIndicatorNode.adjustVisibility( isLightBulbConnected && currentVisible );
-      self.bulbBottomCurrentIndicatorNode.adjustVisibility( isLightBulbConnected && currentVisible );
-    } );
+        self.bulbTopCurrentIndicatorNode.adjustVisibility( isLightBulbConnected && currentVisible && isPlaying );
+        self.bulbBottomCurrentIndicatorNode.adjustVisibility( isLightBulbConnected && currentVisible && isPlaying );
+      } );
   }
 
   capacitorLabBasics.register( 'LightBulbCircuitNode', LightBulbCircuitNode );
