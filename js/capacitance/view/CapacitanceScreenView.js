@@ -38,8 +38,8 @@ define( function( require ) {
     // @private {CLBModel}
     this.model = model;
 
-    // circuit
-    var capacitanceCircuitNode = new CapacitanceCircuitNode( model, tandem.createTandem( 'capacitanceCircuitNode' ) );
+    // @private {CapacitanceCircuitNode} circuit
+    this.capacitanceCircuitNode = new CapacitanceCircuitNode( model, tandem.createTandem( 'capacitanceCircuitNode' ) );
 
     // meters
     var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
@@ -88,7 +88,7 @@ define( function( require ) {
       model,
       tandem.createTandem( 'barMeterPanel' )
     );
-    capacitanceBarMeterPanel.left = capacitanceCircuitNode.topWireNode.left - 40;
+    capacitanceBarMeterPanel.left = this.capacitanceCircuitNode.topWireNode.left - 40;
     capacitanceBarMeterPanel.top = this.layoutBounds.top + 10;
 
     var resetAllButton = new ResetAllButton( {
@@ -103,7 +103,7 @@ define( function( require ) {
     } );
 
     // rendering order
-    this.addChild( capacitanceCircuitNode );
+    this.addChild( this.capacitanceCircuitNode );
     this.addChild( capacitanceBarMeterPanel );
     this.addChild( viewControlPanel );
     this.addChild( toolboxPanel );

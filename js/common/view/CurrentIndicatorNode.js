@@ -57,13 +57,20 @@ define( function( require ) {
    * @param {Property.<boolean>} isPlayingProperty
    * @param {Tandem} tandem
    */
-  function CurrentIndicatorNode( currentAmplitudeProperty, startingOrientation, positiveOrientationProperty, colorProperty, isPlayingProperty  ,tandem ) {
+  function CurrentIndicatorNode( currentAmplitudeProperty, startingOrientation, positiveOrientationProperty, colorProperty, stepEmitter, tandem ) {
 
     Node.call( this, { opacity: 0 } );
     var self = this;
 
     // @private {number}
     this.positiveOrientation = positiveOrientationProperty.value;
+
+    // @private {Emitter}
+    this.stepEmitter = stepEmitter;
+
+    this.stepEmitter.addListener(function(dt){
+      self.animation && self.animation.step(dt);
+    });
 
     var arrowNode = new ArrowNode( ARROW_TAIL_LOCATION.x, ARROW_TAIL_LOCATION.y, ARROW_TIP_LOCATION.x, ARROW_TIP_LOCATION.y, {
       headHeight: ARROW_HEAD_HEIGHT,
@@ -101,7 +108,7 @@ define( function( require ) {
     electronNode.translate( x, y );
     minusNode.center = electronNode.center;
 
-    // @private {Animation} animation that will fade out the node
+    // @private {Animation|null} animation that will fade out the node
     this.animation = null;
 
     positiveOrientationProperty.link( function( value ) {
@@ -140,20 +147,17 @@ define( function( require ) {
   capacitorLabBasics.register( 'CurrentIndicatorNode', CurrentIndicatorNode );
 
   return inherit( Node, CurrentIndicatorNode, {
-
     /**
      * Start the animation, canceling the animation if it is in progress
      * @public
      */
     startAnimation: function() {
-
       var self = this;
-
       this.stopAnimation();
 
       // show symbol and gradually fade out by modulating opacity
       this.animation = new Animation( {
-        stepper: 'timer', // animation is controlled by the global phet-core timer
+        stepper: 'manual', // animation is controlled by the global phet-core timer
         duration: 1.5, // seconds
         easing: Easing.QUARTIC_IN,
         object: this,
@@ -176,9 +180,11 @@ define( function( require ) {
      * @public
      */
     stopAnimation: function() {
+
       // stop animation if it's already running
       this.animation && this.animation.stop();
       this.opacity = 0;
+      debugger;
     },
 
     /**

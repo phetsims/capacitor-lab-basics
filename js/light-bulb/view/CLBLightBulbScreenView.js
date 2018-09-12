@@ -43,8 +43,8 @@ define( function( require ) {
     // @private {CLBLightBulbModel}
     this.model = model;
 
-    // Circuit
-    var lightBulbCircuitNode = new LightBulbCircuitNode( model, tandem.createTandem( 'lightBulbCircuitNode' ) );
+    // @private {LightBulbCircuitNode} Circuit
+    this.lightBulbCircuitNode = new LightBulbCircuitNode( model, tandem.createTandem( 'lightBulbCircuitNode' ) );
 
     // meters
     var barMeterPanel = new BarMeterPanel( model, tandem.createTandem( 'barMeterPanel' ) );
@@ -90,7 +90,7 @@ define( function( require ) {
     toolboxPanel.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
 
     // Circuit bar meter panel
-    barMeterPanel.left = lightBulbCircuitNode.topWireNode.left - 40;
+    barMeterPanel.left = this.lightBulbCircuitNode.topWireNode.left - 40;
     barMeterPanel.top = this.layoutBounds.top + 10;
 
     var timeControlPanel = new Panel( new TimeControlNode( model.isPlayingProperty, model.isSlowMotionProperty, {
@@ -103,7 +103,7 @@ define( function( require ) {
       xMargin: 15,
       yMargin: 15,
       stroke: null,
-      fill:  new Color (255, 255, 255, 0.6),
+      fill: new Color( 255, 255, 255, 0.6 ),
       tandem: tandem.createTandem( 'timeControlPanel' )
     } );
 
@@ -117,7 +117,7 @@ define( function( require ) {
     } );
 
     // rendering order
-    this.addChild( lightBulbCircuitNode );
+    this.addChild( this.lightBulbCircuitNode );
     this.addChild( barMeterPanel );
     this.addChild( viewControlPanel );
     this.addChild( toolboxPanel );

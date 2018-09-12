@@ -116,14 +116,14 @@ define( function( require ) {
       0,
       model.currentOrientation,
       model.arrowColorProperty,
-      model.isPlayingProperty,
+      model.stepEmitter,
       tandem.createTandem( 'batteryTopCurrentIndicatorNode' ) );
     this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode(
       this.circuit.currentAmplitudeProperty,
       Math.PI,
       model.currentOrientation,
       model.arrowColorProperty,
-      model.isPlayingProperty,
+      model.stepEmitter,
       tandem.createTandem( 'batteryBottomCurrentIndicatorNode' ) );
 
     // rendering order

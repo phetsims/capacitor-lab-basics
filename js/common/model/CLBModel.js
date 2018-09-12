@@ -19,6 +19,7 @@ define( function( require ) {
   var Color = require( 'SCENERY/util/Color' );
   var ColorIO = require( 'SCENERY/util/ColorIO' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var Emitter = require( 'AXON/Emitter' );
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
@@ -119,6 +120,9 @@ define( function( require ) {
       tandem: tandem.createTandem( 'isSlowMotionProperty' )
     } );
 
+    // @public {Emitter}
+    this.stepEmitter = new Emitter();
+
     // @private {Bounds2}
     this.worldBounds = CANVAS_RENDERING_SIZE.toBounds();
 
@@ -181,6 +185,7 @@ define( function( require ) {
       if ( this.isPlayingProperty.value || isManual ) {
         var adjustedDt = dt * ( this.isSlowMotionProperty.value ? 0.125 : 1 );
         this.circuit.step( adjustedDt );
+        this.stepEmitter.emit1( adjustedDt );
         if ( this.isRunningProperty.value ) {
           this.secondsProperty.set( this.secondsProperty.value + adjustedDt );
         }

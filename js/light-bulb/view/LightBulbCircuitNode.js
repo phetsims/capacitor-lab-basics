@@ -43,14 +43,14 @@ define( function( require ) {
       0,
       model.currentOrientation,
       model.arrowColorProperty,
-      model.isPlayingProperty,
+      model.stepEmitter,
       tandem.createTandem( 'bulbTopCurrentIndicatorNode' ) );
     this.bulbBottomCurrentIndicatorNode = new CurrentIndicatorNode(
       circuit.currentAmplitudeProperty,
       Math.PI,
       model.currentOrientation,
       model.arrowColorProperty,
-      model.isPlayingProperty,
+      model.stepEmitter,
       tandem.createTandem( 'bulbBottomCurrentIndicatorNode' ) );
 
     // rendering order
@@ -76,11 +76,11 @@ define( function( require ) {
         var isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
         var isLightBulbConnected = ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED );
 
-        self.batteryTopCurrentIndicatorNode.adjustVisibility( isBatteryConnected && currentVisible && isPlaying );
-        self.batteryBottomCurrentIndicatorNode.adjustVisibility( isBatteryConnected && currentVisible && isPlaying );
+        self.batteryTopCurrentIndicatorNode.adjustVisibility( isBatteryConnected && currentVisible );
+        self.batteryBottomCurrentIndicatorNode.adjustVisibility( isBatteryConnected && currentVisible );
 
-        self.bulbTopCurrentIndicatorNode.adjustVisibility( isLightBulbConnected && currentVisible && isPlaying );
-        self.bulbBottomCurrentIndicatorNode.adjustVisibility( isLightBulbConnected && currentVisible && isPlaying );
+        self.bulbTopCurrentIndicatorNode.adjustVisibility( isLightBulbConnected && currentVisible );
+        self.bulbBottomCurrentIndicatorNode.adjustVisibility( isLightBulbConnected && currentVisible );
       } );
   }
 
