@@ -13,8 +13,8 @@ define( function( require ) {
   var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/common/view/BarMeterPanel' );
   var DraggableTimerNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DraggableTimerNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
+  var Color = require( 'SCENERY/util/Color' );
   var DebugLayer = require( 'CAPACITOR_LAB_BASICS/common/view/DebugLayer' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -102,7 +102,8 @@ define( function( require ) {
     ), {
       xMargin: 15,
       yMargin: 15,
-      fill: CLBConstants.METER_PANEL_FILL,
+      stroke: null,
+      fill:  new Color (255, 255, 255, 0.6),
       tandem: tandem.createTandem( 'timeControlPanel' )
     } );
 
