@@ -184,7 +184,6 @@ define( function( require ) {
       // stop animation if it's already running
       this.animation && this.animation.stop();
       this.opacity = 0;
-      debugger;
     },
 
     /**
