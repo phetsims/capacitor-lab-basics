@@ -111,7 +111,7 @@ define( function( require ) {
 
     var optionsNode = new Node( { children: [ verticalCheckboxGroup, currentTypeRadioButtonGroup ] } );
 
-    currentTypeRadioButtonGroup.leftTop = new Vector2( verticalCheckboxGroup.left + 10, verticalCheckboxGroup.bottom + 10 );
+    currentTypeRadioButtonGroup.leftTop = new Vector2( verticalCheckboxGroup.left + 25, verticalCheckboxGroup.bottom + 10 );
 
 
     Panel.call( this, optionsNode, {
