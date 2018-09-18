@@ -26,6 +26,7 @@ define( function( require ) {
   var MinusNode = require( 'SCENERY_PHET/MinusNode' );
   var Node = require( 'SCENERY/nodes/Node' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  var PlusNode = require( 'SCENERY_PHET/PlusNode' );
   var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
   var Vector2 = require( 'DOT/Vector2' );
 
@@ -39,22 +40,22 @@ define( function( require ) {
   var ARROW_TAIL_LOCATION = new Vector2( ARROW_LENGTH, 0 );
 
   // electron properties
-  var ELECTRON_DIAMETER = 0.8 * ARROW_TAIL_WIDTH;
+  var CHARGE_DIAMETER = 0.8 * ARROW_TAIL_WIDTH;
   var ELECTRON_LINE_WIDTH = 1;
-  var ELECTRON_STROKE_COLOR = 'black';
-  var ELECTRON_MINUS_COLOR = 'black';
-  var ELECTRON_MINUS_SIZE = new Dimension2( 0.6 * ELECTRON_DIAMETER, 0.1 * ELECTRON_DIAMETER );
+  var CHARGE_STROKE_COLOR = 'black';
+  var CHARGE_SYMBOL_COLOR = 'black';
+  var CHARGE_SYMBOL_SIZE = new Dimension2( 0.6 * CHARGE_DIAMETER, 0.1 * CHARGE_DIAMETER );
 
   /**
    * Rotation angles should be set such that +dV/dt indicates current flow towards the positive terminal
    * of the battery.
    * @constructor
    *
-   * @param {CurrentIndicator} currentIndicator
+   * @param {Property.<number>} currentAmplitudeProperty
    * @param {number} startingOrientation
    * @param {NumberProperty.<number>} positiveOrientationProperty
    * @param {Color} colorProperty
-   * @param {Property.<boolean>} isPlayingProperty
+   * @param {Emitter} stepEmitter
    * @param {Tandem} tandem
    */
   function CurrentIndicatorNode( currentAmplitudeProperty, startingOrientation, positiveOrientationProperty, colorProperty, stepEmitter, tandem ) {
@@ -68,9 +69,9 @@ define( function( require ) {
     // @private {Emitter}
     this.stepEmitter = stepEmitter;
 
-    this.stepEmitter.addListener(function(dt){
-      self.animation && self.animation.step(dt);
-    });
+    this.stepEmitter.addListener( function( dt ) {
+      self.animation && self.animation.step( dt );
+    } );
 
     var arrowNode = new ArrowNode( ARROW_TAIL_LOCATION.x, ARROW_TAIL_LOCATION.y, ARROW_TIP_LOCATION.x, ARROW_TIP_LOCATION.y, {
       headHeight: ARROW_HEAD_HEIGHT,
@@ -82,9 +83,9 @@ define( function( require ) {
 
     this.addChild( arrowNode );
 
-    var electronNode = new ShadedSphereNode( ELECTRON_DIAMETER, {
+    var electronNode = new ShadedSphereNode( CHARGE_DIAMETER, {
       fill: colorProperty.value,
-      stroke: ELECTRON_STROKE_COLOR,
+      stroke: CHARGE_STROKE_COLOR,
       lineWidth: ELECTRON_LINE_WIDTH,
       mainColor: colorProperty.value,
       highlightXOffset: 0,
@@ -92,12 +93,32 @@ define( function( require ) {
     } );
     this.addChild( electronNode );
 
+    var protonNode = new ShadedSphereNode( CHARGE_DIAMETER, {
+      fill: new Color( PhetColorScheme.RED_COLORBLIND ),
+      stroke: CHARGE_STROKE_COLOR,
+      lineWidth: ELECTRON_LINE_WIDTH,
+      mainColor: new Color( PhetColorScheme.RED_COLORBLIND ),
+      highlightXOffset: 0,
+      highlightYOffset: 0,
+      visible: !electronNode.visible
+    } );
+    this.addChild( protonNode );
+
+
     // Use scenery-phet's minus node because Text("-") can't be accurately centered.
     var minusNode = new MinusNode( {
-      size: ELECTRON_MINUS_SIZE,
-      fill: ELECTRON_MINUS_COLOR
+      size: CHARGE_SYMBOL_SIZE,
+      fill: CHARGE_SYMBOL_COLOR
     } );
     this.addChild( minusNode );
+
+    // Use scenery-phet's plus node because Text("+") can't be accurately centered.
+    var plusNode = new PlusNode( {
+      size: CHARGE_SYMBOL_SIZE,
+      fill: CHARGE_SYMBOL_COLOR,
+      visible: !minusNode.visible
+    } );
+    this.addChild( plusNode );
 
     // layout
     var x = -arrowNode.bounds.width / 2;
@@ -106,7 +127,11 @@ define( function( require ) {
     x = arrowNode.bounds.maxX - ( 0.6 * ( arrowNode.bounds.width - ARROW_HEAD_HEIGHT ) );
     y = arrowNode.bounds.centerY;
     electronNode.translate( x, y );
+
+    // TODO: Can we use onStatic for toggling centering?
     minusNode.center = electronNode.center;
+    protonNode.center = electronNode.center;
+    plusNode.center = electronNode.center;
 
     // @private {Animation|null} animation that will fade out the node
     this.animation = null;
@@ -118,6 +143,7 @@ define( function( require ) {
       else if ( value === Math.PI ) {
         colorProperty.set( new Color( PhetColorScheme.RED_COLORBLIND ) );
       }
+
     } );
 
     // observe current to determine rotation and opacity
@@ -132,15 +158,17 @@ define( function( require ) {
       if ( currentAmplitude > 0 ) {
         self.rotation = startingOrientation + positiveOrientationProperty.value;
         arrowNode.fill = colorProperty.value;
-        electronNode.mainColor = colorProperty.value;
-        electronNode.fill = colorProperty.value;
       }
       else if ( currentAmplitude < 0 ) {
         self.rotation = startingOrientation + positiveOrientationProperty.value + Math.PI;
         arrowNode.fill = colorProperty.value;
-        electronNode.mainColor = colorProperty.value;
-        electronNode.fill = colorProperty.value;
       }
+
+      // TODO: Can we use onStatic for toggling visibility?
+      electronNode.visible = positiveOrientationProperty.value === 0;
+      minusNode.visible = electronNode.visible;
+      protonNode.visible = !electronNode.visible;
+      plusNode.visible = !minusNode.visible;
     } );
   }
 
