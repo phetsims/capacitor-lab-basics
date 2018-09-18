@@ -115,7 +115,7 @@ define( function( require ) {
 
 
     Panel.call( this, optionsNode, {
-      xMargin: 12,
+      xMargin: 15,
       yMargin: 10,
       fill: CLBConstants.METER_PANEL_FILL,
       tandem: tandem

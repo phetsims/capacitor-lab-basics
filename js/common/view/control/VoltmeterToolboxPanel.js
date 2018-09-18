@@ -135,7 +135,7 @@ define( function( require ) {
     }
 
     this.addChild( new Panel( toolbox, {
-      xMargin: 15,
+      xMargin: 17,
       yMargin: 15,
       align: 'center',
       minWidth: 125,
