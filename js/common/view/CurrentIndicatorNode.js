@@ -127,8 +127,6 @@ define( function( require ) {
     x = arrowNode.bounds.maxX - ( 0.6 * ( arrowNode.bounds.width - ARROW_HEAD_HEIGHT ) );
     y = arrowNode.bounds.centerY;
     electronNode.translate( x, y );
-
-    // TODO: Can we use onStatic for toggling centering?
     minusNode.center = electronNode.center;
     protonNode.center = electronNode.center;
     plusNode.center = electronNode.center;
@@ -164,11 +162,12 @@ define( function( require ) {
         arrowNode.fill = colorProperty.value;
       }
 
-      // TODO: Can we use onStatic for toggling visibility?
-      electronNode.visible = positiveOrientationProperty.value === 0;
-      minusNode.visible = electronNode.visible;
-      protonNode.visible = !electronNode.visible;
-      plusNode.visible = !minusNode.visible;
+      // Electron/Proton visibility dependent on orientation of current.
+      var chargeVisible = positiveOrientationProperty.value === 0;
+      electronNode.visible = chargeVisible;
+      minusNode.visible = chargeVisible;
+      protonNode.visible = !chargeVisible;
+      plusNode.visible = !chargeVisible;
     } );
   }
 
