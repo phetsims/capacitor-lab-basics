@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var AlignBox = require( 'SCENERY/nodes/AlignBox' );
   var BooleanProperty = require( 'AXON/BooleanProperty' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
@@ -35,11 +36,13 @@ define( function( require ) {
    * @param {Property.<boolean>} timerVisibleProperty
    * @param {Property.<boolean>} voltmeterVisibleProperty
    * @param {Tandem} tandem
+   * @param {object} Options
    */
   function VoltmeterToolboxPanel( dragBounds, timerNode, voltmeterNode, modelViewTransform, isDraggedProperty,
                                   timerVisibleProperty, voltmeterVisibleProperty, tandem, options ) {
     options = _.extend( {
-      includeTimer: true
+      includeTimer: true,
+      alignGroup: null
     }, options );
 
     var self = this;
@@ -125,7 +128,7 @@ define( function( require ) {
       phetioEventType: 'user'
     } );
 
-    var toolbox = new HBox( { spacing: 30, align: 'center', xMargin: 0 } );
+    var toolbox = new HBox( { spacing: 14, align: 'center', xMargin: 0 } );
     if ( options.includeTimer ) {
       toolbox.addChild( voltmeterIconNode );
       toolbox.addChild( timerIconNode );
@@ -134,8 +137,10 @@ define( function( require ) {
       toolbox.addChild( voltmeterIconNode );
     }
 
-    this.addChild( new Panel( toolbox, {
-      xMargin: 17,
+    // {AlignBox|HBox}
+    var content = !!options.alignGroup ? new AlignBox( toolbox, { group: options.alignGroup } ) : toolbox;
+    this.addChild( new Panel( content, {
+      xMargin: 15,
       yMargin: 15,
       align: 'center',
       minWidth: 125,

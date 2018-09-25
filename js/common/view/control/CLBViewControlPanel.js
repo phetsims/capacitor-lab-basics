@@ -12,6 +12,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var AlignBox = require( 'SCENERY/nodes/AlignBox' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -44,7 +45,8 @@ define( function( require ) {
   function CLBViewControlPanel( model, tandem, options ) {
 
     options = _.extend( {
-      maxTextWidth: 250
+      maxTextWidth: 250,
+      alignGroup:null
     }, options );
 
     var checkboxItems = [ {
@@ -113,8 +115,10 @@ define( function( require ) {
 
     currentTypeRadioButtonGroup.leftTop = new Vector2( verticalCheckboxGroup.left + 25, verticalCheckboxGroup.bottom + 10 );
 
+    // {Node|AlignBox}
+    var content = !!options.alignGroup ? new AlignBox( optionsNode, { group: options.alignGroup } ) : optionsNode;
 
-    Panel.call( this, optionsNode, {
+    Panel.call( this, content, {
       xMargin: 15,
       yMargin: 10,
       fill: CLBConstants.METER_PANEL_FILL,
