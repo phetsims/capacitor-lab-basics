@@ -138,7 +138,7 @@ define( function( require ) {
     }
 
     // {AlignBox|HBox}
-    var content = !!options.alignGroup ? new AlignBox( toolbox, { group: options.alignGroup } ) : toolbox;
+    var content = options.alignGroup ? new AlignBox( toolbox, { group: options.alignGroup } ) : toolbox;
     this.addChild( new Panel( content, {
       xMargin: 15,
       yMargin: 15,
