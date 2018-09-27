@@ -116,11 +116,13 @@ define( function( require ) {
     currentTypeRadioButtonGroup.leftTop = new Vector2( verticalCheckboxGroup.left + 25, verticalCheckboxGroup.bottom + 10 );
 
     // {Node|AlignBox}
-    var content = options.alignGroup ? new AlignBox( optionsNode, { group: options.alignGroup } ) : optionsNode;
+    var content = options.alignGroup ? new AlignBox( optionsNode, { group: options.alignGroup ,xAlign:'left'} ) : optionsNode;
 
     Panel.call( this, content, {
-      xMargin: 15,
+      xMargin: 10,
       yMargin: 10,
+      align:'left',
+      minWidth:175,
       fill: CLBConstants.METER_PANEL_FILL,
       tandem: tandem
     } );

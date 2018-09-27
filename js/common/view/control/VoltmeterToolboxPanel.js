@@ -128,7 +128,7 @@ define( function( require ) {
       phetioEventType: 'user'
     } );
 
-    var toolbox = new HBox( { spacing: 14, align: 'center', xMargin: 0 } );
+    var toolbox = new HBox( { spacing: 13, align: 'center', xMargin: 0 } );
     if ( options.includeTimer ) {
       toolbox.addChild( voltmeterIconNode );
       toolbox.addChild( timerIconNode );
@@ -140,10 +140,9 @@ define( function( require ) {
     // {AlignBox|HBox}
     var content = options.alignGroup ? new AlignBox( toolbox, { group: options.alignGroup } ) : toolbox;
     this.addChild( new Panel( content, {
-      xMargin: 15,
+      xMargin: 10,
       yMargin: 15,
       align: 'center',
-      minWidth: 125,
       fill: CLBConstants.METER_PANEL_FILL,
       tandem: tandem.createTandem( 'voltmeterIconNodePanel' )
     } ) );
