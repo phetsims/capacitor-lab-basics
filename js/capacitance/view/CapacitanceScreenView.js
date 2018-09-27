@@ -95,7 +95,7 @@ define( function( require ) {
       listener: function() {
         model.reset();
       },
-      bottom: this.layoutBounds.bottom - 20,
+      bottom: this.layoutBounds.bottom - 30,
       right: this.layoutBounds.right - 30,
       radius: 25,
       touchAreaDilation: 20,
