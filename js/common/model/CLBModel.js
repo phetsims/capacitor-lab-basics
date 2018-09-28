@@ -183,13 +183,12 @@ define( function( require ) {
      */
     step: function( dt, isManual ) {
       if ( this.isPlayingProperty.value || isManual ) {
-        var adjustedDt = dt * ( this.isSlowMotionProperty.value ? 0.125 : 1 );
+
+        // If a manual step is called the dt should be the same a normal dt value.
+        var adjustedDt = isManual ? dt : dt * ( this.isSlowMotionProperty.value ? 0.125 : 1 );
         this.circuit.step( adjustedDt );
         this.stepEmitter.emit1( adjustedDt );
         if ( this.isRunningProperty.value ) {
-
-          // If a manual step is called the dt should be the same a normal dt value.
-          adjustedDt = isManual ? dt : adjustedDt;
           this.secondsProperty.set( this.secondsProperty.value + adjustedDt );
         }
       }
