@@ -187,6 +187,9 @@ define( function( require ) {
         this.circuit.step( adjustedDt );
         this.stepEmitter.emit1( adjustedDt );
         if ( this.isRunningProperty.value ) {
+
+          // If a manual step is called the dt should be the same a normal dt value.
+          adjustedDt = isManual ? dt : adjustedDt;
           this.secondsProperty.set( this.secondsProperty.value + adjustedDt );
         }
       }
