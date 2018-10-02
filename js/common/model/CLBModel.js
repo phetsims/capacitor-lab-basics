@@ -85,7 +85,7 @@ define( function( require ) {
     } );
 
     // @public {Property.<boolean>}
-    this.currentOrientation = new NumberProperty( 0, {
+    this.currentOrientationProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'currentOrientationProperty' )
     } );
 
@@ -210,6 +210,7 @@ define( function( require ) {
       this.barGraphsVisibleProperty.reset();
       this.voltmeterVisibleProperty.reset();
       this.currentVisibleProperty.reset();
+      this.currentOrientationProperty.reset();
       this.switchUsedProperty.reset();
       this.isPlayingProperty.reset();
       this.isSlowMotionProperty.reset();

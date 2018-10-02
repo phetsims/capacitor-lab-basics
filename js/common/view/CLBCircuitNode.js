@@ -114,14 +114,14 @@ define( function( require ) {
     this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode(
       this.circuit.currentAmplitudeProperty,
       0,
-      model.currentOrientation,
+      model.currentOrientationProperty,
       model.arrowColorProperty,
       model.stepEmitter,
       tandem.createTandem( 'batteryTopCurrentIndicatorNode' ) );
     this.batteryBottomCurrentIndicatorNode = new CurrentIndicatorNode(
       this.circuit.currentAmplitudeProperty,
       Math.PI,
-      model.currentOrientation,
+      model.currentOrientationProperty,
       model.arrowColorProperty,
       model.stepEmitter,
       tandem.createTandem( 'batteryBottomCurrentIndicatorNode' ) );

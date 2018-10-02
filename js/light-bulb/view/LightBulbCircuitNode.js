@@ -41,14 +41,14 @@ define( function( require ) {
     this.bulbTopCurrentIndicatorNode = new CurrentIndicatorNode(
       circuit.currentAmplitudeProperty,
       0,
-      model.currentOrientation,
+      model.currentOrientationProperty,
       model.arrowColorProperty,
       model.stepEmitter,
       tandem.createTandem( 'bulbTopCurrentIndicatorNode' ) );
     this.bulbBottomCurrentIndicatorNode = new CurrentIndicatorNode(
       circuit.currentAmplitudeProperty,
       Math.PI,
-      model.currentOrientation,
+      model.currentOrientationProperty,
       model.arrowColorProperty,
       model.stepEmitter,
       tandem.createTandem( 'bulbBottomCurrentIndicatorNode' ) );
