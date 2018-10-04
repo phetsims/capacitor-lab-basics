@@ -14,6 +14,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  var Range = require( 'DOT/Range' );
   var RangeWithValue = require( 'DOT/RangeWithValue' );
   var Vector3 = require( 'DOT/Vector3' );
 
@@ -45,7 +46,7 @@ define( function( require ) {
     PLATE_WIDTH_RANGE: new RangeWithValue( 0.01, 0.02, Math.sqrt( 200 / 1000 / 1000 ) ), // meters, with default value at 200 mm^2
     PLATE_HEIGHT: 0.0005, // meters
     PLATE_SEPARATION_RANGE: new RangeWithValue( 0.002, 0.01, 0.006 ), // meters
-    CAPACITANCE_RANGE: new RangeWithValue( 1E-13, 3E-13 ), // Farads
+    CAPACITANCE_RANGE: new Range( 1E-13, 3E-13 ), // Farads
 
     LIGHT_BULB_X_SPACING: 0.023, // meters
     BATTERY_LOCATION: new Vector3( 0.0065, 0.030, 0 ), // meters
@@ -86,13 +87,13 @@ define( function( require ) {
     CONNECTION_POINT_RADIUS: 8, // px - dashed circles at switch contacts
 
     // plate charges
-    NUMBER_OF_PLATE_CHARGES: new RangeWithValue( 1, 625 ),
+    NUMBER_OF_PLATE_CHARGES: new Range( 1, 625 ),
     NEGATIVE_CHARGE_SIZE: new Dimension2( 7, 2 ),
     ELECTRON_CHARGE: 1.60218E-19,
     MIN_PLATE_CHARGE: 0.01E-12, // absolute minimum plate charge in coulombs
 
     // E-field
-    NUMBER_OF_EFIELD_LINES: new RangeWithValue( 1, 900 ), // number of lines on smallest plate
+    NUMBER_OF_EFIELD_LINES: new Range( 1, 900 ), // number of lines on smallest plate
     DIRECTION: {
       UP: 'UP',
       DOWN: 'DOWN'
