@@ -84,7 +84,7 @@ define( function( require ) {
 
     var pressListener = new PressListener( {
       tandem: tandem.createTandem( 'pressListener' ),
-      phetioInstanceDocumentation: 'Connects and disconnects the circuit',
+      phetioDocumentation: 'Connects and disconnects the circuit',
       attach: false,
       press: function( event ) {
         if ( circuitSwitch.circuitConnectionProperty.value === connectionType ) {

@@ -46,7 +46,7 @@ define( function( require ) {
     this.currentAmplitudeProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
       units: 'amperes',
-      phetioInstanceDocumentation: 'Beware that the current is calculated in the model time step, so if dQ is zero for a step the current could transiently appear as zero.',
+      phetioDocumentation: 'Beware that the current is calculated in the model time step, so if dQ is zero for a step the current could transiently appear as zero.',
       phetioReadOnly: true
     } );
 

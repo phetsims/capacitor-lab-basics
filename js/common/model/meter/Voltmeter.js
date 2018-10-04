@@ -72,7 +72,7 @@ define( function( require ) {
     // @public {Property.<boolean>}
     this.isDraggedProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'isDraggedProperty' ),
-      phetioInstanceDocumentation: 'Indicates whether the user is currently dragging the voltmeter'
+      phetioDocumentation: 'Indicates whether the user is currently dragging the voltmeter'
     } );
 
     // @public {Property.<Vector3>}
