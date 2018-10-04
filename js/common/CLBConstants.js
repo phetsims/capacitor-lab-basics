@@ -14,6 +14,7 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  var Range = require( 'DOT/Range' );
   var RangeWithValue = require( 'DOT/RangeWithValue' );
   var Vector3 = require( 'DOT/Vector3' );
 
@@ -86,13 +87,13 @@ define( function( require ) {
     CONNECTION_POINT_RADIUS: 8, // px - dashed circles at switch contacts
 
     // plate charges
-    NUMBER_OF_PLATE_CHARGES: new RangeWithValue( 1, 625 ),
+    NUMBER_OF_PLATE_CHARGES: new Range( 1, 625 ),
     NEGATIVE_CHARGE_SIZE: new Dimension2( 7, 2 ),
     ELECTRON_CHARGE: 1.60218E-19,
     MIN_PLATE_CHARGE: 0.01E-12, // absolute minimum plate charge in coulombs
 
     // E-field
-    NUMBER_OF_EFIELD_LINES: new RangeWithValue( 1, 900 ), // number of lines on smallest plate
+    NUMBER_OF_EFIELD_LINES: new Range( 1, 900 ), // number of lines on smallest plate
     DIRECTION: {
       UP: 'UP',
       DOWN: 'DOWN'
