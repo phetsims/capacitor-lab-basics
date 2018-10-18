@@ -30,7 +30,7 @@ define( function( require ) {
   var Shape = require( 'KITE/Shape' );
 
   // ifphetio
-  var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
+  var StringIO = require( 'TANDEM/types/StringIO' );
 
   /**
    * @constructor

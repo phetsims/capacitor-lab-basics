@@ -22,7 +22,7 @@ define( function( require ) {
   var Vector3 = require( 'DOT/Vector3' );
 
   // ifphetio
-  var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
+  var StringIO = require( 'TANDEM/types/StringIO' );
 
   // constants
   // size of the associated image file, determined by visual inspection

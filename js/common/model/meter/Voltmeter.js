@@ -28,9 +28,9 @@ define( function( require ) {
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
   // ifphetio
-  var NullableIO = require( 'ifphetio!PHET_IO/types/NullableIO' );
-  var NumberIO = require( 'ifphetio!PHET_IO/types/NumberIO' );
-  var StringIO = require( 'ifphetio!PHET_IO/types/StringIO' );
+  var NullableIO = require( 'TANDEM/types/NullableIO' );
+  var NumberIO = require( 'TANDEM/types/NumberIO' );
+  var StringIO = require( 'TANDEM/types/StringIO' );
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
