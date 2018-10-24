@@ -19,10 +19,8 @@ define( function( require ) {
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
-  var Vector3 = require( 'DOT/Vector3' );
-
-  // ifphetio
   var StringIO = require( 'TANDEM/types/StringIO' );
+  var Vector3 = require( 'DOT/Vector3' );
 
   // constants
   // size of the associated image file, determined by visual inspection

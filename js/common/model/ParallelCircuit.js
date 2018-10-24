@@ -28,8 +28,6 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
   var Shape = require( 'KITE/Shape' );
-
-  // ifphetio
   var StringIO = require( 'TANDEM/types/StringIO' );
 
   /**

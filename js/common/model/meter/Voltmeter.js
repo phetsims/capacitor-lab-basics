@@ -26,8 +26,6 @@ define( function( require ) {
   var Vector3 = require( 'DOT/Vector3' );
   var Vector3IO = require( 'DOT/Vector3IO' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
-
-  // ifphetio
   var NullableIO = require( 'TANDEM/types/NullableIO' );
   var NumberIO = require( 'TANDEM/types/NumberIO' );
   var StringIO = require( 'TANDEM/types/StringIO' );
