@@ -19,16 +19,16 @@ define( function( require ) {
   var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var NullableIO = require( 'TANDEM/types/NullableIO' );
+  var NumberIO = require( 'TANDEM/types/NumberIO' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/ParallelCircuit' );
   var ProbeTarget = require( 'CAPACITOR_LAB_BASICS/common/model/ProbeTarget' );
   var Property = require( 'AXON/Property' );
   var PropertyIO = require( 'AXON/PropertyIO' );
+  var StringIO = require( 'TANDEM/types/StringIO' );
   var Vector3 = require( 'DOT/Vector3' );
   var Vector3IO = require( 'DOT/Vector3IO' );
   var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
-  var NullableIO = require( 'TANDEM/types/NullableIO' );
-  var NumberIO = require( 'TANDEM/types/NumberIO' );
-  var StringIO = require( 'TANDEM/types/StringIO' );
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
