@@ -95,6 +95,13 @@ define( function( require ) {
       this.voltmeter.reset();
       this.circuit.reset();
       CLBModel.prototype.reset.call( this );
+    },
+    step: function( dt, isManual ) {
+      CLBModel.prototype.step.call( this, dt, isManual );
+      this.circuit.updateCurrentAmplitude( dt );
+    },
+    manualStep: function() {
+      CLBModel.prototype.step.call( this, 0.2, true );
     }
   } );
 } );
