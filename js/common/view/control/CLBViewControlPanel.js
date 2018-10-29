@@ -116,7 +116,10 @@ define( function( require ) {
     currentTypeRadioButtonGroup.leftTop = new Vector2( verticalCheckboxGroup.left + 25, verticalCheckboxGroup.bottom + 10 );
 
     // {Node|AlignBox}
-    var content = options.alignGroup ? new AlignBox( optionsNode, { group: options.alignGroup ,xAlign:'left'} ) : optionsNode;
+    var content = options.alignGroup ? new AlignBox( optionsNode, {
+      group: options.alignGroup,
+      xAlign: 'center'
+    } ) : optionsNode;
 
     Panel.call( this, content, {
       xMargin: 10,

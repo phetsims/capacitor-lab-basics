@@ -73,7 +73,7 @@ define( function( require ) {
     this.addChild( draggableTimerNode );
 
     // @public {AlignGroup}
-    this.rightPanelAlignGroup = new AlignGroup( { matchVertical: false } );
+    this.rightPanelAlignGroup = new AlignGroup( { matchVertical: false, minWidth: 350 } );
 
     var toolboxPanel = new VoltmeterToolboxPanel(
       this.layoutBounds,

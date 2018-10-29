@@ -138,11 +138,15 @@ define( function( require ) {
     }
 
     // {AlignBox|HBox}
-    var content = options.alignGroup ? new AlignBox( toolbox, { group: options.alignGroup } ) : toolbox;
+    var content = options.alignGroup ? new AlignBox( toolbox, {
+      group: options.alignGroup,
+      xAlign: 'center'
+    } ) : toolbox;
     this.addChild( new Panel( content, {
       xMargin: 10,
       yMargin: 15,
       align: 'center',
+      minWidth: 175,
       fill: CLBConstants.METER_PANEL_FILL,
       tandem: tandem.createTandem( 'voltmeterIconNodePanel' )
     } ) );
