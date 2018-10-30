@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.5.3 Wed Aug 15 2018 13:14:51 GMT-0600 (MDT)",
+  "comment": "# capacitor-lab-basics 1.5.3 Tue Oct 30 2018 14:02:22 GMT-0600 (MDT)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "acc199783c582be17cf62f1f1eeac2f707e94245",
+    "sha": "58e027979c8e8fed98d4564e727a5ab02be53cd1",
     "branch": "1.5"
   },
   "chipper": {
@@ -25,8 +25,8 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "897647b1af178740d97081dd8a10af9cc68545d5",
-    "branch": "HEAD"
+    "sha": "ab77f5b6fa28da944e8a0d527d643ead3167b63e",
+    "branch": "capacitor-lab-basics-1.5"
   },
   "kite": {
     "sha": "e4c0b7731e725dcc654c431b09e1fe543b0dea58",
