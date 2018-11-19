@@ -1,4 +1,4 @@
-// Copyright 2015-2017, University of Colorado Boulder
+// Copyright 2015-2018, University of Colorado Boulder
 
 /**
  * Capacitance screen for the Capacitor Lab Basics sim.

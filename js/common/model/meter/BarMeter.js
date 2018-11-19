@@ -1,4 +1,4 @@
-// Copyright 2015-2017, University of Colorado Boulder
+// Copyright 2015-2018, University of Colorado Boulder
 
 /**
  * Stores properties for showing a bar meter.

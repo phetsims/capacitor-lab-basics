@@ -1,4 +1,4 @@
-// Copyright 2015-2017, University of Colorado Boulder
+// Copyright 2015-2018, University of Colorado Boulder
 
 /**
  * A voltmeter has a body, 2 probes, and 2 wires connecting the probes to the body.

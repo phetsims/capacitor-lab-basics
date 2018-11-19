@@ -1,4 +1,4 @@
-// Copyright 2016-2017, University of Colorado Boulder
+// Copyright 2018, University of Colorado Boulder
 
 /**
  * Enumeration for what the voltmeter probes can be touching.

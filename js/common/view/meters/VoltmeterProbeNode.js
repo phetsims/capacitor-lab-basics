@@ -1,4 +1,4 @@
-// Copyright 2015-2017, University of Colorado Boulder
+// Copyright 2015-2018, University of Colorado Boulder
 
 /**
  * Class for voltmeter probes in the view.  Static functions create each of the

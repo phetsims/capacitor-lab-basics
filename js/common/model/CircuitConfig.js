@@ -1,4 +1,4 @@
-// Copyright 2015-2017, University of Colorado Boulder
+// Copyright 2015-2018, University of Colorado Boulder
 
 /**
  * Configuration information for a circuit. This is purely a data structure, whose purpose is to reduce the number of
