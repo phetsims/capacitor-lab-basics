@@ -132,7 +132,7 @@ define( function( require ) {
      * We don't need to account for the polarity since the bottom terminal is never visible.
      * @public
      *
-     * @return {number}
+     * @returns {number}
      */
     getBottomTerminalYOffset: function() {
       return BODY_SIZE.height / 2;

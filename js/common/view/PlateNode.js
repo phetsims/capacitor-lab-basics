@@ -90,7 +90,7 @@ define( function( require ) {
      * @param {CLBModelViewTransform3D} modelViewTransform
      * @param {number} maxPlateCharge
      *
-     * @return {PlateNode}
+     * @returns {PlateNode}
      */
     createTopPlateNode: function( capacitor, modelViewTransform, maxPlateCharge ) {
       return new PlateNode( capacitor, modelViewTransform, CLBConstants.POLARITY.POSITIVE, maxPlateCharge );
