@@ -98,7 +98,6 @@ define( function( require ) {
       bottom: this.layoutBounds.bottom - 30,
       right: this.layoutBounds.right - 30,
       radius: 25,
-      touchAreaDilation: 20,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
 

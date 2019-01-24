@@ -119,7 +119,6 @@ define( function( require ) {
         model.reset();
       },
       radius: 25,
-      touchAreaDilation: 20,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
 
