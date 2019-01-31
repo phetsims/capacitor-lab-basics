@@ -19,6 +19,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var NumberProperty = require( 'AXON/NumberProperty' );
   var Panel = require( 'SUN/Panel' );
+  var PhetioObject = require( 'TANDEM/PhetioObject' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var TimerNode = require( 'SCENERY_PHET/TimerNode' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -125,7 +126,7 @@ define( function( require ) {
     Node.call( this, {
       tandem: tandem,
       phetioType: VoltmeterToolboxPanelIO,
-      phetioEventType: 'user'
+      phetioEventType: PhetioObject.EventType.USER
     } );
 
     var toolbox = new HBox( { spacing: 13, align: 'center', xMargin: 0 } );
