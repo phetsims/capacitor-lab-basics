@@ -63,7 +63,7 @@ define( function( require ) {
     } );
 
     var hingePoint = circuitSwitch.hingePoint.toVector2();
-    var connectionAngle = connection.location.toVector2().minus( hingePoint ).angle();
+    var connectionAngle = connection.location.toVector2().minus( hingePoint ).angle;
     var triangleShape = new Shape().moveToPoint( hingePoint );
     triangleShape.arcPoint( hingePoint, CLBConstants.SWITCH_WIRE_LENGTH * 1.4, connectionAngle - BOUNDING_ANGLE, connectionAngle + BOUNDING_ANGLE, false );
     triangleShape.close();

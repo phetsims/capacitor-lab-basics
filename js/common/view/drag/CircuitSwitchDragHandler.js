@@ -75,7 +75,7 @@ define( function( require ) {
         var transformedPMouse = switchNode.modelViewTransform.viewToModelPosition( pMouse ).toVector2();
 
         var hingePoint = circuitSwitch.hingePoint.toVector2(); // in model coordinates
-        angle = transformedPMouse.minus( hingePoint ).angle();
+        angle = transformedPMouse.minus( hingePoint ).angle;
 
         var leftLimitAngle = circuitSwitch.getLeftLimitAngle();
         var rightLimitAngle = circuitSwitch.getRightLimitAngle();

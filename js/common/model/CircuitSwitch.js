@@ -99,7 +99,7 @@ define( function( require ) {
       }
 
       var wireDelta = self.getConnection( circuitConnection ).location.minus( self.switchSegment.hingePoint );
-      self.angleProperty.value = wireDelta.toVector2().angle();
+      self.angleProperty.value = wireDelta.toVector2().angle;
     } );
   }
 
@@ -257,7 +257,7 @@ define( function( require ) {
         return connection.location.x;
       } ] ) );
 
-      return rightMost.location.minus( this.hingePoint ).toVector2().angle();
+      return rightMost.location.minus( this.hingePoint ).toVector2().angle;
     },
 
     /**
@@ -274,7 +274,7 @@ define( function( require ) {
         return connection.location.x;
       } ] ) );
 
-      return leftMost.location.minus( this.hingePoint ).toVector2().angle();
+      return leftMost.location.minus( this.hingePoint ).toVector2().angle;
     },
 
     contacts: function( probe ) {
