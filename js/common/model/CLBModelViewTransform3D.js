@@ -30,7 +30,7 @@ define( function( require ) {
   // Scratch variable for performance
   // @private
   var scratchVector2 = new Vector2( 0, 0 );
-  var scratchVector3 = new Vector3();
+  var scratchVector3 = new Vector3( 0, 0, 0 );
 
   /**
    * @constructor

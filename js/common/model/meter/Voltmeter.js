@@ -74,7 +74,7 @@ define( function( require ) {
     } );
 
     // @public {Property.<Vector3>}
-    this.bodyLocationProperty = new Property( new Vector3(), {
+    this.bodyLocationProperty = new Property( new Vector3( 0, 0, 0 ), {
       useDeepEquality: true,
       tandem: tandem.createTandem( 'bodyLocationProperty' ),
       phetioType: PropertyIO( Vector3IO )
