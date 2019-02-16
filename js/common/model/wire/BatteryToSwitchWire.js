@@ -33,7 +33,7 @@ define( function( require ) {
 
     // y coordinate of the horizontal wire
     var horizontalY = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED ).y;
-    var leftCorner = new Vector3( battery.location.x, horizontalY );
+    var leftCorner = new Vector3( battery.location.x, horizontalY, 0 );
 
     // add the vertical segment.
     var verticalSegment;
