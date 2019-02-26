@@ -1,7 +1,7 @@
 // Copyright 2018, University of Colorado Boulder
 
 /**
- * IO type for VoltmeterToolboxPanel
+ * IO type for VoltmeterToolboxPanel.   TODO: This type seems like it isn't doing anything.  Can it be deleted?
  *
  * @author John Blanco
  */
@@ -13,9 +13,6 @@ define( function( require ) {
   var NodeIO = require( 'SCENERY/nodes/NodeIO' );
   var phetioInherit = require( 'TANDEM/phetioInherit' );
 
-  // ifphetio
-  var assertInstanceOf = require( 'ifphetio!PHET_IO/assertInstanceOf' );
-
   /**
    * IO type for phet/sun's AccordionBox class.
    * @param {AccordionBox} voltmeterToolboxPanel
@@ -23,13 +20,13 @@ define( function( require ) {
    * @constructor
    */
   function VoltmeterToolboxPanelIO( voltmeterToolboxPanel, phetioID ) {
-    assert && assertInstanceOf( voltmeterToolboxPanel, phet.capacitorLabBasics.VoltmeterToolboxPanel );
     NodeIO.call( this, voltmeterToolboxPanel, phetioID );
   }
 
   phetioInherit( NodeIO, 'VoltmeterToolboxPanelIO', VoltmeterToolboxPanelIO, {}, {
     documentation: 'A toolbox that contains a voltmeter',
-    events: [ 'dragged' ]
+    events: [ 'dragged' ],
+    validator: { isValidValue: v => v instanceof phet.capacitorLabBasics.VoltmeterToolboxPanel }
   } );
 
   capacitorLabBasics.register( 'VoltmeterToolboxPanelIO', VoltmeterToolboxPanelIO );
