@@ -121,7 +121,7 @@ define( function( require ) {
     } );
 
     // @public {Emitter}
-    this.stepEmitter = new Emitter();
+    this.stepEmitter = new Emitter( { validationEnabled: false } );
 
     // @private {Bounds2}
     this.worldBounds = CANVAS_RENDERING_SIZE.toBounds();
@@ -187,7 +187,7 @@ define( function( require ) {
         // If a manual step is called the dt should be the same a normal dt value.
         var adjustedDt = isManual ? dt : dt * ( this.isSlowMotionProperty.value ? 0.125 : 1 );
         this.circuit.step( adjustedDt );
-        this.stepEmitter.emit1( adjustedDt );
+        this.stepEmitter.emit( adjustedDt );
         if ( this.isRunningProperty.value ) {
           this.secondsProperty.set( this.secondsProperty.value + adjustedDt );
         }
