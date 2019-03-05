@@ -57,7 +57,7 @@ define( function( require ) {
       thumbTouchAreaXDilation: 11,
       thumbTouchAreaYDilation: 11,
       majorTickLength: 18,
-      thumbFillEnabled: 'rgb(255,237,53)',
+      thumbFill: 'rgb(255,237,53)',
       thumbFillHighlighted: 'rgb(71,207,255)', // same as default
       thumbStroke: 'rgb(191,191,191)',
       thumbLineWidth: 2,
