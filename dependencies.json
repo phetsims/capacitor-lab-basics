@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.3.8-phetio Tue Nov 06 2018 13:07:51 GMT-0700 (MST)",
+  "comment": "# capacitor-lab-basics 1.3.8-phetio Fri Mar 08 2019 12:40:58 GMT-0500 (EST)",
   "assert": {
     "sha": "845be6b591cb746b0b05b7023208aef2e49a8855",
     "branch": "HEAD"
@@ -9,11 +9,11 @@
     "branch": "HEAD"
   },
   "brand": {
-    "sha": "880a18ded11185580cf5950e568931cf0df4eb87",
-    "branch": "HEAD"
+    "sha": "a7a3883cf0d5ecbdb1ab6b562071ff0a4aea8b29",
+    "branch": "capacitor-lab-basics-1.3-phetio"
   },
   "capacitor-lab-basics": {
-    "sha": "979da2901aa5079d88d52c437c87a3344851af0f",
+    "sha": "bae26d66fd068f8ca06a665cf2c7f1ac61961832",
     "branch": "1.3-phetio"
   },
   "chipper": {
@@ -25,8 +25,8 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "9ae586e60d2ae278b3b754cef820301859767012",
-    "branch": "HEAD"
+    "sha": "18f7fa6772bfbea29296139dd259957e952c87e1",
+    "branch": "capacitor-lab-basics-1.3-phetio"
   },
   "kite": {
     "sha": "d506825f0e044f9715f94b2aac23dbd52b139a82",
