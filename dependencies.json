@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.5.4 Fri Mar 08 2019 12:42:05 GMT-0500 (EST)",
+  "comment": "# capacitor-lab-basics 1.5.4 Tue Mar 19 2019 15:54:30 GMT-0400 (EDT)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -10,15 +10,15 @@
   },
   "brand": {
     "sha": "b6bd61a4a9f19c25fc054aac56ba844ccc1cbfee",
-    "branch": "capacitor-lab-basics-1.5"
+    "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "d56afe59e78f528d56b360b7c0b06a46691f004e",
+    "sha": "130ad55b203c3ed1c2f6f6cd6415b4f8d8ad6c13",
     "branch": "1.5"
   },
   "chipper": {
-    "sha": "bd2e23f710f1f2e1339d7211affce96088bd71c9",
-    "branch": "HEAD"
+    "sha": "d2732bb677e4b634b9e3037db540220b3e187e67",
+    "branch": "capacitor-lab-basics-1.5"
   },
   "dot": {
     "sha": "4a1ddd12ee5254fd54530fbc1f1be9fbb7672558",
@@ -26,7 +26,7 @@
   },
   "joist": {
     "sha": "4dc61e1f1fb7790e80d0e393664a965c44059c62",
-    "branch": "capacitor-lab-basics-1.5"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "e4c0b7731e725dcc654c431b09e1fe543b0dea58",
@@ -38,6 +38,10 @@
   },
   "phetcommon": {
     "sha": "08031351b0b13bd4bb9b8496ffe713858c3a29f7",
+    "branch": "HEAD"
+  },
+  "phetmarks": {
+    "sha": "8de65d1b00e01cb330da5074c549f9d4dbc86cfb",
     "branch": "HEAD"
   },
   "query-string-machine": {
@@ -67,9 +71,5 @@
   "twixt": {
     "sha": "1390557778f63fde0ca8a59948339730d01b9e6d",
     "branch": "HEAD"
-  },
-  "phetmarks": {
-    "branch": "master",
-    "sha": "8de65d1b00e01cb330da5074c549f9d4dbc86cfb"
   }
 }
