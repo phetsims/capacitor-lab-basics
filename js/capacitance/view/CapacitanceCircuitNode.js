@@ -14,6 +14,7 @@ define( function( require ) {
   var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CLBCircuitNode = require( 'CAPACITOR_LAB_BASICS/common/view/CLBCircuitNode' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Property = require( 'AXON/Property' );
 
   /**
    * @constructor
@@ -26,15 +27,10 @@ define( function( require ) {
     CLBCircuitNode.call( this, model, tandem );
     var self = this;
 
-    // current indicator observers
-    // TODO: use multilink to cover both links?
-    model.circuit.circuitConnectionProperty.link( function( circuitConnection ) {
-      self.updateCurrentVisibility( circuitConnection, model.currentVisibleProperty.value );
-    } );
-
-    model.currentVisibleProperty.link( function( currentIndicatorsVisible ) {
-      self.updateCurrentVisibility( model.circuit.circuitConnectionProperty.value, currentIndicatorsVisible );
-    } );
+    Property.multilink( [ model.circuit.circuitConnectionProperty, model.currentVisibleProperty ],
+      function( circuitConnection, currentIndicatorsVisible ) {
+        self.updateCurrentVisibility( circuitConnection, currentIndicatorsVisible );
+      } );
   }
 
   capacitorLabBasics.register( 'CapacitanceCircuitNode', CapacitanceCircuitNode );
