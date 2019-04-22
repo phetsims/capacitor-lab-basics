@@ -20,6 +20,7 @@ define( function( require ) {
   var Connection = require( 'CAPACITOR_LAB_BASICS/common/model/Connection' );
   var inherit = require( 'PHET_CORE/inherit' );
   var NumberProperty = require( 'AXON/NumberProperty' );
+  var Range = require( 'DOT/Range' );
   var Shape = require( 'KITE/Shape' );
   var Vector2 = require( 'DOT/Vector2' );
   var Vector3 = require( 'DOT/Vector3' );
@@ -62,9 +63,9 @@ define( function( require ) {
 
     // @public {Property.<number>} - Angle of the switch
     this.angleProperty = new NumberProperty( 0, {
-      // TODO: Add range
       tandem: tandem.createTandem( 'angleProperty' ),
-      units: 'radians'
+      units: 'radians',
+      range: new Range( -2.5, 2.5 )
     } );
 
     // Assign string identifying connection point
@@ -84,7 +85,6 @@ define( function( require ) {
     this.switchWire = new Wire( config.modelViewTransform, [ this.switchSegment ], connectionName );
 
     this.angleProperty.link( function( angle ) {
-      // console.log(angle);
       var hingePoint = self.switchSegment.hingePoint;
 
       // Shorten the switch wire (requested in #140)
