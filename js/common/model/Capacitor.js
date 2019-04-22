@@ -107,15 +107,17 @@ define( function( require ) {
       } );
 
     // @public {Property.<number} Charge on top plate of capacitor
-    this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty ],
-      function( capacitance, voltage ) {
-        var charge = capacitance * voltage;
+    this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty, circuitConnectionProperty ],
+      function( capacitance, voltage, circuitConnection ) {
+        if ( circuitConnection ) {
+          var charge = capacitance * voltage;
 
-        // Force an underflow to zero below the threshold for stability
-        if ( Math.abs( charge ) < CLBConstants.MIN_PLATE_CHARGE ) {
-          charge = 0;
+          // Force an underflow to zero below the threshold for stability
+          if ( Math.abs( charge ) < CLBConstants.MIN_PLATE_CHARGE ) {
+            charge = 0;
+          }
+          return charge;
         }
-        return charge;
       }, {
         tandem: tandem.createTandem( 'plateChargeProperty' ),
         units: 'coulombs',
