@@ -105,8 +105,8 @@ define( function( require ) {
         phetioType: DerivedPropertyIO( NumberIO )
       } );
 
-    // @public {Property.<number} Charge on top plate of capacitor
-    this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty, this.circuitConnectionProperty ],
+    // @public {Property.<number>} Charge on top plate of capacitor
+    this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty, circuitConnectionProperty ],
       function( capacitance, voltage, circuitConnection ) {
         if ( circuitConnection ) {
           var charge = capacitance * voltage;

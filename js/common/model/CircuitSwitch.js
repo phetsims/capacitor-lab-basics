@@ -84,6 +84,7 @@ define( function( require ) {
     this.switchWire = new Wire( config.modelViewTransform, [ this.switchSegment ], connectionName );
 
     this.angleProperty.link( function( angle ) {
+      // console.log(angle);
       var hingePoint = self.switchSegment.hingePoint;
 
       // Shorten the switch wire (requested in #140)
