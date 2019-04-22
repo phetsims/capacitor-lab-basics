@@ -88,7 +88,6 @@ define( function( require ) {
     } );
 
     // @public {Property.<number>} - zero until it's connected into a circuit
-    // TODO: shouldn't this be derived from the battery voltage and hence a derived property?
     this.plateVoltageProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'plateVoltageProperty' ),
       units: 'volts',
@@ -107,7 +106,7 @@ define( function( require ) {
       } );
 
     // @public {Property.<number} Charge on top plate of capacitor
-    this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty, circuitConnectionProperty ],
+    this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty, this.circuitConnectionProperty ],
       function( capacitance, voltage, circuitConnection ) {
         if ( circuitConnection ) {
           var charge = capacitance * voltage;
