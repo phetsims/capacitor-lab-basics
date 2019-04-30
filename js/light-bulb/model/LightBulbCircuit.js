@@ -33,6 +33,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
   var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/ParallelCircuit' );
+  var Property = require( 'AXON/Property' );
   var Vector3 = require( 'DOT/Vector3' );
 
   // During exponential voltage drop, circuit voltage crosses this threshold,
@@ -76,8 +77,15 @@ define( function( require ) {
         self.capacitor.transientTime = 0;
         self.capacitor.voltageAtSwitchClose = self.capacitor.plateVoltageProperty.value;
       }
-
     } );
+
+    // Allow the capacitor to discharge when adjusting the plate geometry without the.
+    Property.multilink( [ this.capacitor.plateSizeProperty, this.capacitor.plateSeparationProperty ],
+      function() {
+        if ( Math.abs( self.capacitor.plateVoltageProperty.value ) > MIN_VOLTAGE ) {
+          self.capacitor.discharge( self.lightBulb.resistance, 0 );
+        }
+      } );
   }
 
   capacitorLabBasics.register( 'LightBulbCircuit', LightBulbCircuit );
