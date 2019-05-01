@@ -4379,7 +4379,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PhetioCommandProcessorIO"
     },
-    "capacitorLabBasics.general.resizedEmitter": {
+    "capacitorLabBasics.general.resizedAction": {
       "phetioDocumentation": "Emits when the sim is resized",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -4423,7 +4423,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "capacitorLabBasics.general.stepSimulationEmitter": {
+    "capacitorLabBasics.general.stepSimulationAction": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
