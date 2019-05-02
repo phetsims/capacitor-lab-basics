@@ -33,6 +33,7 @@ define( function( require ) {
     var clickYOffset = new Vector2( 0, 0 );
 
     DragListener.call( this, {
+      allowTouchSnag: false,
       tandem: tandem,
       start: function( event ) {
         var pMouse = event.pointer.point;

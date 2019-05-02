@@ -41,6 +41,7 @@ define( function( require ) {
     this.clickXOffset = new Vector2( 0, 0 );
 
     DragListener.call( this, {
+      allowTouchSnag: false,
       tandem: tandem,
       start: function( event ) {
         var width = capacitor.plateSizeProperty.value.width;
