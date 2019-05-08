@@ -79,7 +79,7 @@ define( function( require ) {
       }
     } );
 
-    // Allow the capacitor to discharge when adjusting the plate geometry without the.
+    // Allow the capacitor to discharge when adjusting the plate geometry.
     Property.multilink( [ this.capacitor.plateSizeProperty, this.capacitor.plateSeparationProperty ],
       function() {
         if ( Math.abs( self.capacitor.plateVoltageProperty.value ) > MIN_VOLTAGE ) {
