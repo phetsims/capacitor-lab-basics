@@ -79,13 +79,12 @@ define( function( require ) {
       };
     } );
 
-    var currentTypeRadioButtonGroup = new VerticalAquaRadioButtonGroup( [
+    var currentTypeRadioButtonGroup = new VerticalAquaRadioButtonGroup( model.currentOrientationProperty, [
       {
         node: new Text( electronsString, {
           font: CHECK_BOX_FONT,
           maxWidth: options.maxTextWidth
         } ),
-        property: model.currentOrientationProperty,
         value: 0,
         tandemName: 'electronsRadioButton'
       },
@@ -94,7 +93,6 @@ define( function( require ) {
           font: CHECK_BOX_FONT,
           maxWidth: options.maxTextWidth
         } ),
-        property: model.currentOrientationProperty,
         value: Math.PI,
         tandemName: 'conventionalRadioButton'
       }
