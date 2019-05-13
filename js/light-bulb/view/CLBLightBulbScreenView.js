@@ -100,13 +100,13 @@ define( function( require ) {
     barMeterPanel.left = this.lightBulbCircuitNode.topWireNode.left - 40;
     barMeterPanel.top = this.layoutBounds.top + 10;
 
-    var timeControlPanel = new Panel( new TimeControlNode( model.isPlayingProperty, model.isSlowMotionProperty, {
-        stepCallback: function() {
-          model.manualStep();
-        },
-        tandem: tandem.createTandem( 'timeControlNode' )
-      }
-    ), {
+    var timeControlPanel = new Panel( new TimeControlNode( model.isPlayingProperty, {
+      isSlowMotionProperty: model.isSlowMotionProperty,
+      stepOptions: {
+        listener: function() { model.manualStep(); }
+      },
+      tandem: tandem.createTandem( 'timeControlNode' )
+    } ), {
       xMargin: 15,
       yMargin: 15,
       stroke: null,
