@@ -59,8 +59,8 @@ define( function( require ) {
     this.addChild( this.valueNode );
 
     // layout: value below label, left-justified
-    labelNode.translation = new Vector2( 0, 0 );
-    this.valueNode.translation = new Vector2( 0, labelNode.bottom + 15 );
+    labelNode.translation = new Vector2( 12, 0 );
+    this.valueNode.translation = new Vector2( 12, labelNode.bottom + 17 );
 
     this.setValue( value );
     this.mutate( options );
