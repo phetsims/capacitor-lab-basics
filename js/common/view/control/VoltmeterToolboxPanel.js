@@ -37,7 +37,7 @@ define( function( require ) {
    * @param {Property.<boolean>} timerVisibleProperty
    * @param {Property.<boolean>} voltmeterVisibleProperty
    * @param {Tandem} tandem
-   * @param {object} Options
+   * @param {object} options
    */
   function VoltmeterToolboxPanel( dragBounds, timerNode, voltmeterNode, modelViewTransform, isDraggedProperty,
                                   timerVisibleProperty, voltmeterVisibleProperty, tandem, options ) {
@@ -89,11 +89,13 @@ define( function( require ) {
 
     // {Node} Create timer icon. Visible option is used only for reset() in ToolboxPanel.js
     var timerIconNode = timer.rasterized( {
-      cursor: 'pointer',
       resolution: 5,
-      pickable: true,
+      pickable: false,
       tandem: tandem.createTandem( 'timerIcon' )
     } );
+    timerIconNode.touchArea = timer.bounds.dilated( 5 );
+    timerIconNode.mouseArea = timer.bounds.dilated( 5 );
+    timerIconNode.cursor = 'pointer';
 
     // Drag listener for event forwarding: timerIcon ---> timerNode
     timerIconNode.addInputListener( new SimpleDragHandler.createForwardingListener( function( event ) {
