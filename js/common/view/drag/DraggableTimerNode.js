@@ -31,6 +31,7 @@ define( function( require ) {
     TimerNode.call( this, secondsProperty, timerRunningProperty, {
       tandem: tandem.createTandem( 'timer' )
     } );
+    this.touchArea = this.localBounds.dilated( 10 );
 
     // @private {Vector2} (read-only) position of ruler node in screen coordinates
     this.positionProperty = new Vector2Property( initialPosition, {
