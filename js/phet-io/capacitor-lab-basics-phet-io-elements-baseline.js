@@ -1,17 +1,6 @@
 /* eslint-disable */
 window.phet.phetio.phetioElementsBaseline =
   {
-    "capacitorLabBasics.activityMonitor.currentActivityProperty": {
-      "phetioDocumentation": "",
-      "phetioEventType": "model",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": false,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO.<ObjectIO>"
-    },
     "capacitorLabBasics.capacitanceScreen.activeProperty": {
       "phetioDocumentation": "Indicates whether the screen is active.  For single-screen simulations, the screen is always active.",
       "phetioEventType": "model",
@@ -8394,6 +8383,17 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.enabledProperty": {
+      "phetioDocumentation": "",
+      "phetioEventType": "model",
+      "phetioFeatured": false,
+      "phetioHighFrequency": false,
+      "phetioPlayback": false,
+      "phetioReadOnly": false,
+      "phetioState": true,
+      "phetioStudioControl": true,
+      "phetioTypeName": "PropertyIO.<BooleanIO>"
+    },
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
@@ -8548,7 +8548,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8559,7 +8559,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.normal": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8570,7 +8570,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.normal.enabledProperty": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.enabledProperty": {
       "phetioDocumentation": "Determines whether the AquaRadioButton is enabled (pressable) or disabled (grayed-out)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8581,7 +8581,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.normal.inputListener.firedEmitter": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioEventType": "user",
       "phetioFeatured": false,
@@ -8592,7 +8592,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "EmitterIO.<>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.normal.inputListener.pressedAction": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.inputListener.pressedAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioEventType": "user",
       "phetioFeatured": false,
@@ -8603,7 +8603,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO.<EventIO, VoidIO, VoidIO>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.normal.inputListener.releasedAction": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.inputListener.releasedAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioEventType": "user",
       "phetioFeatured": false,
@@ -8614,7 +8614,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO.<NullableIO.<EventIO>, VoidIO>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.normal.opacityProperty": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8625,7 +8625,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.normal.pickableProperty": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8636,7 +8636,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.normal.visibleProperty": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8647,7 +8647,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.opacityProperty": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8658,7 +8658,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.pickableProperty": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8669,7 +8669,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.slowMotion": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow": {
       "phetioDocumentation": "",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8680,7 +8680,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.slowMotion.enabledProperty": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.enabledProperty": {
       "phetioDocumentation": "Determines whether the AquaRadioButton is enabled (pressable) or disabled (grayed-out)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8691,7 +8691,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.slowMotion.inputListener.firedEmitter": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioEventType": "user",
       "phetioFeatured": false,
@@ -8702,7 +8702,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "EmitterIO.<>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.slowMotion.inputListener.pressedAction": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.inputListener.pressedAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioEventType": "user",
       "phetioFeatured": false,
@@ -8713,7 +8713,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO.<EventIO, VoidIO, VoidIO>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.slowMotion.inputListener.releasedAction": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.inputListener.releasedAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioEventType": "user",
       "phetioFeatured": false,
@@ -8724,7 +8724,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "ActionIO.<NullableIO.<EventIO>, VoidIO>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.slowMotion.opacityProperty": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8735,7 +8735,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.slowMotion.pickableProperty": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8746,7 +8746,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<NullableIO.<BooleanIO>>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.slowMotion.visibleProperty": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
@@ -8757,7 +8757,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.slowMotionRadioButtonGroup.visibleProperty": {
+    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
       "phetioFeatured": false,
