@@ -35,8 +35,8 @@ define( function( require ) {
    * @param {Tandem} tandem
    */
   function CLBLightBulbScreenView( model, tandem ) {
-
     ScreenView.call( this, { tandem: tandem } );
+    var self = this;
 
     // @private {CLBModelViewTransform3D}
     this.modelViewTransform = model.modelViewTransform;
@@ -54,7 +54,7 @@ define( function( require ) {
 
     // @public {DraggableTimerNode}
     var draggableTimerNode = new DraggableTimerNode(
-      this.layoutBounds,
+      this.visibleBoundsProperty.get(),
       Vector2.ZERO,
       model.secondsProperty,
       model.isRunningProperty,
@@ -138,6 +138,12 @@ define( function( require ) {
       right: this.layoutBounds.right - 30
     } ) );
     this.addChild( new DebugLayer( model ) );
+
+    this.visibleBoundsProperty.link( function() {
+      draggableTimerNode.timerNodeMovableDragHandler.dragBounds = self.layoutBounds.withOffsets(
+        0, 0, -draggableTimerNode.width, -draggableTimerNode.height
+      );
+    } );
   }
 
   capacitorLabBasics.register( 'CLBLightBulbScreenView', CLBLightBulbScreenView );
