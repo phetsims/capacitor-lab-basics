@@ -67,6 +67,10 @@ define( function( require ) {
     } );
     this.addChild( imageNode );
 
+    // Reduce touch/mouse areas to prevent overlap with nearby objects.
+    this.touchArea = this.bounds.eroded( 10 );
+    this.mouseArea = this.bounds.eroded( 10 );
+
     // text label
     var labelText = new Text( voltageString, {
       font: TITLE_FONT,
