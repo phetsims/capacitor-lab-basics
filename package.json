@@ -23,6 +23,11 @@
       "phet-io",
       "adapted-from-phet"
     ],
+    "phet-io": {
+      "phetLibs": [
+        "phet-io-wrapper-lab-book"
+      ]
+    },
     "simulation": true
   },
   "eslintConfig": {
