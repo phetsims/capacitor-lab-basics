@@ -27,9 +27,11 @@ define( function( require ) {
   var simOptions = {
     credits: {
       leadDesign: 'Amy Rouinfar',
-      softwareDevelopment: 'Andrew Adare, Jesse Greenberg, Chris Malley, Emily Randall, Jonathan Olson',
+      softwareDevelopment: 'Andrew Adare, Denzell Barnett, Jesse Greenberg, Chris Malley, Jonathan Olson, Emily Randall',
       team: 'Emily Moore, Ariel Paul, Kathy Perkins, Emily Randall',
-      qualityAssurance: 'Steele Dalton, Amanda Davis, Kerrie Dochen, Bryce Griebenow, Ethan Johnson, Elise Morgan, Liam Mulhall, Oliver Orejola, Arnab Purkayastha, Ben Roberts, Clara Wilson, Bryan Yoelin'
+      qualityAssurance: 'Steele Dalton, Amanda Davis, Kerrie Dochen, Bryce Griebenow, Ethan Johnson, Elise Morgan,' +
+                        ' Liam Mulhall, Oliver Orejola, Arnab Purkayastha, Ben Roberts, Ethan Ward, Clara Wilson,' +
+                        ' Kathryn Woessner, Bryan Yoelin'
     }
   };
 
