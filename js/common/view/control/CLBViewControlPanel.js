@@ -118,7 +118,7 @@ class CLBViewControlPanel extends Panel {
     // {Node|AlignBox}
     const content = options.alignGroup ? new AlignBox( optionsNode, {
       group: options.alignGroup,
-      xAlign: 'center'
+      xAlign: 'left'
     } ) : optionsNode;
 
     super( content, {
