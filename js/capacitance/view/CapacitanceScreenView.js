@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var AlignGroup = require( 'SCENERY/nodes/AlignGroup' );
   var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/common/view/BarMeterPanel' );
   var CapacitanceCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceCircuitNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -64,6 +65,9 @@ define( function( require ) {
     );
     this.addChild( draggableTimerNode );
 
+    // @public {AlignGroup}
+    this.rightPanelAlignGroup = new AlignGroup( { matchVertical: false, minWidth: 350 } );
+
     var toolboxPanel = new VoltmeterToolboxPanel(
       this.layoutBounds,
       draggableTimerNode,
@@ -73,13 +77,15 @@ define( function( require ) {
       model.timerVisibleProperty,
       model.voltmeterVisibleProperty,
       tandem.createTandem( 'ToolboxPanel' ), {
-        includeTimer: false
+        includeTimer: false,
+        alignGroup: this.rightPanelAlignGroup
       }
     );
 
     // control
     var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
-      maxTextWidth: 200
+      maxTextWidth: 200,
+      alignGroup: this.rightPanelAlignGroup
     } );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
     toolboxPanel.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
