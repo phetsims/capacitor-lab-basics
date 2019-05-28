@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.6.12 Wed Apr 24 2019 14:50:15 GMT-0800 (Alaskan Daylight Time)",
+  "comment": "# capacitor-lab-basics 1.6.13-rc.1 Tue May 28 2019 01:16:33 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "ef45d11e77c8bc1ea28ac2ea29b803553d1a6479",
+    "sha": "fbb7c06d4be26e9bf0ffd1d1c55025e64ada7652",
     "branch": "1.6"
   },
   "chipper": {
@@ -44,16 +44,8 @@
     "sha": "766da99e82ec81c1e9edf57730310581ee80f4ba",
     "branch": "HEAD"
   },
-  "phet-io-wrapper-classroom-activity": {
-    "sha": "c84e30463c42773a3bf69f6d7facde15c73fd1d4",
-    "branch": "HEAD"
-  },
   "phet-io-wrapper-lab-book": {
     "sha": "ebf7c7dc298be156c107f44ab4f7b8aa0cc95ba2",
-    "branch": "HEAD"
-  },
-  "phet-io-wrapper-sonification": {
-    "sha": "a3d5056ce1a28f9e972f2770fccff645ecf88346",
     "branch": "HEAD"
   },
   "phet-io-wrappers": {
