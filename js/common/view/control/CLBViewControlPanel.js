@@ -118,7 +118,7 @@ define( function( require ) {
     // {Node|AlignBox}
     var content = options.alignGroup ? new AlignBox( optionsNode, {
       group: options.alignGroup,
-      xAlign: 'center'
+      xAlign: 'left'
     } ) : optionsNode;
 
     Panel.call( this, content, {
