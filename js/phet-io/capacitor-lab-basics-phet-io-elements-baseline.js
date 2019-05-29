@@ -983,7 +983,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -1038,7 +1038,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -1368,7 +1368,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -1423,7 +1423,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -1588,7 +1588,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.topPlateChargeCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -1643,7 +1643,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.topPlateChargeCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3337,7 +3337,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.barGraphsCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3392,7 +3392,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.barGraphsCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3414,7 +3414,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3469,7 +3469,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3711,7 +3711,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.electricFieldCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3766,7 +3766,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.electricFieldCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3810,7 +3810,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.plateChargesCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3865,7 +3865,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.plateChargesCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -6153,7 +6153,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -6208,7 +6208,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -6538,7 +6538,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -6593,7 +6593,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -6758,7 +6758,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.topPlateChargeCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -6813,7 +6813,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.topPlateChargeCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -9222,7 +9222,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.barGraphsCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -9277,7 +9277,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.barGraphsCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -9299,7 +9299,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -9354,7 +9354,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -9596,7 +9596,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.electricFieldCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -9651,7 +9651,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.electricFieldCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -9695,7 +9695,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.plateChargesCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -9750,7 +9750,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.plateChargesCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -10652,7 +10652,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.navigationBar.phetButton.pickableProperty": {
       "phetioDocumentation": "Set whether the phetButton will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioEventType": "model",
-      "phetioFeatured": true,
+      "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
