@@ -730,7 +730,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.playPauseButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -796,7 +796,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.playPauseButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -818,7 +818,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.resetButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -884,7 +884,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.resetButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -2941,7 +2941,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.resetAllButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3018,7 +3018,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.resetAllButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3139,7 +3139,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.playPauseButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3205,7 +3205,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.playPauseButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3227,7 +3227,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.resetButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -3293,7 +3293,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.resetButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -5900,7 +5900,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.playPauseButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -5966,7 +5966,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.playPauseButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -5988,7 +5988,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.resetButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -6054,7 +6054,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.resetButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -8287,7 +8287,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.resetAllButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -8364,7 +8364,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.resetAllButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -8430,7 +8430,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -8540,7 +8540,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -8782,7 +8782,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.stepForwardButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -8848,7 +8848,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.stepForwardButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -9024,7 +9024,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.playPauseButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -9090,7 +9090,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.playPauseButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -9112,7 +9112,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.resetButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -9178,7 +9178,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.resetButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -10000,10 +10000,10 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "capacitorLabBasics.navigationBar.capacitanceScreenButton.buttonModel.enabledProperty": {
+    "capacitorLabBasics.navigationBar.capacitanceScreenButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -10011,7 +10011,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "capacitorLabBasics.navigationBar.capacitanceScreenButton.buttonModel.firedEmitter": {
+    "capacitorLabBasics.navigationBar.capacitanceScreenButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioEventType": "user",
       "phetioFeatured": false,
@@ -10190,7 +10190,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.navigationBar.homeButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -10275,10 +10275,10 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "NodeIO"
     },
-    "capacitorLabBasics.navigationBar.lightBulbScreenButton.buttonModel.enabledProperty": {
+    "capacitorLabBasics.navigationBar.lightBulbScreenButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
@@ -10286,7 +10286,7 @@ window.phet.phetio.phetioElementsBaseline =
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO.<BooleanIO>"
     },
-    "capacitorLabBasics.navigationBar.lightBulbScreenButton.buttonModel.firedEmitter": {
+    "capacitorLabBasics.navigationBar.lightBulbScreenButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioEventType": "user",
       "phetioFeatured": false,
@@ -10465,7 +10465,7 @@ window.phet.phetio.phetioElementsBaseline =
     "capacitorLabBasics.navigationBar.phetButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioEventType": "model",
-      "phetioFeatured": false,
+      "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
       "phetioReadOnly": false,
