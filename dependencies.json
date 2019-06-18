@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.7.0-rc.2 Thu May 23 2019 05:11:33 GMT-0400 (EDT)",
+  "comment": "# capacitor-lab-basics 1.7.0-rc.3 Tue Jun 18 2019 11:28:26 GMT-0400 (EDT)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "HEAD"
@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "499ba7635675f10bc97348270a4ba31342bdde5f",
+    "sha": "a91d61116e3f2b53f7fd058c1731a5c8d2ba1db5",
     "branch": "1.7"
   },
   "chipper": {
@@ -38,14 +38,6 @@
   },
   "phet-io": {
     "sha": "a372c4368df3fd663b0450960f03c4cae893058b",
-    "branch": "HEAD"
-  },
-  "phet-io-wrapper-classroom-activity": {
-    "sha": "248958109c8d3b73b5f9d6c31015b2c8b5016571",
-    "branch": "HEAD"
-  },
-  "phet-io-wrapper-hookes-law-energy": {
-    "sha": "3ea0d43712de26832a841086365544fa930fe458",
     "branch": "HEAD"
   },
   "phet-io-wrapper-lab-book": {
