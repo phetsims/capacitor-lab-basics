@@ -28,7 +28,7 @@ define( function( require ) {
     credits: {
       leadDesign: 'Amy Rouinfar',
       softwareDevelopment: 'Andrew Adare, Jesse Greenberg, Chris Malley, Emily Randall, Jonathan Olson',
-      team: 'Emily Moore, Ariel Paul, Kathy Perkins, Emily Randall',
+      team: 'Emily B. Moore, Ariel Paul, Kathy Perkins, Emily Randall',
       qualityAssurance: 'Steele Dalton, Amanda Davis, Kerrie Dochen, Bryce Griebenow, Ethan Johnson, Elise Morgan, Liam Mulhall, Oliver Orejola, Arnab Purkayastha, Ben Roberts, Clara Wilson, Bryan Yoelin'
     }
   };
