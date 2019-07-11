@@ -1,4 +1,4 @@
-// Copyright 2018, University of Colorado Boulder
+// Copyright 2018-2019, University of Colorado Boulder
 
 /**
  * IO type for VoltmeterToolboxPanel.   TODO: This type seems like it isn't doing anything.  Can it be deleted?
