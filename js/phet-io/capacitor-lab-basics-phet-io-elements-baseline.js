@@ -4,7 +4,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.activeProperty": {
       "phetioDocumentation": "Indicates whether the screen is active.  For single-screen simulations, the screen is always active.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -16,7 +16,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.arrowColorProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -28,7 +28,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.barGraphsVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -40,7 +40,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.capacitanceMeterVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -52,7 +52,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.battery.polarityProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -64,7 +64,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.battery.voltageProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -76,7 +76,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.batteryToSwitchWireBottom.batteryBottomToSwitchWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -88,7 +88,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.batteryToSwitchWireBottom.batteryBottomToSwitchWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -100,7 +100,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.batteryToSwitchWireBottom.batteryBottomWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -112,7 +112,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.batteryToSwitchWireBottom.batteryBottomWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -124,7 +124,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.batteryToSwitchWireTop.batteryTopToSwitchWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -136,7 +136,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.batteryToSwitchWireTop.batteryTopToSwitchWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -148,7 +148,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.batteryToSwitchWireTop.batteryTopWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -160,7 +160,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.batteryToSwitchWireTop.batteryTopWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -172,7 +172,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.bottomCircuitSwitch.angleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -184,7 +184,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.bottomCircuitSwitch.switchSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -196,7 +196,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.bottomCircuitSwitch.switchSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -208,7 +208,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.capacitanceProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -220,7 +220,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.plateChargeProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -232,7 +232,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.plateSeparationProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -244,7 +244,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.plateSizeProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -256,7 +256,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.plateVoltageProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -268,7 +268,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.storedEnergyProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -280,7 +280,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.topCircuitSwitch.angleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -292,7 +292,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.topCircuitSwitch.switchSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -304,7 +304,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.topCircuitSwitch.switchSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -316,7 +316,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitorComponentBottomWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -328,7 +328,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitorComponentBottomWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -340,7 +340,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitorComponentTopWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -352,7 +352,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitorComponentTopWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -364,7 +364,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.circuitConnectionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -376,7 +376,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.currentAmplitudeProperty": {
       "phetioDocumentation": "Beware that the current is calculated in the model time step, so if dQ is zero for a step the current could transiently appear as zero.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -388,7 +388,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.circuit.disconnectedPlateChargeProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -400,7 +400,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.currentOrientationProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -412,7 +412,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.currentVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -424,7 +424,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.electricFieldVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -436,7 +436,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.isPlayingProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -448,7 +448,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.isRunningProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -460,7 +460,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.isSlowMotionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -472,7 +472,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.plateChargesVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -484,7 +484,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.secondsProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -496,7 +496,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.storedEnergyMeterVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -508,7 +508,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.timerVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -520,7 +520,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.topPlateChargeMeterVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -532,7 +532,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.voltmeter.bodyLocationProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -544,7 +544,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.voltmeter.isDraggedProperty": {
       "phetioDocumentation": "Indicates whether the user is currently dragging the voltmeter",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -556,7 +556,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.voltmeter.measuredVoltageProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -568,7 +568,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.voltmeter.negativeProbeLocationProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -580,7 +580,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.voltmeter.negativeProbeTargetProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -592,7 +592,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.voltmeter.positiveProbeLocationProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -604,7 +604,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.voltmeter.positiveProbeTargetProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -616,7 +616,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.model.voltmeterVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -628,7 +628,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -640,7 +640,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -652,7 +652,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.isRunningProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -664,7 +664,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -676,7 +676,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -688,7 +688,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.secondsProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -700,7 +700,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerIcon": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -712,7 +712,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerIcon.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -724,7 +724,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerIcon.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -736,7 +736,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerIcon.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -748,7 +748,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -760,7 +760,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -772,7 +772,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -784,7 +784,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.playPauseButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -796,7 +796,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.playPauseButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -808,7 +808,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.playPauseButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -820,7 +820,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.playPauseButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -832,7 +832,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.playPauseButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -844,7 +844,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.playPauseButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -856,7 +856,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.playPauseButton.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -868,7 +868,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.playPauseButton.toggledEmitter": {
       "phetioDocumentation": "Emits when the button is toggled",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -880,7 +880,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.playPauseButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -892,7 +892,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.resetButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -904,7 +904,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.resetButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -916,7 +916,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.resetButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -928,7 +928,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.resetButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -940,7 +940,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.resetButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -952,7 +952,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.resetButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -964,7 +964,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.resetButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -976,7 +976,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.resetButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -988,7 +988,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.timerNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1000,7 +1000,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1012,7 +1012,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.voltmeterIconNodePanel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1024,7 +1024,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.voltmeterIconNodePanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1036,7 +1036,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.voltmeterIconNodePanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1048,7 +1048,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.ToolboxPanel.voltmeterIconNodePanel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1060,7 +1060,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1072,7 +1072,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1084,7 +1084,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1096,7 +1096,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1108,7 +1108,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1120,7 +1120,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1132,7 +1132,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1144,7 +1144,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1156,7 +1156,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1168,7 +1168,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1180,7 +1180,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1192,7 +1192,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1204,7 +1204,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1216,7 +1216,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1228,7 +1228,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1240,7 +1240,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1252,7 +1252,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1264,7 +1264,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1276,7 +1276,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1288,7 +1288,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1300,7 +1300,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1312,7 +1312,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1324,7 +1324,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1336,7 +1336,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1348,7 +1348,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1360,7 +1360,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1372,7 +1372,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1384,7 +1384,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1396,7 +1396,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1408,7 +1408,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1420,7 +1420,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1432,7 +1432,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1444,7 +1444,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1456,7 +1456,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1468,7 +1468,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1480,7 +1480,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1492,7 +1492,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1504,7 +1504,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1516,7 +1516,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1528,7 +1528,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1540,7 +1540,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1552,7 +1552,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1564,7 +1564,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1576,7 +1576,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1588,7 +1588,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1600,7 +1600,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1612,7 +1612,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1624,7 +1624,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1636,7 +1636,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1648,7 +1648,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1660,7 +1660,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1672,7 +1672,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1684,7 +1684,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1696,7 +1696,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1708,7 +1708,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1720,7 +1720,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1732,7 +1732,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.topPlateChargeCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1744,7 +1744,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.topPlateChargeCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1756,7 +1756,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.topPlateChargeCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1768,7 +1768,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.topPlateChargeCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1780,7 +1780,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.topPlateChargeCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1792,7 +1792,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.topPlateChargeCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1804,7 +1804,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.topPlateChargeCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1816,7 +1816,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1828,7 +1828,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryBottomCurrentIndicatorNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1840,7 +1840,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryBottomCurrentIndicatorNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1852,7 +1852,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryBottomCurrentIndicatorNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1864,7 +1864,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryBottomCurrentIndicatorNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1876,7 +1876,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1888,7 +1888,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.defaultTickLabel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1900,7 +1900,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.defaultTickLabel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1912,7 +1912,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.defaultTickLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1924,7 +1924,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.defaultTickLabel.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1936,7 +1936,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.defaultTickLabel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1948,7 +1948,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.maximumTickLabel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1960,7 +1960,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.maximumTickLabel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1972,7 +1972,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.maximumTickLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1984,7 +1984,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.maximumTickLabel.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -1996,7 +1996,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.maximumTickLabel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2008,7 +2008,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.minimumTickLabel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2020,7 +2020,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.minimumTickLabel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2032,7 +2032,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.minimumTickLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2044,7 +2044,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.minimumTickLabel.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2056,7 +2056,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.minimumTickLabel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2068,7 +2068,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2080,7 +2080,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2092,7 +2092,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2104,7 +2104,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.enabledProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2116,7 +2116,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.enabledRangeProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2128,7 +2128,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2140,7 +2140,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2152,7 +2152,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.thumb": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2164,7 +2164,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.thumb.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2176,7 +2176,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.thumb.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2188,7 +2188,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.thumb.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2200,7 +2200,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.thumbInputListener": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2212,7 +2212,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.thumbInputListener.dragAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -2224,7 +2224,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.thumbInputListener.dragEndAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2236,7 +2236,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.thumbInputListener.dragStartAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2248,7 +2248,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.thumbInputListener.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2260,7 +2260,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.track.trackInputListener": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2272,7 +2272,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.track.trackInputListener.dragAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -2284,7 +2284,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.track.trackInputListener.dragEndAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2296,7 +2296,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.track.trackInputListener.dragStartAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2308,7 +2308,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.track.trackInputListener.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2320,7 +2320,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.valueProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2332,7 +2332,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2344,7 +2344,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2356,7 +2356,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryTopCurrentIndicatorNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2368,7 +2368,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryTopCurrentIndicatorNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2380,7 +2380,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryTopCurrentIndicatorNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2392,7 +2392,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryTopCurrentIndicatorNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2404,7 +2404,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2416,7 +2416,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode.batteryConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2428,7 +2428,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode.batteryConnectionNode.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2440,7 +2440,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode.dragHandler.dragAction": {
       "phetioDocumentation": "Emits whenever a drag occurs with an EventIO argument.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -2452,7 +2452,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode.dragHandler.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2464,7 +2464,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode.dragHandler.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2476,7 +2476,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2488,7 +2488,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode.openConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2500,7 +2500,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode.openConnectionNode.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2512,7 +2512,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2524,7 +2524,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2536,7 +2536,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.capacitorNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2548,7 +2548,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.capacitorNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2560,7 +2560,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.capacitorNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2572,7 +2572,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.capacitorNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2584,7 +2584,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2596,7 +2596,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2608,7 +2608,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2620,7 +2620,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2632,7 +2632,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2644,7 +2644,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.inputListener.dragAction": {
       "phetioDocumentation": "Emits whenever a drag occurs with an EventIO argument.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -2656,7 +2656,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2668,7 +2668,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2680,7 +2680,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2692,7 +2692,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2704,7 +2704,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2716,7 +2716,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2728,7 +2728,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2740,7 +2740,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode.valueNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2752,7 +2752,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode.valueNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2764,7 +2764,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2776,7 +2776,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode.valueNode.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2788,7 +2788,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode.valueNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2800,7 +2800,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2812,7 +2812,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2824,7 +2824,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2836,7 +2836,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2848,7 +2848,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2860,7 +2860,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2872,7 +2872,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2884,7 +2884,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.dragHandler.dragAction": {
       "phetioDocumentation": "Emits whenever a drag occurs with an EventIO argument.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -2896,7 +2896,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.dragHandler.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2908,7 +2908,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.dragHandler.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2920,7 +2920,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2932,7 +2932,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2944,7 +2944,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2956,7 +2956,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2968,7 +2968,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2980,7 +2980,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -2992,7 +2992,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3004,7 +3004,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3016,7 +3016,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3028,7 +3028,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3040,7 +3040,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3052,7 +3052,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3064,7 +3064,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3076,7 +3076,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode.batteryConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3088,7 +3088,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode.batteryConnectionNode.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3100,7 +3100,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode.dragHandler.dragAction": {
       "phetioDocumentation": "Emits whenever a drag occurs with an EventIO argument.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -3112,7 +3112,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode.dragHandler.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3124,7 +3124,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode.dragHandler.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3136,7 +3136,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3148,7 +3148,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode.openConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3160,7 +3160,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode.openConnectionNode.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3172,7 +3172,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3184,7 +3184,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3196,7 +3196,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3208,7 +3208,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3220,7 +3220,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.resetAllButton": {
       "phetioDocumentation": "The orange, round button that can be used to restore the initial state",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3232,7 +3232,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.resetAllButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3244,7 +3244,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.resetAllButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3256,7 +3256,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.resetAllButton.isFiringProperty": {
       "phetioDocumentation": "Temporarily becomes true while the Reset All button is firing.  Commonly used to disable audio effects during reset.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3268,7 +3268,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.resetAllButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3280,7 +3280,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.resetAllButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3292,7 +3292,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.resetAllButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3304,7 +3304,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.resetAllButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3316,7 +3316,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.resetAllButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3328,7 +3328,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.dragHandler": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3340,7 +3340,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.dragHandler.dragAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -3352,7 +3352,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.dragHandler.dragEndAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3364,7 +3364,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.dragHandler.dragStartAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3376,7 +3376,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.dragHandler.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3388,7 +3388,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.positionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3400,7 +3400,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3412,7 +3412,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3424,7 +3424,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3436,7 +3436,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.playPauseButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3448,7 +3448,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.playPauseButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3460,7 +3460,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.playPauseButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3472,7 +3472,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.playPauseButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3484,7 +3484,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.playPauseButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3496,7 +3496,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.playPauseButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3508,7 +3508,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.playPauseButton.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3520,7 +3520,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.playPauseButton.toggledEmitter": {
       "phetioDocumentation": "Emits when the button is toggled",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3532,7 +3532,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.playPauseButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3544,7 +3544,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.resetButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3556,7 +3556,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.resetButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3568,7 +3568,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.resetButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3580,7 +3580,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.resetButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3592,7 +3592,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.resetButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3604,7 +3604,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.resetButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3616,7 +3616,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.resetButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3628,7 +3628,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.resetButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3640,7 +3640,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.timerNode.timer.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3652,7 +3652,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3664,7 +3664,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.barGraphsCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3676,7 +3676,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.barGraphsCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3688,7 +3688,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.barGraphsCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3700,7 +3700,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.barGraphsCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3712,7 +3712,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.barGraphsCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3724,7 +3724,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.barGraphsCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3736,7 +3736,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.barGraphsCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3748,7 +3748,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3760,7 +3760,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3772,7 +3772,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3784,7 +3784,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3796,7 +3796,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3808,7 +3808,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3820,7 +3820,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3832,7 +3832,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3844,7 +3844,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3856,7 +3856,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.enabledProperty": {
       "phetioDocumentation": "Determines whether the AquaRadioButton is enabled (pressable) or disabled (grayed-out)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3868,7 +3868,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3880,7 +3880,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3892,7 +3892,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3904,7 +3904,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3916,7 +3916,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3928,7 +3928,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3940,7 +3940,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3952,7 +3952,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.enabledProperty": {
       "phetioDocumentation": "Determines whether the AquaRadioButton is enabled (pressable) or disabled (grayed-out)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3964,7 +3964,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3976,7 +3976,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -3988,7 +3988,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4000,7 +4000,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4012,7 +4012,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4024,7 +4024,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4036,7 +4036,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4048,7 +4048,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4060,7 +4060,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4072,7 +4072,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.electricFieldCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4084,7 +4084,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.electricFieldCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4096,7 +4096,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.electricFieldCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4108,7 +4108,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.electricFieldCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4120,7 +4120,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.electricFieldCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4132,7 +4132,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.electricFieldCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4144,7 +4144,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.electricFieldCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4156,7 +4156,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4168,7 +4168,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4180,7 +4180,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.plateChargesCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4192,7 +4192,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.plateChargesCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4204,7 +4204,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.plateChargesCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4216,7 +4216,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.plateChargesCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4228,7 +4228,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.plateChargesCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4240,7 +4240,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.plateChargesCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4252,7 +4252,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.plateChargesCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4264,7 +4264,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4276,7 +4276,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4288,7 +4288,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4300,7 +4300,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.bodyNode.dragHandler": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4312,7 +4312,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.bodyNode.dragHandler.dragAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -4324,7 +4324,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.bodyNode.dragHandler.dragEndAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4336,7 +4336,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.bodyNode.dragHandler.dragStartAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4348,7 +4348,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.bodyNode.dragHandler.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4360,7 +4360,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.negativeProbeNode.dragHandler": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4372,7 +4372,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.negativeProbeNode.dragHandler.dragAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -4384,7 +4384,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.negativeProbeNode.dragHandler.dragEndAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4396,7 +4396,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.negativeProbeNode.dragHandler.dragStartAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4408,7 +4408,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.negativeProbeNode.dragHandler.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4420,7 +4420,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4432,7 +4432,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4444,7 +4444,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.positiveProbeNode.dragHandler": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4456,7 +4456,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.positiveProbeNode.dragHandler.dragAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -4468,7 +4468,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.positiveProbeNode.dragHandler.dragEndAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4480,7 +4480,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.positiveProbeNode.dragHandler.dragStartAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4492,7 +4492,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.positiveProbeNode.dragHandler.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4504,7 +4504,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4516,7 +4516,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.activeProperty": {
       "phetioDocumentation": "Determines whether the entire simulation is running and processing user input. Setting this property to false pauses the simulation, and prevents user interaction.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4528,7 +4528,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.barrierRectangle": {
       "phetioDocumentation": "Semi-transparent barrier used to block input events when a dialog is shown, also fades out the background",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4540,7 +4540,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.barrierRectangle.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4552,7 +4552,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.barrierRectangle.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4564,7 +4564,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.barrierRectangle.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4576,7 +4576,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.barrierRectangle.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4588,7 +4588,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.barrierRectangle.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4600,7 +4600,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.barrierRectangle.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4612,7 +4612,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.browserTabVisibleProperty": {
       "phetioDocumentation": "Indicates whether the browser tab containing the simulation is currently visible",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4624,7 +4624,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.mouseDownAction": {
       "phetioDocumentation": "Emits when a mouse button is pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": true,
@@ -4636,7 +4636,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.mouseMovedAction": {
       "phetioDocumentation": "Emits when the mouse is moved",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": true,
@@ -4648,7 +4648,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.mouseOutAction": {
       "phetioDocumentation": "Emits when the mouse moves out of the display",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": true,
@@ -4660,7 +4660,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.mouseOverAction": {
       "phetioDocumentation": "Emits when the mouse is moved over a Node",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": true,
@@ -4672,7 +4672,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.mouseUpAction": {
       "phetioDocumentation": "Emits when a mouse button is released",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": true,
@@ -4684,7 +4684,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.penCancelAction": {
       "phetioDocumentation": "Emits when a pen is canceled",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": true,
@@ -4696,7 +4696,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.penEndAction": {
       "phetioDocumentation": "Emits when a pen is lifted",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": true,
@@ -4708,7 +4708,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.penMoveAction": {
       "phetioDocumentation": "Emits when a pen is moved",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": true,
@@ -4720,7 +4720,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.penStartAction": {
       "phetioDocumentation": "Emits when a pen touches the screen",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": true,
@@ -4732,7 +4732,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.touchCancelAction": {
       "phetioDocumentation": "Emits when a touch is canceled",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": true,
@@ -4744,7 +4744,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.touchEndAction": {
       "phetioDocumentation": "Emits when a touch ends",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": true,
@@ -4756,7 +4756,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.touchMoveAction": {
       "phetioDocumentation": "Emits when a touch moves",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": true,
@@ -4768,7 +4768,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.touchStartAction": {
       "phetioDocumentation": "Emits when a touch begins",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": true,
@@ -4780,7 +4780,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.validatePointersAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": true,
@@ -4792,7 +4792,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.controller.input.wheelScrollAction": {
       "phetioDocumentation": "Emits when the mouse wheel scrolls",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": true,
@@ -4804,7 +4804,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.focusProperty": {
       "phetioDocumentation": "Stores the current focus for the simulation, null if there is not focus. This is not updated based on mouse or touch input, only keyboard and other alternative inputs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4816,7 +4816,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton": {
       "phetioDocumentation": "Button in the navigation bar that selects the 'capacitanceScreen' screen",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4828,7 +4828,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4840,7 +4840,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4852,7 +4852,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.icon": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4864,7 +4864,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.icon.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4876,7 +4876,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.icon.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4888,7 +4888,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.icon.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4900,7 +4900,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4912,7 +4912,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4924,7 +4924,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4936,7 +4936,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4948,7 +4948,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.text": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4960,7 +4960,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.text.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4972,7 +4972,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4984,7 +4984,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.text.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -4996,7 +4996,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.text.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5008,7 +5008,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5020,7 +5020,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.homeButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5032,7 +5032,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.homeButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5044,7 +5044,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.homeButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5056,7 +5056,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.homeButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5068,7 +5068,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.homeButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5080,7 +5080,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.homeButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5092,7 +5092,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.homeButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5104,7 +5104,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.homeButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5116,7 +5116,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton": {
       "phetioDocumentation": "Button in the navigation bar that selects the 'lightBulbScreen' screen",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5128,7 +5128,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5140,7 +5140,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5152,7 +5152,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.icon": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5164,7 +5164,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.icon.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5176,7 +5176,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.icon.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5188,7 +5188,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.icon.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5200,7 +5200,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5212,7 +5212,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5224,7 +5224,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5236,7 +5236,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5248,7 +5248,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.text": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5260,7 +5260,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.text.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5272,7 +5272,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5284,7 +5284,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.text.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5296,7 +5296,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.text.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5308,7 +5308,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5320,7 +5320,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton": {
       "phetioDocumentation": "The button that appears at the right side of the navigation bar, which shows a menu when pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5332,7 +5332,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5344,7 +5344,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5356,7 +5356,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu": {
       "phetioDocumentation": "This menu is displayed when the PhET button is pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5368,7 +5368,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutMenuItem": {
       "phetioDocumentation": "This menu item shows a dialog with information about the simulation.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5380,7 +5380,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutMenuItem.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5392,7 +5392,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutMenuItem.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5404,7 +5404,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutMenuItem.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5416,7 +5416,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutMenuItem.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5428,7 +5428,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutMenuItem.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5440,7 +5440,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutMenuItem.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5452,7 +5452,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.screenshotMenuItem": {
       "phetioDocumentation": "This menu item captures a screenshot from the simulation and saves it to the file system.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5464,7 +5464,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5476,7 +5476,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5488,7 +5488,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5500,7 +5500,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5512,7 +5512,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5524,7 +5524,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5536,7 +5536,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.pickableProperty": {
       "phetioDocumentation": "Set whether the phetButton will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5548,7 +5548,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5560,7 +5560,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.phetButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5572,7 +5572,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.titleTextNode": {
       "phetioDocumentation": "Displays the title of the simulation in the navigation bar (bottom left)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5584,7 +5584,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.titleTextNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5596,7 +5596,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.titleTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5608,7 +5608,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.titleTextNode.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5620,7 +5620,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.navigationBar.titleTextNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5632,7 +5632,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.phetioCommandProcessor": {
       "phetioDocumentation": "Processes messages from the wrapper frame and returns the results. This serves as the source of PhET-iO data stream messages when commands are invoked from the wrapper.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": true,
@@ -5644,7 +5644,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.resizeAction": {
       "phetioDocumentation": "Executes when the sim is resized",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": true,
@@ -5656,7 +5656,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.screenIndexProperty": {
       "phetioDocumentation": "Indicates which screen is selected (0-indexed)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5668,7 +5668,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.showHomeScreenProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5680,7 +5680,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.soundEnabledProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5692,7 +5692,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.general.stepSimulationAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": true,
@@ -5704,7 +5704,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.activeProperty": {
       "phetioDocumentation": "Indicates whether the screen is active.  For single-screen simulations, the screen is always active.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5716,7 +5716,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5728,7 +5728,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton": {
       "phetioDocumentation": "A pressable button in the simulation, in the home screen",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5740,7 +5740,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5752,7 +5752,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5764,7 +5764,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5776,7 +5776,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5788,7 +5788,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5800,7 +5800,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.text": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5812,7 +5812,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.text.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5824,7 +5824,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5836,7 +5836,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.text.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5848,7 +5848,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.text.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5860,7 +5860,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5872,7 +5872,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton": {
       "phetioDocumentation": "A pressable button in the simulation, in the home screen",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5884,7 +5884,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5896,7 +5896,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5908,7 +5908,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5920,7 +5920,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5932,7 +5932,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5944,7 +5944,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.text": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5956,7 +5956,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.text.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5968,7 +5968,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5980,7 +5980,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.text.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -5992,7 +5992,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.text.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6004,7 +6004,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6016,7 +6016,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton": {
       "phetioDocumentation": "A pressable button in the simulation, in the home screen",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6028,7 +6028,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6040,7 +6040,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6052,7 +6052,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6064,7 +6064,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6076,7 +6076,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6088,7 +6088,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.text": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6100,7 +6100,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.text.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6112,7 +6112,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6124,7 +6124,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.text.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6136,7 +6136,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.text.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6148,7 +6148,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6160,7 +6160,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton": {
       "phetioDocumentation": "A pressable button in the simulation, in the home screen",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6172,7 +6172,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6184,7 +6184,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6196,7 +6196,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6208,7 +6208,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6220,7 +6220,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6232,7 +6232,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.text": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6244,7 +6244,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.text.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6256,7 +6256,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6268,7 +6268,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.text.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6280,7 +6280,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.text.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6292,7 +6292,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6304,7 +6304,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6316,7 +6316,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6328,7 +6328,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.title": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6340,7 +6340,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.title.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6352,7 +6352,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.title.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6364,7 +6364,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.title.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6376,7 +6376,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.title.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6388,7 +6388,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.homeScreen.view.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6400,7 +6400,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.activeProperty": {
       "phetioDocumentation": "Indicates whether the screen is active.  For single-screen simulations, the screen is always active.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6412,7 +6412,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.arrowColorProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6424,7 +6424,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.barGraphsVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6436,7 +6436,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.capacitanceMeterVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6448,7 +6448,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.battery.polarityProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6460,7 +6460,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.battery.voltageProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6472,7 +6472,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.batteryToSwitchWireBottom.batteryBottomToSwitchWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6484,7 +6484,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.batteryToSwitchWireBottom.batteryBottomToSwitchWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6496,7 +6496,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.batteryToSwitchWireBottom.batteryBottomWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6508,7 +6508,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.batteryToSwitchWireBottom.batteryBottomWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6520,7 +6520,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.batteryToSwitchWireTop.batteryTopToSwitchWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6532,7 +6532,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.batteryToSwitchWireTop.batteryTopToSwitchWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6544,7 +6544,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.batteryToSwitchWireTop.batteryTopWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6556,7 +6556,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.batteryToSwitchWireTop.batteryTopWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6568,7 +6568,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.bottomCircuitSwitch.angleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6580,7 +6580,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.bottomCircuitSwitch.switchSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6592,7 +6592,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.bottomCircuitSwitch.switchSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6604,7 +6604,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.capacitanceProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6616,7 +6616,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.plateChargeProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6628,7 +6628,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.plateSeparationProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6640,7 +6640,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.plateSizeProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6652,7 +6652,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.plateVoltageProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6664,7 +6664,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.storedEnergyProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6676,7 +6676,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.topCircuitSwitch.angleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6688,7 +6688,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.topCircuitSwitch.switchSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6700,7 +6700,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.topCircuitSwitch.switchSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6712,7 +6712,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitorComponentBottomWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6724,7 +6724,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitorComponentBottomWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6736,7 +6736,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitorComponentTopWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6748,7 +6748,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitorComponentTopWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6760,7 +6760,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.circuitConnectionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6772,7 +6772,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.currentAmplitudeProperty": {
       "phetioDocumentation": "Beware that the current is calculated in the model time step, so if dQ is zero for a step the current could transiently appear as zero.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6784,7 +6784,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.disconnectedPlateChargeProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6796,7 +6796,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.lightBulbComponentBottomWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6808,7 +6808,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.lightBulbComponentBottomWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6820,7 +6820,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.lightBulbComponentTopWireSegment.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6832,7 +6832,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.lightBulbComponentTopWireSegment.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6844,7 +6844,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.lightBulbSwitchWireSegment0.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6856,7 +6856,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.lightBulbSwitchWireSegment0.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6868,7 +6868,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.lightBulbSwitchWireSegment1.endPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6880,7 +6880,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.circuit.lightBulbSwitchWireSegment1.startPointProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6892,7 +6892,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.currentOrientationProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6904,7 +6904,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.currentVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6916,7 +6916,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.electricFieldVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6928,7 +6928,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.isPlayingProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6940,7 +6940,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.isRunningProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6952,7 +6952,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.isSlowMotionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6964,7 +6964,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.plateChargesVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6976,7 +6976,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.secondsProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -6988,7 +6988,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.storedEnergyMeterVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7000,7 +7000,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.timerVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7012,7 +7012,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.topPlateChargeMeterVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7024,7 +7024,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.voltmeter.bodyLocationProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7036,7 +7036,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.voltmeter.isDraggedProperty": {
       "phetioDocumentation": "Indicates whether the user is currently dragging the voltmeter",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7048,7 +7048,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.voltmeter.measuredVoltageProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7060,7 +7060,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.voltmeter.negativeProbeLocationProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7072,7 +7072,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.voltmeter.negativeProbeTargetProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7084,7 +7084,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.voltmeter.positiveProbeLocationProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7096,7 +7096,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.voltmeter.positiveProbeTargetProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7108,7 +7108,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.model.voltmeterVisibleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7120,7 +7120,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7132,7 +7132,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7144,7 +7144,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.isRunningProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7156,7 +7156,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7168,7 +7168,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7180,7 +7180,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.secondsProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7192,7 +7192,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerIcon": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7204,7 +7204,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerIcon.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7216,7 +7216,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerIcon.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7228,7 +7228,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerIcon.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7240,7 +7240,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7252,7 +7252,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7264,7 +7264,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7276,7 +7276,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.playPauseButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7288,7 +7288,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.playPauseButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7300,7 +7300,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.playPauseButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7312,7 +7312,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.playPauseButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7324,7 +7324,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.playPauseButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7336,7 +7336,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.playPauseButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7348,7 +7348,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.playPauseButton.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7360,7 +7360,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.playPauseButton.toggledEmitter": {
       "phetioDocumentation": "Emits when the button is toggled",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7372,7 +7372,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.playPauseButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7384,7 +7384,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.resetButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7396,7 +7396,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.resetButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7408,7 +7408,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.resetButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7420,7 +7420,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.resetButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7432,7 +7432,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.resetButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7444,7 +7444,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.resetButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7456,7 +7456,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.resetButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7468,7 +7468,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.resetButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7480,7 +7480,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.timerNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7492,7 +7492,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7504,7 +7504,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.voltmeterIconNodePanel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7516,7 +7516,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.voltmeterIconNodePanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7528,7 +7528,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.voltmeterIconNodePanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7540,7 +7540,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.ToolboxPanel.voltmeterIconNodePanel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7552,7 +7552,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7564,7 +7564,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7576,7 +7576,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7588,7 +7588,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7600,7 +7600,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7612,7 +7612,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7624,7 +7624,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7636,7 +7636,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7648,7 +7648,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7660,7 +7660,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7672,7 +7672,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7684,7 +7684,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7696,7 +7696,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7708,7 +7708,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7720,7 +7720,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7732,7 +7732,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7744,7 +7744,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7756,7 +7756,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7768,7 +7768,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7780,7 +7780,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7792,7 +7792,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7804,7 +7804,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7816,7 +7816,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7828,7 +7828,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7840,7 +7840,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7852,7 +7852,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7864,7 +7864,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7876,7 +7876,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7888,7 +7888,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7900,7 +7900,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7912,7 +7912,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7924,7 +7924,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7936,7 +7936,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7948,7 +7948,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7960,7 +7960,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7972,7 +7972,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7984,7 +7984,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -7996,7 +7996,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8008,7 +8008,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8020,7 +8020,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8032,7 +8032,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8044,7 +8044,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8056,7 +8056,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8068,7 +8068,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8080,7 +8080,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8092,7 +8092,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8104,7 +8104,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8116,7 +8116,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8128,7 +8128,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8140,7 +8140,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8152,7 +8152,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8164,7 +8164,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8176,7 +8176,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8188,7 +8188,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8200,7 +8200,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8212,7 +8212,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8224,7 +8224,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.topPlateChargeCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8236,7 +8236,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.topPlateChargeCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8248,7 +8248,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.topPlateChargeCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8260,7 +8260,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.topPlateChargeCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8272,7 +8272,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.topPlateChargeCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8284,7 +8284,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.topPlateChargeCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8296,7 +8296,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.topPlateChargeCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8308,7 +8308,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8320,7 +8320,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryBottomCurrentIndicatorNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8332,7 +8332,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryBottomCurrentIndicatorNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8344,7 +8344,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryBottomCurrentIndicatorNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8356,7 +8356,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryBottomCurrentIndicatorNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8368,7 +8368,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8380,7 +8380,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.defaultTickLabel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8392,7 +8392,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.defaultTickLabel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8404,7 +8404,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.defaultTickLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8416,7 +8416,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.defaultTickLabel.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8428,7 +8428,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.defaultTickLabel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8440,7 +8440,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.maximumTickLabel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8452,7 +8452,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.maximumTickLabel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8464,7 +8464,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.maximumTickLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8476,7 +8476,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.maximumTickLabel.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8488,7 +8488,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.maximumTickLabel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8500,7 +8500,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.minimumTickLabel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8512,7 +8512,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.minimumTickLabel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8524,7 +8524,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.minimumTickLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8536,7 +8536,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.minimumTickLabel.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8548,7 +8548,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.minimumTickLabel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8560,7 +8560,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8572,7 +8572,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8584,7 +8584,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8596,7 +8596,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.enabledProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8608,7 +8608,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.enabledRangeProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8620,7 +8620,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8632,7 +8632,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8644,7 +8644,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.thumb": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8656,7 +8656,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.thumb.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8668,7 +8668,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.thumb.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8680,7 +8680,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.thumb.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8692,7 +8692,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.thumbInputListener": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8704,7 +8704,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.thumbInputListener.dragAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -8716,7 +8716,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.thumbInputListener.dragEndAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8728,7 +8728,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.thumbInputListener.dragStartAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8740,7 +8740,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.thumbInputListener.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8752,7 +8752,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.track.trackInputListener": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8764,7 +8764,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.track.trackInputListener.dragAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -8776,7 +8776,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.track.trackInputListener.dragEndAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8788,7 +8788,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.track.trackInputListener.dragStartAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8800,7 +8800,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.track.trackInputListener.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8812,7 +8812,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.valueProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8824,7 +8824,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8836,7 +8836,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8848,7 +8848,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryTopCurrentIndicatorNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8860,7 +8860,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryTopCurrentIndicatorNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8872,7 +8872,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryTopCurrentIndicatorNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8884,7 +8884,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryTopCurrentIndicatorNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8896,7 +8896,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8908,7 +8908,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.batteryConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8920,7 +8920,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.batteryConnectionNode.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8932,7 +8932,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.dragHandler.dragAction": {
       "phetioDocumentation": "Emits whenever a drag occurs with an EventIO argument.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -8944,7 +8944,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.dragHandler.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8956,7 +8956,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.dragHandler.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8968,7 +8968,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.lightBulbConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8980,7 +8980,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.lightBulbConnectionNode.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -8992,7 +8992,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9004,7 +9004,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.openConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9016,7 +9016,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.openConnectionNode.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9028,7 +9028,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9040,7 +9040,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9052,7 +9052,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bulbBottomCurrentIndicatorNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9064,7 +9064,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bulbBottomCurrentIndicatorNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9076,7 +9076,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bulbBottomCurrentIndicatorNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9088,7 +9088,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bulbBottomCurrentIndicatorNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9100,7 +9100,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bulbTopCurrentIndicatorNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9112,7 +9112,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bulbTopCurrentIndicatorNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9124,7 +9124,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bulbTopCurrentIndicatorNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9136,7 +9136,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bulbTopCurrentIndicatorNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9148,7 +9148,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.capacitorNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9160,7 +9160,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.capacitorNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9172,7 +9172,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.capacitorNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9184,7 +9184,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.capacitorNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9196,7 +9196,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.lightBulbNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9208,7 +9208,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.lightBulbNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9220,7 +9220,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.lightBulbNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9232,7 +9232,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.lightBulbNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9244,7 +9244,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9256,7 +9256,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9268,7 +9268,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9280,7 +9280,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9292,7 +9292,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9304,7 +9304,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.inputListener.dragAction": {
       "phetioDocumentation": "Emits whenever a drag occurs with an EventIO argument.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -9316,7 +9316,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9328,7 +9328,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9340,7 +9340,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9352,7 +9352,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9364,7 +9364,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9376,7 +9376,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9388,7 +9388,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9400,7 +9400,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode.valueNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9412,7 +9412,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode.valueNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9424,7 +9424,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9436,7 +9436,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode.valueNode.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9448,7 +9448,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode.valueNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9460,7 +9460,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9472,7 +9472,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9484,7 +9484,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9496,7 +9496,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.arrowNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9508,7 +9508,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.arrowNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9520,7 +9520,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9532,7 +9532,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.arrowNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9544,7 +9544,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.dragHandler.dragAction": {
       "phetioDocumentation": "Emits whenever a drag occurs with an EventIO argument.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -9556,7 +9556,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.dragHandler.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9568,7 +9568,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.dragHandler.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9580,7 +9580,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9592,7 +9592,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9604,7 +9604,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9616,7 +9616,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9628,7 +9628,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9640,7 +9640,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9652,7 +9652,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9664,7 +9664,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9676,7 +9676,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode.textProperty": {
       "phetioDocumentation": "Property for the displayed text",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9688,7 +9688,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9700,7 +9700,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9712,7 +9712,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9724,7 +9724,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9736,7 +9736,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.batteryConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9748,7 +9748,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.batteryConnectionNode.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9760,7 +9760,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.dragHandler.dragAction": {
       "phetioDocumentation": "Emits whenever a drag occurs with an EventIO argument.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -9772,7 +9772,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.dragHandler.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9784,7 +9784,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.dragHandler.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9796,7 +9796,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.lightBulbConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9808,7 +9808,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.lightBulbConnectionNode.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9820,7 +9820,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9832,7 +9832,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.openConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9844,7 +9844,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.openConnectionNode.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9856,7 +9856,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9868,7 +9868,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9880,7 +9880,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9892,7 +9892,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9904,7 +9904,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.resetAllButton": {
       "phetioDocumentation": "The orange, round button that can be used to restore the initial state",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9916,7 +9916,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.resetAllButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9928,7 +9928,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.resetAllButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9940,7 +9940,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.resetAllButton.isFiringProperty": {
       "phetioDocumentation": "Temporarily becomes true while the Reset All button is firing.  Commonly used to disable audio effects during reset.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9952,7 +9952,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.resetAllButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9964,7 +9964,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.resetAllButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9976,7 +9976,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.resetAllButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -9988,7 +9988,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.resetAllButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10000,7 +10000,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.resetAllButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10012,7 +10012,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10024,7 +10024,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.enabledProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10036,7 +10036,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10048,7 +10048,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10060,7 +10060,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10072,7 +10072,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10084,7 +10084,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10096,7 +10096,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10108,7 +10108,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10120,7 +10120,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10132,7 +10132,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10144,7 +10144,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.toggleNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10156,7 +10156,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.toggleNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10168,7 +10168,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.toggleNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10180,7 +10180,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.toggleNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10192,7 +10192,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.toggledEmitter": {
       "phetioDocumentation": "Emits when the button is toggled",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10204,7 +10204,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10216,7 +10216,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10228,7 +10228,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10240,7 +10240,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.enabledProperty": {
       "phetioDocumentation": "Determines whether the AquaRadioButton is enabled (pressable) or disabled (grayed-out)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10252,7 +10252,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10264,7 +10264,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10276,7 +10276,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10288,7 +10288,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10300,7 +10300,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10312,7 +10312,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10324,7 +10324,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10336,7 +10336,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10348,7 +10348,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10360,7 +10360,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.enabledProperty": {
       "phetioDocumentation": "Determines whether the AquaRadioButton is enabled (pressable) or disabled (grayed-out)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10372,7 +10372,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10384,7 +10384,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10396,7 +10396,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10408,7 +10408,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10420,7 +10420,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10432,7 +10432,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10444,7 +10444,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10456,7 +10456,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.stepForwardButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10468,7 +10468,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.stepForwardButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10480,7 +10480,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.stepForwardButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10492,7 +10492,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.stepForwardButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10504,7 +10504,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.stepForwardButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10516,7 +10516,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.stepForwardButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10528,7 +10528,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.stepForwardButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10540,7 +10540,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.stepForwardButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10552,7 +10552,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10564,7 +10564,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlPanel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10576,7 +10576,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlPanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10588,7 +10588,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10600,7 +10600,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timeControlPanel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10612,7 +10612,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.dragHandler": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10624,7 +10624,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.dragHandler.dragAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -10636,7 +10636,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.dragHandler.dragEndAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10648,7 +10648,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.dragHandler.dragStartAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10660,7 +10660,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.dragHandler.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10672,7 +10672,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.positionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10684,7 +10684,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10696,7 +10696,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10708,7 +10708,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10720,7 +10720,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.playPauseButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10732,7 +10732,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.playPauseButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10744,7 +10744,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.playPauseButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10756,7 +10756,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.playPauseButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10768,7 +10768,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.playPauseButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10780,7 +10780,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.playPauseButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10792,7 +10792,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.playPauseButton.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10804,7 +10804,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.playPauseButton.toggledEmitter": {
       "phetioDocumentation": "Emits when the button is toggled",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10816,7 +10816,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.playPauseButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10828,7 +10828,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.resetButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10840,7 +10840,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.resetButton.enabledProperty": {
       "phetioDocumentation": "When disabled, the button is grayed out and cannot be pressed",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10852,7 +10852,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.resetButton.firedEmitter": {
       "phetioDocumentation": "Emits when the button is fired",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10864,7 +10864,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.resetButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10876,7 +10876,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.resetButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10888,7 +10888,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.resetButton.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10900,7 +10900,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.resetButton.pressListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10912,7 +10912,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.resetButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10924,7 +10924,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.timerNode.timer.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10936,7 +10936,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10948,7 +10948,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.barGraphsCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10960,7 +10960,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.barGraphsCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10972,7 +10972,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.barGraphsCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10984,7 +10984,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.barGraphsCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -10996,7 +10996,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.barGraphsCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11008,7 +11008,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.barGraphsCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11020,7 +11020,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.barGraphsCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11032,7 +11032,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11044,7 +11044,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11056,7 +11056,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11068,7 +11068,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11080,7 +11080,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11092,7 +11092,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11104,7 +11104,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11116,7 +11116,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11128,7 +11128,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11140,7 +11140,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.enabledProperty": {
       "phetioDocumentation": "Determines whether the AquaRadioButton is enabled (pressable) or disabled (grayed-out)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11152,7 +11152,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11164,7 +11164,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11176,7 +11176,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11188,7 +11188,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11200,7 +11200,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11212,7 +11212,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11224,7 +11224,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11236,7 +11236,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.enabledProperty": {
       "phetioDocumentation": "Determines whether the AquaRadioButton is enabled (pressable) or disabled (grayed-out)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11248,7 +11248,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.inputListener.firedEmitter": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11260,7 +11260,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11272,7 +11272,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.inputListener.releaseAction": {
       "phetioDocumentation": "Executes whenever a release occurs.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11284,7 +11284,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11296,7 +11296,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11308,7 +11308,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11320,7 +11320,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11332,7 +11332,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11344,7 +11344,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11356,7 +11356,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.electricFieldCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11368,7 +11368,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.electricFieldCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11380,7 +11380,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.electricFieldCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11392,7 +11392,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.electricFieldCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11404,7 +11404,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.electricFieldCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11416,7 +11416,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.electricFieldCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11428,7 +11428,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.electricFieldCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11440,7 +11440,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11452,7 +11452,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11464,7 +11464,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.plateChargesCheckbox": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11476,7 +11476,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.plateChargesCheckbox.enabledProperty": {
       "phetioDocumentation": "When disabled, the checkbox is grayed out and cannot be pressed.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11488,7 +11488,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.plateChargesCheckbox.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11500,7 +11500,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.plateChargesCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11512,7 +11512,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.plateChargesCheckbox.property": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11524,7 +11524,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.plateChargesCheckbox.toggleAction": {
       "phetioDocumentation": "Emits when user input causes the checkbox to toggle, emitting a single arg: the new boolean value of the checkbox state.",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11536,7 +11536,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.plateChargesCheckbox.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": true,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11548,7 +11548,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11560,7 +11560,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11572,7 +11572,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11584,7 +11584,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.bodyNode.dragHandler": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11596,7 +11596,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.bodyNode.dragHandler.dragAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -11608,7 +11608,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.bodyNode.dragHandler.dragEndAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11620,7 +11620,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.bodyNode.dragHandler.dragStartAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11632,7 +11632,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.bodyNode.dragHandler.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11644,7 +11644,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.negativeProbeNode.dragHandler": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11656,7 +11656,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.negativeProbeNode.dragHandler.dragAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -11668,7 +11668,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.negativeProbeNode.dragHandler.dragEndAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11680,7 +11680,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.negativeProbeNode.dragHandler.dragStartAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11692,7 +11692,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.negativeProbeNode.dragHandler.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11704,7 +11704,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11716,7 +11716,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11728,7 +11728,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.positiveProbeNode.dragHandler": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "user",
+      "phetioEventType": "USER",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11740,7 +11740,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.positiveProbeNode.dragHandler.dragAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": true,
       "phetioPlayback": false,
@@ -11752,7 +11752,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.positiveProbeNode.dragHandler.dragEndAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11764,7 +11764,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.positiveProbeNode.dragHandler.dragStartAction": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11776,7 +11776,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.positiveProbeNode.dragHandler.isDraggingProperty": {
       "phetioDocumentation": "Indicates whether the object is dragging",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11788,7 +11788,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.visibleProperty": {
       "phetioDocumentation": "Controls whether the Node will be visible (and interactive), see the NodeIO documentation for more details.",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
@@ -11800,7 +11800,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
     "phetioEngine": {
       "phetioDocumentation": "Central point for PhET-iO interoperability",
       "phetioDynamicElement": false,
-      "phetioEventType": "model",
+      "phetioEventType": "MODEL",
       "phetioFeatured": false,
       "phetioHighFrequency": false,
       "phetioPlayback": false,
