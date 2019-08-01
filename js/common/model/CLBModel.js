@@ -121,7 +121,7 @@ define( function( require ) {
     } );
 
     // @public {Emitter}
-    this.stepEmitter = new Emitter( { validators: [ { valueType: 'number' } ] } );
+    this.stepEmitter = new Emitter( { parameters: [ { valueType: 'number' } ] } );
 
     // @private {Bounds2}
     this.worldBounds = CANVAS_RENDERING_SIZE.toBounds();
