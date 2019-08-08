@@ -6,25 +6,26 @@
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var AlignBox = require( 'SCENERY/nodes/AlignBox' );
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var EventType = require( 'TANDEM/EventType' );
-  var HBox = require( 'SCENERY/nodes/HBox' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var Panel = require( 'SUN/Panel' );
-  var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
-  var TimerNode = require( 'SCENERY_PHET/TimerNode' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
-  var VoltmeterToolboxPanelIO = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolboxPanelIO' );
+  const AlignBox = require( 'SCENERY/nodes/AlignBox' );
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const EventType = require( 'TANDEM/EventType' );
+  const HBox = require( 'SCENERY/nodes/HBox' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const Panel = require( 'SUN/Panel' );
+  const SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  const Tandem = require( 'TANDEM/Tandem' );
+  const TimerNode = require( 'SCENERY_PHET/TimerNode' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
+  const VoltmeterToolboxPanelIO = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolboxPanelIO' );
 
   /**
    * @constructor
@@ -32,12 +33,12 @@ define( function( require ) {
    * @param {Bounds2} dragBounds
    * @param {TimerNode} timerNode
    * @param {VoltmeterNode} voltmeterNode
-   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {CLBModelViewTransform3D} modelViewTransform
    * @param {Property.<boolean>} isDraggedProperty
    * @param {Property.<boolean>} timerVisibleProperty
    * @param {Property.<boolean>} voltmeterVisibleProperty
    * @param {Tandem} tandem
-   * @param {object} Options
+   * @param {object} options
    */
   function VoltmeterToolboxPanel( dragBounds, timerNode, voltmeterNode, modelViewTransform, isDraggedProperty,
                                   timerVisibleProperty, voltmeterVisibleProperty, tandem, options ) {
@@ -53,7 +54,7 @@ define( function( require ) {
 
     // create the icon for the toolbox.
     var voltmeterScale = options.includeTimer === true ? 0.6 : 1;
-    var voltmeterIconNode = VoltmeterNode.createVoltmeterIconNode( voltmeterScale );
+    var voltmeterIconNode = VoltmeterNode.createVoltmeterIconNode( voltmeterScale, tandem.createTandem( 'voltmeterIcon' ) );
     voltmeterIconNode.cursor = 'pointer';
 
     voltmeterIconNode.addInputListener( SimpleDragHandler.createForwardingListener( function( event ) {
@@ -75,24 +76,19 @@ define( function( require ) {
     } ) );
 
     // Create timer to be turned into icon
-    var secondsProperty = new NumberProperty( 0, {
-      tandem: tandem.createTandem( 'secondsProperty' ),
-      units: 'seconds'
-    } );
-    var isRunningProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'isRunningProperty' )
-    } );
-    var timer = new TimerNode( secondsProperty, isRunningProperty, {
+    var timer = new TimerNode( new NumberProperty( 0 ), new BooleanProperty( false ), {
       scale: .60,
-      tandem: tandem.createTandem( 'timerNode' )
+      tandem: Tandem.optOut
     } );
+
+    const timeNodeIconTandem = tandem.createTandem( 'timerIcon' );
 
     // {Node} Create timer icon. Visible option is used only for reset() in ToolboxPanel.js
     var timerIconNode = timer.rasterized( {
       cursor: 'pointer',
       resolution: 5,
       pickable: true,
-      tandem: tandem.createTandem( 'timerIcon' )
+      tandem: options.includeTimer ? timeNodeIconTandem : Tandem.optOut
     } );
 
     // Drag listener for event forwarding: timerIcon ---> timerNode
@@ -115,7 +111,7 @@ define( function( require ) {
       // allow moving a finger (on a touchscreen) dragged across this node to interact with it
       allowTouchSnag: true,
       dragBounds: dragBounds,
-      tandem: tandem.createTandem( 'dragHandler' )
+      tandem: timeNodeIconTandem.createTandem( 'dragHandler' )
     } ) );
 
     timerVisibleProperty.link( function( visible ) {
@@ -148,8 +144,7 @@ define( function( require ) {
       yMargin: 15,
       align: 'center',
       minWidth: 175,
-      fill: CLBConstants.METER_PANEL_FILL,
-      tandem: tandem.createTandem( 'voltmeterIconNodePanel' )
+      fill: CLBConstants.METER_PANEL_FILL
     } ) );
 
     voltmeterVisibleProperty.link( function( voltmeterVisible ) {

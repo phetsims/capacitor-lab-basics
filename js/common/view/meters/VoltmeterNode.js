@@ -87,13 +87,14 @@ define( function( require ) {
 
     /**
      * Create an icon of the voltmeter, to be used in the toolbox panel.
-     * @param {Number} scale - scales the size of the node
+     * @param {Number} scale - scales the size of the Node
+     * @param {Tandem} tandem
      *
      * @returns {VoltmeterIconNode}
      * @public
      */
-    createVoltmeterIconNode: function(scale) {
-      return new VoltmeterIconNode(scale);
+    createVoltmeterIconNode: function( scale, tandem ) {
+      return new VoltmeterIconNode( scale, tandem );
     },
 
     // statics for dimensions of the voltmeter body image
@@ -103,11 +104,13 @@ define( function( require ) {
 
   /**
    * Generates an icon of the voltmeter with probes, wires, and a title.
+   * @param {Number} scale - scales the size of the Node
+   * @param {Tandem} tandem
    * @constructor
    */
-  function VoltmeterIconNode(scale) {
+  function VoltmeterIconNode( scale, tandem ) {
 
-    Node.call( this,{scale: scale} );
+    Node.call( this, { scale: scale, tandem: tandem } );
 
     // body of the voltmeter icon
     var voltmeterImageNode = new Image( voltmeterBodyImage, {

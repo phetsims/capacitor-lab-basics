@@ -40,7 +40,7 @@ define( function( require ) {
     var startPoint;
     if ( connectionPoint === CircuitLocation.BATTERY_TOP ) {
       startPoint = new Vector3( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), 0 );
-      verticalSegment = new WireSegment( startPoint, leftCorner, tandem.createTandem( 'batteryTopWireSegment' ) );
+      verticalSegment = new WireSegment( startPoint, leftCorner );
       verticalSegment.update = function() {
         var point = new Vector3( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), 0 );
         if ( !this.startPointProperty.value.equals( point ) ) {
@@ -54,7 +54,7 @@ define( function( require ) {
       // See https://github.com/phetsims/capacitor-lab-basics/issues/197
       var bottomOffset = 0.00065;
       startPoint = new Vector3( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() + bottomOffset, 0 );
-      verticalSegment = new WireSegment( startPoint, leftCorner, tandem.createTandem( 'batteryBottomWireSegment' ) );
+      verticalSegment = new WireSegment( startPoint, leftCorner );
       verticalSegment.update = function() {
         var point = new Vector3( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() + bottomOffset, 0 );
         if ( !this.startPointProperty.value.equals( point ) ) {
@@ -74,18 +74,14 @@ define( function( require ) {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED );
       switchSegment = new WireSegment(
         leftCorner,
-        switchConnectionPoint.plus( separationOffset ),
-        tandem.createTandem( 'batteryTopToSwitchWireSegment' )
+        switchConnectionPoint.plus( separationOffset )
       );
     }
     else {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED );
       switchSegment = new WireSegment(
         leftCorner,
-        switchConnectionPoint.plus( separationOffset ),
-
-        // TODO: Hopefully these tandems will be deleted in the stable PhET-iO design
-        tandem.createTandem( 'batteryBottomToSwitchWireSegment' )
+        switchConnectionPoint.plus( separationOffset )
       );
     }
 

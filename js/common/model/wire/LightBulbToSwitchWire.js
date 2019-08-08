@@ -67,8 +67,7 @@ define( function( require ) {
     // Tandem IDs must be unique, so append a counter index
     var wireSegment = new WireSegment(
       rightCorner,
-      switchConnectionPoint.plus( separationOffset ),
-      tandem.createTandem( 'lightBulbSwitchWireSegment' + COUNTER )
+      switchConnectionPoint.plus( separationOffset )
     );
     segments.push( wireSegment );
     COUNTER++;

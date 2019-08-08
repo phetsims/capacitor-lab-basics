@@ -83,7 +83,7 @@ define( function( require ) {
       model.voltmeter.isDraggedProperty,
       model.timerVisibleProperty,
       model.voltmeterVisibleProperty,
-      tandem.createTandem( 'ToolboxPanel' ), {
+      tandem.createTandem( 'toolboxPanel' ), {
         alignGroup: this.rightPanelAlignGroup
       }
     );

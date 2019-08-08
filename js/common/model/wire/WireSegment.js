@@ -16,32 +16,23 @@ define( function( require ) {
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Property = require( 'AXON/Property' );
-  var PropertyIO = require( 'AXON/PropertyIO' );
   var Vector3 = require( 'DOT/Vector3' );
-  var Vector3IO = require( 'DOT/Vector3IO' );
 
   /**
    * @param {Vector3} startPoint
    * @param {Vector3} endPoint
-   * @param {Tandem} tandem
    * @constructor
    */
-  function WireSegment( startPoint, endPoint, tandem ) {
+  function WireSegment( startPoint, endPoint ) {
 
     assert && assert( startPoint instanceof Vector3 );
     assert && assert( endPoint instanceof Vector3 );
 
     // @public {Property.<Vector3>}
-    this.startPointProperty = new Property( startPoint, {
-      tandem: tandem.createTandem( 'startPointProperty' ),
-      phetioType: PropertyIO( Vector3IO )
-    } );
+    this.startPointProperty = new Property( startPoint );
 
     // @public {Property.<Vector3>}
-    this.endPointProperty = new Property( endPoint, {
-      tandem: tandem.createTandem( 'endPointProperty' ),
-      phetioType: PropertyIO( Vector3IO )
-    } );
+    this.endPointProperty = new Property( endPoint );
   }
 
   capacitorLabBasics.register( 'WireSegment', WireSegment );

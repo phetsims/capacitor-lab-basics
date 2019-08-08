@@ -10,6 +10,7 @@ define( function( require ) {
   'use strict';
 
   // modules
+  const Tandem = require( 'TANDEM/Tandem' );
   var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/common/view/BarMeterPanel' );
   var CapacitanceCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceCircuitNode' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
@@ -60,7 +61,7 @@ define( function( require ) {
           model.isRunningProperty.reset();
         }
       },
-      tandem.createTandem( 'timerNode' )
+      Tandem.optOut
     );
     this.addChild( draggableTimerNode );
 
@@ -72,7 +73,7 @@ define( function( require ) {
       model.voltmeter.isDraggedProperty,
       model.timerVisibleProperty,
       model.voltmeterVisibleProperty,
-      tandem.createTandem( 'ToolboxPanel' ), {
+      tandem.createTandem( 'toolboxPanel' ), {
         includeTimer: false
       }
     );

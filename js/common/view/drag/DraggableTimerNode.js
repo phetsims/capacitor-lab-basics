@@ -25,11 +25,12 @@ define( function( require ) {
    * @param {Tandem} tandem
    * @constructor
    */
-  function DraggableTimerNode( dragBounds, initialPosition, secondsProperty, timerRunningProperty, visibleProperty, endDragCallback, tandem ) {
+  function DraggableTimerNode( dragBounds, initialPosition, secondsProperty, timerRunningProperty,
+                               visibleProperty, endDragCallback, tandem ) {
     var self = this;
 
     TimerNode.call( this, secondsProperty, timerRunningProperty, {
-      tandem: tandem.createTandem( 'timer' )
+      tandem: tandem
     } );
     this.touchArea = this.localBounds.dilated( 10 );
 

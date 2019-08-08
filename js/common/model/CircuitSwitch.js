@@ -76,8 +76,7 @@ define( function( require ) {
     // @public {WireSegment} Add the switch wire that spans two connection points. Default connection is to the battery.
     this.switchSegment = new WireSegment(
       this.hingePoint,
-      this.getConnection( circuitConnectionProperty.value ).location,
-      tandem.createTandem( 'switchSegment' )
+      this.getConnection( circuitConnectionProperty.value ).location
     );
     this.switchSegment.hingePoint = this.hingePoint;
 
