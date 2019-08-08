@@ -23,9 +23,8 @@ define( function( require ) {
    * @param {CircuitConfig} config
    * @param {Capacitor} capacitor
    * @param {CircuitSwitch} circuitSwitch
-   * @param {Tandem} tandem
    */
-  function CapacitorToSwitchWire( connectionPoint, config, capacitor, circuitSwitch, tandem ) {
+  function CapacitorToSwitchWire( connectionPoint, config, capacitor, circuitSwitch ) {
 
     // add the vertical segment.
     var switchConnectionPoint = circuitSwitch.hingePoint;
@@ -33,15 +32,13 @@ define( function( require ) {
     if ( connectionPoint === CircuitLocation.CAPACITOR_TOP ) {
       segment = WireSegment.createComponentTopWireSegment(
         capacitor,
-        switchConnectionPoint,
-        tandem.createTandem( 'capacitorComponentTopWireSegment' )
+        switchConnectionPoint
       );
     }
     else {
       segment = WireSegment.createComponentBottomWireSegment(
         capacitor,
-        switchConnectionPoint,
-        tandem.createTandem( 'capacitorComponentBottomWireSegment' )
+        switchConnectionPoint
       );
     }
 
@@ -59,11 +56,10 @@ define( function( require ) {
      * @param {CircuitConfig} config
      * @param {Capacitor} capacitor
      * @param {CircuitSwitch} circuitSwitch
-     * @param {Tandem} tandem
      * @returns {CapacitorToSwitchWire}
      */
-    createCapacitorToSwitchWireTop: function( config, capacitor, circuitSwitch, tandem ) {
-      return new CapacitorToSwitchWire( CircuitLocation.CAPACITOR_TOP, config, capacitor, circuitSwitch, tandem );
+    createCapacitorToSwitchWireTop: function( config, capacitor, circuitSwitch ) {
+      return new CapacitorToSwitchWire( CircuitLocation.CAPACITOR_TOP, config, capacitor, circuitSwitch );
     },
 
     /**
@@ -73,11 +69,10 @@ define( function( require ) {
      * @param {CircuitConfig} config
      * @param {Capacitor} capacitor
      * @param {CircuitSwitch} circuitSwitch
-     * @param {Tandem} tandem
      * @returns {CapacitorToSwitchWire}
      */
-    createCapacitorToSwitchWireBottom: function( config, capacitor, circuitSwitch, tandem ) {
-      return new CapacitorToSwitchWire( CircuitLocation.CAPACITOR_BOTTOM, config, capacitor, circuitSwitch, tandem );
+    createCapacitorToSwitchWireBottom: function( config, capacitor, circuitSwitch ) {
+      return new CapacitorToSwitchWire( CircuitLocation.CAPACITOR_BOTTOM, config, capacitor, circuitSwitch );
     }
   } );
 } );

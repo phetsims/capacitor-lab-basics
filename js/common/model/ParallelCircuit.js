@@ -88,26 +88,22 @@ define( function( require ) {
       BatteryToSwitchWire.createBatteryToSwitchWireTop(
         config,
         this.battery,
-        this.capacitor.topCircuitSwitch,
-        tandem.createTandem( 'batteryToSwitchWireTop' )
+        this.capacitor.topCircuitSwitch
       ),
       BatteryToSwitchWire.createBatteryToSwitchWireBottom(
         config,
         this.battery,
-        this.capacitor.bottomCircuitSwitch,
-        tandem.createTandem( 'batteryToSwitchWireBottom' )
+        this.capacitor.bottomCircuitSwitch
       ),
       CapacitorToSwitchWire.createCapacitorToSwitchWireTop(
         config,
         this.capacitor,
-        this.capacitor.topCircuitSwitch,
-        tandem
+        this.capacitor.topCircuitSwitch
       ),
       CapacitorToSwitchWire.createCapacitorToSwitchWireBottom(
         config,
         this.capacitor,
-        this.capacitor.bottomCircuitSwitch,
-        tandem
+        this.capacitor.bottomCircuitSwitch
       )
     ];
 
@@ -116,14 +112,12 @@ define( function( require ) {
       this.wires.push( LightBulbToSwitchWire.createLightBulbToSwitchWireTop(
         config,
         this.lightBulb,
-        this.capacitor.topCircuitSwitch,
-        tandem
+        this.capacitor.topCircuitSwitch
       ) );
       this.wires.push( LightBulbToSwitchWire.createLightBulbToSwitchWireBottom(
         config,
         this.lightBulb,
-        this.capacitor.bottomCircuitSwitch,
-        tandem
+        this.capacitor.bottomCircuitSwitch
       ) );
     }
 

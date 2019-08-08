@@ -55,11 +55,10 @@ define( function( require ) {
      *
      * @param {Capacitor|LightBulb} component
      * @param {Vector3} endPoint
-     * @param {Tandem} tandem - end point for the wire segment
      * @returns {WireSegment}
      */
-    createComponentTopWireSegment: function( component, endPoint, tandem ) {
-      return new ComponentTopWireSegment( component, endPoint, tandem );
+    createComponentTopWireSegment: function( component, endPoint ) {
+      return new ComponentTopWireSegment( component, endPoint );
     },
 
     /**
@@ -68,11 +67,10 @@ define( function( require ) {
      *
      * @param {Capacitor|LightBulb} component
      * @param {Vector3} endPoint
-     * @param {Tandem} tandem
      * @returns {ComponentBottomWireSegment}
      */
-    createComponentBottomWireSegment: function( component, endPoint, tandem ) {
-      return new ComponentBottomWireSegment( component, endPoint, tandem );
+    createComponentBottomWireSegment: function( component, endPoint ) {
+      return new ComponentBottomWireSegment( component, endPoint );
     }
   } );
 
@@ -84,10 +82,9 @@ define( function( require ) {
    *
    * @param {Capacitor|LightBulb} component
    * @param {Vector3} endPoint
-   * @param {Tandem} tandem
    */
-  function ComponentTopWireSegment( component, endPoint, tandem ) {
-    WireSegment.call( this, component.getTopConnectionPoint(), endPoint, tandem );
+  function ComponentTopWireSegment( component, endPoint ) {
+    WireSegment.call( this, component.getTopConnectionPoint(), endPoint );
 
     // @private
     this.component = component;
@@ -117,10 +114,9 @@ define( function( require ) {
    *
    * @param {Capacitor|LightBulb} component
    * @param {Vector3} endPoint
-   * @param {Tandem} tandem
    */
-  function ComponentBottomWireSegment( component, endPoint, tandem ) {
-    WireSegment.call( this, component.getBottomConnectionPoint(), endPoint, tandem );
+  function ComponentBottomWireSegment( component, endPoint ) {
+    WireSegment.call( this, component.getBottomConnectionPoint(), endPoint );
 
     // @private
     this.component = component;

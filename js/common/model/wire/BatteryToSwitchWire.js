@@ -117,8 +117,8 @@ define( function( require ) {
      * @param {Tandem} tandem
      * @returns {BatteryToSwitchWire}
      */
-    createBatteryToSwitchWireTop: function( config, battery, circuitSwitch, tandem ) {
-      return new BatteryToSwitchWire( CircuitLocation.BATTERY_TOP, config, battery, circuitSwitch, tandem );
+    createBatteryToSwitchWireTop: function( config, battery, circuitSwitch ) {
+      return new BatteryToSwitchWire( CircuitLocation.BATTERY_TOP, config, battery, circuitSwitch );
     }
   } );
 } );
