@@ -2723,7 +2723,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "VoltmeterToolboxPanelIO"
+      "phetioTypeName": "NodeIO"
     },
     "capacitorLabBasics.capacitanceScreen.view.toolboxPanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",
@@ -9395,7 +9395,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "VoltmeterToolboxPanelIO"
+      "phetioTypeName": "NodeIO"
     },
     "capacitorLabBasics.lightBulbScreen.view.toolboxPanel.opacityProperty": {
       "phetioDocumentation": "Opacity of the parent NodeIO, between 0 (invisible) and 1 (fully visible)",

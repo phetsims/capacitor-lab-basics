@@ -25,7 +25,6 @@ define( require => {
   const TimerNode = require( 'SCENERY_PHET/TimerNode' );
   const Vector2 = require( 'DOT/Vector2' );
   const VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
-  const VoltmeterToolboxPanelIO = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolboxPanelIO' );
 
   /**
    * @constructor
@@ -121,7 +120,6 @@ define( require => {
     // wrap all off this content inside of a node that will hold the input element and its descriptions
     Node.call( this, {
       tandem: tandem,
-      phetioType: VoltmeterToolboxPanelIO,
       phetioEventType: EventType.USER
     } );
 
