@@ -7,13 +7,13 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Property = require( 'AXON/Property' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Property = require( 'AXON/Property' );
 
   /**
    * @constructor

@@ -8,28 +8,28 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BatteryGraphicNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryGraphicNode' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var VSlider = require( 'SUN/VSlider' );
+  const BatteryGraphicNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryGraphicNode' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const VSlider = require( 'SUN/VSlider' );
 
   // constants
   var LABEL_FONT = new PhetFont( 12 );
 
   // strings
-  var voltsPatternString = require( 'string!CAPACITOR_LAB_BASICS/voltsPattern' );
+  const voltsPatternString = require( 'string!CAPACITOR_LAB_BASICS/voltsPattern' );
 
   /**
    * @constructor

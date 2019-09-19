@@ -9,20 +9,20 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var DragHandleArrowNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleArrowNode' );
-  var DragHandleLineNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleLineNode' );
-  var DragHandleValueNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleValueNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PlateAreaDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandler' );
-  var UnitsUtils = require( 'CAPACITOR_LAB_BASICS/common/model/util/UnitsUtils' );
-  var Vector2 = require( 'DOT/Vector2' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const DragHandleArrowNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleArrowNode' );
+  const DragHandleLineNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleLineNode' );
+  const DragHandleValueNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DragHandleValueNode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PlateAreaDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandler' );
+  const UnitsUtils = require( 'CAPACITOR_LAB_BASICS/common/model/util/UnitsUtils' );
+  const Vector2 = require( 'DOT/Vector2' );
 
   // constants
   // endpoints for a vertical double-headed arrow, this will be rotated to point along the plate's pseudo-3D diagonal
@@ -30,8 +30,8 @@ define( function( require ) {
   var ARROW_TAIL_LOCATION = new Vector2( 0, CLBConstants.DRAG_HANDLE_ARROW_LENGTH );
 
   // strings
-  var millimetersSquaredPatternString = require( 'string!CAPACITOR_LAB_BASICS/millimetersSquaredPattern' );
-  var plateAreaString = require( 'string!CAPACITOR_LAB_BASICS/plateArea' );
+  const millimetersSquaredPatternString = require( 'string!CAPACITOR_LAB_BASICS/millimetersSquaredPattern' );
+  const plateAreaString = require( 'string!CAPACITOR_LAB_BASICS/plateArea' );
 
   // endpoints for a vertical line, this will be rotated to point along the plate's pseudo-3D diagonal
   var LINE_LENGTH = 22;

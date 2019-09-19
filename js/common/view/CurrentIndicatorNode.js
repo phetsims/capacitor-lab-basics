@@ -12,23 +12,23 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Animation = require( 'TWIXT/Animation' );
-  var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var Color = require( 'SCENERY/util/Color' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var Easing = require( 'TWIXT/Easing' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MinusNode = require( 'SCENERY_PHET/MinusNode' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
-  var PlusNode = require( 'SCENERY_PHET/PlusNode' );
-  var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
-  var Vector2 = require( 'DOT/Vector2' );
+  const Animation = require( 'TWIXT/Animation' );
+  const ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const Color = require( 'SCENERY/util/Color' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const Easing = require( 'TWIXT/Easing' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MinusNode = require( 'SCENERY_PHET/MinusNode' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  const PlusNode = require( 'SCENERY_PHET/PlusNode' );
+  const ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
+  const Vector2 = require( 'DOT/Vector2' );
 
   // constants
   // arrow properties

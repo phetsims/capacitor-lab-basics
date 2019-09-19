@@ -6,15 +6,15 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
-  var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
+  const WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   /**
    * @constructor

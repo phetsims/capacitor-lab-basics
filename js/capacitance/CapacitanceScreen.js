@@ -5,25 +5,25 @@
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var CapacitanceModel = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitanceModel' );
-  var CapacitanceScreenView = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceScreenView' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
-  var Image = require( 'SCENERY/nodes/Image' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Property = require( 'AXON/Property' );
-  var Screen = require( 'JOIST/Screen' );
+  const CapacitanceModel = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitanceModel' );
+  const CapacitanceScreenView = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceScreenView' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
+  const Image = require( 'SCENERY/nodes/Image' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Property = require( 'AXON/Property' );
+  const Screen = require( 'JOIST/Screen' );
 
   // strings
-  var screenCapacitanceString = require( 'string!CAPACITOR_LAB_BASICS/screen.capacitance' );
+  const screenCapacitanceString = require( 'string!CAPACITOR_LAB_BASICS/screen.capacitance' );
 
   // images
-  var capacitorIconImage = require( 'mipmap!CAPACITOR_LAB_BASICS/capacitance_screen_icon.png' );
+  const capacitorIconImage = require( 'mipmap!CAPACITOR_LAB_BASICS/capacitance_screen_icon.png' );
 
   /**
    * @constructor

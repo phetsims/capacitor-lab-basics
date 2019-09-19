@@ -6,14 +6,14 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var inherit = require( 'PHET_CORE/inherit' );
+  const BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const inherit = require( 'PHET_CORE/inherit' );
 
   /**
    * @constructor

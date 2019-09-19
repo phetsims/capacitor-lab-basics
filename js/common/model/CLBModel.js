@@ -8,22 +8,22 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var Color = require( 'SCENERY/util/Color' );
-  var ColorIO = require( 'SCENERY/util/ColorIO' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var Emitter = require( 'AXON/Emitter' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var Property = require( 'AXON/Property' );
-  var PropertyIO = require( 'AXON/PropertyIO' );
-  var Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const Color = require( 'SCENERY/util/Color' );
+  const ColorIO = require( 'SCENERY/util/ColorIO' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const Emitter = require( 'AXON/Emitter' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const Property = require( 'AXON/Property' );
+  const PropertyIO = require( 'AXON/PropertyIO' );
+  const Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
 
   // constants
   // reference coordinate frame size for world nodes

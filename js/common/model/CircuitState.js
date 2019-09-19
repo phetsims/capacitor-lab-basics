@@ -8,10 +8,10 @@
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   var CircuitState = {
     BATTERY_CONNECTED: 'BATTERY_CONNECTED',

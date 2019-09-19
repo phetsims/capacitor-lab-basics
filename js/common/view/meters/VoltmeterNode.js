@@ -9,27 +9,27 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var Image = require( 'SCENERY/nodes/Image' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Path = require( 'SCENERY/nodes/Path' );
-  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var ProbeWireNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/ProbeWireNode' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Shape = require( 'KITE/Shape' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var VoltmeterBodyNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterBodyNode' );
-  var VoltmeterProbeNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterProbeNode' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const Image = require( 'SCENERY/nodes/Image' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Path = require( 'SCENERY/nodes/Path' );
+  const PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const ProbeWireNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/ProbeWireNode' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Shape = require( 'KITE/Shape' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const VoltmeterBodyNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterBodyNode' );
+  const VoltmeterProbeNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterProbeNode' );
 
   // strings
-  var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
+  const voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
 
   // title display
   var TITLE_FONT = new PhetFont( {
@@ -37,9 +37,9 @@ define( function( require ) {
   } );
 
   // images
-  var blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_black.png' );
-  var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
-  var voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
+  const blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_black.png' );
+  const redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
+  const voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
 
   /**
    * @constructor

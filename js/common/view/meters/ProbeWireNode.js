@@ -6,16 +6,16 @@
  * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Path = require( 'SCENERY/nodes/Path' );
-  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
-  var Shape = require( 'KITE/Shape' );
-  var Vector2 = require( 'DOT/Vector2' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Path = require( 'SCENERY/nodes/Path' );
+  const PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  const Shape = require( 'KITE/Shape' );
+  const Vector2 = require( 'DOT/Vector2' );
 
   // constants
   // wire is a cubic curve, these are the control point offsets

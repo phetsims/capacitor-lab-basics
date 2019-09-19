@@ -6,27 +6,27 @@
  * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var AlignGroup = require( 'SCENERY/nodes/AlignGroup' );
-  var BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/common/view/BarMeterPanel' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
-  var Color = require( 'SCENERY/util/Color' );
-  var DebugLayer = require( 'CAPACITOR_LAB_BASICS/common/view/DebugLayer' );
-  var DraggableTimerNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DraggableTimerNode' );
-  var HBox = require( 'SCENERY/nodes/HBox' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var LightBulbCircuitNode = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/LightBulbCircuitNode' );
-  var Panel = require( 'SUN/Panel' );
-  var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  var ScreenView = require( 'JOIST/ScreenView' );
-  var TimeControlNode = require( 'SCENERY_PHET/TimeControlNode' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
-  var VoltmeterToolboxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolboxPanel' );
+  const AlignGroup = require( 'SCENERY/nodes/AlignGroup' );
+  const BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/common/view/BarMeterPanel' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
+  const Color = require( 'SCENERY/util/Color' );
+  const DebugLayer = require( 'CAPACITOR_LAB_BASICS/common/view/DebugLayer' );
+  const DraggableTimerNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DraggableTimerNode' );
+  const HBox = require( 'SCENERY/nodes/HBox' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const LightBulbCircuitNode = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/LightBulbCircuitNode' );
+  const Panel = require( 'SUN/Panel' );
+  const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  const ScreenView = require( 'JOIST/ScreenView' );
+  const TimeControlNode = require( 'SCENERY_PHET/TimeControlNode' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
+  const VoltmeterToolboxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolboxPanel' );
 
   /**
    * @constructor

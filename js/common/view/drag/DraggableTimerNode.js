@@ -5,15 +5,15 @@
  *
  * @author Denzell Barnett (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
-  var TimerNode = require( 'SCENERY_PHET/TimerNode' );
-  var Vector2Property = require( 'DOT/Vector2Property' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
+  const TimerNode = require( 'SCENERY_PHET/TimerNode' );
+  const Vector2Property = require( 'DOT/Vector2Property' );
 
   /**
    * @param {Bounds2} dragBounds

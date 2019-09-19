@@ -7,28 +7,28 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var Bounds2 = require( 'DOT/Bounds2' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
-  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var NullableIO = require( 'TANDEM/types/NullableIO' );
-  var NumberIO = require( 'TANDEM/types/NumberIO' );
-  var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/ParallelCircuit' );
-  var ProbeTarget = require( 'CAPACITOR_LAB_BASICS/common/model/ProbeTarget' );
-  var Property = require( 'AXON/Property' );
-  var PropertyIO = require( 'AXON/PropertyIO' );
-  var StringIO = require( 'TANDEM/types/StringIO' );
-  var Vector3 = require( 'DOT/Vector3' );
-  var Vector3IO = require( 'DOT/Vector3IO' );
-  var VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
+  const Bounds2 = require( 'DOT/Bounds2' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
+  const CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const NullableIO = require( 'TANDEM/types/NullableIO' );
+  const NumberIO = require( 'TANDEM/types/NumberIO' );
+  const ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/ParallelCircuit' );
+  const ProbeTarget = require( 'CAPACITOR_LAB_BASICS/common/model/ProbeTarget' );
+  const Property = require( 'AXON/Property' );
+  const PropertyIO = require( 'AXON/PropertyIO' );
+  const StringIO = require( 'TANDEM/types/StringIO' );
+  const Vector3 = require( 'DOT/Vector3' );
+  const Vector3IO = require( 'DOT/Vector3IO' );
+  const VoltmeterShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/VoltmeterShapeCreator' );
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files

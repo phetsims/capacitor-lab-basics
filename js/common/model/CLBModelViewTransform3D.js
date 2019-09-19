@@ -15,17 +15,17 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Matrix3 = require( 'DOT/Matrix3' );
-  var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var Vector3 = require( 'DOT/Vector3' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Matrix3 = require( 'DOT/Matrix3' );
+  const ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const Vector3 = require( 'DOT/Vector3' );
 
   // Scratch variable for performance
   // @private

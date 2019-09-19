@@ -8,17 +8,17 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
-  var CapacitanceCircuit = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitanceCircuit' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
-  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  var CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
-  var inherit = require( 'PHET_CORE/inherit' );
+  const BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
+  const CapacitanceCircuit = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitanceCircuit' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
+  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
+  const CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
+  const inherit = require( 'PHET_CORE/inherit' );
 
   /**
    * @constructor

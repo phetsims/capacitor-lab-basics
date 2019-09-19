@@ -10,17 +10,17 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
-  var DragListener = require( 'SCENERY/listeners/DragListener' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Range = require( 'DOT/Range' );
-  var Util = require( 'DOT/Util' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
+  const CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
+  const DragListener = require( 'SCENERY/listeners/DragListener' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Range = require( 'DOT/Range' );
+  const Util = require( 'DOT/Util' );
 
   /**
    * @constructor

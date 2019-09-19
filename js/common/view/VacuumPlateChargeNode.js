@@ -6,12 +6,12 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var PlateChargeNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateChargeNode' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const PlateChargeNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateChargeNode' );
 
   /**
    * @constructor

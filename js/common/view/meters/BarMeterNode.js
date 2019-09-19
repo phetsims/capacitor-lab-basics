@@ -11,20 +11,20 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
-  var BarNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarNode' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Line = require( 'SCENERY/nodes/Line' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
+  const ArrowNode = require( 'SCENERY_PHET/ArrowNode' );
+  const BarNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarNode' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Line = require( 'SCENERY/nodes/Line' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
 
   // constants
   var BASE_LINE_LENGTH = 25; // Length of vertical line at the origin (left end) of the bar

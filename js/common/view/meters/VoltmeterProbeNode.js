@@ -8,23 +8,23 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Bounds2 = require( 'DOT/Bounds2' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var DynamicProperty = require( 'AXON/DynamicProperty' );
-  var Image = require( 'SCENERY/nodes/Image' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Property = require( 'AXON/Property' );
-  var Vector2 = require( 'DOT/Vector2' );
+  const Bounds2 = require( 'DOT/Bounds2' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const DynamicProperty = require( 'AXON/DynamicProperty' );
+  const Image = require( 'SCENERY/nodes/Image' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Property = require( 'AXON/Property' );
+  const Vector2 = require( 'DOT/Vector2' );
 
   // images
-  var blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_black.png' );
-  var redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
+  const blackVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_black.png' );
+  const redVoltmeterProbeImage = require( 'image!CAPACITOR_LAB_BASICS/probe_red.png' );
 
   /**
    * @constructor

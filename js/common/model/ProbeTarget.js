@@ -5,11 +5,11 @@
  *
  * @author Jonathan Olson <jonathan.olson@colorado.edu>
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
 
   var ProbeTarget = {
     NONE: 'NONE',

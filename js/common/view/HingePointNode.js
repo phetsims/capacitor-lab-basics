@@ -6,14 +6,14 @@
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var Circle = require( 'SCENERY/nodes/Circle' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var inherit = require( 'PHET_CORE/inherit' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const Circle = require( 'SCENERY/nodes/Circle' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const inherit = require( 'PHET_CORE/inherit' );
 
   // constants
   var HINGE_POINT_RADIUS = 8;

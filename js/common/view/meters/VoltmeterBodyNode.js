@@ -6,24 +6,24 @@
  * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Bounds2 = require( 'DOT/Bounds2' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var DynamicProperty = require( 'AXON/DynamicProperty' );
-  var Image = require( 'SCENERY/nodes/Image' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Property = require( 'AXON/Property' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
-  var Vector2 = require( 'DOT/Vector2' );
+  const Bounds2 = require( 'DOT/Bounds2' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const DynamicProperty = require( 'AXON/DynamicProperty' );
+  const Image = require( 'SCENERY/nodes/Image' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const MovableDragHandler = require( 'SCENERY_PHET/input/MovableDragHandler' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const Property = require( 'AXON/Property' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
+  const Vector2 = require( 'DOT/Vector2' );
 
   // digital display
   var DISPLAY_FONT = new PhetFont( 18 );
@@ -34,12 +34,12 @@ define( function( require ) {
   } );
 
   // strings
-  var voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
-  var voltsPatternString = require( 'string!CAPACITOR_LAB_BASICS/voltsPattern' );
-  var voltsUnknownString = require( 'string!CAPACITOR_LAB_BASICS/volts.unknown' );
+  const voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
+  const voltsPatternString = require( 'string!CAPACITOR_LAB_BASICS/voltsPattern' );
+  const voltsUnknownString = require( 'string!CAPACITOR_LAB_BASICS/volts.unknown' );
 
   // images
-  var voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
+  const voltmeterBodyImage = require( 'image!CAPACITOR_LAB_BASICS/voltmeter_body.png' );
 
   /**
    * @constructor

@@ -5,23 +5,23 @@
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var CLBLightBulbModel = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/CLBLightBulbModel' );
-  var CLBLightBulbScreenView = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/CLBLightBulbScreenView' );
-  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Property = require( 'AXON/Property' );
-  var Screen = require( 'JOIST/Screen' );
-  var ScreenIcon = require( 'JOIST/ScreenIcon' );
+  const BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const CLBLightBulbModel = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/CLBLightBulbModel' );
+  const CLBLightBulbScreenView = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/CLBLightBulbScreenView' );
+  const CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Property = require( 'AXON/Property' );
+  const Screen = require( 'JOIST/Screen' );
+  const ScreenIcon = require( 'JOIST/ScreenIcon' );
 
   // strings
-  var screenLightBulbString = require( 'string!CAPACITOR_LAB_BASICS/screen.lightBulb' );
+  const screenLightBulbString = require( 'string!CAPACITOR_LAB_BASICS/screen.lightBulb' );
 
   /**
    * @constructor

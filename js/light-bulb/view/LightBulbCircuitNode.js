@@ -6,18 +6,18 @@
  * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  var CLBCircuitNode = require( 'CAPACITOR_LAB_BASICS/common/view/CLBCircuitNode' );
-  var CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Property = require( 'AXON/Property' );
-  var Vector3 = require( 'DOT/Vector3' );
+  const BulbNode = require( 'CAPACITOR_LAB_BASICS/common/view/BulbNode' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
+  const CLBCircuitNode = require( 'CAPACITOR_LAB_BASICS/common/view/CLBCircuitNode' );
+  const CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Property = require( 'AXON/Property' );
+  const Vector3 = require( 'DOT/Vector3' );
 
   /**
    * @constructor

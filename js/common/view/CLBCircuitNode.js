@@ -6,24 +6,24 @@
  * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BatteryNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryNode' );
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CapacitorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CapacitorNode' );
-  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
-  var PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
-  var SwitchNode = require( 'CAPACITOR_LAB_BASICS/common/view/SwitchNode' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
+  const BatteryNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryNode' );
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CapacitorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CapacitorNode' );
+  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PlateAreaDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateAreaDragHandleNode' );
+  const PlateSeparationDragHandleNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/PlateSeparationDragHandleNode' );
+  const SwitchNode = require( 'CAPACITOR_LAB_BASICS/common/view/SwitchNode' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
 
   /**
    * @constructor

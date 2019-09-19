@@ -7,20 +7,20 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BatteryShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BatteryShapeCreator' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var Dimension2 = require( 'DOT/Dimension2' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var Property = require( 'AXON/Property' );
-  var PropertyIO = require( 'AXON/PropertyIO' );
-  var StringIO = require( 'TANDEM/types/StringIO' );
-  var Vector3 = require( 'DOT/Vector3' );
+  const BatteryShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BatteryShapeCreator' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const Dimension2 = require( 'DOT/Dimension2' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const Property = require( 'AXON/Property' );
+  const PropertyIO = require( 'AXON/PropertyIO' );
+  const StringIO = require( 'TANDEM/types/StringIO' );
+  const Vector3 = require( 'DOT/Vector3' );
 
   // constants
   // size of the associated image file, determined by visual inspection

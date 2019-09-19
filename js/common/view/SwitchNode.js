@@ -7,28 +7,28 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // Modules
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var Circle = require( 'SCENERY/nodes/Circle' );
-  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  var CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var ConnectionNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionNode' );
-  var HingePointNode = require( 'CAPACITOR_LAB_BASICS/common/view/HingePointNode' );
-  var Image = require( 'SCENERY/nodes/Image' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
-  var ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const Circle = require( 'SCENERY/nodes/Circle' );
+  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
+  const CircuitSwitchDragHandler = require( 'CAPACITOR_LAB_BASICS/common/view/drag/CircuitSwitchDragHandler' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const ConnectionNode = require( 'CAPACITOR_LAB_BASICS/common/view/ConnectionNode' );
+  const HingePointNode = require( 'CAPACITOR_LAB_BASICS/common/view/HingePointNode' );
+  const Image = require( 'SCENERY/nodes/Image' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  const ShadedSphereNode = require( 'SCENERY_PHET/ShadedSphereNode' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const WireNode = require( 'CAPACITOR_LAB_BASICS/common/view/WireNode' );
 
   // Images
-  var switchCueArrowImage = require( 'image!CAPACITOR_LAB_BASICS/switch_cue_arrow.png' );
+  const switchCueArrowImage = require( 'image!CAPACITOR_LAB_BASICS/switch_cue_arrow.png' );
 
   // Constants
   var SWITCH_CUE_ARROW_WIDTH = 25;

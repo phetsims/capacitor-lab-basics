@@ -7,20 +7,20 @@
  * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var RichText = require( 'SCENERY/nodes/RichText' );
-  var StringUtils = require( 'PHETCOMMON/util/StringUtils' );
-  var Tandem = require( 'TANDEM/Tandem' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Util = require( 'DOT/Util' );
-  var Vector2 = require( 'DOT/Vector2' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const RichText = require( 'SCENERY/nodes/RichText' );
+  const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
+  const Tandem = require( 'TANDEM/Tandem' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Util = require( 'DOT/Util' );
+  const Vector2 = require( 'DOT/Vector2' );
 
   // constants
   var LABEL_FONT = new PhetFont( { weight: 'bold', size: 12 } );

@@ -8,24 +8,24 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
-  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
-  var Connection = require( 'CAPACITOR_LAB_BASICS/common/model/Connection' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var Range = require( 'DOT/Range' );
-  var Shape = require( 'KITE/Shape' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var Vector3 = require( 'DOT/Vector3' );
-  var Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
-  var WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
+  const Connection = require( 'CAPACITOR_LAB_BASICS/common/model/Connection' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const Range = require( 'DOT/Range' );
+  const Shape = require( 'KITE/Shape' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const Vector3 = require( 'DOT/Vector3' );
+  const Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
+  const WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   // constants
   var SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point

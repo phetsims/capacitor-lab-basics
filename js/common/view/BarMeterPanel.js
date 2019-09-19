@@ -9,21 +9,21 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var Checkbox = require( 'SUN/Checkbox' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Panel = require( 'SUN/Panel' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var PlateChargeBarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/PlateChargeBarMeterNode' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Vector2 = require( 'DOT/Vector2' );
+  const BarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/BarMeterNode' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const Checkbox = require( 'SUN/Checkbox' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Panel = require( 'SUN/Panel' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const PlateChargeBarMeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/PlateChargeBarMeterNode' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Vector2 = require( 'DOT/Vector2' );
 
   // constants
   var CHECKBOX_VERTICAL_SPACING = 28;
@@ -31,12 +31,12 @@ define( function( require ) {
   var VALUE_COLOR = 'black';
 
   // strings
-  var capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
-  var picoCoulombsPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoCoulombsPattern' );
-  var picoFaradsPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoFaradsPattern' );
-  var picoJoulesPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoJoulesPattern' );
-  var storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
-  var topPlateChargeString = require( 'string!CAPACITOR_LAB_BASICS/topPlateCharge' );
+  const capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
+  const picoCoulombsPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoCoulombsPattern' );
+  const picoFaradsPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoFaradsPattern' );
+  const picoJoulesPatternString = require( 'string!CAPACITOR_LAB_BASICS/picoJoulesPattern' );
+  const storedEnergyString = require( 'string!CAPACITOR_LAB_BASICS/storedEnergy' );
+  const topPlateChargeString = require( 'string!CAPACITOR_LAB_BASICS/topPlateCharge' );
 
   /**
    * @constructor

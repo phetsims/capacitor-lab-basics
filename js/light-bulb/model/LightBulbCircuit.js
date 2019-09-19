@@ -22,19 +22,19 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
-  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
-  var ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/ParallelCircuit' );
-  var Property = require( 'AXON/Property' );
-  var Vector3 = require( 'DOT/Vector3' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const LightBulb = require( 'CAPACITOR_LAB_BASICS/common/model/LightBulb' );
+  const ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/ParallelCircuit' );
+  const Property = require( 'AXON/Property' );
+  const Vector3 = require( 'DOT/Vector3' );
 
   // During exponential voltage drop, circuit voltage crosses this threshold,
   // below which we no longer call discharge() so I and V don't tail off forever.

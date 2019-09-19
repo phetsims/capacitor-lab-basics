@@ -7,19 +7,19 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
-  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
-  var CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
+  const BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
+  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
+  const CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
 
   // constants
   var CAPACITOR_X_SPACING = 0.0180; // meters

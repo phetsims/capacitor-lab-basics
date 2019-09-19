@@ -7,17 +7,17 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Bounds2 = require( 'DOT/Bounds2' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var EFieldNode = require( 'CAPACITOR_LAB_BASICS/common/view/EFieldNode' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var PlateNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateNode' );
-  var Property = require( 'AXON/Property' );
+  const Bounds2 = require( 'DOT/Bounds2' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const EFieldNode = require( 'CAPACITOR_LAB_BASICS/common/view/EFieldNode' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const PlateNode = require( 'CAPACITOR_LAB_BASICS/common/view/PlateNode' );
+  const Property = require( 'AXON/Property' );
 
   /**
    * @constructor

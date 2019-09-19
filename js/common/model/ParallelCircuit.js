@@ -9,26 +9,26 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Battery = require( 'CAPACITOR_LAB_BASICS/common/model/Battery' );
-  var BatteryToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/BatteryToSwitchWire' );
-  var Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CapacitorToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/CapacitorToSwitchWire' );
-  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
-  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var ProbeTarget = require( 'CAPACITOR_LAB_BASICS/common/model/ProbeTarget' );
-  var Property = require( 'AXON/Property' );
-  var PropertyIO = require( 'AXON/PropertyIO' );
-  var Shape = require( 'KITE/Shape' );
-  var StringIO = require( 'TANDEM/types/StringIO' );
+  const Battery = require( 'CAPACITOR_LAB_BASICS/common/model/Battery' );
+  const BatteryToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/BatteryToSwitchWire' );
+  const Capacitor = require( 'CAPACITOR_LAB_BASICS/common/model/Capacitor' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CapacitorToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/CapacitorToSwitchWire' );
+  const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const LightBulbToSwitchWire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/LightBulbToSwitchWire' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const ProbeTarget = require( 'CAPACITOR_LAB_BASICS/common/model/ProbeTarget' );
+  const Property = require( 'AXON/Property' );
+  const PropertyIO = require( 'AXON/PropertyIO' );
+  const Shape = require( 'KITE/Shape' );
+  const StringIO = require( 'TANDEM/types/StringIO' );
 
   /**
    * @constructor

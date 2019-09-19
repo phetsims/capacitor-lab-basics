@@ -8,32 +8,32 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var AlignBox = require( 'SCENERY/nodes/AlignBox' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Panel = require( 'SUN/Panel' );
-  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var VerticalAquaRadioButtonGroup = require( 'SUN/VerticalAquaRadioButtonGroup' );
-  var VerticalCheckboxGroup = require( 'SUN/VerticalCheckboxGroup' );
+  const AlignBox = require( 'SCENERY/nodes/AlignBox' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Panel = require( 'SUN/Panel' );
+  const PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const VerticalAquaRadioButtonGroup = require( 'SUN/VerticalAquaRadioButtonGroup' );
+  const VerticalCheckboxGroup = require( 'SUN/VerticalCheckboxGroup' );
 
   // constants
   var CHECK_BOX_FONT = new PhetFont( 16 );
 
   // strings
-  var barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
-  var conventionalString = require( 'string!CAPACITOR_LAB_BASICS/conventional' );
-  var currentDirectionString = require( 'string!CAPACITOR_LAB_BASICS/currentDirection' );
-  var electricFieldString = require( 'string!CAPACITOR_LAB_BASICS/electricField' );
-  var electronsString = require( 'string!CAPACITOR_LAB_BASICS/electrons' );
-  var plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
+  const barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
+  const conventionalString = require( 'string!CAPACITOR_LAB_BASICS/conventional' );
+  const currentDirectionString = require( 'string!CAPACITOR_LAB_BASICS/currentDirection' );
+  const electricFieldString = require( 'string!CAPACITOR_LAB_BASICS/electricField' );
+  const electronsString = require( 'string!CAPACITOR_LAB_BASICS/electrons' );
+  const plateChargesString = require( 'string!CAPACITOR_LAB_BASICS/plateCharges' );
 
   /**
    * @constructor

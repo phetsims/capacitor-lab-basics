@@ -18,25 +18,25 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Bounds3 = require( 'DOT/Bounds3' );
-  var Bounds3IO = require( 'DOT/Bounds3IO' );
-  var BoxShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BoxShapeCreator' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
-  var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
-  var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  var DerivedProperty = require( 'AXON/DerivedProperty' );
-  var DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var NumberIO = require( 'TANDEM/types/NumberIO' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var Property = require( 'AXON/Property' );
-  var PropertyIO = require( 'AXON/PropertyIO' );
-  var Vector3 = require( 'DOT/Vector3' );
+  const Bounds3 = require( 'DOT/Bounds3' );
+  const Bounds3IO = require( 'DOT/Bounds3IO' );
+  const BoxShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BoxShapeCreator' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  const CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
+  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const DerivedProperty = require( 'AXON/DerivedProperty' );
+  const DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const NumberIO = require( 'TANDEM/types/NumberIO' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const Property = require( 'AXON/Property' );
+  const PropertyIO = require( 'AXON/PropertyIO' );
+  const Vector3 = require( 'DOT/Vector3' );
 
   /**
    * @constructor

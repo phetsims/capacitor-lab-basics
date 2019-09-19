@@ -8,17 +8,17 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
   // TODO: Reverse the shapes so they are in the model?
   // TODO: Did you mean invert the shapes?
-  var BatteryGraphicNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryGraphicNode' );
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Matrix3 = require( 'DOT/Matrix3' );
+  const BatteryGraphicNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryGraphicNode' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Matrix3 = require( 'DOT/Matrix3' );
 
   /**
    * @constructor

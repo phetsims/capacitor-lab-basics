@@ -8,16 +8,16 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Matrix3 = require( 'DOT/Matrix3' );
-  var Shape = require( 'KITE/Shape' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var Vector3 = require( 'DOT/Vector3' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const Matrix3 = require( 'DOT/Matrix3' );
+  const Shape = require( 'KITE/Shape' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const Vector3 = require( 'DOT/Vector3' );
 
   // var PROBE_TIP_OFFSET = new Vector3( 0.00045, 0, 0 );
   var PROBE_TIP_OFFSET = new Vector3( 0.00018, 0.00025, 0 );

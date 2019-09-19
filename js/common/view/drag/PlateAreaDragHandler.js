@@ -10,16 +10,16 @@
  * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  var DragListener = require( 'SCENERY/listeners/DragListener' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var LinearFunction = require( 'DOT/LinearFunction' );
-  var Util = require( 'DOT/Util' );
-  var Vector2 = require( 'DOT/Vector2' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const DragListener = require( 'SCENERY/listeners/DragListener' );
+  const inherit = require( 'PHET_CORE/inherit' );
+  const LinearFunction = require( 'DOT/LinearFunction' );
+  const Util = require( 'DOT/Util' );
+  const Vector2 = require( 'DOT/Vector2' );
 
   /**
    * @constructor
