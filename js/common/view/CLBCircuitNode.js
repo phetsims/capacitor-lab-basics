@@ -39,7 +39,7 @@ define( require => {
       'This circuit should have two switches: top and bottom.' );
 
     Node.call( this );
-    var self = this;
+    const self = this;
 
     // @public {Circuit}
     this.circuit = model.circuit;
@@ -49,7 +49,7 @@ define( require => {
     // @private {BatteryNode}
     this.batteryNode = new BatteryNode( this.circuit.battery, CLBConstants.BATTERY_VOLTAGE_RANGE, tandem.createTandem( 'batteryNode' ) );
 
-    var capacitorNode = new CapacitorNode(
+    const capacitorNode = new CapacitorNode(
       this.circuit,
       model.modelViewTransform,
       model.plateChargesVisibleProperty,
@@ -69,7 +69,7 @@ define( require => {
     } );
 
     // Don't allow both switches to be controlled at once
-    var switchControlledProperty = new BooleanProperty( false );
+    const switchControlledProperty = new BooleanProperty( false );
 
     // @private {Array.<SwitchNode>}
     this.circuitSwitchNodes = [];
@@ -105,9 +105,9 @@ define( require => {
     } );
 
     // drag handles
-    var plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( this.circuit.capacitor, model.modelViewTransform,
+    const plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( this.circuit.capacitor, model.modelViewTransform,
       CLBConstants.PLATE_SEPARATION_RANGE, tandem.createTandem( 'plateSeparationDragHandleNode' ) );
-    var plateAreaDragHandleNode = new PlateAreaDragHandleNode( this.circuit.capacitor, model.modelViewTransform,
+    const plateAreaDragHandleNode = new PlateAreaDragHandleNode( this.circuit.capacitor, model.modelViewTransform,
       CLBConstants.PLATE_WIDTH_RANGE, tandem.createTandem( 'plateAreaDragHandleNode' ) );
 
     // current indicators
@@ -152,11 +152,11 @@ define( require => {
     capacitorNode.center = model.modelViewTransform.modelToViewPosition( this.circuit.capacitor.location );
 
     // top current indicator
-    var x = this.batteryNode.right + ( this.circuitSwitchNodes[ 0 ].left - this.batteryNode.right ) / 2;
+    const x = this.batteryNode.right + ( this.circuitSwitchNodes[ 0 ].left - this.batteryNode.right ) / 2;
 
     // current indicator offset
-    var indicatorOffset = 7 / 2;
-    var y = this.topWireNode.bounds.minY + indicatorOffset;
+    const indicatorOffset = 7 / 2;
+    let y = this.topWireNode.bounds.minY + indicatorOffset;
     this.batteryTopCurrentIndicatorNode.translate( x, y );
 
     // bottom current indicator

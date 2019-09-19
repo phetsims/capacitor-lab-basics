@@ -32,11 +32,11 @@ define( require => {
 
   // constants
   // size of the probe tips, determined by visual inspection of the associated image files
-  var PROBE_TIP_SIZE = new Dimension2( 0.0003, 0.0013 ); // meters
+  const PROBE_TIP_SIZE = new Dimension2( 0.0003, 0.0013 ); // meters
 
   // Initial locations when dragged out of toolbox
-  var POSITIVE_PROBE_LOCATION = new Vector3( 0.0669, 0.0298, 0 );
-  var NEGATIVE_PROBE_LOCATION = new Vector3( 0.0707, 0.0329, 0 );
+  const POSITIVE_PROBE_LOCATION = new Vector3( 0.0669, 0.0298, 0 );
+  const NEGATIVE_PROBE_LOCATION = new Vector3( 0.0707, 0.0329, 0 );
 
   /**
    * @constructor
@@ -116,7 +116,7 @@ define( require => {
       phetioType: PropertyIO( StringIO )
     } );
 
-    var self = this;
+    const self = this;
 
     // @public {VoltmeterShapeCreator} (read-only)
     this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform );
@@ -124,9 +124,9 @@ define( require => {
     /**
      * Update the value of the meter. Called when many different properties change.
      */
-    var updateValue = function() {
+    const updateValue = function() {
       if ( self.visibleProperty.value ) {
-        var probesTouching = self.probesAreTouching();
+        const probesTouching = self.probesAreTouching();
         self.positiveProbeTargetProperty.value = probesTouching ? ProbeTarget.OTHER_PROBE : self.circuit.getProbeTarget( self.shapeCreator.getPositiveProbeTipShape() );
         self.negativeProbeTargetProperty.value = probesTouching ? ProbeTarget.OTHER_PROBE : self.circuit.getProbeTarget( self.shapeCreator.getNegativeProbeTipShape() );
         self.measuredVoltageProperty.value = self.computeValue();
@@ -172,8 +172,8 @@ define( require => {
      * @returns {number|null} - voltage difference between probes
      */
     computeValue: function() {
-      var positiveProbeTarget = this.positiveProbeTargetProperty.value;
-      var negativeProbeTarget = this.negativeProbeTargetProperty.value;
+      const positiveProbeTarget = this.positiveProbeTargetProperty.value;
+      const negativeProbeTarget = this.negativeProbeTargetProperty.value;
 
       // If one probe is disconnected, return null.
       if ( positiveProbeTarget === ProbeTarget.NONE || negativeProbeTarget === ProbeTarget.NONE ) {
@@ -185,8 +185,8 @@ define( require => {
         return 0;
       }
 
-      var positiveCircuitLocation = ProbeTarget.getCircuitLocation( positiveProbeTarget );
-      var negativeCircuitLocation = ProbeTarget.getCircuitLocation( negativeProbeTarget );
+      let positiveCircuitLocation = ProbeTarget.getCircuitLocation( positiveProbeTarget );
+      let negativeCircuitLocation = ProbeTarget.getCircuitLocation( negativeProbeTarget );
 
       // If the probes are touching the same location, there should be no voltage change. We check here first so we can
       // bail out and avoid any more work (even though we do a very similar check below).
@@ -245,8 +245,8 @@ define( require => {
      * @returns {boolean}
      */
     probesAreTouching: function() {
-      var posShape = this.shapeCreator.getPositiveProbeTipShape();
-      var negShape = this.shapeCreator.getNegativeProbeTipShape();
+      const posShape = this.shapeCreator.getPositiveProbeTipShape();
+      const negShape = this.shapeCreator.getNegativeProbeTipShape();
 
       return posShape.bounds.intersectsBounds( negShape.bounds ) &&
              posShape.shapeIntersection( negShape ).getNonoverlappingArea() > 0;

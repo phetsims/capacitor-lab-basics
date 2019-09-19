@@ -32,19 +32,19 @@ define( require => {
 
   // constants
   // arrow properties
-  var ARROW_LENGTH = 88;
-  var ARROW_HEAD_WIDTH = 30;
-  var ARROW_HEAD_HEIGHT = 25;
-  var ARROW_TAIL_WIDTH = 0.4 * ARROW_HEAD_WIDTH;
-  var ARROW_TIP_LOCATION = new Vector2( 0, 0 ); // origin at the tip
-  var ARROW_TAIL_LOCATION = new Vector2( ARROW_LENGTH, 0 );
+  const ARROW_LENGTH = 88;
+  const ARROW_HEAD_WIDTH = 30;
+  const ARROW_HEAD_HEIGHT = 25;
+  const ARROW_TAIL_WIDTH = 0.4 * ARROW_HEAD_WIDTH;
+  const ARROW_TIP_LOCATION = new Vector2( 0, 0 ); // origin at the tip
+  const ARROW_TAIL_LOCATION = new Vector2( ARROW_LENGTH, 0 );
 
   // electron properties
-  var CHARGE_DIAMETER = 0.8 * ARROW_TAIL_WIDTH;
-  var ELECTRON_LINE_WIDTH = 1;
-  var CHARGE_STROKE_COLOR = 'black';
-  var CHARGE_SYMBOL_COLOR = 'black';
-  var CHARGE_SYMBOL_SIZE = new Dimension2( 0.6 * CHARGE_DIAMETER, 0.1 * CHARGE_DIAMETER );
+  const CHARGE_DIAMETER = 0.8 * ARROW_TAIL_WIDTH;
+  const ELECTRON_LINE_WIDTH = 1;
+  const CHARGE_STROKE_COLOR = 'black';
+  const CHARGE_SYMBOL_COLOR = 'black';
+  const CHARGE_SYMBOL_SIZE = new Dimension2( 0.6 * CHARGE_DIAMETER, 0.1 * CHARGE_DIAMETER );
 
   /**
    * Rotation angles should be set such that +dV/dt indicates current flow towards the positive terminal
@@ -61,7 +61,7 @@ define( require => {
   function CurrentIndicatorNode( currentAmplitudeProperty, startingOrientation, positiveOrientationProperty, colorProperty, stepEmitter, tandem ) {
 
     Node.call( this, { opacity: 0 } );
-    var self = this;
+    const self = this;
 
     // @private {number}
     this.positiveOrientation = positiveOrientationProperty.value;
@@ -73,7 +73,7 @@ define( require => {
       self.animation && self.animation.step( dt );
     } );
 
-    var arrowNode = new ArrowNode( ARROW_TAIL_LOCATION.x, ARROW_TAIL_LOCATION.y, ARROW_TIP_LOCATION.x, ARROW_TIP_LOCATION.y, {
+    const arrowNode = new ArrowNode( ARROW_TAIL_LOCATION.x, ARROW_TAIL_LOCATION.y, ARROW_TIP_LOCATION.x, ARROW_TIP_LOCATION.y, {
       headHeight: ARROW_HEAD_HEIGHT,
       headWidth: ARROW_HEAD_WIDTH,
       tailWidth: ARROW_TAIL_WIDTH,
@@ -83,7 +83,7 @@ define( require => {
 
     this.addChild( arrowNode );
 
-    var electronNode = new ShadedSphereNode( CHARGE_DIAMETER, {
+    const electronNode = new ShadedSphereNode( CHARGE_DIAMETER, {
       fill: colorProperty.value,
       stroke: CHARGE_STROKE_COLOR,
       lineWidth: ELECTRON_LINE_WIDTH,
@@ -93,7 +93,7 @@ define( require => {
     } );
     this.addChild( electronNode );
 
-    var protonNode = new ShadedSphereNode( CHARGE_DIAMETER, {
+    const protonNode = new ShadedSphereNode( CHARGE_DIAMETER, {
       fill: new Color( PhetColorScheme.RED_COLORBLIND ),
       stroke: CHARGE_STROKE_COLOR,
       lineWidth: ELECTRON_LINE_WIDTH,
@@ -106,14 +106,14 @@ define( require => {
 
 
     // Use scenery-phet's minus node because Text("-") can't be accurately centered.
-    var minusNode = new MinusNode( {
+    const minusNode = new MinusNode( {
       size: CHARGE_SYMBOL_SIZE,
       fill: CHARGE_SYMBOL_COLOR
     } );
     this.addChild( minusNode );
 
     // Use scenery-phet's plus node because Text("+") can't be accurately centered.
-    var plusNode = new PlusNode( {
+    const plusNode = new PlusNode( {
       size: CHARGE_SYMBOL_SIZE,
       fill: CHARGE_SYMBOL_COLOR,
       visible: !minusNode.visible
@@ -121,8 +121,8 @@ define( require => {
     this.addChild( plusNode );
 
     // layout
-    var x = -arrowNode.bounds.width / 2;
-    var y = 0;
+    let x = -arrowNode.bounds.width / 2;
+    let y = 0;
     arrowNode.translate( x, y );
     x = arrowNode.bounds.maxX - ( 0.6 * ( arrowNode.bounds.width - ARROW_HEAD_HEIGHT ) );
     y = arrowNode.bounds.centerY;
@@ -163,7 +163,7 @@ define( require => {
       }
 
       // Electron/Proton visibility dependent on orientation of current.
-      var chargeVisible = positiveOrientationProperty.value === 0;
+      const chargeVisible = positiveOrientationProperty.value === 0;
       electronNode.visible = chargeVisible;
       minusNode.visible = chargeVisible;
       protonNode.visible = !chargeVisible;
@@ -179,7 +179,7 @@ define( require => {
      * @public
      */
     startAnimation: function() {
-      var self = this;
+      const self = this;
       this.stopAnimation();
 
       // show symbol and gradually fade out by modulating opacity

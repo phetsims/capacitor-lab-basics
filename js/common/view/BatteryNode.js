@@ -26,7 +26,7 @@ define( require => {
   const VSlider = require( 'SUN/VSlider' );
 
   // constants
-  var LABEL_FONT = new PhetFont( 12 );
+  const LABEL_FONT = new PhetFont( 12 );
 
   // strings
   const voltsPatternString = require( 'string!CAPACITOR_LAB_BASICS/voltsPattern' );
@@ -43,15 +43,15 @@ define( require => {
     Node.call( this, { tandem: tandem } );
 
     // battery image, scaled to match model dimensions
-    var graphicNode = new Node( {
+    const graphicNode = new Node( {
       scale: 0.30,
       children: [ BatteryGraphicNode.POSITIVE_UP ]
     } );
     this.addChild( graphicNode );
 
     // voltage slider
-    var trackLength = 0.55 * graphicNode.bounds.height;
-    var sliderNode = new VSlider( battery.voltageProperty, voltageRange, {
+    const trackLength = 0.55 * graphicNode.bounds.height;
+    const sliderNode = new VSlider( battery.voltageProperty, voltageRange, {
       trackSize: new Dimension2( trackLength, 8 ),
       thumbSize: new Dimension2( 20, 35 ),
       thumbTouchAreaXDilation: 11,
@@ -75,8 +75,8 @@ define( require => {
     } );
 
     // function to create the tick mark labels using a string pattern.
-    var createTickLabel = function( value, textFill, tandem ) {
-      var labelText = new Text( StringUtils.fillIn( voltsPatternString, { value: value } ), {
+    const createTickLabel = function( value, textFill, tandem ) {
+      const labelText = new Text( StringUtils.fillIn( voltsPatternString, { value: value } ), {
         font: LABEL_FONT,
         fill: textFill,
         cursor: 'arrow',
@@ -86,9 +86,9 @@ define( require => {
       return labelText;
     };
     // add the tick marks
-    var maximumTickLabel = createTickLabel( voltageRange.max, 'black', tandem.createTandem( 'maximumTickLabel' ) );
-    var defaultTickLabel = createTickLabel( voltageRange.defaultValue, 'white', tandem.createTandem( 'defaultTickLabel' ) );
-    var minimumTickLabel = createTickLabel( voltageRange.min, 'white', tandem.createTandem( 'minimumTickLabel' ) );
+    const maximumTickLabel = createTickLabel( voltageRange.max, 'black', tandem.createTandem( 'maximumTickLabel' ) );
+    const defaultTickLabel = createTickLabel( voltageRange.defaultValue, 'white', tandem.createTandem( 'defaultTickLabel' ) );
+    const minimumTickLabel = createTickLabel( voltageRange.min, 'white', tandem.createTandem( 'minimumTickLabel' ) );
     sliderNode.addMajorTick( voltageRange.max, maximumTickLabel );
     sliderNode.addMajorTick( voltageRange.defaultValue, defaultTickLabel );
     sliderNode.addMajorTick( voltageRange.min, minimumTickLabel );

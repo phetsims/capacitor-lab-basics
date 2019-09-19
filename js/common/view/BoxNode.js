@@ -20,8 +20,8 @@ define( require => {
   const Path = require( 'SCENERY/nodes/Path' );
 
   // constants
-  var LINE_WIDTH = 1;
-  var STROKE = 'black';
+  const LINE_WIDTH = 1;
+  const STROKE = 'black';
 
   /**
    * @constructor

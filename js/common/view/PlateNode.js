@@ -20,7 +20,7 @@ define( require => {
   const VacuumPlateChargeNode = require( 'CAPACITOR_LAB_BASICS/common/view/VacuumPlateChargeNode' );
 
   // constants
-  var PLATE_COLOR = new Color( 245, 245, 245 );  // capacitor plates
+  const PLATE_COLOR = new Color( 245, 245, 245 );  // capacitor plates
 
   /**
    * @constructor
@@ -38,7 +38,7 @@ define( require => {
     this.modelViewTransform = modelViewTransform;
 
     // Charges restricted to the largest possible top face on a capacitor plate.  Bounds needed for canvas.
-    var canvasBounds = this.getMaxBoxNodeBounds();
+    const canvasBounds = this.getMaxBoxNodeBounds();
 
     // @private {VacuumPlateChargeNode}
     this.vacuumPlateChargeNode = new VacuumPlateChargeNode( capacitor, modelViewTransform, {
@@ -70,7 +70,7 @@ define( require => {
      * @returns {Bounds3}
      */
     getMaxBoxNodeBounds: function() {
-      var maxWidthBoxNode = new BoxNode(
+      const maxWidthBoxNode = new BoxNode(
         this.modelViewTransform,
         PLATE_COLOR,
         new Bounds3( 0, 0, 0,

@@ -27,8 +27,8 @@ define( require => {
   function CapacitorToSwitchWire( connectionPoint, config, capacitor, circuitSwitch ) {
 
     // add the vertical segment.
-    var switchConnectionPoint = circuitSwitch.hingePoint;
-    var segment;
+    const switchConnectionPoint = circuitSwitch.hingePoint;
+    let segment;
     if ( connectionPoint === CircuitLocation.CAPACITOR_TOP ) {
       segment = WireSegment.createComponentTopWireSegment(
         capacitor,

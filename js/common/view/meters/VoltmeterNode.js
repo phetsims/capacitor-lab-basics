@@ -32,7 +32,7 @@ define( require => {
   const voltageString = require( 'string!CAPACITOR_LAB_BASICS/voltage' );
 
   // title display
-  var TITLE_FONT = new PhetFont( {
+  const TITLE_FONT = new PhetFont( {
     size: 7
   } );
 
@@ -51,7 +51,7 @@ define( require => {
   function VoltmeterNode( voltmeter, modelViewTransform, voltmeterVisibleProperty, tandem ) {
 
     Node.call( this, { tandem: tandem } );
-    var self = this;
+    const self = this;
 
     // construct all parts of the probe
     // @public {VoltmeterBodyNode}
@@ -66,8 +66,8 @@ define( require => {
     this.negativeProbeNode = VoltmeterProbeNode.createNegativeVoltmeterProbeNode( voltmeter, modelViewTransform,
       tandem.createTandem( 'negativeProbeNode' ) );
 
-    var positiveWireNode = new ProbeWireNode( this.bodyNode, this.positiveProbeNode, true );
-    var negativeWireNode = new ProbeWireNode( this.bodyNode, this.negativeProbeNode, false );
+    const positiveWireNode = new ProbeWireNode( this.bodyNode, this.positiveProbeNode, true );
+    const negativeWireNode = new ProbeWireNode( this.bodyNode, this.negativeProbeNode, false );
 
     // rendering order
     this.addChild( this.bodyNode );
@@ -113,16 +113,16 @@ define( require => {
     Node.call( this, { scale: scale, tandem: tandem } );
 
     // body of the voltmeter icon
-    var voltmeterImageNode = new Image( voltmeterBodyImage, {
+    const voltmeterImageNode = new Image( voltmeterBodyImage, {
       scale: 0.17
     } );
-    var offset = 8;
-    var labelText = new Text( voltageString, {
+    const offset = 8;
+    const labelText = new Text( voltageString, {
       font: TITLE_FONT,
       maxWidth: voltmeterImageNode.width / 2
     } );
     labelText.center = new Vector2( voltmeterImageNode.width / 2, voltmeterImageNode.height / 3 + offset );
-    var readoutRectangle = new Rectangle( 0, 0, voltmeterImageNode.width / 2, labelText.height + 8, 2, 2, {
+    const readoutRectangle = new Rectangle( 0, 0, voltmeterImageNode.width / 2, labelText.height + 8, 2, 2, {
       lineWidth: 0.75,
       fill: 'white',
       stroke: 'black'
@@ -132,15 +132,15 @@ define( require => {
       center: readoutRectangle.center
     } ) );
 
-    var imageBounds = voltmeterImageNode.bounds;
-    var positiveConnectionOffset = new Vector2( 3 * imageBounds.width / 7, imageBounds.maxY * 7 / 8 );
-    var negativeConnectionOffset = new Vector2( 4 * imageBounds.width / 7, imageBounds.maxY * 7 / 8 );
+    const imageBounds = voltmeterImageNode.bounds;
+    const positiveConnectionOffset = new Vector2( 3 * imageBounds.width / 7, imageBounds.maxY * 7 / 8 );
+    const negativeConnectionOffset = new Vector2( 4 * imageBounds.width / 7, imageBounds.maxY * 7 / 8 );
 
     // probes for the voltmeter icon, not rotated for perspective
-    var redProbeImage = new Image( redVoltmeterProbeImage, {
+    const redProbeImage = new Image( redVoltmeterProbeImage, {
       scale: 0.10
     } );
-    var blackProbeImage = new Image( blackVoltmeterProbeImage, {
+    const blackProbeImage = new Image( blackVoltmeterProbeImage, {
       scale: 0.10
     } );
 
@@ -151,36 +151,36 @@ define( require => {
 
     // wires for the icon, bezier cubics
     //black wire control points
-    var blackProbeConnectionPoint = blackProbeImage.centerBottom;
-    var blackVoltmeterConnectionPoint = voltmeterImageNode.translation.plus( negativeConnectionOffset );
-    var blackWireControlPoint1 = new Vector2(
+    const blackProbeConnectionPoint = blackProbeImage.centerBottom;
+    const blackVoltmeterConnectionPoint = voltmeterImageNode.translation.plus( negativeConnectionOffset );
+    const blackWireControlPoint1 = new Vector2(
       blackVoltmeterConnectionPoint.x + ( blackProbeConnectionPoint.x - blackVoltmeterConnectionPoint.x ) / 2,
       ( blackVoltmeterConnectionPoint.y + 10 )
     );
-    var blackWireControlPoint2 = new Vector2( blackProbeConnectionPoint.x, blackVoltmeterConnectionPoint.y + 5 );
+    const blackWireControlPoint2 = new Vector2( blackProbeConnectionPoint.x, blackVoltmeterConnectionPoint.y + 5 );
 
     // black wire shape
-    var blackWireShape = new Shape()
+    const blackWireShape = new Shape()
       .moveToPoint( blackVoltmeterConnectionPoint )
       .cubicCurveToPoint( blackWireControlPoint1, blackWireControlPoint2, blackProbeConnectionPoint );
-    var blackWirePath = new Path( blackWireShape, {
+    const blackWirePath = new Path( blackWireShape, {
       stroke: 'black',
       lineWidth: 2
     } );
 
     // red wire connection points
-    var redProbeConnectionPoint = redProbeImage.centerBottom;
-    var redVoltmeterConnectionPoint = voltmeterImageNode.translation.plus( positiveConnectionOffset );
-    var redWireControlPoint1 = new Vector2(
+    const redProbeConnectionPoint = redProbeImage.centerBottom;
+    const redVoltmeterConnectionPoint = voltmeterImageNode.translation.plus( positiveConnectionOffset );
+    const redWireControlPoint1 = new Vector2(
       redVoltmeterConnectionPoint.x - ( redVoltmeterConnectionPoint.x - redProbeConnectionPoint.x ) / 2,
       ( blackVoltmeterConnectionPoint.y + 10 )
     );
-    var redWireControlPoint2 = new Vector2( redProbeConnectionPoint.x, redVoltmeterConnectionPoint.y + 5 );
+    const redWireControlPoint2 = new Vector2( redProbeConnectionPoint.x, redVoltmeterConnectionPoint.y + 5 );
 
-    var redWireShape = new Shape()
+    const redWireShape = new Shape()
       .moveToPoint( redVoltmeterConnectionPoint )
       .cubicCurveToPoint( redWireControlPoint1, redWireControlPoint2, redProbeConnectionPoint );
-    var redWirePath = new Path( redWireShape, {
+    const redWirePath = new Path( redWireShape, {
       stroke: PhetColorScheme.RED_COLORBLIND,
       lineWidth: 2
     } );

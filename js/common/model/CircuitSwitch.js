@@ -28,7 +28,7 @@ define( require => {
   const WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
 
   // constants
-  var SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point
+  const SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point
 
   /**
    * @constructor
@@ -40,7 +40,7 @@ define( require => {
    */
   function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem ) {
 
-    var self = this;
+    const self = this;
 
     // Validate positionLabel string
     assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
@@ -69,7 +69,7 @@ define( require => {
     } );
 
     // Assign string identifying connection point
-    var connectionName = ( positionLabel === 'top' ) ?
+    const connectionName = ( positionLabel === 'top' ) ?
                          CircuitLocation.CIRCUIT_SWITCH_TOP :
                          CircuitLocation.CIRCUIT_SWITCH_BOTTOM;
 
@@ -84,7 +84,7 @@ define( require => {
     this.switchWire = new Wire( config.modelViewTransform, [ this.switchSegment ], connectionName );
 
     this.angleProperty.link( function( angle ) {
-      var hingePoint = self.switchSegment.hingePoint;
+      const hingePoint = self.switchSegment.hingePoint;
 
       // Shorten the switch wire (requested in #140)
       self.switchSegment.endPointProperty.value = hingePoint.plus( Vector2.createPolar( 0.9 * CLBConstants.SWITCH_WIRE_LENGTH, angle ).toVector3() );
@@ -98,7 +98,7 @@ define( require => {
         return;
       }
 
-      var wireDelta = self.getConnection( circuitConnection ).location.minus( self.switchSegment.hingePoint );
+      const wireDelta = self.getConnection( circuitConnection ).location.minus( self.switchSegment.hingePoint );
       self.angleProperty.value = wireDelta.toVector2().angle;
     } );
   }
@@ -123,11 +123,11 @@ define( require => {
         'Unsupported positionLabel: ' + positionLabel );
 
       // create the circuit switches that connect the capacitor to the circuit
-      var x = CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing;
-      var z = CLBConstants.BATTERY_LOCATION.z;
+      const x = CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing;
+      const z = CLBConstants.BATTERY_LOCATION.z;
 
-      var yOffset = CLBConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
-      var y = CLBConstants.BATTERY_LOCATION.y;
+      const yOffset = CLBConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
+      let y = CLBConstants.BATTERY_LOCATION.y;
 
       if ( positionLabel === 'top' ) {
         y -= yOffset;
@@ -151,18 +151,18 @@ define( require => {
      */
     getSwitchConnections: function( positionLabel, hingeXY, circuitStates ) {
       // Projection of switch wire vector to its components (angle is from a vertical wire)
-      var length = CLBConstants.SWITCH_WIRE_LENGTH;
-      var dx = length * Math.sin( SWITCH_ANGLE );
-      var dy = length * Math.cos( SWITCH_ANGLE );
+      const length = CLBConstants.SWITCH_WIRE_LENGTH;
+      const dx = length * Math.sin( SWITCH_ANGLE );
+      const dy = length * Math.cos( SWITCH_ANGLE );
 
       // Top point of hinge from pivot point
-      var topOffset = new Vector2( 0, length );
+      const topOffset = new Vector2( 0, length );
 
       // Compute 2D switch contact points
 
-      var topPoint;
-      var leftPoint;
-      var rightPoint;
+      let topPoint;
+      let leftPoint;
+      let rightPoint;
 
       if ( positionLabel === 'top' ) {
         topPoint = hingeXY.minus( topOffset );
@@ -175,7 +175,7 @@ define( require => {
         rightPoint = hingeXY.plusXY( dx, dy );
       }
 
-      var connections = [];
+      const connections = [];
       circuitStates.forEach( function( circuitState ) {
         if ( circuitState === CircuitState.OPEN_CIRCUIT ) {
           connections.push( new Connection( topPoint.toVector3(), circuitState ) );
@@ -203,7 +203,7 @@ define( require => {
      */
     getConnection: function( connectionType ) {
 
-      var returnConnection = _.find( this.connections, function( connection ) {
+      const returnConnection = _.find( this.connections, function( connection ) {
         return connection.type === connectionType;
       } );
 
@@ -235,7 +235,7 @@ define( require => {
      */
     getSwitchEndPoint: function() {
 
-      var endPoint = this.switchSegment.endPointProperty.value;
+      const endPoint = this.switchSegment.endPointProperty.value;
 
       assert && assert( endPoint instanceof Vector3 );
 
@@ -253,7 +253,7 @@ define( require => {
 
       // Get the right-most connection.
       // Would prefer to use _.maxBy, but not available in lodash 2.4.1
-      var rightMost = _.last( _.sortBy( this.connections, [ function( connection ) {
+      const rightMost = _.last( _.sortBy( this.connections, [ function( connection ) {
         return connection.location.x;
       } ] ) );
 
@@ -270,7 +270,7 @@ define( require => {
 
       // Get the left-most connection.
       // Would prefer to use _.minBy, but not available in lodash 2.4.1
-      var leftMost = _.first( _.sortBy( this.connections, [ function( connection ) {
+      const leftMost = _.first( _.sortBy( this.connections, [ function( connection ) {
         return connection.location.x;
       } ] ) );
 
@@ -278,18 +278,18 @@ define( require => {
     },
 
     contacts: function( probe ) {
-      var connection = this.circuitConnectionProperty.value;
+      const connection = this.circuitConnectionProperty.value;
 
       // No connection point if it isn't connected
       if ( connection === CircuitState.SWITCH_IN_TRANSIT || connection === CircuitState.OPEN_CIRCUIT ) {
         return false;
       }
 
-      var endPoint = this.switchSegment.endPointProperty.value;
-      var hingePoint = this.switchSegment.hingePoint;
-      var delta = endPoint.minus( hingePoint ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
-      var point = this.modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
-      var circle = Shape.circle( point.x, point.y, CLBConstants.CONNECTION_POINT_RADIUS );
+      const endPoint = this.switchSegment.endPointProperty.value;
+      const hingePoint = this.switchSegment.hingePoint;
+      const delta = endPoint.minus( hingePoint ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
+      const point = this.modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
+      const circle = Shape.circle( point.x, point.y, CLBConstants.CONNECTION_POINT_RADIUS );
 
       return probe.bounds.intersectsBounds( circle.bounds ) &&
              probe.shapeIntersection( circle ).getNonoverlappingArea() > 0;

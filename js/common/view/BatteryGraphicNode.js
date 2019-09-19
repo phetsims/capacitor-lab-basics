@@ -18,33 +18,33 @@ define( require => {
   const Shape = require( 'KITE/Shape' );
   const Vector2 = require( 'DOT/Vector2' );
 
-  var BATTERY_PERSPECTIVE_RATIO = 0.304;
-  var BATTERY_MAIN_HEIGHT = 511;
-  var BATTERY_MAIN_RADIUS = 158;
-  var BATTERY_SECONDARY_RADIUS = BATTERY_MAIN_RADIUS * BATTERY_PERSPECTIVE_RATIO;
-  var BATTERY_POSITIVE_TERMINAL_RADIUS = 55;
-  var BATTERY_POSITIVE_TERMINAL_HEIGHT = 26;
-  var BATTERY_POSITIVE_SIDE_HEIGHT = 152;
-  var BATTERY_NEGATIVE_TERMINAL_RADIUS = 81;
+  const BATTERY_PERSPECTIVE_RATIO = 0.304;
+  const BATTERY_MAIN_HEIGHT = 511;
+  const BATTERY_MAIN_RADIUS = 158;
+  const BATTERY_SECONDARY_RADIUS = BATTERY_MAIN_RADIUS * BATTERY_PERSPECTIVE_RATIO;
+  const BATTERY_POSITIVE_TERMINAL_RADIUS = 55;
+  const BATTERY_POSITIVE_TERMINAL_HEIGHT = 26;
+  const BATTERY_POSITIVE_SIDE_HEIGHT = 152;
+  const BATTERY_NEGATIVE_TERMINAL_RADIUS = 81;
 
-  var POSITIVE_COLOR = new Color( 251, 176, 59 );
-  var POSITIVE_HIGHLIGHT_COLOR = Color.WHITE;
-  var POSITIVE_SHADOW_COLOR = POSITIVE_COLOR;
+  const POSITIVE_COLOR = new Color( 251, 176, 59 );
+  const POSITIVE_HIGHLIGHT_COLOR = Color.WHITE;
+  const POSITIVE_SHADOW_COLOR = POSITIVE_COLOR;
 
-  var NEGATIVE_COLOR = new Color( 53, 53, 53 );
-  var NEGATIVE_HIGHLIGHT_COLOR = new Color( 142, 142, 142 );
-  var NEGATIVE_SHADOW_COLOR = Color.BLACK;
+  const NEGATIVE_COLOR = new Color( 53, 53, 53 );
+  const NEGATIVE_HIGHLIGHT_COLOR = new Color( 142, 142, 142 );
+  const NEGATIVE_SHADOW_COLOR = Color.BLACK;
 
-  var TERMINAL_COLOR = new Color( 190, 190, 190 );
-  var TERMINAL_SIDE_COLOR = new Color( 168, 168, 168 );
-  var TERMINAL_HIGHLIGHT_COLOR = new Color( 227, 227, 227 );
+  const TERMINAL_COLOR = new Color( 190, 190, 190 );
+  const TERMINAL_SIDE_COLOR = new Color( 168, 168, 168 );
+  const TERMINAL_HIGHLIGHT_COLOR = new Color( 227, 227, 227 );
 
-  var STROKE_COLOR = new Color( 33, 33, 33 );
-  var LINE_WIDTH = 2;
+  const STROKE_COLOR = new Color( 33, 33, 33 );
+  const LINE_WIDTH = 2;
 
   function createGradient( radius, leftColor, midColor, rightColor ) {
     function blend( highlightLocation, farLocation, location ) {
-      var distance = Math.abs( ( farLocation - location ) / ( highlightLocation - farLocation ) );
+      const distance = Math.abs( ( farLocation - location ) / ( highlightLocation - farLocation ) );
       return distance * distance;
     }
     return new LinearGradient( -radius, 0, radius, 0 )
@@ -64,9 +64,9 @@ define( require => {
       .addColorStop( 0.5, rightColor );
   }
 
-  var POSITIVE_GRADIENT = createGradient( BATTERY_MAIN_RADIUS, POSITIVE_SHADOW_COLOR, POSITIVE_HIGHLIGHT_COLOR, POSITIVE_COLOR );
-  var NEGATIVE_GRADIENT = createGradient( BATTERY_MAIN_RADIUS, NEGATIVE_SHADOW_COLOR, NEGATIVE_HIGHLIGHT_COLOR, NEGATIVE_COLOR );
-  var TERMINAL_GRADIENT = createGradient( BATTERY_POSITIVE_TERMINAL_RADIUS, TERMINAL_SIDE_COLOR, TERMINAL_HIGHLIGHT_COLOR, TERMINAL_SIDE_COLOR );
+  const POSITIVE_GRADIENT = createGradient( BATTERY_MAIN_RADIUS, POSITIVE_SHADOW_COLOR, POSITIVE_HIGHLIGHT_COLOR, POSITIVE_COLOR );
+  const NEGATIVE_GRADIENT = createGradient( BATTERY_MAIN_RADIUS, NEGATIVE_SHADOW_COLOR, NEGATIVE_HIGHLIGHT_COLOR, NEGATIVE_COLOR );
+  const TERMINAL_GRADIENT = createGradient( BATTERY_POSITIVE_TERMINAL_RADIUS, TERMINAL_SIDE_COLOR, TERMINAL_HIGHLIGHT_COLOR, TERMINAL_SIDE_COLOR );
 
   /**
    * @constructor
@@ -80,41 +80,41 @@ define( require => {
     // @private {boolean}
     this.isPositiveDown = isPositiveDown;
 
-    var middleY = isPositiveDown ? ( BATTERY_MAIN_HEIGHT - BATTERY_POSITIVE_SIDE_HEIGHT ) : BATTERY_POSITIVE_SIDE_HEIGHT;
-    var terminalTopY = isPositiveDown ? 0 : -BATTERY_POSITIVE_TERMINAL_HEIGHT;
-    var terminalRadius = isPositiveDown ? BATTERY_NEGATIVE_TERMINAL_RADIUS : BATTERY_POSITIVE_TERMINAL_RADIUS;
+    const middleY = isPositiveDown ? ( BATTERY_MAIN_HEIGHT - BATTERY_POSITIVE_SIDE_HEIGHT ) : BATTERY_POSITIVE_SIDE_HEIGHT;
+    const terminalTopY = isPositiveDown ? 0 : -BATTERY_POSITIVE_TERMINAL_HEIGHT;
+    const terminalRadius = isPositiveDown ? BATTERY_NEGATIVE_TERMINAL_RADIUS : BATTERY_POSITIVE_TERMINAL_RADIUS;
 
-    var bottomSideShape = new Shape().ellipticalArc( 0, middleY, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI, false )
+    const bottomSideShape = new Shape().ellipticalArc( 0, middleY, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI, false )
                                      .ellipticalArc( 0, BATTERY_MAIN_HEIGHT, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, Math.PI, 0, true )
                                      .close();
-    var topSideShape = new Shape().ellipticalArc( 0, middleY, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI, false )
+    const topSideShape = new Shape().ellipticalArc( 0, middleY, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI, false )
                                   .ellipticalArc( 0, 0, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, Math.PI, 0, true )
                                   .close();
-    var topShape = new Shape().ellipticalArc( 0, 0, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI * 2, false ).close();
-    var terminalTopShape = new Shape().ellipticalArc( 0, terminalTopY, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, 0, Math.PI * 2, false ).close();
-    var terminalSideShape = new Shape().ellipticalArc( 0, terminalTopY, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, 0, Math.PI, false )
+    const topShape = new Shape().ellipticalArc( 0, 0, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI * 2, false ).close();
+    const terminalTopShape = new Shape().ellipticalArc( 0, terminalTopY, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, 0, Math.PI * 2, false ).close();
+    const terminalSideShape = new Shape().ellipticalArc( 0, terminalTopY, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, 0, Math.PI, false )
                                      .ellipticalArc( 0, 0, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, Math.PI, 0, true )
                                      .close();
 
     // @public {Shape}
     this.terminalShape = terminalTopShape;
 
-    var bottomSide = new Path( bottomSideShape, {
+    const bottomSide = new Path( bottomSideShape, {
       fill: isPositiveDown ? POSITIVE_GRADIENT : NEGATIVE_GRADIENT,
       stroke: STROKE_COLOR,
       lineWidth: LINE_WIDTH
     } );
-    var topSide = new Path( topSideShape, {
+    const topSide = new Path( topSideShape, {
       fill: isPositiveDown ? NEGATIVE_GRADIENT : POSITIVE_GRADIENT,
       stroke: STROKE_COLOR,
       lineWidth: LINE_WIDTH
     } );
-    var top = new Path( topShape, {
+    const top = new Path( topShape, {
       fill: isPositiveDown ? NEGATIVE_COLOR : POSITIVE_COLOR,
       stroke: STROKE_COLOR,
       lineWidth: LINE_WIDTH
     } );
-    var terminal = new Path( terminalTopShape, {
+    const terminal = new Path( terminalTopShape, {
       fill: TERMINAL_COLOR,
       stroke: STROKE_COLOR,
       lineWidth: LINE_WIDTH

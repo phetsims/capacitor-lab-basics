@@ -38,12 +38,12 @@ define( require => {
   function VoltmeterProbeNode( image, locationProperty, modelViewTransform, dragBounds, tandem ) {
 
     Node.call( this );
-    var self = this;
+    const self = this;
 
     // @public {Property.<Vector3>}
     this.locationProperty = locationProperty;
 
-    var imageNode = new Image( image, {
+    const imageNode = new Image( image, {
       scale: 0.25
     } );
     this.addChild( imageNode );
@@ -67,10 +67,10 @@ define( require => {
     } );
 
     // Don't allow pushing the probes too far to the left, see https://github.com/phetsims/capacitor-lab-basics/issues/202
-    var adjustedViewBounds = new Bounds2( 40, 0, dragBounds.maxX - imageNode.width, dragBounds.maxY - 0.4 * imageNode.height );
+    const adjustedViewBounds = new Bounds2( 40, 0, dragBounds.maxX - imageNode.width, dragBounds.maxY - 0.4 * imageNode.height );
 
     // Convert the 3d property to a 2d property for use in the MovableDragHandler
-    var location2DProperty = new DynamicProperty( new Property( locationProperty ), {
+    const location2DProperty = new DynamicProperty( new Property( locationProperty ), {
       bidirectional: true,
       useDeepEquality: true,
       map: function( vector3 ) { return vector3.toVector2(); },

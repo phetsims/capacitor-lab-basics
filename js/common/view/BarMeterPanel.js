@@ -26,9 +26,9 @@ define( require => {
   const Vector2 = require( 'DOT/Vector2' );
 
   // constants
-  var CHECKBOX_VERTICAL_SPACING = 28;
-  var VALUE_FONT = new PhetFont( 16 );
-  var VALUE_COLOR = 'black';
+  const CHECKBOX_VERTICAL_SPACING = 28;
+  const VALUE_FONT = new PhetFont( 16 );
+  const VALUE_COLOR = 'black';
 
   // strings
   const capacitanceString = require( 'string!CAPACITOR_LAB_BASICS/capacitance' );
@@ -46,16 +46,16 @@ define( require => {
    */
   function BarMeterPanel( model, tandem ) {
 
-    var self = this;
+    const self = this;
 
-    var minWidth = 580;
+    const minWidth = 580;
 
-    var parentNode = new Node(); // node that will contain all checkboxes and bar meter nodes
+    const parentNode = new Node(); // node that will contain all checkboxes and bar meter nodes
 
     // create the bar meter nodes with their text values.
-    var meterNodes = new Node();
+    const meterNodes = new Node();
 
-    var capacitanceMeterNode = new BarMeterNode(
+    const capacitanceMeterNode = new BarMeterNode(
       model.capacitanceMeter,
       CLBConstants.CAPACITANCE_COLOR,
       CLBConstants.CAPACITANCE_METER_MAX_VALUE,
@@ -63,7 +63,7 @@ define( require => {
       capacitanceString,
       tandem.createTandem( 'capacitanceMeterNode' ) );
 
-    var plateChargeMeterNode = new PlateChargeBarMeterNode(
+    const plateChargeMeterNode = new PlateChargeBarMeterNode(
       model.plateChargeMeter,
       CLBConstants.POSITIVE_CHARGE_COLOR,
       CLBConstants.PLATE_CHARGE_METER_MAX_VALUE,
@@ -71,7 +71,7 @@ define( require => {
       topPlateChargeString,
       tandem.createTandem( 'plateChargeMeterNode' ) );
 
-    var storedEnergyMeterNode = new BarMeterNode(
+    const storedEnergyMeterNode = new BarMeterNode(
       model.storedEnergyMeter,
       CLBConstants.STORED_ENERGY_COLOR,
       CLBConstants.STORED_ENERGY_METER_MAX_VALUE,
@@ -82,27 +82,27 @@ define( require => {
     meterNodes.children = [ capacitanceMeterNode, plateChargeMeterNode, storedEnergyMeterNode ];
 
     // create checkboxes for each meter node
-    var checkboxNodes = new Node();
+    const checkboxNodes = new Node();
 
     // Settings for title strings
-    var fontOptions = {
+    const fontOptions = {
       font: VALUE_FONT,
       fill: VALUE_COLOR,
       maxWidth: 120
     };
 
-    var capacitanceLabel = new Text( capacitanceString, fontOptions );
-    var capacitanceCheckbox = new Checkbox( capacitanceLabel, model.capacitanceMeterVisibleProperty, {
+    const capacitanceLabel = new Text( capacitanceString, fontOptions );
+    const capacitanceCheckbox = new Checkbox( capacitanceLabel, model.capacitanceMeterVisibleProperty, {
       tandem: tandem.createTandem( 'capacitanceCheckbox' )
     } );
 
-    var topPlateChargeLabel = new Text( topPlateChargeString, fontOptions );
-    var topPlateChargeCheckbox = new Checkbox( topPlateChargeLabel, model.topPlateChargeMeterVisibleProperty, {
+    const topPlateChargeLabel = new Text( topPlateChargeString, fontOptions );
+    const topPlateChargeCheckbox = new Checkbox( topPlateChargeLabel, model.topPlateChargeMeterVisibleProperty, {
       tandem: tandem.createTandem( 'topPlateChargeCheckbox' )
     } );
 
-    var storedEnergyLabel = new Text( storedEnergyString, fontOptions );
-    var storedEnergyCheckbox = new Checkbox( storedEnergyLabel, model.storedEnergyMeterVisibleProperty, {
+    const storedEnergyLabel = new Text( storedEnergyString, fontOptions );
+    const storedEnergyCheckbox = new Checkbox( storedEnergyLabel, model.storedEnergyMeterVisibleProperty, {
       tandem: tandem.createTandem( 'storedEnergyCheckbox' )
     } );
 
@@ -117,9 +117,9 @@ define( require => {
     storedEnergyCheckbox.translation = new Vector2( 0, 2 * CHECKBOX_VERTICAL_SPACING );
 
     // The BarMeterNodes have a common x-coordinate
-    var x = 0.44 * minWidth;
+    const x = 0.44 * minWidth;
 
-    var y = capacitanceCheckbox.centerY;
+    let y = capacitanceCheckbox.centerY;
     capacitanceMeterNode.axisLine.translation = new Vector2( x, y );
 
     y = topPlateChargeCheckbox.centerY;

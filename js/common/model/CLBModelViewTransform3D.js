@@ -29,8 +29,8 @@ define( require => {
 
   // Scratch variable for performance
   // @private
-  var scratchVector2 = new Vector2( 0, 0 );
-  var scratchVector3 = new Vector3( 0, 0, 0 );
+  const scratchVector2 = new Vector2( 0, 0 );
+  const scratchVector3 = new Vector3( 0, 0, 0 );
 
   /**
    * @constructor
@@ -100,7 +100,7 @@ define( require => {
      * @returns {Vector2}
      */
     modelToViewDelta: function( delta ) {
-      var origin = this.modelToViewPosition( scratchVector3.setXYZ( 0, 0, 0 ) );
+      const origin = this.modelToViewPosition( scratchVector3.setXYZ( 0, 0, 0 ) );
       return this.modelToViewPosition( delta ).minus( origin );
     },
 
@@ -175,7 +175,7 @@ define( require => {
      * @returns {Vector3}
      */
     viewToModelDelta: function( delta ) {
-      var origin = this.viewToModelPosition( scratchVector2.setXY( 0, 0 ) );
+      const origin = this.viewToModelPosition( scratchVector2.setXY( 0, 0 ) );
 
       return this.viewToModelPosition( delta ).minus( origin );
     },

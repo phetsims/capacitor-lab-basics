@@ -25,7 +25,7 @@ define( require => {
   function CapacitanceCircuitNode( model, tandem ) {
 
     CLBCircuitNode.call( this, model, tandem );
-    var self = this;
+    const self = this;
 
     Property.multilink( [ model.circuit.circuitConnectionProperty, model.currentVisibleProperty ],
       function( circuitConnection, currentIndicatorsVisible ) {
@@ -45,7 +45,7 @@ define( require => {
      * @param {boolean} currentIndicatorsVisible
      */
     updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
-      var isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
+      const isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
 
       this.batteryTopCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
       this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );

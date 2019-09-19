@@ -99,7 +99,7 @@ define( require => {
      * @public
      */
     update: function() {
-      var connectionPoint = this.component.getTopConnectionPoint();
+      const connectionPoint = this.component.getTopConnectionPoint();
       if ( !this.startPointProperty.value.equals( connectionPoint ) ) {
         this.startPointProperty.value = connectionPoint;
       }
@@ -131,7 +131,7 @@ define( require => {
      * @public
      */
     update: function() {
-      var connectionPoint = this.component.getBottomConnectionPoint();
+      const connectionPoint = this.component.getBottomConnectionPoint();
       if ( !this.startPointProperty.value.equals( connectionPoint ) ) {
         this.startPointProperty.value = connectionPoint;
       }

@@ -22,10 +22,10 @@ define( require => {
   const LightBulbCircuit = require( 'CAPACITOR_LAB_BASICS/light-bulb/model/LightBulbCircuit' );
 
   // constants
-  var CAPACITOR_X_SPACING = 0.0180; // meters
-  var CAPACITOR_Y_SPACING = 0.0010; // meters
-  var PLATE_WIDTH = CLBConstants.PLATE_WIDTH_RANGE.defaultValue;
-  var PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
+  const CAPACITOR_X_SPACING = 0.0180; // meters
+  const CAPACITOR_Y_SPACING = 0.0010; // meters
+  const PLATE_WIDTH = CLBConstants.PLATE_WIDTH_RANGE.defaultValue;
+  const PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
 
   /**
    * @constructor
@@ -40,20 +40,20 @@ define( require => {
     // single-pole double-throw switch for the light-bulb circuit instead of
     // the default three-position version (phet-io/569).
     // Enable with the switch=twoState query parameter.
-    var useTwoStateSwitch = CLBQueryParameters.switch === 'twoState';
+    const useTwoStateSwitch = CLBQueryParameters.switch === 'twoState';
 
-    var twoState = [
+    const twoState = [
       CircuitState.BATTERY_CONNECTED,
       CircuitState.LIGHT_BULB_CONNECTED
     ];
-    var threeState = [
+    const threeState = [
       CircuitState.BATTERY_CONNECTED,
       CircuitState.OPEN_CIRCUIT,
       CircuitState.LIGHT_BULB_CONNECTED
     ];
 
     // configuration info for the circuit
-    var circuitConfig = CircuitConfig.create( {
+    const circuitConfig = CircuitConfig.create( {
       circuitConnections: useTwoStateSwitch ? twoState : threeState,
       modelViewTransform: modelViewTransform,
       capacitorXSpacing: CAPACITOR_X_SPACING,

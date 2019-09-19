@@ -16,8 +16,8 @@ define( require => {
   const inherit = require( 'PHET_CORE/inherit' );
 
   // constants
-  var HINGE_POINT_RADIUS = 8;
-  var PIN_RADIUS = 5;
+  const HINGE_POINT_RADIUS = 8;
+  const PIN_RADIUS = 5;
 
   /**
    * @constructor

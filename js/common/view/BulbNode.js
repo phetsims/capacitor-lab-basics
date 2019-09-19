@@ -31,11 +31,11 @@ define( require => {
   const bulbBaseImage = require( 'mipmap!SCENERY_PHET/light-bulb-base.png' );
 
   // constants
-  var BULB_HEIGHT = 130;
-  var BULB_WIDTH = 65;
-  var BULB_BASE_WIDTH = 42;
-  var NUM_FILAMENT_ZIG_ZAGS = 8;
-  var FILAMENT_ZIG_ZAG_SPAN = 8;
+  const BULB_HEIGHT = 130;
+  const BULB_WIDTH = 65;
+  const BULB_BASE_WIDTH = 42;
+  const NUM_FILAMENT_ZIG_ZAGS = 8;
+  const FILAMENT_ZIG_ZAG_SPAN = 8;
 
   /**
    * @constructor
@@ -51,24 +51,24 @@ define( require => {
     Node.call( this, {
       tandem: tandem
     } );
-    var self = this;
+    const self = this;
 
     // @private {LightBulb}
     this.bulb = drawBulbNode( options );
     this.addChild( this.bulb );
 
     // NOTE: this map deviates from the bulb in faradays-law
-    var bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 300, true );
+    const bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 300, true );
 
-    var updateBrightnessScale = function( voltage ) {
+    const updateBrightnessScale = function( voltage ) {
       if ( circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-        var targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
+        const targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
         if ( targetScaleFactor < 0.1 ) {
           self.bulb.haloNode.visible = false;
         }
         else {
           self.bulb.haloNode.visible = true;
-          var scale = targetScaleFactor / self.bulb.haloNode.transform.matrix.scaleVector.x;
+          const scale = targetScaleFactor / self.bulb.haloNode.transform.matrix.scaleVector.x;
           self.bulb.haloNode.scale( scale );
         }
       }
@@ -117,10 +117,10 @@ define( require => {
    */
   function drawBulbNode( options ) {
 
-    var iconNode = new Node( options );
+    const iconNode = new Node( options );
 
     // Create the base of the bulb
-    var bulbBase = new Image( bulbBaseImage );
+    const bulbBase = new Image( bulbBaseImage );
     bulbBase.scale( BULB_BASE_WIDTH / bulbBase.bounds.height );
 
     // Important Note: For the drawing code below, the reference frame is assumed to be such that the point x=0, y=0 is
@@ -128,34 +128,34 @@ define( require => {
     // center of both.  This was the easiest to work with.
 
     // Create the bulb body.
-    var bulbNeckWidth = BULB_BASE_WIDTH * 0.85;
-    var bulbBodyHeight = BULB_HEIGHT - bulbBase.bounds.width;
-    var controlPointYValue = BULB_WIDTH * 0.7;
-    var bulbShape = new Shape().moveTo( 0, -bulbNeckWidth / 2 ).cubicCurveTo( -bulbBodyHeight * 0.33, -controlPointYValue, -bulbBodyHeight * 0.95, -controlPointYValue, -bulbBodyHeight, 0 ).cubicCurveTo( -bulbBodyHeight * 0.95, controlPointYValue, -bulbBodyHeight * 0.33,
+    const bulbNeckWidth = BULB_BASE_WIDTH * 0.85;
+    const bulbBodyHeight = BULB_HEIGHT - bulbBase.bounds.width;
+    const controlPointYValue = BULB_WIDTH * 0.7;
+    const bulbShape = new Shape().moveTo( 0, -bulbNeckWidth / 2 ).cubicCurveTo( -bulbBodyHeight * 0.33, -controlPointYValue, -bulbBodyHeight * 0.95, -controlPointYValue, -bulbBodyHeight, 0 ).cubicCurveTo( -bulbBodyHeight * 0.95, controlPointYValue, -bulbBodyHeight * 0.33,
       controlPointYValue, 0, bulbNeckWidth / 2 );
-    var bulbBodyOutline = new Path( bulbShape, {
+    const bulbBodyOutline = new Path( bulbShape, {
       stroke: 'black',
       lineCap: 'round'
     } );
-    var bulbBodyFill = new Path( bulbShape, {
+    const bulbBodyFill = new Path( bulbShape, {
       fill: new RadialGradient( bulbBodyOutline.centerX, bulbBodyOutline.centerY, BULB_WIDTH / 10, bulbBodyOutline.centerX,
         bulbBodyOutline.centerY, BULB_WIDTH / 2 ).addColorStop( 0, '#eeeeee' ).addColorStop( 1, '#bbccbb' )
     } );
 
     // Create the filament support wires.
-    var filamentWireHeight = bulbBodyHeight * 0.6;
-    var filamentTopPoint = new Vector2( -filamentWireHeight, -BULB_WIDTH * 0.3 );
-    var filamentBottomPoint = new Vector2( -filamentWireHeight, BULB_WIDTH * 0.3 );
-    var filamentSupportWiresShape = new Shape();
+    const filamentWireHeight = bulbBodyHeight * 0.6;
+    const filamentTopPoint = new Vector2( -filamentWireHeight, -BULB_WIDTH * 0.3 );
+    const filamentBottomPoint = new Vector2( -filamentWireHeight, BULB_WIDTH * 0.3 );
+    const filamentSupportWiresShape = new Shape();
     filamentSupportWiresShape.moveTo( 0, -BULB_BASE_WIDTH * 0.3 );
     filamentSupportWiresShape.cubicCurveTo( -filamentWireHeight * 0.3, -BULB_BASE_WIDTH * 0.3, -filamentWireHeight * 0.4, filamentTopPoint.y, filamentTopPoint.x, filamentTopPoint.y );
     filamentSupportWiresShape.moveTo( 0, BULB_BASE_WIDTH * 0.3 );
     filamentSupportWiresShape.cubicCurveTo( -filamentWireHeight * 0.3, BULB_BASE_WIDTH * 0.3, -filamentWireHeight * 0.4, filamentBottomPoint.y, filamentBottomPoint.x, filamentBottomPoint.y );
-    var filamentSupportWires = new Path( filamentSupportWiresShape, { stroke: 'black' } );
+    const filamentSupportWires = new Path( filamentSupportWiresShape, { stroke: 'black' } );
 
     // Create the filament, which is a zig-zag shape.
-    var filamentShape = new Shape().moveToPoint( filamentBottomPoint ).zigZagToPoint( filamentTopPoint, FILAMENT_ZIG_ZAG_SPAN, NUM_FILAMENT_ZIG_ZAGS, true );
-    var filament = new Path( filamentShape, { stroke: 'black' } );
+    const filamentShape = new Shape().moveToPoint( filamentBottomPoint ).zigZagToPoint( filamentTopPoint, FILAMENT_ZIG_ZAG_SPAN, NUM_FILAMENT_ZIG_ZAGS, true );
+    const filament = new Path( filamentShape, { stroke: 'black' } );
 
     // Create the 'halo' that makes the bulb look like it is shining.
     // @public

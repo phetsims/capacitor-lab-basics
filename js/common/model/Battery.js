@@ -24,24 +24,24 @@ define( require => {
 
   // constants
   // size of the associated image file, determined by visual inspection
-  var BODY_SIZE = new Dimension2( 0.0065, 0.01425 ); // dimensions of the rectangle that bounds the battery image
+  const BODY_SIZE = new Dimension2( 0.0065, 0.01425 ); // dimensions of the rectangle that bounds the battery image
 
   /*
    * Positive terminal is part of the image file.
    * The terminal is a cylinder, whose dimensions were determined by visual inspection.
    * The origin of the terminal is at the center of the cylinder's top.
    */
-  var POSITIVE_TERMINAL_ELLIPSE_SIZE = new Dimension2( 0.0025, 0.0005 );
-  var POSITIVE_TERMINAL_CYLINDER_HEIGHT = 0.0009;
-  var POSITIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) - 0.00012;
+  const POSITIVE_TERMINAL_ELLIPSE_SIZE = new Dimension2( 0.0025, 0.0005 );
+  const POSITIVE_TERMINAL_CYLINDER_HEIGHT = 0.0009;
+  const POSITIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) - 0.00012;
 
   /*
    * Negative terminal is part of the image file.
    * The terminal is an ellipse, whose dimension were determined by visual inspection.
    * The origin of the terminal is at the center of the ellipse.
    */
-  var NEGATIVE_TERMINAL_ELLIPSE_SIZE = new Dimension2( 0.0035, 0.0009 ); // Ellipse axes defining the negative terminal
-  var NEGATIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.0006; // center of negative terminal when at the top
+  const NEGATIVE_TERMINAL_ELLIPSE_SIZE = new Dimension2( 0.0035, 0.0009 ); // Ellipse axes defining the negative terminal
+  const NEGATIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.0006; // center of negative terminal when at the top
 
   /**
    * @constructor
@@ -69,7 +69,7 @@ define( require => {
       phetioType: PropertyIO( StringIO )
     } );
 
-    var self = this;
+    const self = this;
 
     // @public {Dimension2}
     this.positiveTerminalEllipseSize = POSITIVE_TERMINAL_ELLIPSE_SIZE;
@@ -116,7 +116,7 @@ define( require => {
      * @returns {boolean}
      */
     contacts: function( probe ) {
-      var shape;
+      let shape;
       if ( this.polarityProperty.value === CLBConstants.POLARITY.POSITIVE ) {
         shape = this.positiveTerminalShape;
       }

@@ -38,7 +38,7 @@ define( require => {
    */
   function ParallelCircuit( config, tandem ) {
 
-    var self = this;
+    const self = this;
 
     // @public {NumberProperty} - Signed current through circuit. Used to update arrows
     this.currentAmplitudeProperty = new NumberProperty( 0, {
@@ -137,7 +137,7 @@ define( require => {
     // These arrays are hashed to a location key for efficient connectivity checking.
     // @protected {Object} - Maps {CircuitLocation} => {Array.<Wire>}
     this.wireGroup = {};
-    var locations = [ CircuitLocation.BATTERY_TOP, CircuitLocation.BATTERY_BOTTOM, CircuitLocation.LIGHT_BULB_TOP, CircuitLocation.LIGHT_BULB_BOTTOM, CircuitLocation.CAPACITOR_TOP, CircuitLocation.CAPACITOR_BOTTOM ];
+    const locations = [ CircuitLocation.BATTERY_TOP, CircuitLocation.BATTERY_BOTTOM, CircuitLocation.LIGHT_BULB_TOP, CircuitLocation.LIGHT_BULB_BOTTOM, CircuitLocation.CAPACITOR_TOP, CircuitLocation.CAPACITOR_BOTTOM ];
     locations.forEach( function( location ) {
       self.wireGroup[ location ] = selectWires( location );
     } );
@@ -154,7 +154,7 @@ define( require => {
 
     // Add the switch wires to the capacitor wires arrays
     this.circuitSwitches.forEach( function( circuitSwitch ) {
-      var wire = circuitSwitch.switchWire;
+      const wire = circuitSwitch.switchWire;
       if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_TOP ) {
         self.wireGroup[ CircuitLocation.CAPACITOR_TOP ].push( wire );
       }
@@ -169,7 +169,7 @@ define( require => {
 
     // Update start and end points of each wire segment
     function updateSegments() {
-      for ( var i = 0; i < self.wires.length; i++ ) {
+      for ( let i = 0; i < self.wires.length; i++ ) {
         self.wires[ i ].update();
       }
     }
@@ -258,9 +258,9 @@ define( require => {
     updateCurrentAmplitude: function( dt ) {
       assert && assert( typeof dt === 'number' );
 
-      var Q = this.getTotalCharge();
+      const Q = this.getTotalCharge();
       if ( this.previousTotalCharge !== -1 ) {
-        var dQ = Q - this.previousTotalCharge;
+        const dQ = Q - this.previousTotalCharge;
         this.currentAmplitudeProperty.set( dQ / dt );
       }
       this.previousTotalCharge = Q;
@@ -311,7 +311,7 @@ define( require => {
 
       assert && assert( this.wireGroup.hasOwnProperty( location ), 'Invalid location: ' + location );
 
-      var wires = this.wireGroup[ location ];
+      const wires = this.wireGroup[ location ];
 
       return _.some( wires, function( wire ) {
         return wire.contacts( shape );
@@ -325,7 +325,7 @@ define( require => {
      * @returns {boolean}
      */
     isOpen: function() {
-      var connection = this.circuitConnectionProperty.value;
+      const connection = this.circuitConnectionProperty.value;
       return connection === CircuitState.OPEN_CIRCUIT || connection === CircuitState.SWITCH_IN_TRANSIT;
     },
 

@@ -31,7 +31,7 @@ define( require => {
   function CapacitorNode( circuit, modelViewTransform, plateChargeVisibleProperty, electricFieldVisibleProperty, tandem ) {
 
     Node.call( this, { tandem: tandem } );
-    var self = this; // extend scope for nested callbacks
+    const self = this; // extend scope for nested callbacks
 
     // @private
     this.capacitor = circuit.capacitor;
@@ -41,7 +41,7 @@ define( require => {
     this.topPlateNode = PlateNode.createTopPlateNode( this.capacitor, modelViewTransform, circuit.maxPlateCharge );
     this.bottomPlateNode = PlateNode.createBottomPlateNode( this.capacitor, modelViewTransform, circuit.maxPlateCharge );
 
-    var eFieldNode = new EFieldNode( this.capacitor, modelViewTransform, circuit.maxEffectiveEField, this.getPlatesBounds() );
+    const eFieldNode = new EFieldNode( this.capacitor, modelViewTransform, circuit.maxEffectiveEField, this.getPlatesBounds() );
 
     // rendering order
     this.addChild( this.bottomPlateNode );
@@ -79,9 +79,9 @@ define( require => {
       this.bottomPlateNode.setBoxSize( this.capacitor.plateSizeProperty.value );
 
       // layout nodes
-      var x = 0;
-      var y = -( this.capacitor.plateSeparationProperty.value / 2 ) - this.capacitor.plateSizeProperty.value.height;
-      var z = 0;
+      const x = 0;
+      let y = -( this.capacitor.plateSeparationProperty.value / 2 ) - this.capacitor.plateSizeProperty.value.height;
+      const z = 0;
       this.topPlateNode.center = this.modelViewTransform.modelToViewDeltaXYZ( x, y, z );
 
       y = this.capacitor.plateSeparationProperty.value / 2;

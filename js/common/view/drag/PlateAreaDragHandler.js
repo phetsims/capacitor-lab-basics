@@ -31,7 +31,7 @@ define( require => {
    */
   function PlateAreaDragHandler( capacitor, modelViewTransform, valueRange, tandem ) {
 
-    var self = this;
+    const self = this;
 
     // @private
     this.modelViewTransform = modelViewTransform;
@@ -44,18 +44,18 @@ define( require => {
       allowTouchSnag: false,
       tandem: tandem,
       start: function( event ) {
-        var width = capacitor.plateSizeProperty.value.width;
-        var pMouse = event.pointer.point;
-        var pOrigin = modelViewTransform.modelToViewDeltaXYZ( width / 2, 0, width / 2 );
+        const width = capacitor.plateSizeProperty.value.width;
+        const pMouse = event.pointer.point;
+        const pOrigin = modelViewTransform.modelToViewDeltaXYZ( width / 2, 0, width / 2 );
         self.clickXOffset = pMouse.x - pOrigin.x;
       },
       drag: function( event ) {
-        var pMouse = event.pointer.point;
-        var plateWidth = self.getPlateWidth( pMouse );
+        const pMouse = event.pointer.point;
+        const plateWidth = self.getPlateWidth( pMouse );
 
         // Discretize the plate area to round values by scaling m -> mm, rounding, then scaling back.
         // Plate area drags should then snap only in steps of 10 mm^2.
-        var plateArea = Util.roundSymmetric( 1e5 * plateWidth * plateWidth ) / 1e5;
+        const plateArea = Util.roundSymmetric( 1e5 * plateWidth * plateWidth ) / 1e5;
         capacitor.setPlateWidth( Math.sqrt( plateArea ) );
       }
     } );
@@ -75,14 +75,14 @@ define( require => {
      */
     getPlateWidth: function( pMouse ) {
       // pick any 2 view values
-      var xView1 = 0;
-      var xView2 = 1;
+      const xView1 = 0;
+      const xView2 = 1;
 
       // compute corresponding model values
-      var xModel1 = this.getModelX( pMouse, xView1 );
-      var xModel2 = this.getModelX( pMouse, xView2 );
+      const xModel1 = this.getModelX( pMouse, xView1 );
+      const xModel2 = this.getModelX( pMouse, xView2 );
 
-      var linearFunction = new LinearFunction( xView1, xView2, xModel1, xModel2 );
+      const linearFunction = new LinearFunction( xView1, xView2, xModel1, xModel2 );
       return Util.clamp( linearFunction.inverse( 0 ), this.valueRange.min, this.valueRange.max );
 
     },
@@ -96,7 +96,7 @@ define( require => {
      * @public
      */
     getModelX: function( pMouse, samplePlateWidth ) {
-      var pBackRightCorner = this.modelViewTransform.modelToViewXYZ( samplePlateWidth / 2, 0, samplePlateWidth / 2 );
+      const pBackRightCorner = this.modelViewTransform.modelToViewXYZ( samplePlateWidth / 2, 0, samplePlateWidth / 2 );
       return pMouse.x - pBackRightCorner.x - this.clickXOffset;
     }
   } );

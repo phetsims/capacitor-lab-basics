@@ -30,21 +30,21 @@ define( require => {
    */
   function PlateSeparationDragHandler( capacitor, modelViewTransform, valueRange, tandem ) {
     // @private {Vector2}
-    var clickYOffset = new Vector2( 0, 0 );
+    let clickYOffset = new Vector2( 0, 0 );
 
     DragListener.call( this, {
       allowTouchSnag: false,
       tandem: tandem,
       start: function( event ) {
-        var pMouse = event.pointer.point;
-        var pOrigin = modelViewTransform.modelToViewXYZ( 0, -( capacitor.plateSeparationProperty.value / 2 ), 0 );
+        const pMouse = event.pointer.point;
+        const pOrigin = modelViewTransform.modelToViewXYZ( 0, -( capacitor.plateSeparationProperty.value / 2 ), 0 );
         clickYOffset = pMouse.y - pOrigin.y;
       },
       drag: function( event ) {
-        var pMouse = event.pointer.point;
-        var yView = pMouse.y - clickYOffset;
+        const pMouse = event.pointer.point;
+        const yView = pMouse.y - clickYOffset;
 
-        var separation = Util.clamp( 2 * modelViewTransform.viewToModelDeltaXY( 0, -yView ).y,
+        const separation = Util.clamp( 2 * modelViewTransform.viewToModelDeltaXY( 0, -yView ).y,
           valueRange.min, valueRange.max );
 
         // Discretize the plate separation to integral values by scaling m -> mm, rounding, and un-scaling.

@@ -18,11 +18,11 @@ define( require => {
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
 
   // constants
-  var BASE_LINE_LENGTH = 25;
-  var BAR_SIZE = new Dimension2( 280, 18 ); // Controls width and height of the bars
-  var BASE_LINE_OFFSET = ( BASE_LINE_LENGTH - BAR_SIZE.height ) / 2;
-  var BAR_STROKE_COLOR = 'black';
-  var BAR_LINE_WIDTH = 1;
+  const BASE_LINE_LENGTH = 25;
+  const BAR_SIZE = new Dimension2( 280, 18 ); // Controls width and height of the bars
+  const BASE_LINE_OFFSET = ( BASE_LINE_LENGTH - BAR_SIZE.height ) / 2;
+  const BAR_STROKE_COLOR = 'black';
+  const BAR_LINE_WIDTH = 1;
 
   /**
    * The bar which indicates the magnitude of the value being read by the meter. Origin is
@@ -76,9 +76,9 @@ define( require => {
      * @public
      */
     update: function() {
-      var percent = Math.min( 1, Math.abs( this.value ) / this.maxValue );
-      var x = ( 1 - percent ) * BAR_SIZE.width;
-      var width = BAR_SIZE.width - x;
+      const percent = Math.min( 1, Math.abs( this.value ) / this.maxValue );
+      const x = ( 1 - percent ) * BAR_SIZE.width;
+      const width = BAR_SIZE.width - x;
       this.setRect( 0, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, width, BAR_SIZE.height );
     }
   } );

@@ -32,10 +32,10 @@ define( require => {
    */
   function CircuitSwitchDragHandler( switchNode, switchLockedProperty, userControlledProperty, tandem ) {
 
-    var circuitSwitch = switchNode.circuitSwitch; // for readability
+    const circuitSwitch = switchNode.circuitSwitch; // for readability
 
-    var self = this;
-    var angle = 0;
+    const self = this;
+    let angle = 0;
 
     // Customization for PhET-iO applications
     // @private
@@ -69,21 +69,21 @@ define( require => {
       drag: function( event ) {
 
         // mouse in view coordinates
-        var pMouse = switchNode.globalToParentPoint( event.pointer.point );
+        const pMouse = switchNode.globalToParentPoint( event.pointer.point );
 
         // mouse in model coordinates
-        var transformedPMouse = switchNode.modelViewTransform.viewToModelPosition( pMouse ).toVector2();
+        const transformedPMouse = switchNode.modelViewTransform.viewToModelPosition( pMouse ).toVector2();
 
-        var hingePoint = circuitSwitch.hingePoint.toVector2(); // in model coordinates
+        const hingePoint = circuitSwitch.hingePoint.toVector2(); // in model coordinates
         angle = transformedPMouse.minus( hingePoint ).angle;
 
-        var leftLimitAngle = circuitSwitch.getLeftLimitAngle();
-        var rightLimitAngle = circuitSwitch.getRightLimitAngle();
+        const leftLimitAngle = circuitSwitch.getLeftLimitAngle();
+        const rightLimitAngle = circuitSwitch.getRightLimitAngle();
 
         // get the max and min angles, which depend on circuit switch orientation
-        var maxAngle = Math.max( leftLimitAngle, rightLimitAngle );
-        var minAngle = Math.min( leftLimitAngle, rightLimitAngle );
-        var middleAngle = ( maxAngle + minAngle ) / 2;
+        const maxAngle = Math.max( leftLimitAngle, rightLimitAngle );
+        const minAngle = Math.min( leftLimitAngle, rightLimitAngle );
+        const middleAngle = ( maxAngle + minAngle ) / 2;
 
         // Spread the angle out around our min/max, so that clamping makes sense.
         // Restrict the angle so that it cannot be dragged beyond limits
@@ -101,9 +101,9 @@ define( require => {
         userControlledProperty.value = false;
 
         // snap the switch to the nearest connection point and set the active connection
-        var absAngle = Math.abs( circuitSwitch.angleProperty.value );
+        const absAngle = Math.abs( circuitSwitch.angleProperty.value );
 
-        var connection = null;
+        let connection = null;
         if ( self.snapRange.right.contains( absAngle ) ) {
           connection = CircuitState.LIGHT_BULB_CONNECTED;
         }

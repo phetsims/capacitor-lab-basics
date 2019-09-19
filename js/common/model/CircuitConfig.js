@@ -18,13 +18,13 @@ define( require => {
   const CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
 
   // Constants with default assignments
-  var CAPACITOR_X_SPACING = 0.024; // meters
-  var CAPACITOR_Y_SPACING = 0; // meters
-  var PLATE_WIDTH = CLBConstants.PLATE_WIDTH_RANGE.defaultValue;
-  var PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
-  var WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
+  const CAPACITOR_X_SPACING = 0.024; // meters
+  const CAPACITOR_Y_SPACING = 0; // meters
+  const PLATE_WIDTH = CLBConstants.PLATE_WIDTH_RANGE.defaultValue;
+  const PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
+  const WIRE_EXTENT = 0.016; // how far the wire extends above or below the capacitor (meters)
 
-  var CircuitConfig = {
+  const CircuitConfig = {
 
     /**
      * Returns the default circuit config, overridden with any options.

@@ -26,17 +26,17 @@ define( require => {
 
   // constants
   // endpoints for a vertical double-headed arrow, this will be rotated to point along the plate's pseudo-3D diagonal
-  var ARROW_TIP_LOCATION = new Vector2( 0, 0 );
-  var ARROW_TAIL_LOCATION = new Vector2( 0, CLBConstants.DRAG_HANDLE_ARROW_LENGTH );
+  const ARROW_TIP_LOCATION = new Vector2( 0, 0 );
+  const ARROW_TAIL_LOCATION = new Vector2( 0, CLBConstants.DRAG_HANDLE_ARROW_LENGTH );
 
   // strings
   const millimetersSquaredPatternString = require( 'string!CAPACITOR_LAB_BASICS/millimetersSquaredPattern' );
   const plateAreaString = require( 'string!CAPACITOR_LAB_BASICS/plateArea' );
 
   // endpoints for a vertical line, this will be rotated to point along the plate's pseudo-3D diagonal
-  var LINE_LENGTH = 22;
-  var LINE_START_LOCATION = new Vector2( 0, 0 );
-  var LINE_END_LOCATION = new Vector2( 0, LINE_LENGTH );
+  const LINE_LENGTH = 22;
+  const LINE_START_LOCATION = new Vector2( 0, 0 );
+  const LINE_END_LOCATION = new Vector2( 0, LINE_LENGTH );
 
   /**
    * @constructor
@@ -49,7 +49,7 @@ define( require => {
   function PlateAreaDragHandleNode( capacitor, modelViewTransform, valueRange, tandem ) {
 
     Node.call( this, { tandem: tandem } );
-    var self = this;
+    const self = this;
 
     // @private {Capacitor}
     this.capacitor = capacitor;
@@ -57,21 +57,21 @@ define( require => {
     // @private {CLBModelViewTransform3D}
     this.modelViewTransform = modelViewTransform;
 
-    var dragListener = new PlateAreaDragHandler( capacitor, modelViewTransform, valueRange,
+    const dragListener = new PlateAreaDragHandler( capacitor, modelViewTransform, valueRange,
       tandem.createTandem( 'inputListener' ) );
     this.addInputListener( dragListener );
 
     // arrow
-    var arrowNode = new DragHandleArrowNode( ARROW_TIP_LOCATION, ARROW_TAIL_LOCATION, dragListener.isHighlightedProperty,
+    const arrowNode = new DragHandleArrowNode( ARROW_TIP_LOCATION, ARROW_TAIL_LOCATION, dragListener.isHighlightedProperty,
       tandem.createTandem( 'arrowNode' ) );
 
     this.cursor = 'pointer';
 
     // line
-    var lineNode = new DragHandleLineNode( LINE_START_LOCATION, LINE_END_LOCATION );
+    const lineNode = new DragHandleLineNode( LINE_START_LOCATION, LINE_END_LOCATION );
 
     // value
-    var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
+    const millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( capacitor.getPlateArea() );
 
     // @private {DragHandleValueNode}
     this.valueNode = new DragHandleValueNode( plateAreaString, millimetersSquared, millimetersSquaredPatternString, {
@@ -88,10 +88,10 @@ define( require => {
     this.addChild( this.valueNode );
 
     // layout: arrow below line, rotate into alignment with top plate's pseudo-3D diagonal
-    var x = 0;
-    var y = 0;
-    var angle = ( -Math.PI / 2 ) + ( modelViewTransform.yaw / 2 ); // aligned with diagonal of plate surface
-    var lineArrowSpacing = 2;
+    let x = 0;
+    let y = 0;
+    const angle = ( -Math.PI / 2 ) + ( modelViewTransform.yaw / 2 ); // aligned with diagonal of plate surface
+    const lineArrowSpacing = 2;
     lineNode.translation = new Vector2( x, y );
     lineNode.rotation = angle;
 
@@ -124,7 +124,7 @@ define( require => {
      * @public
      */
     updateDisplay: function() {
-      var millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( this.capacitor.getPlateArea() );
+      const millimetersSquared = UnitsUtils.metersSquaredToMillimetersSquared( this.capacitor.getPlateArea() );
       this.valueNode.setValue( millimetersSquared, 0 ); // Zero decimal places
     },
 
@@ -133,10 +133,10 @@ define( require => {
      * @public
      */
     updateOffset: function() {
-      var plateSize = this.capacitor.plateSizeProperty.value;
-      var x = this.capacitor.location.x + ( plateSize.width / 2 );
-      var y = this.capacitor.location.y - ( this.capacitor.plateSeparationProperty.value / 2 ) - plateSize.height;
-      var z = this.capacitor.location.z + ( plateSize.depth / 2 );
+      const plateSize = this.capacitor.plateSizeProperty.value;
+      const x = this.capacitor.location.x + ( plateSize.width / 2 );
+      const y = this.capacitor.location.y - ( this.capacitor.plateSeparationProperty.value / 2 ) - plateSize.height;
+      const z = this.capacitor.location.z + ( plateSize.depth / 2 );
       this.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
     }
   } );

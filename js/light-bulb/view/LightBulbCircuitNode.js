@@ -29,12 +29,12 @@ define( require => {
 
     CLBCircuitNode.call( this, model, tandem );
 
-    var self = this;
+    const self = this;
 
-    var circuit = model.circuit;
+    const circuit = model.circuit;
 
     // circuit components
-    var lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.plateVoltageProperty,
+    const lightBulbNode = new BulbNode( circuit.lightBulb, circuit.capacitor.plateVoltageProperty,
       circuit.circuitConnectionProperty, tandem.createTandem( 'lightBulbNode' ), {} );
 
     // @private current indicators
@@ -62,8 +62,8 @@ define( require => {
     lightBulbNode.center = model.modelViewTransform.modelToViewPosition( circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
 
     // top right current indicator
-    var x = this.circuitSwitchNodes[ 0 ].right + ( lightBulbNode.left - this.circuitSwitchNodes[ 0 ].right ) / 2;
-    var y = this.topWireNode.bounds.minY + ( 7 / 2 );
+    const x = this.circuitSwitchNodes[ 0 ].right + ( lightBulbNode.left - this.circuitSwitchNodes[ 0 ].right ) / 2;
+    let y = this.topWireNode.bounds.minY + ( 7 / 2 );
     this.bulbTopCurrentIndicatorNode.translate( x, y );
 
     // bottom right current indicator
@@ -73,8 +73,8 @@ define( require => {
     // current indicator observer, no need for disposal since they persist for the lifetime of the sim
     Property.multilink( [ circuit.circuitConnectionProperty, model.currentVisibleProperty, model.isPlayingProperty ],
       function( circuitConnection, currentVisible, isPlaying ) {
-        var isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
-        var isLightBulbConnected = ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED );
+        const isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
+        const isLightBulbConnected = ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED );
 
         self.batteryTopCurrentIndicatorNode.adjustVisibility( isBatteryConnected && currentVisible );
         self.batteryBottomCurrentIndicatorNode.adjustVisibility( isBatteryConnected && currentVisible );

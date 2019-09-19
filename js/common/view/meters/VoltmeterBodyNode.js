@@ -26,10 +26,10 @@ define( require => {
   const Vector2 = require( 'DOT/Vector2' );
 
   // digital display
-  var DISPLAY_FONT = new PhetFont( 18 );
+  const DISPLAY_FONT = new PhetFont( 18 );
 
   // title display
-  var TITLE_FONT = new PhetFont( {
+  const TITLE_FONT = new PhetFont( {
     size: 20
   } );
 
@@ -52,48 +52,48 @@ define( require => {
   function VoltmeterBodyNode( voltmeter, modelViewTransform, isDraggedProperty, tandem ) {
 
     Node.call( this );
-    var self = this;
+    const self = this;
 
     this.cursor = 'pointer';
 
      // @public {Property.<Vector3>]}
     this.bodyLocationProperty = voltmeter.bodyLocationProperty;
 
-    var readoutAdjustmentY = 15;
+    const readoutAdjustmentY = 15;
 
     // body of the meter
-    var imageNode = new Image( voltmeterBodyImage, {
+    const imageNode = new Image( voltmeterBodyImage, {
       scale: 0.336
     } );
     this.addChild( imageNode );
 
     // text label
-    var labelText = new Text( voltageString, {
+    const labelText = new Text( voltageString, {
       font: TITLE_FONT,
       maxWidth: imageNode.width / 2
     } );
     labelText.center = new Vector2( imageNode.width / 2, imageNode.height / 3 + readoutAdjustmentY );
     this.addChild( labelText );
 
-    var valueString = StringUtils.fillIn( voltsPatternString, {
+    const valueString = StringUtils.fillIn( voltsPatternString, {
       value: voltmeter.measuredVoltageProperty.value
     } );
 
-    var valueText = new Text( valueString, {
+    const valueText = new Text( valueString, {
       font: DISPLAY_FONT,
       maxWidth: imageNode.width * 0.4
     } );
 
     // add the display to the
     // display area for the value
-    var backgroundRectWidth = imageNode.width / 2;
-    var backgroundRectHeight = valueText.height + 5;
-    var backgroundRect = new Rectangle( new Bounds2( 0, 0, backgroundRectWidth, backgroundRectHeight ), 5, 5, {
+    const backgroundRectWidth = imageNode.width / 2;
+    const backgroundRectHeight = valueText.height + 5;
+    const backgroundRect = new Rectangle( new Bounds2( 0, 0, backgroundRectWidth, backgroundRectHeight ), 5, 5, {
       lineWidth: 1,
       fill: 'white',
       stroke: 'black'
     } );
-    var textCenter = new Vector2( this.center.x, this.center.y + readoutAdjustmentY );
+    const textCenter = new Vector2( this.center.x, this.center.y + readoutAdjustmentY );
     backgroundRect.center = textCenter;
     valueText.center = textCenter;
     this.addChild( backgroundRect );
@@ -101,8 +101,8 @@ define( require => {
 
     // offsets for connection points of wires that attach probes to body, determined by visual inspection.  If the
     // voltmeter body images ever changes, these will have to be changed as well.
-    var imageBounds = imageNode.bounds;
-    var probeOffset = 0.056;
+    const imageBounds = imageNode.bounds;
+    const probeOffset = 0.056;
     this.positiveConnectionOffset = new Vector2( ( 0.5 - probeOffset ) * imageBounds.width, 0.875 * imageBounds.maxY ); // @public bottom left
     this.negativeConnectionOffset = new Vector2( ( 0.5 + probeOffset ) * imageBounds.width, 0.875 * imageBounds.maxY ); // @public bottom right
 
@@ -124,10 +124,10 @@ define( require => {
 
     // voltmeter is restricted by bounds in model coordinates for `handler, adjusted by dimensions
     // of the voltmeter body
-    var adjustedViewBounds = new Bounds2( 0, 0, voltmeter.dragBounds.maxX - imageNode.width, voltmeter.dragBounds.maxY - imageNode.height );
-    var bodyDragBounds = modelViewTransform.viewToModelBounds( adjustedViewBounds );
+    const adjustedViewBounds = new Bounds2( 0, 0, voltmeter.dragBounds.maxX - imageNode.width, voltmeter.dragBounds.maxY - imageNode.height );
+    const bodyDragBounds = modelViewTransform.viewToModelBounds( adjustedViewBounds );
 
-    var body2DProperty = new DynamicProperty( new Property( voltmeter.bodyLocationProperty ), {
+    const body2DProperty = new DynamicProperty( new Property( voltmeter.bodyLocationProperty ), {
       bidirectional: true,
       useDeepEquality: true,
       map: function( vector3 ) { return vector3.toVector2(); },
@@ -163,7 +163,7 @@ define( require => {
         valueText.setText( voltsUnknownString );
       }
       else {
-        var fixedValue = Util.toFixed( value, 3 );
+        const fixedValue = Util.toFixed( value, 3 );
         valueText.setText( StringUtils.fillIn( voltsPatternString, { value: fixedValue } ) );
       }
     }

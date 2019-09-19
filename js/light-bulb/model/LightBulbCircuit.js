@@ -38,7 +38,7 @@ define( require => {
 
   // During exponential voltage drop, circuit voltage crosses this threshold,
   // below which we no longer call discharge() so I and V don't tail off forever.
-  var MIN_VOLTAGE = 1e-3; // Volts. Minimum readable value on voltmeter.
+  const MIN_VOLTAGE = 1e-3; // Volts. Minimum readable value on voltmeter.
 
   /**
    * @constructor
@@ -48,9 +48,9 @@ define( require => {
    */
   function LightBulbCircuit( config, tandem ) {
 
-    var self = this;
+    const self = this;
 
-    var bulbLocation = new Vector3(
+    const bulbLocation = new Vector3(
       CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing + CLBConstants.LIGHT_BULB_X_SPACING,
       CLBConstants.BATTERY_LOCATION.y + config.capacitorYSpacing,
       CLBConstants.BATTERY_LOCATION.z
@@ -171,7 +171,7 @@ define( require => {
 
       // if the circuit is connected to the light bulb, I = V / R
       if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-        var current = this.capacitor.plateVoltageProperty.value / this.lightBulb.resistance;
+        let current = this.capacitor.plateVoltageProperty.value / this.lightBulb.resistance;
 
         // The cutoff is doubled here for #58
         if ( Math.abs( current ) < 2 * MIN_VOLTAGE / this.lightBulb.resistance ) {

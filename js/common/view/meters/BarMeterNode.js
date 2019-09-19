@@ -27,15 +27,15 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // constants
-  var BASE_LINE_LENGTH = 25; // Length of vertical line at the origin (left end) of the bar
-  var BAR_STROKE_COLOR = 'black';
-  var BAR_LINE_WIDTH = 1;
-  var VALUE_METER_SPACING = 7; // between right side of value text and left side of bar
-  var VALUE_MAX_WIDTH = 67; // max width of value string for i18n
+  const BASE_LINE_LENGTH = 25; // Length of vertical line at the origin (left end) of the bar
+  const BAR_STROKE_COLOR = 'black';
+  const BAR_LINE_WIDTH = 1;
+  const VALUE_METER_SPACING = 7; // between right side of value text and left side of bar
+  const VALUE_MAX_WIDTH = 67; // max width of value string for i18n
 
   // value display
-  var VALUE_FONT = new PhetFont( 16 );
-  var VALUE_COLOR = 'black';
+  const VALUE_FONT = new PhetFont( 16 );
+  const VALUE_COLOR = 'black';
 
   /**
    * @constructor
@@ -49,7 +49,7 @@ define( require => {
    */
   function BarMeterNode( meter, barColor, maxValue, unitsPattern, titleString, tandem ) {
 
-    var self = this;
+    const self = this;
 
     // @public {number}
     this.maxValue = maxValue;
@@ -141,8 +141,8 @@ define( require => {
         this.barNode.setValue( value );
 
         // all meters read in pico units, compensate by multiplying by 10^12
-        var meterValue = Util.toFixed( Math.pow( 10, 12 ) * value, 2 );
-        var unitsFormatString = StringUtils.fillIn( this.unitsPattern, { value: meterValue } );
+        const meterValue = Util.toFixed( Math.pow( 10, 12 ) * value, 2 );
+        const unitsFormatString = StringUtils.fillIn( this.unitsPattern, { value: meterValue } );
         this.valueTextNode.setText( unitsFormatString );
       }
     },

@@ -31,13 +31,13 @@ define( require => {
    */
   function CLBLightBulbScreen( switchUsedProperty, tandem ) {
 
-    var iconNode = new BulbNode.createBulbIcon();
+    const iconNode = new BulbNode.createBulbIcon();
     iconNode.rotate( -Math.PI / 2 );
-    var icon = new ScreenIcon( iconNode, {
+    const icon = new ScreenIcon( iconNode, {
       fill: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR
     } );
 
-    var options = {
+    const options = {
       name: screenLightBulbString,
       backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
       homeScreenIcon: icon,

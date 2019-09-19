@@ -24,13 +24,13 @@ define( require => {
 
   // constants
   // endpoints for vertical double-headed arrow
-  var ARROW_START_LOCATION = new Vector2( 0, 0 );
-  var ARROW_END_LOCATION = new Vector2( 0, -CLBConstants.DRAG_HANDLE_ARROW_LENGTH );
+  const ARROW_START_LOCATION = new Vector2( 0, 0 );
+  const ARROW_END_LOCATION = new Vector2( 0, -CLBConstants.DRAG_HANDLE_ARROW_LENGTH );
 
   // endpoints for vertical line
-  var LINE_LENGTH = 60;
-  var LINE_START_LOCATION = new Vector2( 0, 0 );
-  var LINE_END_LOCATION = new Vector2( 0, -LINE_LENGTH );
+  const LINE_LENGTH = 60;
+  const LINE_START_LOCATION = new Vector2( 0, 0 );
+  const LINE_END_LOCATION = new Vector2( 0, -LINE_LENGTH );
 
   // strings
   const millimetersPatternString = require( 'string!CAPACITOR_LAB_BASICS/millimetersPattern' );
@@ -47,27 +47,27 @@ define( require => {
   function PlateSeparationDragHandleNode( capacitor, modelViewTransform, valueRange, tandem ) {
 
     Node.call( this, { tandem: tandem } );
-    var self = this;
+    const self = this;
 
     // @private
     this.capacitor = capacitor;
     this.modelViewTransform = modelViewTransform;
 
-    var dragHandler = new PlateSeparationDragHandler( capacitor, modelViewTransform, valueRange,
+    const dragHandler = new PlateSeparationDragHandler( capacitor, modelViewTransform, valueRange,
       tandem.createTandem( 'dragHandler' ) );
     this.addInputListener( dragHandler );
 
     // arrow
-    var arrowNode = new DragHandleArrowNode( ARROW_START_LOCATION, ARROW_END_LOCATION, dragHandler.isHighlightedProperty,
+    const arrowNode = new DragHandleArrowNode( ARROW_START_LOCATION, ARROW_END_LOCATION, dragHandler.isHighlightedProperty,
       tandem.createTandem( 'arrowNode' ) );
 
     this.cursor = 'pointer';
 
     // line
-    var lineNode = new DragHandleLineNode( LINE_START_LOCATION, LINE_END_LOCATION );
+    const lineNode = new DragHandleLineNode( LINE_START_LOCATION, LINE_END_LOCATION );
 
     // value
-    var millimeters = UnitsUtils.metersToMillimeters( capacitor.plateSeparationProperty.value );
+    const millimeters = UnitsUtils.metersToMillimeters( capacitor.plateSeparationProperty.value );
     this.valueNode = new DragHandleValueNode( separationString, millimeters, millimetersPatternString, {
       tandem: tandem.createTandem( 'valueNode' )
     } );
@@ -82,8 +82,8 @@ define( require => {
     this.addChild( this.valueNode );
 
     // layout: arrow about line, horizontally centered
-    var x = 0;
-    var y = 0;
+    let x = 0;
+    let y = 0;
     lineNode.translation = new Vector2( x, y );
 
     x = 0;
@@ -114,7 +114,7 @@ define( require => {
      * @public
      */
     updateValueDisplay: function() {
-      var millimeters = UnitsUtils.metersToMillimeters( this.capacitor.plateSeparationProperty.value );
+      const millimeters = UnitsUtils.metersToMillimeters( this.capacitor.plateSeparationProperty.value );
       this.valueNode.setValue( millimeters, 1 ); // One decimal place
     },
 
@@ -123,11 +123,11 @@ define( require => {
      * @public
      */
     updateOffset: function() {
-      var width = this.capacitor.plateSizeProperty.value.width;
-      var height = this.capacitor.plateSizeProperty.value.height;
-      var x = this.capacitor.location.x + ( 0.3 * width );
-      var y = this.capacitor.location.y - ( this.capacitor.plateSeparationProperty.value / 2 ) - height;
-      var z = 0;
+      const width = this.capacitor.plateSizeProperty.value.width;
+      const height = this.capacitor.plateSizeProperty.value.height;
+      const x = this.capacitor.location.x + ( 0.3 * width );
+      const y = this.capacitor.location.y - ( this.capacitor.plateSeparationProperty.value / 2 ) - height;
+      const z = 0;
       this.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
     }
   } );

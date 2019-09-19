@@ -19,10 +19,10 @@ define( require => {
 
   // constants
   // wire is a cubic curve, these are the control point offsets
-  var BODY_CONTROL_POINT_OFFSET = new Vector2( 0, 100 );
-  var PROBE_CONTROL_POINT_OFFSET = new Vector2( -80, 100 );
-  var POSITIVE_WIRE_COLOR = PhetColorScheme.RED_COLORBLIND;
-  var NEGATIVE_WIRE_COLOR = 'black';
+  const BODY_CONTROL_POINT_OFFSET = new Vector2( 0, 100 );
+  const PROBE_CONTROL_POINT_OFFSET = new Vector2( -80, 100 );
+  const POSITIVE_WIRE_COLOR = PhetColorScheme.RED_COLORBLIND;
+  const NEGATIVE_WIRE_COLOR = 'black';
 
   /**
    * @param {VoltmeterBodyNode} bodyNode
@@ -32,7 +32,7 @@ define( require => {
    */
   function ProbeWireNode( bodyNode, probeNode, isPositive ) {
 
-    var self = this;
+    const self = this;
 
     // @private {VoltmeterBodyNode}
     this.bodyNode = bodyNode;
@@ -74,12 +74,12 @@ define( require => {
      */
     update: function() {
 
-      var pBody = this.getConnectionPoint( this.bodyNode, this.bodyConnectionOffset );
-      var pProbe = this.getConnectionPoint( this.probeNode, this.probeConnectionOffset );
+      const pBody = this.getConnectionPoint( this.bodyNode, this.bodyConnectionOffset );
+      const pProbe = this.getConnectionPoint( this.probeNode, this.probeConnectionOffset );
 
       // control points
-      var ctrl1 = new Vector2( pBody.x + this.bodyControlPointOffset.x, pBody.y + this.bodyControlPointOffset.y );
-      var ctrl2 = new Vector2( pProbe.x + this.probeControlPointOffset.x, pProbe.y + this.probeControlPointOffset.y );
+      const ctrl1 = new Vector2( pBody.x + this.bodyControlPointOffset.x, pBody.y + this.bodyControlPointOffset.y );
+      const ctrl2 = new Vector2( pProbe.x + this.probeControlPointOffset.x, pProbe.y + this.probeControlPointOffset.y );
 
       this.setShape( new Shape().moveToPoint( pBody ).cubicCurveToPoint( ctrl1, ctrl2, pProbe ) );
     },

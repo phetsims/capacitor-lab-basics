@@ -31,8 +31,8 @@ define( require => {
   const switchCueArrowImage = require( 'image!CAPACITOR_LAB_BASICS/switch_cue_arrow.png' );
 
   // Constants
-  var SWITCH_CUE_ARROW_WIDTH = 25;
-  var SWITCH_CUE_ARROW_OFFSET = new Vector2( -80, -250 ); // View coords
+  const SWITCH_CUE_ARROW_WIDTH = 25;
+  const SWITCH_CUE_ARROW_OFFSET = new Vector2( -80, -250 ); // View coords
 
   /**
    * @constructor
@@ -48,7 +48,7 @@ define( require => {
       'circuitSwitch should have 2 or three connections only' );
 
     Node.call( this, { tandem: tandem } );
-    var self = this;
+    const self = this;
 
     // @public {CircuitSwitch}
     this.circuitSwitch = circuitSwitch;
@@ -61,16 +61,16 @@ define( require => {
     this.wireSwitchNode.cursor = 'pointer';
 
     // add a shaded sphere to the end of the wire node to represent a connection point at the end of the switch.
-    var shadedSphereNode = new ShadedSphereNode( 2 * CLBConstants.CONNECTION_POINT_RADIUS ); // Diameter
+    const shadedSphereNode = new ShadedSphereNode( 2 * CLBConstants.CONNECTION_POINT_RADIUS ); // Diameter
 
     // Dashed circle on tip of switch used as a contact indicator
-    var tipCircle = new Circle( CLBConstants.CONNECTION_POINT_RADIUS, {
+    const tipCircle = new Circle( CLBConstants.CONNECTION_POINT_RADIUS, {
       lineWidth: 2,
       lineDash: [ 3, 3 ],
       stroke: PhetColorScheme.RED_COLORBLIND
     } );
 
-    var endPoint = circuitSwitch.switchSegment.endPointProperty.value;
+    const endPoint = circuitSwitch.switchSegment.endPointProperty.value;
 
     shadedSphereNode.translation = modelViewTransform.modelToViewPosition( endPoint );
     this.wireSwitchNode.addChild( shadedSphereNode );
@@ -79,25 +79,25 @@ define( require => {
     this.wireSwitchNode.addChild( tipCircle );
 
     // add the hinge
-    var hingeNode = new HingePointNode();
+    const hingeNode = new HingePointNode();
     hingeNode.translation = modelViewTransform.modelToViewPosition( circuitSwitch.hingePoint );
 
     // @public {Node} create connection points and clickable areas
     this.connectionAreaNodes = [];
 
-    var userControlledProperty = new BooleanProperty( false );
+    const userControlledProperty = new BooleanProperty( false );
 
     userControlledProperty.link( function( controlled ) {
       tipCircle.fill = controlled ? 'yellow' : null;
     } );
 
-    var dragHandler = new CircuitSwitchDragHandler( self, switchLockedProperty, userControlledProperty, tandem.createTandem( 'dragHandler' ) );
+    const dragHandler = new CircuitSwitchDragHandler( self, switchLockedProperty, userControlledProperty, tandem.createTandem( 'dragHandler' ) );
 
     // prefixes for tandem IDs
-    var connectionLabels = [ 'battery', 'open', 'lightBulb' ];
+    const connectionLabels = [ 'battery', 'open', 'lightBulb' ];
 
     circuitSwitch.connections.forEach( function( connection, index ) {
-      var connectionTandem = tandem.createTandem( connectionLabels[ index ] + 'ConnectionNode' );
+      const connectionTandem = tandem.createTandem( connectionLabels[ index ] + 'ConnectionNode' );
 
       // add the clickable area for the connection point
       self.connectionAreaNodes.push( new ConnectionNode( connection, circuitSwitch, modelViewTransform, connectionTandem, dragHandler, switchLockedProperty ) );
@@ -106,8 +106,8 @@ define( require => {
     circuitSwitch.angleProperty.link( function( angle ) {
 
       // Endpoint, hinge point, and a vector between them
-      var hingePoint = circuitSwitch.switchSegment.hingePoint;
-      var delta = Vector2.createPolar( CLBConstants.SWITCH_WIRE_LENGTH, angle ).toVector3();
+      const hingePoint = circuitSwitch.switchSegment.hingePoint;
+      const delta = Vector2.createPolar( CLBConstants.SWITCH_WIRE_LENGTH, angle ).toVector3();
 
       // Make sure that the shaded sphere snaps to the correct position when connection property changes.
       shadedSphereNode.translation = modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
@@ -139,12 +139,12 @@ define( require => {
     } );
 
     // Add arrow for a visual cue
-    var switchCueArrow = new Image( switchCueArrowImage );
+    const switchCueArrow = new Image( switchCueArrowImage );
     switchCueArrow.scale( SWITCH_CUE_ARROW_WIDTH / switchCueArrow.bounds.height );
     switchCueArrow.leftTop = this.wireSwitchNode.center;
 
     // Reflect bottom arrow about the horizontal axis.
-    var segment = circuitSwitch.switchSegment;
+    const segment = circuitSwitch.switchSegment;
     if ( segment.endPointProperty.value.y > segment.hingePoint.y ) {
       switchCueArrow.scale( 1, -1 );
     }

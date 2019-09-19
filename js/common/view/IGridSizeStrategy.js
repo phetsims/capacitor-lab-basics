@@ -68,19 +68,19 @@ define( require => {
      * @returns {Dimension2}
      */
     getGridSize: function( numberOfObjects, width, height ) {
-      var columns = 0;
-      var rows = 0;
+      let columns = 0;
+      let rows = 0;
       if ( numberOfObjects > 0 ) {
 
-        var alpha = Math.sqrt( numberOfObjects / width / height );
+        const alpha = Math.sqrt( numberOfObjects / width / height );
         columns = Util.roundSymmetric( width * alpha );
 
         // compute rows 2 ways, choose the best fit
-        var rows1 = Util.roundSymmetric( height * alpha );
-        var rows2 = Util.roundSymmetric( numberOfObjects / columns );
+        const rows1 = Util.roundSymmetric( height * alpha );
+        const rows2 = Util.roundSymmetric( numberOfObjects / columns );
         if ( rows1 !== rows2 ) {
-          var error1 = Math.abs( numberOfObjects - ( rows1 * columns ) );
-          var error2 = Math.abs( numberOfObjects - ( rows2 * columns ) );
+          const error1 = Math.abs( numberOfObjects - ( rows1 * columns ) );
+          const error2 = Math.abs( numberOfObjects - ( rows2 * columns ) );
           rows = ( error1 < error2 ) ? rows1 : rows2;
         }
         else {

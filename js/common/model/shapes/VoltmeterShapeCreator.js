@@ -20,7 +20,7 @@ define( require => {
   const Vector3 = require( 'DOT/Vector3' );
 
   // var PROBE_TIP_OFFSET = new Vector3( 0.00045, 0, 0 );
-  var PROBE_TIP_OFFSET = new Vector3( 0.00018, 0.00025, 0 );
+  const PROBE_TIP_OFFSET = new Vector3( 0.00018, 0.00025, 0 );
 
   /**
    * @constructor
@@ -48,7 +48,7 @@ define( require => {
      * @returns {Shape}
      */
     getPositiveProbeTipShape: function() {
-      var origin = this.voltmeter.positiveProbeLocationProperty.value.plus( PROBE_TIP_OFFSET );
+      const origin = this.voltmeter.positiveProbeLocationProperty.value.plus( PROBE_TIP_OFFSET );
       return this.getProbeTipShape( origin, -this.modelViewTransform.yaw );
     },
 
@@ -59,7 +59,7 @@ define( require => {
      * @returns {Shape}
      */
     getNegativeProbeTipShape: function() {
-      var origin = this.voltmeter.negativeProbeLocationProperty.value.plus( PROBE_TIP_OFFSET );
+      const origin = this.voltmeter.negativeProbeLocationProperty.value.plus( PROBE_TIP_OFFSET );
       return this.getProbeTipShape( origin, -this.modelViewTransform.yaw );
     },
 
@@ -74,13 +74,13 @@ define( require => {
     getProbeTipShape: function( origin, theta ) {
       assert && assert( typeof theta === 'number' );
 
-      var size = this.voltmeter.probeTipSizeReference;
-      var width = size.width;
-      var height = size.height;
-      var x = origin.x;
-      var y = origin.y;
-      var t = Matrix3.rotationAround( theta, x, y );
-      var midRatio = 0.5;
+      const size = this.voltmeter.probeTipSizeReference;
+      const width = size.width;
+      const height = size.height;
+      const x = origin.x;
+      const y = origin.y;
+      const t = Matrix3.rotationAround( theta, x, y );
+      const midRatio = 0.5;
 
       return Shape.polygon( [
         this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width / 2, y ) ).toVector3() ),

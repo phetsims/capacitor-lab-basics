@@ -27,7 +27,7 @@ define( require => {
    */
   function DraggableTimerNode( dragBounds, initialPosition, secondsProperty, timerRunningProperty,
                                visibleProperty, endDragCallback, tandem ) {
-    var self = this;
+    const self = this;
 
     TimerNode.call( this, secondsProperty, timerRunningProperty, {
       tandem: tandem

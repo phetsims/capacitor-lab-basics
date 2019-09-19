@@ -22,9 +22,9 @@ define( require => {
   const capacitorLabBasicsTitleString = require( 'string!CAPACITOR_LAB_BASICS/capacitor-lab-basics.title' );
 
   // constants
-  var tandem = Tandem.rootTandem;
+  const tandem = Tandem.rootTandem;
 
-  var simOptions = {
+  const simOptions = {
     credits: {
       leadDesign: 'Amy Rouinfar',
       softwareDevelopment: 'Andrew Adare, Jesse Greenberg, Chris Malley, Emily Randall, Jonathan Olson',
@@ -37,13 +37,13 @@ define( require => {
 
     // Tracks whether a circuit switch has been changed by user. Once the switch has been changed in either screen,
     // the cue arrows (used to hint that the switch is available) should disappear from both screens.
-    var switchUsedProperty = new Property( false );
+    const switchUsedProperty = new Property( false );
 
-    var screens = [
+    const screens = [
       new CapacitanceScreen( switchUsedProperty, tandem.createTandem( 'capacitanceScreen' ) ),
       new CLBLightBulbScreen( switchUsedProperty, tandem.createTandem( 'lightBulbScreen' ) )
     ];
-    var sim = new Sim( capacitorLabBasicsTitleString, screens, simOptions );
+    const sim = new Sim( capacitorLabBasicsTitleString, screens, simOptions );
     sim.start();
   } );
 } );

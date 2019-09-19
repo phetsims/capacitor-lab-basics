@@ -18,9 +18,9 @@ define( require => {
   const RangeWithValue = require( 'DOT/RangeWithValue' );
   const Vector3 = require( 'DOT/Vector3' );
 
-  var NEGATIVE = 'NEGATIVE';
-  var POSITIVE = 'POSITIVE';
-  var CLBConstants = {
+  const NEGATIVE = 'NEGATIVE';
+  const POSITIVE = 'POSITIVE';
+  const CLBConstants = {
 
     //----------------------------------------------------------------------------
     // Model

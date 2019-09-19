@@ -18,9 +18,9 @@ define( require => {
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
   // constants
-  var MILLIMETERS_PER_METER = 1000;
+  const MILLIMETERS_PER_METER = 1000;
 
-  var UnitsUtils = {
+  const UnitsUtils = {
     /**
      * Utility function to convert from meters to millimeters.
      * @public

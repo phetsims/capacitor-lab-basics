@@ -26,8 +26,8 @@ define( require => {
   const Util = require( 'DOT/Util' );
 
   // constants
-  var POSITIVE_CHARGE_COLOR = PhetColorScheme.RED_COLORBLIND.computeCSS(); // CSS passed into context fillStyle
-  var NEGATIVE_CHARGE_COLOR = 'blue';
+  const POSITIVE_CHARGE_COLOR = PhetColorScheme.RED_COLORBLIND.computeCSS(); // CSS passed into context fillStyle
+  const NEGATIVE_CHARGE_COLOR = 'blue';
 
   /**
    * Draw a positive charge with canvas.  'Plus' sign is painted with two
@@ -38,8 +38,8 @@ define( require => {
    * @param {CanvasRenderingContext2D} context - context for the canvas methods
    */
   function addPositiveCharge( location, context ) {
-    var chargeWidth = CLBConstants.NEGATIVE_CHARGE_SIZE.width;
-    var chargeHeight = CLBConstants.NEGATIVE_CHARGE_SIZE.height;
+    const chargeWidth = CLBConstants.NEGATIVE_CHARGE_SIZE.width;
+    const chargeHeight = CLBConstants.NEGATIVE_CHARGE_SIZE.height;
 
     context.fillStyle = POSITIVE_CHARGE_COLOR;
     context.fillRect( location.x - chargeWidth / 2, location.y - chargeHeight / 2, chargeWidth, chargeHeight );
@@ -55,8 +55,8 @@ define( require => {
    * @param {CanvasRenderingContext2D} context
    */
   function addNegativeCharge( location, context ) {
-    var chargeWidth = CLBConstants.NEGATIVE_CHARGE_SIZE.width;
-    var chargeHeight = CLBConstants.NEGATIVE_CHARGE_SIZE.height;
+    const chargeWidth = CLBConstants.NEGATIVE_CHARGE_SIZE.width;
+    const chargeHeight = CLBConstants.NEGATIVE_CHARGE_SIZE.height;
 
     context.fillStyle = NEGATIVE_CHARGE_COLOR;
     context.fillRect( location.x - chargeWidth / 2, location.y, chargeWidth, chargeHeight );
@@ -82,7 +82,7 @@ define( require => {
     CanvasNode.call( this, {
       canvasBounds: options.canvasBounds
     } );
-    var self = this; // extend scope for nested callbacks
+    const self = this; // extend scope for nested callbacks
 
     // @private {Capacitor}
     this.capacitor = capacitor;
@@ -180,41 +180,41 @@ define( require => {
      */
     paintCanvas: function( context ) {
 
-      var plateCharge = this.getPlateCharge();
-      var numberOfCharges = this.getNumberOfCharges( plateCharge, this.maxPlateCharge );
+      const plateCharge = this.getPlateCharge();
+      const numberOfCharges = this.getNumberOfCharges( plateCharge, this.maxPlateCharge );
 
       if ( numberOfCharges > 0 ) {
 
-        var zMargin = this.modelViewTransform.viewToModelDeltaXY( CLBConstants.NEGATIVE_CHARGE_SIZE.width, 0 ).x;
+        const zMargin = this.modelViewTransform.viewToModelDeltaXY( CLBConstants.NEGATIVE_CHARGE_SIZE.width, 0 ).x;
 
-        var gridWidth = this.getContactWidth(); // contact between plate and vacuum gap
-        var gridDepth = this.capacitor.plateSizeProperty.value.depth - ( 2 * zMargin );
+        const gridWidth = this.getContactWidth(); // contact between plate and vacuum gap
+        const gridDepth = this.capacitor.plateSizeProperty.value.depth - ( 2 * zMargin );
 
         // grid dimensions
-        var gridSize = this.gridSizeStrategy.getGridSize( numberOfCharges, gridWidth, gridDepth );
-        var rows = gridSize.height;
-        var columns = gridSize.width;
+        const gridSize = this.gridSizeStrategy.getGridSize( numberOfCharges, gridWidth, gridDepth );
+        const rows = gridSize.height;
+        const columns = gridSize.width;
 
         // distance between cells
-        var dx = gridWidth / columns;
-        var dz = gridDepth / rows;
+        const dx = gridWidth / columns;
+        const dz = gridDepth / rows;
 
         // offset to move us to the center of cells
-        var xOffset = dx / 2;
-        var zOffset = dz / 2;
+        const xOffset = dx / 2;
+        const zOffset = dz / 2;
 
         // populate the grid
-        for ( var row = 0; row < rows; row++ ) {
-          for ( var column = 0; column < columns; column++ ) {
+        for ( let row = 0; row < rows; row++ ) {
+          for ( let column = 0; column < columns; column++ ) {
 
             // calculate center position for the charge in cell of the grid
-            var x = this.getContactXOrigin() + xOffset + ( column * dx );
-            var y = 0;
-            var z = -( gridDepth / 2 ) + ( zMargin / 2 ) + zOffset + ( row * dz );
+            const x = this.getContactXOrigin() + xOffset + ( column * dx );
+            const y = 0;
+            let z = -( gridDepth / 2 ) + ( zMargin / 2 ) + zOffset + ( row * dz );
             if ( numberOfCharges === 1 ) {
               z -= dz / 6; //#2935, so that single charge is not obscured by wire connected to center of top plate
             }
-            var centerPosition = this.modelViewTransform.modelToViewXYZ( x, y, z );
+            const centerPosition = this.modelViewTransform.modelToViewXYZ( x, y, z );
 
             // add the signed charge to the grid
             this.isPositivelyCharged() ?
@@ -235,8 +235,8 @@ define( require => {
      * @returns {number}
      */
     getNumberOfCharges: function( plateCharge, maxPlateCharge ) {
-      var absCharge = Math.abs( plateCharge );
-      var numberOfCharges = Util.toFixedNumber( CLBConstants.NUMBER_OF_PLATE_CHARGES.max * ( absCharge / maxPlateCharge ), 0 );
+      const absCharge = Math.abs( plateCharge );
+      let numberOfCharges = Util.toFixedNumber( CLBConstants.NUMBER_OF_PLATE_CHARGES.max * ( absCharge / maxPlateCharge ), 0 );
       if ( absCharge > 0 && numberOfCharges < CLBConstants.NUMBER_OF_PLATE_CHARGES.min ) {
         numberOfCharges = CLBConstants.NUMBER_OF_PLATE_CHARGES.min;
       }

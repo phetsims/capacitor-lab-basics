@@ -29,20 +29,20 @@ define( require => {
   function BatteryToSwitchWire( connectionPoint, config, battery, circuitSwitch, tandem ) {
     assert && assert( _.includes( CircuitLocation.VALUES, connectionPoint ) );
 
-    var segments = [];
+    const segments = [];
 
     // y coordinate of the horizontal wire
-    var horizontalY = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED ).y;
-    var leftCorner = new Vector3( battery.location.x, horizontalY, 0 );
+    const horizontalY = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED ).y;
+    const leftCorner = new Vector3( battery.location.x, horizontalY, 0 );
 
     // add the vertical segment.
-    var verticalSegment;
-    var startPoint;
+    let verticalSegment;
+    let startPoint;
     if ( connectionPoint === CircuitLocation.BATTERY_TOP ) {
       startPoint = new Vector3( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), 0 );
       verticalSegment = new WireSegment( startPoint, leftCorner );
       verticalSegment.update = function() {
-        var point = new Vector3( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), 0 );
+        const point = new Vector3( battery.location.x, battery.location.y + battery.getTopTerminalYOffset(), 0 );
         if ( !this.startPointProperty.value.equals( point ) ) {
           this.startPointProperty.set( point );
         }
@@ -52,11 +52,11 @@ define( require => {
 
       // Slightly lower the bottom wire start point so we can't probe into the battery.
       // See https://github.com/phetsims/capacitor-lab-basics/issues/197
-      var bottomOffset = 0.00065;
+      const bottomOffset = 0.00065;
       startPoint = new Vector3( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() + bottomOffset, 0 );
       verticalSegment = new WireSegment( startPoint, leftCorner );
       verticalSegment.update = function() {
-        var point = new Vector3( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() + bottomOffset, 0 );
+        const point = new Vector3( battery.location.x, battery.location.y + battery.getBottomTerminalYOffset() + bottomOffset, 0 );
         if ( !this.startPointProperty.value.equals( point ) ) {
           this.startPointProperty.set( point );
         }
@@ -66,9 +66,9 @@ define( require => {
     segments.push( verticalSegment );
 
     // connect battery to switch connection point.
-    var switchSegment;
-    var switchConnectionPoint;
-    var separationOffset = new Vector3( -0.0006, 0, 0 );
+    let switchSegment;
+    let switchConnectionPoint;
+    const separationOffset = new Vector3( -0.0006, 0, 0 );
 
     if ( connectionPoint === CircuitLocation.BATTERY_TOP ) {
       switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED );

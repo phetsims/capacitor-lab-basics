@@ -11,7 +11,7 @@ define( require => {
   // modules
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
-  var CLBQueryParameters = QueryStringMachine.getAll( {
+  const CLBQueryParameters = QueryStringMachine.getAll( {
 
     // Provided as a customization for PhET-iO.
     // Removes the open-circuit switch state in the Light Bulb screen

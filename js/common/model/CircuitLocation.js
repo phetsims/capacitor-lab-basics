@@ -10,7 +10,7 @@ define( require => {
 
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
-  var CircuitLocation = {
+  const CircuitLocation = {
     BATTERY_TOP: 'BATTERY_TOP',
     BATTERY_BOTTOM: 'BATTERY_BOTTOM',
     LIGHT_BULB_TOP: 'LIGHT_BULB_TOP',

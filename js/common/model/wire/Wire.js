@@ -36,7 +36,7 @@ define( require => {
     // @public
     this.shapeProperty = new Property( this.shapeCreator.createWireShape() );
 
-    var self = this;
+    const self = this;
 
     // Whenever a segment changes, update the shape.
     this.segments.forEach( function( segment ) {

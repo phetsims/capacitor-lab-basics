@@ -53,10 +53,10 @@ define( require => {
      */
     createTopFace: function( x, y, z, width, height, depth ) {
       // points
-      var p0 = this.modelViewTransform.modelToViewXYZ( x - ( width / 2 ), y, z + ( depth / 2 ) );
-      var p1 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z + ( depth / 2 ) );
-      var p2 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z - ( depth / 2 ) );
-      var p3 = this.modelViewTransform.modelToViewXYZ( x - ( width / 2 ), y, z - ( depth / 2 ) );
+      const p0 = this.modelViewTransform.modelToViewXYZ( x - ( width / 2 ), y, z + ( depth / 2 ) );
+      const p1 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z + ( depth / 2 ) );
+      const p2 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z - ( depth / 2 ) );
+      const p3 = this.modelViewTransform.modelToViewXYZ( x - ( width / 2 ), y, z - ( depth / 2 ) );
 
       // shape
       return this.createFace( p0, p1, p2, p3 );
@@ -92,10 +92,10 @@ define( require => {
      */
     createFrontFace: function( x, y, z, width, height, depth ) {
       // points
-      var p0 = this.modelViewTransform.modelToViewXYZ( x - ( width / 2 ), y, z - ( depth / 2 ) );
-      var p1 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z - ( depth / 2 ) );
-      var p2 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y + height, z - ( depth / 2 ) );
-      var p3 = this.modelViewTransform.modelToViewXYZ( x - ( width / 2 ), y + height, z - ( depth / 2 ) );
+      const p0 = this.modelViewTransform.modelToViewXYZ( x - ( width / 2 ), y, z - ( depth / 2 ) );
+      const p1 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z - ( depth / 2 ) );
+      const p2 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y + height, z - ( depth / 2 ) );
+      const p3 = this.modelViewTransform.modelToViewXYZ( x - ( width / 2 ), y + height, z - ( depth / 2 ) );
       // shape
       return this.createFace( p0, p1, p2, p3 );
     },
@@ -136,10 +136,10 @@ define( require => {
      */
     createRightSideFace: function( x, y, z, width, height, depth ) {
       // points
-      var p0 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z - ( depth / 2 ) );
-      var p1 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z + ( depth / 2 ) );
-      var p2 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y + height, z + ( depth / 2 ) );
-      var p3 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y + height, z - ( depth / 2 ) );
+      const p0 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z - ( depth / 2 ) );
+      const p1 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y, z + ( depth / 2 ) );
+      const p2 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y + height, z + ( depth / 2 ) );
+      const p3 = this.modelViewTransform.modelToViewXYZ( x + ( width / 2 ), y + height, z - ( depth / 2 ) );
       // path
       return this.createFace( p0, p1, p2, p3 );
     },
@@ -168,9 +168,9 @@ define( require => {
      * @returns {Shape}
      */
     createBoxShape: function( x, y, z, width, height, depth ) {
-      var topShape = this.createTopFace( x, y, z, width, height, depth );
-      var frontShape = this.createFrontFace( x, y, z, width, height, depth );
-      var sideShape = this.createRightSideFace( x, y, z, width, height, depth );
+      const topShape = this.createTopFace( x, y, z, width, height, depth );
+      const frontShape = this.createFrontFace( x, y, z, width, height, depth );
+      const sideShape = this.createRightSideFace( x, y, z, width, height, depth );
       return Shape.union( [ topShape, frontShape, sideShape ] );
     },
 
@@ -188,9 +188,9 @@ define( require => {
      * @returns {boolean}
      */
     boxShapeContainsPoint: function( x, y, z, width, height, depth, point ) {
-      var topShape = this.createTopFace( x, y, z, width, height, depth );
-      var frontShape = this.createFrontFace( x, y, z, width, height, depth );
-      var sideShape = this.createRightSideFace( x, y, z, width, height, depth );
+      const topShape = this.createTopFace( x, y, z, width, height, depth );
+      const frontShape = this.createFrontFace( x, y, z, width, height, depth );
+      const sideShape = this.createRightSideFace( x, y, z, width, height, depth );
       return topShape.containsPoint( point ) || frontShape.containsPoint( point ) || sideShape.containsPoint( point );
     },
 

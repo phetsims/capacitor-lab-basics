@@ -43,7 +43,7 @@ define( require => {
     this.capacitanceCircuitNode = new CapacitanceCircuitNode( model, tandem.createTandem( 'capacitanceCircuitNode' ) );
 
     // meters
-    var voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
+    const voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
 
     // @public {DraggableTimerNode}
     var draggableTimerNode = new DraggableTimerNode(
@@ -79,20 +79,20 @@ define( require => {
     );
 
     // control
-    var viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
+    const viewControlPanel = new CLBViewControlPanel( model, tandem.createTandem( 'viewControlPanel' ), {
       maxTextWidth: 200
     } );
     viewControlPanel.rightTop = this.layoutBounds.rightTop.plus( new Vector2( -10, 10 ) );
     toolboxPanel.rightTop = viewControlPanel.rightBottom.plus( new Vector2( 0, 10 ) );
 
-    var capacitanceBarMeterPanel = new BarMeterPanel(
+    const capacitanceBarMeterPanel = new BarMeterPanel(
       model,
       tandem.createTandem( 'barMeterPanel' )
     );
     capacitanceBarMeterPanel.left = this.capacitanceCircuitNode.topWireNode.left - 40;
     capacitanceBarMeterPanel.top = this.layoutBounds.top + 10;
 
-    var resetAllButton = new ResetAllButton( {
+    const resetAllButton = new ResetAllButton( {
       listener: function() {
         model.reset();
       },

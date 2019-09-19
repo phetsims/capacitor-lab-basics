@@ -13,7 +13,7 @@ define( require => {
 
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
 
-  var CircuitState = {
+  const CircuitState = {
     BATTERY_CONNECTED: 'BATTERY_CONNECTED',
     LIGHT_BULB_CONNECTED: 'LIGHT_BULB_CONNECTED',
     OPEN_CIRCUIT: 'OPEN_CIRCUIT',

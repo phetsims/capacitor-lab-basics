@@ -27,7 +27,7 @@ define( require => {
 
   // constants
   // reference coordinate frame size for world nodes
-  var CANVAS_RENDERING_SIZE = new Dimension2( 1024, 618 );
+  const CANVAS_RENDERING_SIZE = new Dimension2( 1024, 618 );
 
   /**
    * @constructor
@@ -149,8 +149,8 @@ define( require => {
      */
     getMaxPlateCharge: function() {
 
-      var maxArea = CLBConstants.PLATE_WIDTH_RANGE.max * CLBConstants.PLATE_WIDTH_RANGE.max;
-      var maxVoltage = CLBConstants.BATTERY_VOLTAGE_RANGE.max;
+      const maxArea = CLBConstants.PLATE_WIDTH_RANGE.max * CLBConstants.PLATE_WIDTH_RANGE.max;
+      const maxVoltage = CLBConstants.BATTERY_VOLTAGE_RANGE.max;
 
       return CLBConstants.EPSILON_0 * maxArea * maxVoltage / CLBConstants.PLATE_SEPARATION_RANGE.min;
     },
@@ -168,8 +168,8 @@ define( require => {
      */
     getMaxEffectiveEField: function() {
 
-      var maxArea = CLBConstants.PLATE_WIDTH_RANGE.max * CLBConstants.PLATE_WIDTH_RANGE.max;
-      var minArea = CLBConstants.PLATE_WIDTH_RANGE.min * CLBConstants.PLATE_WIDTH_RANGE.min;
+      const maxArea = CLBConstants.PLATE_WIDTH_RANGE.max * CLBConstants.PLATE_WIDTH_RANGE.max;
+      const minArea = CLBConstants.PLATE_WIDTH_RANGE.min * CLBConstants.PLATE_WIDTH_RANGE.min;
 
       return maxArea / minArea * CLBConstants.BATTERY_VOLTAGE_RANGE.max / CLBConstants.PLATE_SEPARATION_RANGE.min;
     },
@@ -185,7 +185,7 @@ define( require => {
       if ( this.isPlayingProperty.value || isManual ) {
 
         // If a manual step is called the dt should be the same a normal dt value.
-        var adjustedDt = isManual ? dt : dt * ( this.isSlowMotionProperty.value ? 0.125 : 1 );
+        const adjustedDt = isManual ? dt : dt * ( this.isSlowMotionProperty.value ? 0.125 : 1 );
         this.circuit.step( adjustedDt );
         this.stepEmitter.emit( adjustedDt );
         if ( this.isRunningProperty.value ) {

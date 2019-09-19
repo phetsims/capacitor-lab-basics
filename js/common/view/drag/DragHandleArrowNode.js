@@ -15,10 +15,10 @@ define( require => {
   const inherit = require( 'PHET_CORE/inherit' );
 
   // constants
-  var NORMAL_COLOR = 'rgb( 61, 179, 79 )';
-  var HIGHLIGHT_COLOR = 'yellow';
-  var STROKE_COLOR = 'black';
-  var LINE_WIDTH = 1;
+  const NORMAL_COLOR = 'rgb( 61, 179, 79 )';
+  const HIGHLIGHT_COLOR = 'yellow';
+  const STROKE_COLOR = 'black';
+  const LINE_WIDTH = 1;
 
   /**
    * @constructor
@@ -29,10 +29,10 @@ define( require => {
    * @param {Tandem} tandem
    */
   function DragHandleArrowNode( pStart, pEnd, isHighlightedProperty, tandem ) {
-    var self = this;
+    const self = this;
 
     // calculate the parameter for head and tail width and height.
-    var length = Math.abs( pStart.distance( pEnd ) );
+    const length = Math.abs( pStart.distance( pEnd ) );
 
     ArrowNode.call( this, pStart.x, pStart.y, pEnd.x, pEnd.y, {
       fill: NORMAL_COLOR,

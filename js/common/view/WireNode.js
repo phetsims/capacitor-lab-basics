@@ -17,9 +17,9 @@ define( require => {
   const Path = require( 'SCENERY/nodes/Path' );
 
   // constants
-  var WIRE_LINE_WIDTH = 2;
-  var WIRE_STROKE = 'rgb( 143, 143, 143 )';
-  var WIRE_FILL = 'rgb( 170, 170, 170 )';
+  const WIRE_LINE_WIDTH = 2;
+  const WIRE_STROKE = 'rgb( 143, 143, 143 )';
+  const WIRE_FILL = 'rgb( 170, 170, 170 )';
 
   /**
    * @constructor
@@ -34,7 +34,7 @@ define( require => {
     this.wire = wire;
 
     // the stroked wire node.
-    var wireNode = new Path( wire.shapeCreator.createWireShape(), {
+    const wireNode = new Path( wire.shapeCreator.createWireShape(), {
       fill: WIRE_FILL,
       lineWidth: WIRE_LINE_WIDTH / 2,
       stroke: WIRE_STROKE

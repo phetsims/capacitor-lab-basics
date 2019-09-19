@@ -29,7 +29,7 @@ define( require => {
    */
   function CapacitanceModel( switchUsedProperty, modelViewTransform, tandem ) {
 
-    var circuitConfig = CircuitConfig.create( {
+    const circuitConfig = CircuitConfig.create( {
       circuitConnections: [ CircuitState.BATTERY_CONNECTED, CircuitState.OPEN_CIRCUIT ]
     } );
 

@@ -71,7 +71,7 @@ define( require => {
     this.shapeCreator = new BoxShapeCreator( config.modelViewTransform );
 
     // Square plates.
-    var plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth );
+    const plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth );
 
     // @public {Property.<Bounds3>}
     this.plateSizeProperty = new Property( plateBounds, {
@@ -109,7 +109,7 @@ define( require => {
     this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty, circuitConnectionProperty ],
       function( capacitance, voltage, circuitConnection ) {
         if ( circuitConnection ) {
-          var charge = capacitance * voltage;
+          let charge = capacitance * voltage;
 
           // Force an underflow to zero below the threshold for stability
           if ( Math.abs( charge ) < CLBConstants.MIN_PLATE_CHARGE ) {
@@ -148,7 +148,7 @@ define( require => {
 
     // link the top and bottom circuit switches together so that they rotate together
     // as the user drags
-    var self = this;
+    const self = this;
 
     // JS handles negative numbers precisely so there will not be an infinite
     // loop here due to mutual recursion.
@@ -228,8 +228,8 @@ define( require => {
       assert && assert( location === CircuitLocation.CAPACITOR_TOP || location === CircuitLocation.CAPACITOR_BOTTOM,
         'Invalid capacitor location: ' + location );
 
-      var shape;
-      var size = this.plateSizeProperty.value;
+      let shape;
+      const size = this.plateSizeProperty.value;
       if ( location === CircuitLocation.CAPACITOR_TOP ) {
         shape = this.shapeCreator.createBoxShape( this.location.x, this.getTopConnectionPoint().y, this.location.z, size.width, size.height, size.depth );
       }
@@ -237,7 +237,7 @@ define( require => {
         shape = this.shapeCreator.createBoxShape( this.location.x, this.location.y + this.plateSeparationProperty.value / 2, this.location.z, size.width, size.height, size.depth );
       }
 
-      var contacts = probe.bounds.intersectsBounds( shape.bounds ) &&
+      let contacts = probe.bounds.intersectsBounds( shape.bounds ) &&
                      probe.shapeIntersection( shape ).getNonoverlappingArea() > 0;
 
       if ( !contacts && location === CircuitLocation.CAPACITOR_TOP ) {
@@ -260,7 +260,7 @@ define( require => {
      * @returns {number} Volts/meter
      */
     getEffectiveEField: function() {
-      var plateCharge = this.plateChargeProperty.value;
+      const plateCharge = this.plateChargeProperty.value;
       if ( Math.abs( plateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
         return 0;
       }
@@ -285,10 +285,10 @@ define( require => {
      * @param {number} dt
      */
     discharge: function( R, dt ) {
-      var C = this.capacitanceProperty.value;
+      const C = this.capacitanceProperty.value;
 
       this.transientTime += dt; // step time since switch was closed
-      var exp = Math.exp( -this.transientTime / ( R * C ) );
+      const exp = Math.exp( -this.transientTime / ( R * C ) );
       this.plateVoltageProperty.value = this.voltageAtSwitchClose * exp;
 
       this.previousCapacitance = C;
@@ -315,7 +315,7 @@ define( require => {
     updateDischargeParameters: function() {
 
       // in the discharge function, C is recalculated every time step, so we only need to adjust Vo.
-      var capacitanceRatio = this.capacitanceProperty.value / this.previousCapacitance;
+      const capacitanceRatio = this.capacitanceProperty.value / this.previousCapacitance;
 
       // update the initial voltage Vo
       this.voltageAtSwitchClose = this.plateVoltageProperty.value / capacitanceRatio;

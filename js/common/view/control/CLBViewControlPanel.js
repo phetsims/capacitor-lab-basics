@@ -25,7 +25,7 @@ define( require => {
   const VerticalCheckboxGroup = require( 'SUN/VerticalCheckboxGroup' );
 
   // constants
-  var CHECK_BOX_FONT = new PhetFont( 16 );
+  const CHECK_BOX_FONT = new PhetFont( 16 );
 
   // strings
   const barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
@@ -49,7 +49,7 @@ define( require => {
       alignGroup:null
     }, options );
 
-    var checkboxItems = [ {
+    const checkboxItems = [ {
       string: plateChargesString,
       property: model.plateChargesVisibleProperty,
       tandem: tandem.createTandem( 'plateChargesCheckbox' )
@@ -67,7 +67,7 @@ define( require => {
       tandem: tandem.createTandem( 'currentCheckbox' )
     } ];
 
-    var viewCheckboxItems = checkboxItems.map( function( item ) {
+    const viewCheckboxItems = checkboxItems.map( function( item ) {
       return {
         node: new Text( item.string, {
           font: CHECK_BOX_FONT,
@@ -79,7 +79,7 @@ define( require => {
       };
     } );
 
-    var currentTypeRadioButtonGroup = new VerticalAquaRadioButtonGroup( model.currentOrientationProperty, [
+    const currentTypeRadioButtonGroup = new VerticalAquaRadioButtonGroup( model.currentOrientationProperty, [
       {
         node: new Text( electronsString, {
           font: CHECK_BOX_FONT,
@@ -102,19 +102,19 @@ define( require => {
       tandem: tandem.createTandem( 'currentTypeRadioButtonGroup' )
     } );
 
-    var verticalCheckboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
+    const verticalCheckboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
       checkboxOptions: {
         // The box is as wide as the largest item is tall
         boxWidth: viewCheckboxItems[ 0 ].node.height
       }
     } );
 
-    var optionsNode = new Node( { children: [ verticalCheckboxGroup, currentTypeRadioButtonGroup ] } );
+    const optionsNode = new Node( { children: [ verticalCheckboxGroup, currentTypeRadioButtonGroup ] } );
 
     currentTypeRadioButtonGroup.leftTop = new Vector2( verticalCheckboxGroup.left + 25, verticalCheckboxGroup.bottom + 10 );
 
     // {Node|AlignBox}
-    var content = options.alignGroup ? new AlignBox( optionsNode, {
+    const content = options.alignGroup ? new AlignBox( optionsNode, {
       group: options.alignGroup,
       xAlign: 'center'
     } ) : optionsNode;

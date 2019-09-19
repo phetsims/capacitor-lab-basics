@@ -43,17 +43,17 @@ define( require => {
      * @returns {Shape}
      */
     createWireShape: function() {
-      var self = this;
+      const self = this;
 
       // stroke styles for the wire shapes.
-      var strokeStyles = new LineStyles( {
+      const strokeStyles = new LineStyles( {
         lineWidth: 7,
         lineCap: 'round',
         lineJoin: 'round'
       } );
 
-      var shapes = this.wire.segments.map( function( segment ) {
-        var shape = Shape.lineSegment( segment.startPointProperty.value.toVector2(), segment.endPointProperty.value.toVector2() );
+      const shapes = this.wire.segments.map( function( segment ) {
+        const shape = Shape.lineSegment( segment.startPointProperty.value.toVector2(), segment.endPointProperty.value.toVector2() );
         return self.modelViewTransform.modelToViewShape( shape ).getStrokedShape( strokeStyles );
       } );
       return Shape.union( shapes );

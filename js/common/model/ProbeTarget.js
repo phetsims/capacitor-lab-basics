@@ -11,7 +11,7 @@ define( require => {
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
 
-  var ProbeTarget = {
+  const ProbeTarget = {
     NONE: 'NONE',
 
     OTHER_PROBE: 'OTHER_PROBE',

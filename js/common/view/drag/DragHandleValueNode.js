@@ -23,12 +23,12 @@ define( require => {
   const Vector2 = require( 'DOT/Vector2' );
 
   // constants
-  var LABEL_FONT = new PhetFont( { weight: 'bold', size: 12 } );
-  var VALUE_FONT = new PhetFont( { size: 12 } );
+  const LABEL_FONT = new PhetFont( { weight: 'bold', size: 12 } );
+  const VALUE_FONT = new PhetFont( { size: 12 } );
 
   // max width of text for the label and value, determined empirically
-  var LABEL_MAX_WIDTH = 100;
-  var VALUE_MAX_WIDTH = 80;
+  const LABEL_MAX_WIDTH = 100;
+  const VALUE_MAX_WIDTH = 80;
 
   /**
    * @constructor
@@ -47,7 +47,7 @@ define( require => {
     // @private {string}
     this.unitsPattern = unitsPattern;
 
-    var labelNode = new Text( label, { font: LABEL_FONT, maxWidth: LABEL_MAX_WIDTH } );
+    const labelNode = new Text( label, { font: LABEL_FONT, maxWidth: LABEL_MAX_WIDTH } );
     this.addChild( labelNode );
 
     // @private
@@ -78,7 +78,7 @@ define( require => {
      * @param {number} decimalPlaces
      */
     setValue: function( value, decimalPlaces ) {
-      var formattedValue = Util.toFixed( value, decimalPlaces /* one decimal place */ );
+      const formattedValue = Util.toFixed( value, decimalPlaces /* one decimal place */ );
       this.valueNode.setText( StringUtils.fillIn( this.unitsPattern, {
         value: formattedValue
       } ) );

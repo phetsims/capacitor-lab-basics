@@ -46,14 +46,14 @@ define( require => {
       alignGroup: null
     }, options );
 
-    var self = this;
+    const self = this;
 
     // @private {VoltmeterNode}
     this.voltmeterNode = voltmeterNode;
 
     // create the icon for the toolbox.
-    var voltmeterScale = options.includeTimer === true ? 0.6 : 1;
-    var voltmeterIconNode = VoltmeterNode.createVoltmeterIconNode( voltmeterScale, tandem.createTandem( 'voltmeterIcon' ) );
+    const voltmeterScale = options.includeTimer === true ? 0.6 : 1;
+    const voltmeterIconNode = VoltmeterNode.createVoltmeterIconNode( voltmeterScale, tandem.createTandem( 'voltmeterIcon' ) );
     voltmeterIconNode.cursor = 'pointer';
 
     voltmeterIconNode.addInputListener( SimpleDragHandler.createForwardingListener( function( event ) {
@@ -61,12 +61,12 @@ define( require => {
       voltmeterVisibleProperty.set( true );
 
       // initial position of the pointer in the screenView coordinates
-      var initialPosition = self.globalToParentPoint( event.pointer.point );
+      const initialPosition = self.globalToParentPoint( event.pointer.point );
 
       // make sure that the center of the voltmeter body is offset by the body dimensions
-      var offsetPosition = new Vector2( -voltmeterNode.bodyNode.width / 2, -voltmeterNode.bodyNode.height / 2 );
+      const offsetPosition = new Vector2( -voltmeterNode.bodyNode.width / 2, -voltmeterNode.bodyNode.height / 2 );
 
-      var voltmeterBodyPosition = initialPosition.plus( offsetPosition );
+      const voltmeterBodyPosition = initialPosition.plus( offsetPosition );
       voltmeterNode.bodyNode.bodyLocationProperty.set( modelViewTransform.viewToModelPosition( voltmeterBodyPosition ) );
 
       // start drag from the body node's movable drag handler
@@ -75,7 +75,7 @@ define( require => {
     } ) );
 
     // Create timer to be turned into icon
-    var timer = new TimerNode( new NumberProperty( 0 ), new BooleanProperty( false ), {
+    const timer = new TimerNode( new NumberProperty( 0 ), new BooleanProperty( false ), {
       scale: .60,
       tandem: Tandem.optOut
     } );
@@ -83,7 +83,7 @@ define( require => {
     const timeNodeIconTandem = tandem.createTandem( 'timerIcon' );
 
     // {Node} Create timer icon. Visible option is used only for reset() in ToolboxPanel.js
-    var timerIconNode = timer.rasterized( {
+    const timerIconNode = timer.rasterized( {
       cursor: 'pointer',
       resolution: 5,
       pickable: true,
@@ -98,7 +98,7 @@ define( require => {
 
       // Now determine the initial position where this element should move to after it's created, which corresponds
       // to the location of the mouse or touch event.
-      var initialPosition = timerNode.globalToParentPoint( event.pointer.point )
+      const initialPosition = timerNode.globalToParentPoint( event.pointer.point )
         .minus( new Vector2( timerNode.width / 2, timerNode.height * 0.4 ) );
 
       timerNode.positionProperty.set( initialPosition );
@@ -123,7 +123,7 @@ define( require => {
       phetioEventType: EventType.USER
     } );
 
-    var toolbox = new HBox( { spacing: 13, align: 'center', xMargin: 0 } );
+    const toolbox = new HBox( { spacing: 13, align: 'center', xMargin: 0 } );
     if ( options.includeTimer ) {
       toolbox.addChild( voltmeterIconNode );
       toolbox.addChild( timerIconNode );
@@ -133,7 +133,7 @@ define( require => {
     }
 
     // {AlignBox|HBox}
-    var content = options.alignGroup ? new AlignBox( toolbox, {
+    const content = options.alignGroup ? new AlignBox( toolbox, {
       group: options.alignGroup,
       xAlign: 'center'
     } ) : toolbox;

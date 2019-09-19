@@ -26,7 +26,7 @@ define( require => {
    * @param {CLBModel} model
    */
   function DebugLayer( model ) {
-    var self = this;
+    const self = this;
 
     Node.call( this );
 
@@ -40,7 +40,7 @@ define( require => {
     // Don't do anything else unless debugging is enabled
     if ( !CLBQueryParameters.showDebugAreas ) { return; }
 
-    var circuitLocations = [
+    const circuitLocations = [
       CircuitLocation.BATTERY_TOP,
       CircuitLocation.BATTERY_BOTTOM,
       CircuitLocation.CAPACITOR_TOP,
@@ -52,10 +52,10 @@ define( require => {
     }
 
     circuitLocations.forEach( function( circuitLocation ) {
-      var wires = model.circuit.wireGroup[ circuitLocation ];
+      const wires = model.circuit.wireGroup[ circuitLocation ];
 
       wires.forEach( function( wire ) {
-        var wirePath = new Path( null, {
+        const wirePath = new Path( null, {
           stroke: 'blue'
         } );
         self.addChild( wirePath );
@@ -67,9 +67,9 @@ define( require => {
     } );
 
     // capacitor top
-    var capacitorContainer = new Node();
+    const capacitorContainer = new Node();
     this.addChild( capacitorContainer );
-    var capacitor = model.circuit.capacitor;
+    const capacitor = model.circuit.capacitor;
     Property.multilink( [ capacitor.plateSizeProperty, capacitor.plateSeparationProperty ], function( size, separation ) {
       capacitorContainer.children = [
         new Path( capacitor.shapeCreator.createBoxShape( capacitor.location.x, capacitor.getTopConnectionPoint().y, capacitor.location.z, size.width, size.height, size.depth ), {
@@ -81,43 +81,43 @@ define( require => {
       ];
     } );
 
-    var topSwitchContainer = new Node();
+    const topSwitchContainer = new Node();
     this.addChild( topSwitchContainer );
     capacitor.topCircuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
       topSwitchContainer.removeAllChildren();
 
       if ( circuitConnection !== CircuitState.SWITCH_IN_TRANSIT && circuitConnection !== CircuitState.OPEN_CIRCUIT ) {
-        var endPoint = capacitor.topCircuitSwitch.switchSegment.endPointProperty.value;
-        var hingePoint = capacitor.topCircuitSwitch.switchSegment.hingePoint;
-        var delta = endPoint.minus( hingePoint ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
+        const endPoint = capacitor.topCircuitSwitch.switchSegment.endPointProperty.value;
+        const hingePoint = capacitor.topCircuitSwitch.switchSegment.hingePoint;
+        const delta = endPoint.minus( hingePoint ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
 
-        var point = model.modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
+        const point = model.modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
         topSwitchContainer.addChild( new Path( Shape.circle( point.x, point.y, CLBConstants.CONNECTION_POINT_RADIUS ), {
           stroke: 'blue'
         } ) );
       }
     } );
 
-    var bottomSwitchContainer = new Node();
+    const bottomSwitchContainer = new Node();
     this.addChild( bottomSwitchContainer );
     capacitor.bottomCircuitSwitch.circuitConnectionProperty.link( function( circuitConnection ) {
       bottomSwitchContainer.removeAllChildren();
 
       if ( circuitConnection !== CircuitState.SWITCH_IN_TRANSIT && circuitConnection !== CircuitState.OPEN_CIRCUIT ) {
-        var endPoint = capacitor.bottomCircuitSwitch.switchSegment.endPointProperty.value;
-        var hingePoint = capacitor.bottomCircuitSwitch.switchSegment.hingePoint;
-        var delta = endPoint.minus( hingePoint ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
+        const endPoint = capacitor.bottomCircuitSwitch.switchSegment.endPointProperty.value;
+        const hingePoint = capacitor.bottomCircuitSwitch.switchSegment.hingePoint;
+        const delta = endPoint.minus( hingePoint ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
 
-        var point = model.modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
+        const point = model.modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
         bottomSwitchContainer.addChild( new Path( Shape.circle( point.x, point.y, CLBConstants.CONNECTION_POINT_RADIUS ), {
           stroke: 'blue'
         } ) );
       }
     } );
 
-    var terminalContainer = new Node();
+    const terminalContainer = new Node();
     this.addChild( terminalContainer );
-    var battery = model.circuit.battery;
+    const battery = model.circuit.battery;
     battery.polarityProperty.link( function( polarity ) {
       terminalContainer.children = [
         new Path( polarity === CLBConstants.POLARITY.POSITIVE ? battery.shapeCreator.createPositiveTerminalShape() : battery.shapeCreator.createNegativeTerminalShape(), {
@@ -135,10 +135,10 @@ define( require => {
       } ) );
     }
 
-    var positiveVoltmeterNode = new Node();
+    const positiveVoltmeterNode = new Node();
     this.addChild( positiveVoltmeterNode );
 
-    var negativeVoltmeterNode = new Node();
+    const negativeVoltmeterNode = new Node();
     this.addChild( negativeVoltmeterNode );
 
     model.voltmeter.positiveProbeLocationProperty.link( function() {

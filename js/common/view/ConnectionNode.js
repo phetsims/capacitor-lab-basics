@@ -20,7 +20,7 @@ define( require => {
   const Property = require( 'AXON/Property' );
   const Shape = require( 'KITE/Shape' );
 
-  var BOUNDING_ANGLE = Math.PI / 8;
+  const BOUNDING_ANGLE = Math.PI / 8;
 
   /**
    * @constructor
@@ -34,7 +34,7 @@ define( require => {
    */
   function ConnectionNode( connection, circuitSwitch, modelViewTransform, tandem, dragHandler, userControlledProperty ) {
 
-    var self = this;
+    const self = this;
 
     // @public {Circle}
     this.highlightNode = new Circle( {
@@ -56,22 +56,22 @@ define( require => {
       translation: modelViewTransform.modelToViewPosition( connection.location )
     } );
 
-    var pointNode = new Circle( {
+    const pointNode = new Circle( {
       radius: CLBConstants.CONNECTION_POINT_RADIUS,
       fill: CLBConstants.DISCONNECTED_POINT_COLOR,
       translation: modelViewTransform.modelToViewPosition( connection.location )
     } );
 
-    var hingePoint = circuitSwitch.hingePoint.toVector2();
-    var connectionAngle = connection.location.toVector2().minus( hingePoint ).angle;
-    var triangleShape = new Shape().moveToPoint( hingePoint );
+    const hingePoint = circuitSwitch.hingePoint.toVector2();
+    const connectionAngle = connection.location.toVector2().minus( hingePoint ).angle;
+    let triangleShape = new Shape().moveToPoint( hingePoint );
     triangleShape.arcPoint( hingePoint, CLBConstants.SWITCH_WIRE_LENGTH * 1.4, connectionAngle - BOUNDING_ANGLE, connectionAngle + BOUNDING_ANGLE, false );
     triangleShape.close();
 
     // transform the shape
     triangleShape = modelViewTransform.modelToViewShape( triangleShape );
 
-    var connectionType = connection.type; // for readability
+    const connectionType = connection.type; // for readability
 
     Node.call( this, {
       cursor: 'pointer',
@@ -82,7 +82,7 @@ define( require => {
       ]
     } );
 
-    var pressListener = new PressListener( {
+    const pressListener = new PressListener( {
       tandem: tandem.createTandem( 'pressListener' ),
       phetioDocumentation: 'Connects and disconnects the circuit',
       attach: false,

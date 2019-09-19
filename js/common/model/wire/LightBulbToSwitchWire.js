@@ -26,20 +26,20 @@ define( require => {
    * @param {CircuitSwitch} circuitSwitch
    */
   function LightBulbToSwitchWire( connectionPoint, config, lightBulb, circuitSwitch ) {
-    var segments = [];
+    const segments = [];
 
     // Get y coordinate of the horizontal wire
-    var horizontalY = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED ).y;
+    const horizontalY = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED ).y;
 
     // Get x coordinate of the connection point
-    var isTop = connectionPoint === CircuitLocation.LIGHT_BULB_TOP;
-    var connectionPointX = isTop ? lightBulb.getTopConnectionPoint().x : lightBulb.getBottomConnectionPoint().x;
+    const isTop = connectionPoint === CircuitLocation.LIGHT_BULB_TOP;
+    const connectionPointX = isTop ? lightBulb.getTopConnectionPoint().x : lightBulb.getBottomConnectionPoint().x;
 
     // This is the (x,y) position of the upper right corner
-    var rightCorner = new Vector3( connectionPointX, horizontalY, 0 );
+    const rightCorner = new Vector3( connectionPointX, horizontalY, 0 );
 
     // add the vertical segment.
-    var verticalSegment;
+    let verticalSegment;
     if ( isTop ) {
       verticalSegment = WireSegment.createComponentTopWireSegment(
         lightBulb,
@@ -55,11 +55,11 @@ define( require => {
     segments.push( verticalSegment );
 
     // connect light bulb to switch connection point.
-    var switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.LIGHT_BULB_CONNECTED );
+    const switchConnectionPoint = circuitSwitch.getConnectionPoint( CircuitState.LIGHT_BULB_CONNECTED );
 
-    var separationOffset = new Vector3( 0.0006, 0, 0 );
+    const separationOffset = new Vector3( 0.0006, 0, 0 );
 
-    var wireSegment = new WireSegment(
+    const wireSegment = new WireSegment(
       rightCorner,
       switchConnectionPoint.plus( separationOffset )
     );

@@ -19,7 +19,7 @@ define( require => {
   const Vector3 = require( 'DOT/Vector3' );
 
   // constants
-  var BULB_BASE_SIZE = new Dimension2( 0.0050, 0.0035 );
+  const BULB_BASE_SIZE = new Dimension2( 0.0050, 0.0035 );
 
   /**
    * @constructor
@@ -51,7 +51,7 @@ define( require => {
      * @returns {boolean}
      */
     intersectsBulbTopBase: function( shape ) {
-      var bulbBaseShape = this.shapeCreator.createTopBaseShape();
+      const bulbBaseShape = this.shapeCreator.createTopBaseShape();
       return shape.bounds.intersectsBounds( bulbBaseShape.bounds ) &&
              shape.shapeIntersection( bulbBaseShape ).getNonoverlappingArea() > 0;
     },
@@ -64,7 +64,7 @@ define( require => {
      * @returns {boolean}
      */
     intersectsBulbBottomBase: function( shape ) {
-      var bulbBaseShape = this.shapeCreator.createBottomBaseShape();
+      const bulbBaseShape = this.shapeCreator.createBottomBaseShape();
       return shape.bounds.intersectsBounds( bulbBaseShape.bounds ) &&
              shape.shapeIntersection( bulbBaseShape ).getNonoverlappingArea() > 0;
     },
