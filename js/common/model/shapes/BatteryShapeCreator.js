@@ -1,4 +1,4 @@
-// Copyright 2015-2018, University of Colorado Boulder
+// Copyright 2015-2019, University of Colorado Boulder
 
 /**
  * Creates 2D projections of shapes that are related to the 3D battery model. Shapes are in the global view coordinate
