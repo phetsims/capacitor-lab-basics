@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.6.17 Mon Sep 23 2019 14:52:15 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# capacitor-lab-basics 1.6.18-rc.1 Tue Sep 24 2019 10:58:09 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "ae134aebb1965451b553e54bd79fb06959a79c3d",
+    "sha": "af67d2d20792eead5e909338876a2f7464b1cf79",
     "branch": "1.6"
   },
   "chipper": {
@@ -66,7 +66,7 @@
   },
   "scenery": {
     "sha": "4ed70989f6500072febbbbc90750728f0e9520e0",
-    "branch": "capacitor-lab-basics-1.6"
+    "branch": "HEAD"
   },
   "scenery-phet": {
     "sha": "60c66cf563a5dc617141d311e810d499c14e37f0",
