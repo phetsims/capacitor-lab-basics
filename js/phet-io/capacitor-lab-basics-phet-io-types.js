@@ -764,7 +764,7 @@ window.phet.phetio.phetioTypes = assert &&
       "events": [],
       "methodOrder": [],
       "methods": {},
-      "supertype": "Object",
+      "supertype": null,
       "typeName": "ObjectIO"
     },
     "PhetButtonIO": {
