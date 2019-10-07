@@ -12,10 +12,10 @@ define( require => {
 
   // modules
   const BarMeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/BarMeter' );
+  const CapacitorConstants = require( 'SCENERY_PHET/capacitor/CapacitorConstants' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CircuitConfig = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitConfig' );
   const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   const CLBModel = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModel' );
   const CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
   const inherit = require( 'PHET_CORE/inherit' );
@@ -24,8 +24,8 @@ define( require => {
   // constants
   const CAPACITOR_X_SPACING = 0.0180; // meters
   const CAPACITOR_Y_SPACING = 0.0010; // meters
-  const PLATE_WIDTH = CLBConstants.PLATE_WIDTH_RANGE.defaultValue;
-  const PLATE_SEPARATION = CLBConstants.PLATE_SEPARATION_RANGE.defaultValue;
+  const PLATE_WIDTH = CapacitorConstants.PLATE_WIDTH_RANGE.defaultValue;
+  const PLATE_SEPARATION = CapacitorConstants.PLATE_SEPARATION_RANGE.defaultValue;
 
   /**
    * @constructor

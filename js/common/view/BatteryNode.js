@@ -13,6 +13,7 @@ define( require => {
 
   // modules
   const BatteryGraphicNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryGraphicNode' );
+  const CapacitorConstants = require( 'SCENERY_PHET/capacitor/CapacitorConstants' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   const Dimension2 = require( 'DOT/Dimension2' );
@@ -100,7 +101,7 @@ define( require => {
 
     // when battery polarity changes, change the battery image
     battery.polarityProperty.link( function( polarity ) {
-      if ( polarity === CLBConstants.POLARITY.POSITIVE ) {
+      if ( polarity === CapacitorConstants.POLARITY.POSITIVE ) {
         graphicNode.children = [ BatteryGraphicNode.POSITIVE_UP ];
         minimumTickLabel.fill = 'white';
         maximumTickLabel.fill = 'black';

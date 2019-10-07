@@ -12,7 +12,7 @@ define( require => {
 
   // modules
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  const CLBModelViewTransform3D = require( 'CAPACITOR_LAB_BASICS/common/model/CLBModelViewTransform3D' );
+  const CLBModelViewTransform3D = require( 'SCENERY_PHET/capacitor/CLBModelViewTransform3D' );
   const inherit = require( 'PHET_CORE/inherit' );
   const Shape = require( 'KITE/Shape' );
 

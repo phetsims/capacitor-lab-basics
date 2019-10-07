@@ -12,6 +12,7 @@ define( require => {
 
   // modules
   const BatteryShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BatteryShapeCreator' );
+  const CapacitorConstants = require( 'SCENERY_PHET/capacitor/CapacitorConstants' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   const Dimension2 = require( 'DOT/Dimension2' );
@@ -63,8 +64,8 @@ define( require => {
 
     // Value type: enumeration (string)
     // @public {Property.<string>} - 'POSITIVE' or 'NEGATIVE'
-    this.polarityProperty = new Property( CLBConstants.POLARITY.POSITIVE, {
-      validValues: CLBConstants.POLARITY.VALUES,
+    this.polarityProperty = new Property( CapacitorConstants.POLARITY.POSITIVE, {
+      validValues: CapacitorConstants.POLARITY.VALUES,
       tandem: tandem.createTandem( 'polarityProperty' ),
       phetioType: PropertyIO( StringIO )
     } );
@@ -103,7 +104,7 @@ define( require => {
      * @returns {string}
      */
     getPolarity: function( voltage ) {
-      return ( voltage >= 0 ) ? CLBConstants.POLARITY.POSITIVE : CLBConstants.POLARITY.NEGATIVE;
+      return ( voltage >= 0 ) ? CapacitorConstants.POLARITY.POSITIVE : CapacitorConstants.POLARITY.NEGATIVE;
     },
 
     /**
@@ -117,7 +118,7 @@ define( require => {
      */
     contacts: function( probe ) {
       let shape;
-      if ( this.polarityProperty.value === CLBConstants.POLARITY.POSITIVE ) {
+      if ( this.polarityProperty.value === CapacitorConstants.POLARITY.POSITIVE ) {
         shape = this.positiveTerminalShape;
       }
       else {
@@ -146,7 +147,7 @@ define( require => {
      * @returns {number}
      */
     getTopTerminalYOffset: function() {
-      if ( this.polarityProperty.value === CLBConstants.POLARITY.POSITIVE ) {
+      if ( this.polarityProperty.value === CapacitorConstants.POLARITY.POSITIVE ) {
         return POSITIVE_TERMINAL_Y_OFFSET;
       }
       else {

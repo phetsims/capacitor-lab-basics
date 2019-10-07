@@ -9,6 +9,7 @@ define( require => {
   'use strict';
 
   // modules
+  const CapacitorConstants = require( 'SCENERY_PHET/capacitor/CapacitorConstants' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
@@ -120,7 +121,7 @@ define( require => {
     const battery = model.circuit.battery;
     battery.polarityProperty.link( function( polarity ) {
       terminalContainer.children = [
-        new Path( polarity === CLBConstants.POLARITY.POSITIVE ? battery.shapeCreator.createPositiveTerminalShape() : battery.shapeCreator.createNegativeTerminalShape(), {
+        new Path( polarity === CapacitorConstants.POLARITY.POSITIVE ? battery.shapeCreator.createPositiveTerminalShape() : battery.shapeCreator.createNegativeTerminalShape(), {
           stroke: 'blue'
         } )
       ];

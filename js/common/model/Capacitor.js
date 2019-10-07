@@ -24,8 +24,9 @@ define( require => {
   // modules
   const Bounds3 = require( 'DOT/Bounds3' );
   const Bounds3IO = require( 'DOT/Bounds3IO' );
-  const BoxShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BoxShapeCreator' );
+  const BoxShapeCreator = require( 'SCENERY_PHET/capacitor/BoxShapeCreator' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+  const CapacitorConstants = require( 'SCENERY_PHET/capacitor/CapacitorConstants' );
   const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   const CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
@@ -50,8 +51,8 @@ define( require => {
 
     // options that populate the capacitor with various geometric properties
     options = _.extend( {
-      plateWidth: CLBConstants.PLATE_WIDTH_RANGE.defaultValue,
-      plateSeparation: CLBConstants.PLATE_SEPARATION_RANGE.defaultValue
+      plateWidth: CapacitorConstants.PLATE_WIDTH_RANGE.defaultValue,
+      plateSeparation: CapacitorConstants.PLATE_SEPARATION_RANGE.defaultValue
     }, options );
 
     // @public {number}
@@ -71,7 +72,7 @@ define( require => {
     this.shapeCreator = new BoxShapeCreator( config.modelViewTransform );
 
     // Square plates.
-    const plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CLBConstants.PLATE_HEIGHT, options.plateWidth );
+    const plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CapacitorConstants.PLATE_HEIGHT, options.plateWidth );
 
     // @public {Property.<Bounds3>}
     this.plateSizeProperty = new Property( plateBounds, {
@@ -84,7 +85,7 @@ define( require => {
     this.plateSeparationProperty = new NumberProperty( options.plateSeparation, {
       tandem: tandem.createTandem( 'plateSeparationProperty' ),
       units: 'meters',
-      range: CLBConstants.PLATE_SEPARATION_RANGE
+      range: CapacitorConstants.PLATE_SEPARATION_RANGE
     } );
 
     // @public {Property.<number>} - zero until it's connected into a circuit

@@ -13,6 +13,7 @@ define( require => {
 
   // modules
   const BooleanProperty = require( 'AXON/BooleanProperty' );
+  const CapacitorConstants = require( 'SCENERY_PHET/capacitor/CapacitorConstants' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   const Color = require( 'SCENERY/util/Color' );
@@ -149,10 +150,10 @@ define( require => {
      */
     getMaxPlateCharge: function() {
 
-      const maxArea = CLBConstants.PLATE_WIDTH_RANGE.max * CLBConstants.PLATE_WIDTH_RANGE.max;
+      const maxArea = CapacitorConstants.PLATE_WIDTH_RANGE.max * CapacitorConstants.PLATE_WIDTH_RANGE.max;
       const maxVoltage = CLBConstants.BATTERY_VOLTAGE_RANGE.max;
 
-      return CLBConstants.EPSILON_0 * maxArea * maxVoltage / CLBConstants.PLATE_SEPARATION_RANGE.min;
+      return CLBConstants.EPSILON_0 * maxArea * maxVoltage / CapacitorConstants.PLATE_SEPARATION_RANGE.min;
     },
 
     /**
@@ -168,10 +169,10 @@ define( require => {
      */
     getMaxEffectiveEField: function() {
 
-      const maxArea = CLBConstants.PLATE_WIDTH_RANGE.max * CLBConstants.PLATE_WIDTH_RANGE.max;
-      const minArea = CLBConstants.PLATE_WIDTH_RANGE.min * CLBConstants.PLATE_WIDTH_RANGE.min;
+      const maxArea = CapacitorConstants.PLATE_WIDTH_RANGE.max * CapacitorConstants.PLATE_WIDTH_RANGE.max;
+      const minArea = CapacitorConstants.PLATE_WIDTH_RANGE.min * CapacitorConstants.PLATE_WIDTH_RANGE.min;
 
-      return maxArea / minArea * CLBConstants.BATTERY_VOLTAGE_RANGE.max / CLBConstants.PLATE_SEPARATION_RANGE.min;
+      return maxArea / minArea * CLBConstants.BATTERY_VOLTAGE_RANGE.max / CapacitorConstants.PLATE_SEPARATION_RANGE.min;
     },
 
     /**

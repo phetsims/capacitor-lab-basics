@@ -12,8 +12,9 @@ define( require => {
   // modules
   const BatteryNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryNode' );
   const BooleanProperty = require( 'AXON/BooleanProperty' );
+  const CapacitorConstants = require( 'SCENERY_PHET/capacitor/CapacitorConstants' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  const CapacitorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CapacitorNode' );
+  const CapacitorNode = require( 'SCENERY_PHET/capacitor/CapacitorNode' );
   const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   const CurrentIndicatorNode = require( 'CAPACITOR_LAB_BASICS/common/view/CurrentIndicatorNode' );
@@ -106,9 +107,9 @@ define( require => {
 
     // drag handles
     const plateSeparationDragHandleNode = new PlateSeparationDragHandleNode( this.circuit.capacitor, model.modelViewTransform,
-      CLBConstants.PLATE_SEPARATION_RANGE, tandem.createTandem( 'plateSeparationDragHandleNode' ) );
+      CapacitorConstants.PLATE_SEPARATION_RANGE, tandem.createTandem( 'plateSeparationDragHandleNode' ) );
     const plateAreaDragHandleNode = new PlateAreaDragHandleNode( this.circuit.capacitor, model.modelViewTransform,
-      CLBConstants.PLATE_WIDTH_RANGE, tandem.createTandem( 'plateAreaDragHandleNode' ) );
+      CapacitorConstants.PLATE_WIDTH_RANGE, tandem.createTandem( 'plateAreaDragHandleNode' ) );
 
     // current indicators
     this.batteryTopCurrentIndicatorNode = new CurrentIndicatorNode(

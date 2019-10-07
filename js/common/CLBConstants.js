@@ -12,14 +12,11 @@ define( require => {
 
   // modules
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  const Dimension2 = require( 'DOT/Dimension2' );
   const PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   const Range = require( 'DOT/Range' );
   const RangeWithValue = require( 'DOT/RangeWithValue' );
   const Vector3 = require( 'DOT/Vector3' );
 
-  const NEGATIVE = 'NEGATIVE';
-  const POSITIVE = 'POSITIVE';
   const CLBConstants = {
 
     //----------------------------------------------------------------------------
@@ -35,17 +32,7 @@ define( require => {
     BATTERY_VOLTAGE_RANGE: new RangeWithValue( -1.5, 1.5, 0 ), // Volts
     BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD: 0.15, // Volts
 
-    // TODO: Convert to enum
-    POLARITY: {
-      POSITIVE: POSITIVE,
-      NEGATIVE: NEGATIVE,
-      VALUES: [ POSITIVE, NEGATIVE ]
-    },
-
     // capacitor
-    PLATE_WIDTH_RANGE: new RangeWithValue( 0.01, 0.02, Math.sqrt( 200 / 1000 / 1000 ) ), // meters, with default value at 200 mm^2
-    PLATE_HEIGHT: 0.0005, // meters
-    PLATE_SEPARATION_RANGE: new RangeWithValue( 0.002, 0.01, 0.006 ), // meters
     CAPACITANCE_RANGE: new Range( 1E-13, 3E-13 ), // Farads
 
     LIGHT_BULB_X_SPACING: 0.023, // meters
@@ -71,11 +58,6 @@ define( require => {
     DISCONNECTED_POINT_STROKE: PhetColorScheme.RED_COLORBLIND,
     CONNECTION_POINT_HIGHLIGHTED: 'yellow',
 
-    // model-view transform.  Note explicit conversion to radians
-    MVT_SCALE: 12000, // scale factor when going from model to view
-    MVT_YAW: -45 * Math.PI / 180, // rotation about the vertical axis, right-hand rule determines sign.
-    MVT_PITCH: 30 * Math.PI / 180, // rotation about the horizontal axis, right-hand rule determines sign
-
     DRAG_HANDLE_ARROW_LENGTH: 45, // pixels
 
     // Model values at which the bar meters have their maximum length in the view.
@@ -87,8 +69,6 @@ define( require => {
     CONNECTION_POINT_RADIUS: 8, // px - dashed circles at switch contacts
 
     // plate charges
-    NUMBER_OF_PLATE_CHARGES: new Range( 1, 625 ),
-    NEGATIVE_CHARGE_SIZE: new Dimension2( 7, 2 ),
     ELECTRON_CHARGE: 1.60218E-19,
     MIN_PLATE_CHARGE: 0.01E-12, // absolute minimum plate charge in coulombs
 

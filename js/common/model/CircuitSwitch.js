@@ -12,6 +12,7 @@ define( require => {
   'use strict';
 
   // modules
+  const CapacitorConstants = require( 'SCENERY_PHET/capacitor/CapacitorConstants' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
@@ -126,7 +127,7 @@ define( require => {
       const x = CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing;
       const z = CLBConstants.BATTERY_LOCATION.z;
 
-      const yOffset = CLBConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
+      const yOffset = CapacitorConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
       let y = CLBConstants.BATTERY_LOCATION.y;
 
       if ( positionLabel === 'top' ) {
