@@ -25,7 +25,7 @@ define( require => {
   const VerticalCheckboxGroup = require( 'SUN/VerticalCheckboxGroup' );
 
   // constants
-  const CHECK_BOX_FONT = new PhetFont( 16 );
+  const CHECKBOX_FONT = new PhetFont( 16 );
 
   // strings
   const barGraphsString = require( 'string!CAPACITOR_LAB_BASICS/barGraphs' );
@@ -70,7 +70,7 @@ define( require => {
     const viewCheckboxItems = checkboxItems.map( function( item ) {
       return {
         node: new Text( item.string, {
-          font: CHECK_BOX_FONT,
+          font: CHECKBOX_FONT,
           maxWidth: options.maxTextWidth
         } ),
         property: item.property,
@@ -82,7 +82,7 @@ define( require => {
     const currentTypeRadioButtonGroup = new VerticalAquaRadioButtonGroup( model.currentOrientationProperty, [
       {
         node: new Text( electronsString, {
-          font: CHECK_BOX_FONT,
+          font: CHECKBOX_FONT,
           maxWidth: options.maxTextWidth
         } ),
         value: 0,
@@ -90,7 +90,7 @@ define( require => {
       },
       {
         node: new Text( conventionalString, {
-          font: CHECK_BOX_FONT,
+          font: CHECKBOX_FONT,
           maxWidth: options.maxTextWidth
         } ),
         value: Math.PI,
