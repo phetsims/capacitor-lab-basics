@@ -31,7 +31,7 @@ define( require => {
    * @constructor
    *
    * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    * @param {Tandem} tandem
    */
   function CLBLightBulbModel( switchUsedProperty, modelViewTransform, tandem ) {

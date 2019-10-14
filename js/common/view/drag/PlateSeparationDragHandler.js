@@ -24,7 +24,7 @@ define( require => {
    * @constructor
    *
    * @param {Capacitor} capacitor
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    * @param {Range} valueRange
    * @param {Tandem} tandem
    */

@@ -49,7 +49,7 @@ define( require => {
    *
    * @param {Vector3} location
    * @param {number} voltage
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    * @param {Tandem} tandem
    */
   function Battery( location, voltage, modelViewTransform, tandem ) {

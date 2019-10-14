@@ -33,7 +33,7 @@ define( require => {
 
     ScreenView.call( this, { tandem: tandem } );
 
-    // @private {CLBModelViewTransform3D}
+    // @private {YawPitchModelViewTransform3}
     this.modelViewTransform = model.modelViewTransform;
 
     // @private {CLBModel}

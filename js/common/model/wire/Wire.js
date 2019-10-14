@@ -21,7 +21,7 @@ define( require => {
   const WireShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/WireShapeCreator' );
 
   /**
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    * @param {WireSegment[]} segments
    * @param {CircuitLocation} connectionPoint
    *

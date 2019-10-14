@@ -27,7 +27,7 @@ define( require => {
    *
    * @param {Connection} connection
    * @param {CircuitSwitch} circuitSwitch
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    * @param {Tandem} tandem
    * @param {CircuitSwitchDragHandler} dragHandler
    * @param {Property.<boolean>} userControlledProperty

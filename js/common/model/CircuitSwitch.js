@@ -53,7 +53,7 @@ define( require => {
     // @public {Vector3}
     this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
 
-    // @private {CLBModelViewTransform3D}
+    // @private {YawPitchModelViewTransform3}
     this.modelViewTransform = config.modelViewTransform;
 
     // @public {Property.<CircuitState>}

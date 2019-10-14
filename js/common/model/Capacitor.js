@@ -59,7 +59,7 @@ define( require => {
     this.transientTime = 0; // model time updated when the switch is closed and while the capacitor is discharging
     this.voltageAtSwitchClose = 0; // voltage of the plates when the bulb switch is initially closed
 
-    // @public {CLBModelViewTransform3D}
+    // @public {YawPitchModelViewTransform3}
     this.modelViewTransform = config.modelViewTransform;
 
     // @public {Vector3}

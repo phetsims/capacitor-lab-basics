@@ -26,14 +26,14 @@ define( require => {
    * @constructor
    *
    * @param {Voltmeter} voltmeter
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    */
   function VoltmeterShapeCreator( voltmeter, modelViewTransform ) {
 
     // @private {Voltmeter}
     this.voltmeter = voltmeter;
 
-    // @private {CLBModelViewTransform3D}
+    // @private {YawPitchModelViewTransform3}
     this.modelViewTransform = modelViewTransform;
   }
 

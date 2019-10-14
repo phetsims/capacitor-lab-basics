@@ -42,7 +42,7 @@ define( require => {
    * @constructor
    *
    * @param {Capacitor} capacitor
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    * @param {Range} valueRange
    * @param {Tandem} tandem
    */
@@ -54,7 +54,7 @@ define( require => {
     // @private {Capacitor}
     this.capacitor = capacitor;
 
-    // @private {CLBModelViewTransform3D}
+    // @private {YawPitchModelViewTransform3}
     this.modelViewTransform = modelViewTransform;
 
     const dragListener = new PlateAreaDragHandler( capacitor, modelViewTransform, valueRange,

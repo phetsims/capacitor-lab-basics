@@ -16,7 +16,7 @@ define( require => {
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  const CLBModelViewTransform3D = require( 'SCENERY_PHET/capacitor/CLBModelViewTransform3D' );
+  const YawPitchModelViewTransform3 = require( 'SCENERY_PHET/capacitor/YawPitchModelViewTransform3' );
   const Dimension2 = require( 'DOT/Dimension2' );
   const inherit = require( 'PHET_CORE/inherit' );
   const NullableIO = require( 'TANDEM/types/NullableIO' );
@@ -43,14 +43,14 @@ define( require => {
    *
    * @param {ParallelCircuit} circuit
    * @param {Bounds2} dragBounds
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    * @param {Property.<boolean>} voltmeterVisibleProperty
    * @param {Tandem} tandem
    */
   function Voltmeter( circuit, dragBounds, modelViewTransform, voltmeterVisibleProperty, tandem ) {
     assert && assert( circuit instanceof ParallelCircuit );
     assert && assert( dragBounds instanceof Bounds2 );
-    assert && assert( modelViewTransform instanceof CLBModelViewTransform3D );
+    assert && assert( modelViewTransform instanceof YawPitchModelViewTransform3 );
 
     // @private {ParallelCircuit}
     this.circuit = circuit;
@@ -58,7 +58,7 @@ define( require => {
     // @public {Bounds2} (read-only)
     this.dragBounds = dragBounds;
 
-    // @private {CLBModelViewTransform3D}
+    // @private {YawPitchModelViewTransform3}
     this.modelViewTransform = modelViewTransform;
 
     // @public {Dimension2} (read-only)

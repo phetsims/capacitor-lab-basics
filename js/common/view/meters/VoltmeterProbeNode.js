@@ -31,7 +31,7 @@ define( require => {
    *
    * @param {Image} image image of the probe
    * @param {Property.<Vector3>} locationProperty property to observer for the probe's location
-   * @param {CLBModelViewTransform3D} modelViewTransform model-view transform
+   * @param {YawPitchModelViewTransform3} modelViewTransform model-view transform
    * @param {Bounds2} dragBounds Node bounds in model coordinates
    * @param {Tandem} tandem
    */
@@ -100,7 +100,7 @@ define( require => {
      * @public
      *
      * @param {Voltmeter} voltmeter
-     * @param {CLBModelViewTransform3D} modelViewTransform
+     * @param {YawPitchModelViewTransform3} modelViewTransform
      * @param {Tandem} tandem
      */
     createPositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
@@ -113,7 +113,7 @@ define( require => {
      * @public
      *
      * @param {Voltmeter} voltmeter
-     * @param {CLBModelViewTransform3D} modelViewTransform
+     * @param {YawPitchModelViewTransform3} modelViewTransform
      * @param {Tandem} tandem
      */
     createNegativeVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {

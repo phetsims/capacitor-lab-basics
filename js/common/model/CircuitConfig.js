@@ -15,7 +15,7 @@ define( require => {
   const CapacitorConstants = require( 'SCENERY_PHET/capacitor/CapacitorConstants' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  const CLBModelViewTransform3D = require( 'SCENERY_PHET/capacitor/CLBModelViewTransform3D' );
+  const YawPitchModelViewTransform3 = require( 'SCENERY_PHET/capacitor/YawPitchModelViewTransform3' );
 
   // Constants with default assignments
   const CAPACITOR_X_SPACING = 0.024; // meters
@@ -36,7 +36,7 @@ define( require => {
     create: function( options ) {
 
       return _.extend( {
-        modelViewTransform: new CLBModelViewTransform3D(),
+        modelViewTransform: new YawPitchModelViewTransform3(),
         capacitorXSpacing: CAPACITOR_X_SPACING,
         capacitorYSpacing: CAPACITOR_Y_SPACING,
         plateWidth: PLATE_WIDTH,

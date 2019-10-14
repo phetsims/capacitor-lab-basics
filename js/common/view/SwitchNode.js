@@ -38,7 +38,7 @@ define( require => {
    * @constructor
    *
    * @param {CircuitSwitch} circuitSwitch
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    * @param {Property.<boolean>} switchLockedProperty
    * @param {Tandem} tandem
    */
@@ -53,7 +53,7 @@ define( require => {
     // @public {CircuitSwitch}
     this.circuitSwitch = circuitSwitch;
 
-    // @private {CLBModelViewTransform3D}
+    // @private {YawPitchModelViewTransform3}
     this.modelViewTransform = modelViewTransform;
 
     // @private {WireNode}

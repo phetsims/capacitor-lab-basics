@@ -12,7 +12,7 @@ define( require => {
 
   // modules
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  const CLBModelViewTransform3D = require( 'SCENERY_PHET/capacitor/CLBModelViewTransform3D' );
+  const YawPitchModelViewTransform3 = require( 'SCENERY_PHET/capacitor/YawPitchModelViewTransform3' );
   const inherit = require( 'PHET_CORE/inherit' );
   const Shape = require( 'KITE/Shape' );
 
@@ -23,12 +23,12 @@ define( require => {
    * @param {CLModelViewTransform3D} modelViewTransform
    */
   function LightBulbShapeCreator( lightBulb, modelViewTransform ) {
-    assert && assert( modelViewTransform instanceof CLBModelViewTransform3D );
+    assert && assert( modelViewTransform instanceof YawPitchModelViewTransform3 );
 
     // @public {LightBulb} lightBulb
     this.lightBulb = lightBulb;
 
-    // @private {CLBModelViewTransform3D}
+    // @private {YawPitchModelViewTransform3}
     this.modelViewTransform = modelViewTransform;
   }
 

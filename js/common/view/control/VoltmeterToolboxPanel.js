@@ -32,7 +32,7 @@ define( require => {
    * @param {Bounds2} dragBounds
    * @param {TimerNode} timerNode
    * @param {VoltmeterNode} voltmeterNode
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    * @param {Property.<boolean>} isDraggedProperty
    * @param {Property.<boolean>} timerVisibleProperty
    * @param {Property.<boolean>} voltmeterVisibleProperty

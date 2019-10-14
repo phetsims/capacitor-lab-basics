@@ -16,7 +16,7 @@ define( require => {
   // TODO: Did you mean invert the shapes?
   const BatteryGraphicNode = require( 'CAPACITOR_LAB_BASICS/common/view/BatteryGraphicNode' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  const CLBModelViewTransform3D = require( 'SCENERY_PHET/capacitor/CLBModelViewTransform3D' );
+  const YawPitchModelViewTransform3 = require( 'SCENERY_PHET/capacitor/YawPitchModelViewTransform3' );
   const inherit = require( 'PHET_CORE/inherit' );
   const Matrix3 = require( 'DOT/Matrix3' );
 
@@ -24,15 +24,15 @@ define( require => {
    * @constructor
    *
    * @param {Battery} battery
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    */
   function BatteryShapeCreator( battery, modelViewTransform ) {
-    assert && assert( modelViewTransform instanceof CLBModelViewTransform3D );
+    assert && assert( modelViewTransform instanceof YawPitchModelViewTransform3 );
 
     // @public {Battery}
     this.battery = battery;
 
-    // @public {CLBModelViewTransform3D}
+    // @public {YawPitchModelViewTransform3}
     this.modelViewTransform = modelViewTransform;
   }
 

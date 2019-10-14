@@ -20,13 +20,13 @@ define( require => {
    * @constructor
    *
    * @param {Wire} wire
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    */
   function WireShapeCreator( wire, modelViewTransform ) {
     // @private {Wire}
     this.wire = wire;
 
-    // @private {CLBModelViewTransform3D}
+    // @private {YawPitchModelViewTransform3}
     this.modelViewTransform = modelViewTransform;
   }
 

@@ -45,7 +45,7 @@ define( require => {
    * @constructor
    *
    * @param {Voltmeter} voltmeter - the voltmeter model
-   * @param {CLBModelViewTransform3D} modelViewTransform
+   * @param {YawPitchModelViewTransform3} modelViewTransform
    * @param {Tandem} tandem
    */
   function VoltmeterNode( voltmeter, modelViewTransform, voltmeterVisibleProperty, tandem ) {
