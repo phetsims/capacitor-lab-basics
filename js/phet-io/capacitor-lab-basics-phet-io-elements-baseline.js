@@ -59,7 +59,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<StringIO>"
+      "phetioTypeName": "PropertyIO<EnumerationIO(POSITIVE|NEGATIVE)>"
     },
     "capacitorLabBasics.capacitanceScreen.model.circuit.battery.voltageProperty": {
       "phetioDocumentation": "",
@@ -5615,7 +5615,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<StringIO>"
+      "phetioTypeName": "PropertyIO<EnumerationIO(POSITIVE|NEGATIVE)>"
     },
     "capacitorLabBasics.lightBulbScreen.model.circuit.battery.voltageProperty": {
       "phetioDocumentation": "",

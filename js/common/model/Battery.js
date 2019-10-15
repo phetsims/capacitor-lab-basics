@@ -16,6 +16,7 @@ define( require => {
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   const Dimension2 = require( 'DOT/Dimension2' );
+  const EnumerationIO = require( 'PHET_CORE/EnumerationIO' );
   const inherit = require( 'PHET_CORE/inherit' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const Property = require( 'AXON/Property' );
@@ -67,7 +68,7 @@ define( require => {
     this.polarityProperty = new Property( CapacitorConstants.POLARITY.POSITIVE, {
       validValues: CapacitorConstants.POLARITY.VALUES,
       tandem: tandem.createTandem( 'polarityProperty' ),
-      phetioType: PropertyIO( StringIO )
+      phetioType: PropertyIO( EnumerationIO( CapacitorConstants.POLARITY ) )
     } );
 
     const self = this;
