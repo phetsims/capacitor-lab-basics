@@ -21,7 +21,6 @@ define( require => {
   const NumberProperty = require( 'AXON/NumberProperty' );
   const Property = require( 'AXON/Property' );
   const PropertyIO = require( 'AXON/PropertyIO' );
-  const StringIO = require( 'TANDEM/types/StringIO' );
   const Vector3 = require( 'DOT/Vector3' );
 
   // constants
