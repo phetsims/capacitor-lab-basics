@@ -15,6 +15,7 @@ define( require => {
   const CapacitorConstants = require( 'SCENERY_PHET/capacitor/CapacitorConstants' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
+  const merge = require( 'PHET_CORE/merge' );
   const YawPitchModelViewTransform3 = require( 'SCENERY_PHET/capacitor/YawPitchModelViewTransform3' );
 
   // Constants with default assignments
@@ -35,7 +36,7 @@ define( require => {
      */
     create: function( options ) {
 
-      return _.extend( {
+      return merge( {
         modelViewTransform: new YawPitchModelViewTransform3(),
         capacitorXSpacing: CAPACITOR_X_SPACING,
         capacitorYSpacing: CAPACITOR_Y_SPACING,

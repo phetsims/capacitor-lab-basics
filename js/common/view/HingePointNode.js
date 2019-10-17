@@ -14,6 +14,7 @@ define( require => {
   const Circle = require( 'SCENERY/nodes/Circle' );
   const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
 
   // constants
   const HINGE_POINT_RADIUS = 8;
@@ -26,13 +27,13 @@ define( require => {
    */
   function HingePointNode( options ) {
 
-    options = _.extend( {
+    options = merge( {
       fill: CLBConstants.CONNECTION_POINT_COLOR,
       lineWidth: 3,
       stroke: CLBConstants.CONNECTION_POINT_COLOR,
       innerPinRadius: PIN_RADIUS,
       pinFillColor: CLBConstants.PIN_COLOR
-    } );
+    }, options );
     Circle.call( this, HINGE_POINT_RADIUS, options );
 
     // Inner circle of hings

@@ -13,6 +13,7 @@ define( require => {
   // modules
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const RichText = require( 'SCENERY/nodes/RichText' );
@@ -40,7 +41,7 @@ define( require => {
    */
   function DragHandleValueNode( label, value, unitsPattern, options ) {
 
-    options = _.extend( { tandem: Tandem.optional }, options );
+    options = merge( { tandem: Tandem.optional }, options );
 
     Node.call( this );
 

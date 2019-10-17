@@ -16,6 +16,7 @@ define( require => {
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const Panel = require( 'SUN/Panel' );
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
@@ -44,7 +45,7 @@ define( require => {
    */
   function CLBViewControlPanel( model, tandem, options ) {
 
-    options = _.extend( {
+    options = merge( {
       maxTextWidth: 250,
       alignGroup:null
     }, options );

@@ -17,6 +17,7 @@ define( require => {
   const EventType = require( 'TANDEM/EventType' );
   const HBox = require( 'SCENERY/nodes/HBox' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const Panel = require( 'SUN/Panel' );
@@ -41,7 +42,7 @@ define( require => {
    */
   function VoltmeterToolboxPanel( dragBounds, timerNode, voltmeterNode, modelViewTransform, isDraggedProperty,
                                   timerVisibleProperty, voltmeterVisibleProperty, tandem, options ) {
-    options = _.extend( {
+    options = merge( {
       includeTimer: true,
       alignGroup: null
     }, options );

@@ -25,14 +25,15 @@ define( require => {
   const Bounds3 = require( 'DOT/Bounds3' );
   const Bounds3IO = require( 'DOT/Bounds3IO' );
   const BoxShapeCreator = require( 'SCENERY_PHET/capacitor/BoxShapeCreator' );
-  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CapacitorConstants = require( 'SCENERY_PHET/capacitor/CapacitorConstants' );
+  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
   const CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   const DerivedProperty = require( 'AXON/DerivedProperty' );
   const DerivedPropertyIO = require( 'AXON/DerivedPropertyIO' );
   const inherit = require( 'PHET_CORE/inherit' );
+  const merge = require( 'PHET_CORE/merge' );
   const NumberIO = require( 'TANDEM/types/NumberIO' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const Property = require( 'AXON/Property' );
@@ -50,7 +51,7 @@ define( require => {
   function Capacitor( config, circuitConnectionProperty, tandem, options ) {
 
     // options that populate the capacitor with various geometric properties
-    options = _.extend( {
+    options = merge( {
       plateWidth: CapacitorConstants.PLATE_WIDTH_RANGE.defaultValue,
       plateSeparation: CapacitorConstants.PLATE_SEPARATION_RANGE.defaultValue
     }, options );
