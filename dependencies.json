@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.7.0-rc.3 Tue Oct 15 2019 12:58:19 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# capacitor-lab-basics 1.7.0-rc.3 Fri Oct 18 2019 15:54:11 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "HEAD"
@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "34b96c24a44d808f63ba97442f2843be8ab76d6d",
+    "sha": "b8077a6afe5b8fb30660c99306e4c4bc209bf4b6",
     "branch": "1.7"
   },
   "chipper": {
@@ -34,7 +34,7 @@
   },
   "phet-core": {
     "sha": "75ac011e50b7e95a31487abc6a8baa1411a48076",
-    "branch": "capacitor-lab-basics-1.7"
+    "branch": "HEAD"
   },
   "phet-io": {
     "sha": "a372c4368df3fd663b0450960f03c4cae893058b",
@@ -77,8 +77,8 @@
     "branch": "HEAD"
   },
   "tambo": {
-    "sha": "d90075a9fc7f901c80d929f813721033168dd37e",
-    "branch": "HEAD"
+    "sha": "49a8dfb65a5ddbcd25330fb5123f73f9c0694f2b",
+    "branch": "capacitor-lab-basics-1.7"
   },
   "tandem": {
     "sha": "748fcccff65962d55250e2c21fd065ba80d802d4",
