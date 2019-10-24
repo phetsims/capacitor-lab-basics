@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.3.15-phetiorc.1 Wed Oct 23 2019 14:40:47 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# capacitor-lab-basics 1.3.15-phetiorc.2 Thu Oct 24 2019 00:48:31 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "845be6b591cb746b0b05b7023208aef2e49a8855",
     "branch": "HEAD"
@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "752c3a713716331939e126870573f2f5b3e22d92",
+    "sha": "1cba9c5717f859fcc3955a54df9c002c71b7fcd2",
     "branch": "1.3-phetio"
   },
   "chipper": {
@@ -26,7 +26,7 @@
   },
   "joist": {
     "sha": "caaccd1499bf6df9ce95e2040a6a5a462202013d",
-    "branch": "capacitor-lab-basics-1.3-phetio"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "d506825f0e044f9715f94b2aac23dbd52b139a82",
