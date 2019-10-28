@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.6.19-rc.2 Thu Oct 24 2019 00:50:13 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# capacitor-lab-basics 1.6.19 Mon Oct 28 2019 13:37:44 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "131814fcdcedf06b1d35ec8ec9061adef7603073",
+    "sha": "71a5f9bfc4628fcbe165fd742a995f657102e7c7",
     "branch": "1.6"
   },
   "chipper": {
