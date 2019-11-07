@@ -54,8 +54,9 @@ define( require => {
       this.circuit,
       model.modelViewTransform,
       model.plateChargesVisibleProperty,
-      model.electricFieldVisibleProperty,
-      tandem.createTandem( 'capacitorNode' )
+      model.electricFieldVisibleProperty, {
+        tandem: tandem.createTandem( 'capacitorNode' )
+      }
     );
 
     // @public {Node}
