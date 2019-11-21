@@ -4939,7 +4939,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "PhetioSingletonIO<DialogIO>"
+      "phetioTypeName": "PhetioCapsuleIO<DialogIO>"
     },
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutDialogSingleton.prototype": {
       "phetioDocumentation": "",
