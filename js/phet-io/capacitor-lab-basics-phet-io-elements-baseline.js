@@ -3278,7 +3278,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -3288,7 +3288,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -3395,7 +3395,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -3405,7 +3405,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -4032,7 +4032,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "capacitorLabBasics.general.barrierRectangle.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -4042,7 +4042,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.general.barrierRectangle.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -5319,7 +5319,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutMenuItem.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -5329,7 +5329,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutMenuItem.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -5410,7 +5410,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -5420,7 +5420,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -5709,7 +5709,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -5719,7 +5719,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -5865,7 +5865,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -5875,7 +5875,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -6021,7 +6021,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -6031,7 +6031,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -6177,7 +6177,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "NodeIO"
     },
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -6187,7 +6187,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -9830,7 +9830,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -9840,7 +9840,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -9973,7 +9973,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -9983,7 +9983,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -10987,7 +10987,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -10997,7 +10997,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
@@ -11104,7 +11104,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.inputListener.firedEmitter": {
-      "phetioDocumentation": "A function that executes. No arguments.",
+      "phetioDocumentation": "A function that executes. The arguments are:<br/><ol><li>event: NullableIO<EventIO></li></ol>",
       "phetioDynamicElement": false,
       "phetioDynamicElementArchetype": false,
       "phetioEventType": "USER",
@@ -11114,7 +11114,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": false,
       "phetioStudioControl": true,
-      "phetioTypeName": "EmitterIO<>"
+      "phetioTypeName": "EmitterIO<NullableIO<EventIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.inputListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the Event. The arguments are:<br/><ol><li>event: EventIO</li></ol>",
