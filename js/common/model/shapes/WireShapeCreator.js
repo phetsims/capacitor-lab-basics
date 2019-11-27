@@ -35,9 +35,8 @@ define( require => {
   return inherit( Object, WireShapeCreator, {
 
     /**
-     * Create a wire shape.  Shape is generated from the stroked shape of the line
-     * segments which are added together totp to tail.  This assumes that segments
-     * are added pieced together in the correct order.
+     * Create a wire shape.  Shape is generated from the stroked shape of the line segments which are added together
+     * tip-to-tail.  This assumes that segments are added pieced together in the correct order.
      * @public
      *
      * @returns {Shape}
