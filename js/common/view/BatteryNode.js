@@ -53,8 +53,8 @@ define( require => {
     // voltage slider
     const trackLength = 0.55 * graphicNode.bounds.height;
     const sliderNode = new VSlider( battery.voltageProperty, voltageRange, {
-      trackSize: new Dimension2( trackLength, 8 ),
-      thumbSize: new Dimension2( 20, 35 ),
+      trackSize: new Dimension2( 8, trackLength ),
+      thumbSize: new Dimension2( 35, 20 ),
       thumbTouchAreaXDilation: 11,
       thumbTouchAreaYDilation: 11,
       majorTickLength: 18,
