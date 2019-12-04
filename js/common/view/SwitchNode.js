@@ -10,7 +10,7 @@
 define( require => {
   'use strict';
 
-  // Modules
+  // modules
   const BooleanProperty = require( 'AXON/BooleanProperty' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const Circle = require( 'SCENERY/nodes/Circle' );
