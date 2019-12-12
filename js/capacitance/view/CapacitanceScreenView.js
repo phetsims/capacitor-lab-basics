@@ -61,7 +61,7 @@ define( require => {
           model.isRunningProperty.reset();
         }
       },
-      Tandem.optOut
+      Tandem.OPT_OUT
     );
     this.addChild( draggableTimerNode );
 

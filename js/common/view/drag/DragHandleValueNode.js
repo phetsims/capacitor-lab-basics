@@ -41,7 +41,7 @@ define( require => {
    */
   function DragHandleValueNode( label, value, unitsPattern, options ) {
 
-    options = merge( { tandem: Tandem.optional }, options );
+    options = merge( { tandem: Tandem.OPTIONAL }, options );
 
     Node.call( this );
 

@@ -78,7 +78,7 @@ define( require => {
     // Create timer to be turned into icon
     const timer = new TimerNode( new NumberProperty( 0 ), new BooleanProperty( false ), {
       scale: .60,
-      tandem: Tandem.optOut
+      tandem: Tandem.OPT_OUT
     } );
 
     const timeNodeIconTandem = tandem.createTandem( 'timerIcon' );
@@ -88,7 +88,7 @@ define( require => {
       cursor: 'pointer',
       resolution: 5,
       pickable: true,
-      tandem: options.includeTimer ? timeNodeIconTandem : Tandem.optOut
+      tandem: options.includeTimer ? timeNodeIconTandem : Tandem.OPT_OUT
     } );
 
     // Drag listener for event forwarding: timerIcon ---> timerNode
