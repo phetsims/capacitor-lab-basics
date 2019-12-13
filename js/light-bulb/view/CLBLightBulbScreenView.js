@@ -102,7 +102,7 @@ define( require => {
 
     const timeControlPanel = new Panel( new TimeControlNode( model.isPlayingProperty, {
       isSlowMotionProperty: model.isSlowMotionProperty,
-      stepOptions: {
+      stepForwardOptions: {
         listener: function() { model.manualStep(); }
       },
       tandem: tandem.createTandem( 'timeControlNode' )
