@@ -65,7 +65,7 @@ define( require => {
       voltmeterNode,
       this.modelViewTransform,
       model.voltmeter.isDraggedProperty,
-      model.stopwatch, // TODO https://github.com/phetsims/gas-properties/issues/170 just pass stopwatch?
+      model.stopwatch,
       model.voltmeterVisibleProperty,
       tandem.createTandem( 'toolboxPanel' ), {
         includeTimer: false
