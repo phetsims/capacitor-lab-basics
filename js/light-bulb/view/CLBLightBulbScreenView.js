@@ -57,11 +57,13 @@ define( require => {
     const stopwatchNode = new StopwatchNode( model.stopwatch, {
       visibleBoundsProperty: this.visibleBoundsProperty,
       tandem: Tandem.OPT_OUT,// TODO(phet-io): this seems like it should not opt out, since it has interactive components
-      dragEndListener: () => {
+      dragListenerOptions: {
+        end: () => {
 
-        // When a node is released, check if it is over the toolbox.  If so, drop it in.
-        if ( toolboxPanel.bounds.intersectsBounds( stopwatchNode.bounds ) ) {
-          model.stopwatch.reset();
+          // When a node is released, check if it is over the toolbox.  If so, drop it in.
+          if ( toolboxPanel.bounds.intersectsBounds( stopwatchNode.bounds ) ) {
+            model.stopwatch.reset();
+          }
         }
       }
     } );
