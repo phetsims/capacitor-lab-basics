@@ -103,7 +103,9 @@ define( require => {
     } );
 
     // @public {Stopwatch}
-    this.stopwatch = new Stopwatch();
+    this.stopwatch = new Stopwatch( {
+      tandem: tandem.createTandem( 'stopwatch' )
+    } );
 
     // @public {Property.<boolean>}
     this.isSlowMotionProperty = new BooleanProperty( false, {

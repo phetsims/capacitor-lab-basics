@@ -19,7 +19,6 @@ define( require => {
   const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   const ScreenView = require( 'JOIST/ScreenView' );
   const StopwatchNode = require( 'SCENERY_PHET/StopwatchNode' );
-  const Tandem = require( 'TANDEM/Tandem' );
   const Vector2 = require( 'DOT/Vector2' );
   const VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   const VoltmeterToolboxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolboxPanel' );
@@ -48,7 +47,7 @@ define( require => {
     // @public {StopwatchNode}
     const stopwatchNode = new StopwatchNode( model.stopwatch, {
       visibleBoundsProperty: this.visibleBoundsProperty,
-      tandem: Tandem.OPT_OUT,// TODO(phet-io): this seems like it should not opt out, since it has interactive components
+      tandem: tandem.createTandem( 'stopwatchNode' ),
       dragListenerOptions: {
         end: () => {
 
