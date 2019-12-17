@@ -48,7 +48,7 @@ define( require => {
     // @public {StopwatchNode}
     const stopwatchNode = new StopwatchNode( model.stopwatch, {
       visibleBoundsProperty: this.visibleBoundsProperty,
-      tandem: Tandem.OPT_OUT,// TODO(phet-io): this seems like it should not opt out, since it has interactive components
+      tandem: tandem.createTandem( 'stopwatchNode' ),
       dragListenerOptions: {
         end: () => {
 
