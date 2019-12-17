@@ -11,19 +11,19 @@ define( require => {
 
   // modules
   const AlignBox = require( 'SCENERY/nodes/AlignBox' );
-  const BooleanProperty = require( 'AXON/BooleanProperty' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
+  const DragListener = require( 'SCENERY/listeners/DragListener' );
   const EventType = require( 'TANDEM/EventType' );
   const HBox = require( 'SCENERY/nodes/HBox' );
   const inherit = require( 'PHET_CORE/inherit' );
   const merge = require( 'PHET_CORE/merge' );
   const Node = require( 'SCENERY/nodes/Node' );
-  const NumberProperty = require( 'AXON/NumberProperty' );
   const Panel = require( 'SUN/Panel' );
   const SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  const Stopwatch = require( 'SCENERY_PHET/Stopwatch' );
+  const StopwatchNode = require( 'SCENERY_PHET/StopwatchNode' );
   const Tandem = require( 'TANDEM/Tandem' );
-  const TimerNode = require( 'SCENERY_PHET/TimerNode' );
   const Vector2 = require( 'DOT/Vector2' );
   const VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
 
@@ -31,17 +31,17 @@ define( require => {
    * @constructor
    *
    * @param {Bounds2} dragBounds
-   * @param {TimerNode} timerNode
+   * @param {StopwatchNode} stopwatchNode
    * @param {VoltmeterNode} voltmeterNode
    * @param {YawPitchModelViewTransform3} modelViewTransform
    * @param {Property.<boolean>} isDraggedProperty
-   * @param {Property.<boolean>} timerVisibleProperty
+   * @param {Stopwatch} stopwatch
    * @param {Property.<boolean>} voltmeterVisibleProperty
    * @param {Tandem} tandem
    * @param {object} options
    */
-  function VoltmeterToolboxPanel( dragBounds, timerNode, voltmeterNode, modelViewTransform, isDraggedProperty,
-                                  timerVisibleProperty, voltmeterVisibleProperty, tandem, options ) {
+  function VoltmeterToolboxPanel( dragBounds, stopwatchNode, voltmeterNode, modelViewTransform, isDraggedProperty,
+                                  stopwatch, voltmeterVisibleProperty, tandem, options ) {
     options = merge( {
       includeTimer: true,
       alignGroup: null
@@ -76,7 +76,7 @@ define( require => {
     } ) );
 
     // Create timer to be turned into icon
-    const timer = new TimerNode( new NumberProperty( 0 ), new BooleanProperty( false ), {
+    const timer = new StopwatchNode( new Stopwatch( { isVisible: true } ), {
       scale: .60,
       tandem: Tandem.OPT_OUT
     } );
@@ -91,30 +91,26 @@ define( require => {
       tandem: options.includeTimer ? timeNodeIconTandem : Tandem.OPT_OUT
     } );
 
-    // Drag listener for event forwarding: timerIcon ---> timerNode
-    timerIconNode.addInputListener( new SimpleDragHandler.createForwardingListener( function( event ) {
+    // create a forwarding listener for the StopwatchNode DragListener
+    timerIconNode.addInputListener( DragListener.createForwardingListener( event => {
+      if ( !stopwatch.isVisibleProperty.get() ) {
+        stopwatch.isVisibleProperty.value = true;
 
-      // Toggle visibility
-      timerVisibleProperty.set( true );
-
-      // Now determine the initial position where this element should move to after it's created, which corresponds
-      // to the location of the mouse or touch event.
-      const initialPosition = timerNode.globalToParentPoint( event.pointer.point )
-        .minus( new Vector2( timerNode.width / 2, timerNode.height * 0.4 ) );
-
-      timerNode.positionProperty.set( initialPosition );
-
-      // Sending through the startDrag from icon to timerNode causes it to receive all subsequent drag events.
-      timerNode.timerNodeMovableDragHandler.startDrag( event );
+        const coordinate = this.globalToParentPoint( event.pointer.point ).minusXY(
+          stopwatchNode.width / 2,
+          stopwatchNode.height / 2
+        );
+        stopwatch.positionProperty.set( coordinate );
+        stopwatchNode.dragListener.press( event, stopwatchNode );
+      }
     }, {
 
       // allow moving a finger (on a touchscreen) dragged across this node to interact with it
       allowTouchSnag: true,
-      dragBounds: dragBounds,
       tandem: timeNodeIconTandem.createTandem( 'dragHandler' )
     } ) );
 
-    timerVisibleProperty.link( function( visible ) {
+    stopwatch.isVisibleProperty.link( visible => {
       timerIconNode.visible = !visible;
     } );
 

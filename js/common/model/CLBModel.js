@@ -24,6 +24,7 @@ define( require => {
   const NumberProperty = require( 'AXON/NumberProperty' );
   const Property = require( 'AXON/Property' );
   const PropertyIO = require( 'AXON/PropertyIO' );
+  const Stopwatch = require( 'SCENERY_PHET/Stopwatch' );
   const Voltmeter = require( 'CAPACITOR_LAB_BASICS/common/model/meter/Voltmeter' );
 
   // constants
@@ -96,25 +97,13 @@ define( require => {
       phetioType: PropertyIO( ColorIO )
     } );
 
-    // @public {Property.<boolean>}
-    this.timerVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'timerVisibleProperty' )
-    } );
-
     // @public {Property.<boolean>} Whether the sim is paused
     this.isPlayingProperty = new BooleanProperty( true, {
       tandem: tandem.createTandem( 'isPlayingProperty' )
     } );
 
-    // @public {Property.<boolean>}
-    this.secondsProperty = new NumberProperty( 0, {
-      tandem: tandem.createTandem( 'secondsProperty' )
-    } );
-
-    // Create timer to be turned into icon
-    this.isRunningProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'isRunningProperty' )
-    } );
+    // @public {Stopwatch}
+    this.stopwatch = new Stopwatch();
 
     // @public {Property.<boolean>}
     this.isSlowMotionProperty = new BooleanProperty( false, {
@@ -189,9 +178,7 @@ define( require => {
         const adjustedDt = isManual ? dt : dt * ( this.isSlowMotionProperty.value ? 0.125 : 1 );
         this.circuit.step( adjustedDt );
         this.stepEmitter.emit( adjustedDt );
-        if ( this.isRunningProperty.value ) {
-          this.secondsProperty.set( this.secondsProperty.value + adjustedDt );
-        }
+        this.stopwatch.step( adjustedDt );
       }
     },
 
@@ -215,9 +202,7 @@ define( require => {
       this.switchUsedProperty.reset();
       this.isPlayingProperty.reset();
       this.isSlowMotionProperty.reset();
-      this.timerVisibleProperty.reset();
-      this.secondsProperty.reset();
-      this.isRunningProperty.reset();
+      this.stopwatch.reset();
     }
   } );
 } );

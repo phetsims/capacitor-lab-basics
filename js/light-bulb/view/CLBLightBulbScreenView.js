@@ -16,13 +16,14 @@ define( require => {
   const CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
   const Color = require( 'SCENERY/util/Color' );
   const DebugLayer = require( 'CAPACITOR_LAB_BASICS/common/view/DebugLayer' );
-  const DraggableTimerNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DraggableTimerNode' );
   const HBox = require( 'SCENERY/nodes/HBox' );
   const inherit = require( 'PHET_CORE/inherit' );
   const LightBulbCircuitNode = require( 'CAPACITOR_LAB_BASICS/light-bulb/view/LightBulbCircuitNode' );
   const Panel = require( 'SUN/Panel' );
   const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   const ScreenView = require( 'JOIST/ScreenView' );
+  const StopwatchNode = require( 'SCENERY_PHET/StopwatchNode' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const TimeControlNode = require( 'SCENERY_PHET/TimeControlNode' );
   const Vector2 = require( 'DOT/Vector2' );
   const VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
@@ -52,36 +53,30 @@ define( require => {
     const voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty,
       tandem.createTandem( 'voltmeterNode' ) );
 
-    // @public {DraggableTimerNode}
-    var draggableTimerNode = new DraggableTimerNode(
-      this.layoutBounds,
-      Vector2.ZERO,
-      model.secondsProperty,
-      model.isRunningProperty,
-      model.timerVisibleProperty,
-      function() {
+    // @public {StopwatchNode}
+    const stopwatchNode = new StopwatchNode( model.stopwatch, {
+      visibleBoundsProperty: this.visibleBoundsProperty,
+      tandem: Tandem.OPT_OUT,// TODO(phet-io): this seems like it should not opt out, since it has interactive components
+      dragEndListener: () => {
 
         // When a node is released, check if it is over the toolbox.  If so, drop it in.
-        if ( toolboxPanel.bounds.intersectsBounds( draggableTimerNode.bounds ) ) {
-          model.timerVisibleProperty.set( false );
-          model.secondsProperty.reset();
-          model.isRunningProperty.reset();
+        if ( toolboxPanel.bounds.intersectsBounds( stopwatchNode.bounds ) ) {
+          model.stopwatch.reset();
         }
-      },
-      tandem.createTandem( 'timerNode' )
-    );
-    this.addChild( draggableTimerNode );
+      }
+    } );
+    this.addChild( stopwatchNode );
 
     // @public {AlignGroup}
     this.rightPanelAlignGroup = new AlignGroup( { matchVertical: false, minWidth: 350 } );
 
-    var toolboxPanel = new VoltmeterToolboxPanel(
+    const toolboxPanel = new VoltmeterToolboxPanel(
       this.layoutBounds,
-      draggableTimerNode,
+      stopwatchNode,
       voltmeterNode,
       this.modelViewTransform,
       model.voltmeter.isDraggedProperty,
-      model.timerVisibleProperty,
+      model.stopwatch,
       model.voltmeterVisibleProperty,
       tandem.createTandem( 'toolboxPanel' ), {
         alignGroup: this.rightPanelAlignGroup

@@ -10,16 +10,16 @@ define( require => {
   'use strict';
 
   // modules
-  const Tandem = require( 'TANDEM/Tandem' );
   const BarMeterPanel = require( 'CAPACITOR_LAB_BASICS/common/view/BarMeterPanel' );
   const CapacitanceCircuitNode = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceCircuitNode' );
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const CLBViewControlPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/CLBViewControlPanel' );
   const DebugLayer = require( 'CAPACITOR_LAB_BASICS/common/view/DebugLayer' );
-  const DraggableTimerNode = require( 'CAPACITOR_LAB_BASICS/common/view/drag/DraggableTimerNode' );
   const inherit = require( 'PHET_CORE/inherit' );
   const ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
   const ScreenView = require( 'JOIST/ScreenView' );
+  const StopwatchNode = require( 'SCENERY_PHET/StopwatchNode' );
+  const Tandem = require( 'TANDEM/Tandem' );
   const Vector2 = require( 'DOT/Vector2' );
   const VoltmeterNode = require( 'CAPACITOR_LAB_BASICS/common/view/meters/VoltmeterNode' );
   const VoltmeterToolboxPanel = require( 'CAPACITOR_LAB_BASICS/common/view/control/VoltmeterToolboxPanel' );
@@ -45,33 +45,27 @@ define( require => {
     // meters
     const voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
 
-    // @public {DraggableTimerNode}
-    var draggableTimerNode = new DraggableTimerNode(
-      this.layoutBounds,
-      Vector2.ZERO,
-      model.secondsProperty,
-      model.isRunningProperty,
-      model.timerVisibleProperty,
-      function() {
+    // @public {StopwatchNode}
+    const stopwatchNode = new StopwatchNode( model.stopwatch, {
+      visibleBoundsProperty: this.visibleBoundsProperty,
+      tandem: Tandem.OPT_OUT,// TODO(phet-io): this seems like it should not opt out, since it has interactive components
+      dragEndListener: () => {
 
         // When a node is released, check if it is over the toolbox.  If so, drop it in.
-        if ( toolboxPanel.bounds.intersectsBounds( draggableTimerNode.bounds ) ) {
-          model.timerVisibleProperty.set( false );
-          model.secondsProperty.reset();
-          model.isRunningProperty.reset();
+        if ( toolboxPanel.bounds.intersectsBounds( stopwatchNode.bounds ) ) {
+          model.stopwatch.reset();
         }
-      },
-      Tandem.OPT_OUT
-    );
-    this.addChild( draggableTimerNode );
+      }
+    } );
+    this.addChild( stopwatchNode );
 
-    var toolboxPanel = new VoltmeterToolboxPanel(
+    const toolboxPanel = new VoltmeterToolboxPanel(
       this.layoutBounds,
-      draggableTimerNode,
+      stopwatchNode,
       voltmeterNode,
       this.modelViewTransform,
       model.voltmeter.isDraggedProperty,
-      model.timerVisibleProperty,
+      model.stopwatch, // TODO https://github.com/phetsims/gas-properties/issues/170 just pass stopwatch?
       model.voltmeterVisibleProperty,
       tandem.createTandem( 'toolboxPanel' ), {
         includeTimer: false
