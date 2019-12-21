@@ -1626,6 +1626,14 @@ window.phet.phetio.phetioTypes = assert &&
       "supertype": "ObjectIO",
       "typeName": "RangeIO"
     },
+    "ReferenceIO": {
+      "documentation": "Uses reference identity for toStateObject/fromStateObject",
+      "events": [],
+      "methodOrder": [],
+      "methods": {},
+      "supertype": "ObjectIO",
+      "typeName": "ReferenceIO"
+    },
     "ResetAllButtonIO": {
       "documentation": "Button that performs an action while it is being pressed, and stops the action when released",
       "events": [
