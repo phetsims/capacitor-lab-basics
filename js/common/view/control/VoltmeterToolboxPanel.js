@@ -2,7 +2,7 @@
 
 /**
  * Toolbox that contains a voltmeter and timer.  The user can drag the voltmeter out of the toolbox for
- * use.
+ * use.  TODO: Perhaps it should be renamed now that it contains tools other than the Voltmeter
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
