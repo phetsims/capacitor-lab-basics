@@ -22,7 +22,7 @@ define( require => {
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const Vector2 = require( 'DOT/Vector2' );
   const VSlider = require( 'SUN/VSlider' );
 
@@ -65,7 +65,7 @@ define( require => {
       thumbCenterLineStroke: 'black',
       constrainValue: function( value ) {
         // Round to nearest 0.05, see https://github.com/phetsims/capacitor-lab-basics/issues/227
-        return Util.roundSymmetric( value * 20 ) / 20;
+        return Utils.roundSymmetric( value * 20 ) / 20;
       },
       endDrag: function() {
         if ( Math.abs( battery.voltageProperty.value ) < CLBConstants.BATTERY_VOLTAGE_SNAP_TO_ZERO_THRESHOLD ) {

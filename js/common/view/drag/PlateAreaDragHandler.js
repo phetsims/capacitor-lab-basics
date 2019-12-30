@@ -18,7 +18,7 @@ define( require => {
   const DragListener = require( 'SCENERY/listeners/DragListener' );
   const inherit = require( 'PHET_CORE/inherit' );
   const LinearFunction = require( 'DOT/LinearFunction' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const Vector2 = require( 'DOT/Vector2' );
 
   /**
@@ -55,7 +55,7 @@ define( require => {
 
         // Discretize the plate area to round values by scaling m -> mm, rounding, then scaling back.
         // Plate area drags should then snap only in steps of 10 mm^2.
-        const plateArea = Util.roundSymmetric( 1e5 * plateWidth * plateWidth ) / 1e5;
+        const plateArea = Utils.roundSymmetric( 1e5 * plateWidth * plateWidth ) / 1e5;
         capacitor.setPlateWidth( Math.sqrt( plateArea ) );
       }
     } );
@@ -83,7 +83,7 @@ define( require => {
       const xModel2 = this.getModelX( pMouse, xView2 );
 
       const linearFunction = new LinearFunction( xView1, xView2, xModel1, xModel2 );
-      return Util.clamp( linearFunction.inverse( 0 ), this.valueRange.min, this.valueRange.max );
+      return Utils.clamp( linearFunction.inverse( 0 ), this.valueRange.min, this.valueRange.max );
 
     },
 

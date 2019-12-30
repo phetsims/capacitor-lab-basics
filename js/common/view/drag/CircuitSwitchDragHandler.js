@@ -20,7 +20,7 @@ define( require => {
   const DragListener = require( 'SCENERY/listeners/DragListener' );
   const inherit = require( 'PHET_CORE/inherit' );
   const Range = require( 'DOT/Range' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   /**
    * @constructor
@@ -91,8 +91,8 @@ define( require => {
         if ( angle * leftLimitAngle < 0 ) {
           angle = -angle;
         }
-        angle = Util.moduloBetweenDown( angle, middleAngle - Math.PI, middleAngle + Math.PI );
-        angle = Util.clamp( angle, minAngle, maxAngle );
+        angle = Utils.moduloBetweenDown( angle, middleAngle - Math.PI, middleAngle + Math.PI );
+        angle = Utils.clamp( angle, minAngle, maxAngle );
 
         circuitSwitch.angleProperty.set( angle );
       },

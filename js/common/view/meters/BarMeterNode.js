@@ -24,7 +24,7 @@ define( require => {
   const PhetFont = require( 'SCENERY_PHET/PhetFont' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
 
   // constants
   const BASE_LINE_LENGTH = 25; // Length of vertical line at the origin (left end) of the bar
@@ -141,7 +141,7 @@ define( require => {
         this.barNode.setValue( value );
 
         // all meters read in pico units, compensate by multiplying by 10^12
-        const meterValue = Util.toFixed( Math.pow( 10, 12 ) * value, 2 );
+        const meterValue = Utils.toFixed( Math.pow( 10, 12 ) * value, 2 );
         const unitsFormatString = StringUtils.fillIn( this.unitsPattern, { value: meterValue } );
         this.valueTextNode.setText( unitsFormatString );
       }

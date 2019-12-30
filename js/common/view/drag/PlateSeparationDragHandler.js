@@ -15,7 +15,7 @@ define( require => {
   const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   const DragListener = require( 'SCENERY/listeners/DragListener' );
   const inherit = require( 'PHET_CORE/inherit' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const Vector2 = require( 'DOT/Vector2' );
 
   /**
@@ -44,11 +44,11 @@ define( require => {
         const pMouse = event.pointer.point;
         const yView = pMouse.y - clickYOffset;
 
-        const separation = Util.clamp( 2 * modelViewTransform.viewToModelDeltaXY( 0, -yView ).y,
+        const separation = Utils.clamp( 2 * modelViewTransform.viewToModelDeltaXY( 0, -yView ).y,
           valueRange.min, valueRange.max );
 
         // Discretize the plate separation to integral values by scaling m -> mm, rounding, and un-scaling.
-        capacitor.plateSeparationProperty.value = Util.roundSymmetric( 5e3 * separation ) / 5e3;
+        capacitor.plateSeparationProperty.value = Utils.roundSymmetric( 5e3 * separation ) / 5e3;
       }
     } );
   }

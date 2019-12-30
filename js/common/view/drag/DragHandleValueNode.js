@@ -20,7 +20,7 @@ define( require => {
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Tandem = require( 'TANDEM/Tandem' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const Vector2 = require( 'DOT/Vector2' );
 
   // constants
@@ -79,7 +79,7 @@ define( require => {
      * @param {number} decimalPlaces
      */
     setValue: function( value, decimalPlaces ) {
-      const formattedValue = Util.toFixed( value, decimalPlaces /* one decimal place */ );
+      const formattedValue = Utils.toFixed( value, decimalPlaces /* one decimal place */ );
       this.valueNode.setText( StringUtils.fillIn( this.unitsPattern, {
         value: formattedValue
       } ) );

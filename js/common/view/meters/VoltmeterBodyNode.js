@@ -22,7 +22,7 @@ define( require => {
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const StringUtils = require( 'PHETCOMMON/util/StringUtils' );
   const Text = require( 'SCENERY/nodes/Text' );
-  const Util = require( 'DOT/Util' );
+  const Utils = require( 'DOT/Utils' );
   const Vector2 = require( 'DOT/Vector2' );
 
   // digital display
@@ -163,7 +163,7 @@ define( require => {
         valueText.setText( voltsUnknownString );
       }
       else {
-        const fixedValue = Util.toFixed( value, 3 );
+        const fixedValue = Utils.toFixed( value, 3 );
         valueText.setText( StringUtils.fillIn( voltsPatternString, { value: fixedValue } ) );
       }
     }
