@@ -79,19 +79,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.model.circuit.battery.voltageProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.bottomCircuitSwitch.angleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -104,19 +91,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.bottomCircuitSwitch.angleProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.capacitanceProperty": {
       "phetioDocumentation": "",
@@ -157,19 +131,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.plateSeparationProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.plateSizeProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -195,19 +156,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.plateVoltageProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.storedEnergyProperty": {
       "phetioDocumentation": "",
@@ -235,19 +183,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.model.circuit.capacitor.topCircuitSwitch.angleProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.model.circuit.circuitConnectionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -274,19 +209,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.model.circuit.currentAmplitudeProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.model.circuit.disconnectedPlateChargeProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -300,19 +222,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.model.circuit.disconnectedPlateChargeProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.model.currentOrientationProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -325,19 +234,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.model.currentOrientationProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.model.currentVisibleProperty": {
       "phetioDocumentation": "",
@@ -468,19 +364,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.model.stopwatch.timeProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.model.storedEnergyMeterVisibleProperty": {
       "phetioDocumentation": "",
@@ -677,19 +560,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -781,19 +651,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -833,19 +690,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -884,19 +728,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -963,19 +794,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -1028,19 +846,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -1080,19 +885,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -1131,19 +923,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -1236,19 +1015,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -1340,19 +1106,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -1392,19 +1145,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -1443,19 +1183,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -1548,19 +1275,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.topPlateChargeCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.barMeterPanel.topPlateChargeCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -1652,19 +1366,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryBottomCurrentIndicatorNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryBottomCurrentIndicatorNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -1729,19 +1430,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.defaultTickLabel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.defaultTickLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -1808,19 +1496,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.maximumTickLabel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.maximumTickLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -1886,19 +1561,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.minimumTickLabel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.minimumTickLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -1950,19 +1612,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -2029,19 +1678,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -2080,19 +1716,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.thumb.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryNode.sliderNode.thumb.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -2315,19 +1938,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryTopCurrentIndicatorNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.batteryTopCurrentIndicatorNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -2445,19 +2055,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.bottomSwitchNode.openConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
@@ -2536,19 +2133,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.capacitorNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.capacitorNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -2613,19 +2197,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -2705,19 +2276,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -2757,19 +2315,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -2808,19 +2353,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode.valueNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateAreaDragHandleNode.valueNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -2926,19 +2458,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -3017,19 +2536,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -3069,19 +2575,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -3120,19 +2613,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -3290,19 +2770,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.capacitanceCircuitNode.topSwitchNode.openConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
@@ -3367,19 +2834,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -3458,19 +2912,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.resetAllButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.resetAllButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -3628,19 +3069,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.stopwatchNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.stopwatchNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -3692,19 +3120,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.stopwatchNode.playPauseButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.stopwatchNode.playPauseButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -3836,19 +3251,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.stopwatchNode.resetButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.stopwatchNode.resetButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -3953,19 +3355,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.toolboxPanel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.toolboxPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -4017,19 +3406,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.toolboxPanel.voltmeterIcon.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.toolboxPanel.voltmeterIcon.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -4108,19 +3484,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.barGraphsCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.barGraphsCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -4212,19 +3575,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -4369,19 +3719,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -4486,19 +3823,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -4537,19 +3861,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.currentTypeRadioButtonGroup.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -4629,19 +3940,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.electricFieldCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.electricFieldCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -4707,19 +4005,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -4771,19 +4056,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.plateChargesCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.capacitanceScreen.view.viewControlPanel.plateChargesCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -5019,19 +4291,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.capacitanceScreen.view.voltmeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -5200,19 +4459,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": false,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.general.barrierRectangle.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.general.barrierRectangle.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -5526,19 +4772,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.icon.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.icon.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -5577,19 +4810,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -5655,19 +4875,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.text.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.general.navigationBar.capacitanceScreenButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -5772,19 +4979,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.general.navigationBar.homeButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.general.navigationBar.homeButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -5903,19 +5097,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.icon.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.icon.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -5954,19 +5135,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -6032,19 +5200,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.text.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.general.navigationBar.lightBulbScreenButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -6228,19 +5383,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.closeButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": true,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.closeButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -6319,19 +5461,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": true,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -6370,19 +5499,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.termsPrivacyAndLicensingText.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": true,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.termsPrivacyAndLicensingText.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -6449,19 +5565,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.thirdPartyCreditsLinkText.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": true,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.thirdPartyCreditsLinkText.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -6526,19 +5629,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.translationCreditsLinkText.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": true,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutDialogCapsule.archetype.translationCreditsLinkText.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -6657,19 +5747,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutMenuItem.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.aboutMenuItem.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -6760,19 +5837,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.general.navigationBar.phetButton.phetMenu.screenshotMenuItem.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -6865,19 +5929,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.general.navigationBar.titleTextNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.general.navigationBar.titleTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -6955,19 +6006,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.general.screenIndexProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.general.showHomeScreenProperty": {
       "phetioDocumentation": "Whether or not home screen is displayed. This is independent of the \"current sim screen\" stored in the \"screenIndexProperty.\"",
@@ -7099,19 +6137,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -7150,19 +6175,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.text.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.homeScreen.view.capacitanceScreenLargeButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -7281,19 +6293,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -7332,19 +6331,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.text.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.homeScreen.view.capacitanceScreenSmallButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -7463,19 +6449,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -7514,19 +6487,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.text.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.homeScreen.view.lightBulbScreenLargeButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -7645,19 +6605,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -7696,19 +6643,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.text.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.homeScreen.view.lightBulbScreenSmallButton.text.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -7775,19 +6709,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.homeScreen.view.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.homeScreen.view.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -7826,19 +6747,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.homeScreen.view.title.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.homeScreen.view.title.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -7970,19 +6878,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.model.circuit.battery.voltageProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.bottomCircuitSwitch.angleProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -7995,19 +6890,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.bottomCircuitSwitch.angleProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.capacitanceProperty": {
       "phetioDocumentation": "",
@@ -8048,19 +6930,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.plateSeparationProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.plateSizeProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -8086,19 +6955,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.plateVoltageProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.storedEnergyProperty": {
       "phetioDocumentation": "",
@@ -8126,19 +6982,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.model.circuit.capacitor.topCircuitSwitch.angleProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.model.circuit.circuitConnectionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -8165,19 +7008,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.model.circuit.currentAmplitudeProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.model.circuit.disconnectedPlateChargeProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -8191,19 +7021,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.model.circuit.disconnectedPlateChargeProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.model.currentOrientationProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -8216,19 +7033,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.model.currentOrientationProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.model.currentVisibleProperty": {
       "phetioDocumentation": "",
@@ -8359,19 +7163,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.model.stopwatch.timeProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.model.storedEnergyMeterVisibleProperty": {
       "phetioDocumentation": "",
@@ -8568,19 +7359,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -8672,19 +7450,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -8724,19 +7489,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -8775,19 +7527,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.capacitanceMeterNode.valueTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -8854,19 +7593,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -8919,19 +7645,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -8971,19 +7684,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -9022,19 +7722,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.plateChargeMeterNode.valueTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -9127,19 +7814,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -9231,19 +7905,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -9283,19 +7944,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -9334,19 +7982,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.storedEnergyMeterNode.valueTextNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -9439,19 +8074,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.topPlateChargeCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.barMeterPanel.topPlateChargeCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -9543,19 +8165,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryBottomCurrentIndicatorNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryBottomCurrentIndicatorNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -9620,19 +8229,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.defaultTickLabel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.defaultTickLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -9699,19 +8295,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.maximumTickLabel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.maximumTickLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -9777,19 +8360,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.minimumTickLabel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.minimumTickLabel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -9841,19 +8411,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -9920,19 +8477,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -9971,19 +8515,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.thumb.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryNode.sliderNode.thumb.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -10206,19 +8737,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryTopCurrentIndicatorNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.batteryTopCurrentIndicatorNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -10362,19 +8880,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bottomSwitchNode.openConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
@@ -10453,19 +8958,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bulbBottomCurrentIndicatorNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bulbBottomCurrentIndicatorNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -10517,19 +9009,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bulbTopCurrentIndicatorNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.bulbTopCurrentIndicatorNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -10583,19 +9062,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.capacitorNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.capacitorNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -10647,19 +9113,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.lightBulbNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.lightBulbNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -10725,19 +9178,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -10817,19 +9257,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -10869,19 +9296,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -10920,19 +9334,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode.valueNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateAreaDragHandleNode.valueNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -11038,19 +9439,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.arrowNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.arrowNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -11129,19 +9517,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -11181,19 +9556,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -11232,19 +9594,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.plateSeparationDragHandleNode.valueNode.valueNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -11428,19 +9777,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.lightBulbCircuitNode.topSwitchNode.openConnectionNode.pressListener.pressAction": {
       "phetioDocumentation": "Executes whenever a press occurs. The first argument when executing can be used to convey info about the SceneryEvent. The arguments are:<br/><ol><li>event: SceneryEventIO</li></ol>",
       "phetioDynamicElement": false,
@@ -11505,19 +9841,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -11596,19 +9919,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.resetAllButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.resetAllButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -11701,19 +10011,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -11765,19 +10062,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -11856,19 +10140,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.toggleNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.playPauseButton.toggleNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -12013,19 +10284,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.normal.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -12064,19 +10322,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -12182,19 +10427,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.speedRadioButtonGroup.slow.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -12285,19 +10517,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlNode.stepForwardButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.timeControlNode.stepForwardButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -12390,19 +10609,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.timeControlPanel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.timeControlPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -12455,19 +10661,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.toolboxPanel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.toolboxPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -12506,19 +10699,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.toolboxPanel.timerIcon.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.toolboxPanel.timerIcon.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -12584,19 +10764,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.toolboxPanel.voltmeterIcon.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.toolboxPanel.voltmeterIcon.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -12675,19 +10842,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.barGraphsCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.barGraphsCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -12779,19 +10933,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -12936,19 +11077,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.conventionalRadioButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -13053,19 +11181,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.electronsRadioButton.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -13104,19 +11219,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.currentTypeRadioButtonGroup.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -13196,19 +11298,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.electricFieldCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.electricFieldCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -13274,19 +11363,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
     },
-    "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
-    },
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
       "phetioDynamicElement": false,
@@ -13338,19 +11414,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.plateChargesCheckbox.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.viewControlPanel.plateChargesCheckbox.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
@@ -13585,19 +11648,6 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "NumberPropertyIO"
-    },
-    "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.opacityProperty.rangeProperty": {
-      "phetioDocumentation": "provides the range of possible values for the parent NumberProperty",
-      "phetioDynamicElement": false,
-      "phetioEventType": "MODEL",
-      "phetioFeatured": false,
-      "phetioHighFrequency": false,
-      "phetioIsArchetype": false,
-      "phetioPlayback": false,
-      "phetioReadOnly": true,
-      "phetioState": true,
-      "phetioStudioControl": true,
-      "phetioTypeName": "PropertyIO<NullableIO<RangeIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view.voltmeterNode.pickableProperty": {
       "phetioDocumentation": "Sets whether the node will be pickable (and hence interactive), see the NodeIO documentation for more details",
