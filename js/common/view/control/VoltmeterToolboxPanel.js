@@ -38,7 +38,7 @@ define( require => {
    * @param {Stopwatch} stopwatch
    * @param {Property.<boolean>} voltmeterVisibleProperty
    * @param {Tandem} tandem
-   * @param {object} options
+   * @param {Object} [options]
    */
   function VoltmeterToolboxPanel( dragBounds, stopwatchNode, voltmeterNode, modelViewTransform, isDraggedProperty,
                                   stopwatch, voltmeterVisibleProperty, tandem, options ) {

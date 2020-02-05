@@ -41,7 +41,7 @@ define( require => {
    *
    * @param {CLBModel} model
    * @param {Tandem} tandem
-   * @param {Object} options
+   * @param {Object} [options]
    */
   function CLBViewControlPanel( model, tandem, options ) {
 

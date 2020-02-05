@@ -98,7 +98,7 @@ define( require => {
      * Create a bulb node icon.  This creates a node that is not linked to any model properties.
      * @public
      *
-     * @param {Object} options
+     * @param {Object} [options]
      * @returns {Node}
      */
     createBulbIcon: function( options ) {
@@ -112,7 +112,7 @@ define( require => {
    * of brightness.
    * @private
    *
-   * @param {Object} options
+   * @param {Object} [options]
    * @returns {Node}
    */
   function drawBulbNode( options ) {
