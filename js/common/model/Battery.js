@@ -64,6 +64,7 @@ define( require => {
 
     // Value type: enumeration (string)
     // @public {Property.<string>} - 'POSITIVE' or 'NEGATIVE'
+    // TODO: use EnumerationProperty
     this.polarityProperty = new Property( CapacitorConstants.POLARITY.POSITIVE, {
       validValues: CapacitorConstants.POLARITY.VALUES,
       tandem: tandem.createTandem( 'polarityProperty' ),
