@@ -99,7 +99,7 @@ define( require => {
       }
     ], {
       spacing: 5,
-      touchAreaXDilation: 5,
+      touchAreaDilation: 5,
       tandem: tandem.createTandem( 'currentTypeRadioButtonGroup' )
     } );
 
