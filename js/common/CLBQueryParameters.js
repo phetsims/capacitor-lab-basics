@@ -5,28 +5,24 @@
  *
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+import capacitorLabBasics from '../capacitorLabBasics.js';
 
-  const CLBQueryParameters = QueryStringMachine.getAll( {
+const CLBQueryParameters = QueryStringMachine.getAll( {
 
-    // Provided as a customization for PhET-iO.
-    // Removes the open-circuit switch state in the Light Bulb screen
-    switch: {
-      type: 'string',
-      validValues: [ 'twoState', 'threeState' ],
-      defaultValue: 'threeState'
-    },
+  // Provided as a customization for PhET-iO.
+  // Removes the open-circuit switch state in the Light Bulb screen
+  switch: {
+    type: 'string',
+    validValues: [ 'twoState', 'threeState' ],
+    defaultValue: 'threeState'
+  },
 
-    showDebugAreas: {
-      type: 'flag'
-    }
-  } );
-
-  capacitorLabBasics.register( 'CLBQueryParameters', CLBQueryParameters );
-
-  return CLBQueryParameters;
+  showDebugAreas: {
+    type: 'flag'
+  }
 } );
+
+capacitorLabBasics.register( 'CLBQueryParameters', CLBQueryParameters );
+
+export default CLBQueryParameters;

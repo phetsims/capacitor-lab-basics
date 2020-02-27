@@ -6,96 +6,91 @@
  * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  const inherit = require( 'PHET_CORE/inherit' );
-  const Path = require( 'SCENERY/nodes/Path' );
-  const PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
-  const Shape = require( 'KITE/Shape' );
-  const Vector2 = require( 'DOT/Vector2' );
+import Vector2 from '../../../../../dot/js/Vector2.js';
+import Shape from '../../../../../kite/js/Shape.js';
+import inherit from '../../../../../phet-core/js/inherit.js';
+import PhetColorScheme from '../../../../../scenery-phet/js/PhetColorScheme.js';
+import Path from '../../../../../scenery/js/nodes/Path.js';
+import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
-  // constants
-  // wire is a cubic curve, these are the control point offsets
-  const BODY_CONTROL_POINT_OFFSET = new Vector2( 0, 100 );
-  const PROBE_CONTROL_POINT_OFFSET = new Vector2( -80, 100 );
-  const POSITIVE_WIRE_COLOR = PhetColorScheme.RED_COLORBLIND;
-  const NEGATIVE_WIRE_COLOR = 'black';
+// constants
+// wire is a cubic curve, these are the control point offsets
+const BODY_CONTROL_POINT_OFFSET = new Vector2( 0, 100 );
+const PROBE_CONTROL_POINT_OFFSET = new Vector2( -80, 100 );
+const POSITIVE_WIRE_COLOR = PhetColorScheme.RED_COLORBLIND;
+const NEGATIVE_WIRE_COLOR = 'black';
+
+/**
+ * @param {VoltmeterBodyNode} bodyNode
+ * @param {VoltmeterProbeNode} probeNode
+ * @param {boolean} isPositive
+ * @constructor
+ */
+function ProbeWireNode( bodyNode, probeNode, isPositive ) {
+
+  const self = this;
+
+  // @private {VoltmeterBodyNode}
+  this.bodyNode = bodyNode;
+
+  // @private {VoltmeterProbeNode}
+  this.probeNode = probeNode;
+
+  // @private {Vector2}
+  this.bodyControlPointOffset = BODY_CONTROL_POINT_OFFSET;
+  this.probeControlPointOffset = PROBE_CONTROL_POINT_OFFSET;
+
+  // @private {Vector2}
+  this.bodyConnectionOffset = isPositive ? bodyNode.positiveConnectionOffset : bodyNode.negativeConnectionOffset;
+  this.probeConnectionOffset = probeNode.connectionOffset;
+
+  // supertype constructor with lazily passed wire shape.
+  Path.call( this, null, {
+    stroke: isPositive ? POSITIVE_WIRE_COLOR : NEGATIVE_WIRE_COLOR,
+    lineWidth: 3
+  } );
+
+  // update wire when body or probe moves
+  probeNode.locationProperty.link( function( location ) {
+    self.update();
+  } );
+
+  bodyNode.bodyLocationProperty.link( function( location ) {
+    self.update();
+  } );
+}
+
+capacitorLabBasics.register( 'ProbeWireNode', ProbeWireNode );
+
+export default inherit( Path, ProbeWireNode, {
 
   /**
-   * @param {VoltmeterBodyNode} bodyNode
-   * @param {VoltmeterProbeNode} probeNode
-   * @param {boolean} isPositive
-   * @constructor
+   * Update the wire path.
+   * @public
    */
-  function ProbeWireNode( bodyNode, probeNode, isPositive ) {
+  update: function() {
 
-    const self = this;
+    const pBody = this.getConnectionPoint( this.bodyNode, this.bodyConnectionOffset );
+    const pProbe = this.getConnectionPoint( this.probeNode, this.probeConnectionOffset );
 
-    // @private {VoltmeterBodyNode}
-    this.bodyNode = bodyNode;
+    // control points
+    const ctrl1 = new Vector2( pBody.x + this.bodyControlPointOffset.x, pBody.y + this.bodyControlPointOffset.y );
+    const ctrl2 = new Vector2( pProbe.x + this.probeControlPointOffset.x, pProbe.y + this.probeControlPointOffset.y );
 
-    // @private {VoltmeterProbeNode}
-    this.probeNode = probeNode;
+    this.setShape( new Shape().moveToPoint( pBody ).cubicCurveToPoint( ctrl1, ctrl2, pProbe ) );
+  },
 
-    // @private {Vector2}
-    this.bodyControlPointOffset = BODY_CONTROL_POINT_OFFSET;
-    this.probeControlPointOffset = PROBE_CONTROL_POINT_OFFSET;
-
-    // @private {Vector2}
-    this.bodyConnectionOffset = isPositive ? bodyNode.positiveConnectionOffset : bodyNode.negativeConnectionOffset;
-    this.probeConnectionOffset = probeNode.connectionOffset;
-
-    // supertype constructor with lazily passed wire shape.
-    Path.call( this, null, {
-      stroke: isPositive ? POSITIVE_WIRE_COLOR : NEGATIVE_WIRE_COLOR,
-      lineWidth: 3
-    } );
-
-    // update wire when body or probe moves
-    probeNode.locationProperty.link( function( location ) {
-      self.update();
-    } );
-
-    bodyNode.bodyLocationProperty.link( function( location ) {
-      self.update();
-    } );
+  /**
+   * Get the connection point for either the voltmeter body or probe.  Adds the node location to the offset connection
+   * point vector for a given node.
+   * @public
+   *
+   * @param {VoltmeterBodyNode|VoltmeterProbeNode} node
+   * @param {Vector2} connectionOffset
+   * @returns {Vector2}
+   */
+  getConnectionPoint: function( node, connectionOffset ) {
+    return node.translation.plus( connectionOffset );
   }
-
-  capacitorLabBasics.register( 'ProbeWireNode', ProbeWireNode );
-
-  return inherit( Path, ProbeWireNode, {
-
-    /**
-     * Update the wire path.
-     * @public
-     */
-    update: function() {
-
-      const pBody = this.getConnectionPoint( this.bodyNode, this.bodyConnectionOffset );
-      const pProbe = this.getConnectionPoint( this.probeNode, this.probeConnectionOffset );
-
-      // control points
-      const ctrl1 = new Vector2( pBody.x + this.bodyControlPointOffset.x, pBody.y + this.bodyControlPointOffset.y );
-      const ctrl2 = new Vector2( pProbe.x + this.probeControlPointOffset.x, pProbe.y + this.probeControlPointOffset.y );
-
-      this.setShape( new Shape().moveToPoint( pBody ).cubicCurveToPoint( ctrl1, ctrl2, pProbe ) );
-    },
-
-    /**
-     * Get the connection point for either the voltmeter body or probe.  Adds the node location to the offset connection
-     * point vector for a given node.
-     * @public
-     *
-     * @param {VoltmeterBodyNode|VoltmeterProbeNode} node
-     * @param {Vector2} connectionOffset
-     * @returns {Vector2}
-     */
-    getConnectionPoint: function( node, connectionOffset ) {
-      return node.translation.plus( connectionOffset );
-    }
-  } );
 } );
-

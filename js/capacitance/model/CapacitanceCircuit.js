@@ -17,53 +17,49 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  const inherit = require( 'PHET_CORE/inherit' );
-  const ParallelCircuit = require( 'CAPACITOR_LAB_BASICS/common/model/ParallelCircuit' );
+import inherit from '../../../../phet-core/js/inherit.js';
+import capacitorLabBasics from '../../capacitorLabBasics.js';
+import CircuitState from '../../common/model/CircuitState.js';
+import ParallelCircuit from '../../common/model/ParallelCircuit.js';
+
+/**
+ * @constructor
+ *
+ * @param {CircuitConfig} config
+ * @param {Tandem} tandem
+ */
+function CapacitanceCircuit( config, tandem ) {
+
+  this.lightBulb = null; // There is no light bulb in the first screen
+
+  ParallelCircuit.call( this, config, tandem );
+}
+
+capacitorLabBasics.register( 'CapacitanceCircuit', CapacitanceCircuit );
+
+export default inherit( ParallelCircuit, CapacitanceCircuit, {
 
   /**
-   * @constructor
-   *
-   * @param {CircuitConfig} config
-   * @param {Tandem} tandem
+   * Updates the plate voltage, depending on whether the battery is connected.
+   * @public
    */
-  function CapacitanceCircuit( config, tandem ) {
+  updatePlateVoltages: function() {
 
-    this.lightBulb = null; // There is no light bulb in the first screen
+    // Undefined check required because superclass calls this method from its constructor.
+    if ( this.circuitConnectionProperty !== undefined ) {
 
-    ParallelCircuit.call( this, config, tandem );
-  }
+      // if the battery is connected, the voltage is equal to the battery voltage
+      if ( this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
+        this.capacitor.plateVoltageProperty.value = this.battery.voltageProperty.value;
+      }
 
-  capacitorLabBasics.register( 'CapacitanceCircuit', CapacitanceCircuit );
+      else {
 
-  return inherit( ParallelCircuit, CapacitanceCircuit, {
-
-    /**
-     * Updates the plate voltage, depending on whether the battery is connected.
-     * @public
-     */
-    updatePlateVoltages: function() {
-
-      // Undefined check required because superclass calls this method from its constructor.
-      if ( this.circuitConnectionProperty !== undefined ) {
-
-        // if the battery is connected, the voltage is equal to the battery voltage
-        if ( this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
-          this.capacitor.plateVoltageProperty.value = this.battery.voltageProperty.value;
-        }
-
-        else {
-
-          // otherwise, the voltage can be found by V=Q/C
-          this.capacitor.plateVoltageProperty.value =
-            this.disconnectedPlateChargeProperty.value / this.capacitor.capacitanceProperty.value;
-        }
+        // otherwise, the voltage can be found by V=Q/C
+        this.capacitor.plateVoltageProperty.value =
+          this.disconnectedPlateChargeProperty.value / this.capacitor.capacitanceProperty.value;
       }
     }
-  } );
+  }
 } );

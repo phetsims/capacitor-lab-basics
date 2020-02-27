@@ -5,48 +5,44 @@
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const CapacitanceModel = require( 'CAPACITOR_LAB_BASICS/capacitance/model/CapacitanceModel' );
-  const CapacitanceScreenView = require( 'CAPACITOR_LAB_BASICS/capacitance/view/CapacitanceScreenView' );
-  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  const YawPitchModelViewTransform3 = require( 'SCENERY_PHET/capacitor/YawPitchModelViewTransform3' );
-  const Image = require( 'SCENERY/nodes/Image' );
-  const inherit = require( 'PHET_CORE/inherit' );
-  const Property = require( 'AXON/Property' );
-  const Screen = require( 'JOIST/Screen' );
+import Property from '../../../axon/js/Property.js';
+import Screen from '../../../joist/js/Screen.js';
+import inherit from '../../../phet-core/js/inherit.js';
+import YawPitchModelViewTransform3 from '../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
+import Image from '../../../scenery/js/nodes/Image.js';
+import capacitorIconImage from '../../mipmaps/capacitance_screen_icon_png.js';
+import capacitorLabBasicsStrings from '../capacitor-lab-basics-strings.js';
+import capacitorLabBasics from '../capacitorLabBasics.js';
+import CLBConstants from '../common/CLBConstants.js';
+import CapacitanceModel from './model/CapacitanceModel.js';
+import CapacitanceScreenView from './view/CapacitanceScreenView.js';
 
-  // strings
-  const screenCapacitanceString = require( 'string!CAPACITOR_LAB_BASICS/screen.capacitance' );
+const screenCapacitanceString = capacitorLabBasicsStrings.screen.capacitance;
 
-  // images
-  const capacitorIconImage = require( 'mipmap!CAPACITOR_LAB_BASICS/capacitance_screen_icon.png' );
 
-  /**
-   * @constructor
-   *
-   * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
-   * @param {Tandem} tandem
-   */
-  function CapacitanceScreen( switchUsedProperty, tandem ) {
+/**
+ * @constructor
+ *
+ * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
+ * @param {Tandem} tandem
+ */
+function CapacitanceScreen( switchUsedProperty, tandem ) {
 
-    const options = {
-      name: screenCapacitanceString,
-      backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
-      homeScreenIcon: new Image( capacitorIconImage ),
-      tandem: tandem
-    };
+  const options = {
+    name: screenCapacitanceString,
+    backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
+    homeScreenIcon: new Image( capacitorIconImage ),
+    tandem: tandem
+  };
 
-    Screen.call( this,
-      function() { return new CapacitanceModel( switchUsedProperty, new YawPitchModelViewTransform3(), tandem.createTandem( 'model' ) ); },
-      function( model ) { return new CapacitanceScreenView( model, tandem.createTandem( 'view' ) ); },
-      options );
-  }
+  Screen.call( this,
+    function() { return new CapacitanceModel( switchUsedProperty, new YawPitchModelViewTransform3(), tandem.createTandem( 'model' ) ); },
+    function( model ) { return new CapacitanceScreenView( model, tandem.createTandem( 'view' ) ); },
+    options );
+}
 
-  capacitorLabBasics.register( 'CapacitanceScreen', CapacitanceScreen );
+capacitorLabBasics.register( 'CapacitanceScreen', CapacitanceScreen );
 
-  return inherit( Screen, CapacitanceScreen );
-} );
+inherit( Screen, CapacitanceScreen );
+export default CapacitanceScreen;

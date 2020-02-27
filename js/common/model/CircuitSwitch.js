@@ -8,320 +8,316 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const CapacitorConstants = require( 'SCENERY_PHET/capacitor/CapacitorConstants' );
-  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  const CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
-  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  const CLBQueryParameters = require( 'CAPACITOR_LAB_BASICS/common/CLBQueryParameters' );
-  const Connection = require( 'CAPACITOR_LAB_BASICS/common/model/Connection' );
-  const inherit = require( 'PHET_CORE/inherit' );
-  const NumberProperty = require( 'AXON/NumberProperty' );
-  const Range = require( 'DOT/Range' );
-  const Shape = require( 'KITE/Shape' );
-  const Vector2 = require( 'DOT/Vector2' );
-  const Vector3 = require( 'DOT/Vector3' );
-  const Wire = require( 'CAPACITOR_LAB_BASICS/common/model/wire/Wire' );
-  const WireSegment = require( 'CAPACITOR_LAB_BASICS/common/model/wire/WireSegment' );
+import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import Range from '../../../../dot/js/Range.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
+import Vector3 from '../../../../dot/js/Vector3.js';
+import Shape from '../../../../kite/js/Shape.js';
+import inherit from '../../../../phet-core/js/inherit.js';
+import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
+import capacitorLabBasics from '../../capacitorLabBasics.js';
+import CLBConstants from '../CLBConstants.js';
+import CLBQueryParameters from '../CLBQueryParameters.js';
+import CircuitLocation from './CircuitLocation.js';
+import CircuitState from './CircuitState.js';
+import Connection from './Connection.js';
+import Wire from './wire/Wire.js';
+import WireSegment from './wire/WireSegment.js';
 
-  // constants
-  const SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point
+// constants
+const SWITCH_ANGLE = Math.PI / 4; // angle from the vertical of each connection point
+
+/**
+ * @constructor
+ *
+ * @param {string} positionLabel - 'top' or 'bottom'
+ * @param {CircuitConfig} config
+ * @param {Property.<CircuitState>} circuitConnectionProperty
+ * @param {Tandem} tandem
+ */
+function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem ) {
+
+  const self = this;
+
+  // Validate positionLabel string
+  assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
+    'Unsupported positionLabel: ' + positionLabel );
+
+  // @private {boolean} - Removes the 'open circuit' option when a capacitor and light bulb exist
+  this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
+
+  // @public {Vector3}
+  this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
+
+  // @private {YawPitchModelViewTransform3}
+  this.modelViewTransform = config.modelViewTransform;
+
+  // @public {Property.<CircuitState>}
+  this.circuitConnectionProperty = circuitConnectionProperty;
+
+  // @private {Array.<Connection>}
+  this.connections = this.getSwitchConnections( positionLabel, this.hingePoint.toVector2(), config.circuitConnections );
+
+  // @public {Property.<number>} - Angle of the switch
+  this.angleProperty = new NumberProperty( 0, {
+    tandem: tandem.createTandem( 'angleProperty' ),
+    units: 'radians',
+    range: new Range( -2.5, 2.5 )
+  } );
+
+  // Assign string identifying connection point
+  const connectionName = ( positionLabel === 'top' ) ?
+                         CircuitLocation.CIRCUIT_SWITCH_TOP :
+                         CircuitLocation.CIRCUIT_SWITCH_BOTTOM;
+
+  // @public {WireSegment} Add the switch wire that spans two connection points. Default connection is to the battery.
+  this.switchSegment = new WireSegment(
+    this.hingePoint,
+    this.getConnection( circuitConnectionProperty.value ).location
+  );
+  this.switchSegment.hingePoint = this.hingePoint;
+
+  // @public {Wire} - Wire between the hinge point and end point
+  this.switchWire = new Wire( config.modelViewTransform, [ this.switchSegment ], connectionName );
+
+  this.angleProperty.link( function( angle ) {
+    const hingePoint = self.switchSegment.hingePoint;
+
+    // Shorten the switch wire (requested in #140)
+    self.switchSegment.endPointProperty.value = hingePoint.plus( Vector2.createPolar( 0.9 * CLBConstants.SWITCH_WIRE_LENGTH, angle ).toVector3() );
+  } );
+
+  // set active connection whenever circuit connection type changes.
+  circuitConnectionProperty.link( function( circuitConnection ) {
+
+    // If the switch is being dragged, it is in transit and there is no active connection.
+    if ( circuitConnection === CircuitState.SWITCH_IN_TRANSIT ) {
+      return;
+    }
+
+    const wireDelta = self.getConnection( circuitConnection ).location.minus( self.switchSegment.hingePoint );
+    self.angleProperty.value = wireDelta.toVector2().angle;
+  } );
+}
+
+capacitorLabBasics.register( 'CircuitSwitch', CircuitSwitch );
+
+export default inherit( Object, CircuitSwitch, {
 
   /**
-   * @constructor
+   * Get (x,y,z) position of switch pivot point
+   * @private
    *
    * @param {string} positionLabel - 'top' or 'bottom'
-   * @param {CircuitConfig} config
-   * @param {Property.<CircuitState>} circuitConnectionProperty
-   * @param {Tandem} tandem
+   * @param {CircuitConfig} config - Class containing circuit geometry and properties
+   *
+   * @returns {Vector3}
    */
-  function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem ) {
-
-    const self = this;
+  getSwitchHingePoint: function( positionLabel, config ) {
 
     // Validate positionLabel string
     assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
       'Unsupported positionLabel: ' + positionLabel );
 
-    // @private {boolean} - Removes the 'open circuit' option when a capacitor and light bulb exist
-    this.twoStateSwitch = CLBQueryParameters.switch === 'twoState' ? true : false;
+    // create the circuit switches that connect the capacitor to the circuit
+    const x = CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing;
+    const z = CLBConstants.BATTERY_LOCATION.z;
 
-    // @public {Vector3}
-    this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
+    const yOffset = CapacitorConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
+    let y = CLBConstants.BATTERY_LOCATION.y;
 
-    // @private {YawPitchModelViewTransform3}
-    this.modelViewTransform = config.modelViewTransform;
+    if ( positionLabel === 'top' ) {
+      y -= yOffset;
+    }
+    else if ( positionLabel === 'bottom' ) {
+      y += yOffset;
+    }
 
-    // @public {Property.<CircuitState>}
-    this.circuitConnectionProperty = circuitConnectionProperty;
+    return new Vector3( x, y, z );
+  },
 
-    // @private {Array.<Connection>}
-    this.connections = this.getSwitchConnections( positionLabel, this.hingePoint.toVector2(), config.circuitConnections );
+  /**
+   * Get an array of objects containing locations (as Vector3) and connection types (as strings)
+   * of the switch connection points
+   * @private
+   *
+   * @param  {string} positionLabel - 'top' or 'bottom'
+   * @param  {Vector2} hingeXY - Location of switch hinge
+   * @param  {Array.<CircuitState>} circuitStates
+   * @returns {Array.<Connection>}
+   */
+  getSwitchConnections: function( positionLabel, hingeXY, circuitStates ) {
+    // Projection of switch wire vector to its components (angle is from a vertical wire)
+    const length = CLBConstants.SWITCH_WIRE_LENGTH;
+    const dx = length * Math.sin( SWITCH_ANGLE );
+    const dy = length * Math.cos( SWITCH_ANGLE );
 
-    // @public {Property.<number>} - Angle of the switch
-    this.angleProperty = new NumberProperty( 0, {
-      tandem: tandem.createTandem( 'angleProperty' ),
-      units: 'radians',
-      range: new Range( -2.5, 2.5 )
-    } );
+    // Top point of hinge from pivot point
+    const topOffset = new Vector2( 0, length );
 
-    // Assign string identifying connection point
-    const connectionName = ( positionLabel === 'top' ) ?
-                         CircuitLocation.CIRCUIT_SWITCH_TOP :
-                         CircuitLocation.CIRCUIT_SWITCH_BOTTOM;
+    // Compute 2D switch contact points
 
-    // @public {WireSegment} Add the switch wire that spans two connection points. Default connection is to the battery.
-    this.switchSegment = new WireSegment(
-      this.hingePoint,
-      this.getConnection( circuitConnectionProperty.value ).location
-    );
-    this.switchSegment.hingePoint = this.hingePoint;
+    let topPoint;
+    let leftPoint;
+    let rightPoint;
 
-    // @public {Wire} - Wire between the hinge point and end point
-    this.switchWire = new Wire( config.modelViewTransform, [ this.switchSegment ], connectionName );
+    if ( positionLabel === 'top' ) {
+      topPoint = hingeXY.minus( topOffset );
+      leftPoint = hingeXY.minusXY( dx, dy );
+      rightPoint = hingeXY.minusXY( -dx, dy );
+    }
+    else {
+      topPoint = hingeXY.plus( topOffset );
+      leftPoint = hingeXY.plusXY( -dx, dy );
+      rightPoint = hingeXY.plusXY( dx, dy );
+    }
 
-    this.angleProperty.link( function( angle ) {
-      const hingePoint = self.switchSegment.hingePoint;
-
-      // Shorten the switch wire (requested in #140)
-      self.switchSegment.endPointProperty.value = hingePoint.plus( Vector2.createPolar( 0.9 * CLBConstants.SWITCH_WIRE_LENGTH, angle ).toVector3() );
-    } );
-
-    // set active connection whenever circuit connection type changes.
-    circuitConnectionProperty.link( function( circuitConnection ) {
-
-      // If the switch is being dragged, it is in transit and there is no active connection.
-      if ( circuitConnection === CircuitState.SWITCH_IN_TRANSIT ) {
-        return;
+    const connections = [];
+    circuitStates.forEach( function( circuitState ) {
+      if ( circuitState === CircuitState.OPEN_CIRCUIT ) {
+        connections.push( new Connection( topPoint.toVector3(), circuitState ) );
       }
-
-      const wireDelta = self.getConnection( circuitConnection ).location.minus( self.switchSegment.hingePoint );
-      self.angleProperty.value = wireDelta.toVector2().angle;
-    } );
-  }
-
-  capacitorLabBasics.register( 'CircuitSwitch', CircuitSwitch );
-
-  return inherit( Object, CircuitSwitch, {
-
-    /**
-     * Get (x,y,z) position of switch pivot point
-     * @private
-     *
-     * @param {string} positionLabel - 'top' or 'bottom'
-     * @param {CircuitConfig} config - Class containing circuit geometry and properties
-     *
-     * @returns {Vector3}
-     */
-    getSwitchHingePoint: function( positionLabel, config ) {
-
-      // Validate positionLabel string
-      assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
-        'Unsupported positionLabel: ' + positionLabel );
-
-      // create the circuit switches that connect the capacitor to the circuit
-      const x = CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing;
-      const z = CLBConstants.BATTERY_LOCATION.z;
-
-      const yOffset = CapacitorConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
-      let y = CLBConstants.BATTERY_LOCATION.y;
-
-      if ( positionLabel === 'top' ) {
-        y -= yOffset;
+      else if ( circuitState === CircuitState.BATTERY_CONNECTED ) {
+        connections.push( new Connection( leftPoint.toVector3(), circuitState ) );
       }
-      else if ( positionLabel === 'bottom' ) {
-        y += yOffset;
-      }
-
-      return new Vector3( x, y, z );
-    },
-
-    /**
-     * Get an array of objects containing locations (as Vector3) and connection types (as strings)
-     * of the switch connection points
-     * @private
-     *
-     * @param  {string} positionLabel - 'top' or 'bottom'
-     * @param  {Vector2} hingeXY - Location of switch hinge
-     * @param  {Array.<CircuitState>} circuitStates
-     * @returns {Array.<Connection>}
-     */
-    getSwitchConnections: function( positionLabel, hingeXY, circuitStates ) {
-      // Projection of switch wire vector to its components (angle is from a vertical wire)
-      const length = CLBConstants.SWITCH_WIRE_LENGTH;
-      const dx = length * Math.sin( SWITCH_ANGLE );
-      const dy = length * Math.cos( SWITCH_ANGLE );
-
-      // Top point of hinge from pivot point
-      const topOffset = new Vector2( 0, length );
-
-      // Compute 2D switch contact points
-
-      let topPoint;
-      let leftPoint;
-      let rightPoint;
-
-      if ( positionLabel === 'top' ) {
-        topPoint = hingeXY.minus( topOffset );
-        leftPoint = hingeXY.minusXY( dx, dy );
-        rightPoint = hingeXY.minusXY( -dx, dy );
+      else if ( circuitState === CircuitState.LIGHT_BULB_CONNECTED ) {
+        connections.push( new Connection( rightPoint.toVector3(), circuitState ) );
       }
       else {
-        topPoint = hingeXY.plus( topOffset );
-        leftPoint = hingeXY.plusXY( -dx, dy );
-        rightPoint = hingeXY.plusXY( dx, dy );
+        assert && assert( false, 'attempting to create switch conection which is not supported' );
       }
+    } );
 
-      const connections = [];
-      circuitStates.forEach( function( circuitState ) {
-        if ( circuitState === CircuitState.OPEN_CIRCUIT ) {
-          connections.push( new Connection( topPoint.toVector3(), circuitState ) );
-        }
-        else if ( circuitState === CircuitState.BATTERY_CONNECTED ) {
-          connections.push( new Connection( leftPoint.toVector3(), circuitState ) );
-        }
-        else if ( circuitState === CircuitState.LIGHT_BULB_CONNECTED ) {
-          connections.push( new Connection( rightPoint.toVector3(), circuitState ) );
-        }
-        else {
-          assert && assert( false, 'attempting to create switch conection which is not supported' );
-        }
-      } );
+    return connections;
+  },
 
-      return connections;
-    },
+  /**
+   * Get the desired connection from the connection type.
+   * @public
+   *
+   * @param {CircuitState} connectionType
+   * @returns {Connection}
+   */
+  getConnection: function( connectionType ) {
 
-    /**
-     * Get the desired connection from the connection type.
-     * @public
-     *
-     * @param {CircuitState} connectionType
-     * @returns {Connection}
-     */
-    getConnection: function( connectionType ) {
+    const returnConnection = _.find( this.connections, function( connection ) {
+      return connection.type === connectionType;
+    } );
 
-      const returnConnection = _.find( this.connections, function( connection ) {
-        return connection.type === connectionType;
-      } );
+    assert && assert( returnConnection, 'No connection type for this circuit named ' + connectionType );
 
-      assert && assert( returnConnection, 'No connection type for this circuit named ' + connectionType );
+    return returnConnection;
+  },
 
-      return returnConnection;
-    },
+  /**
+   * Convenience method for getting the connection locations. Similar to getConnection above, but directly returns
+   * the location.
+   * @public
+   *
+   * @param {CircuitState} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
+   * @returns {Vector3}
+   */
+  getConnectionPoint: function( connectionType ) {
+    assert && assert( connectionType !== CircuitState.SWITCH_IN_TRANSIT,
+      'Cannot call getConnectionPoint while SWITCH_IN_TRANSIT' );
 
-    /**
-     * Convenience method for getting the connection locations. Similar to getConnection above, but directly returns
-     * the location.
-     * @public
-     *
-     * @param {CircuitState} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
-     * @returns {Vector3}
-     */
-    getConnectionPoint: function( connectionType ) {
-      assert && assert( connectionType !== CircuitState.SWITCH_IN_TRANSIT,
-        'Cannot call getConnectionPoint while SWITCH_IN_TRANSIT' );
+    return this.getConnection( connectionType ).location;
+  },
 
-      return this.getConnection( connectionType ).location;
-    },
+  /**
+   * Get the location of the endpoint for the circuit switch segment.
+   * @public
+   *
+   * @returns {Vector3}
+   */
+  getSwitchEndPoint: function() {
 
-    /**
-     * Get the location of the endpoint for the circuit switch segment.
-     * @public
-     *
-     * @returns {Vector3}
-     */
-    getSwitchEndPoint: function() {
+    const endPoint = this.switchSegment.endPointProperty.value;
 
-      const endPoint = this.switchSegment.endPointProperty.value;
+    assert && assert( endPoint instanceof Vector3 );
 
-      assert && assert( endPoint instanceof Vector3 );
+    return endPoint;
+  },
 
-      return endPoint;
-    },
+  /**
+   * Get the limiting angle of the circuit switch to the right.
+   * The limiting angle is dependent on wheter a light bulb is connected to the circuit.
+   * @public
+   *
+   * @returns {number}
+   */
+  getRightLimitAngle: function() {
 
-    /**
-     * Get the limiting angle of the circuit switch to the right.
-     * The limiting angle is dependent on wheter a light bulb is connected to the circuit.
-     * @public
-     *
-     * @returns {number}
-     */
-    getRightLimitAngle: function() {
+    // Get the right-most connection.
+    // Would prefer to use _.maxBy, but not available in lodash 2.4.1
+    const rightMost = _.last( _.sortBy( this.connections, [ function( connection ) {
+      return connection.location.x;
+    } ] ) );
 
-      // Get the right-most connection.
-      // Would prefer to use _.maxBy, but not available in lodash 2.4.1
-      const rightMost = _.last( _.sortBy( this.connections, [ function( connection ) {
-        return connection.location.x;
-      } ] ) );
+    return rightMost.location.minus( this.hingePoint ).toVector2().angle;
+  },
 
-      return rightMost.location.minus( this.hingePoint ).toVector2().angle;
-    },
+  /**
+   * Get the limiting angle of the circuit switch to the left.
+   * @public
+   *
+   * @returns {number}
+   */
+  getLeftLimitAngle: function() {
 
-    /**
-     * Get the limiting angle of the circuit switch to the left.
-     * @public
-     *
-     * @returns {number}
-     */
-    getLeftLimitAngle: function() {
+    // Get the left-most connection.
+    // Would prefer to use _.minBy, but not available in lodash 2.4.1
+    const leftMost = _.first( _.sortBy( this.connections, [ function( connection ) {
+      return connection.location.x;
+    } ] ) );
 
-      // Get the left-most connection.
-      // Would prefer to use _.minBy, but not available in lodash 2.4.1
-      const leftMost = _.first( _.sortBy( this.connections, [ function( connection ) {
-        return connection.location.x;
-      } ] ) );
+    return leftMost.location.minus( this.hingePoint ).toVector2().angle;
+  },
 
-      return leftMost.location.minus( this.hingePoint ).toVector2().angle;
-    },
+  contacts: function( probe ) {
+    const connection = this.circuitConnectionProperty.value;
 
-    contacts: function( probe ) {
-      const connection = this.circuitConnectionProperty.value;
-
-      // No connection point if it isn't connected
-      if ( connection === CircuitState.SWITCH_IN_TRANSIT || connection === CircuitState.OPEN_CIRCUIT ) {
-        return false;
-      }
-
-      const endPoint = this.switchSegment.endPointProperty.value;
-      const hingePoint = this.switchSegment.hingePoint;
-      const delta = endPoint.minus( hingePoint ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
-      const point = this.modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
-      const circle = Shape.circle( point.x, point.y, CLBConstants.CONNECTION_POINT_RADIUS );
-
-      return probe.bounds.intersectsBounds( circle.bounds ) &&
-             probe.shapeIntersection( circle ).getNonoverlappingArea() > 0;
-
+    // No connection point if it isn't connected
+    if ( connection === CircuitState.SWITCH_IN_TRANSIT || connection === CircuitState.OPEN_CIRCUIT ) {
+      return false;
     }
-  }, {
 
-    /**
-     * Factory method for a top CircuitSwitch
-     * @public
-     *
-     * @param {CircuitConfig} config
-     * @param {Property.<CircuitState>} circuitConnectionProperty
-     * @param {Tandem} tandem
-     * @returns {CircuitSwitch}
-     */
-    TOP: function( config, circuitConnectionProperty, tandem ) {
-      return new CircuitSwitch( 'top', config, circuitConnectionProperty, tandem );
-    },
+    const endPoint = this.switchSegment.endPointProperty.value;
+    const hingePoint = this.switchSegment.hingePoint;
+    const delta = endPoint.minus( hingePoint ).setMagnitude( CLBConstants.SWITCH_WIRE_LENGTH );
+    const point = this.modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );
+    const circle = Shape.circle( point.x, point.y, CLBConstants.CONNECTION_POINT_RADIUS );
 
-    /**
-     * Factory method for a bottom CircuitSwitch
-     * @public
-     *
-     * @param {CircuitConfig} config
-     * @param {Property.<CircuitState>} circuitConnectionProperty
-     * @param {Tandem} tandem
-     * @returns {CircuitSwitch}
-     */
-    BOTTOM: function( config, circuitConnectionProperty, tandem ) {
-      return new CircuitSwitch( 'bottom', config, circuitConnectionProperty, tandem );
-    }
-  } );
+    return probe.bounds.intersectsBounds( circle.bounds ) &&
+           probe.shapeIntersection( circle ).getNonoverlappingArea() > 0;
+
+  }
+}, {
+
+  /**
+   * Factory method for a top CircuitSwitch
+   * @public
+   *
+   * @param {CircuitConfig} config
+   * @param {Property.<CircuitState>} circuitConnectionProperty
+   * @param {Tandem} tandem
+   * @returns {CircuitSwitch}
+   */
+  TOP: function( config, circuitConnectionProperty, tandem ) {
+    return new CircuitSwitch( 'top', config, circuitConnectionProperty, tandem );
+  },
+
+  /**
+   * Factory method for a bottom CircuitSwitch
+   * @public
+   *
+   * @param {CircuitConfig} config
+   * @param {Property.<CircuitState>} circuitConnectionProperty
+   * @param {Tandem} tandem
+   * @returns {CircuitSwitch}
+   */
+  BOTTOM: function( config, circuitConnectionProperty, tandem ) {
+    return new CircuitSwitch( 'bottom', config, circuitConnectionProperty, tandem );
+  }
 } );

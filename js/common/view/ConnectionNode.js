@@ -7,102 +7,99 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  * @author Andrew Adare (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  const Circle = require( 'SCENERY/nodes/Circle' );
-  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  const inherit = require( 'PHET_CORE/inherit' );
-  const Node = require( 'SCENERY/nodes/Node' );
-  const PressListener = require( 'SCENERY/listeners/PressListener' );
-  const Property = require( 'AXON/Property' );
-  const Shape = require( 'KITE/Shape' );
+import Property from '../../../../axon/js/Property.js';
+import Shape from '../../../../kite/js/Shape.js';
+import inherit from '../../../../phet-core/js/inherit.js';
+import PressListener from '../../../../scenery/js/listeners/PressListener.js';
+import Circle from '../../../../scenery/js/nodes/Circle.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import capacitorLabBasics from '../../capacitorLabBasics.js';
+import CLBConstants from '../CLBConstants.js';
 
-  const BOUNDING_ANGLE = Math.PI / 8;
+const BOUNDING_ANGLE = Math.PI / 8;
 
-  /**
-   * @constructor
-   *
-   * @param {Connection} connection
-   * @param {CircuitSwitch} circuitSwitch
-   * @param {YawPitchModelViewTransform3} modelViewTransform
-   * @param {Tandem} tandem
-   * @param {CircuitSwitchDragHandler} dragHandler
-   * @param {Property.<boolean>} userControlledProperty
-   */
-  function ConnectionNode( connection, circuitSwitch, modelViewTransform, tandem, dragHandler, userControlledProperty ) {
+/**
+ * @constructor
+ *
+ * @param {Connection} connection
+ * @param {CircuitSwitch} circuitSwitch
+ * @param {YawPitchModelViewTransform3} modelViewTransform
+ * @param {Tandem} tandem
+ * @param {CircuitSwitchDragHandler} dragHandler
+ * @param {Property.<boolean>} userControlledProperty
+ */
+function ConnectionNode( connection, circuitSwitch, modelViewTransform, tandem, dragHandler, userControlledProperty ) {
 
-    const self = this;
+  const self = this;
 
-    // @public {Circle}
-    this.highlightNode = new Circle( {
-      radius: CLBConstants.CONNECTION_POINT_RADIUS,
-      lineWidth: 2,
-      lineDash: [ 3, 3 ],
-      pickable: false,
-      fill: CLBConstants.CONNECTION_POINT_HIGHLIGHTED,
-      stroke: 'black',
-      translation: modelViewTransform.modelToViewPosition( connection.location )
-    } );
+  // @public {Circle}
+  this.highlightNode = new Circle( {
+    radius: CLBConstants.CONNECTION_POINT_RADIUS,
+    lineWidth: 2,
+    lineDash: [ 3, 3 ],
+    pickable: false,
+    fill: CLBConstants.CONNECTION_POINT_HIGHLIGHTED,
+    stroke: 'black',
+    translation: modelViewTransform.modelToViewPosition( connection.location )
+  } );
 
-    // @public {Circle}
-    this.backStrokeNode = new Circle( {
-      radius: CLBConstants.CONNECTION_POINT_RADIUS,
-      lineWidth: 2,
-      lineDash: [ 3, 3 ],
-      stroke: CLBConstants.DISCONNECTED_POINT_STROKE,
-      translation: modelViewTransform.modelToViewPosition( connection.location )
-    } );
+  // @public {Circle}
+  this.backStrokeNode = new Circle( {
+    radius: CLBConstants.CONNECTION_POINT_RADIUS,
+    lineWidth: 2,
+    lineDash: [ 3, 3 ],
+    stroke: CLBConstants.DISCONNECTED_POINT_STROKE,
+    translation: modelViewTransform.modelToViewPosition( connection.location )
+  } );
 
-    const pointNode = new Circle( {
-      radius: CLBConstants.CONNECTION_POINT_RADIUS,
-      fill: CLBConstants.DISCONNECTED_POINT_COLOR,
-      translation: modelViewTransform.modelToViewPosition( connection.location )
-    } );
+  const pointNode = new Circle( {
+    radius: CLBConstants.CONNECTION_POINT_RADIUS,
+    fill: CLBConstants.DISCONNECTED_POINT_COLOR,
+    translation: modelViewTransform.modelToViewPosition( connection.location )
+  } );
 
-    const hingePoint = circuitSwitch.hingePoint.toVector2();
-    const connectionAngle = connection.location.toVector2().minus( hingePoint ).angle;
-    let triangleShape = new Shape().moveToPoint( hingePoint );
-    triangleShape.arcPoint( hingePoint, CLBConstants.SWITCH_WIRE_LENGTH * 1.4, connectionAngle - BOUNDING_ANGLE, connectionAngle + BOUNDING_ANGLE, false );
-    triangleShape.close();
+  const hingePoint = circuitSwitch.hingePoint.toVector2();
+  const connectionAngle = connection.location.toVector2().minus( hingePoint ).angle;
+  let triangleShape = new Shape().moveToPoint( hingePoint );
+  triangleShape.arcPoint( hingePoint, CLBConstants.SWITCH_WIRE_LENGTH * 1.4, connectionAngle - BOUNDING_ANGLE, connectionAngle + BOUNDING_ANGLE, false );
+  triangleShape.close();
 
-    // transform the shape
-    triangleShape = modelViewTransform.modelToViewShape( triangleShape );
+  // transform the shape
+  triangleShape = modelViewTransform.modelToViewShape( triangleShape );
 
-    const connectionType = connection.type; // for readability
+  const connectionType = connection.type; // for readability
 
-    Node.call( this, {
-      cursor: 'pointer',
-      mouseArea: triangleShape,
-      touchArea: triangleShape,
-      children: [
-        pointNode
-      ]
-    } );
+  Node.call( this, {
+    cursor: 'pointer',
+    mouseArea: triangleShape,
+    touchArea: triangleShape,
+    children: [
+      pointNode
+    ]
+  } );
 
-    const pressListener = new PressListener( {
-      tandem: tandem.createTandem( 'pressListener' ),
-      phetioDocumentation: 'Connects and disconnects the circuit',
-      attach: false,
-      press: function( event ) {
-        if ( circuitSwitch.circuitConnectionProperty.value === connectionType ) {
-          dragHandler.press( event );
-        }
-        else {
-          circuitSwitch.circuitConnectionProperty.set( connectionType );
-        }
+  const pressListener = new PressListener( {
+    tandem: tandem.createTandem( 'pressListener' ),
+    phetioDocumentation: 'Connects and disconnects the circuit',
+    attach: false,
+    press: function( event ) {
+      if ( circuitSwitch.circuitConnectionProperty.value === connectionType ) {
+        dragHandler.press( event );
       }
-    } );
-    this.addInputListener( pressListener );
+      else {
+        circuitSwitch.circuitConnectionProperty.set( connectionType );
+      }
+    }
+  } );
+  this.addInputListener( pressListener );
 
-    Property.multilink( [ pressListener.isHoveringProperty, userControlledProperty ], function( hovering, userControlled ) {
-      self.highlightNode.visible = hovering && !userControlled;
-    } );
-  }
+  Property.multilink( [ pressListener.isHoveringProperty, userControlledProperty ], function( hovering, userControlled ) {
+    self.highlightNode.visible = hovering && !userControlled;
+  } );
+}
 
-  capacitorLabBasics.register( 'ConnectionNode', ConnectionNode );
+capacitorLabBasics.register( 'ConnectionNode', ConnectionNode );
 
-  return inherit( Node, ConnectionNode );
-} );
+inherit( Node, ConnectionNode );
+export default ConnectionNode;

@@ -8,24 +8,21 @@
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+import capacitorLabBasics from '../../capacitorLabBasics.js';
 
-  const CircuitState = {
-    BATTERY_CONNECTED: 'BATTERY_CONNECTED',
-    LIGHT_BULB_CONNECTED: 'LIGHT_BULB_CONNECTED',
-    OPEN_CIRCUIT: 'OPEN_CIRCUIT',
-    SWITCH_IN_TRANSIT: 'SWITCH_IN_TRANSIT'
-  };
+const CircuitState = {
+  BATTERY_CONNECTED: 'BATTERY_CONNECTED',
+  LIGHT_BULB_CONNECTED: 'LIGHT_BULB_CONNECTED',
+  OPEN_CIRCUIT: 'OPEN_CIRCUIT',
+  SWITCH_IN_TRANSIT: 'SWITCH_IN_TRANSIT'
+};
 
-  CircuitState.VALUES = _.keys( CircuitState );
+CircuitState.VALUES = _.keys( CircuitState );
 
-  // verify that enum is immutable, without the runtime penalty in production code
-  if ( assert ) { Object.freeze( CircuitState ); }
+// verify that enum is immutable, without the runtime penalty in production code
+if ( assert ) { Object.freeze( CircuitState ); }
 
-  capacitorLabBasics.register( 'CircuitState', CircuitState );
+capacitorLabBasics.register( 'CircuitState', CircuitState );
 
-  return CircuitState;
-} );
+export default CircuitState;

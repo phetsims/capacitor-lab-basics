@@ -6,45 +6,41 @@
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  const Circle = require( 'SCENERY/nodes/Circle' );
-  const CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
-  const inherit = require( 'PHET_CORE/inherit' );
-  const merge = require( 'PHET_CORE/merge' );
+import inherit from '../../../../phet-core/js/inherit.js';
+import merge from '../../../../phet-core/js/merge.js';
+import Circle from '../../../../scenery/js/nodes/Circle.js';
+import capacitorLabBasics from '../../capacitorLabBasics.js';
+import CLBConstants from '../CLBConstants.js';
 
-  // constants
-  const HINGE_POINT_RADIUS = 8;
-  const PIN_RADIUS = 5;
+// constants
+const HINGE_POINT_RADIUS = 8;
+const PIN_RADIUS = 5;
 
-  /**
-   * @constructor
-   *
-   * @param {Object} [options]
-   */
-  function HingePointNode( options ) {
+/**
+ * @constructor
+ *
+ * @param {Object} [options]
+ */
+function HingePointNode( options ) {
 
-    options = merge( {
-      fill: CLBConstants.CONNECTION_POINT_COLOR,
-      lineWidth: 3,
-      stroke: CLBConstants.CONNECTION_POINT_COLOR,
-      innerPinRadius: PIN_RADIUS,
-      pinFillColor: CLBConstants.PIN_COLOR
-    }, options );
-    Circle.call( this, HINGE_POINT_RADIUS, options );
+  options = merge( {
+    fill: CLBConstants.CONNECTION_POINT_COLOR,
+    lineWidth: 3,
+    stroke: CLBConstants.CONNECTION_POINT_COLOR,
+    innerPinRadius: PIN_RADIUS,
+    pinFillColor: CLBConstants.PIN_COLOR
+  }, options );
+  Circle.call( this, HINGE_POINT_RADIUS, options );
 
-    // Inner circle of hings
-    this.addChild( new Circle( options.innerPinRadius, {
-      fill: options.pinFillColor,
-      center: this.center
-    } ) );
-  }
+  // Inner circle of hings
+  this.addChild( new Circle( options.innerPinRadius, {
+    fill: options.pinFillColor,
+    center: this.center
+  } ) );
+}
 
-  capacitorLabBasics.register( 'HingePointNode', HingePointNode );
+capacitorLabBasics.register( 'HingePointNode', HingePointNode );
 
-  return inherit( Circle, HingePointNode );
-
-} );
+inherit( Circle, HingePointNode );
+export default HingePointNode;

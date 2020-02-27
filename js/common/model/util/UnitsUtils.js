@@ -11,40 +11,36 @@
  * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
+import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
-  // constants
-  const MILLIMETERS_PER_METER = 1000;
+// constants
+const MILLIMETERS_PER_METER = 1000;
 
-  const UnitsUtils = {
-    /**
-     * Utility function to convert from meters to millimeters.
-     * @public
-     *
-     * @param {number} d
-     * @returns {number}
-     */
-    metersToMillimeters: function( d ) {
-      return d * MILLIMETERS_PER_METER;
-    },
+const UnitsUtils = {
+  /**
+   * Utility function to convert from meters to millimeters.
+   * @public
+   *
+   * @param {number} d
+   * @returns {number}
+   */
+  metersToMillimeters: function( d ) {
+    return d * MILLIMETERS_PER_METER;
+  },
 
-    /**
-     * Utility function to convert meters squared to millimeters squared.
-     * @public
-     *
-     * @param {number} d
-     * @returns {number}
-     */
-    metersSquaredToMillimetersSquared: function( d ) {
-      return d * ( MILLIMETERS_PER_METER * MILLIMETERS_PER_METER );
-    }
-  };
+  /**
+   * Utility function to convert meters squared to millimeters squared.
+   * @public
+   *
+   * @param {number} d
+   * @returns {number}
+   */
+  metersSquaredToMillimetersSquared: function( d ) {
+    return d * ( MILLIMETERS_PER_METER * MILLIMETERS_PER_METER );
+  }
+};
 
-  capacitorLabBasics.register( 'UnitsUtils', UnitsUtils );
+capacitorLabBasics.register( 'UnitsUtils', UnitsUtils );
 
-  return UnitsUtils;
-} );
+export default UnitsUtils;

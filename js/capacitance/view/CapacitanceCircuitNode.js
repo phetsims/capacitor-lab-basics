@@ -6,49 +6,45 @@
  * @author Chris Malley (PixelZoom, Inc.)
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
-  const CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
-  const CLBCircuitNode = require( 'CAPACITOR_LAB_BASICS/common/view/CLBCircuitNode' );
-  const inherit = require( 'PHET_CORE/inherit' );
-  const Property = require( 'AXON/Property' );
+import Property from '../../../../axon/js/Property.js';
+import inherit from '../../../../phet-core/js/inherit.js';
+import capacitorLabBasics from '../../capacitorLabBasics.js';
+import CircuitState from '../../common/model/CircuitState.js';
+import CLBCircuitNode from '../../common/view/CLBCircuitNode.js';
+
+/**
+ * @constructor
+ *
+ * @param {CapacitanceModel} model
+ * @param {Tandem} tandem
+ */
+function CapacitanceCircuitNode( model, tandem ) {
+
+  CLBCircuitNode.call( this, model, tandem );
+  const self = this;
+
+  Property.multilink( [ model.circuit.circuitConnectionProperty, model.currentVisibleProperty ],
+    function( circuitConnection, currentIndicatorsVisible ) {
+      self.updateCurrentVisibility( circuitConnection, currentIndicatorsVisible );
+    } );
+}
+
+capacitorLabBasics.register( 'CapacitanceCircuitNode', CapacitanceCircuitNode );
+
+export default inherit( CLBCircuitNode, CapacitanceCircuitNode, {
 
   /**
-   * @constructor
+   * Updates the visibility of the current indicators.
+   * @public
    *
-   * @param {CapacitanceModel} model
-   * @param {Tandem} tandem
+   * @param {CircuitState} circuitConnection - OPEN_CIRCUIT | BATTERY_CONNECTED
+   * @param {boolean} currentIndicatorsVisible
    */
-  function CapacitanceCircuitNode( model, tandem ) {
+  updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
+    const isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
 
-    CLBCircuitNode.call( this, model, tandem );
-    const self = this;
-
-    Property.multilink( [ model.circuit.circuitConnectionProperty, model.currentVisibleProperty ],
-      function( circuitConnection, currentIndicatorsVisible ) {
-        self.updateCurrentVisibility( circuitConnection, currentIndicatorsVisible );
-      } );
+    this.batteryTopCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
+    this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
   }
-
-  capacitorLabBasics.register( 'CapacitanceCircuitNode', CapacitanceCircuitNode );
-
-  return inherit( CLBCircuitNode, CapacitanceCircuitNode, {
-
-    /**
-     * Updates the visibility of the current indicators.
-     * @public
-     *
-     * @param {CircuitState} circuitConnection - OPEN_CIRCUIT | BATTERY_CONNECTED
-     * @param {boolean} currentIndicatorsVisible
-     */
-    updateCurrentVisibility: function( circuitConnection, currentIndicatorsVisible ) {
-      const isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
-
-      this.batteryTopCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
-      this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
-    }
-  } );
 } );
