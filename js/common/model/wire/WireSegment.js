@@ -1,4 +1,4 @@
-// Copyright 2015-2019, University of Colorado Boulder
+// Copyright 2015-2020, University of Colorado Boulder
 
 /**
  * A straight segment of wire. One or more segments are joined to create a Wire.  Contains factory functions to

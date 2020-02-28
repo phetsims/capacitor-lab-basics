@@ -1,4 +1,4 @@
-// Copyright 2017-2019, University of Colorado Boulder
+// Copyright 2017-2020, University of Colorado Boulder
 
 /**
  * Handles displaying debugging information for showDebugAreas (where the voltmeter tips will intersect things)
