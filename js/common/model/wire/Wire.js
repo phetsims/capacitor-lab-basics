@@ -20,7 +20,7 @@ import WireShapeCreator from '../shapes/WireShapeCreator.js';
 /**
  * @param {YawPitchModelViewTransform3} modelViewTransform
  * @param {WireSegment[]} segments
- * @param {CircuitLocation} connectionPoint
+ * @param {CircuitPosition} connectionPoint
  *
  * @constructor
  */

@@ -42,8 +42,8 @@ export default inherit( Object, LightBulbShapeCreator, {
    * @returns {Shape}
    */
   createTopBaseShape: function() {
-    const location = this.lightBulb.location;
-    const shape = new Shape().rect( location.x - 0.0013, location.y - 0.00175, 0.00225, 0.0035 );
+    const position = this.lightBulb.position;
+    const shape = new Shape().rect( position.x - 0.0013, position.y - 0.00175, 0.00225, 0.0035 );
     return this.modelViewTransform.modelToViewShape( shape );
   },
 
@@ -56,10 +56,10 @@ export default inherit( Object, LightBulbShapeCreator, {
    * @returns {Shape}
    */
   createBottomBaseShape: function() {
-    const location = this.lightBulb.location;
-    const smallLeft = location.x - 0.00343;
+    const position = this.lightBulb.position;
+    const smallLeft = position.x - 0.00343;
     const smallRight = smallLeft + 0.00063;
-    const smallTop = location.y - 0.00113;
+    const smallTop = position.y - 0.00113;
     const smallBottom = smallTop + 0.00228;
     const shape = new Shape().moveTo( smallLeft, ( smallTop + smallBottom ) / 2 )
       .cubicCurveTo( smallLeft, smallTop * 0.8 + smallBottom * 0.2,

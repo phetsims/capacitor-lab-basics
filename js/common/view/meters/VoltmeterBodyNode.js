@@ -53,7 +53,7 @@ function VoltmeterBodyNode( voltmeter, modelViewTransform, isDraggedProperty, ta
   this.cursor = 'pointer';
 
   // @public {Property.<Vector3>]}
-  this.bodyLocationProperty = voltmeter.bodyLocationProperty;
+  this.bodyPositionProperty = voltmeter.bodyPositionProperty;
 
   const readoutAdjustmentY = 15;
 
@@ -109,12 +109,12 @@ function VoltmeterBodyNode( voltmeter, modelViewTransform, isDraggedProperty, ta
   } );
 
   // update position with model
-  voltmeter.bodyLocationProperty.link( function( bodyLocation ) {
-    if ( bodyLocation instanceof Vector2 ) {
-      self.translation = modelViewTransform.modelToViewPosition( bodyLocation.toVector3() );
+  voltmeter.bodyPositionProperty.link( function( bodyPosition ) {
+    if ( bodyPosition instanceof Vector2 ) {
+      self.translation = modelViewTransform.modelToViewPosition( bodyPosition.toVector3() );
     }
     else {
-      self.translation = modelViewTransform.modelToViewPosition( bodyLocation );
+      self.translation = modelViewTransform.modelToViewPosition( bodyPosition );
     }
   } );
 
@@ -123,7 +123,7 @@ function VoltmeterBodyNode( voltmeter, modelViewTransform, isDraggedProperty, ta
   const adjustedViewBounds = new Bounds2( 0, 0, voltmeter.dragBounds.maxX - imageNode.width, voltmeter.dragBounds.maxY - imageNode.height );
   const bodyDragBounds = modelViewTransform.viewToModelBounds( adjustedViewBounds );
 
-  const body2DProperty = new DynamicProperty( new Property( voltmeter.bodyLocationProperty ), {
+  const body2DProperty = new DynamicProperty( new Property( voltmeter.bodyPositionProperty ), {
     bidirectional: true,
     useDeepEquality: true,
     map: function( vector3 ) { return vector3.toVector2(); },

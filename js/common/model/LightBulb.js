@@ -21,13 +21,13 @@ const BULB_BASE_SIZE = new Dimension2( 0.0050, 0.0035 );
 /**
  * @constructor
  *
- * @param {Vector3} location
+ * @param {Vector3} position
  * @param {CLModelViewTransform3D} modelViewTransform
  */
-function LightBulb( location, modelViewTransform ) {
+function LightBulb( position, modelViewTransform ) {
 
   // @public {Vector3} (read-only)
-  this.location = location;
+  this.position = position;
 
   // @public {number} (read-only)
   this.resistance = CLBConstants.LIGHT_BULB_RESISTANCE;
@@ -73,7 +73,7 @@ export default inherit( Object, LightBulb, {
    * @returns {Vector3}
    */
   getTopConnectionPoint: function() {
-    return this.location.copy();
+    return this.position.copy();
   },
 
   /**
@@ -84,7 +84,7 @@ export default inherit( Object, LightBulb, {
    * @returns {Vector3}
    */
   getBottomConnectionPoint: function() {
-    return new Vector3( this.location.x - BULB_BASE_SIZE.width * 3 / 5, this.location.y, this.location.z );
+    return new Vector3( this.position.x - BULB_BASE_SIZE.width * 3 / 5, this.position.y, this.position.z );
   },
 
   /**

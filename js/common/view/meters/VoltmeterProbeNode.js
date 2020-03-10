@@ -25,18 +25,18 @@ import capacitorLabBasics from '../../../capacitorLabBasics.js';
  * @constructor
  *
  * @param {Image} image image of the probe
- * @param {Property.<Vector3>} locationProperty property to observer for the probe's location
+ * @param {Property.<Vector3>} positionProperty property to observer for the probe's position
  * @param {YawPitchModelViewTransform3} modelViewTransform model-view transform
  * @param {Bounds2} dragBounds Node bounds in model coordinates
  * @param {Tandem} tandem
  */
-function VoltmeterProbeNode( image, locationProperty, modelViewTransform, dragBounds, tandem ) {
+function VoltmeterProbeNode( image, positionProperty, modelViewTransform, dragBounds, tandem ) {
 
   Node.call( this );
   const self = this;
 
   // @public {Property.<Vector3>}
-  this.locationProperty = locationProperty;
+  this.positionProperty = positionProperty;
 
   const imageNode = new Image( image, {
     scale: 0.25
@@ -52,12 +52,12 @@ function VoltmeterProbeNode( image, locationProperty, modelViewTransform, dragBo
   this.connectionOffset.rotate( -modelViewTransform.yaw );
 
   // update position with model
-  locationProperty.link( function( location ) {
-    if ( location instanceof Vector2 ) {
-      self.translation = modelViewTransform.modelToViewPosition( location.toVector3() );
+  positionProperty.link( function( position ) {
+    if ( position instanceof Vector2 ) {
+      self.translation = modelViewTransform.modelToViewPosition( position.toVector3() );
     }
     else {
-      self.translation = modelViewTransform.modelToViewPosition( location );
+      self.translation = modelViewTransform.modelToViewPosition( position );
     }
   } );
 
@@ -65,7 +65,7 @@ function VoltmeterProbeNode( image, locationProperty, modelViewTransform, dragBo
   const adjustedViewBounds = new Bounds2( 40, 0, dragBounds.maxX - imageNode.width, dragBounds.maxY - 0.4 * imageNode.height );
 
   // Convert the 3d property to a 2d property for use in the MovableDragHandler
-  const location2DProperty = new DynamicProperty( new Property( locationProperty ), {
+  const position2DProperty = new DynamicProperty( new Property( positionProperty ), {
     bidirectional: true,
     useDeepEquality: true,
     map: function( vector3 ) { return vector3.toVector2(); },
@@ -73,7 +73,7 @@ function VoltmeterProbeNode( image, locationProperty, modelViewTransform, dragBo
   } );
 
   // Drag handler accounting for boundaries
-  this.movableDragHandler = new MovableDragHandler( location2DProperty, {
+  this.movableDragHandler = new MovableDragHandler( position2DProperty, {
     tandem: tandem.createTandem( 'dragHandler' ),
     dragBounds: modelViewTransform.viewToModelBounds( adjustedViewBounds ),
     modelViewTransform: modelViewTransform.modelToViewTransform2D,
@@ -100,7 +100,7 @@ export default inherit( Node, VoltmeterProbeNode, {}, {
    */
   createPositiveVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
     return new VoltmeterProbeNode( redVoltmeterProbeImage,
-      voltmeter.positiveProbeLocationProperty, modelViewTransform, voltmeter.dragBounds, tandem );
+      voltmeter.positiveProbePositionProperty, modelViewTransform, voltmeter.dragBounds, tandem );
   },
 
   /**
@@ -113,6 +113,6 @@ export default inherit( Node, VoltmeterProbeNode, {}, {
    */
   createNegativeVoltmeterProbeNode: function( voltmeter, modelViewTransform, tandem ) {
     return new VoltmeterProbeNode( blackVoltmeterProbeImage,
-      voltmeter.negativeProbeLocationProperty, modelViewTransform, voltmeter.dragBounds, tandem );
+      voltmeter.negativeProbePositionProperty, modelViewTransform, voltmeter.dragBounds, tandem );
   }
 } );

@@ -34,7 +34,7 @@ import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorC
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
-import CircuitLocation from './CircuitLocation.js';
+import CircuitPosition from './CircuitPosition.js';
 import CircuitSwitch from './CircuitSwitch.js';
 
 /**
@@ -61,10 +61,10 @@ function Capacitor( config, circuitConnectionProperty, tandem, options ) {
   this.modelViewTransform = config.modelViewTransform;
 
   // @public {Vector3}
-  this.location = new Vector3(
-    CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing,
-    CLBConstants.BATTERY_LOCATION.y + config.capacitorYSpacing,
-    CLBConstants.BATTERY_LOCATION.z );
+  this.position = new Vector3(
+    CLBConstants.BATTERY_POSITION.x + config.capacitorXSpacing,
+    CLBConstants.BATTERY_POSITION.y + config.capacitorYSpacing,
+    CLBConstants.BATTERY_POSITION.z );
 
   // @private {BoxShapeCreator}
   this.shapeCreator = new BoxShapeCreator( config.modelViewTransform );
@@ -194,9 +194,9 @@ export default inherit( Object, Capacitor, {
    */
   getTopConnectionPoint: function() {
     return new Vector3(
-      this.location.x,
-      this.location.y - ( this.plateSeparationProperty.value / 2 ) - this.plateSizeProperty.value.height,
-      this.location.z );
+      this.position.x,
+      this.position.y - ( this.plateSeparationProperty.value / 2 ) - this.plateSizeProperty.value.height,
+      this.position.z );
   },
 
   /**
@@ -207,42 +207,42 @@ export default inherit( Object, Capacitor, {
    */
   getBottomConnectionPoint: function() {
     return new Vector3(
-      this.location.x,
-      this.location.y + ( this.plateSeparationProperty.value / 2 ) + this.plateSizeProperty.value.height,
-      this.location.z );
+      this.position.x,
+      this.position.y + ( this.plateSeparationProperty.value / 2 ) + this.plateSizeProperty.value.height,
+      this.position.z );
   },
 
   /**
    * Check for intersection between a voltmeter probe and the plate faces at either the top or
-   * bottom plate locations, as specified by the location parameter. Assumes that the probe shape
+   * bottom plate positions, as specified by the position parameter. Assumes that the probe shape
    * is much smaller than the top plate.
    * @public
    *
    * @param {Shape} probe
-   * @param {CircuitLocation} location - CircuitLocation.CAPACITOR_TOP or CircuitLocation.CAPACITOR_BOTTOM
+   * @param {CircuitPosition} position - CircuitPosition.CAPACITOR_TOP or CircuitPosition.CAPACITOR_BOTTOM
    * @returns {boolean}
    */
-  contacts: function( probe, location ) {
+  contacts: function( probe, position ) {
 
-    assert && assert( location === CircuitLocation.CAPACITOR_TOP || location === CircuitLocation.CAPACITOR_BOTTOM,
-      'Invalid capacitor location: ' + location );
+    assert && assert( position === CircuitPosition.CAPACITOR_TOP || position === CircuitPosition.CAPACITOR_BOTTOM,
+      'Invalid capacitor position: ' + position );
 
     let shape;
     const size = this.plateSizeProperty.value;
-    if ( location === CircuitLocation.CAPACITOR_TOP ) {
-      shape = this.shapeCreator.createBoxShape( this.location.x, this.getTopConnectionPoint().y, this.location.z, size.width, size.height, size.depth );
+    if ( position === CircuitPosition.CAPACITOR_TOP ) {
+      shape = this.shapeCreator.createBoxShape( this.position.x, this.getTopConnectionPoint().y, this.position.z, size.width, size.height, size.depth );
     }
-    else if ( location === CircuitLocation.CAPACITOR_BOTTOM ) {
-      shape = this.shapeCreator.createBoxShape( this.location.x, this.location.y + this.plateSeparationProperty.value / 2, this.location.z, size.width, size.height, size.depth );
+    else if ( position === CircuitPosition.CAPACITOR_BOTTOM ) {
+      shape = this.shapeCreator.createBoxShape( this.position.x, this.position.y + this.plateSeparationProperty.value / 2, this.position.z, size.width, size.height, size.depth );
     }
 
     let contacts = probe.bounds.intersectsBounds( shape.bounds ) &&
                    probe.shapeIntersection( shape ).getNonoverlappingArea() > 0;
 
-    if ( !contacts && location === CircuitLocation.CAPACITOR_TOP ) {
+    if ( !contacts && position === CircuitPosition.CAPACITOR_TOP ) {
       contacts = this.topCircuitSwitch.contacts( probe );
     }
-    else if ( !contacts && location === CircuitLocation.CAPACITOR_BOTTOM ) {
+    else if ( !contacts && position === CircuitPosition.CAPACITOR_BOTTOM ) {
       contacts = this.bottomCircuitSwitch.contacts( probe );
     }
 

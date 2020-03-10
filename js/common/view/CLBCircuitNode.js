@@ -145,10 +145,10 @@ function CLBCircuitNode( model, tandem ) {
   // layout
 
   // battery
-  this.batteryNode.center = model.modelViewTransform.modelToViewPosition( this.circuit.battery.location );
+  this.batteryNode.center = model.modelViewTransform.modelToViewPosition( this.circuit.battery.position );
 
   // capacitor
-  capacitorNode.center = model.modelViewTransform.modelToViewPosition( this.circuit.capacitor.location );
+  capacitorNode.center = model.modelViewTransform.modelToViewPosition( this.circuit.capacitor.position );
 
   // top current indicator
   const x = this.batteryNode.right + ( this.circuitSwitchNodes[ 0 ].left - this.batteryNode.right ) / 2;

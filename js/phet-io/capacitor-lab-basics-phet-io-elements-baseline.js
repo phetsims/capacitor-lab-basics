@@ -404,7 +404,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "capacitorLabBasics.capacitanceScreen.model.voltmeter.bodyLocationProperty": {
+    "capacitorLabBasics.capacitanceScreen.model.voltmeter.bodyPositionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -443,7 +443,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<NumberIO>>"
     },
-    "capacitorLabBasics.capacitanceScreen.model.voltmeter.negativeProbeLocationProperty": {
+    "capacitorLabBasics.capacitanceScreen.model.voltmeter.negativeProbePositionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -469,7 +469,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<StringIO>"
     },
-    "capacitorLabBasics.capacitanceScreen.model.voltmeter.positiveProbeLocationProperty": {
+    "capacitorLabBasics.capacitanceScreen.model.voltmeter.positiveProbePositionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -7216,7 +7216,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
-    "capacitorLabBasics.lightBulbScreen.model.voltmeter.bodyLocationProperty": {
+    "capacitorLabBasics.lightBulbScreen.model.voltmeter.bodyPositionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -7255,7 +7255,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<NullableIO<NumberIO>>"
     },
-    "capacitorLabBasics.lightBulbScreen.model.voltmeter.negativeProbeLocationProperty": {
+    "capacitorLabBasics.lightBulbScreen.model.voltmeter.negativeProbePositionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
@@ -7281,7 +7281,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<StringIO>"
     },
-    "capacitorLabBasics.lightBulbScreen.model.voltmeter.positiveProbeLocationProperty": {
+    "capacitorLabBasics.lightBulbScreen.model.voltmeter.positiveProbePositionProperty": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",

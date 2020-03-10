@@ -9,7 +9,7 @@
 import Vector3 from '../../../../../dot/js/Vector3.js';
 import inherit from '../../../../../phet-core/js/inherit.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
-import CircuitLocation from '../CircuitLocation.js';
+import CircuitPosition from '../CircuitPosition.js';
 import CircuitState from '../CircuitState.js';
 import Wire from './Wire.js';
 import WireSegment from './WireSegment.js';
@@ -17,7 +17,7 @@ import WireSegment from './WireSegment.js';
 /**
  * @constructor
  *
- * @param {CircuitLocation} connectionPoint
+ * @param {CircuitPosition} connectionPoint
  * @param {CircuitConfig} config
  * @param {LightBulb} lightBulb
  * @param {CircuitSwitch} circuitSwitch
@@ -29,7 +29,7 @@ function LightBulbToSwitchWire( connectionPoint, config, lightBulb, circuitSwitc
   const horizontalY = circuitSwitch.getConnectionPoint( CircuitState.BATTERY_CONNECTED ).y;
 
   // Get x coordinate of the connection point
-  const isTop = connectionPoint === CircuitLocation.LIGHT_BULB_TOP;
+  const isTop = connectionPoint === CircuitPosition.LIGHT_BULB_TOP;
   const connectionPointX = isTop ? lightBulb.getTopConnectionPoint().x : lightBulb.getBottomConnectionPoint().x;
 
   // This is the (x,y) position of the upper right corner
@@ -79,7 +79,7 @@ export default inherit( Wire, LightBulbToSwitchWire, {}, {
    * @returns {LightBulbToSwitchWire}
    */
   createLightBulbToSwitchWireBottom: function( config, lightBulb, circuitSwitch ) {
-    return new LightBulbToSwitchWire( CircuitLocation.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch );
+    return new LightBulbToSwitchWire( CircuitPosition.LIGHT_BULB_BOTTOM, config, lightBulb, circuitSwitch );
   },
 
   /**
@@ -92,7 +92,7 @@ export default inherit( Wire, LightBulbToSwitchWire, {}, {
    * @returns {LightBulbToSwitchWire}
    */
   createLightBulbToSwitchWireTop: function( config, lightBulb, circuitSwitch ) {
-    return new LightBulbToSwitchWire( CircuitLocation.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch );
+    return new LightBulbToSwitchWire( CircuitPosition.LIGHT_BULB_TOP, config, lightBulb, circuitSwitch );
   }
 
 } );

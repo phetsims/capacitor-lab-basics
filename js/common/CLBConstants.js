@@ -33,7 +33,7 @@ const CLBConstants = {
   CAPACITANCE_RANGE: new Range( 1E-13, 3E-13 ), // Farads
 
   LIGHT_BULB_X_SPACING: 0.023, // meters
-  BATTERY_LOCATION: new Vector3( 0.0065, 0.030, 0 ), // meters
+  BATTERY_POSITION: new Vector3( 0.0065, 0.030, 0 ), // meters
   LIGHT_BULB_RESISTANCE: 5e12, // Ohms. Artificially large to stretch discharge time
 
   // switch

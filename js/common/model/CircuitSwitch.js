@@ -19,7 +19,7 @@ import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorC
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import CLBQueryParameters from '../CLBQueryParameters.js';
-import CircuitLocation from './CircuitLocation.js';
+import CircuitPosition from './CircuitPosition.js';
 import CircuitState from './CircuitState.js';
 import Connection from './Connection.js';
 import Wire from './wire/Wire.js';
@@ -68,13 +68,13 @@ function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem
 
   // Assign string identifying connection point
   const connectionName = ( positionLabel === 'top' ) ?
-                         CircuitLocation.CIRCUIT_SWITCH_TOP :
-                         CircuitLocation.CIRCUIT_SWITCH_BOTTOM;
+                         CircuitPosition.CIRCUIT_SWITCH_TOP :
+                         CircuitPosition.CIRCUIT_SWITCH_BOTTOM;
 
   // @public {WireSegment} Add the switch wire that spans two connection points. Default connection is to the battery.
   this.switchSegment = new WireSegment(
     this.hingePoint,
-    this.getConnection( circuitConnectionProperty.value ).location
+    this.getConnection( circuitConnectionProperty.value ).position
   );
   this.switchSegment.hingePoint = this.hingePoint;
 
@@ -96,7 +96,7 @@ function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem
       return;
     }
 
-    const wireDelta = self.getConnection( circuitConnection ).location.minus( self.switchSegment.hingePoint );
+    const wireDelta = self.getConnection( circuitConnection ).position.minus( self.switchSegment.hingePoint );
     self.angleProperty.value = wireDelta.toVector2().angle;
   } );
 }
@@ -121,11 +121,11 @@ export default inherit( Object, CircuitSwitch, {
       'Unsupported positionLabel: ' + positionLabel );
 
     // create the circuit switches that connect the capacitor to the circuit
-    const x = CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing;
-    const z = CLBConstants.BATTERY_LOCATION.z;
+    const x = CLBConstants.BATTERY_POSITION.x + config.capacitorXSpacing;
+    const z = CLBConstants.BATTERY_POSITION.z;
 
     const yOffset = CapacitorConstants.PLATE_SEPARATION_RANGE.max + CLBConstants.SWITCH_Y_SPACING;
-    let y = CLBConstants.BATTERY_LOCATION.y;
+    let y = CLBConstants.BATTERY_POSITION.y;
 
     if ( positionLabel === 'top' ) {
       y -= yOffset;
@@ -138,12 +138,12 @@ export default inherit( Object, CircuitSwitch, {
   },
 
   /**
-   * Get an array of objects containing locations (as Vector3) and connection types (as strings)
+   * Get an array of objects containing positions (as Vector3) and connection types (as strings)
    * of the switch connection points
    * @private
    *
    * @param  {string} positionLabel - 'top' or 'bottom'
-   * @param  {Vector2} hingeXY - Location of switch hinge
+   * @param  {Vector2} hingeXY - Position of switch hinge
    * @param  {Array.<CircuitState>} circuitStates
    * @returns {Array.<Connection>}
    */
@@ -211,8 +211,8 @@ export default inherit( Object, CircuitSwitch, {
   },
 
   /**
-   * Convenience method for getting the connection locations. Similar to getConnection above, but directly returns
-   * the location.
+   * Convenience method for getting the connection positions. Similar to getConnection above, but directly returns
+   * the position.
    * @public
    *
    * @param {CircuitState} connectionType - BATTERY_CONNECTED || OPEN_CIRCUIT || LIGHT_BULB_CONNECTED
@@ -222,11 +222,11 @@ export default inherit( Object, CircuitSwitch, {
     assert && assert( connectionType !== CircuitState.SWITCH_IN_TRANSIT,
       'Cannot call getConnectionPoint while SWITCH_IN_TRANSIT' );
 
-    return this.getConnection( connectionType ).location;
+    return this.getConnection( connectionType ).position;
   },
 
   /**
-   * Get the location of the endpoint for the circuit switch segment.
+   * Get the position of the endpoint for the circuit switch segment.
    * @public
    *
    * @returns {Vector3}
@@ -252,10 +252,10 @@ export default inherit( Object, CircuitSwitch, {
     // Get the right-most connection.
     // Would prefer to use _.maxBy, but not available in lodash 2.4.1
     const rightMost = _.last( _.sortBy( this.connections, [ function( connection ) {
-      return connection.location.x;
+      return connection.position.x;
     } ] ) );
 
-    return rightMost.location.minus( this.hingePoint ).toVector2().angle;
+    return rightMost.position.minus( this.hingePoint ).toVector2().angle;
   },
 
   /**
@@ -269,10 +269,10 @@ export default inherit( Object, CircuitSwitch, {
     // Get the left-most connection.
     // Would prefer to use _.minBy, but not available in lodash 2.4.1
     const leftMost = _.first( _.sortBy( this.connections, [ function( connection ) {
-      return connection.location.x;
+      return connection.position.x;
     } ] ) );
 
-    return leftMost.location.minus( this.hingePoint ).toVector2().angle;
+    return leftMost.position.minus( this.hingePoint ).toVector2().angle;
   },
 
   contacts: function( probe ) {

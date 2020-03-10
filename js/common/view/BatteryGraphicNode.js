@@ -40,8 +40,8 @@ const STROKE_COLOR = new Color( 33, 33, 33 );
 const LINE_WIDTH = 2;
 
 function createGradient( radius, leftColor, midColor, rightColor ) {
-  function blend( highlightLocation, farLocation, location ) {
-    const distance = Math.abs( ( farLocation - location ) / ( highlightLocation - farLocation ) );
+  function blend( highlightPosition, farPosition, position ) {
+    const distance = Math.abs( ( farPosition - position ) / ( highlightPosition - farPosition ) );
     return distance * distance;
   }
 
@@ -138,12 +138,12 @@ capacitorLabBasics.register( 'BatteryGraphicNode', BatteryGraphicNode );
 
 inherit( Node, BatteryGraphicNode, {
   /**
-   * Returns (in the local coordinate frame) the location of the center-top of the top terminal.
+   * Returns (in the local coordinate frame) the position of the center-top of the top terminal.
    * @public
    *
    * @returns {Vector2}
    */
-  getTopLocation: function() {
+  getTopPosition: function() {
     return new Vector2( 0, this.isPositiveDown ? 0 : -BATTERY_POSITIVE_TERMINAL_HEIGHT );
   }
 } );

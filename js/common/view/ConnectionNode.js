@@ -41,7 +41,7 @@ function ConnectionNode( connection, circuitSwitch, modelViewTransform, tandem, 
     pickable: false,
     fill: CLBConstants.CONNECTION_POINT_HIGHLIGHTED,
     stroke: 'black',
-    translation: modelViewTransform.modelToViewPosition( connection.location )
+    translation: modelViewTransform.modelToViewPosition( connection.position )
   } );
 
   // @public {Circle}
@@ -50,17 +50,17 @@ function ConnectionNode( connection, circuitSwitch, modelViewTransform, tandem, 
     lineWidth: 2,
     lineDash: [ 3, 3 ],
     stroke: CLBConstants.DISCONNECTED_POINT_STROKE,
-    translation: modelViewTransform.modelToViewPosition( connection.location )
+    translation: modelViewTransform.modelToViewPosition( connection.position )
   } );
 
   const pointNode = new Circle( {
     radius: CLBConstants.CONNECTION_POINT_RADIUS,
     fill: CLBConstants.DISCONNECTED_POINT_COLOR,
-    translation: modelViewTransform.modelToViewPosition( connection.location )
+    translation: modelViewTransform.modelToViewPosition( connection.position )
   } );
 
   const hingePoint = circuitSwitch.hingePoint.toVector2();
-  const connectionAngle = connection.location.toVector2().minus( hingePoint ).angle;
+  const connectionAngle = connection.position.toVector2().minus( hingePoint ).angle;
   let triangleShape = new Shape().moveToPoint( hingePoint );
   triangleShape.arcPoint( hingePoint, CLBConstants.SWITCH_WIRE_LENGTH * 1.4, connectionAngle - BOUNDING_ANGLE, connectionAngle + BOUNDING_ANGLE, false );
   triangleShape.close();

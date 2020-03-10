@@ -65,7 +65,7 @@ function VoltmeterToolboxPanel( dragBounds, stopwatchNode, voltmeterNode, modelV
     const offsetPosition = new Vector2( -voltmeterNode.bodyNode.width / 2, -voltmeterNode.bodyNode.height / 2 );
 
     const voltmeterBodyPosition = initialPosition.plus( offsetPosition );
-    voltmeterNode.bodyNode.bodyLocationProperty.set( modelViewTransform.viewToModelPosition( voltmeterBodyPosition ) );
+    voltmeterNode.bodyNode.bodyPositionProperty.set( modelViewTransform.viewToModelPosition( voltmeterBodyPosition ) );
 
     // start drag from the body node's movable drag handler
     voltmeterNode.bodyNode.movableDragHandler.startDrag( event );

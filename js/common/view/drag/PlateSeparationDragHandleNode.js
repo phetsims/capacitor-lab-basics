@@ -22,13 +22,13 @@ import PlateSeparationDragHandler from './PlateSeparationDragHandler.js';
 
 // constants
 // endpoints for vertical double-headed arrow
-const ARROW_START_LOCATION = new Vector2( 0, 0 );
-const ARROW_END_LOCATION = new Vector2( 0, -CLBConstants.DRAG_HANDLE_ARROW_LENGTH );
+const ARROW_START_POSITION = new Vector2( 0, 0 );
+const ARROW_END_POSITION = new Vector2( 0, -CLBConstants.DRAG_HANDLE_ARROW_LENGTH );
 
 // endpoints for vertical line
 const LINE_LENGTH = 60;
-const LINE_START_LOCATION = new Vector2( 0, 0 );
-const LINE_END_LOCATION = new Vector2( 0, -LINE_LENGTH );
+const LINE_START_POSITION = new Vector2( 0, 0 );
+const LINE_END_POSITION = new Vector2( 0, -LINE_LENGTH );
 
 const millimetersPatternString = capacitorLabBasicsStrings.millimetersPattern;
 const separationString = capacitorLabBasicsStrings.separation;
@@ -55,13 +55,13 @@ function PlateSeparationDragHandleNode( capacitor, modelViewTransform, valueRang
   this.addInputListener( dragHandler );
 
   // arrow
-  const arrowNode = new DragHandleArrowNode( ARROW_START_LOCATION, ARROW_END_LOCATION, dragHandler.isHighlightedProperty,
+  const arrowNode = new DragHandleArrowNode( ARROW_START_POSITION, ARROW_END_POSITION, dragHandler.isHighlightedProperty,
     tandem.createTandem( 'arrowNode' ) );
 
   this.cursor = 'pointer';
 
   // line
-  const lineNode = new DragHandleLineNode( LINE_START_LOCATION, LINE_END_LOCATION );
+  const lineNode = new DragHandleLineNode( LINE_START_POSITION, LINE_END_POSITION );
 
   // value
   const millimeters = UnitsUtils.metersToMillimeters( capacitor.plateSeparationProperty.value );
@@ -122,8 +122,8 @@ export default inherit( Node, PlateSeparationDragHandleNode, {
   updateOffset: function() {
     const width = this.capacitor.plateSizeProperty.value.width;
     const height = this.capacitor.plateSizeProperty.value.height;
-    const x = this.capacitor.location.x + ( 0.3 * width );
-    const y = this.capacitor.location.y - ( this.capacitor.plateSeparationProperty.value / 2 ) - height;
+    const x = this.capacitor.position.x + ( 0.3 * width );
+    const y = this.capacitor.position.y - ( this.capacitor.plateSeparationProperty.value / 2 ) - height;
     const z = 0;
     this.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
   }

@@ -44,13 +44,13 @@ const NEGATIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.0006; // center
 /**
  * @constructor
  *
- * @param {Vector3} location
+ * @param {Vector3} position
  * @param {number} voltage
  * @param {YawPitchModelViewTransform3} modelViewTransform
  * @param {Tandem} tandem
  */
-function Battery( location, voltage, modelViewTransform, tandem ) {
-  assert && assert( location instanceof Vector3 );
+function Battery( position, voltage, modelViewTransform, tandem ) {
+  assert && assert( position instanceof Vector3 );
 
   // @public {Property.<number>}
   this.voltageProperty = new NumberProperty( voltage, {
@@ -78,7 +78,7 @@ function Battery( location, voltage, modelViewTransform, tandem ) {
   this.positiveTerminalCylinderHeight = POSITIVE_TERMINAL_CYLINDER_HEIGHT;
 
   // @public {Vector3}
-  this.location = location; // @public (read-only)
+  this.position = position; // @public (read-only)
   this.shapeCreator = new BatteryShapeCreator( this, modelViewTransform ); // @private
 
   // @private {Shape}

@@ -45,7 +45,7 @@ export default inherit( Object, VoltmeterShapeCreator, {
    * @returns {Shape}
    */
   getPositiveProbeTipShape: function() {
-    const origin = this.voltmeter.positiveProbeLocationProperty.value.plus( PROBE_TIP_OFFSET );
+    const origin = this.voltmeter.positiveProbePositionProperty.value.plus( PROBE_TIP_OFFSET );
     return this.getProbeTipShape( origin, -this.modelViewTransform.yaw );
   },
 
@@ -56,7 +56,7 @@ export default inherit( Object, VoltmeterShapeCreator, {
    * @returns {Shape}
    */
   getNegativeProbeTipShape: function() {
-    const origin = this.voltmeter.negativeProbeLocationProperty.value.plus( PROBE_TIP_OFFSET );
+    const origin = this.voltmeter.negativeProbePositionProperty.value.plus( PROBE_TIP_OFFSET );
     return this.getProbeTipShape( origin, -this.modelViewTransform.yaw );
   },
 

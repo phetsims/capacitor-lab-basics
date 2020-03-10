@@ -21,7 +21,7 @@ import NullableIO from '../../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../../tandem/js/types/NumberIO.js';
 import StringIO from '../../../../../tandem/js/types/StringIO.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
-import CircuitLocation from '../CircuitLocation.js';
+import CircuitPosition from '../CircuitPosition.js';
 import CircuitState from '../CircuitState.js';
 import ParallelCircuit from '../ParallelCircuit.js';
 import ProbeTarget from '../ProbeTarget.js';
@@ -31,9 +31,9 @@ import VoltmeterShapeCreator from '../shapes/VoltmeterShapeCreator.js';
 // size of the probe tips, determined by visual inspection of the associated image files
 const PROBE_TIP_SIZE = new Dimension2( 0.0003, 0.0013 ); // meters
 
-// Initial locations when dragged out of toolbox
-const POSITIVE_PROBE_LOCATION = new Vector3( 0.0669, 0.0298, 0 );
-const NEGATIVE_PROBE_LOCATION = new Vector3( 0.0707, 0.0329, 0 );
+// Initial positions when dragged out of toolbox
+const POSITIVE_PROBE_POSITION = new Vector3( 0.0669, 0.0298, 0 );
+const NEGATIVE_PROBE_POSITION = new Vector3( 0.0707, 0.0329, 0 );
 
 /**
  * @constructor
@@ -71,23 +71,23 @@ function Voltmeter( circuit, dragBounds, modelViewTransform, voltmeterVisiblePro
   } );
 
   // @public {Property.<Vector3>}
-  this.bodyLocationProperty = new Property( new Vector3( 0, 0, 0 ), {
+  this.bodyPositionProperty = new Property( new Vector3( 0, 0, 0 ), {
     useDeepEquality: true,
-    tandem: tandem.createTandem( 'bodyLocationProperty' ),
+    tandem: tandem.createTandem( 'bodyPositionProperty' ),
     phetioType: PropertyIO( Vector3IO )
   } );
 
   // @public {Property.<Vector3>}
-  this.positiveProbeLocationProperty = new Property( POSITIVE_PROBE_LOCATION, {
+  this.positiveProbePositionProperty = new Property( POSITIVE_PROBE_POSITION, {
     useDeepEquality: true,
-    tandem: tandem.createTandem( 'positiveProbeLocationProperty' ),
+    tandem: tandem.createTandem( 'positiveProbePositionProperty' ),
     phetioType: PropertyIO( Vector3IO )
   } );
 
   // @public {Property.<Vector3>}
-  this.negativeProbeLocationProperty = new Property( NEGATIVE_PROBE_LOCATION, {
+  this.negativeProbePositionProperty = new Property( NEGATIVE_PROBE_POSITION, {
     useDeepEquality: true,
-    tandem: tandem.createTandem( 'negativeProbeLocationProperty' ),
+    tandem: tandem.createTandem( 'negativeProbePositionProperty' ),
     phetioType: PropertyIO( Vector3IO )
   } );
 
@@ -141,7 +141,7 @@ function Voltmeter( circuit, dragBounds, modelViewTransform, voltmeterVisiblePro
   circuit.capacitor.plateVoltageProperty.lazyLink( updateValue );
 
   // Update reading when the probes move
-  Property.lazyMultilink( [ self.negativeProbeLocationProperty, self.positiveProbeLocationProperty ], updateValue );
+  Property.lazyMultilink( [ self.negativeProbePositionProperty, self.positiveProbePositionProperty ], updateValue );
 
   // Update all segments and the plate voltages when capacitor plate geometry changes. Capacitor may not exist yet.
   circuit.capacitor.plateSeparationProperty.lazyLink( updateValue );
@@ -182,51 +182,51 @@ export default inherit( Object, Voltmeter, {
       return 0;
     }
 
-    let positiveCircuitLocation = ProbeTarget.getCircuitLocation( positiveProbeTarget );
-    let negativeCircuitLocation = ProbeTarget.getCircuitLocation( negativeProbeTarget );
+    let positiveCircuitPosition = ProbeTarget.getCircuitPosition( positiveProbeTarget );
+    let negativeCircuitPosition = ProbeTarget.getCircuitPosition( negativeProbeTarget );
 
-    // If the probes are touching the same location, there should be no voltage change. We check here first so we can
+    // If the probes are touching the same position, there should be no voltage change. We check here first so we can
     // bail out and avoid any more work (even though we do a very similar check below).
-    if ( positiveCircuitLocation === negativeCircuitLocation ) {
+    if ( positiveCircuitPosition === negativeCircuitPosition ) {
       return 0;
     }
 
     // Closed circuit between battery and capacitor
     if ( this.circuit.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
-      // Shift capacitor locations to battery locations (since we use the total voltage for anything connected to the capacitor)
-      if ( CircuitLocation.isCapacitor( positiveCircuitLocation ) ) {
-        positiveCircuitLocation = CircuitLocation.isTop( positiveCircuitLocation ) ? CircuitLocation.BATTERY_TOP : CircuitLocation.BATTERY_BOTTOM;
+      // Shift capacitor positions to battery positions (since we use the total voltage for anything connected to the capacitor)
+      if ( CircuitPosition.isCapacitor( positiveCircuitPosition ) ) {
+        positiveCircuitPosition = CircuitPosition.isTop( positiveCircuitPosition ) ? CircuitPosition.BATTERY_TOP : CircuitPosition.BATTERY_BOTTOM;
       }
-      if ( CircuitLocation.isCapacitor( negativeCircuitLocation ) ) {
-        negativeCircuitLocation = CircuitLocation.isTop( negativeCircuitLocation ) ? CircuitLocation.BATTERY_TOP : CircuitLocation.BATTERY_BOTTOM;
+      if ( CircuitPosition.isCapacitor( negativeCircuitPosition ) ) {
+        negativeCircuitPosition = CircuitPosition.isTop( negativeCircuitPosition ) ? CircuitPosition.BATTERY_TOP : CircuitPosition.BATTERY_BOTTOM;
       }
     }
     // Closed circuit between light bulb and capacitor
     else if ( this.circuit.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-      // Shift light bulb locations to capacitor locations (since we use the capacitor plate voltage for anything connected to the light bulb)
-      if ( CircuitLocation.isLightBulb( positiveCircuitLocation ) ) {
-        positiveCircuitLocation = CircuitLocation.isTop( positiveCircuitLocation ) ? CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
+      // Shift light bulb positions to capacitor positions (since we use the capacitor plate voltage for anything connected to the light bulb)
+      if ( CircuitPosition.isLightBulb( positiveCircuitPosition ) ) {
+        positiveCircuitPosition = CircuitPosition.isTop( positiveCircuitPosition ) ? CircuitPosition.CAPACITOR_TOP : CircuitPosition.CAPACITOR_BOTTOM;
       }
-      if ( CircuitLocation.isLightBulb( negativeCircuitLocation ) ) {
-        negativeCircuitLocation = CircuitLocation.isTop( negativeCircuitLocation ) ? CircuitLocation.CAPACITOR_TOP : CircuitLocation.CAPACITOR_BOTTOM;
+      if ( CircuitPosition.isLightBulb( negativeCircuitPosition ) ) {
+        negativeCircuitPosition = CircuitPosition.isTop( negativeCircuitPosition ) ? CircuitPosition.CAPACITOR_TOP : CircuitPosition.CAPACITOR_BOTTOM;
       }
     }
 
-    // If the probes are touching the same location, there should be no voltage change. This is different from the
-    // above check (with the same code) since we have potentially remapped some of the circuit locations.
-    if ( positiveCircuitLocation === negativeCircuitLocation ) {
+    // If the probes are touching the same position, there should be no voltage change. This is different from the
+    // above check (with the same code) since we have potentially remapped some of the circuit positions.
+    if ( positiveCircuitPosition === negativeCircuitPosition ) {
       return 0;
     }
     // If probes are on opposite sides of the battery
-    else if ( CircuitLocation.isBattery( positiveCircuitLocation ) && CircuitLocation.isBattery( negativeCircuitLocation ) ) {
-      return ( CircuitLocation.isTop( positiveCircuitLocation ) ? 1 : -1 ) * this.circuit.getTotalVoltage();
+    else if ( CircuitPosition.isBattery( positiveCircuitPosition ) && CircuitPosition.isBattery( negativeCircuitPosition ) ) {
+      return ( CircuitPosition.isTop( positiveCircuitPosition ) ? 1 : -1 ) * this.circuit.getTotalVoltage();
     }
     // If probes are on opposite sides of the capacitor (and can't be connected to the battery, see above)
-    else if ( CircuitLocation.isCapacitor( positiveCircuitLocation ) && CircuitLocation.isCapacitor( negativeCircuitLocation ) ) {
-      return ( CircuitLocation.isTop( positiveCircuitLocation ) ? 1 : -1 ) * this.circuit.getCapacitorPlateVoltage();
+    else if ( CircuitPosition.isCapacitor( positiveCircuitPosition ) && CircuitPosition.isCapacitor( negativeCircuitPosition ) ) {
+      return ( CircuitPosition.isTop( positiveCircuitPosition ) ? 1 : -1 ) * this.circuit.getCapacitorPlateVoltage();
     }
     // If probes are on opposite sides of the light bulb (and can't be connected to the capacitor, see above)
-    else if ( CircuitLocation.isLightBulb( positiveCircuitLocation ) && CircuitLocation.isLightBulb( negativeCircuitLocation ) ) {
+    else if ( CircuitPosition.isLightBulb( positiveCircuitPosition ) && CircuitPosition.isLightBulb( negativeCircuitPosition ) ) {
       return 0;
     }
     // Probes are not touching a connected component
@@ -252,9 +252,9 @@ export default inherit( Object, Voltmeter, {
   // @public
   reset: function() {
     this.isDraggedProperty.reset();
-    this.bodyLocationProperty.reset();
-    this.positiveProbeLocationProperty.reset();
-    this.negativeProbeLocationProperty.reset();
+    this.bodyPositionProperty.reset();
+    this.positiveProbePositionProperty.reset();
+    this.negativeProbePositionProperty.reset();
     this.measuredVoltageProperty.reset();
     this.positiveProbeTargetProperty.reset();
     this.negativeProbeTargetProperty.reset();

@@ -15,7 +15,7 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import CLBQueryParameters from '../CLBQueryParameters.js';
-import CircuitLocation from '../model/CircuitLocation.js';
+import CircuitPosition from '../model/CircuitPosition.js';
 import CircuitState from '../model/CircuitState.js';
 
 /**
@@ -38,19 +38,19 @@ function DebugLayer( model ) {
   // Don't do anything else unless debugging is enabled
   if ( !CLBQueryParameters.showDebugAreas ) { return; }
 
-  const circuitLocations = [
-    CircuitLocation.BATTERY_TOP,
-    CircuitLocation.BATTERY_BOTTOM,
-    CircuitLocation.CAPACITOR_TOP,
-    CircuitLocation.CAPACITOR_BOTTOM
+  const circuitPositions = [
+    CircuitPosition.BATTERY_TOP,
+    CircuitPosition.BATTERY_BOTTOM,
+    CircuitPosition.CAPACITOR_TOP,
+    CircuitPosition.CAPACITOR_BOTTOM
   ];
   if ( model.circuit.lightBulb ) {
-    circuitLocations.push( CircuitLocation.LIGHT_BULB_TOP );
-    circuitLocations.push( CircuitLocation.LIGHT_BULB_BOTTOM );
+    circuitPositions.push( CircuitPosition.LIGHT_BULB_TOP );
+    circuitPositions.push( CircuitPosition.LIGHT_BULB_BOTTOM );
   }
 
-  circuitLocations.forEach( function( circuitLocation ) {
-    const wires = model.circuit.wireGroup[ circuitLocation ];
+  circuitPositions.forEach( function( circuitPosition ) {
+    const wires = model.circuit.wireGroup[ circuitPosition ];
 
     wires.forEach( function( wire ) {
       const wirePath = new Path( null, {
@@ -70,10 +70,10 @@ function DebugLayer( model ) {
   const capacitor = model.circuit.capacitor;
   Property.multilink( [ capacitor.plateSizeProperty, capacitor.plateSeparationProperty ], function( size, separation ) {
     capacitorContainer.children = [
-      new Path( capacitor.shapeCreator.createBoxShape( capacitor.location.x, capacitor.getTopConnectionPoint().y, capacitor.location.z, size.width, size.height, size.depth ), {
+      new Path( capacitor.shapeCreator.createBoxShape( capacitor.position.x, capacitor.getTopConnectionPoint().y, capacitor.position.z, size.width, size.height, size.depth ), {
         stroke: 'blue'
       } ),
-      new Path( capacitor.shapeCreator.createBoxShape( capacitor.location.x, capacitor.location.y + separation / 2, capacitor.location.z, size.width, size.height, size.depth ), {
+      new Path( capacitor.shapeCreator.createBoxShape( capacitor.position.x, capacitor.position.y + separation / 2, capacitor.position.z, size.width, size.height, size.depth ), {
         stroke: 'blue'
       } )
     ];
@@ -139,14 +139,14 @@ function DebugLayer( model ) {
   const negativeVoltmeterNode = new Node();
   this.addChild( negativeVoltmeterNode );
 
-  model.voltmeter.positiveProbeLocationProperty.link( function() {
+  model.voltmeter.positiveProbePositionProperty.link( function() {
     positiveVoltmeterNode.children = [
       new Path( model.voltmeter.shapeCreator.getPositiveProbeTipShape(), {
         stroke: 'blue'
       } )
     ];
   } );
-  model.voltmeter.negativeProbeLocationProperty.link( function() {
+  model.voltmeter.negativeProbePositionProperty.link( function() {
     negativeVoltmeterNode.children = [
       new Path( model.voltmeter.shapeCreator.getNegativeProbeTipShape(), {
         stroke: 'blue'

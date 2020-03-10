@@ -7,7 +7,7 @@
  */
 
 import capacitorLabBasics from '../../capacitorLabBasics.js';
-import CircuitLocation from './CircuitLocation.js';
+import CircuitPosition from './CircuitPosition.js';
 
 const ProbeTarget = {
   NONE: 'NONE',
@@ -62,51 +62,51 @@ ProbeTarget.VALUES = [
 ];
 
 /**
- * Given a probe target, it returns the general {CircuitLocation} which it is part of. This ignores the
- * CIRCUIT_SWITCH locations, only using the CAPACITOR ones for simplicity (since they are connected)
+ * Given a probe target, it returns the general {CircuitPosition} which it is part of. This ignores the
+ * CIRCUIT_SWITCH positions, only using the CAPACITOR ones for simplicity (since they are connected)
  * @public
  *
  * @param {ProbeTarget} probeTarget
- * @returns {CircuitLocation}
+ * @returns {CircuitPosition}
  */
-ProbeTarget.getCircuitLocation = function( probeTarget ) {
+ProbeTarget.getCircuitPosition = function( probeTarget ) {
   switch( probeTarget ) {
     case ProbeTarget.BATTERY_TOP_TERMINAL:
-      return CircuitLocation.BATTERY_TOP;
+      return CircuitPosition.BATTERY_TOP;
     case ProbeTarget.LIGHT_BULB_TOP:
-      return CircuitLocation.LIGHT_BULB_TOP;
+      return CircuitPosition.LIGHT_BULB_TOP;
     case ProbeTarget.LIGHT_BULB_BOTTOM:
-      return CircuitLocation.LIGHT_BULB_BOTTOM;
+      return CircuitPosition.LIGHT_BULB_BOTTOM;
     case ProbeTarget.CAPACITOR_TOP:
-      return CircuitLocation.CAPACITOR_TOP;
+      return CircuitPosition.CAPACITOR_TOP;
     case ProbeTarget.CAPACITOR_BOTTOM:
-      return CircuitLocation.CAPACITOR_BOTTOM;
+      return CircuitPosition.CAPACITOR_BOTTOM;
     case ProbeTarget.SWITCH_TOP:
-      return CircuitLocation.CAPACITOR_TOP;
+      return CircuitPosition.CAPACITOR_TOP;
     case ProbeTarget.SWITCH_BOTTOM:
-      return CircuitLocation.CAPACITOR_BOTTOM;
+      return CircuitPosition.CAPACITOR_BOTTOM;
     case ProbeTarget.SWITCH_CONNECTION_TOP:
-      return CircuitLocation.CAPACITOR_TOP;
+      return CircuitPosition.CAPACITOR_TOP;
     case ProbeTarget.SWITCH_CONNECTION_BOTTOM:
-      return CircuitLocation.CAPACITOR_BOTTOM;
+      return CircuitPosition.CAPACITOR_BOTTOM;
     case ProbeTarget.WIRE_CAPACITOR_TOP:
-      return CircuitLocation.CAPACITOR_TOP;
+      return CircuitPosition.CAPACITOR_TOP;
     case ProbeTarget.WIRE_CAPACITOR_BOTTOM:
-      return CircuitLocation.CAPACITOR_BOTTOM;
+      return CircuitPosition.CAPACITOR_BOTTOM;
     case ProbeTarget.WIRE_BATTERY_TOP:
-      return CircuitLocation.BATTERY_TOP;
+      return CircuitPosition.BATTERY_TOP;
     case ProbeTarget.WIRE_BATTERY_BOTTOM:
-      return CircuitLocation.BATTERY_BOTTOM;
+      return CircuitPosition.BATTERY_BOTTOM;
     case ProbeTarget.WIRE_LIGHT_BULB_TOP:
-      return CircuitLocation.LIGHT_BULB_TOP;
+      return CircuitPosition.LIGHT_BULB_TOP;
     case ProbeTarget.WIRE_LIGHT_BULB_BOTTOM:
-      return CircuitLocation.LIGHT_BULB_BOTTOM;
+      return CircuitPosition.LIGHT_BULB_BOTTOM;
     case ProbeTarget.WIRE_SWITCH_TOP:
-      return CircuitLocation.CAPACITOR_TOP;
+      return CircuitPosition.CAPACITOR_TOP;
     case ProbeTarget.WIRE_SWITCH_BOTTOM:
-      return CircuitLocation.CAPACITOR_BOTTOM;
+      return CircuitPosition.CAPACITOR_BOTTOM;
     default:
-      throw new Error( 'Unsupported probe target (no circuit location for it): ' + probeTarget );
+      throw new Error( 'Unsupported probe target (no circuit position for it): ' + probeTarget );
   }
 };
 

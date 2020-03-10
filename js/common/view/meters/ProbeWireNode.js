@@ -52,11 +52,11 @@ function ProbeWireNode( bodyNode, probeNode, isPositive ) {
   } );
 
   // update wire when body or probe moves
-  probeNode.locationProperty.link( function( location ) {
+  probeNode.positionProperty.link( function( position ) {
     self.update();
   } );
 
-  bodyNode.bodyLocationProperty.link( function( location ) {
+  bodyNode.bodyPositionProperty.link( function( position ) {
     self.update();
   } );
 }
@@ -82,7 +82,7 @@ export default inherit( Path, ProbeWireNode, {
   },
 
   /**
-   * Get the connection point for either the voltmeter body or probe.  Adds the node location to the offset connection
+   * Get the connection point for either the voltmeter body or probe.  Adds the node position to the offset connection
    * point vector for a given node.
    * @public
    *

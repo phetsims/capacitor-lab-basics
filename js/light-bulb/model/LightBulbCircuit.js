@@ -28,7 +28,7 @@ import Vector3 from '../../../../dot/js/Vector3.js';
 import inherit from '../../../../phet-core/js/inherit.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../../common/CLBConstants.js';
-import CircuitLocation from '../../common/model/CircuitLocation.js';
+import CircuitPosition from '../../common/model/CircuitPosition.js';
 import CircuitState from '../../common/model/CircuitState.js';
 import LightBulb from '../../common/model/LightBulb.js';
 import ParallelCircuit from '../../common/model/ParallelCircuit.js';
@@ -47,14 +47,14 @@ function LightBulbCircuit( config, tandem ) {
 
   const self = this;
 
-  const bulbLocation = new Vector3(
-    CLBConstants.BATTERY_LOCATION.x + config.capacitorXSpacing + CLBConstants.LIGHT_BULB_X_SPACING,
-    CLBConstants.BATTERY_LOCATION.y + config.capacitorYSpacing,
-    CLBConstants.BATTERY_LOCATION.z
+  const bulbPosition = new Vector3(
+    CLBConstants.BATTERY_POSITION.x + config.capacitorXSpacing + CLBConstants.LIGHT_BULB_X_SPACING,
+    CLBConstants.BATTERY_POSITION.y + config.capacitorYSpacing,
+    CLBConstants.BATTERY_POSITION.z
   );
 
   // @public {LightBulb}
-  this.lightBulb = new LightBulb( bulbLocation, config.modelViewTransform );
+  this.lightBulb = new LightBulb( bulbPosition, config.modelViewTransform );
 
   ParallelCircuit.call( this, config, tandem );
 
@@ -146,15 +146,15 @@ export default inherit( ParallelCircuit, LightBulbCircuit, {
   },
 
   /**
-   * Assert that location is either CircuitLocation.LIGHT_BULB_TOP or BOTTOM.
+   * Assert that position is either CircuitPosition.LIGHT_BULB_TOP or BOTTOM.
    * @private
    *
-   * @param {CircuitLocation} location
+   * @param {CircuitPosition} position
    */
-  validateLocation: function( location ) {
+  validatePosition: function(position ) {
 
-    assert && assert( location === CircuitLocation.LIGHT_BULB_TOP || location === CircuitLocation.LIGHT_BULB_BOTTOM,
-      'location should be LIGHT_BULB_TOP or LIGHT_BULB_BOTTOM, received ' + location );
+    assert && assert( position === CircuitPosition.LIGHT_BULB_TOP || position === CircuitPosition.LIGHT_BULB_BOTTOM,
+      'position should be LIGHT_BULB_TOP or LIGHT_BULB_BOTTOM, received ' + position );
   },
 
   /**

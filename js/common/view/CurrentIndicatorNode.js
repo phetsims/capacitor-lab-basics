@@ -33,8 +33,8 @@ const ARROW_LENGTH = 88;
 const ARROW_HEAD_WIDTH = 30;
 const ARROW_HEAD_HEIGHT = 25;
 const ARROW_TAIL_WIDTH = 0.4 * ARROW_HEAD_WIDTH;
-const ARROW_TIP_LOCATION = new Vector2( 0, 0 ); // origin at the tip
-const ARROW_TAIL_LOCATION = new Vector2( ARROW_LENGTH, 0 );
+const ARROW_TIP_POSITION = new Vector2( 0, 0 ); // origin at the tip
+const ARROW_TAIL_POSITION = new Vector2( ARROW_LENGTH, 0 );
 
 // electron properties
 const CHARGE_DIAMETER = 0.8 * ARROW_TAIL_WIDTH;
@@ -70,7 +70,7 @@ function CurrentIndicatorNode( currentAmplitudeProperty, startingOrientation, po
     self.animation && self.animation.step( dt );
   } );
 
-  const arrowNode = new ArrowNode( ARROW_TAIL_LOCATION.x, ARROW_TAIL_LOCATION.y, ARROW_TIP_LOCATION.x, ARROW_TIP_LOCATION.y, {
+  const arrowNode = new ArrowNode( ARROW_TAIL_POSITION.x, ARROW_TAIL_POSITION.y, ARROW_TIP_POSITION.x, ARROW_TIP_POSITION.y, {
     headHeight: ARROW_HEAD_HEIGHT,
     headWidth: ARROW_HEAD_WIDTH,
     tailWidth: ARROW_TAIL_WIDTH,

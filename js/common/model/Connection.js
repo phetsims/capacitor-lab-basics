@@ -12,12 +12,12 @@ import capacitorLabBasics from '../../capacitorLabBasics.js';
 /**
  * @constructor
  *
- * @param {Vector3} location
+ * @param {Vector3} position
  * @param {CircuitState} type
  */
-function Connection( location, type ) {
+function Connection( position, type ) {
   // @public {Vector3}
-  this.location = location;
+  this.position = position;
 
   // @public {CircuitState}
   this.type = type;

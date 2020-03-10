@@ -43,16 +43,16 @@ export default inherit( Object, BatteryShapeCreator, {
    * Creates the shape of the top positive terminal in the world coordinate frame.
    * @public
    *
-   * TODO: Battery location doesn't change? Doesn't require recreation every time?
+   * TODO: Battery position doesn't change? Doesn't require recreation every time?
    *
    * @returns {Shape}
    */
   createPositiveTerminalShape: function() {
     let shape = BatteryGraphicNode.POSITIVE_UP.terminalShape;
     shape = shape.transformed( Matrix3.scaling( 0.3 ) );
-    const batteryLocation = this.modelViewTransform.modelToViewPosition( this.battery.location );
-    shape = shape.transformed( Matrix3.translation( batteryLocation.x - BatteryGraphicNode.POSITIVE_UP.bounds.centerX * 0.3,
-      batteryLocation.y - BatteryGraphicNode.POSITIVE_UP.bounds.centerY * 0.3 ) );
+    const batteryPosition = this.modelViewTransform.modelToViewPosition( this.battery.position );
+    shape = shape.transformed( Matrix3.translation( batteryPosition.x - BatteryGraphicNode.POSITIVE_UP.bounds.centerX * 0.3,
+      batteryPosition.y - BatteryGraphicNode.POSITIVE_UP.bounds.centerY * 0.3 ) );
     return shape;
   },
 
@@ -60,16 +60,16 @@ export default inherit( Object, BatteryShapeCreator, {
    * Creates the shape of the top negative terminal in the world coordinate frame.
    * @public
    *
-   * TODO: Battery location doesn't change? Doesn't require recreation every time?
+   * TODO: Battery position doesn't change? Doesn't require recreation every time?
    *
    * @returns {Shape}
    */
   createNegativeTerminalShape: function() {
     let shape = BatteryGraphicNode.POSITIVE_DOWN.terminalShape;
     shape = shape.transformed( Matrix3.scaling( 0.3 ) );
-    const batteryLocation = this.modelViewTransform.modelToViewPosition( this.battery.location );
-    shape = shape.transformed( Matrix3.translation( batteryLocation.x - BatteryGraphicNode.POSITIVE_DOWN.bounds.centerX * 0.3,
-      batteryLocation.y - BatteryGraphicNode.POSITIVE_DOWN.bounds.centerY * 0.3 ) );
+    const batteryPosition = this.modelViewTransform.modelToViewPosition( this.battery.position );
+    shape = shape.transformed( Matrix3.translation( batteryPosition.x - BatteryGraphicNode.POSITIVE_DOWN.bounds.centerX * 0.3,
+      batteryPosition.y - BatteryGraphicNode.POSITIVE_DOWN.bounds.centerY * 0.3 ) );
     return shape;
   }
 } );

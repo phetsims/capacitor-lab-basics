@@ -20,7 +20,7 @@ import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import Battery from './Battery.js';
 import Capacitor from './Capacitor.js';
-import CircuitLocation from './CircuitLocation.js';
+import CircuitPosition from './CircuitPosition.js';
 import CircuitState from './CircuitState.js';
 import ProbeTarget from './ProbeTarget.js';
 import BatteryToSwitchWire from './wire/BatteryToSwitchWire.js';
@@ -68,7 +68,7 @@ function ParallelCircuit( config, tandem ) {
 
   // @public {Battery}
   this.battery = new Battery(
-    CLBConstants.BATTERY_LOCATION,
+    CLBConstants.BATTERY_POSITION,
     CLBConstants.BATTERY_VOLTAGE_RANGE.defaultValue,
     config.modelViewTransform,
     tandem.createTandem( 'battery' )
@@ -119,44 +119,44 @@ function ParallelCircuit( config, tandem ) {
   }
 
   /**
-   * Return the subset of wires connected to the provided location
+   * Return the subset of wires connected to the provided position
    *
-   * @param {CircuitLocation} location
+   * @param {CircuitPosition} position
    * @returns {Wire[]}
    */
-  function selectWires( location ) {
+  function selectWires( position ) {
     return self.wires.filter( function( wire ) {
-      return wire.connectionPoint === location;
+      return wire.connectionPoint === position;
     } );
   }
 
   // Create wire groups that are electrically connected to various parts of the circuit.
-  // These arrays are hashed to a location key for efficient connectivity checking.
-  // @protected {Object} - Maps {CircuitLocation} => {Array.<Wire>}
+  // These arrays are hashed to a position key for efficient connectivity checking.
+  // @protected {Object} - Maps {CircuitPosition} => {Array.<Wire>}
   this.wireGroup = {};
-  const locations = [ CircuitLocation.BATTERY_TOP, CircuitLocation.BATTERY_BOTTOM, CircuitLocation.LIGHT_BULB_TOP, CircuitLocation.LIGHT_BULB_BOTTOM, CircuitLocation.CAPACITOR_TOP, CircuitLocation.CAPACITOR_BOTTOM ];
-  locations.forEach( function( location ) {
-    self.wireGroup[ location ] = selectWires( location );
+  const positions = [ CircuitPosition.BATTERY_TOP, CircuitPosition.BATTERY_BOTTOM, CircuitPosition.LIGHT_BULB_TOP, CircuitPosition.LIGHT_BULB_BOTTOM, CircuitPosition.CAPACITOR_TOP, CircuitPosition.CAPACITOR_BOTTOM ];
+  positions.forEach( function( position ) {
+    self.wireGroup[ position ] = selectWires( position );
   } );
 
   // @public {Array.<Wire>}
-  this.topWires = this.wireGroup[ CircuitLocation.BATTERY_TOP ]
-    .concat( this.wireGroup[ CircuitLocation.LIGHT_BULB_TOP ] )
-    .concat( this.wireGroup[ CircuitLocation.CAPACITOR_TOP ] );
+  this.topWires = this.wireGroup[ CircuitPosition.BATTERY_TOP ]
+    .concat( this.wireGroup[ CircuitPosition.LIGHT_BULB_TOP ] )
+    .concat( this.wireGroup[ CircuitPosition.CAPACITOR_TOP ] );
 
   // @public {Array.<Wire>}
-  this.bottomWires = this.wireGroup[ CircuitLocation.BATTERY_BOTTOM ]
-    .concat( this.wireGroup[ CircuitLocation.LIGHT_BULB_BOTTOM ] )
-    .concat( this.wireGroup[ CircuitLocation.CAPACITOR_BOTTOM ] );
+  this.bottomWires = this.wireGroup[ CircuitPosition.BATTERY_BOTTOM ]
+    .concat( this.wireGroup[ CircuitPosition.LIGHT_BULB_BOTTOM ] )
+    .concat( this.wireGroup[ CircuitPosition.CAPACITOR_BOTTOM ] );
 
   // Add the switch wires to the capacitor wires arrays
   this.circuitSwitches.forEach( function( circuitSwitch ) {
     const wire = circuitSwitch.switchWire;
-    if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_TOP ) {
-      self.wireGroup[ CircuitLocation.CAPACITOR_TOP ].push( wire );
+    if ( wire.connectionPoint === CircuitPosition.CIRCUIT_SWITCH_TOP ) {
+      self.wireGroup[ CircuitPosition.CAPACITOR_TOP ].push( wire );
     }
-    if ( wire.connectionPoint === CircuitLocation.CIRCUIT_SWITCH_BOTTOM ) {
-      self.wireGroup[ CircuitLocation.CAPACITOR_BOTTOM ].push( wire );
+    if ( wire.connectionPoint === CircuitPosition.CIRCUIT_SWITCH_BOTTOM ) {
+      self.wireGroup[ CircuitPosition.CAPACITOR_BOTTOM ].push( wire );
     }
   } );
 
@@ -299,16 +299,16 @@ inherit( Object, ParallelCircuit, {
    * @public
    *
    * @param {Shape} shape
-   * @param {CircuitLocation} location
+   * @param {CircuitPosition} position
    * @returns {boolean}
    */
-  shapeTouchesWireGroup: function( shape, location ) {
+  shapeTouchesWireGroup: function( shape, position ) {
     assert && assert( shape instanceof Shape );
-    assert && assert( _.includes( CircuitLocation.VALUES, location ) );
+    assert && assert( _.includes( CircuitPosition.VALUES, position ) );
 
-    assert && assert( this.wireGroup.hasOwnProperty( location ), 'Invalid location: ' + location );
+    assert && assert( this.wireGroup.hasOwnProperty( position ), 'Invalid position: ' + position );
 
-    const wires = this.wireGroup[ location ];
+    const wires = this.wireGroup[ position ];
 
     return _.some( wires, function( wire ) {
       return wire.contacts( shape );
@@ -354,14 +354,14 @@ inherit( Object, ParallelCircuit, {
     }
 
     // NOTE: Capacitor checks include the switch connections, so those need to be checked first
-    if ( this.capacitor.contacts( probe, CircuitLocation.CAPACITOR_TOP ) ) {
+    if ( this.capacitor.contacts( probe, CircuitPosition.CAPACITOR_TOP ) ) {
       return ProbeTarget.CAPACITOR_TOP;
     }
-    if ( this.capacitor.contacts( probe, CircuitLocation.CAPACITOR_BOTTOM ) ) {
+    if ( this.capacitor.contacts( probe, CircuitPosition.CAPACITOR_BOTTOM ) ) {
       return ProbeTarget.CAPACITOR_BOTTOM;
     }
 
-    // Check circuit switch wires first here, since they are included as part of CircuitLocation.CAPACITOR_X
+    // Check circuit switch wires first here, since they are included as part of CircuitPosition.CAPACITOR_X
     if ( this.capacitor.topCircuitSwitch.switchWire.contacts( probe ) ) {
       return ProbeTarget.WIRE_SWITCH_TOP;
     }
@@ -370,22 +370,22 @@ inherit( Object, ParallelCircuit, {
     }
 
     // Check for wire intersections last
-    if ( this.shapeTouchesWireGroup( probe, CircuitLocation.CAPACITOR_TOP ) ) {
+    if ( this.shapeTouchesWireGroup( probe, CircuitPosition.CAPACITOR_TOP ) ) {
       return ProbeTarget.WIRE_CAPACITOR_TOP;
     }
-    if ( this.shapeTouchesWireGroup( probe, CircuitLocation.CAPACITOR_BOTTOM ) ) {
+    if ( this.shapeTouchesWireGroup( probe, CircuitPosition.CAPACITOR_BOTTOM ) ) {
       return ProbeTarget.WIRE_CAPACITOR_BOTTOM;
     }
-    if ( this.shapeTouchesWireGroup( probe, CircuitLocation.BATTERY_TOP ) ) {
+    if ( this.shapeTouchesWireGroup( probe, CircuitPosition.BATTERY_TOP ) ) {
       return ProbeTarget.WIRE_BATTERY_TOP;
     }
-    if ( this.shapeTouchesWireGroup( probe, CircuitLocation.BATTERY_BOTTOM ) ) {
+    if ( this.shapeTouchesWireGroup( probe, CircuitPosition.BATTERY_BOTTOM ) ) {
       return ProbeTarget.WIRE_BATTERY_BOTTOM;
     }
-    if ( this.shapeTouchesWireGroup( probe, CircuitLocation.LIGHT_BULB_TOP ) ) {
+    if ( this.shapeTouchesWireGroup( probe, CircuitPosition.LIGHT_BULB_TOP ) ) {
       return ProbeTarget.WIRE_LIGHT_BULB_TOP;
     }
-    if ( this.shapeTouchesWireGroup( probe, CircuitLocation.LIGHT_BULB_BOTTOM ) ) {
+    if ( this.shapeTouchesWireGroup( probe, CircuitPosition.LIGHT_BULB_BOTTOM ) ) {
       return ProbeTarget.WIRE_LIGHT_BULB_BOTTOM;
     }
 

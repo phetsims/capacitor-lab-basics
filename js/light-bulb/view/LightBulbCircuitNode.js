@@ -56,7 +56,7 @@ function LightBulbCircuitNode( model, tandem ) {
   this.addChild( this.bulbBottomCurrentIndicatorNode );
 
   // LightBulb - translate so that center is the center of the base.
-  lightBulbNode.center = model.modelViewTransform.modelToViewPosition( circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
+  lightBulbNode.center = model.modelViewTransform.modelToViewPosition( circuit.lightBulb.position.plus( new Vector3( 0.0020, 0, 0 ) ) );
 
   // top right current indicator
   const x = this.circuitSwitchNodes[ 0 ].right + ( lightBulbNode.left - this.circuitSwitchNodes[ 0 ].right ) / 2;
