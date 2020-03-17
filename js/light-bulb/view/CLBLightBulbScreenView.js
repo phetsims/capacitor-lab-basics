@@ -95,9 +95,11 @@ function CLBLightBulbScreenView( model, tandem ) {
   barMeterPanel.top = this.layoutBounds.top + 10;
 
   const timeControlPanel = new Panel( new TimeControlNode( model.isPlayingProperty, {
-    isSlowMotionProperty: model.isSlowMotionProperty,
-    stepForwardOptions: {
-      listener: function() { model.manualStep(); }
+    timeControlSpeedProperty: model.timeControlSpeedProperty,
+    playPauseStepButtonOptions: {
+      stepForwardButtonOptions: {
+        listener: function() { model.manualStep(); }
+      }
     },
     tandem: tandem.createTandem( 'timeControlNode' )
   } ), {
