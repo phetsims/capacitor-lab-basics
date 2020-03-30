@@ -495,6 +495,19 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
     },
+    "capacitorLabBasics.capacitanceScreen.nameProperty": {
+      "phetioDocumentation": "",
+      "phetioDynamicElement": false,
+      "phetioEventType": "MODEL",
+      "phetioFeatured": false,
+      "phetioHighFrequency": false,
+      "phetioIsArchetype": false,
+      "phetioPlayback": false,
+      "phetioReadOnly": false,
+      "phetioState": true,
+      "phetioStudioControl": true,
+      "phetioTypeName": "PropertyIO<NullableIO<StringIO>>"
+    },
     "capacitorLabBasics.capacitanceScreen.view": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -4962,7 +4975,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": false,
+      "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<StringIO>"
@@ -5287,7 +5300,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": false,
+      "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<StringIO>"
@@ -6384,6 +6397,19 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<ReferenceIO>"
     },
+    "capacitorLabBasics.homeScreen.nameProperty": {
+      "phetioDocumentation": "",
+      "phetioDynamicElement": false,
+      "phetioEventType": "MODEL",
+      "phetioFeatured": false,
+      "phetioHighFrequency": false,
+      "phetioIsArchetype": false,
+      "phetioPlayback": false,
+      "phetioReadOnly": false,
+      "phetioState": true,
+      "phetioStudioControl": true,
+      "phetioTypeName": "PropertyIO<NullableIO<StringIO>>"
+    },
     "capacitorLabBasics.homeScreen.view": {
       "phetioDocumentation": "",
       "phetioDynamicElement": false,
@@ -6522,7 +6548,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": false,
+      "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<StringIO>"
@@ -6678,7 +6704,7 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioHighFrequency": false,
       "phetioIsArchetype": false,
       "phetioPlayback": false,
-      "phetioReadOnly": false,
+      "phetioReadOnly": true,
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<StringIO>"
@@ -7306,6 +7332,19 @@ window.phet.phetio.phetioElementsBaseline = assert &&
       "phetioState": true,
       "phetioStudioControl": true,
       "phetioTypeName": "PropertyIO<BooleanIO>"
+    },
+    "capacitorLabBasics.lightBulbScreen.nameProperty": {
+      "phetioDocumentation": "",
+      "phetioDynamicElement": false,
+      "phetioEventType": "MODEL",
+      "phetioFeatured": false,
+      "phetioHighFrequency": false,
+      "phetioIsArchetype": false,
+      "phetioPlayback": false,
+      "phetioReadOnly": false,
+      "phetioState": true,
+      "phetioStudioControl": true,
+      "phetioTypeName": "PropertyIO<NullableIO<StringIO>>"
     },
     "capacitorLabBasics.lightBulbScreen.view": {
       "phetioDocumentation": "",
