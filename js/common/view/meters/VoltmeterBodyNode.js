@@ -21,7 +21,7 @@ import Node from '../../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
 import voltmeterBodyImage from '../../../../images/voltmeter_body_png.js';
-import capacitorLabBasicsStrings from '../../../capacitor-lab-basics-strings.js';
+import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 // digital display

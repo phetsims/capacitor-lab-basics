@@ -12,7 +12,7 @@ import inherit from '../../../phet-core/js/inherit.js';
 import YawPitchModelViewTransform3 from '../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
 import Image from '../../../scenery/js/nodes/Image.js';
 import capacitorIconImage from '../../mipmaps/capacitance_screen_icon_png.js';
-import capacitorLabBasicsStrings from '../capacitor-lab-basics-strings.js';
+import capacitorLabBasicsStrings from '../capacitorLabBasicsStrings.js';
 import capacitorLabBasics from '../capacitorLabBasics.js';
 import CLBConstants from '../common/CLBConstants.js';
 import CapacitanceModel from './model/CapacitanceModel.js';

@@ -13,7 +13,7 @@ import Sim from '../../joist/js/Sim.js';
 import SimLauncher from '../../joist/js/SimLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import CapacitanceScreen from './capacitance/CapacitanceScreen.js';
-import capacitorLabBasicsStrings from './capacitor-lab-basics-strings.js';
+import capacitorLabBasicsStrings from './capacitorLabBasicsStrings.js';
 import CLBLightBulbScreen from './light-bulb/CLBLightBulbScreen.js';
 
 const capacitorLabBasicsTitleString = capacitorLabBasicsStrings[ 'capacitor-lab-basics' ].title;

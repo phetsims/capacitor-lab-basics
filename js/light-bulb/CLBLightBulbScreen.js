@@ -11,7 +11,7 @@ import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import inherit from '../../../phet-core/js/inherit.js';
 import YawPitchModelViewTransform3 from '../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
-import capacitorLabBasicsStrings from '../capacitor-lab-basics-strings.js';
+import capacitorLabBasicsStrings from '../capacitorLabBasicsStrings.js';
 import capacitorLabBasics from '../capacitorLabBasics.js';
 import CLBConstants from '../common/CLBConstants.js';
 import BulbNode from '../common/view/BulbNode.js';

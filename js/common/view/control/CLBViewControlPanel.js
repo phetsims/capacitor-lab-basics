@@ -19,7 +19,7 @@ import Text from '../../../../../scenery/js/nodes/Text.js';
 import Panel from '../../../../../sun/js/Panel.js';
 import VerticalAquaRadioButtonGroup from '../../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import VerticalCheckboxGroup from '../../../../../sun/js/VerticalCheckboxGroup.js';
-import capacitorLabBasicsStrings from '../../../capacitor-lab-basics-strings.js';
+import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CLBConstants from '../../CLBConstants.js';
 

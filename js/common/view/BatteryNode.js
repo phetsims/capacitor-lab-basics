@@ -19,7 +19,7 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import VSlider from '../../../../sun/js/VSlider.js';
-import capacitorLabBasicsStrings from '../../capacitor-lab-basics-strings.js';
+import capacitorLabBasicsStrings from '../../capacitorLabBasicsStrings.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import BatteryGraphicNode from './BatteryGraphicNode.js';
