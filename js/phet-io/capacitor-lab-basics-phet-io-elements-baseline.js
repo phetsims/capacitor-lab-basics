@@ -311,7 +311,7 @@ window.phet.preloads.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "ReferenceIO"
+      "phetioTypeName": "ReferenceIO<ObjectIO>"
     },
     "capacitorLabBasics.capacitanceScreen.model.stopwatch.isRunningProperty": {
       "phetioDocumentation": "",
@@ -7149,7 +7149,7 @@ window.phet.preloads.phetio.phetioElementsBaseline = assert &&
       "phetioReadOnly": false,
       "phetioState": true,
       "phetioStudioControl": true,
-      "phetioTypeName": "ReferenceIO"
+      "phetioTypeName": "ReferenceIO<ObjectIO>"
     },
     "capacitorLabBasics.lightBulbScreen.model.stopwatch.isRunningProperty": {
       "phetioDocumentation": "",
