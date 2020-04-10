@@ -117,7 +117,12 @@ function VoltmeterToolboxPanel( dragBounds, stopwatchNode, voltmeterNode, modelV
     phetioEventType: EventType.USER
   } );
 
-  const toolbox = new HBox( { spacing: 13, align: 'center', xMargin: 0 } );
+  const toolbox = new HBox( {
+    spacing: 13,
+    align: 'center',
+    xMargin: 0,
+    excludeInvisibleChildrenFromBounds: false
+  } );
   if ( options.includeTimer ) {
     toolbox.addChild( voltmeterIconNode );
     toolbox.addChild( timerIconNode );
