@@ -4669,7 +4669,7 @@ window.phet.preloads.phetio.phetioElementsBaseline = assert &&
       "phetioTypeName": "ActionIO<NumberIO, NumberIO>"
     },
     "capacitorLabBasics.general.model.screenProperty": {
-      "phetioDocumentation": "Which sim screen is selected, including the home screen",
+      "phetioDocumentation": "Determines which screen is selected in the simulation",
       "phetioDynamicElement": false,
       "phetioEventType": "MODEL",
       "phetioFeatured": true,
