@@ -8,6 +8,7 @@
 
 import Property from '../../../axon/js/Property.js';
 import Screen from '../../../joist/js/Screen.js';
+import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import inherit from '../../../phet-core/js/inherit.js';
 import YawPitchModelViewTransform3 from '../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
 import Image from '../../../scenery/js/nodes/Image.js';
@@ -20,7 +21,6 @@ import CapacitanceScreenView from './view/CapacitanceScreenView.js';
 
 const screenCapacitanceString = capacitorLabBasicsStrings.screen.capacitance;
 
-
 /**
  * @constructor
  *
@@ -32,7 +32,10 @@ function CapacitanceScreen( switchUsedProperty, tandem ) {
   const options = {
     name: screenCapacitanceString,
     backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
-    homeScreenIcon: new Image( capacitorIconImage ),
+    homeScreenIcon: new ScreenIcon( new Image( capacitorIconImage ), {
+      maxIconWidthProportion: 1,
+      maxIconHeightProportion: 1
+    } ),
     tandem: tandem
   };
 

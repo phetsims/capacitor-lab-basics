@@ -34,10 +34,15 @@ function CLBLightBulbScreen( switchUsedProperty, tandem ) {
     fill: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR
   } );
 
+  const iconOptions = {
+    maxIconWidthProportion: 1,
+    maxIconHeightProportion: 1
+  };
+
   const options = {
     name: screenLightBulbString,
     backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
-    homeScreenIcon: icon,
+    homeScreenIcon: new ScreenIcon( icon, iconOptions ),
     tandem: tandem
   };
 
