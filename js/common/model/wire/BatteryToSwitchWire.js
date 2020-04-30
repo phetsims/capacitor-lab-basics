@@ -88,7 +88,7 @@ function BatteryToSwitchWire( connectionPoint, config, battery, circuitSwitch, t
 
 capacitorLabBasics.register( 'BatteryToSwitchWire', BatteryToSwitchWire );
 
-export default inherit( Wire, BatteryToSwitchWire, {}, {
+inherit( Wire, BatteryToSwitchWire, {}, {
 
   /**
    * Factory function for BatteryToSwitchWire (bottom side)
@@ -118,3 +118,5 @@ export default inherit( Wire, BatteryToSwitchWire, {}, {
     return new BatteryToSwitchWire( CircuitPosition.BATTERY_TOP, config, battery, circuitSwitch );
   }
 } );
+
+export default BatteryToSwitchWire;

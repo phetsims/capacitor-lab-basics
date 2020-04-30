@@ -88,7 +88,7 @@ function VoltmeterProbeNode( image, positionProperty, modelViewTransform, dragBo
 
 capacitorLabBasics.register( 'VoltmeterProbeNode', VoltmeterProbeNode );
 
-export default inherit( Node, VoltmeterProbeNode, {}, {
+inherit( Node, VoltmeterProbeNode, {}, {
 
   /**
    * Factory for a positive VoltmeterProbeNode
@@ -116,3 +116,5 @@ export default inherit( Node, VoltmeterProbeNode, {}, {
       voltmeter.negativeProbePositionProperty, modelViewTransform, voltmeter.dragBounds, tandem );
   }
 } );
+
+export default VoltmeterProbeNode;

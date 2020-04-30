@@ -44,7 +44,7 @@ function CapacitorToSwitchWire( connectionPoint, config, capacitor, circuitSwitc
 
 capacitorLabBasics.register( 'CapacitorToSwitchWire', CapacitorToSwitchWire );
 
-export default inherit( Wire, CapacitorToSwitchWire, {}, {
+inherit( Wire, CapacitorToSwitchWire, {}, {
 
   /**
    * Factory method for top CapacitorToSwitchWire instance
@@ -72,3 +72,5 @@ export default inherit( Wire, CapacitorToSwitchWire, {}, {
     return new CapacitorToSwitchWire( CircuitPosition.CAPACITOR_BOTTOM, config, capacitor, circuitSwitch );
   }
 } );
+
+export default CapacitorToSwitchWire;

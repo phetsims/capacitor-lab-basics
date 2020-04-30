@@ -67,7 +67,7 @@ function LightBulbToSwitchWire( connectionPoint, config, lightBulb, circuitSwitc
 
 capacitorLabBasics.register( 'LightBulbToSwitchWire', LightBulbToSwitchWire );
 
-export default inherit( Wire, LightBulbToSwitchWire, {}, {
+inherit( Wire, LightBulbToSwitchWire, {}, {
 
   /**
    * Factory methods for top LightBulbToSwitchWire instance
@@ -96,3 +96,5 @@ export default inherit( Wire, LightBulbToSwitchWire, {}, {
   }
 
 } );
+
+export default LightBulbToSwitchWire;
