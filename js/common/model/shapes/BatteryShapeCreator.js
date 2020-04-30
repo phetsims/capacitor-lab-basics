@@ -37,7 +37,7 @@ function BatteryShapeCreator( battery, modelViewTransform ) {
 
 capacitorLabBasics.register( 'BatteryShapeCreator', BatteryShapeCreator );
 
-export default inherit( Object, BatteryShapeCreator, {
+inherit( Object, BatteryShapeCreator, {
 
   /**
    * Creates the shape of the top positive terminal in the world coordinate frame.
@@ -73,3 +73,5 @@ export default inherit( Object, BatteryShapeCreator, {
     return shape;
   }
 } );
+
+export default BatteryShapeCreator;

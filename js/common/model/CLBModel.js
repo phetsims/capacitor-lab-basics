@@ -124,7 +124,7 @@ function CLBModel( switchUsedProperty, modelViewTransform, tandem ) {
 
 capacitorLabBasics.register( 'CLBModel', CLBModel );
 
-export default inherit( Object, CLBModel, {
+inherit( Object, CLBModel, {
 
   /**
    * Compute maximum possible charge on the top plate as
@@ -204,3 +204,5 @@ export default inherit( Object, CLBModel, {
     this.stopwatch.reset();
   }
 } );
+
+export default CLBModel;

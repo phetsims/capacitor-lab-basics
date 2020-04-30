@@ -63,7 +63,7 @@ function ProbeWireNode( bodyNode, probeNode, isPositive ) {
 
 capacitorLabBasics.register( 'ProbeWireNode', ProbeWireNode );
 
-export default inherit( Path, ProbeWireNode, {
+inherit( Path, ProbeWireNode, {
 
   /**
    * Update the wire path.
@@ -94,3 +94,5 @@ export default inherit( Path, ProbeWireNode, {
     return node.translation.plus( connectionOffset );
   }
 } );
+
+export default ProbeWireNode;

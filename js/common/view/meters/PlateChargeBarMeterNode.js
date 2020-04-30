@@ -28,7 +28,7 @@ function PlateChargeBarMeterNode( meter, barColor, maxValue, unitsString, titleS
 
 capacitorLabBasics.register( 'PlateChargeBarMeterNode', PlateChargeBarMeterNode );
 
-export default inherit( BarMeterNode, PlateChargeBarMeterNode, {
+inherit( BarMeterNode, PlateChargeBarMeterNode, {
 
   /**
    * This meter displays absolute value, and changes color to indicate positive or negative charge.
@@ -42,3 +42,5 @@ export default inherit( BarMeterNode, PlateChargeBarMeterNode, {
     this.setBarColor( ( value >= 0 ) ? CLBConstants.POSITIVE_CHARGE_COLOR : CLBConstants.NEGATIVE_CHARGE_COLOR );
   }
 } );
+
+export default PlateChargeBarMeterNode;

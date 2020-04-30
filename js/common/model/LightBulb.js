@@ -38,7 +38,7 @@ function LightBulb( position, modelViewTransform ) {
 
 capacitorLabBasics.register( 'LightBulb', LightBulb );
 
-export default inherit( Object, LightBulb, {
+inherit( Object, LightBulb, {
 
   /**
    * Does the base shape intersect the top shape of the bulb base?
@@ -98,3 +98,5 @@ export default inherit( Object, LightBulb, {
     return voltage / this.resistance;
   }
 } );
+
+export default LightBulb;

@@ -50,7 +50,7 @@ function BarNode( barColor, value, maxValue ) {
 
 capacitorLabBasics.register( 'BarNode', BarNode );
 
-export default inherit( Rectangle, BarNode, {
+inherit( Rectangle, BarNode, {
 
   /**
    * Set bar value
@@ -79,3 +79,5 @@ export default inherit( Rectangle, BarNode, {
     this.setRect( 0, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, width, BAR_SIZE.height );
   }
 } );
+
+export default BarNode;

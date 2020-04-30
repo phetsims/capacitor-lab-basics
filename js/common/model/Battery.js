@@ -92,7 +92,7 @@ function Battery( position, voltage, modelViewTransform, tandem ) {
 
 capacitorLabBasics.register( 'Battery', Battery );
 
-export default inherit( Object, Battery, {
+inherit( Object, Battery, {
 
   /**
    * Convenience function to get the polarity from the object literal based on the voltage.
@@ -159,3 +159,5 @@ export default inherit( Object, Battery, {
     this.polarityProperty.reset();
   }
 } );
+
+export default Battery;

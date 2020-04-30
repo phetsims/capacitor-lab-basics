@@ -114,7 +114,7 @@ function PlateAreaDragHandleNode( capacitor, modelViewTransform, valueRange, tan
 
 capacitorLabBasics.register( 'PlateAreaDragHandleNode', PlateAreaDragHandleNode );
 
-export default inherit( Node, PlateAreaDragHandleNode, {
+inherit( Node, PlateAreaDragHandleNode, {
 
   /**
    * Synchronizes the value display with the model.
@@ -137,3 +137,5 @@ export default inherit( Node, PlateAreaDragHandleNode, {
     this.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
   }
 } );
+
+export default PlateAreaDragHandleNode;

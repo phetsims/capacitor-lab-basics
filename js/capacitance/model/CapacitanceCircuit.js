@@ -38,7 +38,7 @@ function CapacitanceCircuit( config, tandem ) {
 
 capacitorLabBasics.register( 'CapacitanceCircuit', CapacitanceCircuit );
 
-export default inherit( ParallelCircuit, CapacitanceCircuit, {
+inherit( ParallelCircuit, CapacitanceCircuit, {
 
   /**
    * Updates the plate voltage, depending on whether the battery is connected.
@@ -63,3 +63,5 @@ export default inherit( ParallelCircuit, CapacitanceCircuit, {
     }
   }
 } );
+
+export default CapacitanceCircuit;

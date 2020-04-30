@@ -76,7 +76,7 @@ function CLBLightBulbModel( switchUsedProperty, modelViewTransform, tandem ) {
 
 capacitorLabBasics.register( 'CLBLightBulbModel', CLBLightBulbModel );
 
-export default inherit( CLBModel, CLBLightBulbModel, {
+inherit( CLBModel, CLBLightBulbModel, {
   /**
    * Reset function for this model.
    * @public
@@ -101,3 +101,5 @@ export default inherit( CLBModel, CLBLightBulbModel, {
     CLBModel.prototype.step.call( this, 0.2, true );
   }
 } );
+
+export default CLBLightBulbModel;

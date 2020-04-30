@@ -47,7 +47,7 @@ function CapacitanceModel( switchUsedProperty, modelViewTransform, tandem ) {
 
 capacitorLabBasics.register( 'CapacitanceModel', CapacitanceModel );
 
-export default inherit( CLBModel, CapacitanceModel, {
+inherit( CLBModel, CapacitanceModel, {
 
   /**
    * Reset function for this model.
@@ -63,3 +63,5 @@ export default inherit( CLBModel, CapacitanceModel, {
     CLBModel.prototype.reset.call( this );
   }
 } );
+
+export default CapacitanceModel;

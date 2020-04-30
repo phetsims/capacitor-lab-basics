@@ -61,7 +61,7 @@ function PlateAreaDragHandler( capacitor, modelViewTransform, valueRange, tandem
 
 capacitorLabBasics.register( 'PlateAreaDragHandler', PlateAreaDragHandler );
 
-export default inherit( DragListener, PlateAreaDragHandler, {
+inherit( DragListener, PlateAreaDragHandler, {
 
   /**
    * Determines the plateWidth for a specific mouse position.  This effectively accounts for the z-axis dimension.
@@ -97,3 +97,5 @@ export default inherit( DragListener, PlateAreaDragHandler, {
     return pMouse.x - pBackRightCorner.x - this.clickXOffset;
   }
 } );
+
+export default PlateAreaDragHandler;

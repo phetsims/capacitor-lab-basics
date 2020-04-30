@@ -104,7 +104,7 @@ function PlateSeparationDragHandleNode( capacitor, modelViewTransform, valueRang
 
 capacitorLabBasics.register( 'PlateSeparationDragHandleNode', PlateSeparationDragHandleNode );
 
-export default inherit( Node, PlateSeparationDragHandleNode, {
+inherit( Node, PlateSeparationDragHandleNode, {
 
   /**
    * Synchronizes the value display with the model.
@@ -128,3 +128,5 @@ export default inherit( Node, PlateSeparationDragHandleNode, {
     this.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
   }
 } );
+
+export default PlateSeparationDragHandleNode;

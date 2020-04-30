@@ -32,7 +32,7 @@ function CapacitanceCircuitNode( model, tandem ) {
 
 capacitorLabBasics.register( 'CapacitanceCircuitNode', CapacitanceCircuitNode );
 
-export default inherit( CLBCircuitNode, CapacitanceCircuitNode, {
+inherit( CLBCircuitNode, CapacitanceCircuitNode, {
 
   /**
    * Updates the visibility of the current indicators.
@@ -48,3 +48,5 @@ export default inherit( CLBCircuitNode, CapacitanceCircuitNode, {
     this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
   }
 } );
+
+export default CapacitanceCircuitNode;

@@ -45,7 +45,7 @@ function Wire( modelViewTransform, segments, connectionPoint ) {
 
 capacitorLabBasics.register( 'Wire', Wire );
 
-export default inherit( Object, Wire, {
+inherit( Object, Wire, {
 
   /**
    * Update all segments of the wire
@@ -68,3 +68,5 @@ export default inherit( Object, Wire, {
            shape.shapeIntersection( this.shapeProperty.value ).getNonoverlappingArea() > 0;
   }
 } );
+
+export default Wire;

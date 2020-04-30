@@ -31,7 +31,7 @@ function LightBulbShapeCreator( lightBulb, modelViewTransform ) {
 
 capacitorLabBasics.register( 'LightBulbShapeCreator', LightBulbShapeCreator );
 
-export default inherit( Object, LightBulbShapeCreator, {
+inherit( Object, LightBulbShapeCreator, {
 
   /**
    * Gets the shape of the light bulb base in the world coordinate frame.  Origin at the top center.
@@ -73,3 +73,5 @@ export default inherit( Object, LightBulbShapeCreator, {
     return this.modelViewTransform.modelToViewShape( shape );
   }
 } );
+
+export default LightBulbShapeCreator;

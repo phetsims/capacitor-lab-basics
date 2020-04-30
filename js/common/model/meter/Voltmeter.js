@@ -161,7 +161,7 @@ function Voltmeter( circuit, dragBounds, modelViewTransform, voltmeterVisiblePro
 
 capacitorLabBasics.register( 'Voltmeter', Voltmeter );
 
-export default inherit( Object, Voltmeter, {
+inherit( Object, Voltmeter, {
   /**
    * Computes the voltage reading for this voltmeter (null corresponds to a ? on the voltmeter)
    * @private
@@ -260,3 +260,5 @@ export default inherit( Object, Voltmeter, {
     this.negativeProbeTargetProperty.reset();
   }
 } );
+
+export default Voltmeter;

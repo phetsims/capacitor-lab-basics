@@ -36,7 +36,7 @@ function VoltmeterShapeCreator( voltmeter, modelViewTransform ) {
 
 capacitorLabBasics.register( 'VoltmeterShapeCreator', VoltmeterShapeCreator );
 
-export default inherit( Object, VoltmeterShapeCreator, {
+inherit( Object, VoltmeterShapeCreator, {
 
   /**
    * Gets the shape of the positive probe's tip in the world coordinate frame.
@@ -88,3 +88,5 @@ export default inherit( Object, VoltmeterShapeCreator, {
     ] );
   }
 } );
+
+export default VoltmeterShapeCreator;

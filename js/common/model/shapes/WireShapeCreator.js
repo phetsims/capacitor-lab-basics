@@ -29,7 +29,7 @@ function WireShapeCreator( wire, modelViewTransform ) {
 
 capacitorLabBasics.register( 'WireShapeCreator', WireShapeCreator );
 
-export default inherit( Object, WireShapeCreator, {
+inherit( Object, WireShapeCreator, {
 
   /**
    * Create a wire shape.  Shape is generated from the stroked shape of the line segments which are added together
@@ -55,3 +55,5 @@ export default inherit( Object, WireShapeCreator, {
     return Shape.union( shapes );
   }
 } );
+
+export default WireShapeCreator;

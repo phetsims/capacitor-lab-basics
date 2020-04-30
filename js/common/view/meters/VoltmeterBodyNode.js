@@ -145,7 +145,7 @@ function VoltmeterBodyNode( voltmeter, modelViewTransform, isDraggedProperty, ta
 
 capacitorLabBasics.register( 'VoltmeterBodyNode', VoltmeterBodyNode );
 
-export default inherit( Node, VoltmeterBodyNode, {
+inherit( Node, VoltmeterBodyNode, {
 
   /**
    * Set the text for the display value, formatting the units and number of decimal places.
@@ -164,3 +164,5 @@ export default inherit( Node, VoltmeterBodyNode, {
     }
   }
 } );
+
+export default VoltmeterBodyNode;

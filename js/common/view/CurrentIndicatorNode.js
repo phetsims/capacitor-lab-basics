@@ -170,7 +170,7 @@ function CurrentIndicatorNode( currentAmplitudeProperty, startingOrientation, po
 
 capacitorLabBasics.register( 'CurrentIndicatorNode', CurrentIndicatorNode );
 
-export default inherit( Node, CurrentIndicatorNode, {
+inherit( Node, CurrentIndicatorNode, {
   /**
    * Start the animation, canceling the animation if it is in progress
    * @public
@@ -224,3 +224,5 @@ export default inherit( Node, CurrentIndicatorNode, {
     this.visible = visible;
   }
 } );
+
+export default CurrentIndicatorNode;

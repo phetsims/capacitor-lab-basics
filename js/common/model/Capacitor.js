@@ -161,7 +161,7 @@ function Capacitor( config, circuitConnectionProperty, tandem, options ) {
 
 capacitorLabBasics.register( 'Capacitor', Capacitor );
 
-export default inherit( Object, Capacitor, {
+inherit( Object, Capacitor, {
 
   /**
    * Convenience method, gets the area of one plate's top (or bottom) surfaces.
@@ -330,3 +330,5 @@ export default inherit( Object, Capacitor, {
     this.plateVoltageProperty.reset();
   }
 } );
+
+export default Capacitor;

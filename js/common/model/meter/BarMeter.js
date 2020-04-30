@@ -31,7 +31,7 @@ function BarMeter( visibleProperty, valueProperty ) {
 
 capacitorLabBasics.register( 'BarMeter', BarMeter );
 
-export default inherit( Object, BarMeter, {
+inherit( Object, BarMeter, {
 
   /**
    * Reset the BarMeter
@@ -41,3 +41,5 @@ export default inherit( Object, BarMeter, {
     this.visibleProperty.reset();
   }
 } );
+
+export default BarMeter;

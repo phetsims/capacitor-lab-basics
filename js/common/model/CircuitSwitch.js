@@ -103,7 +103,7 @@ function CircuitSwitch( positionLabel, config, circuitConnectionProperty, tandem
 
 capacitorLabBasics.register( 'CircuitSwitch', CircuitSwitch );
 
-export default inherit( Object, CircuitSwitch, {
+inherit( Object, CircuitSwitch, {
 
   /**
    * Get (x,y,z) position of switch pivot point
@@ -321,3 +321,5 @@ export default inherit( Object, CircuitSwitch, {
     return new CircuitSwitch( 'bottom', config, circuitConnectionProperty, tandem );
   }
 } );
+
+export default CircuitSwitch;

@@ -106,7 +106,7 @@ function BarMeterNode( meter, barColor, maxValue, unitsPattern, titleString, tan
 
 capacitorLabBasics.register( 'BarMeterNode', BarMeterNode );
 
-export default inherit( Node, BarMeterNode, {
+inherit( Node, BarMeterNode, {
 
   /**
    * Sets the color used to fill the bar and the overload indicator arrow.
@@ -166,3 +166,5 @@ export default inherit( Node, BarMeterNode, {
   }
 
 } );
+
+export default BarMeterNode;

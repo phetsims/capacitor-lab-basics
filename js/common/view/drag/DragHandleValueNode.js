@@ -66,7 +66,7 @@ function DragHandleValueNode( label, value, unitsPattern, options ) {
 
 capacitorLabBasics.register( 'DragHandleValueNode', DragHandleValueNode );
 
-export default inherit( Node, DragHandleValueNode, {
+inherit( Node, DragHandleValueNode, {
 
   /**
    * Set the value of the value node, formatting the number and the units to the pattern.
@@ -83,3 +83,5 @@ export default inherit( Node, DragHandleValueNode, {
   }
 
 } );
+
+export default DragHandleValueNode;

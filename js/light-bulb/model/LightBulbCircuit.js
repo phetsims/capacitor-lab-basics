@@ -87,7 +87,7 @@ function LightBulbCircuit( config, tandem ) {
 
 capacitorLabBasics.register( 'LightBulbCircuit', LightBulbCircuit );
 
-export default inherit( ParallelCircuit, LightBulbCircuit, {
+inherit( ParallelCircuit, LightBulbCircuit, {
 
   /**
    * LightBulbCircuit model update function
@@ -184,3 +184,5 @@ export default inherit( ParallelCircuit, LightBulbCircuit, {
     }
   }
 } );
+
+export default LightBulbCircuit;
