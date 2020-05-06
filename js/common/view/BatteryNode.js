@@ -112,5 +112,6 @@ function BatteryNode( battery, voltageRange, tandem ) {
 }
 
 capacitorLabBasics.register( 'BatteryNode', BatteryNode );
+inherit( Node, BatteryNode);
 
-export default inherit( Node, BatteryNode, {} );
+export default BatteryNode;
