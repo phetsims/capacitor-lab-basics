@@ -10,7 +10,7 @@
 
 import Property from '../../axon/js/Property.js';
 import Sim from '../../joist/js/Sim.js';
-import SimLauncher from '../../joist/js/SimLauncher.js';
+import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import CapacitanceScreen from './capacitance/CapacitanceScreen.js';
 import capacitorLabBasicsStrings from './capacitorLabBasicsStrings.js';
@@ -30,7 +30,7 @@ const simOptions = {
   }
 };
 
-SimLauncher.launch( function() {
+simLauncher.launch( function() {
 
   // Tracks whether a circuit switch has been changed by user. Once the switch has been changed in either screen,
   // the cue arrows (used to hint that the switch is available) should disappear from both screens.
