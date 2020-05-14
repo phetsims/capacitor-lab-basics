@@ -19,7 +19,7 @@ import Dimension2 from '../../../../dot/js/Dimension2.js';
 import inherit from '../../../../phet-core/js/inherit.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import Stopwatch from '../../../../scenery-phet/js/Stopwatch.js';
-import TimeControlSpeed from '../../../../scenery-phet/js/TimeControlSpeed.js';
+import TimeSpeed from '../../../../scenery-phet/js/TimeSpeed.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import ColorIO from '../../../../scenery/js/util/ColorIO.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
@@ -106,8 +106,8 @@ function CLBModel( switchUsedProperty, modelViewTransform, tandem ) {
     tandem: tandem.createTandem( 'stopwatch' )
   } );
 
-  // @public {Property.<TimeControlSpeed>}
-  this.timeControlSpeedProperty = new EnumerationProperty( TimeControlSpeed, TimeControlSpeed.NORMAL );
+  // @public {Property.<TimeSpeed>}
+  this.timeSpeedProperty = new EnumerationProperty( TimeSpeed, TimeSpeed.NORMAL );
 
   // @public {Emitter}
   this.stepEmitter = new Emitter( { parameters: [ { valueType: 'number' } ] } );
@@ -174,7 +174,7 @@ inherit( Object, CLBModel, {
     if ( this.isPlayingProperty.value || isManual ) {
 
       // If a manual step is called the dt should be the same a normal dt value.
-      const adjustedDt = isManual ? dt : dt * ( this.timeControlSpeedProperty.value === TimeControlSpeed.SLOW ? 0.125 : 1 );
+      const adjustedDt = isManual ? dt : dt * ( this.timeSpeedProperty.value === TimeSpeed.SLOW ? 0.125 : 1 );
       this.circuit.step( adjustedDt );
       this.stepEmitter.emit( adjustedDt );
       this.stopwatch.step( adjustedDt );
@@ -200,7 +200,7 @@ inherit( Object, CLBModel, {
     this.currentOrientationProperty.reset();
     this.switchUsedProperty.reset();
     this.isPlayingProperty.reset();
-    this.timeControlSpeedProperty.reset();
+    this.timeSpeedProperty.reset();
     this.stopwatch.reset();
   }
 } );
