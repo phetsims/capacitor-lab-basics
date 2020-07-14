@@ -103,6 +103,9 @@ function CLBModel( switchUsedProperty, modelViewTransform, tandem ) {
 
   // @public {Stopwatch}
   this.stopwatch = new Stopwatch( {
+    timePropertyOptions: {
+      range: Stopwatch.ZERO_TO_ALMOST_SIXTY
+    },
     tandem: tandem.createTandem( 'stopwatch' )
   } );
 
