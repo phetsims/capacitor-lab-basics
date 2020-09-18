@@ -20,7 +20,6 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import DerivedPropertyIO from '../../../../axon/js/DerivedPropertyIO.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import PropertyIO from '../../../../axon/js/PropertyIO.js';
@@ -101,7 +100,7 @@ function Capacitor( config, circuitConnectionProperty, tandem, options ) {
     }, {
       tandem: tandem.createTandem( 'capacitanceProperty' ),
       units: 'farads',
-      phetioType: DerivedPropertyIO( NumberIO )
+      phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
     } );
 
   // @public {Property.<number>} Charge on top plate of capacitor
@@ -119,7 +118,7 @@ function Capacitor( config, circuitConnectionProperty, tandem, options ) {
     }, {
       tandem: tandem.createTandem( 'plateChargeProperty' ),
       units: 'coulombs',
-      phetioType: DerivedPropertyIO( NumberIO )
+      phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
     } );
 
   // @public {Property.<number>}
@@ -129,7 +128,7 @@ function Capacitor( config, circuitConnectionProperty, tandem, options ) {
     }, {
       tandem: tandem.createTandem( 'storedEnergyProperty' ),
       units: 'joules',
-      phetioType: DerivedPropertyIO( NumberIO )
+      phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
     } );
 
   // Track the previous capacitance to adjust the inital voltage when discharging, see
