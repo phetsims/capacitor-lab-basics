@@ -9,54 +9,51 @@
 import Property from '../../../axon/js/Property.js';
 import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import inherit from '../../../phet-core/js/inherit.js';
 import YawPitchModelViewTransform3 from '../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
-import capacitorLabBasicsStrings from '../capacitorLabBasicsStrings.js';
 import capacitorLabBasics from '../capacitorLabBasics.js';
+import capacitorLabBasicsStrings from '../capacitorLabBasicsStrings.js';
 import CLBConstants from '../common/CLBConstants.js';
 import BulbNode from '../common/view/BulbNode.js';
 import CLBLightBulbModel from './model/CLBLightBulbModel.js';
 import CLBLightBulbScreenView from './view/CLBLightBulbScreenView.js';
 
-const screenLightBulbString = capacitorLabBasicsStrings.screen.lightBulb;
+class CLBLightBulbScreen extends Screen {
 
-/**
- * @constructor
- *
- * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
- * @param {Tandem} tandem
- */
-function CLBLightBulbScreen( switchUsedProperty, tandem ) {
+  /**
+   * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
+   * @param {Tandem} tandem
+   */
+  constructor( switchUsedProperty, tandem ) {
 
-  const iconNode = new BulbNode.createBulbIcon();
-  iconNode.rotate( -Math.PI / 2 );
-  const icon = new ScreenIcon( iconNode, {
-    fill: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR
-  } );
+    const iconNode = new BulbNode.createBulbIcon();
+    iconNode.rotate( -Math.PI / 2 );
+    const icon = new ScreenIcon( iconNode, {
+      fill: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR
+    } );
 
-  const iconOptions = {
-    maxIconWidthProportion: 1,
-    maxIconHeightProportion: 1
-  };
+    const iconOptions = {
+      maxIconWidthProportion: 1,
+      maxIconHeightProportion: 1
+    };
 
-  const options = {
-    name: screenLightBulbString,
-    backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
-    homeScreenIcon: new ScreenIcon( icon, iconOptions ),
-    tandem: tandem
-  };
+    const options = {
+      name: capacitorLabBasicsStrings.screen.lightBulb,
+      backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
+      homeScreenIcon: new ScreenIcon( icon, iconOptions ),
+      tandem: tandem
+    };
 
-  Screen.call( this,
-    function() {
-      return new CLBLightBulbModel( switchUsedProperty, new YawPitchModelViewTransform3(), tandem.createTandem( 'model' ) );
-    },
-    function( model ) {
-      return new CLBLightBulbScreenView( model, tandem.createTandem( 'view' ) );
-    },
-    options );
+    super(
+      function() {
+        return new CLBLightBulbModel( switchUsedProperty, new YawPitchModelViewTransform3(), tandem.createTandem( 'model' ) );
+      },
+      function( model ) {
+        return new CLBLightBulbScreenView( model, tandem.createTandem( 'view' ) );
+      },
+      options
+    );
+  }
 }
 
 capacitorLabBasics.register( 'CLBLightBulbScreen', CLBLightBulbScreen );
-
-inherit( Screen, CLBLightBulbScreen );
 export default CLBLightBulbScreen;
