@@ -10,7 +10,6 @@
 
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import PropertyIO from '../../../../axon/js/PropertyIO.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
 import EnumerationIO from '../../../../phet-core/js/EnumerationIO.js';
@@ -65,7 +64,7 @@ function Battery( position, voltage, modelViewTransform, tandem ) {
   this.polarityProperty = new Property( CapacitorConstants.POLARITY.POSITIVE, {
     validValues: CapacitorConstants.POLARITY.VALUES,
     tandem: tandem.createTandem( 'polarityProperty' ),
-    phetioType: PropertyIO( EnumerationIO( CapacitorConstants.POLARITY ) )
+    phetioType: Property.PropertyIO( EnumerationIO( CapacitorConstants.POLARITY ) )
   } );
 
   const self = this;

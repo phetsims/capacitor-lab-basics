@@ -10,7 +10,6 @@
 
 import BooleanProperty from '../../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../../axon/js/Property.js';
-import PropertyIO from '../../../../../axon/js/PropertyIO.js';
 import Bounds2 from '../../../../../dot/js/Bounds2.js';
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
 import Vector3 from '../../../../../dot/js/Vector3.js';
@@ -74,21 +73,21 @@ function Voltmeter( circuit, dragBounds, modelViewTransform, voltmeterVisiblePro
   this.bodyPositionProperty = new Property( new Vector3( 0, 0, 0 ), {
     useDeepEquality: true,
     tandem: tandem.createTandem( 'bodyPositionProperty' ),
-    phetioType: PropertyIO( Vector3IO )
+    phetioType: Property.PropertyIO( Vector3IO )
   } );
 
   // @public {Property.<Vector3>}
   this.positiveProbePositionProperty = new Property( POSITIVE_PROBE_POSITION, {
     useDeepEquality: true,
     tandem: tandem.createTandem( 'positiveProbePositionProperty' ),
-    phetioType: PropertyIO( Vector3IO )
+    phetioType: Property.PropertyIO( Vector3IO )
   } );
 
   // @public {Property.<Vector3>}
   this.negativeProbePositionProperty = new Property( NEGATIVE_PROBE_POSITION, {
     useDeepEquality: true,
     tandem: tandem.createTandem( 'negativeProbePositionProperty' ),
-    phetioType: PropertyIO( Vector3IO )
+    phetioType: Property.PropertyIO( Vector3IO )
   } );
 
   // By design, the voltmeter reads "?" for disconnected contacts, which is represented internally by a null
@@ -97,20 +96,20 @@ function Voltmeter( circuit, dragBounds, modelViewTransform, voltmeterVisiblePro
   this.measuredVoltageProperty = new Property( null, {
     tandem: tandem.createTandem( 'measuredVoltageProperty' ),
     units: 'volts',
-    phetioType: PropertyIO( NullableIO( NumberIO ) )
+    phetioType: Property.PropertyIO( NullableIO( NumberIO ) )
   } );
 
   // TODO: factor out shared code for positive/negative probe
   // @private {Property.<ProbeTarget>} - What the positive probe is currently touching. Updated from within computeValue below.
   this.positiveProbeTargetProperty = new Property( ProbeTarget.NONE, {
     tandem: tandem.createTandem( 'positiveProbeTargetProperty' ),
-    phetioType: PropertyIO( StringIO )
+    phetioType: Property.PropertyIO( StringIO )
   } );
 
   // @private {Property.<ProbeTarget>} - What the negative probe is currently touching. Updated from within computeValue below.
   this.negativeProbeTargetProperty = new Property( ProbeTarget.NONE, {
     tandem: tandem.createTandem( 'negativeProbeTargetProperty' ),
-    phetioType: PropertyIO( StringIO )
+    phetioType: Property.PropertyIO( StringIO )
   } );
 
   const self = this;

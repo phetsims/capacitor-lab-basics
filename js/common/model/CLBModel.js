@@ -14,7 +14,6 @@ import Emitter from '../../../../axon/js/Emitter.js';
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import PropertyIO from '../../../../axon/js/PropertyIO.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import inherit from '../../../../phet-core/js/inherit.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
@@ -93,7 +92,7 @@ function CLBModel( switchUsedProperty, modelViewTransform, tandem ) {
   // @public {Property.<Color>}
   this.arrowColorProperty = new Property( new Color( 83, 200, 236 ), {
     tandem: tandem.createTandem( 'arrowColorProperty' ),
-    phetioType: PropertyIO( ColorIO )
+    phetioType: Property.PropertyIO( ColorIO )
   } );
 
   // @public {Property.<boolean>} Whether the sim is paused

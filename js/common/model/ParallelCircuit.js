@@ -12,7 +12,6 @@
 
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import PropertyIO from '../../../../axon/js/PropertyIO.js';
 import Shape from '../../../../kite/js/Shape.js';
 import inherit from '../../../../phet-core/js/inherit.js';
 import StringIO from '../../../../tandem/js/types/StringIO.js';
@@ -48,7 +47,7 @@ function ParallelCircuit( config, tandem ) {
   // @public {Property.<CircuitState>} - Property tracking the state of the switch
   this.circuitConnectionProperty = new Property( CircuitState.BATTERY_CONNECTED, {
     tandem: tandem.createTandem( 'circuitConnectionProperty' ),
-    phetioType: PropertyIO( StringIO ),
+    phetioType: Property.PropertyIO( StringIO ),
     validValues: CircuitState.VALUES
   } );
 
