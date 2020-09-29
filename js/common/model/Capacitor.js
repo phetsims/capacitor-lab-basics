@@ -23,7 +23,6 @@ import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Bounds3 from '../../../../dot/js/Bounds3.js';
-import Bounds3IO from '../../../../dot/js/Bounds3IO.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
 import inherit from '../../../../phet-core/js/inherit.js';
 import merge from '../../../../phet-core/js/merge.js';
@@ -73,7 +72,7 @@ function Capacitor( config, circuitConnectionProperty, tandem, options ) {
   // @public {Property.<Bounds3>}
   this.plateSizeProperty = new Property( plateBounds, {
     tandem: tandem.createTandem( 'plateSizeProperty' ),
-    phetioType: Property.PropertyIO( Bounds3IO ),
+    phetioType: Property.PropertyIO( Bounds3.Bounds3IO ),
     phetioReadOnly: true
   } );
 
