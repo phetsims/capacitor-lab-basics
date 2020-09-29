@@ -13,7 +13,6 @@ import Property from '../../../../../axon/js/Property.js';
 import Bounds2 from '../../../../../dot/js/Bounds2.js';
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
 import Vector3 from '../../../../../dot/js/Vector3.js';
-import Vector3IO from '../../../../../dot/js/Vector3IO.js';
 import inherit from '../../../../../phet-core/js/inherit.js';
 import YawPitchModelViewTransform3 from '../../../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
 import NullableIO from '../../../../../tandem/js/types/NullableIO.js';
@@ -73,21 +72,21 @@ function Voltmeter( circuit, dragBounds, modelViewTransform, voltmeterVisiblePro
   this.bodyPositionProperty = new Property( new Vector3( 0, 0, 0 ), {
     useDeepEquality: true,
     tandem: tandem.createTandem( 'bodyPositionProperty' ),
-    phetioType: Property.PropertyIO( Vector3IO )
+    phetioType: Property.PropertyIO( Vector3.Vector3IO )
   } );
 
   // @public {Property.<Vector3>}
   this.positiveProbePositionProperty = new Property( POSITIVE_PROBE_POSITION, {
     useDeepEquality: true,
     tandem: tandem.createTandem( 'positiveProbePositionProperty' ),
-    phetioType: Property.PropertyIO( Vector3IO )
+    phetioType: Property.PropertyIO( Vector3.Vector3IO )
   } );
 
   // @public {Property.<Vector3>}
   this.negativeProbePositionProperty = new Property( NEGATIVE_PROBE_POSITION, {
     useDeepEquality: true,
     tandem: tandem.createTandem( 'negativeProbePositionProperty' ),
-    phetioType: Property.PropertyIO( Vector3IO )
+    phetioType: Property.PropertyIO( Vector3.Vector3IO )
   } );
 
   // By design, the voltmeter reads "?" for disconnected contacts, which is represented internally by a null
