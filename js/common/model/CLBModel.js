@@ -20,7 +20,6 @@ import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorC
 import Stopwatch from '../../../../scenery-phet/js/Stopwatch.js';
 import TimeSpeed from '../../../../scenery-phet/js/TimeSpeed.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import ColorIO from '../../../../scenery/js/util/ColorIO.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import Voltmeter from './meter/Voltmeter.js';
@@ -92,7 +91,7 @@ function CLBModel( switchUsedProperty, modelViewTransform, tandem ) {
   // @public {Property.<Color>}
   this.arrowColorProperty = new Property( new Color( 83, 200, 236 ), {
     tandem: tandem.createTandem( 'arrowColorProperty' ),
-    phetioType: Property.PropertyIO( ColorIO )
+    phetioType: Property.PropertyIO( Color.ColorIO )
   } );
 
   // @public {Property.<boolean>} Whether the sim is paused
