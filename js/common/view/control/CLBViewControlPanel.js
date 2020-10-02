@@ -10,7 +10,6 @@
  */
 
 import Vector2 from '../../../../../dot/js/Vector2.js';
-import inherit from '../../../../../phet-core/js/inherit.js';
 import merge from '../../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import AlignBox from '../../../../../scenery/js/nodes/AlignBox.js';
@@ -19,8 +18,8 @@ import Text from '../../../../../scenery/js/nodes/Text.js';
 import Panel from '../../../../../sun/js/Panel.js';
 import VerticalAquaRadioButtonGroup from '../../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import VerticalCheckboxGroup from '../../../../../sun/js/VerticalCheckboxGroup.js';
-import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
+import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
 import CLBConstants from '../../CLBConstants.js';
 
 // constants
@@ -33,101 +32,100 @@ const electricFieldString = capacitorLabBasicsStrings.electricField;
 const electronsString = capacitorLabBasicsStrings.electrons;
 const plateChargesString = capacitorLabBasicsStrings.plateCharges;
 
-/**
- * @constructor
- *
- * @param {CLBModel} model
- * @param {Tandem} tandem
- * @param {Object} [options]
- */
-function CLBViewControlPanel( model, tandem, options ) {
+class CLBViewControlPanel extends Panel {
 
-  options = merge( {
-    maxTextWidth: 250,
-    alignGroup: null
-  }, options );
+  /**
+   * @param {CLBModel} model
+   * @param {Tandem} tandem
+   * @param {Object} [options]
+   */
+  constructor( model, tandem, options ) {
 
-  const checkboxItems = [ {
-    string: plateChargesString,
-    property: model.plateChargesVisibleProperty,
-    tandem: tandem.createTandem( 'plateChargesCheckbox' )
-  }, {
-    string: barGraphsString,
-    property: model.barGraphsVisibleProperty,
-    tandem: tandem.createTandem( 'barGraphsCheckbox' )
-  }, {
-    string: electricFieldString,
-    property: model.electricFieldVisibleProperty,
-    tandem: tandem.createTandem( 'electricFieldCheckbox' )
-  }, {
-    string: currentDirectionString,
-    property: model.currentVisibleProperty,
-    tandem: tandem.createTandem( 'currentCheckbox' )
-  } ];
+    options = merge( {
+      maxTextWidth: 250,
+      alignGroup: null
+    }, options );
 
-  const viewCheckboxItems = checkboxItems.map( function( item ) {
-    return {
-      node: new Text( item.string, {
-        font: CHECKBOX_FONT,
-        maxWidth: options.maxTextWidth
-      } ),
-      property: item.property,
-      label: item.string,
-      tandem: item.tandem
-    };
-  } );
+    const checkboxItems = [ {
+      string: plateChargesString,
+      property: model.plateChargesVisibleProperty,
+      tandem: tandem.createTandem( 'plateChargesCheckbox' )
+    }, {
+      string: barGraphsString,
+      property: model.barGraphsVisibleProperty,
+      tandem: tandem.createTandem( 'barGraphsCheckbox' )
+    }, {
+      string: electricFieldString,
+      property: model.electricFieldVisibleProperty,
+      tandem: tandem.createTandem( 'electricFieldCheckbox' )
+    }, {
+      string: currentDirectionString,
+      property: model.currentVisibleProperty,
+      tandem: tandem.createTandem( 'currentCheckbox' )
+    } ];
 
-  const currentTypeRadioButtonGroup = new VerticalAquaRadioButtonGroup( model.currentOrientationProperty, [
-    {
-      node: new Text( electronsString, {
-        font: CHECKBOX_FONT,
-        maxWidth: options.maxTextWidth
-      } ),
-      value: 0,
-      tandemName: 'electronsRadioButton'
-    },
-    {
-      node: new Text( conventionalString, {
-        font: CHECKBOX_FONT,
-        maxWidth: options.maxTextWidth
-      } ),
-      value: Math.PI,
-      tandemName: 'conventionalRadioButton'
-    }
-  ], {
-    spacing: 5,
-    touchAreaXDilation: 5,
-    tandem: tandem.createTandem( 'currentTypeRadioButtonGroup' )
-  } );
+    const viewCheckboxItems = checkboxItems.map( function( item ) {
+      return {
+        node: new Text( item.string, {
+          font: CHECKBOX_FONT,
+          maxWidth: options.maxTextWidth
+        } ),
+        property: item.property,
+        label: item.string,
+        tandem: item.tandem
+      };
+    } );
 
-  const verticalCheckboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
-    checkboxOptions: {
-      // The box is as wide as the largest item is tall
-      boxWidth: viewCheckboxItems[ 0 ].node.height
-    }
-  } );
+    const currentTypeRadioButtonGroup = new VerticalAquaRadioButtonGroup( model.currentOrientationProperty, [
+      {
+        node: new Text( electronsString, {
+          font: CHECKBOX_FONT,
+          maxWidth: options.maxTextWidth
+        } ),
+        value: 0,
+        tandemName: 'electronsRadioButton'
+      },
+      {
+        node: new Text( conventionalString, {
+          font: CHECKBOX_FONT,
+          maxWidth: options.maxTextWidth
+        } ),
+        value: Math.PI,
+        tandemName: 'conventionalRadioButton'
+      }
+    ], {
+      spacing: 5,
+      touchAreaXDilation: 5,
+      tandem: tandem.createTandem( 'currentTypeRadioButtonGroup' )
+    } );
 
-  const optionsNode = new Node( { children: [ verticalCheckboxGroup, currentTypeRadioButtonGroup ] } );
+    const verticalCheckboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
+      checkboxOptions: {
+        // The box is as wide as the largest item is tall
+        boxWidth: viewCheckboxItems[ 0 ].node.height
+      }
+    } );
 
-  currentTypeRadioButtonGroup.leftTop = new Vector2( verticalCheckboxGroup.left + 25, verticalCheckboxGroup.bottom + 10 );
+    const optionsNode = new Node( { children: [ verticalCheckboxGroup, currentTypeRadioButtonGroup ] } );
 
-  // {Node|AlignBox}
-  const content = options.alignGroup ? new AlignBox( optionsNode, {
-    group: options.alignGroup,
-    xAlign: 'center'
-  } ) : optionsNode;
+    currentTypeRadioButtonGroup.leftTop = new Vector2( verticalCheckboxGroup.left + 25, verticalCheckboxGroup.bottom + 10 );
 
-  Panel.call( this, content, {
-    xMargin: 10,
-    yMargin: 10,
-    align: 'left',
-    minWidth: 175,
-    fill: CLBConstants.METER_PANEL_FILL,
-    tandem: tandem
-  } );
+    // {Node|AlignBox}
+    const content = options.alignGroup ? new AlignBox( optionsNode, {
+      group: options.alignGroup,
+      xAlign: 'center'
+    } ) : optionsNode;
+
+    super( content, {
+      xMargin: 10,
+      yMargin: 10,
+      align: 'left',
+      minWidth: 175,
+      fill: CLBConstants.METER_PANEL_FILL,
+      tandem: tandem
+    } );
+  }
 }
 
 capacitorLabBasics.register( 'CLBViewControlPanel', CLBViewControlPanel );
-
-inherit( Panel, CLBViewControlPanel );
 export default CLBViewControlPanel;
