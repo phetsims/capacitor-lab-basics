@@ -84,10 +84,7 @@ define( function( require ) {
       function() {
         if ( self.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED &&
              Math.abs( self.capacitor.plateVoltageProperty.value ) > MIN_VOLTAGE ) {
-
-          // Set the voltage using V=Q/C
-          self.capacitor.plateVoltageProperty.value =
-            self.disconnectedPlateChargeProperty.value / self.capacitor.capacitanceProperty.value;
+          self.capacitor.discharge( self.lightBulb.resistance, 0 );
         }
       } );
   }

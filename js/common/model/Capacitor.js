@@ -133,7 +133,7 @@ define( function( require ) {
         phetioType: DerivedPropertyIO( NumberIO )
       } );
 
-    // Track the previous capacitance to adjust the inital voltage when discharging, see
+    // Track the previous capacitance to adjust the initial voltage when discharging, see
     // updateDischargeParameters() below.
     // @private {number}
     this.previousCapacitance = this.capacitanceProperty.value;
