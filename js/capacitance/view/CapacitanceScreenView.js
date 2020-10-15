@@ -115,6 +115,9 @@ define( function( require ) {
     this.addChild( voltmeterNode );
     this.addChild( resetAllButton );
     this.addChild( new DebugLayer( model ) );
+
+    // Explicitly set reset all button z-order
+    resetAllButton.moveToBack();
   }
 
   capacitorLabBasics.register( 'CapacitanceScreenView', CapacitanceScreenView );

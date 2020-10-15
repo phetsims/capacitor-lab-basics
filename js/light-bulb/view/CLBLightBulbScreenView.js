@@ -122,13 +122,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
 
-    // rendering order
-    this.addChild( this.lightBulbCircuitNode );
-    this.addChild( barMeterPanel );
-    this.addChild( viewControlPanel );
-    this.addChild( toolboxPanel );
-    this.addChild( voltmeterNode );
-    this.addChild( new HBox( {
+    const simControlHBox = new HBox( {
       children: [
         timeControlPanel,
         resetAllButton
@@ -136,14 +130,26 @@ define( function( require ) {
       spacing: 50,
       bottom: this.layoutBounds.bottom - 20,
       right: this.layoutBounds.right - 30
-    } ) );
-    this.addChild( new DebugLayer( model ) );
+    } );
 
     this.visibleBoundsProperty.link( function() {
       draggableTimerNode.timerNodeMovableDragHandler.dragBounds = self.layoutBounds.withOffsets(
         0, 0, -draggableTimerNode.width, -draggableTimerNode.height
       );
     } );
+
+    // rendering order
+    this.addChild( this.lightBulbCircuitNode );
+    this.addChild( barMeterPanel );
+    this.addChild( viewControlPanel );
+    this.addChild( toolboxPanel );
+    this.addChild( voltmeterNode );
+    this.addChild( simControlHBox );
+    this.addChild( new DebugLayer( model ) );
+
+    // Explicitly set the sim controls z-order
+    simControlHBox.moveToBack();
+
   }
 
   capacitorLabBasics.register( 'CLBLightBulbScreenView', CLBLightBulbScreenView );
