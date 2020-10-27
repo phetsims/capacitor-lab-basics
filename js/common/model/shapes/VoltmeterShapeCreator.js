@@ -13,30 +13,24 @@ import Matrix3 from '../../../../../dot/js/Matrix3.js';
 import Vector2 from '../../../../../dot/js/Vector2.js';
 import Vector3 from '../../../../../dot/js/Vector3.js';
 import Shape from '../../../../../kite/js/Shape.js';
-import inherit from '../../../../../phet-core/js/inherit.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 // var PROBE_TIP_OFFSET = new Vector3( 0.00045, 0, 0 );
 const PROBE_TIP_OFFSET = new Vector3( 0.00018, 0.00025, 0 );
 
-/**
- * @constructor
- *
- * @param {Voltmeter} voltmeter
- * @param {YawPitchModelViewTransform3} modelViewTransform
- */
-function VoltmeterShapeCreator( voltmeter, modelViewTransform ) {
+class VoltmeterShapeCreator {
+  /**
+   * @param {Voltmeter} voltmeter
+   * @param {YawPitchModelViewTransform3} modelViewTransform
+   */
+  constructor( voltmeter, modelViewTransform ) {
 
-  // @private {Voltmeter}
-  this.voltmeter = voltmeter;
+    // @private {Voltmeter}
+    this.voltmeter = voltmeter;
 
-  // @private {YawPitchModelViewTransform3}
-  this.modelViewTransform = modelViewTransform;
-}
-
-capacitorLabBasics.register( 'VoltmeterShapeCreator', VoltmeterShapeCreator );
-
-inherit( Object, VoltmeterShapeCreator, {
+    // @private {YawPitchModelViewTransform3}
+    this.modelViewTransform = modelViewTransform;
+  }
 
   /**
    * Gets the shape of the positive probe's tip in the world coordinate frame.
@@ -44,10 +38,10 @@ inherit( Object, VoltmeterShapeCreator, {
    *
    * @returns {Shape}
    */
-  getPositiveProbeTipShape: function() {
+  getPositiveProbeTipShape() {
     const origin = this.voltmeter.positiveProbePositionProperty.value.plus( PROBE_TIP_OFFSET );
     return this.getProbeTipShape( origin, -this.modelViewTransform.yaw );
-  },
+  }
 
   /**
    * Gets the shape of the negative probe's tip in the world coordinate frame.
@@ -55,10 +49,10 @@ inherit( Object, VoltmeterShapeCreator, {
    *
    * @returns {Shape}
    */
-  getNegativeProbeTipShape: function() {
+  getNegativeProbeTipShape() {
     const origin = this.voltmeter.negativeProbePositionProperty.value.plus( PROBE_TIP_OFFSET );
     return this.getProbeTipShape( origin, -this.modelViewTransform.yaw );
-  },
+  }
 
   /**
    * Get the shape of a probe tip relative to some specified origin.
@@ -68,7 +62,7 @@ inherit( Object, VoltmeterShapeCreator, {
    * @param {number} theta - rotation of modelViewTransform for 3D perspective
    * @returns {Shape}
    */
-  getProbeTipShape: function( origin, theta ) {
+  getProbeTipShape( origin, theta ) {
     assert && assert( typeof theta === 'number' );
 
     const size = this.voltmeter.probeTipSizeReference;
@@ -87,6 +81,8 @@ inherit( Object, VoltmeterShapeCreator, {
       this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x, y + height * midRatio ) ).toVector3() )
     ] );
   }
-} );
+}
+
+capacitorLabBasics.register( 'VoltmeterShapeCreator', VoltmeterShapeCreator );
 
 export default VoltmeterShapeCreator;

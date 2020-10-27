@@ -25,7 +25,6 @@
 
 import Property from '../../../../axon/js/Property.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
-import inherit from '../../../../phet-core/js/inherit.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../../common/CLBConstants.js';
 import CircuitPosition from '../../common/model/CircuitPosition.js';
@@ -37,57 +36,54 @@ import ParallelCircuit from '../../common/model/ParallelCircuit.js';
 // below which we no longer call discharge() so I and V don't tail off forever.
 const MIN_VOLTAGE = 1e-3; // Volts. Minimum readable value on voltmeter.
 
-/**
- * @constructor
- *
- * @param {CircuitConfig} config
- * @param {Tandem} tandem
- */
-function LightBulbCircuit( config, tandem ) {
+class LightBulbCircuit extends ParallelCircuit {
+  /**
+   * @param {CircuitConfig} config
+   * @param {Tandem} tandem
+   */
+  constructor( config, tandem ) {
 
-  const self = this;
+    // Initialize a lightBulb
+    const bulbPosition = new Vector3(
+      CLBConstants.BATTERY_POSITION.x + config.capacitorXSpacing + CLBConstants.LIGHT_BULB_X_SPACING,
+      CLBConstants.BATTERY_POSITION.y + config.capacitorYSpacing,
+      CLBConstants.BATTERY_POSITION.z
+    );
+    const lightBulb = new LightBulb( bulbPosition, config.modelViewTransform );
+    config.lightBulb = lightBulb;
 
-  const bulbPosition = new Vector3(
-    CLBConstants.BATTERY_POSITION.x + config.capacitorXSpacing + CLBConstants.LIGHT_BULB_X_SPACING,
-    CLBConstants.BATTERY_POSITION.y + config.capacitorYSpacing,
-    CLBConstants.BATTERY_POSITION.z
-  );
+    super( config, tandem );
 
-  // @public {LightBulb}
-  this.lightBulb = new LightBulb( bulbPosition, config.modelViewTransform );
+    // @public {LightBulb}
+    this.lightBulb = lightBulb;
 
-  ParallelCircuit.call( this, config, tandem );
+    // Make sure that the charges are correct when the battery is reconnected to the circuit.
+    this.circuitConnectionProperty.link( circuitConnection => {
+      /*
+       * When disconnecting the battery, set the disconnected plate charge to whatever the total plate charge was with
+       * the battery connected.  Need to do this before changing the plate voltages property.
+       */
+      if ( circuitConnection !== CircuitState.BATTERY_CONNECTED ) {
+        this.disconnectedPlateChargeProperty.set( this.getTotalCharge() );
+      }
+      this.updatePlateVoltages();
 
-  // Make sure that the charges are correct when the battery is reconnected to the circuit.
-  this.circuitConnectionProperty.link( function( circuitConnection ) {
-    /*
-     * When disconnecting the battery, set the disconnected plate charge to whatever the total plate charge was with
-     * the battery connected.  Need to do this before changing the plate voltages property.
-     */
-    if ( circuitConnection !== CircuitState.BATTERY_CONNECTED ) {
-      self.disconnectedPlateChargeProperty.set( self.getTotalCharge() );
-    }
-    self.updatePlateVoltages();
-
-    // if light bulb connected, reset values for transient calculations
-    if ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED ) {
-      self.capacitor.transientTime = 0;
-      self.capacitor.voltageAtSwitchClose = self.capacitor.plateVoltageProperty.value;
-    }
-  } );
-
-  // Allow the capacitor to discharge when adjusting the plate geometry.
-  Property.multilink( [ this.capacitor.plateSizeProperty, this.capacitor.plateSeparationProperty ],
-    function() {
-      if ( Math.abs( self.capacitor.plateVoltageProperty.value ) > MIN_VOLTAGE ) {
-        self.capacitor.discharge( self.lightBulb.resistance, 0 );
+      // if light bulb connected, reset values for transient calculations
+      if ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED ) {
+        this.capacitor.transientTime = 0;
+        this.capacitor.voltageAtSwitchClose = this.capacitor.plateVoltageProperty.value;
       }
     } );
-}
 
-capacitorLabBasics.register( 'LightBulbCircuit', LightBulbCircuit );
+    // Allow the capacitor to discharge when adjusting the plate geometry.
+    Property.multilink( [ this.capacitor.plateSizeProperty, this.capacitor.plateSeparationProperty ],
+      () => {
+        if ( Math.abs( this.capacitor.plateVoltageProperty.value ) > MIN_VOLTAGE ) {
+          this.capacitor.discharge( this.lightBulb.resistance, 0 );
+        }
+      } );
+  }
 
-inherit( ParallelCircuit, LightBulbCircuit, {
 
   /**
    * LightBulbCircuit model update function
@@ -96,10 +92,10 @@ inherit( ParallelCircuit, LightBulbCircuit, {
    *
    * @param {number} dt time step in seconds
    */
-  step: function( dt ) {
+  step( dt ) {
 
     // Step through common circuit components
-    ParallelCircuit.prototype.step.call( this, dt );
+    super.step( dt );
 
     // Discharge the capacitor when it is in parallel with the light bulb,
     // but don't allow the voltage to taper to zero forever.
@@ -118,7 +114,7 @@ inherit( ParallelCircuit, LightBulbCircuit, {
       }
     }
 
-  },
+  }
 
   /**
    * Updates the plate voltage, depending on whether the battery is connected.
@@ -126,7 +122,7 @@ inherit( ParallelCircuit, LightBulbCircuit, {
    * Remember to call this method at the end of this class' constructor.
    * @public
    */
-  updatePlateVoltages: function() {
+  updatePlateVoltages() {
     // If the battery is connected, the voltage is equal to the battery voltage
     if ( this.circuitConnectionProperty !== undefined ) {
       if ( this.circuitConnectionProperty.value === CircuitState.BATTERY_CONNECTED ) {
@@ -143,7 +139,7 @@ inherit( ParallelCircuit, LightBulbCircuit, {
         this.capacitor.updateDischargeParameters();
       }
     }
-  },
+  }
 
   /**
    * Assert that position is either CircuitPosition.LIGHT_BULB_TOP or BOTTOM.
@@ -151,11 +147,11 @@ inherit( ParallelCircuit, LightBulbCircuit, {
    *
    * @param {CircuitPosition} position
    */
-  validatePosition: function(position ) {
+  validatePosition( position ) {
 
     assert && assert( position === CircuitPosition.LIGHT_BULB_TOP || position === CircuitPosition.LIGHT_BULB_BOTTOM,
       'position should be LIGHT_BULB_TOP or LIGHT_BULB_BOTTOM, received ' + position );
-  },
+  }
 
   /**
    * Update the current amplitude depending on the circuit connection.  If the capacitor is connected to the light
@@ -164,7 +160,7 @@ inherit( ParallelCircuit, LightBulbCircuit, {
    *
    * @param {number} dt
    */
-  updateCurrentAmplitude: function( dt ) {
+  updateCurrentAmplitude( dt ) {
 
     // if the circuit is connected to the light bulb, I = V / R
     if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
@@ -180,9 +176,11 @@ inherit( ParallelCircuit, LightBulbCircuit, {
 
     // otherise, I = dQ/dT
     else {
-      ParallelCircuit.prototype.updateCurrentAmplitude.call( this, dt );
+      super.updateCurrentAmplitude( dt );
     }
   }
-} );
+}
+
+capacitorLabBasics.register( 'LightBulbCircuit', LightBulbCircuit );
 
 export default LightBulbCircuit;

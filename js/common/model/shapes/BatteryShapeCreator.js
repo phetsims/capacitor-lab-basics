@@ -14,30 +14,25 @@
 // TODO: Reverse the shapes so they are in the model?
 // TODO: Did you mean invert the shapes?
 import Matrix3 from '../../../../../dot/js/Matrix3.js';
-import inherit from '../../../../../phet-core/js/inherit.js';
 import YawPitchModelViewTransform3 from '../../../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import BatteryGraphicNode from '../../view/BatteryGraphicNode.js';
 
-/**
- * @constructor
- *
- * @param {Battery} battery
- * @param {YawPitchModelViewTransform3} modelViewTransform
- */
-function BatteryShapeCreator( battery, modelViewTransform ) {
-  assert && assert( modelViewTransform instanceof YawPitchModelViewTransform3 );
+class BatteryShapeCreator {
+  /**
+   * @param {Battery} battery
+   * @param {YawPitchModelViewTransform3} modelViewTransform
+   */
+  constructor( battery, modelViewTransform ) {
+    assert && assert( modelViewTransform instanceof YawPitchModelViewTransform3 );
 
-  // @public {Battery}
-  this.battery = battery;
+    // @public {Battery}
+    this.battery = battery;
 
-  // @public {YawPitchModelViewTransform3}
-  this.modelViewTransform = modelViewTransform;
-}
+    // @public {YawPitchModelViewTransform3}
+    this.modelViewTransform = modelViewTransform;
+  }
 
-capacitorLabBasics.register( 'BatteryShapeCreator', BatteryShapeCreator );
-
-inherit( Object, BatteryShapeCreator, {
 
   /**
    * Creates the shape of the top positive terminal in the world coordinate frame.
@@ -47,14 +42,14 @@ inherit( Object, BatteryShapeCreator, {
    *
    * @returns {Shape}
    */
-  createPositiveTerminalShape: function() {
+  createPositiveTerminalShape() {
     let shape = BatteryGraphicNode.POSITIVE_UP.terminalShape;
     shape = shape.transformed( Matrix3.scaling( 0.3 ) );
     const batteryPosition = this.modelViewTransform.modelToViewPosition( this.battery.position );
     shape = shape.transformed( Matrix3.translation( batteryPosition.x - BatteryGraphicNode.POSITIVE_UP.bounds.centerX * 0.3,
       batteryPosition.y - BatteryGraphicNode.POSITIVE_UP.bounds.centerY * 0.3 ) );
     return shape;
-  },
+  }
 
   /**
    * Creates the shape of the top negative terminal in the world coordinate frame.
@@ -64,7 +59,7 @@ inherit( Object, BatteryShapeCreator, {
    *
    * @returns {Shape}
    */
-  createNegativeTerminalShape: function() {
+  createNegativeTerminalShape() {
     let shape = BatteryGraphicNode.POSITIVE_DOWN.terminalShape;
     shape = shape.transformed( Matrix3.scaling( 0.3 ) );
     const batteryPosition = this.modelViewTransform.modelToViewPosition( this.battery.position );
@@ -72,6 +67,8 @@ inherit( Object, BatteryShapeCreator, {
       batteryPosition.y - BatteryGraphicNode.POSITIVE_DOWN.bounds.centerY * 0.3 ) );
     return shape;
   }
-} );
+}
+
+capacitorLabBasics.register( 'BatteryShapeCreator', BatteryShapeCreator );
 
 export default BatteryShapeCreator;

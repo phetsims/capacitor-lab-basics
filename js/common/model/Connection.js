@@ -6,24 +6,22 @@
  * @author Jonathan Olson <jonathan.olson@colorado.edu>
  */
 
-import inherit from '../../../../phet-core/js/inherit.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 
-/**
- * @constructor
- *
- * @param {Vector3} position
- * @param {CircuitState} type
- */
-function Connection( position, type ) {
-  // @public {Vector3}
-  this.position = position;
+class Connection {
+  /**
+   * @param {Vector3} position
+   * @param {CircuitState} type
+   */
+  constructor( position, type ) {
+    // @public {Vector3}
+    this.position = position;
 
-  // @public {CircuitState}
-  this.type = type;
+    // @public {CircuitState}
+    this.type = type;
+  }
 }
 
 capacitorLabBasics.register( 'Connection', Connection );
 
-inherit( Object, Connection );
 export default Connection;

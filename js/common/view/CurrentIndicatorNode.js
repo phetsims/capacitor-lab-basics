@@ -15,7 +15,6 @@
 
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import inherit from '../../../../phet-core/js/inherit.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import MinusNode from '../../../../scenery-phet/js/MinusNode.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
@@ -43,139 +42,135 @@ const CHARGE_STROKE_COLOR = 'black';
 const CHARGE_SYMBOL_COLOR = 'black';
 const CHARGE_SYMBOL_SIZE = new Dimension2( 0.6 * CHARGE_DIAMETER, 0.1 * CHARGE_DIAMETER );
 
-/**
- * Rotation angles should be set such that +dV/dt indicates current flow towards the positive terminal
- * of the battery.
- * @constructor
- *
- * @param {Property.<number>} currentAmplitudeProperty
- * @param {number} startingOrientation
- * @param {NumberProperty.<number>} positiveOrientationProperty
- * @param {Color} colorProperty
- * @param {Emitter} stepEmitter
- * @param {Tandem} tandem
- */
-function CurrentIndicatorNode( currentAmplitudeProperty, startingOrientation, positiveOrientationProperty, colorProperty, stepEmitter, tandem ) {
+class CurrentIndicatorNode extends Node {
+  /**
+   * Rotation angles should be set such that +dV/dt indicates current flow towards the positive terminal
+   * of the battery.
+   *
+   * @param {Property.<number>} currentAmplitudeProperty
+   * @param {number} startingOrientation
+   * @param {NumberProperty.<number>} positiveOrientationProperty
+   * @param {Color} colorProperty
+   * @param {Emitter} stepEmitter
+   * @param {Tandem} tandem
+   */
+  constructor( currentAmplitudeProperty, startingOrientation, positiveOrientationProperty, colorProperty, stepEmitter, tandem ) {
 
-  Node.call( this, { opacity: 0 } );
-  const self = this;
+    super( { opacity: 0 } );
 
-  // @private {number}
-  this.positiveOrientation = positiveOrientationProperty.value;
+    // @private {number}
+    this.positiveOrientation = positiveOrientationProperty.value;
 
-  // @private {Emitter}
-  this.stepEmitter = stepEmitter;
+    // @private {Emitter}
+    this.stepEmitter = stepEmitter;
 
-  this.stepEmitter.addListener( function( dt ) {
-    self.animation && self.animation.step( dt );
-  } );
+    this.stepEmitter.addListener( dt => {
+      this.animation && this.animation.step( dt );
+    } );
 
-  const arrowNode = new ArrowNode( ARROW_TAIL_POSITION.x, ARROW_TAIL_POSITION.y, ARROW_TIP_POSITION.x, ARROW_TIP_POSITION.y, {
-    headHeight: ARROW_HEAD_HEIGHT,
-    headWidth: ARROW_HEAD_WIDTH,
-    tailWidth: ARROW_TAIL_WIDTH,
-    fill: colorProperty.value,
-    tandem: tandem.createTandem( 'arrowNode' )
-  } );
+    const arrowNode = new ArrowNode( ARROW_TAIL_POSITION.x, ARROW_TAIL_POSITION.y, ARROW_TIP_POSITION.x, ARROW_TIP_POSITION.y, {
+      headHeight: ARROW_HEAD_HEIGHT,
+      headWidth: ARROW_HEAD_WIDTH,
+      tailWidth: ARROW_TAIL_WIDTH,
+      fill: colorProperty.value,
+      tandem: tandem.createTandem( 'arrowNode' )
+    } );
 
-  this.addChild( arrowNode );
+    this.addChild( arrowNode );
 
-  const electronNode = new ShadedSphereNode( CHARGE_DIAMETER, {
-    fill: colorProperty.value,
-    stroke: CHARGE_STROKE_COLOR,
-    lineWidth: ELECTRON_LINE_WIDTH,
-    mainColor: colorProperty.value,
-    highlightXOffset: 0,
-    highlightYOffset: 0
-  } );
-  this.addChild( electronNode );
+    const electronNode = new ShadedSphereNode( CHARGE_DIAMETER, {
+      fill: colorProperty.value,
+      stroke: CHARGE_STROKE_COLOR,
+      lineWidth: ELECTRON_LINE_WIDTH,
+      mainColor: colorProperty.value,
+      highlightXOffset: 0,
+      highlightYOffset: 0
+    } );
+    this.addChild( electronNode );
 
-  const protonNode = new ShadedSphereNode( CHARGE_DIAMETER, {
-    fill: new Color( PhetColorScheme.RED_COLORBLIND ),
-    stroke: CHARGE_STROKE_COLOR,
-    lineWidth: ELECTRON_LINE_WIDTH,
-    mainColor: new Color( PhetColorScheme.RED_COLORBLIND ),
-    highlightXOffset: 0,
-    highlightYOffset: 0,
-    visible: !electronNode.visible
-  } );
-  this.addChild( protonNode );
+    const protonNode = new ShadedSphereNode( CHARGE_DIAMETER, {
+      fill: new Color( PhetColorScheme.RED_COLORBLIND ),
+      stroke: CHARGE_STROKE_COLOR,
+      lineWidth: ELECTRON_LINE_WIDTH,
+      mainColor: new Color( PhetColorScheme.RED_COLORBLIND ),
+      highlightXOffset: 0,
+      highlightYOffset: 0,
+      visible: !electronNode.visible
+    } );
+    this.addChild( protonNode );
 
 
-  // Use scenery-phet's minus node because Text("-") can't be accurately centered.
-  const minusNode = new MinusNode( {
-    size: CHARGE_SYMBOL_SIZE,
-    fill: CHARGE_SYMBOL_COLOR
-  } );
-  this.addChild( minusNode );
+    // Use scenery-phet's minus node because Text("-") can't be accurately centered.
+    const minusNode = new MinusNode( {
+      size: CHARGE_SYMBOL_SIZE,
+      fill: CHARGE_SYMBOL_COLOR
+    } );
+    this.addChild( minusNode );
 
-  // Use scenery-phet's plus node because Text("+") can't be accurately centered.
-  const plusNode = new PlusNode( {
-    size: CHARGE_SYMBOL_SIZE,
-    fill: CHARGE_SYMBOL_COLOR,
-    visible: !minusNode.visible
-  } );
-  this.addChild( plusNode );
+    // Use scenery-phet's plus node because Text("+") can't be accurately centered.
+    const plusNode = new PlusNode( {
+      size: CHARGE_SYMBOL_SIZE,
+      fill: CHARGE_SYMBOL_COLOR,
+      visible: !minusNode.visible
+    } );
+    this.addChild( plusNode );
 
-  // layout
-  let x = -arrowNode.bounds.width / 2;
-  let y = 0;
-  arrowNode.translate( x, y );
-  x = arrowNode.bounds.maxX - ( 0.6 * ( arrowNode.bounds.width - ARROW_HEAD_HEIGHT ) );
-  y = arrowNode.bounds.centerY;
-  electronNode.translate( x, y );
-  minusNode.center = electronNode.center;
-  protonNode.center = electronNode.center;
-  plusNode.center = electronNode.center;
+    // layout
+    let x = -arrowNode.bounds.width / 2;
+    let y = 0;
+    arrowNode.translate( x, y );
+    x = arrowNode.bounds.maxX - ( 0.6 * ( arrowNode.bounds.width - ARROW_HEAD_HEIGHT ) );
+    y = arrowNode.bounds.centerY;
+    electronNode.translate( x, y );
+    minusNode.center = electronNode.center;
+    protonNode.center = electronNode.center;
+    plusNode.center = electronNode.center;
 
-  // @private {Animation|null} animation that will fade out the node
-  this.animation = null;
+    // @private {Animation|null} animation that will fade out the node
+    this.animation = null;
 
-  positiveOrientationProperty.link( function( value ) {
-    if ( value === 0 ) {
-      colorProperty.set( new Color( 83, 200, 236 ) );
-    }
-    else if ( value === Math.PI ) {
-      colorProperty.set( new Color( PhetColorScheme.RED_COLORBLIND ) );
-    }
+    positiveOrientationProperty.link( value => {
+      if ( value === 0 ) {
+        colorProperty.set( new Color( 83, 200, 236 ) );
+      }
+      else if ( value === Math.PI ) {
+        colorProperty.set( new Color( PhetColorScheme.RED_COLORBLIND ) );
+      }
 
-  } );
+    } );
 
-  // observe current to determine rotation and opacity
-  currentAmplitudeProperty.lazyLink( function( currentAmplitude ) {
+    // observe current to determine rotation and opacity
+    currentAmplitudeProperty.lazyLink( currentAmplitude => {
 
-    // only start this animation if the current indicator is visible
-    if ( self.isVisible() ) {
-      self.startAnimation();
-    }
+      // only start this animation if the current indicator is visible
+      if ( this.isVisible() ) {
+        this.startAnimation();
+      }
 
-    // update the orientation of the indicator
-    if ( currentAmplitude > 0 ) {
-      self.rotation = startingOrientation + positiveOrientationProperty.value;
-      arrowNode.fill = colorProperty.value;
-    }
-    else if ( currentAmplitude < 0 ) {
-      self.rotation = startingOrientation + positiveOrientationProperty.value + Math.PI;
-      arrowNode.fill = colorProperty.value;
-    }
+      // update the orientation of the indicator
+      if ( currentAmplitude > 0 ) {
+        this.rotation = startingOrientation + positiveOrientationProperty.value;
+        arrowNode.fill = colorProperty.value;
+      }
+      else if ( currentAmplitude < 0 ) {
+        this.rotation = startingOrientation + positiveOrientationProperty.value + Math.PI;
+        arrowNode.fill = colorProperty.value;
+      }
 
-    // Electron/Proton visibility dependent on orientation of current.
-    const chargeVisible = positiveOrientationProperty.value === 0;
-    electronNode.visible = chargeVisible;
-    minusNode.visible = chargeVisible;
-    protonNode.visible = !chargeVisible;
-    plusNode.visible = !chargeVisible;
-  } );
-}
+      // Electron/Proton visibility dependent on orientation of current.
+      const chargeVisible = positiveOrientationProperty.value === 0;
+      electronNode.visible = chargeVisible;
+      minusNode.visible = chargeVisible;
+      protonNode.visible = !chargeVisible;
+      plusNode.visible = !chargeVisible;
+    } );
+  }
 
-capacitorLabBasics.register( 'CurrentIndicatorNode', CurrentIndicatorNode );
-
-inherit( Node, CurrentIndicatorNode, {
   /**
    * Start the animation, canceling the animation if it is in progress
    * @public
    */
-  startAnimation: function() {
+  startAnimation() {
     const self = this;
     this.stopAnimation();
 
@@ -197,18 +192,18 @@ inherit( Node, CurrentIndicatorNode, {
     } );
 
     this.animation.start();
-  },
+  }
 
   /**
    * Stops the animation
    * @public
    */
-  stopAnimation: function() {
+  stopAnimation() {
 
     // stop animation if it's already running
     this.animation && this.animation.stop();
     this.opacity = 0;
-  },
+  }
 
   /**
    * Hook for changing visibility that can also handle canceling the animation when necessary (since OpacityTo changes visibility).
@@ -216,13 +211,15 @@ inherit( Node, CurrentIndicatorNode, {
    *
    * @param {boolean} visible
    */
-  adjustVisibility: function( visible ) {
+  adjustVisibility( visible ) {
     if ( this.visible && !visible ) {
       this.stopAnimation();
     }
 
     this.visible = visible;
   }
-} );
+}
+
+capacitorLabBasics.register( 'CurrentIndicatorNode', CurrentIndicatorNode );
 
 export default CurrentIndicatorNode;

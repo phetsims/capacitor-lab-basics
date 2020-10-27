@@ -15,7 +15,6 @@
 import LinearFunction from '../../../../dot/js/LinearFunction.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
-import inherit from '../../../../phet-core/js/inherit.js';
 import bulbBaseImage from '../../../../scenery-phet/mipmaps/light-bulb-base_png.js';
 import Circle from '../../../../scenery/js/nodes/Circle.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
@@ -32,62 +31,56 @@ const BULB_BASE_WIDTH = 42;
 const NUM_FILAMENT_ZIG_ZAGS = 8;
 const FILAMENT_ZIG_ZAG_SPAN = 8;
 
-/**
- * @constructor
- *
- * @param {LightBulb} lightBulb
- * @param {Property.<number>} voltageProperty - voltage across the terminals of the lightbulb, determines brightness
- * @param {Property.<CircuitState>} circuitConnectionProperty
- * @param {Tandem} tandem
- * @param {Object} [options]
- */
-function BulbNode( lightBulb, voltageProperty, circuitConnectionProperty, tandem, options ) {
+class BulbNode extends Node {
+  /**
+   * @param {LightBulb} lightBulb
+   * @param {Property.<number>} voltageProperty - voltage across the terminals of the lightbulb, determines brightness
+   * @param {Property.<CircuitState>} circuitConnectionProperty
+   * @param {Tandem} tandem
+   * @param {Object} [options]
+   */
+  constructor( lightBulb, voltageProperty, circuitConnectionProperty, tandem, options ) {
 
-  Node.call( this, {
-    tandem: tandem
-  } );
-  const self = this;
+    super( {
+      tandem: tandem
+    } );
 
-  // @private {LightBulb}
-  this.bulb = drawBulbNode( options );
-  this.addChild( this.bulb );
+    // @private {LightBulb}
+    this.bulb = drawBulbNode( options );
+    this.addChild( this.bulb );
 
-  // NOTE: this map deviates from the bulb in faradays-law
-  const bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 300, true );
+    // NOTE: this map deviates from the bulb in faradays-law
+    const bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 300, true );
 
-  const updateBrightnessScale = function( voltage ) {
-    if ( circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-      const targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
-      if ( targetScaleFactor < 0.1 ) {
-        self.bulb.haloNode.visible = false;
+    const updateBrightnessScale = voltage => {
+      if ( circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
+        const targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
+        if ( targetScaleFactor < 0.1 ) {
+          this.bulb.haloNode.visible = false;
+        }
+        else {
+          this.bulb.haloNode.visible = true;
+          const scale = targetScaleFactor / this.bulb.haloNode.transform.matrix.scaleVector.x;
+          this.bulb.haloNode.scale( scale );
+        }
       }
+
+      // Light bulb is not connected to the circuit, so no current can flow through it.
       else {
-        self.bulb.haloNode.visible = true;
-        const scale = targetScaleFactor / self.bulb.haloNode.transform.matrix.scaleVector.x;
-        self.bulb.haloNode.scale( scale );
+        this.bulb.haloNode.visible = false;
       }
-    }
+    };
 
-    // Light bulb is not connected to the circuit, so no current can flow through it.
-    else {
-      self.bulb.haloNode.visible = false;
-    }
-  };
+    // Update the halo as the needle angle changes.
+    voltageProperty.link( voltage => {
+      updateBrightnessScale( voltage );
+    } );
 
-  // Update the halo as the needle angle changes.
-  voltageProperty.link( function( voltage ) {
-    updateBrightnessScale( voltage );
-  } );
-
-  // make sure that the light bulb turns off instantly when disconnected from capacitor.
-  circuitConnectionProperty.link( function( circuitConnection ) {
-    updateBrightnessScale( voltageProperty.value );
-  } );
-}
-
-capacitorLabBasics.register( 'BulbNode', BulbNode );
-
-inherit( Node, BulbNode, {}, {
+    // make sure that the light bulb turns off instantly when disconnected from capacitor.
+    circuitConnectionProperty.link( circuitConnection => {
+      updateBrightnessScale( voltageProperty.value );
+    } );
+  }
 
   /**
    * Create a bulb node icon.  This creates a node that is not linked to any model properties.
@@ -96,10 +89,12 @@ inherit( Node, BulbNode, {}, {
    * @param {Object} [options]
    * @returns {Node}
    */
-  createBulbIcon: function( options ) {
+  static createBulbIcon( options ) {
     return drawBulbNode( options );
   }
-} );
+}
+
+capacitorLabBasics.register( 'BulbNode', BulbNode );
 
 /**
  * Create the visual components for a bulbNode with a base, bulb, filament and halo.

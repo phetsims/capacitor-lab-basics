@@ -9,29 +9,23 @@
  */
 
 import Shape from '../../../../../kite/js/Shape.js';
-import inherit from '../../../../../phet-core/js/inherit.js';
 import YawPitchModelViewTransform3 from '../../../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
-/**
- * @constructor
- *
- * @param {LightBulb} lightBulb
- * @param {CLModelViewTransform3D} modelViewTransform
- */
-function LightBulbShapeCreator( lightBulb, modelViewTransform ) {
-  assert && assert( modelViewTransform instanceof YawPitchModelViewTransform3 );
+class LightBulbShapeCreator {
+  /**
+   * @param {LightBulb} lightBulb
+   * @param {CLModelViewTransform3D} modelViewTransform
+   */
+  constructor( lightBulb, modelViewTransform ) {
+    assert && assert( modelViewTransform instanceof YawPitchModelViewTransform3 );
 
-  // @public {LightBulb} lightBulb
-  this.lightBulb = lightBulb;
+    // @public {LightBulb} lightBulb
+    this.lightBulb = lightBulb;
 
-  // @private {YawPitchModelViewTransform3}
-  this.modelViewTransform = modelViewTransform;
-}
-
-capacitorLabBasics.register( 'LightBulbShapeCreator', LightBulbShapeCreator );
-
-inherit( Object, LightBulbShapeCreator, {
+    // @private {YawPitchModelViewTransform3}
+    this.modelViewTransform = modelViewTransform;
+  }
 
   /**
    * Gets the shape of the light bulb base in the world coordinate frame.  Origin at the top center.
@@ -41,11 +35,11 @@ inherit( Object, LightBulbShapeCreator, {
    *
    * @returns {Shape}
    */
-  createTopBaseShape: function() {
+  createTopBaseShape() {
     const position = this.lightBulb.position;
     const shape = new Shape().rect( position.x - 0.0013, position.y - 0.00175, 0.00225, 0.0035 );
     return this.modelViewTransform.modelToViewShape( shape );
-  },
+  }
 
   /**
    * Gets the shape of the light bulb base in the world coordinate frame.  Origin at the top center.
@@ -55,7 +49,7 @@ inherit( Object, LightBulbShapeCreator, {
    *
    * @returns {Shape}
    */
-  createBottomBaseShape: function() {
+  createBottomBaseShape() {
     const position = this.lightBulb.position;
     const smallLeft = position.x - 0.00343;
     const smallRight = smallLeft + 0.00063;
@@ -72,6 +66,8 @@ inherit( Object, LightBulbShapeCreator, {
       .close();
     return this.modelViewTransform.modelToViewShape( shape );
   }
-} );
+}
+
+capacitorLabBasics.register( 'LightBulbShapeCreator', LightBulbShapeCreator );
 
 export default LightBulbShapeCreator;

@@ -14,54 +14,44 @@
 import LinearFunction from '../../../../../dot/js/LinearFunction.js';
 import Utils from '../../../../../dot/js/Utils.js';
 import Vector2 from '../../../../../dot/js/Vector2.js';
-import inherit from '../../../../../phet-core/js/inherit.js';
 import DragListener from '../../../../../scenery/js/listeners/DragListener.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
-/**
- * @constructor
- *
- * @param {Capacitor} capacitor
- * @param {CLModelViewTransform3D} modelViewTransform
- * @param {Range} valueRange
- * @param {Tandem} tandem
- */
-function PlateAreaDragHandler( capacitor, modelViewTransform, valueRange, tandem ) {
+class PlateAreaDragHandler extends DragListener {
+  /**
+   * @param {Capacitor} capacitor
+   * @param {CLModelViewTransform3D} modelViewTransform
+   * @param {Range} valueRange
+   * @param {Tandem} tandem
+   */
+  constructor( capacitor, modelViewTransform, valueRange, tandem ) {
+    super( {
+      allowTouchSnag: false,
+      tandem: tandem,
+      start: event => {
+        const width = capacitor.plateSizeProperty.value.width;
+        const pMouse = event.pointer.point;
+        const pOrigin = modelViewTransform.modelToViewDeltaXYZ( width / 2, 0, width / 2 );
+        this.clickXOffset = pMouse.x - pOrigin.x;
+      },
+      drag: event => {
+        const pMouse = event.pointer.point;
+        const plateWidth = this.getPlateWidth( pMouse );
 
-  const self = this;
+        // Discretize the plate area to round values by scaling m -> mm, rounding, then scaling back.
+        // Plate area drags should then snap only in steps of 10 mm^2.
+        const plateArea = Utils.roundSymmetric( 1e5 * plateWidth * plateWidth ) / 1e5;
+        capacitor.setPlateWidth( Math.sqrt( plateArea ) );
+      }
+    } );
 
-  // @private
-  this.modelViewTransform = modelViewTransform;
-  this.valueRange = valueRange;
+    // @private
+    this.modelViewTransform = modelViewTransform;
+    this.valueRange = valueRange;
 
-  // @private {Vector2}
-  this.clickXOffset = new Vector2( 0, 0 );
-
-  DragListener.call( this, {
-    allowTouchSnag: false,
-    tandem: tandem,
-    start: function( event ) {
-      const width = capacitor.plateSizeProperty.value.width;
-      const pMouse = event.pointer.point;
-      const pOrigin = modelViewTransform.modelToViewDeltaXYZ( width / 2, 0, width / 2 );
-      self.clickXOffset = pMouse.x - pOrigin.x;
-    },
-    drag: function( event ) {
-      const pMouse = event.pointer.point;
-      const plateWidth = self.getPlateWidth( pMouse );
-
-      // Discretize the plate area to round values by scaling m -> mm, rounding, then scaling back.
-      // Plate area drags should then snap only in steps of 10 mm^2.
-      const plateArea = Utils.roundSymmetric( 1e5 * plateWidth * plateWidth ) / 1e5;
-      capacitor.setPlateWidth( Math.sqrt( plateArea ) );
-    }
-  } );
-
-}
-
-capacitorLabBasics.register( 'PlateAreaDragHandler', PlateAreaDragHandler );
-
-inherit( DragListener, PlateAreaDragHandler, {
+    // @private {Vector2}
+    this.clickXOffset = new Vector2( 0, 0 );
+  }
 
   /**
    * Determines the plateWidth for a specific mouse position.  This effectively accounts for the z-axis dimension.
@@ -70,7 +60,7 @@ inherit( DragListener, PlateAreaDragHandler, {
    * return {number}
    * @public
    */
-  getPlateWidth: function( pMouse ) {
+  getPlateWidth( pMouse ) {
     // pick any 2 view values
     const xView1 = 0;
     const xView2 = 1;
@@ -82,7 +72,7 @@ inherit( DragListener, PlateAreaDragHandler, {
     const linearFunction = new LinearFunction( xView1, xView2, xModel1, xModel2 );
     return Utils.clamp( linearFunction.inverse( 0 ), this.valueRange.min, this.valueRange.max );
 
-  },
+  }
 
   /**
    * Determines how far the mouse is from where we grabbed the arrow, for a hypothetical capacitor plate width.
@@ -92,10 +82,12 @@ inherit( DragListener, PlateAreaDragHandler, {
    * @returns {number}
    * @public
    */
-  getModelX: function( pMouse, samplePlateWidth ) {
+  getModelX( pMouse, samplePlateWidth ) {
     const pBackRightCorner = this.modelViewTransform.modelToViewXYZ( samplePlateWidth / 2, 0, samplePlateWidth / 2 );
     return pMouse.x - pBackRightCorner.x - this.clickXOffset;
   }
-} );
+}
+
+capacitorLabBasics.register( 'PlateAreaDragHandler', PlateAreaDragHandler );
 
 export default PlateAreaDragHandler;

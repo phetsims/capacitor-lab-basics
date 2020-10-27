@@ -69,7 +69,7 @@ ProbeTarget.VALUES = [
  * @param {ProbeTarget} probeTarget
  * @returns {CircuitPosition}
  */
-ProbeTarget.getCircuitPosition = function( probeTarget ) {
+ProbeTarget.getCircuitPosition = probeTarget => {
   switch( probeTarget ) {
     case ProbeTarget.BATTERY_TOP_TERMINAL:
       return CircuitPosition.BATTERY_TOP;

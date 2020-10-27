@@ -13,7 +13,6 @@ import Property from '../../../../../axon/js/Property.js';
 import Bounds2 from '../../../../../dot/js/Bounds2.js';
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
 import Vector3 from '../../../../../dot/js/Vector3.js';
-import inherit from '../../../../../phet-core/js/inherit.js';
 import YawPitchModelViewTransform3 from '../../../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
 import NullableIO from '../../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../../tandem/js/types/NumberIO.js';
@@ -33,140 +32,135 @@ const PROBE_TIP_SIZE = new Dimension2( 0.0003, 0.0013 ); // meters
 const POSITIVE_PROBE_POSITION = new Vector3( 0.0669, 0.0298, 0 );
 const NEGATIVE_PROBE_POSITION = new Vector3( 0.0707, 0.0329, 0 );
 
-/**
- * @constructor
- *
- * @param {ParallelCircuit} circuit
- * @param {Bounds2} dragBounds
- * @param {YawPitchModelViewTransform3} modelViewTransform
- * @param {Property.<boolean>} voltmeterVisibleProperty
- * @param {Tandem} tandem
- */
-function Voltmeter( circuit, dragBounds, modelViewTransform, voltmeterVisibleProperty, tandem ) {
-  assert && assert( circuit instanceof ParallelCircuit );
-  assert && assert( dragBounds instanceof Bounds2 );
-  assert && assert( modelViewTransform instanceof YawPitchModelViewTransform3 );
-
-  // @private {ParallelCircuit}
-  this.circuit = circuit;
-
-  // @public {Bounds2} (read-only)
-  this.dragBounds = dragBounds;
-
-  // @private {YawPitchModelViewTransform3}
-  this.modelViewTransform = modelViewTransform;
-
-  // @public {Dimension2} (read-only)
-  this.probeTipSizeReference = PROBE_TIP_SIZE;
-
-  // @public {Property.<boolean>}
-  this.visibleProperty = voltmeterVisibleProperty;
-
-  // @public {Property.<boolean>}
-  this.isDraggedProperty = new BooleanProperty( false, {
-    tandem: tandem.createTandem( 'isDraggedProperty' ),
-    phetioDocumentation: 'Indicates whether the user is currently dragging the voltmeter'
-  } );
-
-  // @public {Property.<Vector3>}
-  this.bodyPositionProperty = new Property( new Vector3( 0, 0, 0 ), {
-    useDeepEquality: true,
-    tandem: tandem.createTandem( 'bodyPositionProperty' ),
-    phetioType: Property.PropertyIO( Vector3.Vector3IO )
-  } );
-
-  // @public {Property.<Vector3>}
-  this.positiveProbePositionProperty = new Property( POSITIVE_PROBE_POSITION, {
-    useDeepEquality: true,
-    tandem: tandem.createTandem( 'positiveProbePositionProperty' ),
-    phetioType: Property.PropertyIO( Vector3.Vector3IO )
-  } );
-
-  // @public {Property.<Vector3>}
-  this.negativeProbePositionProperty = new Property( NEGATIVE_PROBE_POSITION, {
-    useDeepEquality: true,
-    tandem: tandem.createTandem( 'negativeProbePositionProperty' ),
-    phetioType: Property.PropertyIO( Vector3.Vector3IO )
-  } );
-
-  // By design, the voltmeter reads "?" for disconnected contacts, which is represented internally by a null
-  // assignment value.
-  // @public {Property.<number|null>}
-  this.measuredVoltageProperty = new Property( null, {
-    tandem: tandem.createTandem( 'measuredVoltageProperty' ),
-    units: 'volts',
-    phetioType: Property.PropertyIO( NullableIO( NumberIO ) )
-  } );
-
-  // TODO: factor out shared code for positive/negative probe
-  // @private {Property.<ProbeTarget>} - What the positive probe is currently touching. Updated from within computeValue below.
-  this.positiveProbeTargetProperty = new Property( ProbeTarget.NONE, {
-    tandem: tandem.createTandem( 'positiveProbeTargetProperty' ),
-    phetioType: Property.PropertyIO( StringIO )
-  } );
-
-  // @private {Property.<ProbeTarget>} - What the negative probe is currently touching. Updated from within computeValue below.
-  this.negativeProbeTargetProperty = new Property( ProbeTarget.NONE, {
-    tandem: tandem.createTandem( 'negativeProbeTargetProperty' ),
-    phetioType: Property.PropertyIO( StringIO )
-  } );
-
-  const self = this;
-
-  // @public {VoltmeterShapeCreator} (read-only)
-  this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform );
-
+class Voltmeter {
   /**
-   * Update the value of the meter. Called when many different properties change.
+   * @param {ParallelCircuit} circuit
+   * @param {Bounds2} dragBounds
+   * @param {YawPitchModelViewTransform3} modelViewTransform
+   * @param {Property.<boolean>} voltmeterVisibleProperty
+   * @param {Tandem} tandem
    */
-  const updateValue = function() {
-    if ( self.visibleProperty.value ) {
-      const probesTouching = self.probesAreTouching();
-      self.positiveProbeTargetProperty.value = probesTouching ? ProbeTarget.OTHER_PROBE : self.circuit.getProbeTarget( self.shapeCreator.getPositiveProbeTipShape() );
-      self.negativeProbeTargetProperty.value = probesTouching ? ProbeTarget.OTHER_PROBE : self.circuit.getProbeTarget( self.shapeCreator.getNegativeProbeTipShape() );
-      self.measuredVoltageProperty.value = self.computeValue();
-    }
-    else {
-      self.measuredVoltageProperty.value = null;
-    }
-  };
-  updateValue();
+  constructor( circuit, dragBounds, modelViewTransform, voltmeterVisibleProperty, tandem ) {
+    assert && assert( circuit instanceof ParallelCircuit );
+    assert && assert( dragBounds instanceof Bounds2 );
+    assert && assert( modelViewTransform instanceof YawPitchModelViewTransform3 );
 
-  // Since we don't update when not visible,
-  this.visibleProperty.lazyLink( updateValue );
+    // @private {ParallelCircuit}
+    this.circuit = circuit;
 
-  // Update voltage reading if plate voltage changes
-  circuit.capacitor.plateVoltageProperty.lazyLink( updateValue );
+    // @public {Bounds2} (read-only)
+    this.dragBounds = dragBounds;
 
-  // Update reading when the probes move
-  Property.lazyMultilink( [ self.negativeProbePositionProperty, self.positiveProbePositionProperty ], updateValue );
+    // @private {YawPitchModelViewTransform3}
+    this.modelViewTransform = modelViewTransform;
 
-  // Update all segments and the plate voltages when capacitor plate geometry changes. Capacitor may not exist yet.
-  circuit.capacitor.plateSeparationProperty.lazyLink( updateValue );
+    // @public {Dimension2} (read-only)
+    this.probeTipSizeReference = PROBE_TIP_SIZE;
 
-  // Update the plate voltage when the capacitor plate size changes. Capacitor may not exist yet.
-  circuit.capacitor.plateSizeProperty.lazyLink( updateValue );
+    // @public {Property.<boolean>}
+    this.visibleProperty = voltmeterVisibleProperty;
 
-  // update the value when the circuit connection property changes
-  circuit.circuitConnectionProperty.lazyLink( updateValue );
+    // @public {Property.<boolean>}
+    this.isDraggedProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'isDraggedProperty' ),
+      phetioDocumentation: 'Indicates whether the user is currently dragging the voltmeter'
+    } );
 
-  // Update when battery voltage changes
-  circuit.battery.voltageProperty.lazyLink( updateValue );
+    // @public {Property.<Vector3>}
+    this.bodyPositionProperty = new Property( new Vector3( 0, 0, 0 ), {
+      useDeepEquality: true,
+      tandem: tandem.createTandem( 'bodyPositionProperty' ),
+      phetioType: Property.PropertyIO( Vector3.Vector3IO )
+    } );
 
-  // Update when the switch is moving. NOTE: only listening to the top, since both get activated at the same time.
-  circuit.capacitor.topCircuitSwitch.angleProperty.lazyLink( updateValue );
-}
+    // @public {Property.<Vector3>}
+    this.positiveProbePositionProperty = new Property( POSITIVE_PROBE_POSITION, {
+      useDeepEquality: true,
+      tandem: tandem.createTandem( 'positiveProbePositionProperty' ),
+      phetioType: Property.PropertyIO( Vector3.Vector3IO )
+    } );
 
-capacitorLabBasics.register( 'Voltmeter', Voltmeter );
+    // @public {Property.<Vector3>}
+    this.negativeProbePositionProperty = new Property( NEGATIVE_PROBE_POSITION, {
+      useDeepEquality: true,
+      tandem: tandem.createTandem( 'negativeProbePositionProperty' ),
+      phetioType: Property.PropertyIO( Vector3.Vector3IO )
+    } );
 
-inherit( Object, Voltmeter, {
+    // By design, the voltmeter reads "?" for disconnected contacts, which is represented internally by a null
+    // assignment value.
+    // @public {Property.<number|null>}
+    this.measuredVoltageProperty = new Property( null, {
+      tandem: tandem.createTandem( 'measuredVoltageProperty' ),
+      units: 'volts',
+      phetioType: Property.PropertyIO( NullableIO( NumberIO ) )
+    } );
+
+    // TODO: factor out shared code for positive/negative probe
+    // @private {Property.<ProbeTarget>} - What the positive probe is currently touching. Updated from within computeValue below.
+    this.positiveProbeTargetProperty = new Property( ProbeTarget.NONE, {
+      tandem: tandem.createTandem( 'positiveProbeTargetProperty' ),
+      phetioType: Property.PropertyIO( StringIO )
+    } );
+
+    // @private {Property.<ProbeTarget>} - What the negative probe is currently touching. Updated from within computeValue below.
+    this.negativeProbeTargetProperty = new Property( ProbeTarget.NONE, {
+      tandem: tandem.createTandem( 'negativeProbeTargetProperty' ),
+      phetioType: Property.PropertyIO( StringIO )
+    } );
+
+
+    // @public {VoltmeterShapeCreator} (read-only)
+    this.shapeCreator = new VoltmeterShapeCreator( this, modelViewTransform );
+
+    /**
+     * Update the value of the meter. Called when many different properties change.
+     */
+    const updateValue = () => {
+      if ( this.visibleProperty.value ) {
+        const probesTouching = this.probesAreTouching();
+        this.positiveProbeTargetProperty.value = probesTouching ? ProbeTarget.OTHER_PROBE : this.circuit.getProbeTarget( this.shapeCreator.getPositiveProbeTipShape() );
+        this.negativeProbeTargetProperty.value = probesTouching ? ProbeTarget.OTHER_PROBE : this.circuit.getProbeTarget( this.shapeCreator.getNegativeProbeTipShape() );
+        this.measuredVoltageProperty.value = this.computeValue();
+      }
+      else {
+        this.measuredVoltageProperty.value = null;
+      }
+    };
+    updateValue();
+
+    // Since we don't update when not visible,
+    this.visibleProperty.lazyLink( updateValue );
+
+    // Update voltage reading if plate voltage changes
+    circuit.capacitor.plateVoltageProperty.lazyLink( updateValue );
+
+    // Update reading when the probes move
+    Property.lazyMultilink( [ this.negativeProbePositionProperty, this.positiveProbePositionProperty ], updateValue );
+
+    // Update all segments and the plate voltages when capacitor plate geometry changes. Capacitor may not exist yet.
+    circuit.capacitor.plateSeparationProperty.lazyLink( updateValue );
+
+    // Update the plate voltage when the capacitor plate size changes. Capacitor may not exist yet.
+    circuit.capacitor.plateSizeProperty.lazyLink( updateValue );
+
+    // update the value when the circuit connection property changes
+    circuit.circuitConnectionProperty.lazyLink( updateValue );
+
+    // Update when battery voltage changes
+    circuit.battery.voltageProperty.lazyLink( updateValue );
+
+    // Update when the switch is moving. NOTE: only listening to the top, since both get activated at the same time.
+    circuit.capacitor.topCircuitSwitch.angleProperty.lazyLink( updateValue );
+  }
+
   /**
    * Computes the voltage reading for this voltmeter (null corresponds to a ? on the voltmeter)
    * @private
    *
    * @returns {number|null} - voltage difference between probes
    */
-  computeValue: function() {
+  computeValue() {
     const positiveProbeTarget = this.positiveProbeTargetProperty.value;
     const negativeProbeTarget = this.negativeProbeTargetProperty.value;
 
@@ -231,7 +225,7 @@ inherit( Object, Voltmeter, {
     else {
       return null;
     }
-  },
+  }
 
   /**
    * Probes are touching if their tips intersect.
@@ -239,16 +233,16 @@ inherit( Object, Voltmeter, {
    *
    * @returns {boolean}
    */
-  probesAreTouching: function() {
+  probesAreTouching() {
     const posShape = this.shapeCreator.getPositiveProbeTipShape();
     const negShape = this.shapeCreator.getNegativeProbeTipShape();
 
     return posShape.bounds.intersectsBounds( negShape.bounds ) &&
            posShape.shapeIntersection( negShape ).getNonoverlappingArea() > 0;
-  },
+  }
 
   // @public
-  reset: function() {
+  reset() {
     this.isDraggedProperty.reset();
     this.bodyPositionProperty.reset();
     this.positiveProbePositionProperty.reset();
@@ -257,6 +251,8 @@ inherit( Object, Voltmeter, {
     this.positiveProbeTargetProperty.reset();
     this.negativeProbeTargetProperty.reset();
   }
-} );
+}
+
+capacitorLabBasics.register( 'Voltmeter', Voltmeter );
 
 export default Voltmeter;

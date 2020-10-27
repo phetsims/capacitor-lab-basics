@@ -25,7 +25,7 @@ class CLBLightBulbScreen extends Screen {
    */
   constructor( switchUsedProperty, tandem ) {
 
-    const iconNode = new BulbNode.createBulbIcon();
+    const iconNode = BulbNode.createBulbIcon();
     iconNode.rotate( -Math.PI / 2 );
     const icon = new ScreenIcon( iconNode, {
       fill: CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR
@@ -44,12 +44,8 @@ class CLBLightBulbScreen extends Screen {
     };
 
     super(
-      function() {
-        return new CLBLightBulbModel( switchUsedProperty, new YawPitchModelViewTransform3(), tandem.createTandem( 'model' ) );
-      },
-      function( model ) {
-        return new CLBLightBulbScreenView( model, tandem.createTandem( 'view' ) );
-      },
+      () => new CLBLightBulbModel( switchUsedProperty, new YawPitchModelViewTransform3(), tandem.createTandem( 'model' ) ),
+      model => new CLBLightBulbScreenView( model, tandem.createTandem( 'view' ) ),
       options
     );
   }

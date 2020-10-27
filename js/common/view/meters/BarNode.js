@@ -10,7 +10,6 @@
  */
 
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
-import inherit from '../../../../../phet-core/js/inherit.js';
 import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
@@ -21,36 +20,30 @@ const BASE_LINE_OFFSET = ( BASE_LINE_LENGTH - BAR_SIZE.height ) / 2;
 const BAR_STROKE_COLOR = 'black';
 const BAR_LINE_WIDTH = 1;
 
-/**
- * The bar which indicates the magnitude of the value being read by the meter. Origin is
- * at upper left of track.
- * @constructor
- *
- * @param {string} barColor
- * @param {number} value
- * @param {number} maxValue
- */
-function BarNode( barColor, value, maxValue ) {
+class BarNode extends Rectangle {
+  /**
+   * The bar which indicates the magnitude of the value being read by the meter. Origin is
+   * at upper left of track.
+   *
+   * @param {string} barColor
+   * @param {number} value
+   * @param {number} maxValue
+   */
+  constructor( barColor, value, maxValue ) {
+    assert && assert( value >= 0, 'value must be >= 0 : ' + value );
+    super( 0, 0, BAR_SIZE.width, BAR_SIZE.height, {
+      fill: barColor,
+      stroke: BAR_STROKE_COLOR,
+      lineWidth: BAR_LINE_WIDTH
+    } );
 
-  assert && assert( value >= 0, 'value must be >= 0 : ' + value );
+    // @public
+    this.value = value;
+    this.maxValue = maxValue;
+    this.barSize = BAR_SIZE;
+    this.update();
+  }
 
-  // @public
-  this.value = value;
-  this.maxValue = maxValue;
-  this.barSize = BAR_SIZE;
-
-  Rectangle.call( this, 0, 0, BAR_SIZE.width, BAR_SIZE.height, {
-    fill: barColor,
-    stroke: BAR_STROKE_COLOR,
-    lineWidth: BAR_LINE_WIDTH
-  } );
-
-  this.update();
-}
-
-capacitorLabBasics.register( 'BarNode', BarNode );
-
-inherit( Rectangle, BarNode, {
 
   /**
    * Set bar value
@@ -58,7 +51,7 @@ inherit( Rectangle, BarNode, {
    *
    * @param {number} value
    */
-  setValue: function( value ) {
+  setValue( value ) {
 
     assert && assert( value >= 0, 'value must be >= 0 : ' + value );
 
@@ -66,18 +59,20 @@ inherit( Rectangle, BarNode, {
       this.value = value;
       this.update();
     }
-  },
+  }
 
   /**
    * Update the bar
    * @public
    */
-  update: function() {
+  update() {
     const percent = Math.min( 1, Math.abs( this.value ) / this.maxValue );
     const x = ( 1 - percent ) * BAR_SIZE.width;
     const width = BAR_SIZE.width - x;
     this.setRect( 0, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, width, BAR_SIZE.height );
   }
-} );
+}
+
+capacitorLabBasics.register( 'BarNode', BarNode );
 
 export default BarNode;

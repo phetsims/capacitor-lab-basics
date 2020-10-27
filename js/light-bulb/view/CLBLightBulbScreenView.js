@@ -9,9 +9,9 @@
 
 import Vector2 from '../../../../dot/js/Vector2.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
-import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import StopwatchNode from '../../../../scenery-phet/js/StopwatchNode.js';
 import TimeControlNode from '../../../../scenery-phet/js/TimeControlNode.js';
+import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import AlignGroup from '../../../../scenery/js/nodes/AlignGroup.js';
 import HBox from '../../../../scenery/js/nodes/HBox.js';
 import Color from '../../../../scenery/js/util/Color.js';
@@ -19,9 +19,9 @@ import Panel from '../../../../sun/js/Panel.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import BarMeterPanel from '../../common/view/BarMeterPanel.js';
+import DebugLayer from '../../common/view/DebugLayer.js';
 import CLBViewControlPanel from '../../common/view/control/CLBViewControlPanel.js';
 import VoltmeterToolboxPanel from '../../common/view/control/VoltmeterToolboxPanel.js';
-import DebugLayer from '../../common/view/DebugLayer.js';
 import VoltmeterNode from '../../common/view/meters/VoltmeterNode.js';
 import LightBulbCircuitNode from './LightBulbCircuitNode.js';
 
@@ -97,7 +97,7 @@ class CLBLightBulbScreenView extends ScreenView {
       timeSpeedProperty: model.timeSpeedProperty,
       playPauseStepButtonOptions: {
         stepForwardButtonOptions: {
-          listener: function() { model.manualStep(); }
+          listener: () => { model.manualStep(); }
         }
       },
       tandem: tandem.createTandem( 'timeControlNode' )
@@ -110,7 +110,7 @@ class CLBLightBulbScreenView extends ScreenView {
     } );
 
     const resetAllButton = new ResetAllButton( {
-      listener: function() {
+      listener: () => {
         model.reset();
       },
       radius: 25,

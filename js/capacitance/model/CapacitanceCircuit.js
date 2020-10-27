@@ -18,33 +18,26 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import inherit from '../../../../phet-core/js/inherit.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CircuitState from '../../common/model/CircuitState.js';
 import ParallelCircuit from '../../common/model/ParallelCircuit.js';
 
-/**
- * @constructor
- *
- * @param {CircuitConfig} config
- * @param {Tandem} tandem
- */
-function CapacitanceCircuit( config, tandem ) {
+class CapacitanceCircuit extends ParallelCircuit {
+  /**
+   * @param {CircuitConfig} config
+   * @param {Tandem} tandem
+   */
+  constructor( config, tandem ) {
+    super( config, tandem );
 
-  this.lightBulb = null; // There is no light bulb in the first screen
-
-  ParallelCircuit.call( this, config, tandem );
-}
-
-capacitorLabBasics.register( 'CapacitanceCircuit', CapacitanceCircuit );
-
-inherit( ParallelCircuit, CapacitanceCircuit, {
+    this.lightBulb = null; // There is no light bulb in the first screen
+  }
 
   /**
    * Updates the plate voltage, depending on whether the battery is connected.
    * @public
    */
-  updatePlateVoltages: function() {
+  updatePlateVoltages() {
 
     // Undefined check required because superclass calls this method from its constructor.
     if ( this.circuitConnectionProperty !== undefined ) {
@@ -62,6 +55,8 @@ inherit( ParallelCircuit, CapacitanceCircuit, {
       }
     }
   }
-} );
+}
+
+capacitorLabBasics.register( 'CapacitanceCircuit', CapacitanceCircuit );
 
 export default CapacitanceCircuit;

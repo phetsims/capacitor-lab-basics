@@ -8,7 +8,6 @@
 
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
-import inherit from '../../../../phet-core/js/inherit.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Color from '../../../../scenery/js/util/Color.js';
@@ -66,87 +65,85 @@ const POSITIVE_GRADIENT = createGradient( BATTERY_MAIN_RADIUS, POSITIVE_SHADOW_C
 const NEGATIVE_GRADIENT = createGradient( BATTERY_MAIN_RADIUS, NEGATIVE_SHADOW_COLOR, NEGATIVE_HIGHLIGHT_COLOR, NEGATIVE_COLOR );
 const TERMINAL_GRADIENT = createGradient( BATTERY_POSITIVE_TERMINAL_RADIUS, TERMINAL_SIDE_COLOR, TERMINAL_HIGHLIGHT_COLOR, TERMINAL_SIDE_COLOR );
 
-/**
- * @constructor
- *
- * @param {boolean} isPositiveDown
- * @param {Object} [options]
- */
-function BatteryGraphicNode( isPositiveDown, options ) {
-  Node.call( this );
+class BatteryGraphicNode extends Node {
+  /**
+   * @param {boolean} isPositiveDown
+   * @param {Object} [options]
+   */
+  constructor( isPositiveDown, options ) {
+    super();
 
-  // @private {boolean}
-  this.isPositiveDown = isPositiveDown;
+    // @private {boolean}
+    this.isPositiveDown = isPositiveDown;
 
-  const middleY = isPositiveDown ? ( BATTERY_MAIN_HEIGHT - BATTERY_POSITIVE_SIDE_HEIGHT ) : BATTERY_POSITIVE_SIDE_HEIGHT;
-  const terminalTopY = isPositiveDown ? 0 : -BATTERY_POSITIVE_TERMINAL_HEIGHT;
-  const terminalRadius = isPositiveDown ? BATTERY_NEGATIVE_TERMINAL_RADIUS : BATTERY_POSITIVE_TERMINAL_RADIUS;
+    const middleY = isPositiveDown ? ( BATTERY_MAIN_HEIGHT - BATTERY_POSITIVE_SIDE_HEIGHT ) : BATTERY_POSITIVE_SIDE_HEIGHT;
+    const terminalTopY = isPositiveDown ? 0 : -BATTERY_POSITIVE_TERMINAL_HEIGHT;
+    const terminalRadius = isPositiveDown ? BATTERY_NEGATIVE_TERMINAL_RADIUS : BATTERY_POSITIVE_TERMINAL_RADIUS;
 
-  const bottomSideShape = new Shape().ellipticalArc( 0, middleY, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI, false )
-    .ellipticalArc( 0, BATTERY_MAIN_HEIGHT, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, Math.PI, 0, true )
-    .close();
-  const topSideShape = new Shape().ellipticalArc( 0, middleY, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI, false )
-    .ellipticalArc( 0, 0, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, Math.PI, 0, true )
-    .close();
-  const topShape = new Shape().ellipticalArc( 0, 0, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI * 2, false ).close();
-  const terminalTopShape = new Shape().ellipticalArc( 0, terminalTopY, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, 0, Math.PI * 2, false ).close();
-  const terminalSideShape = new Shape().ellipticalArc( 0, terminalTopY, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, 0, Math.PI, false )
-    .ellipticalArc( 0, 0, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, Math.PI, 0, true )
-    .close();
+    const bottomSideShape = new Shape().ellipticalArc( 0, middleY, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI, false )
+      .ellipticalArc( 0, BATTERY_MAIN_HEIGHT, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, Math.PI, 0, true )
+      .close();
+    const topSideShape = new Shape().ellipticalArc( 0, middleY, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI, false )
+      .ellipticalArc( 0, 0, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, Math.PI, 0, true )
+      .close();
+    const topShape = new Shape().ellipticalArc( 0, 0, BATTERY_MAIN_RADIUS, BATTERY_SECONDARY_RADIUS, 0, 0, Math.PI * 2, false ).close();
+    const terminalTopShape = new Shape().ellipticalArc( 0, terminalTopY, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, 0, Math.PI * 2, false ).close();
+    const terminalSideShape = new Shape().ellipticalArc( 0, terminalTopY, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, 0, Math.PI, false )
+      .ellipticalArc( 0, 0, terminalRadius, terminalRadius * BATTERY_PERSPECTIVE_RATIO, 0, Math.PI, 0, true )
+      .close();
 
-  // @public {Shape}
-  this.terminalShape = terminalTopShape;
+    // @public {Shape}
+    this.terminalShape = terminalTopShape;
 
-  const bottomSide = new Path( bottomSideShape, {
-    fill: isPositiveDown ? POSITIVE_GRADIENT : NEGATIVE_GRADIENT,
-    stroke: STROKE_COLOR,
-    lineWidth: LINE_WIDTH
-  } );
-  const topSide = new Path( topSideShape, {
-    fill: isPositiveDown ? NEGATIVE_GRADIENT : POSITIVE_GRADIENT,
-    stroke: STROKE_COLOR,
-    lineWidth: LINE_WIDTH
-  } );
-  const top = new Path( topShape, {
-    fill: isPositiveDown ? NEGATIVE_COLOR : POSITIVE_COLOR,
-    stroke: STROKE_COLOR,
-    lineWidth: LINE_WIDTH
-  } );
-  const terminal = new Path( terminalTopShape, {
-    fill: TERMINAL_COLOR,
-    stroke: STROKE_COLOR,
-    lineWidth: LINE_WIDTH
-  } );
-
-  if ( !isPositiveDown ) {
-    this.terminalShape = this.terminalShape.shapeUnion( terminalSideShape );
-    terminal.addChild( new Path( terminalSideShape, {
-      fill: TERMINAL_GRADIENT,
+    const bottomSide = new Path( bottomSideShape, {
+      fill: isPositiveDown ? POSITIVE_GRADIENT : NEGATIVE_GRADIENT,
       stroke: STROKE_COLOR,
       lineWidth: LINE_WIDTH
-    } ) );
+    } );
+    const topSide = new Path( topSideShape, {
+      fill: isPositiveDown ? NEGATIVE_GRADIENT : POSITIVE_GRADIENT,
+      stroke: STROKE_COLOR,
+      lineWidth: LINE_WIDTH
+    } );
+    const top = new Path( topShape, {
+      fill: isPositiveDown ? NEGATIVE_COLOR : POSITIVE_COLOR,
+      stroke: STROKE_COLOR,
+      lineWidth: LINE_WIDTH
+    } );
+    const terminal = new Path( terminalTopShape, {
+      fill: TERMINAL_COLOR,
+      stroke: STROKE_COLOR,
+      lineWidth: LINE_WIDTH
+    } );
+
+    if ( !isPositiveDown ) {
+      this.terminalShape = this.terminalShape.shapeUnion( terminalSideShape );
+      terminal.addChild( new Path( terminalSideShape, {
+        fill: TERMINAL_GRADIENT,
+        stroke: STROKE_COLOR,
+        lineWidth: LINE_WIDTH
+      } ) );
+    }
+
+    this.children = [
+      top, topSide, bottomSide, terminal
+    ];
+
+    this.mutate( options );
   }
 
-  this.children = [
-    top, topSide, bottomSide, terminal
-  ];
-
-  this.mutate( options );
-}
-
-capacitorLabBasics.register( 'BatteryGraphicNode', BatteryGraphicNode );
-
-inherit( Node, BatteryGraphicNode, {
   /**
    * Returns (in the local coordinate frame) the position of the center-top of the top terminal.
    * @public
    *
    * @returns {Vector2}
    */
-  getTopPosition: function() {
+  getTopPosition() {
     return new Vector2( 0, this.isPositiveDown ? 0 : -BATTERY_POSITIVE_TERMINAL_HEIGHT );
   }
-} );
+}
+
+capacitorLabBasics.register( 'BatteryGraphicNode', BatteryGraphicNode );
 
 // @public {Node}
 BatteryGraphicNode.POSITIVE_UP = new BatteryGraphicNode( false );

@@ -31,7 +31,7 @@ const CircuitConfig = {
    * @param {Object} [options]
    * @returns {Object}
    */
-  create: function( options ) {
+  create( options ) {
 
     return merge( {
       modelViewTransform: new YawPitchModelViewTransform3(),
@@ -40,6 +40,7 @@ const CircuitConfig = {
       plateWidth: PLATE_WIDTH,
       plateSeparation: PLATE_SEPARATION,
       wireExtent: WIRE_EXTENT,
+      lightBulb: null,
 
       // Type: {Array.<CircuitState>})
       circuitConnections: [

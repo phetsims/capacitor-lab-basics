@@ -8,13 +8,12 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import inherit from '../../../../phet-core/js/inherit.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBQueryParameters from '../../common/CLBQueryParameters.js';
+import CLBModel from '../../common/model/CLBModel.js';
 import CircuitConfig from '../../common/model/CircuitConfig.js';
 import CircuitState from '../../common/model/CircuitState.js';
-import CLBModel from '../../common/model/CLBModel.js';
 import BarMeter from '../../common/model/meter/BarMeter.js';
 import LightBulbCircuit from './LightBulbCircuit.js';
 
@@ -24,65 +23,63 @@ const CAPACITOR_Y_SPACING = 0.0010; // meters
 const PLATE_WIDTH = CapacitorConstants.PLATE_WIDTH_RANGE.defaultValue;
 const PLATE_SEPARATION = CapacitorConstants.PLATE_SEPARATION_RANGE.defaultValue;
 
-/**
- * @constructor
- *
- * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
- * @param {YawPitchModelViewTransform3} modelViewTransform
- * @param {Tandem} tandem
- */
-function CLBLightBulbModel( switchUsedProperty, modelViewTransform, tandem ) {
+class CLBLightBulbModel extends CLBModel {
+  /**
+   * @param {Property.<boolean>} switchUsedProperty - whether switch has been changed by user. Affects both screens.
+   * @param {YawPitchModelViewTransform3} modelViewTransform
+   * @param {Tandem} tandem
+   */
+  constructor( switchUsedProperty, modelViewTransform, tandem ) {
 
-  // A requested PhET-iO customization is to simplify the switch into a
-  // single-pole double-throw switch for the light-bulb circuit instead of
-  // the default three-position version (phet-io/569).
-  // Enable with the switch=twoState query parameter.
-  const useTwoStateSwitch = CLBQueryParameters.switch === 'twoState';
+    // A requested PhET-iO customization is to simplify the switch into a
+    // single-pole double-throw switch for the light-bulb circuit instead of
+    // the default three-position version (phet-io/569).
+    // Enable with the switch=twoState query parameter.
+    const useTwoStateSwitch = CLBQueryParameters.switch === 'twoState';
 
-  const twoState = [
-    CircuitState.BATTERY_CONNECTED,
-    CircuitState.LIGHT_BULB_CONNECTED
-  ];
-  const threeState = [
-    CircuitState.BATTERY_CONNECTED,
-    CircuitState.OPEN_CIRCUIT,
-    CircuitState.LIGHT_BULB_CONNECTED
-  ];
+    const twoState = [
+      CircuitState.BATTERY_CONNECTED,
+      CircuitState.LIGHT_BULB_CONNECTED
+    ];
+    const threeState = [
+      CircuitState.BATTERY_CONNECTED,
+      CircuitState.OPEN_CIRCUIT,
+      CircuitState.LIGHT_BULB_CONNECTED
+    ];
 
-  // configuration info for the circuit
-  const circuitConfig = CircuitConfig.create( {
-    circuitConnections: useTwoStateSwitch ? twoState : threeState,
-    modelViewTransform: modelViewTransform,
-    capacitorXSpacing: CAPACITOR_X_SPACING,
-    capacitorYSpacing: CAPACITOR_Y_SPACING,
-    plateWidth: PLATE_WIDTH,
-    plateSeparation: PLATE_SEPARATION
-  } );
+    // configuration info for the circuit
+    const circuitConfig = CircuitConfig.create( {
+      circuitConnections: useTwoStateSwitch ? twoState : threeState,
+      modelViewTransform: modelViewTransform,
+      capacitorXSpacing: CAPACITOR_X_SPACING,
+      capacitorYSpacing: CAPACITOR_Y_SPACING,
+      plateWidth: PLATE_WIDTH,
+      plateSeparation: PLATE_SEPARATION,
+      hasLightBulb: true
+    } );
 
-  // @public {LightBulbCircuit}
-  this.circuit = new LightBulbCircuit( circuitConfig, tandem.createTandem( 'circuit' ) ); // @public
+    const circuit = new LightBulbCircuit( circuitConfig, tandem.createTandem( 'circuit' ) );
+    super( circuit, switchUsedProperty, modelViewTransform, tandem );
 
-  CLBModel.call( this, switchUsedProperty, modelViewTransform, tandem );
+    // @public {LightBulbCircuit}
+    this.circuit = circuit;
 
-  // @public {BarMeter}
-  this.capacitanceMeter = new BarMeter( this.capacitanceMeterVisibleProperty, this.circuit.capacitor.capacitanceProperty );
+    // @public {BarMeter}
+    this.capacitanceMeter = new BarMeter( this.capacitanceMeterVisibleProperty, this.circuit.capacitor.capacitanceProperty );
 
-  // @public {BarMeter}
-  this.plateChargeMeter = new BarMeter( this.topPlateChargeMeterVisibleProperty, this.circuit.capacitor.plateChargeProperty );
+    // @public {BarMeter}
+    this.plateChargeMeter = new BarMeter( this.topPlateChargeMeterVisibleProperty, this.circuit.capacitor.plateChargeProperty );
 
-  // @public {BarMeter}
-  this.storedEnergyMeter = new BarMeter( this.storedEnergyMeterVisibleProperty, this.circuit.capacitor.storedEnergyProperty );
-}
+    // @public {BarMeter}
+    this.storedEnergyMeter = new BarMeter( this.storedEnergyMeterVisibleProperty, this.circuit.capacitor.storedEnergyProperty );
+  }
 
-capacitorLabBasics.register( 'CLBLightBulbModel', CLBLightBulbModel );
-
-inherit( CLBModel, CLBLightBulbModel, {
   /**
    * Reset function for this model.
    * @public
    * @override
    */
-  reset: function() {
+  reset() {
     this.plateChargesVisibleProperty.reset();
     this.topPlateChargeMeterVisibleProperty.reset();
     this.storedEnergyMeterVisibleProperty.reset();
@@ -91,15 +88,27 @@ inherit( CLBModel, CLBLightBulbModel, {
     this.storedEnergyMeter.reset();
     this.voltmeter.reset();
     this.circuit.reset();
-    CLBModel.prototype.reset.call( this );
-  },
-  step: function( dt, isManual ) {
-    CLBModel.prototype.step.call( this, dt, isManual );
-    this.circuit.updateCurrentAmplitude( dt );
-  },
-  manualStep: function() {
-    CLBModel.prototype.step.call( this, 0.2, true );
+    super.reset();
   }
-} );
+
+  /**
+   * @param {number} dt
+   * @param {boolean} isManual
+   * @public
+   */
+  step( dt, isManual ) {
+    super.step( dt, isManual );
+    this.circuit.updateCurrentAmplitude( dt );
+  }
+
+  /**
+   * @public
+   */
+  manualStep() {
+    super.step( 0.2, true );
+  }
+}
+
+capacitorLabBasics.register( 'CLBLightBulbModel', CLBLightBulbModel );
 
 export default CLBLightBulbModel;

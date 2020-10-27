@@ -9,13 +9,13 @@
 
 import Vector2 from '../../../../dot/js/Vector2.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
-import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import StopwatchNode from '../../../../scenery-phet/js/StopwatchNode.js';
+import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import BarMeterPanel from '../../common/view/BarMeterPanel.js';
+import DebugLayer from '../../common/view/DebugLayer.js';
 import CLBViewControlPanel from '../../common/view/control/CLBViewControlPanel.js';
 import VoltmeterToolboxPanel from '../../common/view/control/VoltmeterToolboxPanel.js';
-import DebugLayer from '../../common/view/DebugLayer.js';
 import VoltmeterNode from '../../common/view/meters/VoltmeterNode.js';
 import CapacitanceCircuitNode from './CapacitanceCircuitNode.js';
 
@@ -85,7 +85,7 @@ class CapacitanceScreenView extends ScreenView {
     capacitanceBarMeterPanel.top = this.layoutBounds.top + 10;
 
     const resetAllButton = new ResetAllButton( {
-      listener: function() {
+      listener: () => {
         model.reset();
       },
       bottom: this.layoutBounds.bottom - 30,

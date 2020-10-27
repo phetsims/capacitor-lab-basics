@@ -25,7 +25,7 @@ const UnitsUtils = {
    * @param {number} d
    * @returns {number}
    */
-  metersToMillimeters: function( d ) {
+  metersToMillimeters( d ) {
     return d * MILLIMETERS_PER_METER;
   },
 
@@ -36,7 +36,7 @@ const UnitsUtils = {
    * @param {number} d
    * @returns {number}
    */
-  metersSquaredToMillimetersSquared: function( d ) {
+  metersSquaredToMillimetersSquared( d ) {
     return d * ( MILLIMETERS_PER_METER * MILLIMETERS_PER_METER );
   }
 };

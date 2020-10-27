@@ -13,7 +13,6 @@
  */
 
 import Utils from '../../../../../dot/js/Utils.js';
-import inherit from '../../../../../phet-core/js/inherit.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
 import ArrowNode from '../../../../../scenery-phet/js/ArrowNode.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
@@ -34,79 +33,73 @@ const VALUE_MAX_WIDTH = 67; // max width of value string for i18n
 const VALUE_FONT = new PhetFont( 16 );
 const VALUE_COLOR = 'black';
 
-/**
- * @constructor
- *
- * @param {BarMeter} meter
- * @param {string} barColor - fill color of the BarMeter
- * @param {number} maxValue - model value at which the bar has max length
- * @param {string} unitsPattern - string representing units
- * @param {string} titleString - title string for the bar graph
- * @param {Tandem} tandem
- */
-function BarMeterNode( meter, barColor, maxValue, unitsPattern, titleString, tandem ) {
+class BarMeterNode extends Node {
+  /**
+   * @param {BarMeter} meter
+   * @param {string} barColor - fill color of the BarMeter
+   * @param {number} maxValue - model value at which the bar has max length
+   * @param {string} unitsPattern - string representing units
+   * @param {string} titleString - title string for the bar graph
+   * @param {Tandem} tandem
+   */
+  constructor( meter, barColor, maxValue, unitsPattern, titleString, tandem ) {
+    super( { tandem: tandem } );
 
-  const self = this;
+    // @public {number}
+    this.maxValue = maxValue;
 
-  // @public {number}
-  this.maxValue = maxValue;
+    // @private {BarMeter}
+    this.meter = meter;
 
-  // @private {BarMeter}
-  this.meter = meter;
+    // @private {string}
+    this.unitsPattern = unitsPattern;
 
-  // @private {string}
-  this.unitsPattern = unitsPattern;
+    // @public {string}
+    this.titleString = titleString;
 
-  // @public {string}
-  this.titleString = titleString;
+    // @private {Line} - vertical line that represents the base of this bar meter
+    this.axisLine = new Line( 0, -BASE_LINE_LENGTH / 2, 0, BASE_LINE_LENGTH / 2, {
+      stroke: BAR_STROKE_COLOR,
+      lineWidth: BAR_LINE_WIDTH
+    } );
 
-  // @private {Line} - vertical line that represents the base of this bar meter
-  this.axisLine = new Line( 0, -BASE_LINE_LENGTH / 2, 0, BASE_LINE_LENGTH / 2, {
-    stroke: BAR_STROKE_COLOR,
-    lineWidth: BAR_LINE_WIDTH
-  } );
+    // @private {BarNode} - bar node which represents the magnitude of the meter
+    this.barNode = new BarNode( barColor, meter.valueProperty.get(), this.maxValue );
 
-  // @private {BarNode} - bar node which represents the magnitude of the meter
-  this.barNode = new BarNode( barColor, meter.valueProperty.get(), this.maxValue );
+    // @public {Text} - value with hundredths precision and units, set in setValue()
+    this.valueTextNode = new Text( '', {
+      font: VALUE_FONT,
+      fill: VALUE_COLOR,
+      maxWidth: VALUE_MAX_WIDTH,
+      tandem: tandem.createTandem( 'valueTextNode' )
+    } );
 
-  // @public {Text} - value with hundredths precision and units, set in setValue()
-  this.valueTextNode = new Text( '', {
-    font: VALUE_FONT,
-    fill: VALUE_COLOR,
-    maxWidth: VALUE_MAX_WIDTH,
-    tandem: tandem.createTandem( 'valueTextNode' )
-  } );
+    // @public {ArrowNode} - arrow node used to indicate when the value has gone beyond the scale of this meter
+    this.arrowNode = new ArrowNode( 0, 0, this.barNode.barSize.height + 2, 0, {
+      fill: barColor,
+      headWidth: this.barNode.barSize.height + 5,
+      tailWidth: 12,
+      stroke: 'black',
+      tandem: tandem.createTandem( 'arrowNode' )
+    } );
 
-  // @public {ArrowNode} - arrow node used to indicate when the value has gone beyond the scale of this meter
-  this.arrowNode = new ArrowNode( 0, 0, this.barNode.barSize.height + 2, 0, {
-    fill: barColor,
-    headWidth: this.barNode.barSize.height + 5,
-    tailWidth: 12,
-    stroke: 'black',
-    tandem: tandem.createTandem( 'arrowNode' )
-  } );
+    this.axisLine.children = [ this.valueTextNode, this.barNode, this.arrowNode ];
+    this.addChild( this.axisLine );
 
-  Node.call( this, { tandem: tandem } );
-  this.axisLine.children = [ this.valueTextNode, this.barNode, this.arrowNode ];
-  this.addChild( this.axisLine );
+    // observers
+    meter.valueProperty.link( value => {
+      this.setValue( value );
+      this.updateArrow();
+    } );
 
-  // observers
-  meter.valueProperty.link( function( value ) {
-    self.setValue( value );
-    self.updateArrow();
-  } );
+    // visibility
+    meter.visibleProperty.link( visible => {
+      this.visible = visible;
+    } );
 
-  // visibility
-  meter.visibleProperty.link( function( visible ) {
-    self.visible = visible;
-  } );
+    this.updateLayout();
+  }
 
-  this.updateLayout();
-}
-
-capacitorLabBasics.register( 'BarMeterNode', BarMeterNode );
-
-inherit( Node, BarMeterNode, {
 
   /**
    * Sets the color used to fill the bar and the overload indicator arrow.
@@ -114,10 +107,10 @@ inherit( Node, BarMeterNode, {
    *
    * @param {string} color
    */
-  setBarColor: function( color ) {
+  setBarColor( color ) {
     this.barNode.fill = color;
     this.arrowNode.fill = color;
-  },
+  }
 
   /**
    * Sets the value displayed by the meter.
@@ -126,7 +119,7 @@ inherit( Node, BarMeterNode, {
    *
    * @param {number} value
    */
-  setValue: function( value ) {
+  setValue( value ) {
 
     assert && assert( value >= 0, 'value must be >= 0 : ' + value );
 
@@ -142,29 +135,30 @@ inherit( Node, BarMeterNode, {
       const unitsFormatString = StringUtils.fillIn( this.unitsPattern, { value: meterValue } );
       this.valueTextNode.setText( unitsFormatString );
     }
-  },
+  }
 
   /**
    * Update the overload indicator arrow visibility and position.
    * @private
    */
-  updateArrow: function() {
+  updateArrow() {
     // update position
     this.arrowNode.left = this.barNode.right + VALUE_METER_SPACING;
 
     // update visibility
     this.arrowNode.visible = Math.abs( this.meter.valueProperty.get() ) > this.maxValue;
-  },
+  }
 
   /**
    * Update the layout
    * @private
    */
-  updateLayout: function() {
+  updateLayout() {
     this.barNode.leftCenter = this.axisLine.leftCenter;
     this.valueTextNode.leftCenter = this.axisLine.leftCenter.minusXY( VALUE_MAX_WIDTH, 0 );
   }
+}
 
-} );
+capacitorLabBasics.register( 'BarMeterNode', BarMeterNode );
 
 export default BarMeterNode;

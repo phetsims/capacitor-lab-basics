@@ -13,7 +13,6 @@ import Property from '../../../../axon/js/Property.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
 import EnumerationIO from '../../../../phet-core/js/EnumerationIO.js';
-import inherit from '../../../../phet-core/js/inherit.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
@@ -40,58 +39,53 @@ const POSITIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) - 0.00012;
 const NEGATIVE_TERMINAL_ELLIPSE_SIZE = new Dimension2( 0.0035, 0.0009 ); // Ellipse axes defining the negative terminal
 const NEGATIVE_TERMINAL_Y_OFFSET = -( BODY_SIZE.height / 2 ) + 0.0006; // center of negative terminal when at the top
 
-/**
- * @constructor
- *
- * @param {Vector3} position
- * @param {number} voltage
- * @param {YawPitchModelViewTransform3} modelViewTransform
- * @param {Tandem} tandem
- */
-function Battery( position, voltage, modelViewTransform, tandem ) {
-  assert && assert( position instanceof Vector3 );
+class Battery {
+  /**
+   * @param {Vector3} position
+   * @param {number} voltage
+   * @param {YawPitchModelViewTransform3} modelViewTransform
+   * @param {Tandem} tandem
+   */
+  constructor( position, voltage, modelViewTransform, tandem ) {
+    assert && assert( position instanceof Vector3 );
 
-  // @public {Property.<number>}
-  this.voltageProperty = new NumberProperty( voltage, {
-    tandem: tandem.createTandem( 'voltageProperty' ),
-    units: 'volts',
-    range: CLBConstants.BATTERY_VOLTAGE_RANGE
-  } );
+    // @public {Property.<number>}
+    this.voltageProperty = new NumberProperty( voltage, {
+      tandem: tandem.createTandem( 'voltageProperty' ),
+      units: 'volts',
+      range: CLBConstants.BATTERY_VOLTAGE_RANGE
+    } );
 
-  // Value type: enumeration (string)
-  // @public {Property.<string>} - 'POSITIVE' or 'NEGATIVE'
-  // TODO: use EnumerationProperty
-  this.polarityProperty = new Property( CapacitorConstants.POLARITY.POSITIVE, {
-    validValues: CapacitorConstants.POLARITY.VALUES,
-    tandem: tandem.createTandem( 'polarityProperty' ),
-    phetioType: Property.PropertyIO( EnumerationIO( CapacitorConstants.POLARITY ) )
-  } );
+    // Value type: enumeration (string)
+    // @public {Property.<string>} - 'POSITIVE' or 'NEGATIVE'
+    // TODO: use EnumerationProperty
+    this.polarityProperty = new Property( CapacitorConstants.POLARITY.POSITIVE, {
+      validValues: CapacitorConstants.POLARITY.VALUES,
+      tandem: tandem.createTandem( 'polarityProperty' ),
+      phetioType: Property.PropertyIO( EnumerationIO( CapacitorConstants.POLARITY ) )
+    } );
 
-  const self = this;
 
-  // @public {Dimension2}
-  this.positiveTerminalEllipseSize = POSITIVE_TERMINAL_ELLIPSE_SIZE;
-  this.negativeTerminalEllipseSize = NEGATIVE_TERMINAL_ELLIPSE_SIZE;
+    // @public {Dimension2}
+    this.positiveTerminalEllipseSize = POSITIVE_TERMINAL_ELLIPSE_SIZE;
+    this.negativeTerminalEllipseSize = NEGATIVE_TERMINAL_ELLIPSE_SIZE;
 
-  // @public {number}
-  this.positiveTerminalCylinderHeight = POSITIVE_TERMINAL_CYLINDER_HEIGHT;
+    // @public {number}
+    this.positiveTerminalCylinderHeight = POSITIVE_TERMINAL_CYLINDER_HEIGHT;
 
-  // @public {Vector3}
-  this.position = position; // @public (read-only)
-  this.shapeCreator = new BatteryShapeCreator( this, modelViewTransform ); // @private
+    // @public {Vector3}
+    this.position = position; // @public (read-only)
+    this.shapeCreator = new BatteryShapeCreator( this, modelViewTransform ); // @private
 
-  // @private {Shape}
-  this.positiveTerminalShape = this.shapeCreator.createPositiveTerminalShape();
-  this.negativeTerminalShape = this.shapeCreator.createNegativeTerminalShape();
+    // @private {Shape}
+    this.positiveTerminalShape = this.shapeCreator.createPositiveTerminalShape();
+    this.negativeTerminalShape = this.shapeCreator.createNegativeTerminalShape();
 
-  this.voltageProperty.link( function() {
-    self.polarityProperty.set( self.getPolarity( self.voltageProperty.value ) );
-  } );
-}
+    this.voltageProperty.link( () => {
+      this.polarityProperty.set( this.getPolarity( this.voltageProperty.value ) );
+    } );
+  }
 
-capacitorLabBasics.register( 'Battery', Battery );
-
-inherit( Object, Battery, {
 
   /**
    * Convenience function to get the polarity from the object literal based on the voltage.
@@ -100,9 +94,9 @@ inherit( Object, Battery, {
    * @param {number} voltage
    * @returns {string}
    */
-  getPolarity: function( voltage ) {
+  getPolarity( voltage ) {
     return ( voltage >= 0 ) ? CapacitorConstants.POLARITY.POSITIVE : CapacitorConstants.POLARITY.NEGATIVE;
-  },
+  }
 
   /**
    * Determine if the probe tip shape contacts a battery terminal.
@@ -113,7 +107,7 @@ inherit( Object, Battery, {
    * @param {Shape} probe - voltmeter probe tip shape
    * @returns {boolean}
    */
-  contacts: function( probe ) {
+  contacts( probe ) {
     let shape;
     if ( this.polarityProperty.value === CapacitorConstants.POLARITY.POSITIVE ) {
       shape = this.positiveTerminalShape;
@@ -123,7 +117,7 @@ inherit( Object, Battery, {
     }
     return probe.bounds.intersectsBounds( shape.bounds ) &&
            probe.shapeIntersection( shape ).getNonoverlappingArea() > 0;
-  },
+  }
 
   /**
    * Gets the offset of the bottom terminal from the battery's origin, in model coordinates (meters).
@@ -132,9 +126,9 @@ inherit( Object, Battery, {
    *
    * @returns {number}
    */
-  getBottomTerminalYOffset: function() {
+  getBottomTerminalYOffset() {
     return BODY_SIZE.height / 2;
-  },
+  }
 
   /**
    * Gets the offset of the top terminal from the battery's origin, in model coordinates (meters).
@@ -143,20 +137,22 @@ inherit( Object, Battery, {
    *
    * @returns {number}
    */
-  getTopTerminalYOffset: function() {
+  getTopTerminalYOffset() {
     if ( this.polarityProperty.value === CapacitorConstants.POLARITY.POSITIVE ) {
       return POSITIVE_TERMINAL_Y_OFFSET;
     }
     else {
       return NEGATIVE_TERMINAL_Y_OFFSET;
     }
-  },
+  }
 
   // @public
-  reset: function() {
+  reset() {
     this.voltageProperty.reset();
     this.polarityProperty.reset();
   }
-} );
+}
+
+capacitorLabBasics.register( 'Battery', Battery );
 
 export default Battery;

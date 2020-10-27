@@ -30,7 +30,7 @@ const simOptions = {
   }
 };
 
-simLauncher.launch( function() {
+simLauncher.launch( () => {
 
   // Tracks whether a circuit switch has been changed by user. Once the switch has been changed in either screen,
   // the cue arrows (used to hint that the switch is available) should disappear from both screens.

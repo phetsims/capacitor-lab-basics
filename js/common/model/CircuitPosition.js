@@ -31,7 +31,7 @@ CircuitPosition.VALUES = [
   CircuitPosition.CIRCUIT_SWITCH_BOTTOM
 ];
 
-CircuitPosition.isTop = function( circuitPosition ) {
+CircuitPosition.isTop = circuitPosition => {
   assert && assert( _.includes( CircuitPosition.VALUES, circuitPosition ) );
   return circuitPosition === CircuitPosition.BATTERY_TOP ||
          circuitPosition === CircuitPosition.LIGHT_BULB_TOP ||
@@ -39,19 +39,19 @@ CircuitPosition.isTop = function( circuitPosition ) {
          circuitPosition === CircuitPosition.CIRCUIT_SWITCH_TOP;
 };
 
-CircuitPosition.isBattery = function( circuitPosition ) {
+CircuitPosition.isBattery = circuitPosition => {
   assert && assert( _.includes( CircuitPosition.VALUES, circuitPosition ) );
   return circuitPosition === CircuitPosition.BATTERY_TOP ||
          circuitPosition === CircuitPosition.BATTERY_BOTTOM;
 };
 
-CircuitPosition.isLightBulb = function( circuitPosition ) {
+CircuitPosition.isLightBulb = circuitPosition => {
   assert && assert( _.includes( CircuitPosition.VALUES, circuitPosition ) );
   return circuitPosition === CircuitPosition.LIGHT_BULB_TOP ||
          circuitPosition === CircuitPosition.LIGHT_BULB_BOTTOM;
 };
 
-CircuitPosition.isCapacitor = function( circuitPosition ) {
+CircuitPosition.isCapacitor = circuitPosition => {
   assert && assert( _.includes( CircuitPosition.VALUES, circuitPosition ) );
   return circuitPosition === CircuitPosition.CAPACITOR_TOP ||
          circuitPosition === CircuitPosition.CAPACITOR_BOTTOM;

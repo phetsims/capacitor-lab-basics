@@ -9,10 +9,9 @@
  */
 
 import Vector2 from '../../../../../dot/js/Vector2.js';
-import inherit from '../../../../../phet-core/js/inherit.js';
 import Node from '../../../../../scenery/js/nodes/Node.js';
-import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
+import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
 import CLBConstants from '../../CLBConstants.js';
 import UnitsUtils from '../../model/util/UnitsUtils.js';
 import DragHandleArrowNode from './DragHandleArrowNode.js';
@@ -33,93 +32,88 @@ const LINE_END_POSITION = new Vector2( 0, -LINE_LENGTH );
 const millimetersPatternString = capacitorLabBasicsStrings.millimetersPattern;
 const separationString = capacitorLabBasicsStrings.separation;
 
-/**
- * @constructor
- *
- * @param {Capacitor} capacitor
- * @param {YawPitchModelViewTransform3} modelViewTransform
- * @param {Range} valueRange
- * @param {Tandem} tandem
- */
-function PlateSeparationDragHandleNode( capacitor, modelViewTransform, valueRange, tandem ) {
+class PlateSeparationDragHandleNode extends Node {
+  /**
+   * @param {Capacitor} capacitor
+   * @param {YawPitchModelViewTransform3} modelViewTransform
+   * @param {Range} valueRange
+   * @param {Tandem} tandem
+   */
+  constructor( capacitor, modelViewTransform, valueRange, tandem ) {
 
-  Node.call( this, { tandem: tandem } );
-  const self = this;
+    super( { tandem: tandem } );
 
-  // @private
-  this.capacitor = capacitor;
-  this.modelViewTransform = modelViewTransform;
+    // @private
+    this.capacitor = capacitor;
+    this.modelViewTransform = modelViewTransform;
 
-  const dragHandler = new PlateSeparationDragHandler( capacitor, modelViewTransform, valueRange,
-    tandem.createTandem( 'dragHandler' ) );
-  this.addInputListener( dragHandler );
+    const dragHandler = new PlateSeparationDragHandler( capacitor, modelViewTransform, valueRange,
+      tandem.createTandem( 'dragHandler' ) );
+    this.addInputListener( dragHandler );
 
-  // arrow
-  const arrowNode = new DragHandleArrowNode( ARROW_START_POSITION, ARROW_END_POSITION, dragHandler.isHighlightedProperty,
-    tandem.createTandem( 'arrowNode' ) );
+    // arrow
+    const arrowNode = new DragHandleArrowNode( ARROW_START_POSITION, ARROW_END_POSITION, dragHandler.isHighlightedProperty,
+      tandem.createTandem( 'arrowNode' ) );
 
-  this.cursor = 'pointer';
+    this.cursor = 'pointer';
 
-  // line
-  const lineNode = new DragHandleLineNode( LINE_START_POSITION, LINE_END_POSITION );
+    // line
+    const lineNode = new DragHandleLineNode( LINE_START_POSITION, LINE_END_POSITION );
 
-  // value
-  const millimeters = UnitsUtils.metersToMillimeters( capacitor.plateSeparationProperty.value );
-  this.valueNode = new DragHandleValueNode( separationString, millimeters, millimetersPatternString, {
-    tandem: tandem.createTandem( 'valueNode' )
-  } );
+    // value
+    const millimeters = UnitsUtils.metersToMillimeters( capacitor.plateSeparationProperty.value );
+    this.valueNode = new DragHandleValueNode( separationString, millimeters, millimetersPatternString, {
+      tandem: tandem.createTandem( 'valueNode' )
+    } );
 
-  // Make text part of the draggable area
-  this.valueNode.mouseArea = this.valueNode.bounds.dilated( 0 );
-  this.valueNode.touchArea = this.valueNode.bounds.dilated( 0 );
+    // Make text part of the draggable area
+    this.valueNode.mouseArea = this.valueNode.bounds.dilated( 0 );
+    this.valueNode.touchArea = this.valueNode.bounds.dilated( 0 );
 
-  // rendering order
-  this.addChild( lineNode );
-  this.addChild( arrowNode );
-  this.addChild( this.valueNode );
+    // rendering order
+    this.addChild( lineNode );
+    this.addChild( arrowNode );
+    this.addChild( this.valueNode );
 
-  // layout: arrow about line, horizontally centered
-  let x = 0;
-  let y = 0;
-  lineNode.translation = new Vector2( x, y );
+    // layout: arrow about line, horizontally centered
+    let x = 0;
+    let y = 0;
+    lineNode.translation = new Vector2( x, y );
 
-  x = 0;
-  y = lineNode.bounds.minY - 2;
-  arrowNode.translation = new Vector2( x, y );
+    x = 0;
+    y = lineNode.bounds.minY - 2;
+    arrowNode.translation = new Vector2( x, y );
 
-  x = arrowNode.bounds.maxX + 5;
-  y = arrowNode.bounds.minY - this.valueNode.bounds.height / 2 + 5;
-  this.valueNode.translation = new Vector2( x, y );
+    x = arrowNode.bounds.maxX + 5;
+    y = arrowNode.bounds.minY - this.valueNode.bounds.height / 2 + 5;
+    this.valueNode.translation = new Vector2( x, y );
 
-  // update when related model properties change
-  capacitor.plateSeparationProperty.link( function() {
-    self.updateValueDisplay();
-    self.updateOffset();
-  } );
+    // update when related model properties change
+    capacitor.plateSeparationProperty.link( () => {
+      this.updateValueDisplay();
+      this.updateOffset();
+    } );
 
-  capacitor.plateSizeProperty.link( function() {
-    self.updateOffset();
-  } );
-}
+    capacitor.plateSizeProperty.link( () => {
+      this.updateOffset();
+    } );
+  }
 
-capacitorLabBasics.register( 'PlateSeparationDragHandleNode', PlateSeparationDragHandleNode );
-
-inherit( Node, PlateSeparationDragHandleNode, {
 
   /**
    * Synchronizes the value display with the model.
    * @public
    */
-  updateValueDisplay: function() {
+  updateValueDisplay() {
     const millimeters = UnitsUtils.metersToMillimeters( this.capacitor.plateSeparationProperty.value );
     this.valueNode.setValue( millimeters, 1 ); // One decimal place
-  },
+  }
 
   /**
    * Attach drag handle to top capacitor plate, in center the plate's top face.
    * @public
    */
-  updateOffset: function() {
+  updateOffset() {
     const width = this.capacitor.plateSizeProperty.value.width;
     const height = this.capacitor.plateSizeProperty.value.height;
     const x = this.capacitor.position.x + ( 0.3 * width );
@@ -127,6 +121,8 @@ inherit( Node, PlateSeparationDragHandleNode, {
     const z = 0;
     this.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
   }
-} );
+}
+
+capacitorLabBasics.register( 'PlateSeparationDragHandleNode', PlateSeparationDragHandleNode );
 
 export default PlateSeparationDragHandleNode;

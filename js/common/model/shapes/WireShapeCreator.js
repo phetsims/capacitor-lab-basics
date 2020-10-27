@@ -10,26 +10,20 @@
 
 import Shape from '../../../../../kite/js/Shape.js';
 import LineStyles from '../../../../../kite/js/util/LineStyles.js';
-import inherit from '../../../../../phet-core/js/inherit.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
-/**
- * @constructor
- *
- * @param {Wire} wire
- * @param {YawPitchModelViewTransform3} modelViewTransform
- */
-function WireShapeCreator( wire, modelViewTransform ) {
-  // @private {Wire}
-  this.wire = wire;
+class WireShapeCreator {
+  /**
+   * @param {Wire} wire
+   * @param {YawPitchModelViewTransform3} modelViewTransform
+   */
+  constructor( wire, modelViewTransform ) {
+    // @private {Wire}
+    this.wire = wire;
 
-  // @private {YawPitchModelViewTransform3}
-  this.modelViewTransform = modelViewTransform;
-}
-
-capacitorLabBasics.register( 'WireShapeCreator', WireShapeCreator );
-
-inherit( Object, WireShapeCreator, {
+    // @private {YawPitchModelViewTransform3}
+    this.modelViewTransform = modelViewTransform;
+  }
 
   /**
    * Create a wire shape.  Shape is generated from the stroked shape of the line segments which are added together
@@ -38,9 +32,7 @@ inherit( Object, WireShapeCreator, {
    *
    * @returns {Shape}
    */
-  createWireShape: function() {
-    const self = this;
-
+  createWireShape() {
     // stroke styles for the wire shapes.
     const strokeStyles = new LineStyles( {
       lineWidth: 7,
@@ -48,12 +40,14 @@ inherit( Object, WireShapeCreator, {
       lineJoin: 'round'
     } );
 
-    const shapes = this.wire.segments.map( function( segment ) {
+    const shapes = this.wire.segments.map( segment => {
       const shape = Shape.lineSegment( segment.startPointProperty.value.toVector2(), segment.endPointProperty.value.toVector2() );
-      return self.modelViewTransform.modelToViewShape( shape ).getStrokedShape( strokeStyles );
+      return this.modelViewTransform.modelToViewShape( shape ).getStrokedShape( strokeStyles );
     } );
     return Shape.union( shapes );
   }
-} );
+}
+
+capacitorLabBasics.register( 'WireShapeCreator', WireShapeCreator );
 
 export default WireShapeCreator;

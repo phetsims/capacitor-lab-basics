@@ -24,7 +24,6 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Bounds3 from '../../../../dot/js/Bounds3.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
-import inherit from '../../../../phet-core/js/inherit.js';
 import merge from '../../../../phet-core/js/merge.js';
 import BoxShapeCreator from '../../../../scenery-phet/js/capacitor/BoxShapeCreator.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
@@ -34,131 +33,124 @@ import CLBConstants from '../CLBConstants.js';
 import CircuitPosition from './CircuitPosition.js';
 import CircuitSwitch from './CircuitSwitch.js';
 
-/**
- * @constructor
- *
- * @param {CircuitConfig} config
- * @param {Property.<CircuitState>} circuitConnectionProperty
- * @param {Tandem} tandem
- * @param {Object} [options]
- */
-function Capacitor( config, circuitConnectionProperty, tandem, options ) {
+class Capacitor {
+  /**
+   * @param {CircuitConfig} config
+   * @param {Property.<CircuitState>} circuitConnectionProperty
+   * @param {Tandem} tandem
+   * @param {Object} [options]
+   */
+  constructor( config, circuitConnectionProperty, tandem, options ) {
 
-  // options that populate the capacitor with various geometric properties
-  options = merge( {
-    plateWidth: CapacitorConstants.PLATE_WIDTH_RANGE.defaultValue,
-    plateSeparation: CapacitorConstants.PLATE_SEPARATION_RANGE.defaultValue
-  }, options );
+    // options that populate the capacitor with various geometric properties
+    options = merge( {
+      plateWidth: CapacitorConstants.PLATE_WIDTH_RANGE.defaultValue,
+      plateSeparation: CapacitorConstants.PLATE_SEPARATION_RANGE.defaultValue
+    }, options );
 
-  // @public {number}
-  this.transientTime = 0; // model time updated when the switch is closed and while the capacitor is discharging
-  this.voltageAtSwitchClose = 0; // voltage of the plates when the bulb switch is initially closed
+    // @public {number}
+    this.transientTime = 0; // model time updated when the switch is closed and while the capacitor is discharging
+    this.voltageAtSwitchClose = 0; // voltage of the plates when the bulb switch is initially closed
 
-  // @public {YawPitchModelViewTransform3}
-  this.modelViewTransform = config.modelViewTransform;
+    // @public {YawPitchModelViewTransform3}
+    this.modelViewTransform = config.modelViewTransform;
 
-  // @public {Vector3}
-  this.position = new Vector3(
-    CLBConstants.BATTERY_POSITION.x + config.capacitorXSpacing,
-    CLBConstants.BATTERY_POSITION.y + config.capacitorYSpacing,
-    CLBConstants.BATTERY_POSITION.z );
+    // @public {Vector3}
+    this.position = new Vector3(
+      CLBConstants.BATTERY_POSITION.x + config.capacitorXSpacing,
+      CLBConstants.BATTERY_POSITION.y + config.capacitorYSpacing,
+      CLBConstants.BATTERY_POSITION.z );
 
-  // @private {BoxShapeCreator}
-  this.shapeCreator = new BoxShapeCreator( config.modelViewTransform );
+    // @private {BoxShapeCreator}
+    this.shapeCreator = new BoxShapeCreator( config.modelViewTransform );
 
-  // Square plates.
-  const plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CapacitorConstants.PLATE_HEIGHT, options.plateWidth );
+    // Square plates.
+    const plateBounds = new Bounds3( 0, 0, 0, options.plateWidth, CapacitorConstants.PLATE_HEIGHT, options.plateWidth );
 
-  // @public {Property.<Bounds3>}
-  this.plateSizeProperty = new Property( plateBounds, {
-    tandem: tandem.createTandem( 'plateSizeProperty' ),
-    phetioType: Property.PropertyIO( Bounds3.Bounds3IO ),
-    phetioReadOnly: true
-  } );
-
-  // @public {Property.<number>}
-  this.plateSeparationProperty = new NumberProperty( options.plateSeparation, {
-    tandem: tandem.createTandem( 'plateSeparationProperty' ),
-    units: 'meters',
-    range: CapacitorConstants.PLATE_SEPARATION_RANGE
-  } );
-
-  // @public {Property.<number>} - zero until it's connected into a circuit
-  this.plateVoltageProperty = new NumberProperty( 0, {
-    tandem: tandem.createTandem( 'plateVoltageProperty' ),
-    units: 'volts',
-    phetioReadOnly: true
-  } );
-
-  // @public {Property.<number>}
-  this.capacitanceProperty = new DerivedProperty( [ this.plateSeparationProperty, this.plateSizeProperty ],
-    function( plateSeparation, plateSize ) {
-      assert && assert( plateSeparation > 0, 'Plate separation is ' + plateSeparation );
-      return CLBConstants.EPSILON_0 * plateSize.width * plateSize.depth / plateSeparation;
-    }, {
-      tandem: tandem.createTandem( 'capacitanceProperty' ),
-      units: 'farads',
-      phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+    // @public {Property.<Bounds3>}
+    this.plateSizeProperty = new Property( plateBounds, {
+      tandem: tandem.createTandem( 'plateSizeProperty' ),
+      phetioType: Property.PropertyIO( Bounds3.Bounds3IO ),
+      phetioReadOnly: true
     } );
 
-  // @public {Property.<number>} Charge on top plate of capacitor
-  this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty, circuitConnectionProperty ],
-    function( capacitance, voltage, circuitConnection ) {
-      if ( circuitConnection ) {
-        let charge = capacitance * voltage;
+    // @public {Property.<number>}
+    this.plateSeparationProperty = new NumberProperty( options.plateSeparation, {
+      tandem: tandem.createTandem( 'plateSeparationProperty' ),
+      units: 'meters',
+      range: CapacitorConstants.PLATE_SEPARATION_RANGE
+    } );
 
-        // Force an underflow to zero below the threshold for stability
-        if ( Math.abs( charge ) < CLBConstants.MIN_PLATE_CHARGE ) {
-          charge = 0;
+    // @public {Property.<number>} - zero until it's connected into a circuit
+    this.plateVoltageProperty = new NumberProperty( 0, {
+      tandem: tandem.createTandem( 'plateVoltageProperty' ),
+      units: 'volts',
+      phetioReadOnly: true
+    } );
+
+    // @public {Property.<number>}
+    this.capacitanceProperty = new DerivedProperty( [ this.plateSeparationProperty, this.plateSizeProperty ],
+      ( plateSeparation, plateSize ) => {
+        assert && assert( plateSeparation > 0, 'Plate separation is ' + plateSeparation );
+        return CLBConstants.EPSILON_0 * plateSize.width * plateSize.depth / plateSeparation;
+      }, {
+        tandem: tandem.createTandem( 'capacitanceProperty' ),
+        units: 'farads',
+        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+      } );
+
+    // @public {Property.<number>} Charge on top plate of capacitor
+    this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty, circuitConnectionProperty ],
+      ( capacitance, voltage, circuitConnection ) => {
+        if ( circuitConnection ) {
+          let charge = capacitance * voltage;
+
+          // Force an underflow to zero below the threshold for stability
+          if ( Math.abs( charge ) < CLBConstants.MIN_PLATE_CHARGE ) {
+            charge = 0;
+          }
+          return charge;
         }
-        return charge;
-      }
-    }, {
-      tandem: tandem.createTandem( 'plateChargeProperty' ),
-      units: 'coulombs',
-      phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+      }, {
+        tandem: tandem.createTandem( 'plateChargeProperty' ),
+        units: 'coulombs',
+        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+      } );
+
+    // @public {Property.<number>}
+    this.storedEnergyProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty ],
+      ( capacitance, voltage ) => 0.5 * capacitance * voltage * voltage, {
+        tandem: tandem.createTandem( 'storedEnergyProperty' ),
+        units: 'joules',
+        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+      } );
+
+    // Track the previous capacitance to adjust the inital voltage when discharging, see
+    // updateDischargeParameters() below.
+    // @private {number}
+    this.previousCapacitance = this.capacitanceProperty.value;
+
+    // @public {CircuitSwitch}
+    this.topCircuitSwitch = CircuitSwitch.TOP( config, circuitConnectionProperty,
+      tandem.createTandem( 'topCircuitSwitch' ) );
+
+    // @public {CircuitSwitch}
+    this.bottomCircuitSwitch = CircuitSwitch.BOTTOM( config, circuitConnectionProperty,
+      tandem.createTandem( 'bottomCircuitSwitch' ) );
+
+    // link the top and bottom circuit switches together so that they rotate together
+    // as the user drags
+
+    // JS handles negative numbers precisely so there will not be an infinite
+    // loop here due to mutual recursion.
+    this.topCircuitSwitch.angleProperty.link( angle => {
+      this.bottomCircuitSwitch.angleProperty.set( -angle );
     } );
-
-  // @public {Property.<number>}
-  this.storedEnergyProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty ],
-    function( capacitance, voltage ) {
-      return 0.5 * capacitance * voltage * voltage;
-    }, {
-      tandem: tandem.createTandem( 'storedEnergyProperty' ),
-      units: 'joules',
-      phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+    this.bottomCircuitSwitch.angleProperty.link( angle => {
+      this.topCircuitSwitch.angleProperty.set( -angle );
     } );
+  }
 
-  // Track the previous capacitance to adjust the inital voltage when discharging, see
-  // updateDischargeParameters() below.
-  // @private {number}
-  this.previousCapacitance = this.capacitanceProperty.value;
-
-  // @public {CircuitSwitch}
-  this.topCircuitSwitch = CircuitSwitch.TOP( config, circuitConnectionProperty,
-    tandem.createTandem( 'topCircuitSwitch' ) );
-
-  // @public {CircuitSwitch}
-  this.bottomCircuitSwitch = CircuitSwitch.BOTTOM( config, circuitConnectionProperty,
-    tandem.createTandem( 'bottomCircuitSwitch' ) );
-
-  // link the top and bottom circuit switches together so that they rotate together
-  // as the user drags
-  const self = this;
-
-  // JS handles negative numbers precisely so there will not be an infinite
-  // loop here due to mutual recursion.
-  this.topCircuitSwitch.angleProperty.link( function( angle ) {
-    self.bottomCircuitSwitch.angleProperty.set( -angle );
-  } );
-  this.bottomCircuitSwitch.angleProperty.link( function( angle ) {
-    self.topCircuitSwitch.angleProperty.set( -angle );
-  } );
-}
-
-capacitorLabBasics.register( 'Capacitor', Capacitor );
-
-inherit( Object, Capacitor, {
 
   /**
    * Convenience method, gets the area of one plate's top (or bottom) surfaces.
@@ -167,9 +159,9 @@ inherit( Object, Capacitor, {
    *
    * @returns {number} area in meters^2
    */
-  getPlateArea: function() {
+  getPlateArea() {
     return this.plateSizeProperty.value.width * this.plateSizeProperty.value.depth;
-  },
+  }
 
   /**
    * Sets width and depth of square plates. Thickness is constant.
@@ -178,10 +170,10 @@ inherit( Object, Capacitor, {
    *
    * @param {number} plateWidth - meters
    */
-  setPlateWidth: function( plateWidth ) {
+  setPlateWidth( plateWidth ) {
     assert && assert( plateWidth > 0, 'plateWidth must be > 0: ' + plateWidth );
     this.plateSizeProperty.set( new Bounds3( 0, 0, 0, plateWidth, this.plateSizeProperty.value.height, plateWidth ) );
-  },
+  }
 
   /**
    * Convenience method for determining the outside center of the top plate.  This is a wire attachment point.
@@ -189,12 +181,12 @@ inherit( Object, Capacitor, {
    *
    * @returns {Vector3}
    */
-  getTopConnectionPoint: function() {
+  getTopConnectionPoint() {
     return new Vector3(
       this.position.x,
       this.position.y - ( this.plateSeparationProperty.value / 2 ) - this.plateSizeProperty.value.height,
       this.position.z );
-  },
+  }
 
   /**
    * Convenience method for determining the outside center of the bottom plate.  This is a wire attachment point.
@@ -202,12 +194,12 @@ inherit( Object, Capacitor, {
    *
    * @returns {Vector3}
    */
-  getBottomConnectionPoint: function() {
+  getBottomConnectionPoint() {
     return new Vector3(
       this.position.x,
       this.position.y + ( this.plateSeparationProperty.value / 2 ) + this.plateSizeProperty.value.height,
       this.position.z );
-  },
+  }
 
   /**
    * Check for intersection between a voltmeter probe and the plate faces at either the top or
@@ -219,7 +211,7 @@ inherit( Object, Capacitor, {
    * @param {CircuitPosition} position - CircuitPosition.CAPACITOR_TOP or CircuitPosition.CAPACITOR_BOTTOM
    * @returns {boolean}
    */
-  contacts: function( probe, position ) {
+  contacts( probe, position ) {
 
     assert && assert( position === CircuitPosition.CAPACITOR_TOP || position === CircuitPosition.CAPACITOR_BOTTOM,
       'Invalid capacitor position: ' + position );
@@ -244,7 +236,7 @@ inherit( Object, Capacitor, {
     }
 
     return contacts;
-  },
+  }
 
   /**
    * Gets the effective (net) field between the plates. This is uniform everywhere between the plates.
@@ -255,7 +247,7 @@ inherit( Object, Capacitor, {
    *
    * @returns {number} Volts/meter
    */
-  getEffectiveEField: function() {
+  getEffectiveEField() {
     const plateCharge = this.plateChargeProperty.value;
     if ( Math.abs( plateCharge ) < CLBConstants.MIN_PLATE_CHARGE ) {
       return 0;
@@ -263,7 +255,7 @@ inherit( Object, Capacitor, {
     else {
       return this.plateVoltageProperty.value / this.plateSeparationProperty.value;
     }
-  },
+  }
 
   /**
    * Discharge the capacitor when it is in parallel with some resistance.  This updates the voltage of the plates
@@ -280,7 +272,7 @@ inherit( Object, Capacitor, {
    * @param {number} R
    * @param {number} dt
    */
-  discharge: function( R, dt ) {
+  discharge( R, dt ) {
     const C = this.capacitanceProperty.value;
 
     this.transientTime += dt; // step time since switch was closed
@@ -288,7 +280,7 @@ inherit( Object, Capacitor, {
     this.plateVoltageProperty.value = this.voltageAtSwitchClose * exp;
 
     this.previousCapacitance = C;
-  },
+  }
 
   /**
    * It is possible to change the capacitance while the capacitor is discharging.  The parameters
@@ -308,7 +300,7 @@ inherit( Object, Capacitor, {
    *
    * @public
    */
-  updateDischargeParameters: function() {
+  updateDischargeParameters() {
 
     // in the discharge function, C is recalculated every time step, so we only need to adjust Vo.
     const capacitanceRatio = this.capacitanceProperty.value / this.previousCapacitance;
@@ -318,14 +310,16 @@ inherit( Object, Capacitor, {
 
     // reset transient time
     this.transientTime = 0;
-  },
+  }
 
   // @public
-  reset: function() {
+  reset() {
     this.plateSizeProperty.reset();
     this.plateSeparationProperty.reset();
     this.plateVoltageProperty.reset();
   }
-} );
+}
+
+capacitorLabBasics.register( 'Capacitor', Capacitor );
 
 export default Capacitor;

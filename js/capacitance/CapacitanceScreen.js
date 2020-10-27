@@ -37,8 +37,8 @@ class CapacitanceScreen extends Screen {
     };
 
     super(
-      function() { return new CapacitanceModel( switchUsedProperty, new YawPitchModelViewTransform3(), tandem.createTandem( 'model' ) ); },
-      function( model ) { return new CapacitanceScreenView( model, tandem.createTandem( 'view' ) ); },
+      () => new CapacitanceModel( switchUsedProperty, new YawPitchModelViewTransform3(), tandem.createTandem( 'model' ) ),
+      model => new CapacitanceScreenView( model, tandem.createTandem( 'view' ) ),
       options
     );
   }

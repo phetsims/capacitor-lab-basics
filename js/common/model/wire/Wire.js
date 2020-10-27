@@ -13,49 +13,42 @@
  */
 
 import Property from '../../../../../axon/js/Property.js';
-import inherit from '../../../../../phet-core/js/inherit.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import WireShapeCreator from '../shapes/WireShapeCreator.js';
 
-/**
- * @param {YawPitchModelViewTransform3} modelViewTransform
- * @param {WireSegment[]} segments
- * @param {CircuitPosition} connectionPoint
- *
- * @constructor
- */
-function Wire( modelViewTransform, segments, connectionPoint ) {
+class Wire {
+  /**
+   * @param {YawPitchModelViewTransform3} modelViewTransform
+   * @param {WireSegment[]} segments
+   * @param {CircuitPosition} connectionPoint
+   *
+   */
+  constructor( modelViewTransform, segments, connectionPoint ) {
 
-  this.segments = segments; // @public
-  this.connectionPoint = connectionPoint; // @public
-  this.shapeCreator = new WireShapeCreator( this, modelViewTransform ); // @private
+    this.segments = segments; // @public
+    this.connectionPoint = connectionPoint; // @public
+    this.shapeCreator = new WireShapeCreator( this, modelViewTransform ); // @private
 
-  // @public
-  this.shapeProperty = new Property( this.shapeCreator.createWireShape() );
+    // @public
+    this.shapeProperty = new Property( this.shapeCreator.createWireShape() );
 
-  const self = this;
-
-  // Whenever a segment changes, update the shape.
-  this.segments.forEach( function( segment ) {
-    Property.multilink( [ segment.startPointProperty, segment.endPointProperty ], function() {
-      self.shapeProperty.set( self.shapeCreator.createWireShape() );
+    // Whenever a segment changes, update the shape.
+    this.segments.forEach( segment => {
+      Property.multilink( [ segment.startPointProperty, segment.endPointProperty ], () => {
+        this.shapeProperty.set( this.shapeCreator.createWireShape() );
+      } );
     } );
-  } );
-}
-
-capacitorLabBasics.register( 'Wire', Wire );
-
-inherit( Object, Wire, {
+  }
 
   /**
    * Update all segments of the wire
    * @public
    */
-  update: function() {
-    this.segments.forEach( function( segment ) {
+  update() {
+    this.segments.forEach( segment => {
       segment.update();
     } );
-  },
+  }
 
   /**
    * Whether the given shape intersects with the wire.
@@ -63,10 +56,12 @@ inherit( Object, Wire, {
    *
    * @param {Shape} shape
    */
-  contacts: function( shape ) {
+  contacts( shape ) {
     return shape.bounds.intersectsBounds( this.shapeProperty.value.bounds ) &&
            shape.shapeIntersection( this.shapeProperty.value ).getNonoverlappingArea() > 0;
   }
-} );
+}
+
+capacitorLabBasics.register( 'Wire', Wire );
 
 export default Wire;
