@@ -51,6 +51,12 @@ class CLBLightBulbScreenView extends ScreenView {
 
     // @public {StopwatchNode}
     const stopwatchNode = new StopwatchNode( model.stopwatch, {
+      numberDisplayOptions: {
+        numberFormatter: StopwatchNode.createRichTextNumberFormatter( {
+          showAsMinutesAndSeconds: true,
+          numberOfDecimalPlaces: 1
+        } )
+      },
       visibleBoundsProperty: this.visibleBoundsProperty,
       tandem: Tandem.OPT_OUT,// TODO(phet-io): this seems like it should not opt out, since it has interactive components
       dragListenerOptions: {

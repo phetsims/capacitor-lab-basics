@@ -76,6 +76,12 @@ class VoltmeterToolboxPanel extends Node {
 
     // Create timer to be turned into icon
     const timer = new StopwatchNode( new Stopwatch( { isVisible: true, tandem: Tandem.OPT_OUT } ), {
+      numberDisplayOptions: {
+        numberFormatter: StopwatchNode.createRichTextNumberFormatter( {
+          showAsMinutesAndSeconds: true,
+          numberOfDecimalPlaces: 1
+        } )
+      },
       scale: .60,
       tandem: Tandem.OPT_OUT
     } );
