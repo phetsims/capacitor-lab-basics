@@ -46,7 +46,7 @@ define( function( require ) {
 
     options = _.extend( {
       maxTextWidth: 250,
-      alignGroup:null
+      alignGroup: null
     }, options );
 
     var checkboxItems = [ {
@@ -99,10 +99,18 @@ define( function( require ) {
         tandemName: 'conventionalRadioButton'
       }
     ], {
+      radioButtonOptions: {
+        enabled: model.currentVisibleProperty.value
+      },
       spacing: 5,
       touchAreaXDilation: 5,
       tandem: tandem.createTandem( 'currentTypeRadioButtonGroup' )
     } );
+
+    // Disable the current direction radio buttons when the current visibility is disabled.
+    model.currentVisibleProperty.linkAttribute( currentTypeRadioButtonGroup.children[ 0 ], 'enabled' );
+    model.currentVisibleProperty.linkAttribute( currentTypeRadioButtonGroup.children[ 1 ], 'enabled' );
+
 
     var verticalCheckboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
       checkboxOptions: {
@@ -124,8 +132,8 @@ define( function( require ) {
     Panel.call( this, content, {
       xMargin: 10,
       yMargin: 10,
-      align:'left',
-      minWidth:175,
+      align: 'left',
+      minWidth: 175,
       fill: CLBConstants.METER_PANEL_FILL,
       tandem: tandem
     } );
