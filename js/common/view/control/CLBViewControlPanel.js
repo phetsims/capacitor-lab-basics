@@ -92,10 +92,17 @@ class CLBViewControlPanel extends Panel {
         tandemName: 'conventionalRadioButton'
       }
     ], {
+      radioButtonOptions: {
+        enabled: model.currentVisibleProperty.value
+      },
       spacing: 5,
       touchAreaXDilation: 5,
       tandem: tandem.createTandem( 'currentTypeRadioButtonGroup' )
     } );
+
+    // Disable the current direction radio buttons when the current visibility is disabled.
+    model.currentVisibleProperty.linkAttribute( currentTypeRadioButtonGroup.children[ 0 ], 'enabled' );
+    model.currentVisibleProperty.linkAttribute( currentTypeRadioButtonGroup.children[ 1 ], 'enabled' );
 
     const verticalCheckboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
       checkboxOptions: {
