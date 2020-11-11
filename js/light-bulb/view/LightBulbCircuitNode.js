@@ -54,9 +54,9 @@ define( function( require ) {
       tandem.createTandem( 'bulbBottomCurrentIndicatorNode' ) );
 
     // rendering order
-    this.addChild( lightBulbNode );
     this.addChild( this.bulbTopCurrentIndicatorNode );
     this.addChild( this.bulbBottomCurrentIndicatorNode );
+    this.addChild( lightBulbNode );
 
     // LightBulb - translate so that center is the center of the base.
     lightBulbNode.center = model.modelViewTransform.modelToViewPosition( circuit.lightBulb.location.plus( new Vector3( 0.0020, 0, 0 ) ) );
