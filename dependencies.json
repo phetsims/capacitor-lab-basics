@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.7.0-rc.6 Tue Nov 10 2020 23:35:59 GMT-0500 (Eastern Standard Time)",
+  "comment": "# capacitor-lab-basics 1.7.0-rc.7 Sat Nov 14 2020 11:52:39 GMT-0500 (Eastern Standard Time)",
   "assert": {
     "sha": "d8a2e8992420327ff72a6fc4bb93ec76549ded0e",
     "branch": "HEAD"
@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "b9ead3ef3f842dfafcb73eac4030d21ac6fb4ddc",
+    "sha": "47e8a26716690f4c1afacb5a549904c813fef704",
     "branch": "1.7"
   },
   "chipper": {
