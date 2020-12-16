@@ -306,6 +306,9 @@ define( function( require ) {
      * Vc = V2 * exp( -t / ( R * C2 ) )
      *
      * @public
+     *
+     * @param {number} newCapacitance
+     * @param {number} oldCapacitance
      */
     updateDischargeParameters: function( newCapacitance, oldCapacitance ) {
 
