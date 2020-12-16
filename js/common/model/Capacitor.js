@@ -27,6 +27,7 @@ define( function( require ) {
   var BoxShapeCreator = require( 'CAPACITOR_LAB_BASICS/common/model/shapes/BoxShapeCreator' );
   var capacitorLabBasics = require( 'CAPACITOR_LAB_BASICS/capacitorLabBasics' );
   var CircuitLocation = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitLocation' );
+  var CircuitState = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitState' );
   var CircuitSwitch = require( 'CAPACITOR_LAB_BASICS/common/model/CircuitSwitch' );
   var CLBConstants = require( 'CAPACITOR_LAB_BASICS/common/CLBConstants' );
   var DerivedProperty = require( 'AXON/DerivedProperty' );
@@ -55,7 +56,6 @@ define( function( require ) {
     }, options );
 
     // @public {number}
-    this.transientTime = 0; // model time updated when the switch is closed and while the capacitor is discharging
     this.voltageAtSwitchClose = 0; // voltage of the plates when the bulb switch is initially closed
 
     // @public {CLBModelViewTransform3D}
@@ -105,6 +105,12 @@ define( function( require ) {
         phetioType: DerivedPropertyIO( NumberIO )
       } );
 
+    this.capacitanceProperty.lazyLink( ( capacitance, oldCapacitance ) => {
+      if ( circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
+        this.updateDischargeParameters( capacitance, oldCapacitance );
+      }
+    } );
+
     // @public {Property.<number>} Charge on top plate of capacitor
     this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty, circuitConnectionProperty ],
       function( capacitance, voltage, circuitConnection ) {
@@ -132,11 +138,6 @@ define( function( require ) {
         units: 'joules',
         phetioType: DerivedPropertyIO( NumberIO )
       } );
-
-    // Track the previous capacitance to adjust the initial voltage when discharging, see
-    // updateDischargeParameters() below.
-    // @private {number}
-    this.previousCapacitance = this.capacitanceProperty.value;
 
     // @public {CircuitSwitch}
     this.topCircuitSwitch = CircuitSwitch.TOP( config, circuitConnectionProperty,
@@ -285,13 +286,7 @@ define( function( require ) {
      * @param {number} dt
      */
     discharge: function( R, dt ) {
-      var C = this.capacitanceProperty.value;
-
-      this.transientTime += dt; // step time since switch was closed
-      var exp = Math.exp( -this.transientTime / ( R * C ) );
-      this.plateVoltageProperty.value = this.voltageAtSwitchClose * exp;
-
-      this.previousCapacitance = C;
+      this.plateVoltageProperty.value *= Math.exp( -dt / ( R * this.capacitanceProperty.value ) );
     },
 
     /**
@@ -312,16 +307,13 @@ define( function( require ) {
      *
      * @public
      */
-    updateDischargeParameters: function() {
+    updateDischargeParameters: function( newCapacitance, oldCapacitance ) {
 
       // in the discharge function, C is recalculated every time step, so we only need to adjust Vo.
-      var capacitanceRatio = this.capacitanceProperty.value / this.previousCapacitance;
+      var capacitanceRatio = newCapacitance / oldCapacitance;
 
       // update the initial voltage Vo
-      this.voltageAtSwitchClose = this.plateVoltageProperty.value / capacitanceRatio;
-
-      // reset transient time
-      this.transientTime = 0;
+      this.plateVoltageProperty.value = this.plateVoltageProperty.value / capacitanceRatio;
     },
 
     // @public

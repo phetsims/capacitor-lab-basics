@@ -71,12 +71,6 @@ define( function( require ) {
         self.disconnectedPlateChargeProperty.set( self.getTotalCharge() );
       }
       self.updatePlateVoltages();
-
-      // if light bulb connected, reset values for transient calculations
-      if ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED ) {
-        self.capacitor.transientTime = 0;
-        self.capacitor.voltageAtSwitchClose = self.capacitor.plateVoltageProperty.value;
-      }
     } );
 
     // Allow the capacitor to discharge when adjusting the plate geometry.
