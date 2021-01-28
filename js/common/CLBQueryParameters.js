@@ -15,7 +15,8 @@ const CLBQueryParameters = QueryStringMachine.getAll( {
   switch: {
     type: 'string',
     validValues: [ 'twoState', 'threeState' ],
-    defaultValue: 'threeState'
+    defaultValue: 'threeState',
+    public: true
   },
 
   showDebugAreas: {
