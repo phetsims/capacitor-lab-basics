@@ -10,11 +10,12 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Emitter from '../../../../axon/js/Emitter.js';
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import Property from '../../../../axon/js/Property.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
+import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import Stopwatch from '../../../../scenery-phet/js/Stopwatch.js';
 import TimeSpeed from '../../../../scenery-phet/js/TimeSpeed.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
@@ -26,6 +27,10 @@ import Voltmeter from './meter/Voltmeter.js';
 // constants
 // reference coordinate frame size for world nodes
 const CANVAS_RENDERING_SIZE = new Dimension2( 1024, 618 );
+
+// TODO: Move color out of the model?!?!?!
+const CURRENT_ELECTRONS_ARROW_COLOR = new Color( 83, 200, 236 );
+const CURRENT_CONVENTIONAL_ARROW_COLOR = new Color( PhetColorScheme.RED_COLORBLIND );
 
 class CLBModel {
   /**
@@ -91,9 +96,16 @@ class CLBModel {
     } );
 
     // @public {Property.<Color>}
-    this.arrowColorProperty = new Property( new Color( 83, 200, 236 ), {
+    this.arrowColorProperty = new DerivedProperty( [ this.currentOrientationProperty ], value => {
+      if ( value === 0 ) {
+        return CURRENT_ELECTRONS_ARROW_COLOR;
+      }
+      else {
+        return CURRENT_CONVENTIONAL_ARROW_COLOR;
+      }
+    }, {
       tandem: tandem.createTandem( 'arrowColorProperty' ),
-      phetioType: Property.PropertyIO( Color.ColorIO )
+      phetioType: DerivedProperty.DerivedPropertyIO( Color.ColorIO )
     } );
 
     // @public {Property.<boolean>} Whether the sim is paused

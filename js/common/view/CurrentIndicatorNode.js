@@ -13,6 +13,7 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
+import Property from '../../../../axon/js/Property.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
@@ -50,16 +51,13 @@ class CurrentIndicatorNode extends Node {
    * @param {Property.<number>} currentAmplitudeProperty
    * @param {number} startingOrientation
    * @param {NumberProperty.<number>} positiveOrientationProperty
-   * @param {Color} colorProperty
+   * @param {Property.<Color>} colorProperty
    * @param {Emitter} stepEmitter
    * @param {Tandem} tandem
    */
   constructor( currentAmplitudeProperty, startingOrientation, positiveOrientationProperty, colorProperty, stepEmitter, tandem ) {
 
     super( { opacity: 0 } );
-
-    // @private {number}
-    this.positiveOrientation = positiveOrientationProperty.value;
 
     // @private {Emitter}
     this.stepEmitter = stepEmitter;
@@ -72,17 +70,17 @@ class CurrentIndicatorNode extends Node {
       headHeight: ARROW_HEAD_HEIGHT,
       headWidth: ARROW_HEAD_WIDTH,
       tailWidth: ARROW_TAIL_WIDTH,
-      fill: colorProperty.value,
+      fill: colorProperty,
       tandem: tandem.createTandem( 'arrowNode' )
     } );
 
     this.addChild( arrowNode );
 
     const electronNode = new ShadedSphereNode( CHARGE_DIAMETER, {
-      fill: colorProperty.value,
+      fill: colorProperty,
       stroke: CHARGE_STROKE_COLOR,
       lineWidth: ELECTRON_LINE_WIDTH,
-      mainColor: colorProperty.value,
+      mainColor: colorProperty,
       highlightXOffset: 0,
       highlightYOffset: 0
     } );
@@ -129,36 +127,32 @@ class CurrentIndicatorNode extends Node {
     // @private {Animation|null} animation that will fade out the node
     this.animation = null;
 
-    positiveOrientationProperty.link( value => {
-      if ( value === 0 ) {
-        colorProperty.set( new Color( 83, 200, 236 ) );
-      }
-      else if ( value === Math.PI ) {
-        colorProperty.set( new Color( PhetColorScheme.RED_COLORBLIND ) );
-      }
-
-    } );
-
-    // observe current to determine rotation and opacity
-    currentAmplitudeProperty.lazyLink( currentAmplitude => {
-
+    currentAmplitudeProperty.lazyLink( () => {
       // only start this animation if the current indicator is visible
       if ( this.isVisible() ) {
         this.startAnimation();
       }
+    } );
+
+    let lastNonzeroAmplitude = 0;
+
+    // observe current to determine rotation and opacity
+    Property.lazyMultilink( [ currentAmplitudeProperty, positiveOrientationProperty ], ( currentAmplitude, positiveOrientation ) => {
+
+      if ( currentAmplitude !== 0 ) {
+        lastNonzeroAmplitude = currentAmplitude;
+      }
 
       // update the orientation of the indicator
-      if ( currentAmplitude > 0 ) {
-        this.rotation = startingOrientation + positiveOrientationProperty.value;
-        arrowNode.fill = colorProperty.value;
+      if ( lastNonzeroAmplitude > 0 ) {
+        this.rotation = startingOrientation + positiveOrientation;
       }
-      else if ( currentAmplitude < 0 ) {
-        this.rotation = startingOrientation + positiveOrientationProperty.value + Math.PI;
-        arrowNode.fill = colorProperty.value;
+      else if ( lastNonzeroAmplitude < 0 ) {
+        this.rotation = startingOrientation + positiveOrientation + Math.PI;
       }
 
       // Electron/Proton visibility dependent on orientation of current.
-      const chargeVisible = positiveOrientationProperty.value === 0;
+      const chargeVisible = positiveOrientation === 0;
       electronNode.visible = chargeVisible;
       minusNode.visible = chargeVisible;
       protonNode.visible = !chargeVisible;
