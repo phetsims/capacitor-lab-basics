@@ -135,15 +135,12 @@ class CLBLightBulbScreenView extends ScreenView {
 
     // rendering order
     this.addChild( this.lightBulbCircuitNode );
+    this.addChild( simControlHBox );
     this.addChild( barMeterPanel );
     this.addChild( viewControlPanel );
     this.addChild( toolboxPanel );
     this.addChild( voltmeterNode );
-    this.addChild( simControlHBox );
     this.addChild( new DebugLayer( model ) );
-
-    // Explicitly set the sim controls z-order
-    simControlHBox.moveToBack();
   }
 }
 
