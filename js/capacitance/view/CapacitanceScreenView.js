@@ -9,7 +9,6 @@
 
 import Vector2 from '../../../../dot/js/Vector2.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
-import StopwatchNode from '../../../../scenery-phet/js/StopwatchNode.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import BarMeterPanel from '../../common/view/BarMeterPanel.js';
@@ -41,25 +40,9 @@ class CapacitanceScreenView extends ScreenView {
     // meters
     const voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
 
-    // @public {StopwatchNode}
-    const stopwatchNode = new StopwatchNode( model.stopwatch, {
-      visibleBoundsProperty: this.visibleBoundsProperty,
-      tandem: tandem.createTandem( 'stopwatchNode' ),
-      dragListenerOptions: {
-        end: () => {
-
-          // When a node is released, check if it is over the toolbox.  If so, drop it in.
-          if ( toolboxPanel.bounds.intersectsBounds( stopwatchNode.bounds ) ) {
-            model.stopwatch.reset();
-          }
-        }
-      }
-    } );
-    this.addChild( stopwatchNode );
-
     const toolboxPanel = new VoltmeterToolboxPanel(
       this.layoutBounds,
-      stopwatchNode,
+      null,
       voltmeterNode,
       this.modelViewTransform,
       model.voltmeter.isDraggedProperty,

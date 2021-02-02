@@ -26,7 +26,7 @@ import VoltmeterNode from '../meters/VoltmeterNode.js';
 class VoltmeterToolboxPanel extends Node {
   /**
    * @param {Bounds2} dragBounds
-   * @param {StopwatchNode} stopwatchNode
+   * @param {StopwatchNode|null} stopwatchNode
    * @param {VoltmeterNode} voltmeterNode
    * @param {YawPitchModelViewTransform3} modelViewTransform
    * @param {Property.<boolean>} isDraggedProperty
