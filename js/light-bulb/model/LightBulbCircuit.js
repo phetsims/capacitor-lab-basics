@@ -78,7 +78,10 @@ class LightBulbCircuit extends ParallelCircuit {
     // Allow the capacitor to discharge when adjusting the plate geometry.
     Property.multilink( [ this.capacitor.plateSizeProperty, this.capacitor.plateSeparationProperty ],
       () => {
-        if ( Math.abs( this.capacitor.plateVoltageProperty.value ) > MIN_VOLTAGE ) {
+        // Don't discharge the capacitor when we're connected to the battery (since the amount of charge changes to
+        // compensate). See https://github.com/phetsims/capacitor-lab-basics/issues/282
+        if ( this.circuitConnectionProperty.value !== CircuitState.BATTERY_CONNECTED &&
+             Math.abs( this.capacitor.plateVoltageProperty.value ) > MIN_VOLTAGE ) {
           this.capacitor.discharge( this.lightBulb.resistance, 0 );
         }
       } );
