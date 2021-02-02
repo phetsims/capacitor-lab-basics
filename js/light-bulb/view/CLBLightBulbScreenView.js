@@ -21,7 +21,7 @@ import capacitorLabBasics from '../../capacitorLabBasics.js';
 import BarMeterPanel from '../../common/view/BarMeterPanel.js';
 import DebugLayer from '../../common/view/DebugLayer.js';
 import CLBViewControlPanel from '../../common/view/control/CLBViewControlPanel.js';
-import VoltmeterToolboxPanel from '../../common/view/control/VoltmeterToolboxPanel.js';
+import ToolboxPanel from '../../common/view/control/ToolboxPanel.js';
 import VoltmeterNode from '../../common/view/meters/VoltmeterNode.js';
 import LightBulbCircuitNode from './LightBulbCircuitNode.js';
 
@@ -74,7 +74,7 @@ class CLBLightBulbScreenView extends ScreenView {
     // @public {AlignGroup}
     this.rightPanelAlignGroup = new AlignGroup( { matchVertical: false, minWidth: 350 } );
 
-    const toolboxPanel = new VoltmeterToolboxPanel(
+    const toolboxPanel = new ToolboxPanel(
       this.layoutBounds,
       stopwatchNode,
       voltmeterNode,

@@ -14,7 +14,7 @@ import capacitorLabBasics from '../../capacitorLabBasics.js';
 import BarMeterPanel from '../../common/view/BarMeterPanel.js';
 import DebugLayer from '../../common/view/DebugLayer.js';
 import CLBViewControlPanel from '../../common/view/control/CLBViewControlPanel.js';
-import VoltmeterToolboxPanel from '../../common/view/control/VoltmeterToolboxPanel.js';
+import ToolboxPanel from '../../common/view/control/ToolboxPanel.js';
 import VoltmeterNode from '../../common/view/meters/VoltmeterNode.js';
 import CapacitanceCircuitNode from './CapacitanceCircuitNode.js';
 
@@ -40,7 +40,7 @@ class CapacitanceScreenView extends ScreenView {
     // meters
     const voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
 
-    const toolboxPanel = new VoltmeterToolboxPanel(
+    const toolboxPanel = new ToolboxPanel(
       this.layoutBounds,
       null,
       voltmeterNode,

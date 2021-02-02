@@ -23,7 +23,7 @@ import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CLBConstants from '../../CLBConstants.js';
 import VoltmeterNode from '../meters/VoltmeterNode.js';
 
-class VoltmeterToolboxPanel extends Node {
+class ToolboxPanel extends Node {
   /**
    * @param {Bounds2} dragBounds
    * @param {StopwatchNode|null} stopwatchNode
@@ -160,6 +160,6 @@ class VoltmeterToolboxPanel extends Node {
   }
 }
 
-capacitorLabBasics.register( 'VoltmeterToolboxPanel', VoltmeterToolboxPanel );
+capacitorLabBasics.register( 'ToolboxPanel', ToolboxPanel );
 
-export default VoltmeterToolboxPanel;
+export default ToolboxPanel;
