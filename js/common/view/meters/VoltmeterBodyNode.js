@@ -55,7 +55,8 @@ class VoltmeterBodyNode extends Node {
 
     // body of the meter
     const imageNode = new Image( voltmeterBodyImage, {
-      scale: 0.336
+      scale: 0.336,
+      hitTestPixels: true
     } );
     this.addChild( imageNode );
 

@@ -72,9 +72,13 @@ class VoltmeterNode extends Node {
     voltmeterVisibleProperty.link( voltmeterVisible => {
       this.visible = voltmeterVisible;
     } );
+
+    voltmeter.isDraggedProperty.lazyLink( isDragged => {
+      if ( isDragged ) {
+        this.moveToFront();
+      }
+    } );
   }
-
-
 
   /**
    * Create an icon of the voltmeter, to be used in the toolbox panel.
