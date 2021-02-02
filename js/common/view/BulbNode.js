@@ -50,7 +50,7 @@ class BulbNode extends Node {
     this.addChild( this.bulb );
 
     // NOTE: this map deviates from the bulb in faradays-law
-    const bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 300, true );
+    const bulbBrightnessMap = new LinearFunction( 0, 5E-13, 0, 225, true );
 
     const updateBrightnessScale = voltage => {
       if ( circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
