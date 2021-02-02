@@ -41,7 +41,6 @@ class CapacitanceScreenView extends ScreenView {
     const voltmeterNode = new VoltmeterNode( model.voltmeter, this.modelViewTransform, model.voltmeterVisibleProperty, tandem.createTandem( 'voltmeterNode' ) );
 
     const toolboxPanel = new ToolboxPanel(
-      this.layoutBounds,
       null,
       voltmeterNode,
       this.modelViewTransform,

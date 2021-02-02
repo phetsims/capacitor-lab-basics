@@ -75,7 +75,6 @@ class CLBLightBulbScreenView extends ScreenView {
     this.rightPanelAlignGroup = new AlignGroup( { matchVertical: false, minWidth: 350 } );
 
     const toolboxPanel = new ToolboxPanel(
-      this.layoutBounds,
       stopwatchNode,
       voltmeterNode,
       this.modelViewTransform,

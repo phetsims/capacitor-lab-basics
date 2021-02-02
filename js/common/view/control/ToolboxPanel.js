@@ -25,7 +25,6 @@ import VoltmeterNode from '../meters/VoltmeterNode.js';
 
 class ToolboxPanel extends Node {
   /**
-   * @param {Bounds2} dragBounds
    * @param {StopwatchNode|null} stopwatchNode
    * @param {VoltmeterNode} voltmeterNode
    * @param {YawPitchModelViewTransform3} modelViewTransform
@@ -35,7 +34,7 @@ class ToolboxPanel extends Node {
    * @param {Tandem} tandem
    * @param {Object} [options]
    */
-  constructor( dragBounds, stopwatchNode, voltmeterNode, modelViewTransform, isDraggedProperty, stopwatch, voltmeterVisibleProperty, tandem, options ) {
+  constructor( stopwatchNode, voltmeterNode, modelViewTransform, isDraggedProperty, stopwatch, voltmeterVisibleProperty, tandem, options ) {
     options = merge( {
       includeTimer: true,
       alignGroup: null
