@@ -75,7 +75,7 @@ class VoltmeterToolboxPanel extends Node {
     } ) );
 
     // Create timer to be turned into icon
-    const timer = new StopwatchNode( new Stopwatch( { isVisible: true, tandem: Tandem.OPT_OUT } ), {
+    const placeholderTimer = new StopwatchNode( new Stopwatch( { isVisible: true, tandem: Tandem.OPT_OUT } ), {
       numberDisplayOptions: {
         numberFormatter: StopwatchNode.createRichTextNumberFormatter( {
           showAsMinutesAndSeconds: true,
@@ -89,7 +89,7 @@ class VoltmeterToolboxPanel extends Node {
     const timeNodeIconTandem = tandem.createTandem( 'timerIcon' );
 
     // {Node} Create timer icon. Visible option is used only for reset() in ToolboxPanel.js
-    const timerIconNode = timer.rasterized( {
+    const timerIconNode = placeholderTimer.rasterized( {
       cursor: 'pointer',
       resolution: 5,
       pickable: true,
