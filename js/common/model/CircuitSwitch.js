@@ -52,10 +52,16 @@ class CircuitSwitch {
     this.connections = this.getSwitchConnections( positionLabel, this.hingePoint.toVector2(), config.circuitConnections );
 
     // @public {Property.<number>} - Angle of the switch
-    this.angleProperty = new NumberProperty( 0, {
+    this.angleProperty = new NumberProperty( positionLabel === 'top' ? -Math.PI * 3 / 4 : Math.PI * 3 / 4, {
       tandem: tandem.createTandem( 'angleProperty' ),
       units: 'radians',
-      range: new Range( -2.5, 2.5 )
+      range: config.lightBulb ? new Range(
+        positionLabel === 'top' ? -Math.PI * 3 / 4 : Math.PI / 4,
+        positionLabel === 'top' ? -Math.PI / 4 : Math.PI * 3 / 4
+      ) : new Range(
+        positionLabel === 'top' ? -Math.PI * 3 / 4 : Math.PI / 2,
+        positionLabel === 'top' ? -Math.PI / 2 : Math.PI * 3 / 4
+      )
     } );
 
     // Assign string identifying connection point
