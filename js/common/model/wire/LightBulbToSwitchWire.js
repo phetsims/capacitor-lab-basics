@@ -65,7 +65,6 @@ class LightBulbToSwitchWire extends Wire {
   }
 
 
-
   /**
    * Factory methods for top LightBulbToSwitchWire instance
    * @public

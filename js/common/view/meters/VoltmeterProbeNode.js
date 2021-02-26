@@ -84,7 +84,6 @@ class VoltmeterProbeNode extends Node {
   }
 
 
-
   /**
    * Factory for a positive VoltmeterProbeNode
    * @public

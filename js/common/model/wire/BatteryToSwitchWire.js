@@ -85,7 +85,6 @@ class BatteryToSwitchWire extends Wire {
   }
 
 
-
   /**
    * Factory function for BatteryToSwitchWire (bottom side)
    * @public

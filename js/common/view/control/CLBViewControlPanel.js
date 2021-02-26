@@ -65,13 +65,13 @@ class CLBViewControlPanel extends Panel {
     } ];
 
     const viewCheckboxItems = checkboxItems.map( item => ( {
-        node: new Text( item.string, {
-          font: CHECKBOX_FONT,
-          maxWidth: options.maxTextWidth
-        } ),
-        property: item.property,
-        label: item.string,
-        tandem: item.tandem
+      node: new Text( item.string, {
+        font: CHECKBOX_FONT,
+        maxWidth: options.maxTextWidth
+      } ),
+      property: item.property,
+      label: item.string,
+      tandem: item.tandem
     } ) );
 
     const currentTypeRadioButtonGroup = new VerticalAquaRadioButtonGroup( model.currentOrientationProperty, [
