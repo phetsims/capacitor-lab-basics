@@ -10,13 +10,13 @@
 
 import BooleanProperty from '../../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../../axon/js/Property.js';
+import StringProperty from '../../../../../axon/js/StringProperty.js';
 import Bounds2 from '../../../../../dot/js/Bounds2.js';
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
 import Vector3 from '../../../../../dot/js/Vector3.js';
 import YawPitchModelViewTransform3 from '../../../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
 import NullableIO from '../../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../../tandem/js/types/NumberIO.js';
-import StringIO from '../../../../../tandem/js/types/StringIO.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CircuitPosition from '../CircuitPosition.js';
 import CircuitState from '../CircuitState.js';
@@ -97,16 +97,16 @@ class Voltmeter {
     } );
 
     // TODO: factor out shared code for positive/negative probe
+    // TODO: Why not an enum?
     // @private {Property.<ProbeTarget>} - What the positive probe is currently touching. Updated from within computeValue below.
-    this.positiveProbeTargetProperty = new Property( ProbeTarget.NONE, {
-      tandem: tandem.createTandem( 'positiveProbeTargetProperty' ),
-      phetioType: Property.PropertyIO( StringIO )
+    this.positiveProbeTargetProperty = new StringProperty( ProbeTarget.NONE, {
+      tandem: tandem.createTandem( 'positiveProbeTargetProperty' )
     } );
 
     // @private {Property.<ProbeTarget>} - What the negative probe is currently touching. Updated from within computeValue below.
-    this.negativeProbeTargetProperty = new Property( ProbeTarget.NONE, {
-      tandem: tandem.createTandem( 'negativeProbeTargetProperty' ),
-      phetioType: Property.PropertyIO( StringIO )
+    // TODO: Why not an enum?
+    this.negativeProbeTargetProperty = new StringProperty( ProbeTarget.NONE, {
+      tandem: tandem.createTandem( 'negativeProbeTargetProperty' )
     } );
 
 
