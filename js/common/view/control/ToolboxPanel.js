@@ -81,7 +81,7 @@ class ToolboxPanel extends Node {
           numberOfDecimalPlaces: 1
         } )
       },
-      scale: .60,
+      scale: 0.60,
       tandem: Tandem.OPT_OUT
     } );
 
