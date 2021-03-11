@@ -35,7 +35,7 @@ class ParallelCircuit {
     // @public {NumberProperty} - Signed current through circuit. Used to update arrows
     this.currentAmplitudeProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'currentAmplitudeProperty' ),
-      units: 'amperes',
+      units: 'A',
       phetioDocumentation: 'Beware that the current is calculated in the model time step, so if dQ is zero for a step the current could transiently appear as zero.',
       phetioReadOnly: true
     } );
@@ -51,7 +51,7 @@ class ParallelCircuit {
     // @public {NumberProperty} - Property tracking the signed charge value on the upper plate
     this.disconnectedPlateChargeProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'disconnectedPlateChargeProperty' ),
-      units: 'coulombs',
+      units: 'C',
       phetioReadOnly: true
     } );
 

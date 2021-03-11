@@ -77,14 +77,14 @@ class Capacitor {
     // @public {Property.<number>}
     this.plateSeparationProperty = new NumberProperty( options.plateSeparation, {
       tandem: tandem.createTandem( 'plateSeparationProperty' ),
-      units: 'meters',
+      units: 'm',
       range: CapacitorConstants.PLATE_SEPARATION_RANGE
     } );
 
     // @public {Property.<number>} - zero until it's connected into a circuit
     this.plateVoltageProperty = new NumberProperty( 0, {
       tandem: tandem.createTandem( 'plateVoltageProperty' ),
-      units: 'volts',
+      units: 'V',
       phetioReadOnly: true
     } );
 
@@ -95,7 +95,7 @@ class Capacitor {
         return CLBConstants.EPSILON_0 * plateSize.width * plateSize.depth / plateSeparation;
       }, {
         tandem: tandem.createTandem( 'capacitanceProperty' ),
-        units: 'farads',
+        units: 'F',
         phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
       } );
 
@@ -113,7 +113,7 @@ class Capacitor {
         }
       }, {
         tandem: tandem.createTandem( 'plateChargeProperty' ),
-        units: 'coulombs',
+        units: 'C',
         phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
       } );
 
@@ -121,7 +121,7 @@ class Capacitor {
     this.storedEnergyProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty ],
       ( capacitance, voltage ) => 0.5 * capacitance * voltage * voltage, {
         tandem: tandem.createTandem( 'storedEnergyProperty' ),
-        units: 'joules',
+        units: 'J',
         phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
       } );
 

@@ -52,7 +52,7 @@ class Battery {
     // @public {Property.<number>}
     this.voltageProperty = new NumberProperty( voltage, {
       tandem: tandem.createTandem( 'voltageProperty' ),
-      units: 'volts',
+      units: 'V',
       range: CLBConstants.BATTERY_VOLTAGE_RANGE
     } );
 

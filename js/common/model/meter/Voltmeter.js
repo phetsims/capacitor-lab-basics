@@ -92,7 +92,7 @@ class Voltmeter {
     // @public {Property.<number|null>}
     this.measuredVoltageProperty = new Property( null, {
       tandem: tandem.createTandem( 'measuredVoltageProperty' ),
-      units: 'volts',
+      units: 'V',
       phetioType: Property.PropertyIO( NullableIO( NumberIO ) )
     } );
 
