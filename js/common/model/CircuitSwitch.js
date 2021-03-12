@@ -37,7 +37,7 @@ class CircuitSwitch {
 
     // Validate positionLabel string
     assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
-      'Unsupported positionLabel: ' + positionLabel );
+      `Unsupported positionLabel: ${positionLabel}` );
 
     // @public {Vector3}
     this.hingePoint = this.getSwitchHingePoint( positionLabel, config );
@@ -113,7 +113,7 @@ class CircuitSwitch {
 
     // Validate positionLabel string
     assert && assert( positionLabel === 'top' || positionLabel === 'bottom',
-      'Unsupported positionLabel: ' + positionLabel );
+      `Unsupported positionLabel: ${positionLabel}` );
 
     // create the circuit switches that connect the capacitor to the circuit
     const x = CLBConstants.BATTERY_POSITION.x + config.capacitorXSpacing;
@@ -198,7 +198,7 @@ class CircuitSwitch {
 
     const returnConnection = _.find( this.connections, connection => connection.type === connectionType );
 
-    assert && assert( returnConnection, 'No connection type for this circuit named ' + connectionType );
+    assert && assert( returnConnection, `No connection type for this circuit named ${connectionType}` );
 
     return returnConnection;
   }

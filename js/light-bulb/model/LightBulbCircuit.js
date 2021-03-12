@@ -153,7 +153,7 @@ class LightBulbCircuit extends ParallelCircuit {
   validatePosition( position ) {
 
     assert && assert( position === CircuitPosition.LIGHT_BULB_TOP || position === CircuitPosition.LIGHT_BULB_BOTTOM,
-      'position should be LIGHT_BULB_TOP or LIGHT_BULB_BOTTOM, received ' + position );
+      `position should be LIGHT_BULB_TOP or LIGHT_BULB_BOTTOM, received ${position}` );
   }
 
   /**

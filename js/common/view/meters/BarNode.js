@@ -30,7 +30,7 @@ class BarNode extends Rectangle {
    * @param {number} maxValue
    */
   constructor( barColor, value, maxValue ) {
-    assert && assert( value >= 0, 'value must be >= 0 : ' + value );
+    assert && assert( value >= 0, `value must be >= 0 : ${value}` );
     super( 0, 0, BAR_SIZE.width, BAR_SIZE.height, {
       fill: barColor,
       stroke: BAR_STROKE_COLOR,
@@ -53,7 +53,7 @@ class BarNode extends Rectangle {
    */
   setValue( value ) {
 
-    assert && assert( value >= 0, 'value must be >= 0 : ' + value );
+    assert && assert( value >= 0, `value must be >= 0 : ${value}` );
 
     if ( value !== this.value ) {
       this.value = value;

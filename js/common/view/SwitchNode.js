@@ -91,7 +91,7 @@ class SwitchNode extends Node {
     const connectionLabels = [ 'battery', 'open', 'lightBulb' ];
 
     circuitSwitch.connections.forEach( ( connection, index ) => {
-      const connectionTandem = tandem.createTandem( connectionLabels[ index ] + 'ConnectionNode' );
+      const connectionTandem = tandem.createTandem( `${connectionLabels[ index ]}ConnectionNode` );
 
       // add the clickable area for the connection point
       this.connectionAreaNodes.push( new ConnectionNode( connection, circuitSwitch, modelViewTransform, connectionTandem, dragHandler, switchLockedProperty ) );

@@ -91,7 +91,7 @@ class Capacitor {
     // @public {Property.<number>}
     this.capacitanceProperty = new DerivedProperty( [ this.plateSeparationProperty, this.plateSizeProperty ],
       ( plateSeparation, plateSize ) => {
-        assert && assert( plateSeparation > 0, 'Plate separation is ' + plateSeparation );
+        assert && assert( plateSeparation > 0, `Plate separation is ${plateSeparation}` );
         return CLBConstants.EPSILON_0 * plateSize.width * plateSize.depth / plateSeparation;
       }, {
         tandem: tandem.createTandem( 'capacitanceProperty' ),
@@ -171,7 +171,7 @@ class Capacitor {
    * @param {number} plateWidth - meters
    */
   setPlateWidth( plateWidth ) {
-    assert && assert( plateWidth > 0, 'plateWidth must be > 0: ' + plateWidth );
+    assert && assert( plateWidth > 0, `plateWidth must be > 0: ${plateWidth}` );
     this.plateSizeProperty.set( new Bounds3( 0, 0, 0, plateWidth, this.plateSizeProperty.value.height, plateWidth ) );
   }
 
@@ -214,7 +214,7 @@ class Capacitor {
   contacts( probe, position ) {
 
     assert && assert( position === CircuitPosition.CAPACITOR_TOP || position === CircuitPosition.CAPACITOR_BOTTOM,
-      'Invalid capacitor position: ' + position );
+      `Invalid capacitor position: ${position}` );
 
     let shape;
     const size = this.plateSizeProperty.value;

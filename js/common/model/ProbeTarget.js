@@ -106,7 +106,7 @@ ProbeTarget.getCircuitPosition = probeTarget => {
     case ProbeTarget.WIRE_SWITCH_BOTTOM:
       return CircuitPosition.CAPACITOR_BOTTOM;
     default:
-      throw new Error( 'Unsupported probe target (no circuit position for it): ' + probeTarget );
+      throw new Error( `Unsupported probe target (no circuit position for it): ${probeTarget}` );
   }
 };
 

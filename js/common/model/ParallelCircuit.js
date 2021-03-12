@@ -295,7 +295,7 @@ class ParallelCircuit {
     assert && assert( shape instanceof Shape );
     assert && assert( _.includes( CircuitPosition.VALUES, position ) );
 
-    assert && assert( this.wireGroup.hasOwnProperty( position ), 'Invalid position: ' + position );
+    assert && assert( this.wireGroup.hasOwnProperty( position ), `Invalid position: ${position}` );
 
     const wires = this.wireGroup[ position ];
 

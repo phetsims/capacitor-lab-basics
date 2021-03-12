@@ -106,7 +106,7 @@ class CircuitSwitchDragHandler extends DragListener {
         else if ( snapRange.left.contains( absAngle ) ) {
           connection = CircuitState.BATTERY_CONNECTED;
         }
-        assert && assert( connection, 'No snap region found for switch angle: ' + absAngle );
+        assert && assert( connection, `No snap region found for switch angle: ${absAngle}` );
 
         circuitSwitch.circuitConnectionProperty.set( connection );
       }

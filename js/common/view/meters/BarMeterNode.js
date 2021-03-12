@@ -121,7 +121,7 @@ class BarMeterNode extends Node {
    */
   setValue( value ) {
 
-    assert && assert( value >= 0, 'value must be >= 0 : ' + value );
+    assert && assert( value >= 0, `value must be >= 0 : ${value}` );
 
     if ( value !== this.value ) {
 
