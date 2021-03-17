@@ -57,7 +57,7 @@ class CLBLightBulbScreenView extends ScreenView {
           numberOfDecimalPlaces: 1
         } )
       },
-      visibleBoundsProperty: this.visibleBoundsProperty,
+      dragBoundsProperty: this.visibleBoundsProperty,
       tandem: Tandem.OPT_OUT, // TODO(phet-io): this seems like it should not opt out, since it has interactive components
       dragListenerOptions: {
         end: () => {
