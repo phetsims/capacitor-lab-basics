@@ -102,15 +102,10 @@ class Capacitor {
     // @public {Property.<number>} Charge on top plate of capacitor
     this.plateChargeProperty = new DerivedProperty( [ this.capacitanceProperty, this.plateVoltageProperty, circuitConnectionProperty ],
       ( capacitance, voltage, circuitConnection ) => {
-        if ( circuitConnection ) {
-          let charge = capacitance * voltage;
+        const charge = capacitance * voltage;
 
-          // Force an underflow to zero below the threshold for stability
-          if ( Math.abs( charge ) < CLBConstants.MIN_PLATE_CHARGE ) {
-            charge = 0;
-          }
-          return charge;
-        }
+        // Force an underflow to zero below the threshold for stability
+        return circuitConnection ? ( Math.abs( charge ) < CLBConstants.MIN_PLATE_CHARGE ? 0 : charge ) : 0;
       }, {
         tandem: tandem.createTandem( 'plateChargeProperty' ),
         units: 'C',
