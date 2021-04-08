@@ -71,6 +71,7 @@ class VoltmeterProbeNode extends Node {
 
     // Drag handler accounting for boundaries
     this.movableDragHandler = new MovableDragHandler( position2DProperty, {
+      attach: true,
       tandem: tandem.createTandem( 'dragHandler' ),
       dragBounds: modelViewTransform.viewToModelBounds( adjustedViewBounds ),
       modelViewTransform: modelViewTransform.modelToViewTransform2D,

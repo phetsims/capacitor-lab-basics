@@ -127,6 +127,7 @@ class VoltmeterBodyNode extends Node {
       inverseMap: vector2 => vector2.toVector3()
     } );
     this.movableDragHandler = new MovableDragHandler( body2DProperty, {
+      attach: true,
       tandem: tandem.createTandem( 'dragHandler' ),
       dragBounds: bodyDragBounds,
       modelViewTransform: modelViewTransform.modelToViewTransform2D,
