@@ -67,12 +67,6 @@ class LightBulbCircuit extends ParallelCircuit {
         this.disconnectedPlateChargeProperty.set( this.getTotalCharge() );
       }
       this.updatePlateVoltages();
-
-      // if light bulb connected, reset values for transient calculations
-      if ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED ) {
-        this.capacitor.transientTime = 0;
-        this.capacitor.voltageAtSwitchClose = this.capacitor.plateVoltageProperty.value;
-      }
     } );
 
     // Allow the capacitor to discharge when adjusting the plate geometry.
@@ -135,11 +129,6 @@ class LightBulbCircuit extends ParallelCircuit {
       else if ( this.circuitConnectionProperty.value === CircuitState.OPEN_CIRCUIT ) {
         this.capacitor.plateVoltageProperty.value =
           this.disconnectedPlateChargeProperty.value / this.capacitor.capacitanceProperty.value;
-      }
-        // the capacitor is discharging, but plate geometry is changing at the same time so we need
-      // to update the parameters of the transient discharge equation parameters
-      else if ( this.circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-        this.capacitor.updateDischargeParameters();
       }
     }
   }
