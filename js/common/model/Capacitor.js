@@ -100,7 +100,9 @@ class Capacitor {
       } );
 
     this.capacitanceProperty.lazyLink( ( capacitance, oldCapacitance ) => {
-      if ( circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
+      // plateSizeProperty => capacitanceProperty => changes plateVoltageProperty after plateVoltageProperty was set, so
+      // since this doesn't apply when we're setting state, we opt out.
+      if ( circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED && !phet.joist.sim.isSettingPhetioStateProperty.value ) {
         this.updateDischargeParameters( capacitance, oldCapacitance );
       }
     } );
