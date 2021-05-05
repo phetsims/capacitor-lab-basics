@@ -37,6 +37,12 @@ class BarNode extends Rectangle {
       lineWidth: BAR_LINE_WIDTH
     } );
 
+    // @private - see https://github.com/phetsims/capacitor-lab-basics/issues/287
+    this.transparentWorkaroundBar = new Rectangle( 0, 0, BAR_SIZE.width, BAR_SIZE.height, {
+      fill: 'transparent'
+    } );
+    this.addChild( this.transparentWorkaroundBar );
+
     // @public
     this.value = value;
     this.maxValue = maxValue;
@@ -70,6 +76,7 @@ class BarNode extends Rectangle {
     const x = ( 1 - percent ) * BAR_SIZE.width;
     const width = BAR_SIZE.width - x;
     this.setRect( 0, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, width, BAR_SIZE.height );
+    this.transparentWorkaroundBar.setRect( width, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, BAR_SIZE.width, BAR_SIZE.height );
   }
 }
 
