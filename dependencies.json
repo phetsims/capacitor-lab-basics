@@ -1,5 +1,5 @@
 {
-  "comment": "# capacitor-lab-basics 1.6.20-rc.1 Fri Apr 23 2021 12:06:58 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# capacitor-lab-basics 1.6.20-rc.1 Fri May 07 2021 11:23:31 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "928741cfc8fe804334d5b35292140314511f8678",
     "branch": "HEAD"
@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "b615a7fae79deb2d58e3a524b363c78e77372085",
+    "sha": "3bca45a67e591dd733f44f177193f6e7596828f1",
     "branch": "1.6"
   },
   "chipper": {
@@ -65,8 +65,8 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "ef99993862d5fadddc698c7a0d4ce460d37c5c6a",
-    "branch": "HEAD"
+    "sha": "9e5348c137e7d035d95612e632cb41a7b6354269",
+    "branch": "capacitor-lab-basics-1.6"
   },
   "scenery-phet": {
     "sha": "60c66cf563a5dc617141d311e810d499c14e37f0",
