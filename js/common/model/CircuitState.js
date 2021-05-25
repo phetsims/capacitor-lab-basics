@@ -1,4 +1,4 @@
-// Copyright 2015-2020, University of Colorado Boulder
+// Copyright 2015-2021, University of Colorado Boulder
 
 /**
  * Circuit connection types for Capacitor Lab: Basics. Circuit connection names correspond to what element is
