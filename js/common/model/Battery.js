@@ -1,4 +1,4 @@
-// Copyright 2015-2021, University of Colorado Boulder
+[object Promise]
 
 /**
  * Simple model of a DC battery.  Origin is at the geometric center of the battery's body.

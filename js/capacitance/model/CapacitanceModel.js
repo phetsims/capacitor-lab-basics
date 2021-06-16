@@ -1,4 +1,4 @@
-// Copyright 2015-2020, University of Colorado Boulder
+[object Promise]
 
 /**
  * Capacitance model for Capacitor Lab: Basics.  This model has a battery connected in parallel to a capacitor, and

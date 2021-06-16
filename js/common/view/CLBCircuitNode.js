@@ -1,4 +1,4 @@
-// Copyright 2015-2020, University of Colorado Boulder
+[object Promise]
 
 /**
  * Base type for the circuit nodes in Capacitor Lab: Basics.

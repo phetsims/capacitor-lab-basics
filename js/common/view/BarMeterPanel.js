@@ -1,4 +1,4 @@
-// Copyright 2015-2020, University of Colorado Boulder
+[object Promise]
 
 /**
  * Panel which holds the bar meters and associated checkboxes which control bar meter visibility.

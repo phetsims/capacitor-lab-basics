@@ -1,4 +1,4 @@
-// Copyright 2015-2021, University of Colorado Boulder
+[object Promise]
 
 /**
  * Bulb Node.  Bulb is composed of a image at the base, and the bulb and filament are drawn.

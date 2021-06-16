@@ -1,4 +1,4 @@
-// Copyright 2015-2021, University of Colorado Boulder
+[object Promise]
 
 /**
  * Toolbox that contains a voltmeter and timer.  The user can drag the voltmeter out of the toolbox for

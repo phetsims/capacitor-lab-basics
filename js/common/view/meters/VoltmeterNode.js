@@ -1,4 +1,4 @@
-// Copyright 2015-2021, University of Colorado Boulder
+[object Promise]
 
 /**
  * A voltmeter has a body, 2 probes, and 2 wires connecting the probes to the body.

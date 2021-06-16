@@ -1,4 +1,4 @@
-// Copyright 2020, University of Colorado Boulder
+[object Promise]
 
 /**
  * Enumeration of wire connection points for Capacitor Lab: Basics

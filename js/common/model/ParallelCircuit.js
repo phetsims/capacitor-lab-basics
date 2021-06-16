@@ -1,4 +1,4 @@
-// Copyright 2015-2021, University of Colorado Boulder
+[object Promise]
 
 /**
  * Model of a circuit with a battery, switches, and possibly a light bulb.

@@ -1,4 +1,4 @@
-// Copyright 2015-2020, University of Colorado Boulder
+[object Promise]
 
 /**
  * Dashed line used to connect a drag handle to the thing that it's dragging. This is a string of circles between two
