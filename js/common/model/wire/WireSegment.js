@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2015-2021, University of Colorado Boulder
 
 /**
  * A straight segment of wire. One or more segments are joined to create a Wire.  Contains factory functions to

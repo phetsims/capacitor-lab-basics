@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2015-2021, University of Colorado Boulder
 
 /**
  * Model of a capacitor whose geometry can be directly manipulated by the user.

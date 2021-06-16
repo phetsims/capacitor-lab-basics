@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2018-2021, University of Colorado Boulder
 
 /**
  * Enumeration for what the voltmeter probes can be touching.

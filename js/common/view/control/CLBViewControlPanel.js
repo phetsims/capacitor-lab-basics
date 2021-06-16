@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2015-2021, University of Colorado Boulder
 
 /**
  * Control panel for view elements in Capacitor Lab: Basics.  Controls the visibility of plate charges, current

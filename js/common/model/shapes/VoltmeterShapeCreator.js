@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2015-2021, University of Colorado Boulder
 
 /**
  * Creates 2D projections of shapes that are related to the 3D voltmeter model.

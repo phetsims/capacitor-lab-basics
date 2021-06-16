@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2015-2021, University of Colorado Boulder
 
 /**
  * Visual representation of a hinge point for the switch.  This is a black circle with an inner black circle that

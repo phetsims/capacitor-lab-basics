@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2015-2021, University of Colorado Boulder
 
 /**
  * Visual representation of a switch.  A switch consists of a line that connects a hinge point and at least two other

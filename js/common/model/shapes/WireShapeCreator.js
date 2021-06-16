@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2015-2021, University of Colorado Boulder
 
 /**
  * Creates the 2D shape for a wire. Shapes are in the global view coordinate frame.

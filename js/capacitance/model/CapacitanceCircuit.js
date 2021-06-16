@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2015-2021, University of Colorado Boulder
 
 /**
  * Model of a circuit with a battery (B) connected to a single capacitor.  This is treated as a special case of a

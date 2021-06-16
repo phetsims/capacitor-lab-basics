@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2015-2021, University of Colorado Boulder
 
 /**
  * Wire that connects a probe to the body of a meter. The wire is a cubic curve.

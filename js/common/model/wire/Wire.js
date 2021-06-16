@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2015-2021, University of Colorado Boulder
 
 /**
  * A wire is a collection of connected wire segments. It contains a creator object that creates the wire shape. The

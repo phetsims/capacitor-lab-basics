@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2014-2021, University of Colorado Boulder
 
 /**
  * Visual representation of a DC battery, with a control for setting its voltage. Image flips when the polarity of the

@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2015-2021, University of Colorado Boulder
 
 /**
  * The main model for the "Light Bulb" screen of Capacitor Lab: Basics.

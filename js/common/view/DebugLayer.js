@@ -1,4 +1,4 @@
-[object Promise]
+// Copyright 2017-2021, University of Colorado Boulder
 
 /**
  * Handles displaying debugging information for showDebugAreas (where the voltmeter tips will intersect things)
