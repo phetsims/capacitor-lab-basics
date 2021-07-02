@@ -89,10 +89,12 @@ class ToolboxPanel extends Node {
 
     // {Node} Create timer icon. Visible option is used only for reset() in ToolboxPanel.js
     const timerIconNode = placeholderTimer.rasterized( {
-      cursor: 'pointer',
       resolution: 5,
-      pickable: true,
-      tandem: options.includeTimer ? timeNodeIconTandem : Tandem.OPT_OUT
+      imageOptions: {
+        cursor: 'pointer',
+        pickable: true,
+        tandem: options.includeTimer ? timeNodeIconTandem : Tandem.OPT_OUT
+      }
     } );
 
     // create a forwarding listener for the StopwatchNode DragListener
