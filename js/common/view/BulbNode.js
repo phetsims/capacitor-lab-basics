@@ -15,7 +15,7 @@
 import LinearFunction from '../../../../dot/js/LinearFunction.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
-import bulbBaseImage from '../../../../scenery-phet/mipmaps/light-bulb-base_png.js';
+import lightBulbBase_png from '../../../../scenery-phet/mipmaps/lightBulbBase_png.js';
 import Circle from '../../../../scenery/js/nodes/Circle.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
@@ -110,7 +110,7 @@ function drawBulbNode( options ) {
   const iconNode = new Node( options );
 
   // Create the base of the bulb
-  const bulbBase = new Image( bulbBaseImage );
+  const bulbBase = new Image( lightBulbBase_png );
   bulbBase.scale( BULB_BASE_WIDTH / bulbBase.bounds.height );
 
   // Important Note: For the drawing code below, the reference frame is assumed to be such that the point x=0, y=0 is
