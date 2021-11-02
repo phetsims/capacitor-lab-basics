@@ -54,7 +54,7 @@ class BulbNode extends Node {
 
     const updateBrightnessScale = voltage => {
       if ( circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED ) {
-        const targetScaleFactor = bulbBrightnessMap( Math.abs( lightBulb.getCurrent( voltage ) ) );
+        const targetScaleFactor = bulbBrightnessMap.evaluate( Math.abs( lightBulb.getCurrent( voltage ) ) );
         if ( targetScaleFactor < 0.1 ) {
           this.bulb.haloNode.visible = false;
         }
