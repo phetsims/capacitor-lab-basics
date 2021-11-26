@@ -13,7 +13,7 @@
 
 import Range from '../../../../../dot/js/Range.js';
 import Utils from '../../../../../dot/js/Utils.js';
-import DragListener from '../../../../../scenery/js/listeners/DragListener.js';
+import { DragListener } from '../../../../../scenery/js/imports.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CLBQueryParameters from '../../CLBQueryParameters.js';
 import CircuitState from '../../model/CircuitState.js';

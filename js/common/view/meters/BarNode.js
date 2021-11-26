@@ -10,7 +10,7 @@
  */
 
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
-import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
+import { Rectangle } from '../../../../../scenery/js/imports.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 // constants

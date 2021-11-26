@@ -8,7 +8,7 @@
  */
 
 import merge from '../../../../phet-core/js/merge.js';
-import Circle from '../../../../scenery/js/nodes/Circle.js';
+import { Circle } from '../../../../scenery/js/imports.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 
