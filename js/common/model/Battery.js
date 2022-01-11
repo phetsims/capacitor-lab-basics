@@ -58,7 +58,7 @@ class Battery {
 
     // Value type: enumeration (string)
     // @public {Property.<string>} - 'POSITIVE' or 'NEGATIVE'
-    // TODO: use EnumerationProperty
+    // TODO: use EnumerationDeprecatedProperty
     this.polarityProperty = new Property( CapacitorConstants.POLARITY.POSITIVE, {
       validValues: CapacitorConstants.POLARITY.VALUES,
       tandem: tandem.createTandem( 'polarityProperty' ),
