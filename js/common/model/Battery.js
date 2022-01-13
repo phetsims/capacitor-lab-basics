@@ -12,7 +12,7 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
-import EnumerationIO from '../../../../phet-core/js/EnumerationIO.js';
+import EnumerationIO from '../../../../tandem/js/types/EnumerationIO.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
