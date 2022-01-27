@@ -19,7 +19,7 @@ import { Image } from '../../../../../scenery/js/imports.js';
 import { Node } from '../../../../../scenery/js/imports.js';
 import { Rectangle } from '../../../../../scenery/js/imports.js';
 import { Text } from '../../../../../scenery/js/imports.js';
-import voltmeterBodyImage from '../../../../images/voltmeter_body_png.js';
+import voltmeterBody_png from '../../../../images/voltmeterBody_png.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
 
@@ -54,7 +54,7 @@ class VoltmeterBodyNode extends Node {
     const readoutAdjustmentY = 15;
 
     // body of the meter
-    const imageNode = new Image( voltmeterBodyImage, {
+    const imageNode = new Image( voltmeterBody_png, {
       scale: 0.336,
       hitTestPixels: true
     } );

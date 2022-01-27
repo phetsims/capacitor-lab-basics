@@ -11,7 +11,7 @@ import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import YawPitchModelViewTransform3 from '../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
 import { Image } from '../../../scenery/js/imports.js';
-import capacitorIconImage from '../../mipmaps/capacitance_screen_icon_png.js';
+import capacitanceScreenIcon_png from '../../mipmaps/capacitanceScreenIcon_png.js';
 import capacitorLabBasics from '../capacitorLabBasics.js';
 import capacitorLabBasicsStrings from '../capacitorLabBasicsStrings.js';
 import CLBConstants from '../common/CLBConstants.js';
@@ -29,7 +29,7 @@ class CapacitanceScreen extends Screen {
     const options = {
       name: capacitorLabBasicsStrings.screen.capacitance,
       backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
-      homeScreenIcon: new ScreenIcon( new Image( capacitorIconImage ), {
+      homeScreenIcon: new ScreenIcon( new Image( capacitanceScreenIcon_png ), {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1
       } ),

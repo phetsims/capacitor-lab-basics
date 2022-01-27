@@ -15,7 +15,7 @@ import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import { Circle } from '../../../../scenery/js/imports.js';
 import { Image } from '../../../../scenery/js/imports.js';
 import { Node } from '../../../../scenery/js/imports.js';
-import switchCueArrowImage from '../../../images/switch_cue_arrow_png.js';
+import switchCueArrow_png from '../../../images/switchCueArrow_png.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import CircuitState from '../model/CircuitState.js';
@@ -133,7 +133,7 @@ class SwitchNode extends Node {
     } );
 
     // Add arrow for a visual cue
-    const switchCueArrow = new Image( switchCueArrowImage );
+    const switchCueArrow = new Image( switchCueArrow_png );
     switchCueArrow.scale( SWITCH_CUE_ARROW_WIDTH / switchCueArrow.bounds.height );
     switchCueArrow.leftTop = this.wireSwitchNode.center;
 

@@ -19,9 +19,9 @@ import { Node } from '../../../../../scenery/js/imports.js';
 import { Path } from '../../../../../scenery/js/imports.js';
 import { Rectangle } from '../../../../../scenery/js/imports.js';
 import { Text } from '../../../../../scenery/js/imports.js';
-import blackVoltmeterProbeImage from '../../../../images/probe_black_png.js';
-import redVoltmeterProbeImage from '../../../../images/probe_red_png.js';
-import voltmeterBodyImage from '../../../../images/voltmeter_body_png.js';
+import probeBlack_png from '../../../../images/probeBlack_png.js';
+import probeRed_png from '../../../../images/probeRed_png.js';
+import voltmeterBody_png from '../../../../images/voltmeterBody_png.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
 import ProbeWireNode from './ProbeWireNode.js';
@@ -95,8 +95,8 @@ class VoltmeterNode extends Node {
 
 
 // statics for dimensions of the voltmeter body image
-VoltmeterNode.VOLTMETER_BODY_HEIGHT = voltmeterBodyImage.height;
-VoltmeterNode.VOLTMETER_BODY_WIDTH = voltmeterBodyImage.width;
+VoltmeterNode.VOLTMETER_BODY_HEIGHT = voltmeterBody_png.height;
+VoltmeterNode.VOLTMETER_BODY_WIDTH = voltmeterBody_png.width;
 
 capacitorLabBasics.register( 'VoltmeterNode', VoltmeterNode );
 
@@ -111,7 +111,7 @@ class VoltmeterIconNode extends Node {
     super( { scale: scale, tandem: tandem } );
 
     // body of the voltmeter icon
-    const voltmeterImageNode = new Image( voltmeterBodyImage, {
+    const voltmeterImageNode = new Image( voltmeterBody_png, {
       scale: 0.17
     } );
     const offset = 8;
@@ -135,10 +135,10 @@ class VoltmeterIconNode extends Node {
     const negativeConnectionOffset = new Vector2( 4 * imageBounds.width / 7, imageBounds.maxY * 7 / 8 );
 
     // probes for the voltmeter icon, not rotated for perspective
-    const redProbeImage = new Image( redVoltmeterProbeImage, {
+    const redProbeImage = new Image( probeRed_png, {
       scale: 0.10
     } );
-    const blackProbeImage = new Image( blackVoltmeterProbeImage, {
+    const blackProbeImage = new Image( probeBlack_png, {
       scale: 0.10
     } );
 

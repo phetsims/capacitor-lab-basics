@@ -16,8 +16,8 @@ import Vector2 from '../../../../../dot/js/Vector2.js';
 import MovableDragHandler from '../../../../../scenery-phet/js/input/MovableDragHandler.js';
 import { Image } from '../../../../../scenery/js/imports.js';
 import { Node } from '../../../../../scenery/js/imports.js';
-import blackVoltmeterProbeImage from '../../../../images/probe_black_png.js';
-import redVoltmeterProbeImage from '../../../../images/probe_red_png.js';
+import probeBlack_png from '../../../../images/probeBlack_png.js';
+import probeRed_png from '../../../../images/probeRed_png.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 class VoltmeterProbeNode extends Node {
@@ -94,7 +94,7 @@ class VoltmeterProbeNode extends Node {
    * @param {Tandem} tandem
    */
   static createPositiveVoltmeterProbeNode( voltmeter, modelViewTransform, tandem ) {
-    return new VoltmeterProbeNode( redVoltmeterProbeImage,
+    return new VoltmeterProbeNode( probeRed_png,
       voltmeter.positiveProbePositionProperty, modelViewTransform, voltmeter.dragBounds, tandem );
   }
 
@@ -107,7 +107,7 @@ class VoltmeterProbeNode extends Node {
    * @param {Tandem} tandem
    */
   static createNegativeVoltmeterProbeNode( voltmeter, modelViewTransform, tandem ) {
-    return new VoltmeterProbeNode( blackVoltmeterProbeImage,
+    return new VoltmeterProbeNode( probeBlack_png,
       voltmeter.negativeProbePositionProperty, modelViewTransform, voltmeter.dragBounds, tandem );
   }
 }
