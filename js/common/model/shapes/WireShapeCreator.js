@@ -8,8 +8,7 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import Shape from '../../../../../kite/js/Shape.js';
-import LineStyles from '../../../../../kite/js/util/LineStyles.js';
+import { LineStyles, Shape } from '../../../../../kite/js/imports.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 class WireShapeCreator {
