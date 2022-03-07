@@ -89,7 +89,7 @@ class CircuitSwitchDragHandler extends DragListener {
 
         circuitSwitch.angleProperty.set( angle );
       },
-      end: event => {
+      end: () => {
         switchLockedProperty.value = false;
         userControlledProperty.value = false;
 
