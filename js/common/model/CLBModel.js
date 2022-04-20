@@ -12,13 +12,13 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import Emitter from '../../../../axon/js/Emitter.js';
-import EnumerationDeprecatedProperty from '../../../../axon/js/EnumerationDeprecatedProperty.js';
+import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
+import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import Stopwatch from '../../../../scenery-phet/js/Stopwatch.js';
 import TimeSpeed from '../../../../scenery-phet/js/TimeSpeed.js';
-import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import { Color } from '../../../../scenery/js/imports.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
@@ -122,7 +122,7 @@ class CLBModel {
     } );
 
     // @public {Property.<TimeSpeed>}
-    this.timeSpeedProperty = new EnumerationDeprecatedProperty( TimeSpeed, TimeSpeed.NORMAL );
+    this.timeSpeedProperty = new EnumerationProperty( TimeSpeed.NORMAL );
 
     // @public {Emitter}
     this.stepEmitter = new Emitter( { parameters: [ { valueType: 'number' } ] } );
