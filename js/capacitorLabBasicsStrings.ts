@@ -8,33 +8,33 @@ import getStringModule from '../../chipper/js/getStringModule.js';
 import capacitorLabBasics from './capacitorLabBasics.js';
 
 type StringsType = {
-  'capacitance': string,
-  'conventional': string,
-  'currentDirection': string,
-  'barGraphs': string,
+  'capacitance': string;
+  'conventional': string;
+  'currentDirection': string;
+  'barGraphs': string;
   'capacitor-lab-basics': {
-    'title': string
-  },
+    'title': string;
+  };
   'screen': {
-    'capacitance': string,
-    'lightBulb': string
-  },
-  'electricField': string,
-  'electrons': string,
-  'plateArea': string,
-  'topPlateCharge': string,
-  'plateCharges': string,
-  'separation': string,
-  'storedEnergy': string,
-  'voltage': string,
-  'voltsPattern': string,
-  'millimetersPattern': string,
-  'millimetersSquaredPattern': string,
-  'picoJoulesPattern': string,
-  'picoFaradsPattern': string,
-  'picoCoulombsPattern': string,
+    'capacitance': string;
+    'lightBulb': string;
+  };
+  'electricField': string;
+  'electrons': string;
+  'plateArea': string;
+  'topPlateCharge': string;
+  'plateCharges': string;
+  'separation': string;
+  'storedEnergy': string;
+  'voltage': string;
+  'voltsPattern': string;
+  'millimetersPattern': string;
+  'millimetersSquaredPattern': string;
+  'picoJoulesPattern': string;
+  'picoFaradsPattern': string;
+  'picoCoulombsPattern': string;
   'volts': {
-    'unknown': string
+    'unknown': string;
   }
 };
 
