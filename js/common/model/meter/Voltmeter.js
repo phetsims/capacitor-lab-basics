@@ -10,6 +10,7 @@
 
 import BooleanProperty from '../../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../../axon/js/Property.js';
+import Multilink from '../../../../../axon/js/Multilink.js';
 import StringProperty from '../../../../../axon/js/StringProperty.js';
 import Bounds2 from '../../../../../dot/js/Bounds2.js';
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
@@ -136,7 +137,7 @@ class Voltmeter {
     circuit.capacitor.plateVoltageProperty.lazyLink( updateValue );
 
     // Update reading when the probes move
-    Property.lazyMultilink( [ this.negativeProbePositionProperty, this.positiveProbePositionProperty ], updateValue );
+    Multilink.lazyMultilink( [ this.negativeProbePositionProperty, this.positiveProbePositionProperty ], updateValue );
 
     // Update all segments and the plate voltages when capacitor plate geometry changes. Capacitor may not exist yet.
     circuit.capacitor.plateSeparationProperty.lazyLink( updateValue );

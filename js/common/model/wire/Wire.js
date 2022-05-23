@@ -13,6 +13,7 @@
  */
 
 import Property from '../../../../../axon/js/Property.js';
+import Multilink from '../../../../../axon/js/Multilink.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import WireShapeCreator from '../shapes/WireShapeCreator.js';
 
@@ -34,7 +35,7 @@ class Wire {
 
     // Whenever a segment changes, update the shape.
     this.segments.forEach( segment => {
-      Property.multilink( [ segment.startPointProperty, segment.endPointProperty ], () => {
+      Multilink.multilink( [ segment.startPointProperty, segment.endPointProperty ], () => {
         this.shapeProperty.set( this.shapeCreator.createWireShape() );
       } );
     } );

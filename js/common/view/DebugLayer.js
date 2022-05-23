@@ -6,7 +6,7 @@
  * @author Jonathan Olson (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import { Node } from '../../../../scenery/js/imports.js';
@@ -64,7 +64,7 @@ class DebugLayer extends Node {
     const capacitorContainer = new Node();
     this.addChild( capacitorContainer );
     const capacitor = model.circuit.capacitor;
-    Property.multilink( [ capacitor.plateSizeProperty, capacitor.plateSeparationProperty ], ( size, separation ) => {
+    Multilink.multilink( [ capacitor.plateSizeProperty, capacitor.plateSeparationProperty ], ( size, separation ) => {
       capacitorContainer.children = [
         new Path( capacitor.shapeCreator.createBoxShape( capacitor.position.x, capacitor.getTopConnectionPoint().y, capacitor.position.z, size.width, size.height, size.depth ), {
           stroke: 'blue'

@@ -7,7 +7,7 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CircuitState from '../../common/model/CircuitState.js';
@@ -63,7 +63,7 @@ class LightBulbCircuitNode extends CLBCircuitNode {
     this.bulbBottomCurrentIndicatorNode.translate( x, y );
 
     // current indicator observer, no need for disposal since they persist for the lifetime of the sim
-    Property.multilink( [ circuit.circuitConnectionProperty, model.currentVisibleProperty, model.isPlayingProperty ],
+    Multilink.multilink( [ circuit.circuitConnectionProperty, model.currentVisibleProperty, model.isPlayingProperty ],
       ( circuitConnection, currentVisible, isPlaying ) => {
         const isBatteryConnected = ( circuitConnection === CircuitState.BATTERY_CONNECTED );
         const isLightBulbConnected = ( circuitConnection === CircuitState.LIGHT_BULB_CONNECTED );

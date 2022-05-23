@@ -7,7 +7,7 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CircuitState from '../../common/model/CircuitState.js';
 import CLBCircuitNode from '../../common/view/CLBCircuitNode.js';
@@ -21,7 +21,7 @@ class CapacitanceCircuitNode extends CLBCircuitNode {
 
     super( model, tandem );
 
-    Property.multilink( [ model.circuit.circuitConnectionProperty, model.currentVisibleProperty ],
+    Multilink.multilink( [ model.circuit.circuitConnectionProperty, model.currentVisibleProperty ],
       ( circuitConnection, currentIndicatorsVisible ) => {
         this.updateCurrentVisibility( circuitConnection, currentIndicatorsVisible );
       } );

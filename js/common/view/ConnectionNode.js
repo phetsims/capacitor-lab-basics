@@ -8,7 +8,7 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import { PressListener } from '../../../../scenery/js/imports.js';
 import { Circle } from '../../../../scenery/js/imports.js';
@@ -90,7 +90,7 @@ class ConnectionNode extends Node {
     } );
     this.addInputListener( pressListener );
 
-    Property.multilink( [ pressListener.isHoveringProperty, userControlledProperty ], ( hovering, userControlled ) => {
+    Multilink.multilink( [ pressListener.isHoveringProperty, userControlledProperty ], ( hovering, userControlled ) => {
       this.highlightNode.visible = hovering && !userControlled;
     } );
   }

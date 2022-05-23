@@ -13,7 +13,7 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
@@ -137,7 +137,7 @@ class CurrentIndicatorNode extends Node {
     let lastNonzeroAmplitude = 0;
 
     // observe current to determine rotation and opacity
-    Property.lazyMultilink( [ currentAmplitudeProperty, positiveOrientationProperty ], ( currentAmplitude, positiveOrientation ) => {
+    Multilink.lazyMultilink( [ currentAmplitudeProperty, positiveOrientationProperty ], ( currentAmplitude, positiveOrientation ) => {
 
       if ( currentAmplitude !== 0 ) {
         lastNonzeroAmplitude = currentAmplitude;

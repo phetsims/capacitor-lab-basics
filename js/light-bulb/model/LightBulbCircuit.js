@@ -23,7 +23,7 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../../common/CLBConstants.js';
@@ -70,7 +70,7 @@ class LightBulbCircuit extends ParallelCircuit {
     } );
 
     // Allow the capacitor to discharge when adjusting the plate geometry.
-    Property.multilink( [ this.capacitor.plateSizeProperty, this.capacitor.plateSeparationProperty ],
+    Multilink.multilink( [ this.capacitor.plateSizeProperty, this.capacitor.plateSeparationProperty ],
       () => {
         // Don't discharge the capacitor when we're connected to the battery (since the amount of charge changes to
         // compensate). See https://github.com/phetsims/capacitor-lab-basics/issues/282
