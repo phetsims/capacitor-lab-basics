@@ -8,7 +8,7 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import Property from '../../../../../axon/js/Property.js';
+import Property, { AbstractProperty } from '../../../../../axon/js/Property.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 class BarMeter {
@@ -18,7 +18,7 @@ class BarMeter {
    */
   constructor( visibleProperty, valueProperty ) {
     assert && assert( visibleProperty instanceof Property );
-    assert && assert( valueProperty instanceof Property );
+    assert && assert( valueProperty instanceof AbstractProperty );
 
     // @public {Property.<number>}
     this.valueProperty = valueProperty;
