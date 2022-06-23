@@ -86,17 +86,17 @@ class BarMeterPanel extends Panel {
     };
 
     const capacitanceLabel = new Text( capacitanceString, fontOptions );
-    const capacitanceCheckbox = new Checkbox( capacitanceLabel, model.capacitanceMeterVisibleProperty, {
+    const capacitanceCheckbox = new Checkbox( model.capacitanceMeterVisibleProperty, capacitanceLabel, {
       tandem: tandem.createTandem( 'capacitanceCheckbox' )
     } );
 
     const topPlateChargeLabel = new Text( topPlateChargeString, fontOptions );
-    const topPlateChargeCheckbox = new Checkbox( topPlateChargeLabel, model.topPlateChargeMeterVisibleProperty, {
+    const topPlateChargeCheckbox = new Checkbox( model.topPlateChargeMeterVisibleProperty, topPlateChargeLabel, {
       tandem: tandem.createTandem( 'topPlateChargeCheckbox' )
     } );
 
     const storedEnergyLabel = new Text( storedEnergyString, fontOptions );
-    const storedEnergyCheckbox = new Checkbox( storedEnergyLabel, model.storedEnergyMeterVisibleProperty, {
+    const storedEnergyCheckbox = new Checkbox( model.storedEnergyMeterVisibleProperty, storedEnergyLabel, {
       tandem: tandem.createTandem( 'storedEnergyCheckbox' )
     } );
 
