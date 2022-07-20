@@ -9,19 +9,17 @@
 
 import Vector2 from '../../../../dot/js/Vector2.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
+import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import StopwatchNode from '../../../../scenery-phet/js/StopwatchNode.js';
 import TimeControlNode from '../../../../scenery-phet/js/TimeControlNode.js';
-import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import { AlignGroup } from '../../../../scenery/js/imports.js';
-import { HBox } from '../../../../scenery/js/imports.js';
-import { Color } from '../../../../scenery/js/imports.js';
+import { AlignGroup, Color, HBox } from '../../../../scenery/js/imports.js';
 import Panel from '../../../../sun/js/Panel.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import BarMeterPanel from '../../common/view/BarMeterPanel.js';
-import DebugLayer from '../../common/view/DebugLayer.js';
 import CLBViewControlPanel from '../../common/view/control/CLBViewControlPanel.js';
 import ToolboxPanel from '../../common/view/control/ToolboxPanel.js';
+import DebugLayer from '../../common/view/DebugLayer.js';
 import VoltmeterNode from '../../common/view/meters/VoltmeterNode.js';
 import LightBulbCircuitNode from './LightBulbCircuitNode.js';
 

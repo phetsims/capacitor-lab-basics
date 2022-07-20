@@ -12,8 +12,8 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import Property from '../../../../../axon/js/Property.js';
 import Multilink from '../../../../../axon/js/Multilink.js';
+import Property from '../../../../../axon/js/Property.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import WireShapeCreator from '../shapes/WireShapeCreator.js';
 

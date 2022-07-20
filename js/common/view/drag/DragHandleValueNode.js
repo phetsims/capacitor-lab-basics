@@ -13,9 +13,7 @@ import Vector2 from '../../../../../dot/js/Vector2.js';
 import merge from '../../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
-import { Node } from '../../../../../scenery/js/imports.js';
-import { RichText } from '../../../../../scenery/js/imports.js';
-import { Text } from '../../../../../scenery/js/imports.js';
+import { Node, RichText, Text } from '../../../../../scenery/js/imports.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 

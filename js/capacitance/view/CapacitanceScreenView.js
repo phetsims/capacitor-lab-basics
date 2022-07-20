@@ -12,9 +12,9 @@ import ScreenView from '../../../../joist/js/ScreenView.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import BarMeterPanel from '../../common/view/BarMeterPanel.js';
-import DebugLayer from '../../common/view/DebugLayer.js';
 import CLBViewControlPanel from '../../common/view/control/CLBViewControlPanel.js';
 import ToolboxPanel from '../../common/view/control/ToolboxPanel.js';
+import DebugLayer from '../../common/view/DebugLayer.js';
 import VoltmeterNode from '../../common/view/meters/VoltmeterNode.js';
 import CapacitanceCircuitNode from './CapacitanceCircuitNode.js';
 

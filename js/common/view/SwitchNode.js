@@ -12,17 +12,15 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
-import { Circle } from '../../../../scenery/js/imports.js';
-import { Image } from '../../../../scenery/js/imports.js';
-import { Node } from '../../../../scenery/js/imports.js';
+import { Circle, Image, Node } from '../../../../scenery/js/imports.js';
 import switchCueArrow_png from '../../../images/switchCueArrow_png.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import CircuitState from '../model/CircuitState.js';
 import ConnectionNode from './ConnectionNode.js';
+import CircuitSwitchDragHandler from './drag/CircuitSwitchDragHandler.js';
 import HingePointNode from './HingePointNode.js';
 import WireNode from './WireNode.js';
-import CircuitSwitchDragHandler from './drag/CircuitSwitchDragHandler.js';
 
 // Images
 

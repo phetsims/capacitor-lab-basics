@@ -16,9 +16,7 @@ import Utils from '../../../../../dot/js/Utils.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
 import ArrowNode from '../../../../../scenery-phet/js/ArrowNode.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
-import { Line } from '../../../../../scenery/js/imports.js';
-import { Node } from '../../../../../scenery/js/imports.js';
-import { Text } from '../../../../../scenery/js/imports.js';
+import { Line, Node, Text } from '../../../../../scenery/js/imports.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import BarNode from './BarNode.js';
 

@@ -12,9 +12,7 @@
 import Vector2 from '../../../../../dot/js/Vector2.js';
 import merge from '../../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
-import { AlignBox } from '../../../../../scenery/js/imports.js';
-import { Node } from '../../../../../scenery/js/imports.js';
-import { Text } from '../../../../../scenery/js/imports.js';
+import { AlignBox, Node, Text } from '../../../../../scenery/js/imports.js';
 import Panel from '../../../../../sun/js/Panel.js';
 import VerticalAquaRadioButtonGroup from '../../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import VerticalCheckboxGroup from '../../../../../sun/js/VerticalCheckboxGroup.js';

@@ -8,8 +8,7 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import { Node } from '../../../../scenery/js/imports.js';
-import { Path } from '../../../../scenery/js/imports.js';
+import { Node, Path } from '../../../../scenery/js/imports.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 
 // constants

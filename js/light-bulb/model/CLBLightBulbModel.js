@@ -11,9 +11,9 @@
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBQueryParameters from '../../common/CLBQueryParameters.js';
-import CLBModel from '../../common/model/CLBModel.js';
 import CircuitConfig from '../../common/model/CircuitConfig.js';
 import CircuitState from '../../common/model/CircuitState.js';
+import CLBModel from '../../common/model/CLBModel.js';
 import BarMeter from '../../common/model/meter/BarMeter.js';
 import LightBulbCircuit from './LightBulbCircuit.js';
 

@@ -8,10 +8,7 @@
 
 import Vector2 from '../../../../dot/js/Vector2.js';
 import { Shape } from '../../../../kite/js/imports.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import { Path } from '../../../../scenery/js/imports.js';
-import { Color } from '../../../../scenery/js/imports.js';
-import { LinearGradient } from '../../../../scenery/js/imports.js';
+import { Color, LinearGradient, Node, Path } from '../../../../scenery/js/imports.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 
 const BATTERY_PERSPECTIVE_RATIO = 0.304;

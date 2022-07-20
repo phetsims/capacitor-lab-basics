@@ -10,9 +10,9 @@
  */
 
 import capacitorLabBasics from '../../capacitorLabBasics.js';
-import CLBModel from '../../common/model/CLBModel.js';
 import CircuitConfig from '../../common/model/CircuitConfig.js';
 import CircuitState from '../../common/model/CircuitState.js';
+import CLBModel from '../../common/model/CLBModel.js';
 import BarMeter from '../../common/model/meter/BarMeter.js';
 import CapacitanceCircuit from './CapacitanceCircuit.js';
 

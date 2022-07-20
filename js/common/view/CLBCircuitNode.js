@@ -17,10 +17,10 @@ import CLBConstants from '../CLBConstants.js';
 import CircuitState from '../model/CircuitState.js';
 import BatteryNode from './BatteryNode.js';
 import CurrentIndicatorNode from './CurrentIndicatorNode.js';
-import SwitchNode from './SwitchNode.js';
-import WireNode from './WireNode.js';
 import PlateAreaDragHandleNode from './drag/PlateAreaDragHandleNode.js';
 import PlateSeparationDragHandleNode from './drag/PlateSeparationDragHandleNode.js';
+import SwitchNode from './SwitchNode.js';
+import WireNode from './WireNode.js';
 
 class CLBCircuitNode extends Node {
   /**
