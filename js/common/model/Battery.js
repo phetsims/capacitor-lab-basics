@@ -62,7 +62,7 @@ class Battery {
     this.polarityProperty = new Property( CapacitorConstants.POLARITY.POSITIVE, {
       validValues: CapacitorConstants.POLARITY.VALUES,
       tandem: tandem.createTandem( 'polarityProperty' ),
-      phetioType: Property.PropertyIO( EnumerationIO( CapacitorConstants.POLARITY ) )
+      phetioValueType: EnumerationIO( CapacitorConstants.POLARITY )
     } );
 
 

@@ -43,7 +43,7 @@ class ParallelCircuit {
     // @public {Property.<CircuitState>} - Property tracking the state of the switch
     this.circuitConnectionProperty = new Property( CircuitState.BATTERY_CONNECTED, {
       tandem: tandem.createTandem( 'circuitConnectionProperty' ),
-      phetioType: Property.PropertyIO( StringIO ),
+      phetioValueType: StringIO,
       validValues: CircuitState.VALUES
     } );
 

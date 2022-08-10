@@ -71,21 +71,21 @@ class Voltmeter {
     this.bodyPositionProperty = new Property( new Vector3( 0, 0, 0 ), {
       useDeepEquality: true,
       tandem: tandem.createTandem( 'bodyPositionProperty' ),
-      phetioType: Property.PropertyIO( Vector3.Vector3IO )
+      phetioValueType: Vector3.Vector3IO
     } );
 
     // @public {Property.<Vector3>}
     this.positiveProbePositionProperty = new Property( POSITIVE_PROBE_POSITION, {
       useDeepEquality: true,
       tandem: tandem.createTandem( 'positiveProbePositionProperty' ),
-      phetioType: Property.PropertyIO( Vector3.Vector3IO )
+      phetioValueType: Vector3.Vector3IO
     } );
 
     // @public {Property.<Vector3>}
     this.negativeProbePositionProperty = new Property( NEGATIVE_PROBE_POSITION, {
       useDeepEquality: true,
       tandem: tandem.createTandem( 'negativeProbePositionProperty' ),
-      phetioType: Property.PropertyIO( Vector3.Vector3IO )
+      phetioValueType: Vector3.Vector3IO
     } );
 
     // By design, the voltmeter reads "?" for disconnected contacts, which is represented internally by a null
@@ -94,7 +94,7 @@ class Voltmeter {
     this.measuredVoltageProperty = new Property( null, {
       tandem: tandem.createTandem( 'measuredVoltageProperty' ),
       units: 'V',
-      phetioType: Property.PropertyIO( NullableIO( NumberIO ) )
+      phetioValueType: NullableIO( NumberIO )
     } );
 
     // TODO: factor out shared code for positive/negative probe

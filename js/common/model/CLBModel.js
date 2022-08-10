@@ -105,7 +105,7 @@ class CLBModel {
       }
     }, {
       tandem: tandem.createTandem( 'arrowColorProperty' ),
-      phetioType: DerivedProperty.DerivedPropertyIO( Color.ColorIO )
+      phetioValueType: Color.ColorIO
     } );
 
     // @public {Property.<boolean>} Whether the sim is paused

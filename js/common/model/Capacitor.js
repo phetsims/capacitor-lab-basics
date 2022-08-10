@@ -70,7 +70,7 @@ class Capacitor {
     // @public {Property.<Bounds3>}
     this.plateSizeProperty = new Property( plateBounds, {
       tandem: tandem.createTandem( 'plateSizeProperty' ),
-      phetioType: Property.PropertyIO( Bounds3.Bounds3IO ),
+      phetioValueType: Bounds3.Bounds3IO,
       phetioReadOnly: true
     } );
 
@@ -96,7 +96,7 @@ class Capacitor {
       }, {
         tandem: tandem.createTandem( 'capacitanceProperty' ),
         units: 'F',
-        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+        phetioValueType: NumberIO
       } );
 
     this.capacitanceProperty.lazyLink( ( capacitance, oldCapacitance ) => {
@@ -117,7 +117,7 @@ class Capacitor {
       }, {
         tandem: tandem.createTandem( 'plateChargeProperty' ),
         units: 'C',
-        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+        phetioValueType: NumberIO
       } );
 
     // @public {Property.<number>}
@@ -125,7 +125,7 @@ class Capacitor {
       ( capacitance, voltage ) => 0.5 * capacitance * voltage * voltage, {
         tandem: tandem.createTandem( 'storedEnergyProperty' ),
         units: 'J',
-        phetioType: DerivedProperty.DerivedPropertyIO( NumberIO )
+        phetioValueType: NumberIO
       } );
 
     // @public {CircuitSwitch}
