@@ -63,7 +63,7 @@ class BatteryNode extends Node {
           battery.voltageProperty.value = 0;
         }
       },
-      tandem: tandem.createTandem( 'sliderNode' )
+      tandem: tandem.createTandem( 'slider' )
     } );
 
     // function to create the tick mark labels using a string pattern.
