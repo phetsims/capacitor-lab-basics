@@ -10,54 +10,54 @@ import capacitorLabBasics from './capacitorLabBasics.js';
 
 type StringsType = {
   'capacitance': string;
-  'capacitanceProperty': TReadOnlyProperty<string>;
+  'capacitanceStringProperty': TReadOnlyProperty<string>;
   'conventional': string;
-  'conventionalProperty': TReadOnlyProperty<string>;
+  'conventionalStringProperty': TReadOnlyProperty<string>;
   'currentDirection': string;
-  'currentDirectionProperty': TReadOnlyProperty<string>;
+  'currentDirectionStringProperty': TReadOnlyProperty<string>;
   'barGraphs': string;
-  'barGraphsProperty': TReadOnlyProperty<string>;
+  'barGraphsStringProperty': TReadOnlyProperty<string>;
   'capacitor-lab-basics': {
     'title': string;
-    'titleProperty': TReadOnlyProperty<string>;
+    'titleStringProperty': TReadOnlyProperty<string>;
   };
   'screen': {
     'capacitance': string;
-    'capacitanceProperty': TReadOnlyProperty<string>;
+    'capacitanceStringProperty': TReadOnlyProperty<string>;
     'lightBulb': string;
-    'lightBulbProperty': TReadOnlyProperty<string>;
+    'lightBulbStringProperty': TReadOnlyProperty<string>;
   };
   'electricField': string;
-  'electricFieldProperty': TReadOnlyProperty<string>;
+  'electricFieldStringProperty': TReadOnlyProperty<string>;
   'electrons': string;
-  'electronsProperty': TReadOnlyProperty<string>;
+  'electronsStringProperty': TReadOnlyProperty<string>;
   'plateArea': string;
-  'plateAreaProperty': TReadOnlyProperty<string>;
+  'plateAreaStringProperty': TReadOnlyProperty<string>;
   'topPlateCharge': string;
-  'topPlateChargeProperty': TReadOnlyProperty<string>;
+  'topPlateChargeStringProperty': TReadOnlyProperty<string>;
   'plateCharges': string;
-  'plateChargesProperty': TReadOnlyProperty<string>;
+  'plateChargesStringProperty': TReadOnlyProperty<string>;
   'separation': string;
-  'separationProperty': TReadOnlyProperty<string>;
+  'separationStringProperty': TReadOnlyProperty<string>;
   'storedEnergy': string;
-  'storedEnergyProperty': TReadOnlyProperty<string>;
+  'storedEnergyStringProperty': TReadOnlyProperty<string>;
   'voltage': string;
-  'voltageProperty': TReadOnlyProperty<string>;
+  'voltageStringProperty': TReadOnlyProperty<string>;
   'voltsPattern': string;
-  'voltsPatternProperty': TReadOnlyProperty<string>;
+  'voltsPatternStringProperty': TReadOnlyProperty<string>;
   'millimetersPattern': string;
-  'millimetersPatternProperty': TReadOnlyProperty<string>;
+  'millimetersPatternStringProperty': TReadOnlyProperty<string>;
   'millimetersSquaredPattern': string;
-  'millimetersSquaredPatternProperty': TReadOnlyProperty<string>;
+  'millimetersSquaredPatternStringProperty': TReadOnlyProperty<string>;
   'picoJoulesPattern': string;
-  'picoJoulesPatternProperty': TReadOnlyProperty<string>;
+  'picoJoulesPatternStringProperty': TReadOnlyProperty<string>;
   'picoFaradsPattern': string;
-  'picoFaradsPatternProperty': TReadOnlyProperty<string>;
+  'picoFaradsPatternStringProperty': TReadOnlyProperty<string>;
   'picoCoulombsPattern': string;
-  'picoCoulombsPatternProperty': TReadOnlyProperty<string>;
+  'picoCoulombsPatternStringProperty': TReadOnlyProperty<string>;
   'volts': {
     'unknown': string;
-    'unknownProperty': TReadOnlyProperty<string>;
+    'unknownStringProperty': TReadOnlyProperty<string>;
   }
 };
 
