@@ -59,7 +59,7 @@ class VoltmeterProbeNode extends Node {
     // Don't allow pushing the probes too far to the left, see https://github.com/phetsims/capacitor-lab-basics/issues/202
     const adjustedViewBounds = new Bounds2( 40, 0, dragBounds.maxX - imageNode.width, dragBounds.maxY - 0.4 * imageNode.height );
 
-    // Convert the 3d property to a 2d property for use in the MovableDragHandler
+    // Convert the 3d property to a 2d property for use in the DragListener
     const position2DProperty = new DynamicProperty( new Property( positionProperty ), {
       bidirectional: true,
       useDeepEquality: true,
@@ -68,7 +68,7 @@ class VoltmeterProbeNode extends Node {
     } );
 
     // Drag handler accounting for boundaries
-    this.movableDragHandler = new DragListener( {
+    this.dragListener = new DragListener( {
       positionProperty: position2DProperty,
       attach: true,
       useParentOffset: true,
@@ -77,7 +77,7 @@ class VoltmeterProbeNode extends Node {
       transform: modelViewTransform.modelToViewTransform2D,
       useDeepEquality: true
     } );
-    this.addInputListener( this.movableDragHandler );
+    this.addInputListener( this.dragListener );
 
     // set the cursor
     this.cursor = 'pointer';

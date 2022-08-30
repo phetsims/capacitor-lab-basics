@@ -65,7 +65,7 @@ class ToolboxPanel extends Node {
       voltmeterNode.bodyNode.bodyPositionProperty.set( modelViewTransform.viewToModelPosition( voltmeterBodyPosition ) );
 
       // start drag from the body node's movable drag handler
-      voltmeterNode.bodyNode.movableDragHandler.press( event );
+      voltmeterNode.bodyNode.dragListener.press( event );
       this.phetioEndEvent();
     } ) );
 

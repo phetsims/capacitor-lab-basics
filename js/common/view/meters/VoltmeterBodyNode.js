@@ -122,7 +122,7 @@ class VoltmeterBodyNode extends Node {
       map: vector3 => vector3.toVector2(),
       inverseMap: vector2 => vector2.toVector3()
     } );
-    this.movableDragHandler = new DragListener( {
+    this.dragListener = new DragListener( {
       positionProperty: body2DProperty,
       attach: true,
       useParentOffset: true,
@@ -136,7 +136,7 @@ class VoltmeterBodyNode extends Node {
         isDraggedProperty.set( false );
       }
     } );
-    this.addInputListener( this.movableDragHandler );
+    this.addInputListener( this.dragListener );
   }
 
 
