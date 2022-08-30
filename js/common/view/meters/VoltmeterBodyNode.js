@@ -13,9 +13,8 @@ import Bounds2 from '../../../../../dot/js/Bounds2.js';
 import Utils from '../../../../../dot/js/Utils.js';
 import Vector2 from '../../../../../dot/js/Vector2.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
-import MovableDragHandler from '../../../../../scenery-phet/js/input/MovableDragHandler.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
-import { Image, Node, Rectangle, Text } from '../../../../../scenery/js/imports.js';
+import { DragListener, Image, Node, Rectangle, Text } from '../../../../../scenery/js/imports.js';
 import voltmeterBody_png from '../../../../images/voltmeterBody_png.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
@@ -123,15 +122,17 @@ class VoltmeterBodyNode extends Node {
       map: vector3 => vector3.toVector2(),
       inverseMap: vector2 => vector2.toVector3()
     } );
-    this.movableDragHandler = new MovableDragHandler( body2DProperty, {
+    this.movableDragHandler = new DragListener( {
+      positionProperty: body2DProperty,
       attach: true,
+      useParentOffset: true,
       tandem: tandem.createTandem( 'dragHandler' ),
-      dragBounds: bodyDragBounds,
-      modelViewTransform: modelViewTransform.modelToViewTransform2D,
-      startDrag: () => {
+      dragBoundsProperty: new Property( bodyDragBounds ),
+      transform: modelViewTransform.modelToViewTransform2D,
+      start: () => {
         isDraggedProperty.set( true );
       },
-      endDrag: () => {
+      end: () => {
         isDraggedProperty.set( false );
       }
     } );

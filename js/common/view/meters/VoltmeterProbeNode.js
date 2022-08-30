@@ -13,8 +13,7 @@ import DynamicProperty from '../../../../../axon/js/DynamicProperty.js';
 import Property from '../../../../../axon/js/Property.js';
 import Bounds2 from '../../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../../dot/js/Vector2.js';
-import MovableDragHandler from '../../../../../scenery-phet/js/input/MovableDragHandler.js';
-import { Image, Node } from '../../../../../scenery/js/imports.js';
+import { DragListener, Image, Node } from '../../../../../scenery/js/imports.js';
 import probeBlack_png from '../../../../images/probeBlack_png.js';
 import probeRed_png from '../../../../images/probeRed_png.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
@@ -69,11 +68,13 @@ class VoltmeterProbeNode extends Node {
     } );
 
     // Drag handler accounting for boundaries
-    this.movableDragHandler = new MovableDragHandler( position2DProperty, {
+    this.movableDragHandler = new DragListener( {
+      positionProperty: position2DProperty,
       attach: true,
+      useParentOffset: true,
       tandem: tandem.createTandem( 'dragHandler' ),
-      dragBounds: modelViewTransform.viewToModelBounds( adjustedViewBounds ),
-      modelViewTransform: modelViewTransform.modelToViewTransform2D,
+      dragBoundsProperty: new Property( modelViewTransform.viewToModelBounds( adjustedViewBounds ) ),
+      transform: modelViewTransform.modelToViewTransform2D,
       useDeepEquality: true
     } );
     this.addInputListener( this.movableDragHandler );
@@ -98,7 +99,7 @@ class VoltmeterProbeNode extends Node {
   }
 
   /**
-   * Factory for a positive VoltmeterProbeNode
+   * Factory for a negative VoltmeterProbeNode
    * @public
    *
    * @param {Voltmeter} voltmeter
