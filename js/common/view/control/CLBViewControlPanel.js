@@ -47,19 +47,19 @@ class CLBViewControlPanel extends Panel {
     const checkboxItems = [ {
       string: plateChargesString,
       property: model.plateChargesVisibleProperty,
-      tandem: tandem.createTandem( 'plateChargesCheckbox' )
+      tandemName: 'plateChargesCheckbox'
     }, {
       string: barGraphsString,
       property: model.barGraphsVisibleProperty,
-      tandem: tandem.createTandem( 'barGraphsCheckbox' )
+      tandemName: 'barGraphsCheckbox'
     }, {
       string: electricFieldString,
       property: model.electricFieldVisibleProperty,
-      tandem: tandem.createTandem( 'electricFieldCheckbox' )
+      tandemName: 'electricFieldCheckbox'
     }, {
       string: currentDirectionString,
       property: model.currentVisibleProperty,
-      tandem: tandem.createTandem( 'currentCheckbox' )
+      tandemName: 'currentCheckbox'
     } ];
 
     const viewCheckboxItems = checkboxItems.map( item => ( {
@@ -69,7 +69,7 @@ class CLBViewControlPanel extends Panel {
       } ),
       property: item.property,
       label: item.string,
-      tandem: item.tandem
+      tandemName: item.tandemName
     } ) );
 
     const currentTypeRadioButtonGroup = new VerticalAquaRadioButtonGroup( model.currentOrientationProperty, [
@@ -102,16 +102,17 @@ class CLBViewControlPanel extends Panel {
     model.currentVisibleProperty.linkAttribute( currentTypeRadioButtonGroup.children[ 0 ], 'enabled' );
     model.currentVisibleProperty.linkAttribute( currentTypeRadioButtonGroup.children[ 1 ], 'enabled' );
 
-    const verticalCheckboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
+    const checkboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
       checkboxOptions: {
         // The box is as wide as the largest item is tall
         boxWidth: viewCheckboxItems[ 0 ].node.height
-      }
+      },
+      tandem: tandem.createTandem( 'checkboxGroup' )
     } );
 
-    const optionsNode = new Node( { children: [ verticalCheckboxGroup, currentTypeRadioButtonGroup ] } );
+    const optionsNode = new Node( { children: [ checkboxGroup, currentTypeRadioButtonGroup ] } );
 
-    currentTypeRadioButtonGroup.leftTop = new Vector2( verticalCheckboxGroup.left + 25, verticalCheckboxGroup.bottom + 10 );
+    currentTypeRadioButtonGroup.leftTop = new Vector2( checkboxGroup.left + 25, checkboxGroup.bottom + 10 );
 
     // {Node|AlignBox}
     const content = options.alignGroup ? new AlignBox( optionsNode, {
