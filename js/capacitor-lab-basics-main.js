@@ -16,7 +16,7 @@ import CapacitanceScreen from './capacitance/CapacitanceScreen.js';
 import capacitorLabBasicsStrings from './capacitorLabBasicsStrings.js';
 import CLBLightBulbScreen from './light-bulb/CLBLightBulbScreen.js';
 
-const capacitorLabBasicsTitleString = capacitorLabBasicsStrings[ 'capacitor-lab-basics' ].title;
+const capacitorLabBasicsTitleStringProperty = capacitorLabBasicsStrings[ 'capacitor-lab-basics' ].titleStringProperty;
 
 // constants
 const tandem = Tandem.ROOT;
@@ -40,6 +40,6 @@ simLauncher.launch( () => {
     new CapacitanceScreen( switchUsedProperty, tandem.createTandem( 'capacitanceScreen' ) ),
     new CLBLightBulbScreen( switchUsedProperty, tandem.createTandem( 'lightBulbScreen' ) )
   ];
-  const sim = new Sim( capacitorLabBasicsTitleString, screens, simOptions );
+  const sim = new Sim( capacitorLabBasicsTitleStringProperty, screens, simOptions );
   sim.start();
 } );
