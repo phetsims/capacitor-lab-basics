@@ -19,12 +19,12 @@ import probeBlack_png from '../../../../images/probeBlack_png.js';
 import probeRed_png from '../../../../images/probeRed_png.js';
 import voltmeterBody_png from '../../../../images/voltmeterBody_png.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
-import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
+import CapacitorLabBasicsStrings from '../../../CapacitorLabBasicsStrings.js';
 import ProbeWireNode from './ProbeWireNode.js';
 import VoltmeterBodyNode from './VoltmeterBodyNode.js';
 import VoltmeterProbeNode from './VoltmeterProbeNode.js';
 
-const voltageString = capacitorLabBasicsStrings.voltage;
+const voltageString = CapacitorLabBasicsStrings.voltage;
 
 // title display
 const TITLE_FONT = new PhetFont( {

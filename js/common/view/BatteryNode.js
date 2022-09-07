@@ -18,14 +18,14 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Node, Text } from '../../../../scenery/js/imports.js';
 import VSlider from '../../../../sun/js/VSlider.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
-import capacitorLabBasicsStrings from '../../capacitorLabBasicsStrings.js';
+import CapacitorLabBasicsStrings from '../../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../CLBConstants.js';
 import BatteryGraphicNode from './BatteryGraphicNode.js';
 
 // constants
 const LABEL_FONT = new PhetFont( 12 );
 
-const voltsPatternString = capacitorLabBasicsStrings.voltsPattern;
+const voltsPatternString = CapacitorLabBasicsStrings.voltsPattern;
 
 class BatteryNode extends Node {
   /**

@@ -17,18 +17,18 @@ import Panel from '../../../../../sun/js/Panel.js';
 import VerticalAquaRadioButtonGroup from '../../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import VerticalCheckboxGroup from '../../../../../sun/js/VerticalCheckboxGroup.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
-import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
+import CapacitorLabBasicsStrings from '../../../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../../CLBConstants.js';
 
 // constants
 const CHECKBOX_FONT = new PhetFont( 16 );
 
-const barGraphsString = capacitorLabBasicsStrings.barGraphs;
-const conventionalString = capacitorLabBasicsStrings.conventional;
-const currentDirectionString = capacitorLabBasicsStrings.currentDirection;
-const electricFieldString = capacitorLabBasicsStrings.electricField;
-const electronsString = capacitorLabBasicsStrings.electrons;
-const plateChargesString = capacitorLabBasicsStrings.plateCharges;
+const barGraphsString = CapacitorLabBasicsStrings.barGraphs;
+const conventionalString = CapacitorLabBasicsStrings.conventional;
+const currentDirectionString = CapacitorLabBasicsStrings.currentDirection;
+const electricFieldString = CapacitorLabBasicsStrings.electricField;
+const electronsString = CapacitorLabBasicsStrings.electrons;
+const plateChargesString = CapacitorLabBasicsStrings.plateCharges;
 
 class CLBViewControlPanel extends Panel {
 

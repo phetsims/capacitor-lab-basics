@@ -61,8 +61,8 @@ type StringsType = {
   }
 };
 
-const capacitorLabBasicsStrings = getStringModule( 'CAPACITOR_LAB_BASICS' ) as StringsType;
+const CapacitorLabBasicsStrings = getStringModule( 'CAPACITOR_LAB_BASICS' ) as StringsType;
 
-capacitorLabBasics.register( 'capacitorLabBasicsStrings', capacitorLabBasicsStrings );
+capacitorLabBasics.register( 'CapacitorLabBasicsStrings', CapacitorLabBasicsStrings );
 
-export default capacitorLabBasicsStrings;
+export default CapacitorLabBasicsStrings;

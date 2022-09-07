@@ -13,7 +13,7 @@
 import Vector2 from '../../../../../dot/js/Vector2.js';
 import { Node } from '../../../../../scenery/js/imports.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
-import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
+import CapacitorLabBasicsStrings from '../../../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../../CLBConstants.js';
 import UnitsUtils from '../../model/util/UnitsUtils.js';
 import DragHandleArrowNode from './DragHandleArrowNode.js';
@@ -26,8 +26,8 @@ import PlateAreaDragHandler from './PlateAreaDragHandler.js';
 const ARROW_TIP_POSITION = new Vector2( 0, 0 );
 const ARROW_TAIL_POSITION = new Vector2( 0, CLBConstants.DRAG_HANDLE_ARROW_LENGTH );
 
-const millimetersSquaredPatternString = capacitorLabBasicsStrings.millimetersSquaredPattern;
-const plateAreaString = capacitorLabBasicsStrings.plateArea;
+const millimetersSquaredPatternString = CapacitorLabBasicsStrings.millimetersSquaredPattern;
+const plateAreaString = CapacitorLabBasicsStrings.plateArea;
 
 // endpoints for a vertical line, this will be rotated to point along the plate's pseudo-3D diagonal
 const LINE_LENGTH = 22;

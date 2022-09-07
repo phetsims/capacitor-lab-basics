@@ -16,7 +16,7 @@ import { Node, Text } from '../../../../scenery/js/imports.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Panel from '../../../../sun/js/Panel.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
-import capacitorLabBasicsStrings from '../../capacitorLabBasicsStrings.js';
+import CapacitorLabBasicsStrings from '../../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../CLBConstants.js';
 import BarMeterNode from './meters/BarMeterNode.js';
 import PlateChargeBarMeterNode from './meters/PlateChargeBarMeterNode.js';
@@ -26,12 +26,12 @@ const CHECKBOX_VERTICAL_SPACING = 28;
 const VALUE_FONT = new PhetFont( 16 );
 const VALUE_COLOR = 'black';
 
-const capacitanceString = capacitorLabBasicsStrings.capacitance;
-const picoCoulombsPatternString = capacitorLabBasicsStrings.picoCoulombsPattern;
-const picoFaradsPatternString = capacitorLabBasicsStrings.picoFaradsPattern;
-const picoJoulesPatternString = capacitorLabBasicsStrings.picoJoulesPattern;
-const storedEnergyString = capacitorLabBasicsStrings.storedEnergy;
-const topPlateChargeString = capacitorLabBasicsStrings.topPlateCharge;
+const capacitanceString = CapacitorLabBasicsStrings.capacitance;
+const picoCoulombsPatternString = CapacitorLabBasicsStrings.picoCoulombsPattern;
+const picoFaradsPatternString = CapacitorLabBasicsStrings.picoFaradsPattern;
+const picoJoulesPatternString = CapacitorLabBasicsStrings.picoJoulesPattern;
+const storedEnergyString = CapacitorLabBasicsStrings.storedEnergy;
+const topPlateChargeString = CapacitorLabBasicsStrings.topPlateCharge;
 
 class BarMeterPanel extends Panel {
 

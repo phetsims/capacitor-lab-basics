@@ -11,7 +11,7 @@ import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import YawPitchModelViewTransform3 from '../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
 import capacitorLabBasics from '../capacitorLabBasics.js';
-import capacitorLabBasicsStrings from '../capacitorLabBasicsStrings.js';
+import CapacitorLabBasicsStrings from '../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../common/CLBConstants.js';
 import BulbNode from '../common/view/BulbNode.js';
 import CLBLightBulbModel from './model/CLBLightBulbModel.js';
@@ -37,7 +37,7 @@ class CLBLightBulbScreen extends Screen {
     };
 
     const options = {
-      name: capacitorLabBasicsStrings.screen.lightBulb,
+      name: CapacitorLabBasicsStrings.screen.lightBulb,
       backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
       homeScreenIcon: new ScreenIcon( icon, iconOptions ),
       tandem: tandem

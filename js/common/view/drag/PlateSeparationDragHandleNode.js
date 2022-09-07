@@ -11,7 +11,7 @@
 import Vector2 from '../../../../../dot/js/Vector2.js';
 import { Node } from '../../../../../scenery/js/imports.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
-import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
+import CapacitorLabBasicsStrings from '../../../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../../CLBConstants.js';
 import UnitsUtils from '../../model/util/UnitsUtils.js';
 import DragHandleArrowNode from './DragHandleArrowNode.js';
@@ -29,8 +29,8 @@ const LINE_LENGTH = 60;
 const LINE_START_POSITION = new Vector2( 0, 0 );
 const LINE_END_POSITION = new Vector2( 0, -LINE_LENGTH );
 
-const millimetersPatternString = capacitorLabBasicsStrings.millimetersPattern;
-const separationString = capacitorLabBasicsStrings.separation;
+const millimetersPatternString = CapacitorLabBasicsStrings.millimetersPattern;
+const separationString = CapacitorLabBasicsStrings.separation;
 
 class PlateSeparationDragHandleNode extends Node {
   /**

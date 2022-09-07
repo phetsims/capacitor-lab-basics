@@ -13,10 +13,10 @@ import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import CapacitanceScreen from './capacitance/CapacitanceScreen.js';
-import capacitorLabBasicsStrings from './capacitorLabBasicsStrings.js';
+import CapacitorLabBasicsStrings from './CapacitorLabBasicsStrings.js';
 import CLBLightBulbScreen from './light-bulb/CLBLightBulbScreen.js';
 
-const capacitorLabBasicsTitleStringProperty = capacitorLabBasicsStrings[ 'capacitor-lab-basics' ].titleStringProperty;
+const capacitorLabBasicsTitleStringProperty = CapacitorLabBasicsStrings[ 'capacitor-lab-basics' ].titleStringProperty;
 
 // constants
 const tandem = Tandem.ROOT;

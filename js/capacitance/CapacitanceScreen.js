@@ -13,7 +13,7 @@ import YawPitchModelViewTransform3 from '../../../scenery-phet/js/capacitor/YawP
 import { Image } from '../../../scenery/js/imports.js';
 import capacitanceScreenIcon_png from '../../mipmaps/capacitanceScreenIcon_png.js';
 import capacitorLabBasics from '../capacitorLabBasics.js';
-import capacitorLabBasicsStrings from '../capacitorLabBasicsStrings.js';
+import CapacitorLabBasicsStrings from '../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../common/CLBConstants.js';
 import CapacitanceModel from './model/CapacitanceModel.js';
 import CapacitanceScreenView from './view/CapacitanceScreenView.js';
@@ -27,7 +27,7 @@ class CapacitanceScreen extends Screen {
   constructor( switchUsedProperty, tandem ) {
 
     const options = {
-      name: capacitorLabBasicsStrings.screen.capacitance,
+      name: CapacitorLabBasicsStrings.screen.capacitance,
       backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
       homeScreenIcon: new ScreenIcon( new Image( capacitanceScreenIcon_png ), {
         maxIconWidthProportion: 1,

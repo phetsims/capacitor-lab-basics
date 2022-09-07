@@ -17,7 +17,7 @@ import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import { DragListener, Image, Node, Rectangle, Text } from '../../../../../scenery/js/imports.js';
 import voltmeterBody_png from '../../../../images/voltmeterBody_png.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
-import capacitorLabBasicsStrings from '../../../capacitorLabBasicsStrings.js';
+import CapacitorLabBasicsStrings from '../../../CapacitorLabBasicsStrings.js';
 
 // digital display
 const DISPLAY_FONT = new PhetFont( 18 );
@@ -27,9 +27,9 @@ const TITLE_FONT = new PhetFont( {
   size: 20
 } );
 
-const voltageString = capacitorLabBasicsStrings.voltage;
-const voltsPatternString = capacitorLabBasicsStrings.voltsPattern;
-const voltsUnknownString = capacitorLabBasicsStrings.volts.unknown;
+const voltageString = CapacitorLabBasicsStrings.voltage;
+const voltsPatternString = CapacitorLabBasicsStrings.voltsPattern;
+const voltsUnknownString = CapacitorLabBasicsStrings.volts.unknown;
 
 class VoltmeterBodyNode extends Node {
   /**
