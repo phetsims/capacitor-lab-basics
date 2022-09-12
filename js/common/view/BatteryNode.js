@@ -78,9 +78,9 @@ class BatteryNode extends Node {
       return labelText;
     };
     // add the tick marks
-    const maximumTickLabel = createTickLabel( voltageRange.max, 'black', tandem.createTandem( 'maximumTickLabel' ) );
-    const defaultTickLabel = createTickLabel( voltageRange.defaultValue, 'white', tandem.createTandem( 'defaultTickLabel' ) );
-    const minimumTickLabel = createTickLabel( voltageRange.min, 'white', tandem.createTandem( 'minimumTickLabel' ) );
+    const maximumTickLabel = createTickLabel( voltageRange.max, 'black', tandem.createTandem( 'maximumTickLabelText' ) );
+    const defaultTickLabel = createTickLabel( voltageRange.defaultValue, 'white', tandem.createTandem( 'defaultTickLabelText' ) );
+    const minimumTickLabel = createTickLabel( voltageRange.min, 'white', tandem.createTandem( 'minimumTickLabelText' ) );
     sliderNode.addMajorTick( voltageRange.max, maximumTickLabel );
     sliderNode.addMajorTick( voltageRange.defaultValue, defaultTickLabel );
     sliderNode.addMajorTick( voltageRange.min, minimumTickLabel );

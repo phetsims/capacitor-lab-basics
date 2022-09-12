@@ -65,11 +65,11 @@ class BarMeterNode extends Node {
     this.barNode = new BarNode( barColor, meter.valueProperty.get(), this.maxValue );
 
     // @public {Text} - value with hundredths precision and units, set in setValue()
-    this.valueTextNode = new Text( '', {
+    this.valueText = new Text( '', {
       font: VALUE_FONT,
       fill: VALUE_COLOR,
       maxWidth: VALUE_MAX_WIDTH,
-      tandem: tandem.createTandem( 'valueTextNode' )
+      tandem: tandem.createTandem( 'valueText' )
     } );
 
     // @public {ArrowNode} - arrow node used to indicate when the value has gone beyond the scale of this meter
@@ -81,7 +81,7 @@ class BarMeterNode extends Node {
       tandem: tandem.createTandem( 'arrowNode' )
     } );
 
-    this.axisLine.children = [ this.valueTextNode, this.barNode, this.arrowNode ];
+    this.axisLine.children = [ this.valueText, this.barNode, this.arrowNode ];
     this.addChild( this.axisLine );
 
     // observers
@@ -131,7 +131,7 @@ class BarMeterNode extends Node {
       // all meters read in pico units, compensate by multiplying by 10^12
       const meterValue = Utils.toFixed( Math.pow( 10, 12 ) * value, 2 );
       const unitsFormatString = StringUtils.fillIn( this.unitsPattern, { value: meterValue } );
-      this.valueTextNode.setText( unitsFormatString );
+      this.valueText.setText( unitsFormatString );
     }
   }
 
@@ -153,7 +153,7 @@ class BarMeterNode extends Node {
    */
   updateLayout() {
     this.barNode.leftCenter = this.axisLine.leftCenter;
-    this.valueTextNode.leftCenter = this.axisLine.leftCenter.minusXY( VALUE_MAX_WIDTH, 0 );
+    this.valueText.leftCenter = this.axisLine.leftCenter.minusXY( VALUE_MAX_WIDTH, 0 );
   }
 }
 

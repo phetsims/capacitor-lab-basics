@@ -45,16 +45,16 @@ class DragHandleValueNode extends Node {
     this.addChild( labelNode );
 
     // @private
-    this.valueNode = new RichText( '', {
+    this.valueText = new RichText( '', {
       font: VALUE_FONT,
       maxWidth: VALUE_MAX_WIDTH,
-      tandem: options.tandem.createTandem( 'valueNode' )
+      tandem: options.tandem.createTandem( 'valueText' )
     } );
-    this.addChild( this.valueNode );
+    this.addChild( this.valueText );
 
     // layout: value below label, left-justified
     labelNode.translation = new Vector2( 0, 0 );
-    this.valueNode.translation = new Vector2( 0, labelNode.bottom + 15 );
+    this.valueText.translation = new Vector2( 0, labelNode.bottom + 15 );
 
     this.setValue( value );
     this.mutate( options );
@@ -70,7 +70,7 @@ class DragHandleValueNode extends Node {
    */
   setValue( value, decimalPlaces ) {
     const formattedValue = Utils.toFixed( value, decimalPlaces /* one decimal place */ );
-    this.valueNode.setText( StringUtils.fillIn( this.unitsPattern, {
+    this.valueText.setText( StringUtils.fillIn( this.unitsPattern, {
       value: formattedValue
     } ) );
   }
