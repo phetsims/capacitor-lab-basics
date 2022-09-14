@@ -37,7 +37,7 @@ class CLBLightBulbScreen extends Screen {
     };
 
     const options = {
-      name: CapacitorLabBasicsStrings.screen.lightBulb,
+      name: CapacitorLabBasicsStrings.screen.lightBulbStringProperty,
       backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
       homeScreenIcon: new ScreenIcon( icon, iconOptions ),
       tandem: tandem

@@ -27,7 +27,7 @@ class CapacitanceScreen extends Screen {
   constructor( switchUsedProperty, tandem ) {
 
     const options = {
-      name: CapacitorLabBasicsStrings.screen.capacitance,
+      name: CapacitorLabBasicsStrings.screen.capacitanceStringProperty,
       backgroundColorProperty: new Property( CLBConstants.SCREEN_VIEW_BACKGROUND_COLOR ),
       homeScreenIcon: new ScreenIcon( new Image( capacitanceScreenIcon_png ), {
         maxIconWidthProportion: 1,
