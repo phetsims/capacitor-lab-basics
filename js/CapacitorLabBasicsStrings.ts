@@ -5,59 +5,59 @@
  */
 /* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
-import TReadOnlyProperty from '../../axon/js/TReadOnlyProperty.js';
+import LinkableProperty from '../../axon/js/LinkableProperty.js';
 import capacitorLabBasics from './capacitorLabBasics.js';
 
 type StringsType = {
   'capacitance': string;
-  'capacitanceStringProperty': TReadOnlyProperty<string>;
+  'capacitanceStringProperty': LinkableProperty<string>;
   'conventional': string;
-  'conventionalStringProperty': TReadOnlyProperty<string>;
+  'conventionalStringProperty': LinkableProperty<string>;
   'currentDirection': string;
-  'currentDirectionStringProperty': TReadOnlyProperty<string>;
+  'currentDirectionStringProperty': LinkableProperty<string>;
   'barGraphs': string;
-  'barGraphsStringProperty': TReadOnlyProperty<string>;
+  'barGraphsStringProperty': LinkableProperty<string>;
   'capacitor-lab-basics': {
     'title': string;
-    'titleStringProperty': TReadOnlyProperty<string>;
+    'titleStringProperty': LinkableProperty<string>;
   };
   'screen': {
     'capacitance': string;
-    'capacitanceStringProperty': TReadOnlyProperty<string>;
+    'capacitanceStringProperty': LinkableProperty<string>;
     'lightBulb': string;
-    'lightBulbStringProperty': TReadOnlyProperty<string>;
+    'lightBulbStringProperty': LinkableProperty<string>;
   };
   'electricField': string;
-  'electricFieldStringProperty': TReadOnlyProperty<string>;
+  'electricFieldStringProperty': LinkableProperty<string>;
   'electrons': string;
-  'electronsStringProperty': TReadOnlyProperty<string>;
+  'electronsStringProperty': LinkableProperty<string>;
   'plateArea': string;
-  'plateAreaStringProperty': TReadOnlyProperty<string>;
+  'plateAreaStringProperty': LinkableProperty<string>;
   'topPlateCharge': string;
-  'topPlateChargeStringProperty': TReadOnlyProperty<string>;
+  'topPlateChargeStringProperty': LinkableProperty<string>;
   'plateCharges': string;
-  'plateChargesStringProperty': TReadOnlyProperty<string>;
+  'plateChargesStringProperty': LinkableProperty<string>;
   'separation': string;
-  'separationStringProperty': TReadOnlyProperty<string>;
+  'separationStringProperty': LinkableProperty<string>;
   'storedEnergy': string;
-  'storedEnergyStringProperty': TReadOnlyProperty<string>;
+  'storedEnergyStringProperty': LinkableProperty<string>;
   'voltage': string;
-  'voltageStringProperty': TReadOnlyProperty<string>;
+  'voltageStringProperty': LinkableProperty<string>;
   'voltsPattern': string;
-  'voltsPatternStringProperty': TReadOnlyProperty<string>;
+  'voltsPatternStringProperty': LinkableProperty<string>;
   'millimetersPattern': string;
-  'millimetersPatternStringProperty': TReadOnlyProperty<string>;
+  'millimetersPatternStringProperty': LinkableProperty<string>;
   'millimetersSquaredPattern': string;
-  'millimetersSquaredPatternStringProperty': TReadOnlyProperty<string>;
+  'millimetersSquaredPatternStringProperty': LinkableProperty<string>;
   'picoJoulesPattern': string;
-  'picoJoulesPatternStringProperty': TReadOnlyProperty<string>;
+  'picoJoulesPatternStringProperty': LinkableProperty<string>;
   'picoFaradsPattern': string;
-  'picoFaradsPatternStringProperty': TReadOnlyProperty<string>;
+  'picoFaradsPatternStringProperty': LinkableProperty<string>;
   'picoCoulombsPattern': string;
-  'picoCoulombsPatternStringProperty': TReadOnlyProperty<string>;
+  'picoCoulombsPatternStringProperty': LinkableProperty<string>;
   'volts': {
     'unknown': string;
-    'unknownStringProperty': TReadOnlyProperty<string>;
+    'unknownStringProperty': LinkableProperty<string>;
   }
 };
 
