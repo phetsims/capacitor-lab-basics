@@ -63,7 +63,7 @@ class CLBViewControlPanel extends Panel {
     } ];
 
     const viewCheckboxItems = checkboxItems.map( item => ( {
-      node: new Text( item.string, {
+      createNode: tandem => new Text( item.string, {
         font: CHECKBOX_FONT,
         maxWidth: options.maxTextWidth
       } ),
@@ -74,7 +74,7 @@ class CLBViewControlPanel extends Panel {
 
     const currentTypeRadioButtonGroup = new VerticalAquaRadioButtonGroup( model.currentOrientationProperty, [
       {
-        node: new Text( electronsString, {
+        createNode: tandem => new Text( electronsString, {
           font: CHECKBOX_FONT,
           maxWidth: options.maxTextWidth
         } ),
@@ -82,7 +82,7 @@ class CLBViewControlPanel extends Panel {
         tandemName: 'electronsRadioButton'
       },
       {
-        node: new Text( conventionalString, {
+        createNode: tandem => new Text( conventionalString, {
           font: CHECKBOX_FONT,
           maxWidth: options.maxTextWidth
         } ),
@@ -105,7 +105,10 @@ class CLBViewControlPanel extends Panel {
     const checkboxGroup = new VerticalCheckboxGroup( viewCheckboxItems, {
       checkboxOptions: {
         // The box is as wide as the largest item is tall
-        boxWidth: viewCheckboxItems[ 0 ].node.height
+        boxWidth: new Text( electronsString, {
+          font: CHECKBOX_FONT,
+          maxWidth: options.maxTextWidth
+        } ).height
       },
       tandem: tandem.createTandem( 'checkboxGroup' )
     } );
