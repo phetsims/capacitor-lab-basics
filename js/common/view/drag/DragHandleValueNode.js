@@ -70,7 +70,7 @@ class DragHandleValueNode extends Node {
    */
   setValue( value, decimalPlaces ) {
     const formattedValue = Utils.toFixed( value, decimalPlaces /* one decimal place */ );
-    this.valueText.setText( StringUtils.fillIn( this.unitsPattern, {
+    this.valueText.setString( StringUtils.fillIn( this.unitsPattern, {
       value: formattedValue
     } ) );
   }
