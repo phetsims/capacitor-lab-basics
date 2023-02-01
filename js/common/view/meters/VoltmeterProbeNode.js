@@ -62,7 +62,7 @@ class VoltmeterProbeNode extends Node {
     // Convert the 3d property to a 2d property for use in the DragListener
     const position2DProperty = new DynamicProperty( new Property( positionProperty ), {
       bidirectional: true,
-      useDeepEquality: true,
+      valueComparisonStrategy: 'equalsFunction',
       map: vector3 => vector3.toVector2(),
       inverseMap: vector2 => vector2.toVector3()
     } );
@@ -75,7 +75,7 @@ class VoltmeterProbeNode extends Node {
       tandem: tandem.createTandem( 'dragHandler' ),
       dragBoundsProperty: new Property( modelViewTransform.viewToModelBounds( adjustedViewBounds ) ),
       transform: modelViewTransform.modelToViewTransform2D,
-      useDeepEquality: true
+      valueComparisonStrategy: 'equalsFunction'
     } );
     this.addInputListener( this.dragListener );
 

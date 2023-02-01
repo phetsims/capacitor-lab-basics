@@ -118,7 +118,7 @@ class VoltmeterBodyNode extends Node {
 
     const body2DProperty = new DynamicProperty( new Property( voltmeter.bodyPositionProperty ), {
       bidirectional: true,
-      useDeepEquality: true,
+      valueComparisonStrategy: 'equalsFunction',
       map: vector3 => vector3.toVector2(),
       inverseMap: vector2 => vector2.toVector3()
     } );

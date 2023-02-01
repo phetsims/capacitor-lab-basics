@@ -69,21 +69,21 @@ class Voltmeter {
 
     // @public {Property.<Vector3>}
     this.bodyPositionProperty = new Property( new Vector3( 0, 0, 0 ), {
-      useDeepEquality: true,
+      valueComparisonStrategy: 'equalsFunction',
       tandem: tandem.createTandem( 'bodyPositionProperty' ),
       phetioValueType: Vector3.Vector3IO
     } );
 
     // @public {Property.<Vector3>}
     this.positiveProbePositionProperty = new Property( POSITIVE_PROBE_POSITION, {
-      useDeepEquality: true,
+      valueComparisonStrategy: 'equalsFunction',
       tandem: tandem.createTandem( 'positiveProbePositionProperty' ),
       phetioValueType: Vector3.Vector3IO
     } );
 
     // @public {Property.<Vector3>}
     this.negativeProbePositionProperty = new Property( NEGATIVE_PROBE_POSITION, {
-      useDeepEquality: true,
+      valueComparisonStrategy: 'equalsFunction',
       tandem: tandem.createTandem( 'negativeProbePositionProperty' ),
       phetioValueType: Vector3.Vector3IO
     } );
