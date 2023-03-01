@@ -149,11 +149,11 @@ class VoltmeterBodyNode extends Node {
    */
   setValueText( valueText, value ) {
     if ( value === null ) {
-      valueText.setText( voltsUnknownString );
+      valueText.setString( voltsUnknownString );
     }
     else {
       const fixedValue = Utils.toFixed( value, 3 );
-      valueText.setText( StringUtils.fillIn( voltsPatternString, { value: fixedValue } ) );
+      valueText.setString( StringUtils.fillIn( voltsPatternString, { value: fixedValue } ) );
     }
   }
 }

@@ -131,7 +131,7 @@ class BarMeterNode extends Node {
       // all meters read in pico units, compensate by multiplying by 10^12
       const meterValue = Utils.toFixed( Math.pow( 10, 12 ) * value, 2 );
       const unitsFormatString = StringUtils.fillIn( this.unitsPattern, { value: meterValue } );
-      this.valueText.setText( unitsFormatString );
+      this.valueText.setString( unitsFormatString );
     }
   }
 
