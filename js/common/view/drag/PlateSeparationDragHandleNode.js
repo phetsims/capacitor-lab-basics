@@ -48,7 +48,7 @@ class PlateSeparationDragHandleNode extends Node {
     this.modelViewTransform = modelViewTransform;
 
     const dragHandler = new PlateSeparationDragHandler( capacitor, modelViewTransform, valueRange,
-      tandem.createTandem( 'dragHandler' ) );
+      tandem.createTandem( 'dragListener' ) );
     this.addInputListener( dragHandler );
 
     // arrow

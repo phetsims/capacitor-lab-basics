@@ -72,7 +72,7 @@ class VoltmeterProbeNode extends Node {
       positionProperty: position2DProperty,
       attach: true,
       useParentOffset: true,
-      tandem: tandem.createTandem( 'dragHandler' ),
+      tandem: tandem.createTandem( 'dragListener' ),
       dragBoundsProperty: new Property( modelViewTransform.viewToModelBounds( adjustedViewBounds ) ),
       transform: modelViewTransform.modelToViewTransform2D,
       valueComparisonStrategy: 'equalsFunction'

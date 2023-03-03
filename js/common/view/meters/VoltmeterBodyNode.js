@@ -126,7 +126,7 @@ class VoltmeterBodyNode extends Node {
       positionProperty: body2DProperty,
       attach: true,
       useParentOffset: true,
-      tandem: tandem.createTandem( 'dragHandler' ),
+      tandem: tandem.createTandem( 'dragListener' ),
       dragBoundsProperty: new Property( bodyDragBounds ),
       transform: modelViewTransform.modelToViewTransform2D,
       start: () => {

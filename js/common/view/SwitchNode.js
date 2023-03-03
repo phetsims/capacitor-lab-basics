@@ -83,7 +83,7 @@ class SwitchNode extends Node {
       tipCircle.fill = controlled ? 'yellow' : null;
     } );
 
-    const dragHandler = new CircuitSwitchDragHandler( this, switchLockedProperty, userControlledProperty, tandem.createTandem( 'dragHandler' ) );
+    const dragHandler = new CircuitSwitchDragHandler( this, switchLockedProperty, userControlledProperty, tandem.createTandem( 'dragListener' ) );
 
     // prefixes for tandem IDs
     const connectionLabels = [ 'battery', 'open', 'lightBulb' ];

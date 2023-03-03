@@ -52,7 +52,7 @@ class PlateAreaDragHandleNode extends Node {
     this.modelViewTransform = modelViewTransform;
 
     const dragListener = new PlateAreaDragHandler( capacitor, modelViewTransform, valueRange,
-      tandem.createTandem( 'inputListener' ) );
+      tandem.createTandem( 'dragListener' ) );
     this.addInputListener( dragListener );
 
     // arrow

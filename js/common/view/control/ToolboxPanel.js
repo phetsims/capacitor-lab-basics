@@ -109,7 +109,7 @@ class ToolboxPanel extends Node {
 
       // allow moving a finger (on a touchscreen) dragged across this node to interact with it
       allowTouchSnag: true,
-      tandem: timeNodeIconTandem.createTandem( 'dragHandler' )
+      tandem: timeNodeIconTandem.createTandem( 'dragListener' )
     } ) );
 
     stopwatch.isVisibleProperty.link( visible => {
