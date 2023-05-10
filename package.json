@@ -28,6 +28,10 @@
         "phet-io-wrapper-lab-book"
       ]
     },
-    "simulation": true
+    "simulation": true,
+    "screenNameKeys": [
+      "CAPACITOR_LAB_BASICS/screen.capacitance",
+      "CAPACITOR_LAB_BASICS/screen.lightBulb"
+    ]
   }
 }
