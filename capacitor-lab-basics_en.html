@@ -52,12 +52,17 @@
           ]
         },
         "supportsOutputJS": true,
-        "published": true
+        "published": true,
+        "screenNameKeys": [
+          "CAPACITOR_LAB_BASICS/screen.capacitance",
+          "CAPACITOR_LAB_BASICS/screen.lightBulb"
+        ]
       },
       "eslintConfig": {
         "extends": "../chipper/eslint/sim_eslintrc.js",
         "rules": {
-          "todo-should-have-issue": "off"
+          "todo-should-have-issue": "off",
+          "no-view-imported-from-model": "off"
         }
       }
     };
