@@ -27,6 +27,7 @@ import Vector3 from '../../../../dot/js/Vector3.js';
 import merge from '../../../../phet-core/js/merge.js';
 import BoxShapeCreator from '../../../../scenery-phet/js/capacitor/BoxShapeCreator.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
+import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
@@ -102,7 +103,8 @@ class Capacitor {
     this.capacitanceProperty.lazyLink( ( capacitance, oldCapacitance ) => {
       // plateSizeProperty => capacitanceProperty => changes plateVoltageProperty after plateVoltageProperty was set, so
       // since this doesn't apply when we're setting state, we opt out.
-      if ( circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED && !phet.joist.sim.isSettingPhetioStateProperty.value ) {
+      if ( circuitConnectionProperty.value === CircuitState.LIGHT_BULB_CONNECTED &&
+           !isSettingPhetioStateProperty.value ) {
         this.updateDischargeParameters( capacitance, oldCapacitance );
       }
     } );
