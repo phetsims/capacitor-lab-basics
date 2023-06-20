@@ -5,59 +5,59 @@
  */
 /* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
-import LinkableProperty from '../../axon/js/LinkableProperty.js';
+import type LocalizedStringProperty from '../../chipper/js/LocalizedStringProperty.js';
 import capacitorLabBasics from './capacitorLabBasics.js';
 
 type StringsType = {
   'capacitance': string;
-  'capacitanceStringProperty': LinkableProperty<string>;
+  'capacitanceStringProperty': LocalizedStringProperty;
   'conventional': string;
-  'conventionalStringProperty': LinkableProperty<string>;
+  'conventionalStringProperty': LocalizedStringProperty;
   'currentDirection': string;
-  'currentDirectionStringProperty': LinkableProperty<string>;
+  'currentDirectionStringProperty': LocalizedStringProperty;
   'barGraphs': string;
-  'barGraphsStringProperty': LinkableProperty<string>;
+  'barGraphsStringProperty': LocalizedStringProperty;
   'capacitor-lab-basics': {
     'title': string;
-    'titleStringProperty': LinkableProperty<string>;
+    'titleStringProperty': LocalizedStringProperty;
   };
   'screen': {
     'capacitance': string;
-    'capacitanceStringProperty': LinkableProperty<string>;
+    'capacitanceStringProperty': LocalizedStringProperty;
     'lightBulb': string;
-    'lightBulbStringProperty': LinkableProperty<string>;
+    'lightBulbStringProperty': LocalizedStringProperty;
   };
   'electricField': string;
-  'electricFieldStringProperty': LinkableProperty<string>;
+  'electricFieldStringProperty': LocalizedStringProperty;
   'electrons': string;
-  'electronsStringProperty': LinkableProperty<string>;
+  'electronsStringProperty': LocalizedStringProperty;
   'plateArea': string;
-  'plateAreaStringProperty': LinkableProperty<string>;
+  'plateAreaStringProperty': LocalizedStringProperty;
   'topPlateCharge': string;
-  'topPlateChargeStringProperty': LinkableProperty<string>;
+  'topPlateChargeStringProperty': LocalizedStringProperty;
   'plateCharges': string;
-  'plateChargesStringProperty': LinkableProperty<string>;
+  'plateChargesStringProperty': LocalizedStringProperty;
   'separation': string;
-  'separationStringProperty': LinkableProperty<string>;
+  'separationStringProperty': LocalizedStringProperty;
   'storedEnergy': string;
-  'storedEnergyStringProperty': LinkableProperty<string>;
+  'storedEnergyStringProperty': LocalizedStringProperty;
   'voltage': string;
-  'voltageStringProperty': LinkableProperty<string>;
+  'voltageStringProperty': LocalizedStringProperty;
   'voltsPattern': string;
-  'voltsPatternStringProperty': LinkableProperty<string>;
+  'voltsPatternStringProperty': LocalizedStringProperty;
   'millimetersPattern': string;
-  'millimetersPatternStringProperty': LinkableProperty<string>;
+  'millimetersPatternStringProperty': LocalizedStringProperty;
   'millimetersSquaredPattern': string;
-  'millimetersSquaredPatternStringProperty': LinkableProperty<string>;
+  'millimetersSquaredPatternStringProperty': LocalizedStringProperty;
   'picoJoulesPattern': string;
-  'picoJoulesPatternStringProperty': LinkableProperty<string>;
+  'picoJoulesPatternStringProperty': LocalizedStringProperty;
   'picoFaradsPattern': string;
-  'picoFaradsPatternStringProperty': LinkableProperty<string>;
+  'picoFaradsPatternStringProperty': LocalizedStringProperty;
   'picoCoulombsPattern': string;
-  'picoCoulombsPatternStringProperty': LinkableProperty<string>;
+  'picoCoulombsPatternStringProperty': LocalizedStringProperty;
   'volts': {
     'unknown': string;
-    'unknownStringProperty': LinkableProperty<string>;
+    'unknownStringProperty': LocalizedStringProperty;
   }
 };
 
