@@ -10,11 +10,9 @@
 
 import Utils from '../../../../../dot/js/Utils.js';
 import Vector2 from '../../../../../dot/js/Vector2.js';
-import merge from '../../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import { Node, RichText, Text } from '../../../../../scenery/js/imports.js';
-import Tandem from '../../../../../tandem/js/Tandem.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 // constants
@@ -34,8 +32,6 @@ class DragHandleValueNode extends Node {
    */
   constructor( label, value, unitsPattern, options ) {
 
-    options = merge( { tandem: Tandem.OPTIONAL }, options );
-
     super();
 
     // @private {string}
@@ -48,7 +44,7 @@ class DragHandleValueNode extends Node {
     this.valueText = new RichText( '', {
       font: VALUE_FONT,
       maxWidth: VALUE_MAX_WIDTH,
-      tandem: options.tandem.createTandem( 'valueText' )
+      tandem: options.tandem?.createTandem( 'valueText' )
     } );
     this.addChild( this.valueText );
 
