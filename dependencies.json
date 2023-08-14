@@ -2,102 +2,102 @@
   "comment": "# capacitor-lab-basics 1.8.0-dev.6 Mon Apr 12 2021 15:29:10 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "423d662a3672e3de42852ee6d6fdec705ac98dd5",
-    "branch": "master"
+    "branch": "main"
   },
   "axon": {
     "sha": "2f7d65c8d5614b162208c99e681bf660d902193c",
-    "branch": "master"
+    "branch": "main"
   },
   "brand": {
     "sha": "0bbc0a38a8526ce83961f05afdd62c54c52d0598",
-    "branch": "master"
+    "branch": "main"
   },
   "capacitor-lab-basics": {
     "sha": "0629011a9c7b31d29ee83c5eb7b47b75c334861f",
-    "branch": "master"
+    "branch": "main"
   },
   "chipper": {
     "sha": "9a4239c0897cd60dc1f1b8c02b3b0141749f8f21",
-    "branch": "master"
+    "branch": "main"
   },
   "dot": {
     "sha": "6f608b9729cb5e3eab56c15c0ab8675e78ae8d4f",
-    "branch": "master"
+    "branch": "main"
   },
   "joist": {
     "sha": "728803d851998c1c4a25792ddad31c8583010c2d",
-    "branch": "master"
+    "branch": "main"
   },
   "kite": {
     "sha": "9bca91138ef9cf622724f9eadb437f57373e0af7",
-    "branch": "master"
+    "branch": "main"
   },
   "phet-core": {
     "sha": "1c57e441cce0cb5074855224ebc324dcbbcd4c70",
-    "branch": "master"
+    "branch": "main"
   },
   "phet-io": {
     "sha": "e662b42a4914f221077da1c55b0485f357a7f1c8",
-    "branch": "master"
+    "branch": "main"
   },
   "phet-io-client-guides": {
     "sha": "c96920e0c93a7bbbe5730ea5998f8245f6bb4146",
-    "branch": "master"
+    "branch": "main"
   },
   "phet-io-wrapper-lab-book": {
     "sha": "e21e9071a66007823b7a624816d074b672e294ac",
-    "branch": "master"
+    "branch": "main"
   },
   "phet-io-wrappers": {
     "sha": "32f18430faeeb05249cad988a30b922684e13f9b",
-    "branch": "master"
+    "branch": "main"
   },
   "phetcommon": {
     "sha": "6b667aab3691469e423abdf2fd7ad4d0ce7ad8df",
-    "branch": "master"
+    "branch": "main"
   },
   "phetmarks": {
     "sha": "c81f330b1c814f41a9d020529bd216470bd2fec6",
-    "branch": "master"
+    "branch": "main"
   },
   "query-string-machine": {
     "sha": "090c44b0ba8e0a7effd2f6a7830f35eac92d59cc",
-    "branch": "master"
+    "branch": "main"
   },
   "scenery": {
     "sha": "706858a54c440c891fbaa59ff9859c1495d2489d",
-    "branch": "master"
+    "branch": "main"
   },
   "scenery-phet": {
     "sha": "cd52a156dcb4d74cad0d8553ef24b6d4dfec6756",
-    "branch": "master"
+    "branch": "main"
   },
   "sherpa": {
     "sha": "f6b2ee4d7039bdf1757dbbce88cfaa8b43dd667d",
-    "branch": "master"
+    "branch": "main"
   },
   "studio": {
     "sha": "be2c9e55d0de683bd9435376b95b35fc509cfa0e",
-    "branch": "master"
+    "branch": "main"
   },
   "sun": {
     "sha": "6531ce01e8b6174d01ad278c8a9b68adc50dbdd8",
-    "branch": "master"
+    "branch": "main"
   },
   "tambo": {
     "sha": "0ec39d04fce75731fc76184e91b43e4b5bab9eb1",
-    "branch": "master"
+    "branch": "main"
   },
   "tandem": {
     "sha": "bbce01446785be1b80a55b785d63a5619aeedb20",
-    "branch": "master"
+    "branch": "main"
   },
   "twixt": {
     "sha": "141f9a395def6a3e5da48cac968bcea70ee20331",
-    "branch": "master"
+    "branch": "main"
   },
   "utterance-queue": {
     "sha": "30ffcbd69fd2e8a0b3f53386974812c5071b2860",
-    "branch": "master"
+    "branch": "main"
   }
 }
