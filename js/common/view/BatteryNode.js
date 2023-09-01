@@ -46,7 +46,7 @@ class BatteryNode extends Node {
 
     // voltage slider
     const trackLength = 0.55 * graphicNode.bounds.height;
-    const sliderNode = new VSlider( battery.voltageProperty, voltageRange, {
+    const slider = new VSlider( battery.voltageProperty, voltageRange, {
       trackSize: new Dimension2( 8, trackLength ),
       thumbSize: new Dimension2( 35, 20 ),
       thumbTouchAreaXDilation: 11,
@@ -81,14 +81,14 @@ class BatteryNode extends Node {
     const maximumTickLabel = createTickLabel( voltageRange.max, 'black', tandem.createTandem( 'maximumTickLabelText' ) );
     const defaultTickLabel = createTickLabel( voltageRange.defaultValue, 'white', tandem.createTandem( 'defaultTickLabelText' ) );
     const minimumTickLabel = createTickLabel( voltageRange.min, 'white', tandem.createTandem( 'minimumTickLabelText' ) );
-    sliderNode.addMajorTick( voltageRange.max, maximumTickLabel );
-    sliderNode.addMajorTick( voltageRange.defaultValue, defaultTickLabel );
-    sliderNode.addMajorTick( voltageRange.min, minimumTickLabel );
+    slider.addMajorTick( voltageRange.max, maximumTickLabel );
+    slider.addMajorTick( voltageRange.defaultValue, defaultTickLabel );
+    slider.addMajorTick( voltageRange.min, minimumTickLabel );
 
-    this.addChild( sliderNode );
+    this.addChild( slider );
 
     // layout, set by visual inspection, depends on battery image.
-    sliderNode.center = new Vector2( graphicNode.center.x + 5, graphicNode.center.y + 12 ); // sort of centered.
+    slider.center = new Vector2( graphicNode.center.x + 5, graphicNode.center.y + 12 ); // sort of centered.
 
     // when battery polarity changes, change the battery image
     battery.polarityProperty.link( polarity => {
