@@ -17,9 +17,11 @@ L = plate side length, meters (.010 to .020)
 
 ### Derived parameters
 
+```
 A = plate area, meters^2 = L * L
 C = capacitance, Farads = epsilon_0 * A / d
 Q = plate charge, Coulombs = C * V
 sigma = surface charge density, Coulombs/meters^2 = Q / A
 E_plates = field due to plates, Volts/meter = sigma / epsilon_0
 U = stored energy, Joules = 0.5 * C * V * V
+```
