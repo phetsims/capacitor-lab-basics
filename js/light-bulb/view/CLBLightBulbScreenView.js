@@ -56,7 +56,7 @@ class CLBLightBulbScreenView extends ScreenView {
         } )
       },
       dragBoundsProperty: this.visibleBoundsProperty,
-      tandem: Tandem.OPT_OUT, // TODO(phet-io): this seems like it should not opt out, since it has interactive components https://github.com/phetsims/tasks/issues/1129
+      tandem: Tandem.OPT_OUT, // TODO(phet-io): this seems like it should not opt out, since it has interactive components https://github.com/phetsims/capacitor-lab-basics/issues/294
       dragListenerOptions: {
         end: () => {
 

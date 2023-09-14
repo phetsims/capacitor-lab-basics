@@ -28,7 +28,7 @@ import Voltmeter from './meter/Voltmeter.js';
 // reference coordinate frame size for world nodes
 const CANVAS_RENDERING_SIZE = new Dimension2( 1024, 618 );
 
-// TODO: Move color out of the model?!?!?! https://github.com/phetsims/tasks/issues/1129
+// TODO: Move color out of the model?!?!?! https://github.com/phetsims/capacitor-lab-basics/issues/294
 const CURRENT_ELECTRONS_ARROW_COLOR = new Color( 83, 200, 236 );
 const CURRENT_CONVENTIONAL_ARROW_COLOR = new Color( PhetColorScheme.RED_COLORBLIND );
 

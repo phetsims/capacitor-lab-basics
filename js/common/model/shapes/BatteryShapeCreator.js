@@ -11,8 +11,8 @@
 
 
 // modules
-// TODO: Reverse the shapes so they are in the model? https://github.com/phetsims/tasks/issues/1129
-// TODO: Did you mean invert the shapes? https://github.com/phetsims/tasks/issues/1129
+// TODO: Reverse the shapes so they are in the model? https://github.com/phetsims/capacitor-lab-basics/issues/294
+// TODO: Did you mean invert the shapes? https://github.com/phetsims/capacitor-lab-basics/issues/294
 import Matrix3 from '../../../../../dot/js/Matrix3.js';
 import YawPitchModelViewTransform3 from '../../../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
@@ -38,7 +38,7 @@ class BatteryShapeCreator {
    * Creates the shape of the top positive terminal in the world coordinate frame.
    * @public
    *
-   * TODO: Battery position doesn't change? Doesn't require recreation every time? https://github.com/phetsims/tasks/issues/1129
+   * TODO: Battery position doesn't change? Doesn't require recreation every time? https://github.com/phetsims/capacitor-lab-basics/issues/294
    *
    * @returns {Shape}
    */
@@ -55,7 +55,7 @@ class BatteryShapeCreator {
    * Creates the shape of the top negative terminal in the world coordinate frame.
    * @public
    *
-   * TODO: Battery position doesn't change? Doesn't require recreation every time? https://github.com/phetsims/tasks/issues/1129
+   * TODO: Battery position doesn't change? Doesn't require recreation every time? https://github.com/phetsims/capacitor-lab-basics/issues/294
    *
    * @returns {Shape}
    */

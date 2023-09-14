@@ -24,7 +24,7 @@ class DebugLayer extends Node {
     super();
 
     /*
-     * TODO: shapeTouchesWireGroup uses intersectsBounds? https://github.com/phetsims/tasks/issues/1129
+     * TODO: shapeTouchesWireGroup uses intersectsBounds? https://github.com/phetsims/capacitor-lab-basics/issues/294
      * TODO: Capacitor contains point is only using 1 point (the probe bounds-center)
      * TODO: Battery contains only checks bounds intersection
      * TODO: Light bulb base intersection uses intersectsBounds

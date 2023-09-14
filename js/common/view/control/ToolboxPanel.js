@@ -2,7 +2,7 @@
 
 /**
  * Toolbox that contains a voltmeter and timer.  The user can drag the voltmeter out of the toolbox for
- * use.  TODO: Perhaps it should be renamed now that it contains tools other than the Voltmeter https://github.com/phetsims/tasks/issues/1129
+ * use.  TODO: Perhaps it should be renamed now that it contains tools other than the Voltmeter https://github.com/phetsims/capacitor-lab-basics/issues/294
  *
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */

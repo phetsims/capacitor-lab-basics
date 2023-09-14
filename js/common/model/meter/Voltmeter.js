@@ -97,15 +97,15 @@ class Voltmeter {
       phetioValueType: NullableIO( NumberIO )
     } );
 
-    // TODO: factor out shared code for positive/negative probe https://github.com/phetsims/tasks/issues/1129
-    // TODO: Why not an enum? https://github.com/phetsims/tasks/issues/1129
+    // TODO: factor out shared code for positive/negative probe https://github.com/phetsims/capacitor-lab-basics/issues/294
+    // TODO: Why not an enum? https://github.com/phetsims/capacitor-lab-basics/issues/294
     // @private {Property.<ProbeTarget>} - What the positive probe is currently touching. Updated from within computeValue below.
     this.positiveProbeTargetProperty = new StringProperty( ProbeTarget.NONE, {
       tandem: tandem.createTandem( 'positiveProbeTargetProperty' )
     } );
 
     // @private {Property.<ProbeTarget>} - What the negative probe is currently touching. Updated from within computeValue below.
-    // TODO: Why not an enum? https://github.com/phetsims/tasks/issues/1129
+    // TODO: Why not an enum? https://github.com/phetsims/capacitor-lab-basics/issues/294
     this.negativeProbeTargetProperty = new StringProperty( ProbeTarget.NONE, {
       tandem: tandem.createTandem( 'negativeProbeTargetProperty' )
     } );
