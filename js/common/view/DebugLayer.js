@@ -48,14 +48,9 @@ class DebugLayer extends Node {
       const wires = model.circuit.wireGroup[ circuitPosition ];
 
       wires.forEach( wire => {
-        const wirePath = new Path( null, {
+        this.addChild( new Path( wire.shapeProperty, {
           stroke: 'blue'
-        } );
-        this.addChild( wirePath );
-
-        wire.shapeProperty.link( shape => {
-          wirePath.shape = shape;
-        } );
+        } ) );
       } );
     } );
 
