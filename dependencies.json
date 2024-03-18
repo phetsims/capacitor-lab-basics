@@ -13,11 +13,11 @@
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "784e12d8f7aa1de1638e9dab1e91e2ad065439c3",
+    "sha": "d0e63371a1770537430cd55a8f635d0daaf2bae3",
     "branch": "1.6"
   },
   "chipper": {
-    "sha": "b5669cb49837fef6cc94d6728d467d3de37e39df",
+    "sha": "403605f10ef96a4ca3e9bb8ea53ca6e976dc5cf6",
     "branch": "HEAD"
   },
   "dot": {
@@ -25,7 +25,7 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "091d7a3be74a67ed48bd068784f58847ac6e4f1c",
+    "sha": "6f29bde90839d41366d58165124342aa382673c0",
     "branch": "HEAD"
   },
   "kite": {
