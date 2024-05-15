@@ -13,7 +13,7 @@
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "aa3d6e1151a5ad1933be2074045fdd3f6e0570bf",
+    "sha": "d1ffdc45ea943114483572503c41b69eec522321",
     "branch": "1.6"
   },
   "chipper": {
@@ -53,7 +53,7 @@
     "branch": "HEAD"
   },
   "phetcommon": {
-    "sha": "49d586871b59b5eab89f1db73cfa18989204ad7a",
+    "sha": "abc410f5bca7c9ea9724128ba91afb62bf00070e",
     "branch": "HEAD"
   },
   "phetmarks": {
