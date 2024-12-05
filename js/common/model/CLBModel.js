@@ -52,32 +52,38 @@ class CLBModel {
 
     // @public {Property.<boolean>}
     this.plateChargesVisibleProperty = new BooleanProperty( true, {
-      tandem: tandem.createTandem( 'plateChargesVisibleProperty' )
+      tandem: tandem.createTandem( 'plateChargesVisibleProperty' ),
+      phetioFeatured: true
     } );
 
     // @public {Property.<boolean>}
     this.electricFieldVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'electricFieldVisibleProperty' )
+      tandem: tandem.createTandem( 'electricFieldVisibleProperty' ),
+      phetioFeatured: true
     } );
 
     // @public {Property.<boolean>}
     this.capacitanceMeterVisibleProperty = new BooleanProperty( true, {
-      tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' )
+      tandem: tandem.createTandem( 'capacitanceMeterVisibleProperty' ),
+      phetioFeatured: true
     } );
 
     // @public {Property.<boolean>}
     this.topPlateChargeMeterVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'topPlateChargeMeterVisibleProperty' )
+      tandem: tandem.createTandem( 'topPlateChargeMeterVisibleProperty' ),
+      phetioFeatured: true
     } );
 
     // @public {Property.<boolean>}
     this.storedEnergyMeterVisibleProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' )
+      tandem: tandem.createTandem( 'storedEnergyMeterVisibleProperty' ),
+      phetioFeatured: true
     } );
 
     // @public {Property.<boolean>}
     this.barGraphsVisibleProperty = new BooleanProperty( true, {
-      tandem: tandem.createTandem( 'barGraphsVisibleProperty' )
+      tandem: tandem.createTandem( 'barGraphsVisibleProperty' ),
+      phetioFeatured: true
     } );
 
     // @public {Property.<boolean>}
@@ -87,7 +93,8 @@ class CLBModel {
 
     // @public {Property.<boolean>}
     this.currentVisibleProperty = new BooleanProperty( true, {
-      tandem: tandem.createTandem( 'currentVisibleProperty' )
+      tandem: tandem.createTandem( 'currentVisibleProperty' ),
+      phetioFeatured: true
     } );
 
     // @public {Property.<boolean>}
