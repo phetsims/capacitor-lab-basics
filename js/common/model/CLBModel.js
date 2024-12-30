@@ -99,7 +99,8 @@ class CLBModel {
 
     // @public {Property.<boolean>}
     this.currentOrientationProperty = new NumberProperty( 0, {
-      tandem: tandem.createTandem( 'currentOrientationProperty' )
+      tandem: tandem.createTandem( 'currentOrientationProperty' ),
+      phetioFeatured: true
     } );
 
     // @public {Property.<Color>}
@@ -129,7 +130,10 @@ class CLBModel {
     } );
 
     // @public {Property.<TimeSpeed>}
-    this.timeSpeedProperty = new EnumerationProperty( TimeSpeed.NORMAL );
+    this.timeSpeedProperty = new EnumerationProperty( TimeSpeed.NORMAL, {
+      tandem: tandem.createTandem( 'timeSpeedProperty' ),
+      phetioFeatured: true
+    } );
 
     // @public {Emitter}
     this.stepEmitter = new Emitter( { parameters: [ { valueType: 'number' } ] } );
