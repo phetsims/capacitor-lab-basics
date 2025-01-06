@@ -118,7 +118,8 @@ class CLBModel {
 
     // @public {Property.<boolean>} Whether the sim is paused
     this.isPlayingProperty = new BooleanProperty( true, {
-      tandem: tandem.createTandem( 'isPlayingProperty' )
+      tandem: tandem.createTandem( 'isPlayingProperty' ),
+      phetioFeatured: true
     } );
 
     // @public {Stopwatch}
