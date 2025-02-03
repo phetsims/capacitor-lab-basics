@@ -13,6 +13,7 @@
 
 import Range from '../../../../../dot/js/Range.js';
 import Utils from '../../../../../dot/js/Utils.js';
+import Vector2 from '../../../../../dot/js/Vector2.js';
 import { DragListener } from '../../../../../scenery/js/imports.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CLBQueryParameters from '../../CLBQueryParameters.js';
@@ -65,9 +66,9 @@ class CircuitSwitchDragHandler extends DragListener {
         const pMouse = switchNode.globalToParentPoint( event.pointer.point );
 
         // mouse in model coordinates
-        const transformedPMouse = switchNode.modelViewTransform.viewToModelPosition( pMouse ).toVector2();
+        const transformedPMouse = Vector2.from( switchNode.modelViewTransform.viewToModelPosition( pMouse ) );
 
-        const hingePoint = circuitSwitch.hingePoint.toVector2(); // in model coordinates
+        const hingePoint = Vector2.from( circuitSwitch.hingePoint ); // in model coordinates
         angle = transformedPMouse.minus( hingePoint ).angle;
 
         const leftLimitAngle = circuitSwitch.getLeftLimitAngle();

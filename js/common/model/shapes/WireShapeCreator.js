@@ -8,6 +8,7 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
+import Vector2 from '../../../../../dot/js/Vector2.js';
 import { LineStyles, Shape } from '../../../../../kite/js/imports.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
@@ -40,7 +41,7 @@ class WireShapeCreator {
     } );
 
     const shapes = this.wire.segments.map( segment => {
-      const shape = Shape.lineSegment( segment.startPointProperty.value.toVector2(), segment.endPointProperty.value.toVector2() );
+      const shape = Shape.lineSegment( Vector2.from( segment.startPointProperty.value ), Vector2.from( segment.endPointProperty.value ) );
       return this.modelViewTransform.modelToViewShape( shape ).getStrokedShape( strokeStyles );
     } );
     return Shape.union( shapes );

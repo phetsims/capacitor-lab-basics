@@ -74,11 +74,11 @@ class VoltmeterShapeCreator {
     const midRatio = 0.5;
 
     return Shape.polygon( [
-      this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width / 2, y ) ).toVector3() ),
-      this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width, y + height * midRatio ) ).toVector3() ),
-      this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x + width, y + height ) ).toVector3() ),
-      this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x, y + height ) ).toVector3() ),
-      this.modelViewTransform.modelToViewPosition( t.timesVector2( new Vector2( x, y + height * midRatio ) ).toVector3() )
+      this.modelViewTransform.modelToViewPosition( Vector3.from( t.timesVector2( new Vector2( x + width / 2, y ) ) ) ),
+      this.modelViewTransform.modelToViewPosition( Vector3.from( t.timesVector2( new Vector2( x + width, y + height * midRatio ) ) ) ),
+      this.modelViewTransform.modelToViewPosition( Vector3.from( t.timesVector2( new Vector2( x + width, y + height ) ) ) ),
+      this.modelViewTransform.modelToViewPosition( Vector3.from( t.timesVector2( new Vector2( x, y + height ) ) ) ),
+      this.modelViewTransform.modelToViewPosition( Vector3.from( t.timesVector2( new Vector2( x, y + height * midRatio ) ) ) )
     ] );
   }
 }

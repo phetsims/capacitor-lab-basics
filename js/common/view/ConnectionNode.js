@@ -9,6 +9,7 @@
  */
 
 import Multilink from '../../../../axon/js/Multilink.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import { Circle, Node, PressListener } from '../../../../scenery/js/imports.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
@@ -33,8 +34,8 @@ class ConnectionNode extends Node {
       translation: modelViewTransform.modelToViewPosition( connection.position )
     } );
 
-    const hingePoint = circuitSwitch.hingePoint.toVector2();
-    const connectionAngle = connection.position.toVector2().minus( hingePoint ).angle;
+    const hingePoint = Vector2.from( circuitSwitch.hingePoint );
+    const connectionAngle = Vector2.from( connection.position ).minus( hingePoint ).angle;
     let triangleShape = new Shape().moveToPoint( hingePoint );
     triangleShape.arcPoint( hingePoint, CLBConstants.SWITCH_WIRE_LENGTH * 1.4, connectionAngle - BOUNDING_ANGLE, connectionAngle + BOUNDING_ANGLE, false );
     triangleShape.close();

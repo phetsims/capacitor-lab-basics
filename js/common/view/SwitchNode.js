@@ -10,6 +10,7 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import Vector3 from '../../../../dot/js/Vector3.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import { Circle, Image, Node } from '../../../../scenery/js/imports.js';
@@ -99,7 +100,7 @@ class SwitchNode extends Node {
 
       // Endpoint, hinge point, and a vector between them
       const hingePoint = circuitSwitch.switchSegment.hingePoint;
-      const delta = Vector2.createPolar( CLBConstants.SWITCH_WIRE_LENGTH, angle ).toVector3();
+      const delta = Vector3.from( Vector2.createPolar( CLBConstants.SWITCH_WIRE_LENGTH, angle ) );
 
       // Make sure that the shaded sphere snaps to the correct position when connection property changes.
       shadedSphereNode.translation = modelViewTransform.modelToViewPosition( hingePoint.plus( delta ) );

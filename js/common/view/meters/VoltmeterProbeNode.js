@@ -13,6 +13,7 @@ import DynamicProperty from '../../../../../axon/js/DynamicProperty.js';
 import Property from '../../../../../axon/js/Property.js';
 import Bounds2 from '../../../../../dot/js/Bounds2.js';
 import Vector2 from '../../../../../dot/js/Vector2.js';
+import Vector3 from '../../../../../dot/js/Vector3.js';
 import { DragListener, Image, Node } from '../../../../../scenery/js/imports.js';
 import probeBlack_png from '../../../../images/probeBlack_png.js';
 import probeRed_png from '../../../../images/probeRed_png.js';
@@ -49,7 +50,7 @@ class VoltmeterProbeNode extends Node {
     // update position with model
     positionProperty.link( position => {
       if ( position instanceof Vector2 ) {
-        this.translation = modelViewTransform.modelToViewPosition( position.toVector3() );
+        this.translation = modelViewTransform.modelToViewPosition( Vector3.from( position ) );
       }
       else {
         this.translation = modelViewTransform.modelToViewPosition( position );
@@ -63,8 +64,8 @@ class VoltmeterProbeNode extends Node {
     const position2DProperty = new DynamicProperty( new Property( positionProperty ), {
       bidirectional: true,
       valueComparisonStrategy: 'equalsFunction',
-      map: vector3 => vector3.toVector2(),
-      inverseMap: vector2 => vector2.toVector3()
+      map: vector3 => Vector2.from( vector3 ),
+      inverseMap: vector2 => Vector3.from( vector2 )
     } );
 
     // Drag handler accounting for boundaries

@@ -49,7 +49,7 @@ class CircuitSwitch {
     this.circuitConnectionProperty = circuitConnectionProperty;
 
     // @private {Array.<Connection>}
-    this.connections = this.getSwitchConnections( positionLabel, this.hingePoint.toVector2(), config.circuitConnections );
+    this.connections = this.getSwitchConnections( positionLabel, Vector2.from( this.hingePoint ), config.circuitConnections );
 
     // @public {Property.<number>} - Angle of the switch
     this.angleProperty = new NumberProperty( positionLabel === 'top' ? -Math.PI * 3 / 4 : Math.PI * 3 / 4, {
@@ -83,7 +83,7 @@ class CircuitSwitch {
       const hingePoint = this.switchSegment.hingePoint;
 
       // Shorten the switch wire (requested in #140)
-      this.switchSegment.endPointProperty.value = hingePoint.plus( Vector2.createPolar( 0.9 * CLBConstants.SWITCH_WIRE_LENGTH, angle ).toVector3() );
+      this.switchSegment.endPointProperty.value = hingePoint.plus( Vector3.from( Vector2.createPolar( 0.9 * CLBConstants.SWITCH_WIRE_LENGTH, angle ) ) );
     } );
 
     // set active connection whenever circuit connection type changes.
@@ -95,7 +95,7 @@ class CircuitSwitch {
       }
 
       const wireDelta = this.getConnection( circuitConnection ).position.minus( this.switchSegment.hingePoint );
-      this.angleProperty.value = wireDelta.toVector2().angle;
+      this.angleProperty.value = Vector2.from( wireDelta ).angle;
     } );
   }
 
@@ -171,13 +171,13 @@ class CircuitSwitch {
     const connections = [];
     circuitStates.forEach( circuitState => {
       if ( circuitState === CircuitState.OPEN_CIRCUIT ) {
-        connections.push( new Connection( topPoint.toVector3(), circuitState ) );
+        connections.push( new Connection( Vector3.from( topPoint ), circuitState ) );
       }
       else if ( circuitState === CircuitState.BATTERY_CONNECTED ) {
-        connections.push( new Connection( leftPoint.toVector3(), circuitState ) );
+        connections.push( new Connection( Vector3.from( leftPoint ), circuitState ) );
       }
       else if ( circuitState === CircuitState.LIGHT_BULB_CONNECTED ) {
-        connections.push( new Connection( rightPoint.toVector3(), circuitState ) );
+        connections.push( new Connection( Vector3.from( rightPoint ), circuitState ) );
       }
       else {
         assert && assert( false, 'attempting to create switch conection which is not supported' );
@@ -246,7 +246,7 @@ class CircuitSwitch {
     // Would prefer to use _.maxBy, but not available in lodash 2.4.1
     const rightMost = _.last( _.sortBy( this.connections, [ connection => connection.position.x ] ) );
 
-    return rightMost.position.minus( this.hingePoint ).toVector2().angle;
+    return Vector2.from( rightMost.position.minus( this.hingePoint ) ).angle;
   }
 
   /**
@@ -261,7 +261,7 @@ class CircuitSwitch {
     // Would prefer to use _.minBy, but not available in lodash 2.4.1
     const leftMost = _.first( _.sortBy( this.connections, [ connection => connection.position.x ] ) );
 
-    return leftMost.position.minus( this.hingePoint ).toVector2().angle;
+    return Vector2.from( leftMost.position.minus( this.hingePoint ) ).angle;
   }
 
   /**
