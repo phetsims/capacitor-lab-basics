@@ -1,4 +1,4 @@
-// Copyright 2015-2023, University of Colorado Boulder
+// Copyright 2015-2025, University of Colorado Boulder
 
 /**
  * Visual representation of a switch.  A switch consists of a line that connects a hinge point and at least two other

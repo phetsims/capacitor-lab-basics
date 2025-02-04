@@ -1,4 +1,4 @@
-// Copyright 2015-2024, University of Colorado Boulder
+// Copyright 2015-2025, University of Colorado Boulder
 
 /**
  * Toolbox that contains a voltmeter and timer.  The user can drag the voltmeter out of the toolbox for
