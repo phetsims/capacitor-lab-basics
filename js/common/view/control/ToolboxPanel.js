@@ -11,7 +11,7 @@ import Vector2 from '../../../../../dot/js/Vector2.js';
 import merge from '../../../../../phet-core/js/merge.js';
 import Stopwatch from '../../../../../scenery-phet/js/Stopwatch.js';
 import StopwatchNode from '../../../../../scenery-phet/js/StopwatchNode.js';
-import { AlignBox, DragListener, HBox, Node } from '../../../../../scenery/js/imports.js';
+import { AlignBox, DragListener, HBox, Node, rasterized } from '../../../../../scenery/js/imports.js';
 import Panel from '../../../../../sun/js/Panel.js';
 import EventType from '../../../../../tandem/js/EventType.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
@@ -84,7 +84,7 @@ class ToolboxPanel extends Node {
     const timeNodeIconTandem = tandem.createTandem( 'timerIcon' );
 
     // {Node} Create timer icon. Visible option is used only for reset() in ToolboxPanel.js
-    const timerIconNode = placeholderTimer.rasterized( {
+    const timerIconNode = rasterized( placeholderTimer, {
       resolution: 5,
       nodeOptions: {
         cursor: 'pointer',
