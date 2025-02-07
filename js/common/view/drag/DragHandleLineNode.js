@@ -8,7 +8,8 @@
  */
 
 import Vector2 from '../../../../../dot/js/Vector2.js';
-import { Circle, Node } from '../../../../../scenery/js/imports.js';
+import Circle from '../../../../../scenery/js/nodes/Circle.js';
+import Node from '../../../../../scenery/js/nodes/Node.js';
 import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 // constants

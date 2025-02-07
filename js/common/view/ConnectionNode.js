@@ -10,8 +10,10 @@
 
 import Multilink from '../../../../axon/js/Multilink.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import { Shape } from '../../../../kite/js/imports.js';
-import { Circle, Node, PressListener } from '../../../../scenery/js/imports.js';
+import Shape from '../../../../kite/js/Shape.js';
+import PressListener from '../../../../scenery/js/listeners/PressListener.js';
+import Circle from '../../../../scenery/js/nodes/Circle.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
 import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 
