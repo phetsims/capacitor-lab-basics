@@ -1,4 +1,4 @@
-// Copyright 2015-2022, University of Colorado Boulder
+// Copyright 2015-2025, University of Colorado Boulder
 
 /**
  * Dashed line used to connect a drag handle to the thing that it's dragging. This is a string of circles between two
