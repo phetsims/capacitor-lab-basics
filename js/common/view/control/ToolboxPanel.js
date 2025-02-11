@@ -15,7 +15,7 @@ import AlignBox from '../../../../../scenery/js/layout/nodes/AlignBox.js';
 import HBox from '../../../../../scenery/js/layout/nodes/HBox.js';
 import DragListener from '../../../../../scenery/js/listeners/DragListener.js';
 import Node from '../../../../../scenery/js/nodes/Node.js';
-import { rasterized } from '../../../../../scenery/js/util/rasterized.js';
+import { rasterizeNode } from '../../../../../scenery/js/util/rasterizeNode.js';
 import Panel from '../../../../../sun/js/Panel.js';
 import EventType from '../../../../../tandem/js/EventType.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
@@ -88,7 +88,7 @@ class ToolboxPanel extends Node {
     const timeNodeIconTandem = tandem.createTandem( 'timerIcon' );
 
     // {Node} Create timer icon. Visible option is used only for reset() in ToolboxPanel.js
-    const timerIconNode = rasterized( placeholderTimer, {
+    const timerIconNode = rasterizeNode( placeholderTimer, {
       resolution: 5,
       nodeOptions: {
         cursor: 'pointer',
