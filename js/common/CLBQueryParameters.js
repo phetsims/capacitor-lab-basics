@@ -6,6 +6,7 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
+import { QueryStringMachine } from '../../../query-string-machine/js/QueryStringMachineModule.js';
 import capacitorLabBasics from '../capacitorLabBasics.js';
 
 const CLBQueryParameters = QueryStringMachine.getAll( {
