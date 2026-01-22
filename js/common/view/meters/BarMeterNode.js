@@ -1,4 +1,4 @@
-// Copyright 2014-2018, University of Colorado Boulder
+// Copyright 2014-2019, University of Colorado Boulder
 
 /**
  * Abstract base class for all bar meter nodes.
