@@ -3,7 +3,7 @@
 /**
  * Enumeration for what the voltmeter probes can be touching.
  *
- * @author Jonathan Olson <jonathan.olson@colorado.edu>
+ * @author Jonathan Olson (PhET Interactive Simulations)
  */
 
 import capacitorLabBasics from '../../capacitorLabBasics.js';

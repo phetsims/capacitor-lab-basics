@@ -3,7 +3,7 @@
 /**
  * A connection with a switch
  *
- * @author Jonathan Olson <jonathan.olson@colorado.edu>
+ * @author Jonathan Olson (PhET Interactive Simulations)
  */
 
 import capacitorLabBasics from '../../capacitorLabBasics.js';
