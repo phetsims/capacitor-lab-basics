@@ -19,7 +19,6 @@ import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import Line from '../../../../../scenery/js/nodes/Line.js';
 import Node from '../../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import BarNode from './BarNode.js';
 
 // constants
@@ -158,7 +157,5 @@ class BarMeterNode extends Node {
     this.valueText.leftCenter = this.axisLine.leftCenter.minusXY( VALUE_MAX_WIDTH, 0 );
   }
 }
-
-capacitorLabBasics.register( 'BarMeterNode', BarMeterNode );
 
 export default BarMeterNode;

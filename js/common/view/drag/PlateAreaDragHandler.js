@@ -15,7 +15,6 @@ import LinearFunction from '../../../../../dot/js/LinearFunction.js';
 import Utils from '../../../../../dot/js/Utils.js';
 import Vector2 from '../../../../../dot/js/Vector2.js';
 import DragListener from '../../../../../scenery/js/listeners/DragListener.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 class PlateAreaDragHandler extends DragListener {
   /**
@@ -87,7 +86,5 @@ class PlateAreaDragHandler extends DragListener {
     return pMouse.x - pBackRightCorner.x - this.clickXOffset;
   }
 }
-
-capacitorLabBasics.register( 'PlateAreaDragHandler', PlateAreaDragHandler );
 
 export default PlateAreaDragHandler;

@@ -12,7 +12,6 @@ import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import YawPitchModelViewTransform3 from '../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
 import Image from '../../../scenery/js/nodes/Image.js';
 import capacitanceScreenIcon_png from '../../mipmaps/capacitanceScreenIcon_png.js';
-import capacitorLabBasics from '../capacitorLabBasics.js';
 import CapacitorLabBasicsStrings from '../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../common/CLBConstants.js';
 import CapacitanceModel from './model/CapacitanceModel.js';
@@ -44,5 +43,4 @@ class CapacitanceScreen extends Screen {
   }
 }
 
-capacitorLabBasics.register( 'CapacitanceScreen', CapacitanceScreen );
 export default CapacitanceScreen;

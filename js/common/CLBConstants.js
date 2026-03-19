@@ -12,7 +12,6 @@ import Range from '../../../dot/js/Range.js';
 import RangeWithValue from '../../../dot/js/RangeWithValue.js';
 import Vector3 from '../../../dot/js/Vector3.js';
 import PhetColorScheme from '../../../scenery-phet/js/PhetColorScheme.js';
-import capacitorLabBasics from '../capacitorLabBasics.js';
 
 const CLBConstants = {
 
@@ -92,7 +91,5 @@ const CLBConstants = {
   PIN_COLOR: 'lightgray',
   SCREEN_VIEW_BACKGROUND_COLOR: 'rgb( 153, 193, 255 )'
 };
-
-capacitorLabBasics.register( 'CLBConstants', CLBConstants );
 
 export default CLBConstants;

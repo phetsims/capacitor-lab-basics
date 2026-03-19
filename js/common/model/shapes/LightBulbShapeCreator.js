@@ -10,7 +10,6 @@
 
 import Shape from '../../../../../kite/js/Shape.js';
 import YawPitchModelViewTransform3 from '../../../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 class LightBulbShapeCreator {
   /**
@@ -67,7 +66,5 @@ class LightBulbShapeCreator {
     return this.modelViewTransform.modelToViewShape( shape );
   }
 }
-
-capacitorLabBasics.register( 'LightBulbShapeCreator', LightBulbShapeCreator );
 
 export default LightBulbShapeCreator;

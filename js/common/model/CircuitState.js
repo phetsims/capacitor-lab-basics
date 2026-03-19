@@ -9,8 +9,6 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 
-import capacitorLabBasics from '../../capacitorLabBasics.js';
-
 const CircuitState = {
   BATTERY_CONNECTED: 'BATTERY_CONNECTED',
   LIGHT_BULB_CONNECTED: 'LIGHT_BULB_CONNECTED',
@@ -22,7 +20,5 @@ CircuitState.VALUES = _.keys( CircuitState );
 
 // verify that enum is immutable, without the runtime penalty in production code
 if ( assert ) { Object.freeze( CircuitState ); }
-
-capacitorLabBasics.register( 'CircuitState', CircuitState );
 
 export default CircuitState;

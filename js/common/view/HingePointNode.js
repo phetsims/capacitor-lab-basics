@@ -9,7 +9,6 @@
 
 import merge from '../../../../phet-core/js/merge.js';
 import Circle from '../../../../scenery/js/nodes/Circle.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 
 // constants
@@ -38,7 +37,5 @@ class HingePointNode extends Circle {
     } ) );
   }
 }
-
-capacitorLabBasics.register( 'HingePointNode', HingePointNode );
 
 export default HingePointNode;

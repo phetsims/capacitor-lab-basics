@@ -14,7 +14,6 @@ import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import EnumerationIO from '../../../../tandem/js/types/EnumerationIO.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import BatteryShapeCreator from './shapes/BatteryShapeCreator.js';
 
@@ -152,7 +151,5 @@ class Battery {
     this.polarityProperty.reset();
   }
 }
-
-capacitorLabBasics.register( 'Battery', Battery );
 
 export default Battery;

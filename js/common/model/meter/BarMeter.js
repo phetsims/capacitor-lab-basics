@@ -10,7 +10,6 @@
 
 import Property from '../../../../../axon/js/Property.js';
 import ReadOnlyProperty from '../../../../../axon/js/ReadOnlyProperty.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 class BarMeter {
   /**
@@ -36,7 +35,5 @@ class BarMeter {
     this.visibleProperty.reset();
   }
 }
-
-capacitorLabBasics.register( 'BarMeter', BarMeter );
 
 export default BarMeter;

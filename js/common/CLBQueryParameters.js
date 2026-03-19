@@ -7,7 +7,6 @@
  */
 
 import { QueryStringMachine } from '../../../query-string-machine/js/QueryStringMachineModule.js';
-import capacitorLabBasics from '../capacitorLabBasics.js';
 
 const CLBQueryParameters = QueryStringMachine.getAll( {
 
@@ -24,7 +23,5 @@ const CLBQueryParameters = QueryStringMachine.getAll( {
     type: 'flag'
   }
 } );
-
-capacitorLabBasics.register( 'CLBQueryParameters', CLBQueryParameters );
 
 export default CLBQueryParameters;

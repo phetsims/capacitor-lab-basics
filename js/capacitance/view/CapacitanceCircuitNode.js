@@ -8,7 +8,6 @@
  */
 
 import Multilink from '../../../../axon/js/Multilink.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CircuitState from '../../common/model/CircuitState.js';
 import CLBCircuitNode from '../../common/view/CLBCircuitNode.js';
 
@@ -41,7 +40,5 @@ class CapacitanceCircuitNode extends CLBCircuitNode {
     this.batteryBottomCurrentIndicatorNode.setVisible( isBatteryConnected && currentIndicatorsVisible );
   }
 }
-
-capacitorLabBasics.register( 'CapacitanceCircuitNode', CapacitanceCircuitNode );
 
 export default CapacitanceCircuitNode;

@@ -18,7 +18,6 @@ import Text from '../../../../../scenery/js/nodes/Text.js';
 import Panel from '../../../../../sun/js/Panel.js';
 import VerticalAquaRadioButtonGroup from '../../../../../sun/js/VerticalAquaRadioButtonGroup.js';
 import VerticalCheckboxGroup from '../../../../../sun/js/VerticalCheckboxGroup.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CapacitorLabBasicsStrings from '../../../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../../CLBConstants.js';
 
@@ -136,5 +135,4 @@ class CLBViewControlPanel extends Panel {
   }
 }
 
-capacitorLabBasics.register( 'CLBViewControlPanel', CLBViewControlPanel );
 export default CLBViewControlPanel;

@@ -14,7 +14,6 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Shape from '../../../../kite/js/Shape.js';
 import StringIO from '../../../../tandem/js/types/StringIO.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import Battery from './Battery.js';
 import Capacitor from './Capacitor.js';
@@ -380,5 +379,4 @@ class ParallelCircuit {
   }
 }
 
-capacitorLabBasics.register( 'ParallelCircuit', ParallelCircuit );
 export default ParallelCircuit;

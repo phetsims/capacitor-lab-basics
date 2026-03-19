@@ -21,7 +21,6 @@ import Node from '../../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
 import voltmeterBody_png from '../../../../images/voltmeterBody_png.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CapacitorLabBasicsStrings from '../../../CapacitorLabBasicsStrings.js';
 
 // digital display
@@ -162,7 +161,5 @@ class VoltmeterBodyNode extends Node {
     }
   }
 }
-
-capacitorLabBasics.register( 'VoltmeterBodyNode', VoltmeterBodyNode );
 
 export default VoltmeterBodyNode;

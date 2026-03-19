@@ -12,7 +12,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import LinearGradient from '../../../../scenery/js/util/LinearGradient.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 
 const BATTERY_PERSPECTIVE_RATIO = 0.304;
 const BATTERY_MAIN_HEIGHT = 511;
@@ -142,8 +141,6 @@ class BatteryGraphicNode extends Node {
     return new Vector2( 0, this.isPositiveDown ? 0 : -BATTERY_POSITIVE_TERMINAL_HEIGHT );
   }
 }
-
-capacitorLabBasics.register( 'BatteryGraphicNode', BatteryGraphicNode );
 
 // @public {Node}
 BatteryGraphicNode.POSITIVE_UP = new BatteryGraphicNode( false );

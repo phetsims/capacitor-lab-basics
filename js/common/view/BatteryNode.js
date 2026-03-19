@@ -18,7 +18,6 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import VSlider from '../../../../sun/js/VSlider.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CapacitorLabBasicsStrings from '../../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../CLBConstants.js';
 import BatteryGraphicNode from './BatteryGraphicNode.js';
@@ -107,5 +106,4 @@ class BatteryNode extends Node {
   }
 }
 
-capacitorLabBasics.register( 'BatteryNode', BatteryNode );
 export default BatteryNode;

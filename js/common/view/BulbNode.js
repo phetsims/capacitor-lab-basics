@@ -21,7 +21,6 @@ import Image from '../../../../scenery/js/nodes/Image.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import RadialGradient from '../../../../scenery/js/util/RadialGradient.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CircuitState from '../model/CircuitState.js';
 
 // constants
@@ -93,8 +92,6 @@ class BulbNode extends Node {
     return drawBulbNode( options );
   }
 }
-
-capacitorLabBasics.register( 'BulbNode', BulbNode );
 
 /**
  * Create the visual components for a bulbNode with a base, bulb, filament and halo.

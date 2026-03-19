@@ -14,7 +14,6 @@ import Shape from '../../../../kite/js/Shape.js';
 import PressListener from '../../../../scenery/js/listeners/PressListener.js';
 import Circle from '../../../../scenery/js/nodes/Circle.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 
 const BOUNDING_ANGLE = Math.PI / 8;
@@ -96,7 +95,5 @@ class ConnectionNode extends Node {
     } );
   }
 }
-
-capacitorLabBasics.register( 'ConnectionNode', ConnectionNode );
 
 export default ConnectionNode;

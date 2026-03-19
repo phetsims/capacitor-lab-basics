@@ -20,7 +20,6 @@ import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import Stopwatch from '../../../../scenery-phet/js/Stopwatch.js';
 import TimeSpeed from '../../../../scenery-phet/js/TimeSpeed.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import Voltmeter from './meter/Voltmeter.js';
 
@@ -227,7 +226,5 @@ class CLBModel {
     this.stopwatch.reset();
   }
 }
-
-capacitorLabBasics.register( 'CLBModel', CLBModel );
 
 export default CLBModel;

@@ -17,7 +17,6 @@ import Circle from '../../../../scenery/js/nodes/Circle.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import switchCueArrow_png from '../../../images/switchCueArrow_png.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import CircuitState from '../model/CircuitState.js';
 import ConnectionNode from './ConnectionNode.js';
@@ -164,7 +163,5 @@ class SwitchNode extends Node {
     } );
   }
 }
-
-capacitorLabBasics.register( 'SwitchNode', SwitchNode );
 
 export default SwitchNode;

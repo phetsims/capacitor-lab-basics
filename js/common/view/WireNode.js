@@ -10,7 +10,6 @@
 
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 
 // constants
 const WIRE_LINE_WIDTH = 2;
@@ -44,7 +43,5 @@ class WireNode extends Node {
 
   }
 }
-
-capacitorLabBasics.register( 'WireNode', WireNode );
 
 export default WireNode;

@@ -22,7 +22,6 @@ import Text from '../../../../../scenery/js/nodes/Text.js';
 import probeBlack_png from '../../../../images/probeBlack_png.js';
 import probeRed_png from '../../../../images/probeRed_png.js';
 import voltmeterBody_png from '../../../../images/voltmeterBody_png.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CapacitorLabBasicsStrings from '../../../CapacitorLabBasicsStrings.js';
 import ProbeWireNode from './ProbeWireNode.js';
 import VoltmeterBodyNode from './VoltmeterBodyNode.js';
@@ -97,8 +96,6 @@ class VoltmeterNode extends Node {
 // statics for dimensions of the voltmeter body image
 VoltmeterNode.VOLTMETER_BODY_HEIGHT = voltmeterBody_png.height;
 VoltmeterNode.VOLTMETER_BODY_WIDTH = voltmeterBody_png.width;
-
-capacitorLabBasics.register( 'VoltmeterNode', VoltmeterNode );
 
 class VoltmeterIconNode extends Node {
   /**
@@ -189,7 +186,5 @@ class VoltmeterIconNode extends Node {
     ];
   }
 }
-
-capacitorLabBasics.register( 'VoltmeterIconNode', VoltmeterIconNode );
 
 export default VoltmeterNode;

@@ -12,7 +12,6 @@
 import merge from '../../../../phet-core/js/merge.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import YawPitchModelViewTransform3 from '../../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CircuitState from './CircuitState.js';
 
 // Constants with default assignments
@@ -52,7 +51,5 @@ const CircuitConfig = {
 
   }
 };
-
-capacitorLabBasics.register( 'CircuitConfig', CircuitConfig );
 
 export default CircuitConfig;

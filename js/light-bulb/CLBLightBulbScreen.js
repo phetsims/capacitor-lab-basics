@@ -10,7 +10,6 @@ import Property from '../../../axon/js/Property.js';
 import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import YawPitchModelViewTransform3 from '../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
-import capacitorLabBasics from '../capacitorLabBasics.js';
 import CapacitorLabBasicsStrings from '../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../common/CLBConstants.js';
 import BulbNode from '../common/view/BulbNode.js';
@@ -51,5 +50,4 @@ class CLBLightBulbScreen extends Screen {
   }
 }
 
-capacitorLabBasics.register( 'CLBLightBulbScreen', CLBLightBulbScreen );
 export default CLBLightBulbScreen;

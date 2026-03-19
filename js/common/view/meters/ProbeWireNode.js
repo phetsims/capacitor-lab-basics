@@ -11,7 +11,6 @@ import Vector2 from '../../../../../dot/js/Vector2.js';
 import Shape from '../../../../../kite/js/Shape.js';
 import PhetColorScheme from '../../../../../scenery-phet/js/PhetColorScheme.js';
 import Path from '../../../../../scenery/js/nodes/Path.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 // constants
 // wire is a cubic curve, these are the control point offsets
@@ -89,7 +88,5 @@ class ProbeWireNode extends Path {
     return node.translation.plus( connectionOffset );
   }
 }
-
-capacitorLabBasics.register( 'ProbeWireNode', ProbeWireNode );
 
 export default ProbeWireNode;

@@ -12,7 +12,6 @@
 import Utils from '../../../../../dot/js/Utils.js';
 import Vector2 from '../../../../../dot/js/Vector2.js';
 import DragListener from '../../../../../scenery/js/listeners/DragListener.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 class PlateSeparationDragHandler extends DragListener {
   /**
@@ -49,7 +48,5 @@ class PlateSeparationDragHandler extends DragListener {
     } );
   }
 }
-
-capacitorLabBasics.register( 'PlateSeparationDragHandler', PlateSeparationDragHandler );
 
 export default PlateSeparationDragHandler;

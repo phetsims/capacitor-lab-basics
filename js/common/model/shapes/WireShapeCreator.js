@@ -11,7 +11,6 @@
 import Vector2 from '../../../../../dot/js/Vector2.js';
 import Shape from '../../../../../kite/js/Shape.js';
 import LineStyles from '../../../../../kite/js/util/LineStyles.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 class WireShapeCreator {
   /**
@@ -48,7 +47,5 @@ class WireShapeCreator {
     return Shape.union( shapes );
   }
 }
-
-capacitorLabBasics.register( 'WireShapeCreator', WireShapeCreator );
 
 export default WireShapeCreator;

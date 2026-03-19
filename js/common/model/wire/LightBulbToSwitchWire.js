@@ -8,7 +8,6 @@
 
 import Vector3 from '../../../../../dot/js/Vector3.js';
 import required from '../../../../../phet-core/js/required.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CircuitPosition from '../CircuitPosition.js';
 import CircuitState from '../CircuitState.js';
 import Wire from './Wire.js';
@@ -90,5 +89,4 @@ class LightBulbToSwitchWire extends Wire {
   }
 }
 
-capacitorLabBasics.register( 'LightBulbToSwitchWire', LightBulbToSwitchWire );
 export default LightBulbToSwitchWire;

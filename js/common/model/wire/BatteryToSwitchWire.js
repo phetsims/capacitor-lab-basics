@@ -7,7 +7,6 @@
  */
 
 import Vector3 from '../../../../../dot/js/Vector3.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CircuitPosition from '../CircuitPosition.js';
 import CircuitState from '../CircuitState.js';
 import Wire from './Wire.js';
@@ -113,7 +112,5 @@ class BatteryToSwitchWire extends Wire {
     return new BatteryToSwitchWire( CircuitPosition.BATTERY_TOP, config, battery, circuitSwitch );
   }
 }
-
-capacitorLabBasics.register( 'BatteryToSwitchWire', BatteryToSwitchWire );
 
 export default BatteryToSwitchWire;

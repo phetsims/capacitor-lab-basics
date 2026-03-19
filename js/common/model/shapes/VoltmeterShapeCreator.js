@@ -13,7 +13,6 @@ import Matrix3 from '../../../../../dot/js/Matrix3.js';
 import Vector2 from '../../../../../dot/js/Vector2.js';
 import Vector3 from '../../../../../dot/js/Vector3.js';
 import Shape from '../../../../../kite/js/Shape.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 // var PROBE_TIP_OFFSET = new Vector3( 0.00045, 0, 0 );
 const PROBE_TIP_OFFSET = new Vector3( 0.00018, 0.00025, 0 );
@@ -82,7 +81,5 @@ class VoltmeterShapeCreator {
     ] );
   }
 }
-
-capacitorLabBasics.register( 'VoltmeterShapeCreator', VoltmeterShapeCreator );
 
 export default VoltmeterShapeCreator;

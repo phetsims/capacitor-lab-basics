@@ -17,7 +17,6 @@ import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import Panel from '../../../../sun/js/Panel.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import BarMeterPanel from '../../common/view/BarMeterPanel.js';
 import CLBViewControlPanel from '../../common/view/control/CLBViewControlPanel.js';
 import ToolboxPanel from '../../common/view/control/ToolboxPanel.js';
@@ -143,5 +142,4 @@ class CLBLightBulbScreenView extends ScreenView {
   }
 }
 
-capacitorLabBasics.register( 'CLBLightBulbScreenView', CLBLightBulbScreenView );
 export default CLBLightBulbScreenView;

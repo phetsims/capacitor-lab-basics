@@ -10,7 +10,6 @@
 import Vector2 from '../../../../dot/js/Vector2.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import BarMeterPanel from '../../common/view/BarMeterPanel.js';
 import CLBViewControlPanel from '../../common/view/control/CLBViewControlPanel.js';
 import ToolboxPanel from '../../common/view/control/ToolboxPanel.js';
@@ -90,5 +89,4 @@ class CapacitanceScreenView extends ScreenView {
   }
 }
 
-capacitorLabBasics.register( 'CapacitanceScreenView', CapacitanceScreenView );
 export default CapacitanceScreenView;

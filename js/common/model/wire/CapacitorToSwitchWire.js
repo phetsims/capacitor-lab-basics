@@ -7,7 +7,6 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CircuitPosition from '../CircuitPosition.js';
 import Wire from './Wire.js';
 import WireSegment from './WireSegment.js';
@@ -66,7 +65,5 @@ class CapacitorToSwitchWire extends Wire {
     return new CapacitorToSwitchWire( CircuitPosition.CAPACITOR_BOTTOM, config, capacitor, circuitSwitch );
   }
 }
-
-capacitorLabBasics.register( 'CapacitorToSwitchWire', CapacitorToSwitchWire );
 
 export default CapacitorToSwitchWire;

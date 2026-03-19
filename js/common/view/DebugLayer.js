@@ -11,7 +11,6 @@ import Shape from '../../../../kite/js/Shape.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import CLBQueryParameters from '../CLBQueryParameters.js';
 import CircuitPosition from '../model/CircuitPosition.js';
@@ -146,7 +145,5 @@ class DebugLayer extends Node {
     } );
   }
 }
-
-capacitorLabBasics.register( 'DebugLayer', DebugLayer );
 
 export default DebugLayer;

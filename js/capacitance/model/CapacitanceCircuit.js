@@ -18,7 +18,6 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CircuitState from '../../common/model/CircuitState.js';
 import ParallelCircuit from '../../common/model/ParallelCircuit.js';
 
@@ -56,7 +55,5 @@ class CapacitanceCircuit extends ParallelCircuit {
     }
   }
 }
-
-capacitorLabBasics.register( 'CapacitanceCircuit', CapacitanceCircuit );
 
 export default CapacitanceCircuit;

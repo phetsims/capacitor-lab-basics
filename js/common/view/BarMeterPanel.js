@@ -16,7 +16,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
 import Panel from '../../../../sun/js/Panel.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CapacitorLabBasicsStrings from '../../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../CLBConstants.js';
 import BarMeterNode from './meters/BarMeterNode.js';
@@ -139,5 +138,4 @@ class BarMeterPanel extends Panel {
   }
 }
 
-capacitorLabBasics.register( 'BarMeterPanel', BarMeterPanel );
 export default BarMeterPanel;

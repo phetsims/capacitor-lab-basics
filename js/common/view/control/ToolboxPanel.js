@@ -19,7 +19,6 @@ import { rasterizeNode } from '../../../../../scenery/js/util/rasterizeNode.js';
 import Panel from '../../../../../sun/js/Panel.js';
 import EventType from '../../../../../tandem/js/EventType.js';
 import Tandem from '../../../../../tandem/js/Tandem.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CLBConstants from '../../CLBConstants.js';
 import VoltmeterNode from '../meters/VoltmeterNode.js';
 
@@ -160,7 +159,5 @@ class ToolboxPanel extends Node {
     } );
   }
 }
-
-capacitorLabBasics.register( 'ToolboxPanel', ToolboxPanel );
 
 export default ToolboxPanel;

@@ -6,8 +6,6 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import capacitorLabBasics from '../../capacitorLabBasics.js';
-
 const CircuitPosition = {
   BATTERY_TOP: 'BATTERY_TOP',
   BATTERY_BOTTOM: 'BATTERY_BOTTOM',
@@ -61,7 +59,5 @@ CircuitPosition.isCapacitor = circuitPosition => {
 if ( assert ) {
   Object.freeze( CircuitPosition );
 }
-
-capacitorLabBasics.register( 'CircuitPosition', CircuitPosition );
 
 export default CircuitPosition;

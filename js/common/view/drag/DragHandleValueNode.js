@@ -15,7 +15,6 @@ import PhetFont from '../../../../../scenery-phet/js/PhetFont.js';
 import Node from '../../../../../scenery/js/nodes/Node.js';
 import RichText from '../../../../../scenery/js/nodes/RichText.js';
 import Text from '../../../../../scenery/js/nodes/Text.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 // constants
 const LABEL_FONT = new PhetFont( { weight: 'bold', size: 12 } );
@@ -73,7 +72,5 @@ class DragHandleValueNode extends Node {
     } ) );
   }
 }
-
-capacitorLabBasics.register( 'DragHandleValueNode', DragHandleValueNode );
 
 export default DragHandleValueNode;

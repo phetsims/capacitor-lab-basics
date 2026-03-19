@@ -14,7 +14,6 @@
 
 import Multilink from '../../../../../axon/js/Multilink.js';
 import Property from '../../../../../axon/js/Property.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import WireShapeCreator from '../shapes/WireShapeCreator.js';
 
 class Wire {
@@ -62,7 +61,5 @@ class Wire {
            shape.shapeIntersection( this.shapeProperty.value ).getNonoverlappingArea() > 0;
   }
 }
-
-capacitorLabBasics.register( 'Wire', Wire );
 
 export default Wire;

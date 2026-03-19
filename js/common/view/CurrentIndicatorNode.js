@@ -25,7 +25,6 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import Animation from '../../../../twixt/js/Animation.js';
 import Easing from '../../../../twixt/js/Easing.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 
 // constants
 // arrow properties
@@ -213,7 +212,5 @@ class CurrentIndicatorNode extends Node {
     this.visible = visible;
   }
 }
-
-capacitorLabBasics.register( 'CurrentIndicatorNode', CurrentIndicatorNode );
 
 export default CurrentIndicatorNode;

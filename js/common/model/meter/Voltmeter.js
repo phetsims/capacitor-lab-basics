@@ -18,7 +18,6 @@ import Vector3 from '../../../../../dot/js/Vector3.js';
 import YawPitchModelViewTransform3 from '../../../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
 import NullableIO from '../../../../../tandem/js/types/NullableIO.js';
 import NumberIO from '../../../../../tandem/js/types/NumberIO.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CircuitPosition from '../CircuitPosition.js';
 import CircuitState from '../CircuitState.js';
 import ParallelCircuit from '../ParallelCircuit.js';
@@ -253,7 +252,5 @@ class Voltmeter {
     this.negativeProbeTargetProperty.reset();
   }
 }
-
-capacitorLabBasics.register( 'Voltmeter', Voltmeter );
 
 export default Voltmeter;

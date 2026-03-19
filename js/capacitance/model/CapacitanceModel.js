@@ -9,7 +9,6 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CircuitConfig from '../../common/model/CircuitConfig.js';
 import CircuitState from '../../common/model/CircuitState.js';
 import CLBModel from '../../common/model/CLBModel.js';
@@ -59,7 +58,5 @@ class CapacitanceModel extends CLBModel {
     super.reset();
   }
 }
-
-capacitorLabBasics.register( 'CapacitanceModel', CapacitanceModel );
 
 export default CapacitanceModel;

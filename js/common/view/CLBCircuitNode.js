@@ -12,7 +12,6 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import CapacitorNode from '../../../../scenery-phet/js/capacitor/CapacitorNode.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import CircuitState from '../model/CircuitState.js';
 import BatteryNode from './BatteryNode.js';
@@ -169,5 +168,4 @@ class CLBCircuitNode extends Node {
   }
 }
 
-capacitorLabBasics.register( 'CLBCircuitNode', CLBCircuitNode );
 export default CLBCircuitNode;

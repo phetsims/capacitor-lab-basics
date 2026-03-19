@@ -10,7 +10,6 @@
 
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import LightBulbShapeCreator from './shapes/LightBulbShapeCreator.js';
 
@@ -93,7 +92,5 @@ class LightBulb {
     return voltage / this.resistance;
   }
 }
-
-capacitorLabBasics.register( 'LightBulb', LightBulb );
 
 export default LightBulb;

@@ -15,7 +15,6 @@ import Vector2 from '../../../../dot/js/Vector2.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
 import Shape from '../../../../kite/js/Shape.js';
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import CircuitPosition from './CircuitPosition.js';
 import CircuitState from './CircuitState.js';
@@ -316,7 +315,5 @@ class CircuitSwitch {
     return new CircuitSwitch( 'bottom', config, circuitConnectionProperty, tandem );
   }
 }
-
-capacitorLabBasics.register( 'CircuitSwitch', CircuitSwitch );
 
 export default CircuitSwitch;

@@ -12,7 +12,6 @@
 
 import Property from '../../../../../axon/js/Property.js';
 import Vector3 from '../../../../../dot/js/Vector3.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 class WireSegment {
   /**
@@ -66,8 +65,6 @@ class WireSegment {
   }
 }
 
-capacitorLabBasics.register( 'WireSegment', WireSegment );
-
 class ComponentTopWireSegment extends WireSegment {
   /**
    * This is a wire segment whose start point is connected to the top
@@ -97,8 +94,6 @@ class ComponentTopWireSegment extends WireSegment {
   }
 }
 
-capacitorLabBasics.register( 'ComponentTopWireSegment', ComponentTopWireSegment );
-
 class ComponentBottomWireSegment extends WireSegment {
   /**
    * Wire segment whose start point is connected to the bottom connection
@@ -127,7 +122,5 @@ class ComponentBottomWireSegment extends WireSegment {
     }
   }
 }
-
-capacitorLabBasics.register( 'ComponentBottomWireSegment', ComponentBottomWireSegment );
 
 export default WireSegment;

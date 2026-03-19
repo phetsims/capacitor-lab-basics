@@ -11,7 +11,6 @@
 
 import Dimension2 from '../../../../../dot/js/Dimension2.js';
 import Rectangle from '../../../../../scenery/js/nodes/Rectangle.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 // constants
 const BASE_LINE_LENGTH = 25;
@@ -79,7 +78,5 @@ class BarNode extends Rectangle {
     this.transparentWorkaroundBar.setRect( width, -BASE_LINE_LENGTH / 2 + BASE_LINE_OFFSET, BAR_SIZE.width, BAR_SIZE.height );
   }
 }
-
-capacitorLabBasics.register( 'BarNode', BarNode );
 
 export default BarNode;

@@ -19,7 +19,6 @@ import Image from '../../../../../scenery/js/nodes/Image.js';
 import Node from '../../../../../scenery/js/nodes/Node.js';
 import probeBlack_png from '../../../../images/probeBlack_png.js';
 import probeRed_png from '../../../../images/probeRed_png.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 class VoltmeterProbeNode extends Node {
   /**
@@ -114,7 +113,5 @@ class VoltmeterProbeNode extends Node {
       voltmeter.negativeProbePositionProperty, modelViewTransform, voltmeter.dragBounds, tandem );
   }
 }
-
-capacitorLabBasics.register( 'VoltmeterProbeNode', VoltmeterProbeNode );
 
 export default VoltmeterProbeNode;

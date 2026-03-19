@@ -66,6 +66,4 @@ type StringsType = {
 
 const CapacitorLabBasicsStrings = getStringModule( 'CAPACITOR_LAB_BASICS' ) as StringsType;
 
-capacitorLabBasics.register( 'CapacitorLabBasicsStrings', CapacitorLabBasicsStrings );
-
 export default CapacitorLabBasicsStrings;

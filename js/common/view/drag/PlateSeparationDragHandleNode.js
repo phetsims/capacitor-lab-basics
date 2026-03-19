@@ -10,7 +10,6 @@
 
 import Vector2 from '../../../../../dot/js/Vector2.js';
 import Node from '../../../../../scenery/js/nodes/Node.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CapacitorLabBasicsStrings from '../../../CapacitorLabBasicsStrings.js';
 import CLBConstants from '../../CLBConstants.js';
 import UnitsUtils from '../../model/util/UnitsUtils.js';
@@ -122,7 +121,5 @@ class PlateSeparationDragHandleNode extends Node {
     this.translation = this.modelViewTransform.modelToViewXYZ( x, y, z );
   }
 }
-
-capacitorLabBasics.register( 'PlateSeparationDragHandleNode', PlateSeparationDragHandleNode );
 
 export default PlateSeparationDragHandleNode;

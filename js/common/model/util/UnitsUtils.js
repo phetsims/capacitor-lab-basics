@@ -12,8 +12,6 @@
  * @author Jesse Greenberg (PhET Interactive Simulations)
  */
 
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
-
 // constants
 const MILLIMETERS_PER_METER = 1000;
 
@@ -40,7 +38,5 @@ const UnitsUtils = {
     return d * ( MILLIMETERS_PER_METER * MILLIMETERS_PER_METER );
   }
 };
-
-capacitorLabBasics.register( 'UnitsUtils', UnitsUtils );
 
 export default UnitsUtils;

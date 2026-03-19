@@ -6,7 +6,6 @@
  * @author Jonathan Olson (PhET Interactive Simulations)
  */
 
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CircuitPosition from './CircuitPosition.js';
 
 const ProbeTarget = {
@@ -114,7 +113,5 @@ ProbeTarget.getCircuitPosition = probeTarget => {
 if ( assert ) {
   Object.freeze( ProbeTarget );
 }
-
-capacitorLabBasics.register( 'ProbeTarget', ProbeTarget );
 
 export default ProbeTarget;

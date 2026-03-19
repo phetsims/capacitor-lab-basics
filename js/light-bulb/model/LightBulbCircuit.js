@@ -25,7 +25,6 @@
 
 import Multilink from '../../../../axon/js/Multilink.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../../common/CLBConstants.js';
 import CircuitPosition from '../../common/model/CircuitPosition.js';
 import CircuitState from '../../common/model/CircuitState.js';
@@ -172,7 +171,5 @@ class LightBulbCircuit extends ParallelCircuit {
     }
   }
 }
-
-capacitorLabBasics.register( 'LightBulbCircuit', LightBulbCircuit );
 
 export default LightBulbCircuit;

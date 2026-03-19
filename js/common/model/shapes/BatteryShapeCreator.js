@@ -15,7 +15,6 @@
 // TODO: Did you mean invert the shapes? https://github.com/phetsims/capacitor-lab-basics/issues/294
 import Matrix3 from '../../../../../dot/js/Matrix3.js';
 import YawPitchModelViewTransform3 from '../../../../../scenery-phet/js/capacitor/YawPitchModelViewTransform3.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import BatteryGraphicNode from '../../view/BatteryGraphicNode.js';
 
 class BatteryShapeCreator {
@@ -68,7 +67,5 @@ class BatteryShapeCreator {
     return shape;
   }
 }
-
-capacitorLabBasics.register( 'BatteryShapeCreator', BatteryShapeCreator );
 
 export default BatteryShapeCreator;

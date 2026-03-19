@@ -29,7 +29,6 @@ import BoxShapeCreator from '../../../../scenery-phet/js/capacitor/BoxShapeCreat
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
 import isSettingPhetioStateProperty from '../../../../tandem/js/isSettingPhetioStateProperty.js';
 import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBConstants from '../CLBConstants.js';
 import CircuitPosition from './CircuitPosition.js';
 import CircuitState from './CircuitState.js';
@@ -312,7 +311,5 @@ class Capacitor {
     this.plateVoltageProperty.reset();
   }
 }
-
-capacitorLabBasics.register( 'Capacitor', Capacitor );
 
 export default Capacitor;

@@ -8,7 +8,6 @@
  */
 
 import ArrowNode from '../../../../../scenery-phet/js/ArrowNode.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 
 // constants
 const NORMAL_COLOR = 'rgb( 61, 179, 79 )';
@@ -53,5 +52,4 @@ class DragHandleArrowNode extends ArrowNode {
   }
 }
 
-capacitorLabBasics.register( 'DragHandleArrowNode', DragHandleArrowNode );
 export default DragHandleArrowNode;

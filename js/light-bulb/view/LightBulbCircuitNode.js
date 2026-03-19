@@ -9,7 +9,6 @@
 
 import Multilink from '../../../../axon/js/Multilink.js';
 import Vector3 from '../../../../dot/js/Vector3.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CircuitState from '../../common/model/CircuitState.js';
 import BulbNode from '../../common/view/BulbNode.js';
 import CLBCircuitNode from '../../common/view/CLBCircuitNode.js';
@@ -76,7 +75,5 @@ class LightBulbCircuitNode extends CLBCircuitNode {
       } );
   }
 }
-
-capacitorLabBasics.register( 'LightBulbCircuitNode', LightBulbCircuitNode );
 
 export default LightBulbCircuitNode;

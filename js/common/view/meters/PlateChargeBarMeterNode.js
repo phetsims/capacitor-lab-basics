@@ -7,7 +7,6 @@
  * @author Andrew Adare (PhET Interactive Simulations)
  */
 
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CLBConstants from '../../CLBConstants.js';
 import BarMeterNode from './BarMeterNode.js';
 
@@ -37,7 +36,5 @@ class PlateChargeBarMeterNode extends BarMeterNode {
     this.setBarColor( ( value >= 0 ) ? CLBConstants.POSITIVE_CHARGE_COLOR : CLBConstants.NEGATIVE_CHARGE_COLOR );
   }
 }
-
-capacitorLabBasics.register( 'PlateChargeBarMeterNode', PlateChargeBarMeterNode );
 
 export default PlateChargeBarMeterNode;

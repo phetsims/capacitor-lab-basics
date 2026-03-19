@@ -6,8 +6,6 @@
  * @author Jonathan Olson (PhET Interactive Simulations)
  */
 
-import capacitorLabBasics from '../../capacitorLabBasics.js';
-
 class Connection {
   /**
    * @param {Vector3} position
@@ -21,7 +19,5 @@ class Connection {
     this.type = type;
   }
 }
-
-capacitorLabBasics.register( 'Connection', Connection );
 
 export default Connection;

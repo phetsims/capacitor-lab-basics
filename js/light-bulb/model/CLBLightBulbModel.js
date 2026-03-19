@@ -9,7 +9,6 @@
  */
 
 import CapacitorConstants from '../../../../scenery-phet/js/capacitor/CapacitorConstants.js';
-import capacitorLabBasics from '../../capacitorLabBasics.js';
 import CLBQueryParameters from '../../common/CLBQueryParameters.js';
 import CircuitConfig from '../../common/model/CircuitConfig.js';
 import CircuitState from '../../common/model/CircuitState.js';
@@ -108,7 +107,5 @@ class CLBLightBulbModel extends CLBModel {
     super.step( 0.2, true );
   }
 }
-
-capacitorLabBasics.register( 'CLBLightBulbModel', CLBLightBulbModel );
 
 export default CLBLightBulbModel;

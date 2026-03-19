@@ -15,7 +15,6 @@ import Range from '../../../../../dot/js/Range.js';
 import Utils from '../../../../../dot/js/Utils.js';
 import Vector2 from '../../../../../dot/js/Vector2.js';
 import DragListener from '../../../../../scenery/js/listeners/DragListener.js';
-import capacitorLabBasics from '../../../capacitorLabBasics.js';
 import CLBQueryParameters from '../../CLBQueryParameters.js';
 import CircuitState from '../../model/CircuitState.js';
 
@@ -114,7 +113,5 @@ class CircuitSwitchDragHandler extends DragListener {
     } );
   }
 }
-
-capacitorLabBasics.register( 'CircuitSwitchDragHandler', CircuitSwitchDragHandler );
 
 export default CircuitSwitchDragHandler;
