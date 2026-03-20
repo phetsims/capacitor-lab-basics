@@ -1,4 +1,4 @@
-// Copyright 2016-2021, University of Colorado Boulder
+// Copyright 2016-2026, University of Colorado Boulder
 
 /**
  * BarMeterNode subclass that implements a custom setValue method
