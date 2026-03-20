@@ -9,11 +9,11 @@
     "branch": "HEAD"
   },
   "brand": {
-    "sha": "cc2d6b075f800e716e281abdc86a15574e7c502a",
+    "sha": "cf1e3cd6388e6d240f6f6dc65ac6504826256d7a",
     "branch": "HEAD"
   },
   "capacitor-lab-basics": {
-    "sha": "2634f93dd84839709ef75efedf0cb632a2bba3b8",
+    "sha": "2cbc2a3e945a982fe8012a777bff0f3049802931",
     "branch": "1.6"
   },
   "chipper": {
